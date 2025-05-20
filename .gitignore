@@ -1,4 +1,13 @@
-.env
-*.sql
+# MacOS
 .DS_Store
+
+# Node.js dependencies
 node_modules/
+
+# Misc
+script.js
+
+# DB Stuff
+/db/dumps/
+/db/backups/
+/db/init/*.sql
