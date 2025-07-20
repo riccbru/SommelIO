@@ -4,7 +4,7 @@ GET http://localhost:3001/api/v1/welcome
 
 ###
 
-GET http://localhost:3001/api/v1/users/
+GET http://localhost:3001/api/v1/users/4160c2d7-1efc-461c-8621-a7825cd5148c
 
 ###
 
@@ -12,8 +12,8 @@ POST http://localhost:3001/api/v1/login
 Content-Type: application/json
 
 {
-    "username": "bankich",
-    "password": "bankich_pwd"
+    "username": "baffanghirlo",
+    "password": "baffanghirlo_pwd"
 }
 
 ###
