@@ -1,19 +1,40 @@
-###
+@token = 
+@refresh = 
 
-GET http://localhost:3001/api/v1/welcome
+### LOGIN + TOKEN
 
-###
-
-GET http://localhost:3001/api/v1/users/4160c2d7-1efc-461c-8621-a7825cd5148c
-
-###
-
-POST http://localhost:3001/api/v1/login
+POST http://localhost:3001/api/v1/auth/login
 Content-Type: application/json
 
 {
     "username": "baffanghirlo",
     "password": "baffanghirlo_pwd"
 }
+
+### WELCOME
+
+GET http://localhost:3001/api/v1/welcome HTTP/1.1
+Authorization: Bearer {{token}}
+
+### GET USER INFO
+
+GET http://localhost:3001/api/v1/users/me HTTP/1.1
+Authorization: Bearer {{token}}
+
+### GET USER BY ID
+
+GET http://localhost:3001/api/v1/users/613f58a4-6e57-456e-81e1-2f2da2892a8d HTTP/1.1
+Authorization: Bearer {{token}}
+
+
+### REFRESH TOKEN
+
+POST http://localhost:3001/api/v1/auth/refresh HTTP/1.1
+Cookie: refreshToken {{refresh}}
+
+### LOGOUT
+
+POST http://localhost:3001/api/v1/auth/logout HTTP/1.1
+Cookie: refreshToken {{refresh}}
 
 ###

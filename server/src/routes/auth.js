@@ -48,10 +48,39 @@ router.post("/login",
     }
 );
 
+// router.post("/refresh",
+//     async (req, res) => {
+//         const refreshToken = req.cookies?.refreshToken;
+//         if (!refreshToken || typeof refreshToken !== "string" || refreshToken.trim().length === 0) {
+//             return res.status(401).json({ error: "Refresh token required" });
+//         }
+
+//         try {
+//             const payload = jsonwebtoken.verify(refreshToken, JWT_REFRESH_SECRET);
+//             const user = await prisma.users.findUnique({ where: { uid: payload.uid } });
+
+//             if (!user) {
+//                 return res.status(401).json({ error: "Invalid refresh token" });
+//             }
+
+//             const newAccessToken = generateAccessToken({
+//                 uid: user.uid,
+//                 username: user.username,
+//                 fullName: user.full_name,
+//             });
+
+//             res.json({ token: newAccessToken });
+//         } catch (error) {
+//             console.error("Refresh token error:", error);
+//             res.status(500).json({ error: "Internal server error" });
+//         }
+//     }
+// );
+
 router.post("/refresh",
     async (req, res) => {
-        const refreshToken = req.cookies.refreshToken;
-        if (!refreshToken) {
+        const refreshToken = req.cookies?.refreshToken;
+        if (!refreshToken || typeof refreshToken !== "string" || refreshToken.trim().length === 0) {
             return res.status(401).json({ error: "Refresh token required" });
         }
 
@@ -60,7 +89,7 @@ router.post("/refresh",
             const user = await prisma.users.findUnique({ where: { uid: payload.uid } });
 
             if (!user) {
-                return res.status(401).json({ error: "Invalid refresh token" });
+                return res.status(401).json({ error: "User not found" });
             }
 
             const newAccessToken = generateAccessToken({
@@ -70,8 +99,14 @@ router.post("/refresh",
             });
 
             res.json({ token: newAccessToken });
-        } catch (error) {
-            console.error("Refresh token error:", error);
+        } catch (err) {
+            if (err.name === 'TokenExpiredError') {
+                return res.status(401).json({ error: "Refresh token expired" });
+            }
+            if (err.name === "JsonWebTokenError") {
+                return res.status(401).json({ error: "Invalid refresh token" });
+            }
+            console.error("Refresh token ERROR:", err);
             res.status(500).json({ error: "Internal server error" });
         }
     }

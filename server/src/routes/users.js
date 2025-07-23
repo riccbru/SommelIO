@@ -56,7 +56,7 @@ router.get("/:uid",
         return;
       }
 
-      const user = await prisma.users.findUnique({ where: { uid } });
+      const user = await prisma.users.findUnique({ where: { uid: uid_params } });
 
       if (!user) {
         res.status(404).json({ error: `User ${uid} not found` });
@@ -72,6 +72,7 @@ router.get("/:uid",
       res.json(payload);
 
     } catch (error) {
+      console.log(error);
       res.status(500).json({ error: error?.meta?.message || "Internal server error" });
     }
   }
