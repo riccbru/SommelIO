@@ -19,25 +19,24 @@ router.get("/",
 // GET /api/v1/users/me
 router.get("/me",
   async (req, res) => {
-    const uid = req.user.uid;
 
     try {
-      const user = await prisma.users.findUnique({ where: { uid } });
-
+      const user = await prisma.users.findUnique({ where: { uid: req.user.uid } });
       if (!user) {
-        res.status(404).json({ error: `User ${uid} not found` });
+        res.status(404).json({ error: `User ${req.user.uid} not found` });
         return;
       }
 
       const payload = {
           uid: user?.uid,
           username: user?.username,
-          fullName: user?.full_name,
+          full_name: user?.full_name,
       }
 
       res.json(payload);
 
     } catch (error) {
+      console.log(error);
       res.status(500).json({ error: error?.meta?.message || "Internal server error" });
     }
   }
@@ -57,16 +56,15 @@ router.get("/:uid",
       }
 
       const user = await prisma.users.findUnique({ where: { uid: uid_params } });
-
       if (!user) {
-        res.status(404).json({ error: `User ${uid} not found` });
+        res.status(404).json({ error: `User ${uid_params} not found` });
         return;
       }
 
       const payload = {
           uid: user?.uid,
           username: user?.username,
-          fullName: user?.full_name,
+          full_name: user?.full_name,
       }
 
       res.json(payload);
