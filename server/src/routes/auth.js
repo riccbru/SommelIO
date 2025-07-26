@@ -12,6 +12,7 @@ const JWT_REFRESH_EXPTIME = process.env.JWT_REFRESH_EXPTIME || "7d";
 const JWT_ACCESS_SECRET = process.env.JWT_ACCESS_SECRET || "JWT_accessToken_secret";
 const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || "JWT_refreshToken_secret";
 
+// POST /api/v1/auth/login
 router.post("/login",
     async (req, res) => {
         const { username, password } = req.body;
@@ -30,6 +31,7 @@ router.post("/login",
                 admin: user?.admin,
                 username: user?.username,
                 fullName: user?.full_name,
+                email: user?.email,
             }
             const accessToken = generateAccessToken(payload);
             const refreshToken = generateRefreshToken(payload);
@@ -49,35 +51,7 @@ router.post("/login",
     }
 );
 
-// router.post("/refresh",
-//     async (req, res) => {
-//         const refreshToken = req.cookies?.refreshToken;
-//         if (!refreshToken || typeof refreshToken !== "string" || refreshToken.trim().length === 0) {
-//             return res.status(401).json({ error: "Refresh token required" });
-//         }
-
-//         try {
-//             const payload = jsonwebtoken.verify(refreshToken, JWT_REFRESH_SECRET);
-//             const user = await prisma.users.findUnique({ where: { uid: payload.uid } });
-
-//             if (!user) {
-//                 return res.status(401).json({ error: "Invalid refresh token" });
-//             }
-
-//             const newAccessToken = generateAccessToken({
-//                 uid: user.uid,
-//                 username: user.username,
-//                 fullName: user.full_name,
-//             });
-
-//             res.json({ token: newAccessToken });
-//         } catch (error) {
-//             console.error("Refresh token error:", error);
-//             res.status(500).json({ error: "Internal server error" });
-//         }
-//     }
-// );
-
+// POST /api/v1/auth/refresh
 router.post("/refresh",
     async (req, res) => {
         const refreshToken = req.cookies?.refreshToken;
@@ -113,6 +87,7 @@ router.post("/refresh",
     }
 );
 
+// POST /api/v1/auth/logout
 router.post("/logout",
     (_req, res) => {
         res.clearCookie('refreshToken');

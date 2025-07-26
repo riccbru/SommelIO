@@ -31,6 +31,7 @@ router.get("/me",
           uid: user?.uid,
           username: user?.username,
           full_name: user?.full_name,
+          email: user?.email,
       }
 
       res.json(payload);

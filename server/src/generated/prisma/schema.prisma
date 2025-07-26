@@ -49,6 +49,7 @@ model tastings {
   uid                 String          @db.Uuid
   full_name           String?
   wine_category_id    Int
+  sample_number       String?
   wine_denomination   String
   alcohol_content     Decimal         @db.Decimal(4, 2)
   vintage             Int

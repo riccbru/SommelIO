@@ -155,6 +155,7 @@ exports.Prisma.TastingsScalarFieldEnum = {
   uid: 'uid',
   full_name: 'full_name',
   wine_category_id: 'wine_category_id',
+  sample_number: 'sample_number',
   wine_denomination: 'wine_denomination',
   alcohol_content: 'alcohol_content',
   vintage: 'vintage',

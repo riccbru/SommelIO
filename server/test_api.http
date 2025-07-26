@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NjdhNjIzNi00YjJlLTQ0N2UtOGYyMC0zOTdkNDUyZDE0MTIiLCJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJiYW5raWNoIiwiZnVsbE5hbWUiOiJCYW5raWNoIEFkbWluIiwiaWF0IjoxNzUzNTI3ODg1LCJleHAiOjE3NTM1Mjg3ODV9.sjuDahL4mBfaO5vg3g6QQ9U6tfji4nF9YW0lkvikxoI
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NjdhNjIzNi00YjJlLTQ0N2UtOGYyMC0zOTdkNDUyZDE0MTIiLCJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJiYW5raWNoIiwiZnVsbE5hbWUiOiJCYW5raWNoIEFkbWluIiwiZW1haWwiOiJiYW5raWNoQHNvbW1lbC5pbyIsImlhdCI6MTc1MzUzMzE4NCwiZXhwIjoxNzUzNTM0MDg0fQ.2PlDNuhjlGBqKiJmpiGfvL6oJrJHMnvs5yT3c7qp7yw
 @refresh = 
 
 ### LOGIN + TOKEN
@@ -16,21 +16,36 @@ Content-Type: application/json
 GET http://localhost:3001/api/v1/welcome HTTP/1.1
 Authorization: Bearer {{token}}
 
-### GET USER INFO
+### GET USER BY ID
 
 GET http://localhost:3001/api/v1/users/me HTTP/1.1
 Authorization: Bearer {{token}}
 
-### GET USER BY ID
-
-GET http://localhost:3001/api/v1/users/67cb2054-2b59-4087-bb3e-adb63f703dd4 HTTP/1.1
-Authorization: Bearer {{token}}
-
 ### GET TASTING BY ID
 
-GET http://localhost:3001/api/v1/tastings/ HTTP/1.1
+GET http://localhost:3001/api/v1/tastings HTTP/1.1
 Accept-Language: it
 Authorization: Bearer {{token}}
+
+### POST NEW TASTING
+
+POST http://localhost:3001/api/v1/tastings HTTP/1.1
+Accept-Language: it
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "wine_category_name": "rosato",
+    "sample_number": "2025-99",
+    "wine_denomination": "Cerasuolo d'Abruzzo DOC, Illuminati",
+    "alcohol_content": "13.0",
+    "vintage": 2023,
+    "wine_temperature": "16",
+    "ambient_temperature": "25",
+    "tasting_date": "2024-07-25T00:00:00.000Z",
+    "tasting_time": "21:00",
+    "tasting_location": "Art Cafè"
+}
 
 
 ### REFRESH TOKEN
