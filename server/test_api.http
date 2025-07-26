@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NjdhNjIzNi00YjJlLTQ0N2UtOGYyMC0zOTdkNDUyZDE0MTIiLCJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJiYW5raWNoIiwiZnVsbE5hbWUiOiJCYW5raWNoIEFkbWluIiwiZW1haWwiOiJiYW5raWNoQHNvbW1lbC5pbyIsImlhdCI6MTc1MzUzMzE4NCwiZXhwIjoxNzUzNTM0MDg0fQ.2PlDNuhjlGBqKiJmpiGfvL6oJrJHMnvs5yT3c7qp7yw
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NjdhNjIzNi00YjJlLTQ0N2UtOGYyMC0zOTdkNDUyZDE0MTIiLCJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJiYW5raWNoIiwiZnVsbE5hbWUiOiJCYW5raWNoIEFkbWluIiwiZW1haWwiOiJiYW5raWNoQHNvbW1lbC5pbyIsImlhdCI6MTc1MzUzMzU4OSwiZXhwIjoxNzUzNTM0NDg5fQ.sDg4soxFqWc9BRwjvxU87mF_vyQKmnUu11Ofr8z5yNo
 @refresh = 
 
 ### LOGIN + TOKEN
@@ -24,7 +24,7 @@ Authorization: Bearer {{token}}
 ### GET TASTING BY ID
 
 GET http://localhost:3001/api/v1/tastings HTTP/1.1
-Accept-Language: it
+Accept-Language: en
 Authorization: Bearer {{token}}
 
 ### POST NEW TASTING

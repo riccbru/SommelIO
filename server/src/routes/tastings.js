@@ -19,7 +19,8 @@ router.get("/",
 
         try {
             const result = await prisma.tastings.findMany({
-                where: { uid: uid }
+                where: { uid: uid },
+                orderBy: { id: 'desc' },
             });
 
             if (!result || result.length === 0) {
