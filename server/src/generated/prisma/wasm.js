@@ -168,6 +168,55 @@ exports.Prisma.TastingsScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
+exports.Prisma.Olfactory_examsScalarFieldEnum = {
+  id: 'id',
+  tid: 'tid',
+  intensity: 'intensity',
+  complexity: 'complexity',
+  quality: 'quality',
+  aromatic: 'aromatic',
+  vinous: 'vinous',
+  floral: 'floral',
+  fruity: 'fruity',
+  fragrant: 'fragrant',
+  herbaceous: 'herbaceous',
+  mineral: 'mineral',
+  spicy: 'spicy',
+  ethereal: 'ethereal',
+  frank: 'frank',
+  notes: 'notes'
+};
+
+exports.Prisma.Taste_olfactory_examsScalarFieldEnum = {
+  id: 'id',
+  tid: 'tid',
+  sugars: 'sugars',
+  alcohols: 'alcohols',
+  polyalcohols: 'polyalcohols',
+  acids: 'acids',
+  tannins: 'tannins',
+  minerals: 'minerals',
+  balance: 'balance',
+  intensity: 'intensity',
+  persistence: 'persistence',
+  quality: 'quality',
+  structure: 'structure',
+  notes: 'notes'
+};
+
+exports.Prisma.Visual_examsScalarFieldEnum = {
+  id: 'id',
+  tid: 'tid',
+  limpidity: 'limpidity',
+  color_family: 'color_family',
+  color_shade: 'color_shade',
+  consistency: 'consistency',
+  bubble_grain: 'bubble_grain',
+  bubble_number: 'bubble_number',
+  bubble_persistence: 'bubble_persistence',
+  notes: 'notes'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -188,7 +237,10 @@ exports.Prisma.ModelName = {
   users: 'users',
   wine_categories: 'wine_categories',
   wine_category_translations: 'wine_category_translations',
-  tastings: 'tastings'
+  tastings: 'tastings',
+  olfactory_exams: 'olfactory_exams',
+  taste_olfactory_exams: 'taste_olfactory_exams',
+  visual_exams: 'visual_exams'
 };
 
 /**

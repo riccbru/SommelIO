@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NjdhNjIzNi00YjJlLTQ0N2UtOGYyMC0zOTdkNDUyZDE0MTIiLCJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJiYW5raWNoIiwiZnVsbE5hbWUiOiJCYW5raWNoIEFkbWluIiwiZW1haWwiOiJiYW5raWNoQHNvbW1lbC5pbyIsImlhdCI6MTc1MzUzMzU4OSwiZXhwIjoxNzUzNTM0NDg5fQ.sDg4soxFqWc9BRwjvxU87mF_vyQKmnUu11Ofr8z5yNo
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NjdhNjIzNi00YjJlLTQ0N2UtOGYyMC0zOTdkNDUyZDE0MTIiLCJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJiYW5raWNoIiwiZnVsbE5hbWUiOiJCYW5raWNoIEFkbWluIiwiZW1haWwiOiJiYW5raWNoQHNvbW1lbC5pbyIsImlhdCI6MTc1MzUzNzQzOCwiZXhwIjoxNzUzNTM4MzM4fQ.knGM10KWMSpoWApZHXEQpDkmj0teK1HTiDaQ9AoB5ZU
 @refresh = 
 
 ### LOGIN + TOKEN
@@ -27,6 +27,11 @@ GET http://localhost:3001/api/v1/tastings HTTP/1.1
 Accept-Language: en
 Authorization: Bearer {{token}}
 
+### GET EXAMS
+
+GET http://localhost:3001/api/v1/tastings/b48b94cd-9173-415e-b258-76bf3341b087/exams HTTP/1.1
+Authorization: Bearer {{token}}
+
 ### POST NEW TASTING
 
 POST http://localhost:3001/api/v1/tastings HTTP/1.1
@@ -46,7 +51,6 @@ Authorization: Bearer {{token}}
     "tasting_time": "21:00",
     "tasting_location": "Art Cafè"
 }
-
 
 ### REFRESH TOKEN
 

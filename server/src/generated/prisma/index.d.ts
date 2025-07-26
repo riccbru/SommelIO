@@ -33,6 +33,21 @@ export type wine_category_translations = $Result.DefaultSelection<Prisma.$wine_c
  * 
  */
 export type tastings = $Result.DefaultSelection<Prisma.$tastingsPayload>
+/**
+ * Model olfactory_exams
+ * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+ */
+export type olfactory_exams = $Result.DefaultSelection<Prisma.$olfactory_examsPayload>
+/**
+ * Model taste_olfactory_exams
+ * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+ */
+export type taste_olfactory_exams = $Result.DefaultSelection<Prisma.$taste_olfactory_examsPayload>
+/**
+ * Model visual_exams
+ * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+ */
+export type visual_exams = $Result.DefaultSelection<Prisma.$visual_examsPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -198,6 +213,36 @@ export class PrismaClient<
     * ```
     */
   get tastings(): Prisma.tastingsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.olfactory_exams`: Exposes CRUD operations for the **olfactory_exams** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Olfactory_exams
+    * const olfactory_exams = await prisma.olfactory_exams.findMany()
+    * ```
+    */
+  get olfactory_exams(): Prisma.olfactory_examsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.taste_olfactory_exams`: Exposes CRUD operations for the **taste_olfactory_exams** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Taste_olfactory_exams
+    * const taste_olfactory_exams = await prisma.taste_olfactory_exams.findMany()
+    * ```
+    */
+  get taste_olfactory_exams(): Prisma.taste_olfactory_examsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.visual_exams`: Exposes CRUD operations for the **visual_exams** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Visual_exams
+    * const visual_exams = await prisma.visual_exams.findMany()
+    * ```
+    */
+  get visual_exams(): Prisma.visual_examsDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -641,7 +686,10 @@ export namespace Prisma {
     users: 'users',
     wine_categories: 'wine_categories',
     wine_category_translations: 'wine_category_translations',
-    tastings: 'tastings'
+    tastings: 'tastings',
+    olfactory_exams: 'olfactory_exams',
+    taste_olfactory_exams: 'taste_olfactory_exams',
+    visual_exams: 'visual_exams'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -660,7 +708,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "users" | "wine_categories" | "wine_category_translations" | "tastings"
+      modelProps: "users" | "wine_categories" | "wine_category_translations" | "tastings" | "olfactory_exams" | "taste_olfactory_exams" | "visual_exams"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -960,6 +1008,228 @@ export namespace Prisma {
           }
         }
       }
+      olfactory_exams: {
+        payload: Prisma.$olfactory_examsPayload<ExtArgs>
+        fields: Prisma.olfactory_examsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.olfactory_examsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$olfactory_examsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.olfactory_examsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$olfactory_examsPayload>
+          }
+          findFirst: {
+            args: Prisma.olfactory_examsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$olfactory_examsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.olfactory_examsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$olfactory_examsPayload>
+          }
+          findMany: {
+            args: Prisma.olfactory_examsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$olfactory_examsPayload>[]
+          }
+          create: {
+            args: Prisma.olfactory_examsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$olfactory_examsPayload>
+          }
+          createMany: {
+            args: Prisma.olfactory_examsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.olfactory_examsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$olfactory_examsPayload>[]
+          }
+          delete: {
+            args: Prisma.olfactory_examsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$olfactory_examsPayload>
+          }
+          update: {
+            args: Prisma.olfactory_examsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$olfactory_examsPayload>
+          }
+          deleteMany: {
+            args: Prisma.olfactory_examsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.olfactory_examsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.olfactory_examsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$olfactory_examsPayload>[]
+          }
+          upsert: {
+            args: Prisma.olfactory_examsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$olfactory_examsPayload>
+          }
+          aggregate: {
+            args: Prisma.Olfactory_examsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateOlfactory_exams>
+          }
+          groupBy: {
+            args: Prisma.olfactory_examsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Olfactory_examsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.olfactory_examsCountArgs<ExtArgs>
+            result: $Utils.Optional<Olfactory_examsCountAggregateOutputType> | number
+          }
+        }
+      }
+      taste_olfactory_exams: {
+        payload: Prisma.$taste_olfactory_examsPayload<ExtArgs>
+        fields: Prisma.taste_olfactory_examsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.taste_olfactory_examsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$taste_olfactory_examsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.taste_olfactory_examsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$taste_olfactory_examsPayload>
+          }
+          findFirst: {
+            args: Prisma.taste_olfactory_examsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$taste_olfactory_examsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.taste_olfactory_examsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$taste_olfactory_examsPayload>
+          }
+          findMany: {
+            args: Prisma.taste_olfactory_examsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$taste_olfactory_examsPayload>[]
+          }
+          create: {
+            args: Prisma.taste_olfactory_examsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$taste_olfactory_examsPayload>
+          }
+          createMany: {
+            args: Prisma.taste_olfactory_examsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.taste_olfactory_examsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$taste_olfactory_examsPayload>[]
+          }
+          delete: {
+            args: Prisma.taste_olfactory_examsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$taste_olfactory_examsPayload>
+          }
+          update: {
+            args: Prisma.taste_olfactory_examsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$taste_olfactory_examsPayload>
+          }
+          deleteMany: {
+            args: Prisma.taste_olfactory_examsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.taste_olfactory_examsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.taste_olfactory_examsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$taste_olfactory_examsPayload>[]
+          }
+          upsert: {
+            args: Prisma.taste_olfactory_examsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$taste_olfactory_examsPayload>
+          }
+          aggregate: {
+            args: Prisma.Taste_olfactory_examsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTaste_olfactory_exams>
+          }
+          groupBy: {
+            args: Prisma.taste_olfactory_examsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Taste_olfactory_examsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.taste_olfactory_examsCountArgs<ExtArgs>
+            result: $Utils.Optional<Taste_olfactory_examsCountAggregateOutputType> | number
+          }
+        }
+      }
+      visual_exams: {
+        payload: Prisma.$visual_examsPayload<ExtArgs>
+        fields: Prisma.visual_examsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.visual_examsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$visual_examsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.visual_examsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$visual_examsPayload>
+          }
+          findFirst: {
+            args: Prisma.visual_examsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$visual_examsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.visual_examsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$visual_examsPayload>
+          }
+          findMany: {
+            args: Prisma.visual_examsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$visual_examsPayload>[]
+          }
+          create: {
+            args: Prisma.visual_examsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$visual_examsPayload>
+          }
+          createMany: {
+            args: Prisma.visual_examsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.visual_examsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$visual_examsPayload>[]
+          }
+          delete: {
+            args: Prisma.visual_examsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$visual_examsPayload>
+          }
+          update: {
+            args: Prisma.visual_examsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$visual_examsPayload>
+          }
+          deleteMany: {
+            args: Prisma.visual_examsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.visual_examsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.visual_examsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$visual_examsPayload>[]
+          }
+          upsert: {
+            args: Prisma.visual_examsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$visual_examsPayload>
+          }
+          aggregate: {
+            args: Prisma.Visual_examsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVisual_exams>
+          }
+          groupBy: {
+            args: Prisma.visual_examsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Visual_examsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.visual_examsCountArgs<ExtArgs>
+            result: $Utils.Optional<Visual_examsCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1048,6 +1318,9 @@ export namespace Prisma {
     wine_categories?: wine_categoriesOmit
     wine_category_translations?: wine_category_translationsOmit
     tastings?: tastingsOmit
+    olfactory_exams?: olfactory_examsOmit
+    taste_olfactory_exams?: taste_olfactory_examsOmit
+    visual_exams?: visual_examsOmit
   }
 
   /* Types for Logging */
@@ -1205,6 +1478,55 @@ export namespace Prisma {
    */
   export type Wine_categoriesCountOutputTypeCountWine_category_translationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: wine_category_translationsWhereInput
+  }
+
+
+  /**
+   * Count Type TastingsCountOutputType
+   */
+
+  export type TastingsCountOutputType = {
+    olfactory_exams: number
+    taste_olfactory_exams: number
+    visual_exams: number
+  }
+
+  export type TastingsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    olfactory_exams?: boolean | TastingsCountOutputTypeCountOlfactory_examsArgs
+    taste_olfactory_exams?: boolean | TastingsCountOutputTypeCountTaste_olfactory_examsArgs
+    visual_exams?: boolean | TastingsCountOutputTypeCountVisual_examsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * TastingsCountOutputType without action
+   */
+  export type TastingsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TastingsCountOutputType
+     */
+    select?: TastingsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * TastingsCountOutputType without action
+   */
+  export type TastingsCountOutputTypeCountOlfactory_examsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: olfactory_examsWhereInput
+  }
+
+  /**
+   * TastingsCountOutputType without action
+   */
+  export type TastingsCountOutputTypeCountTaste_olfactory_examsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: taste_olfactory_examsWhereInput
+  }
+
+  /**
+   * TastingsCountOutputType without action
+   */
+  export type TastingsCountOutputTypeCountVisual_examsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: visual_examsWhereInput
   }
 
 
@@ -4934,8 +5256,12 @@ export namespace Prisma {
     tasting_location?: boolean
     created_at?: boolean
     updated_at?: boolean
+    olfactory_exams?: boolean | tastings$olfactory_examsArgs<ExtArgs>
+    taste_olfactory_exams?: boolean | tastings$taste_olfactory_examsArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
     wine_categories?: boolean | wine_categoriesDefaultArgs<ExtArgs>
+    visual_exams?: boolean | tastings$visual_examsArgs<ExtArgs>
+    _count?: boolean | TastingsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tastings"]>
 
   export type tastingsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5001,8 +5327,12 @@ export namespace Prisma {
 
   export type tastingsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "uid" | "full_name" | "wine_category_id" | "sample_number" | "wine_denomination" | "alcohol_content" | "vintage" | "wine_temperature" | "ambient_temperature" | "tasting_date" | "tasting_time" | "tasting_location" | "created_at" | "updated_at", ExtArgs["result"]["tastings"]>
   export type tastingsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    olfactory_exams?: boolean | tastings$olfactory_examsArgs<ExtArgs>
+    taste_olfactory_exams?: boolean | tastings$taste_olfactory_examsArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
     wine_categories?: boolean | wine_categoriesDefaultArgs<ExtArgs>
+    visual_exams?: boolean | tastings$visual_examsArgs<ExtArgs>
+    _count?: boolean | TastingsCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type tastingsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | usersDefaultArgs<ExtArgs>
@@ -5016,8 +5346,11 @@ export namespace Prisma {
   export type $tastingsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "tastings"
     objects: {
+      olfactory_exams: Prisma.$olfactory_examsPayload<ExtArgs>[]
+      taste_olfactory_exams: Prisma.$taste_olfactory_examsPayload<ExtArgs>[]
       users: Prisma.$usersPayload<ExtArgs>
       wine_categories: Prisma.$wine_categoriesPayload<ExtArgs>
+      visual_exams: Prisma.$visual_examsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -5430,8 +5763,11 @@ export namespace Prisma {
    */
   export interface Prisma__tastingsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    olfactory_exams<T extends tastings$olfactory_examsArgs<ExtArgs> = {}>(args?: Subset<T, tastings$olfactory_examsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$olfactory_examsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    taste_olfactory_exams<T extends tastings$taste_olfactory_examsArgs<ExtArgs> = {}>(args?: Subset<T, tastings$taste_olfactory_examsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$taste_olfactory_examsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     users<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     wine_categories<T extends wine_categoriesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, wine_categoriesDefaultArgs<ExtArgs>>): Prisma__wine_categoriesClient<$Result.GetResult<Prisma.$wine_categoriesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    visual_exams<T extends tastings$visual_examsArgs<ExtArgs> = {}>(args?: Subset<T, tastings$visual_examsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$visual_examsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5873,6 +6209,78 @@ export namespace Prisma {
   }
 
   /**
+   * tastings.olfactory_exams
+   */
+  export type tastings$olfactory_examsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the olfactory_exams
+     */
+    select?: olfactory_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the olfactory_exams
+     */
+    omit?: olfactory_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: olfactory_examsInclude<ExtArgs> | null
+    where?: olfactory_examsWhereInput
+    orderBy?: olfactory_examsOrderByWithRelationInput | olfactory_examsOrderByWithRelationInput[]
+    cursor?: olfactory_examsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Olfactory_examsScalarFieldEnum | Olfactory_examsScalarFieldEnum[]
+  }
+
+  /**
+   * tastings.taste_olfactory_exams
+   */
+  export type tastings$taste_olfactory_examsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the taste_olfactory_exams
+     */
+    select?: taste_olfactory_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the taste_olfactory_exams
+     */
+    omit?: taste_olfactory_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: taste_olfactory_examsInclude<ExtArgs> | null
+    where?: taste_olfactory_examsWhereInput
+    orderBy?: taste_olfactory_examsOrderByWithRelationInput | taste_olfactory_examsOrderByWithRelationInput[]
+    cursor?: taste_olfactory_examsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Taste_olfactory_examsScalarFieldEnum | Taste_olfactory_examsScalarFieldEnum[]
+  }
+
+  /**
+   * tastings.visual_exams
+   */
+  export type tastings$visual_examsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the visual_exams
+     */
+    select?: visual_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the visual_exams
+     */
+    omit?: visual_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: visual_examsInclude<ExtArgs> | null
+    where?: visual_examsWhereInput
+    orderBy?: visual_examsOrderByWithRelationInput | visual_examsOrderByWithRelationInput[]
+    cursor?: visual_examsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Visual_examsScalarFieldEnum | Visual_examsScalarFieldEnum[]
+  }
+
+  /**
    * tastings without action
    */
   export type tastingsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5888,6 +6296,3664 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: tastingsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model olfactory_exams
+   */
+
+  export type AggregateOlfactory_exams = {
+    _count: Olfactory_examsCountAggregateOutputType | null
+    _avg: Olfactory_examsAvgAggregateOutputType | null
+    _sum: Olfactory_examsSumAggregateOutputType | null
+    _min: Olfactory_examsMinAggregateOutputType | null
+    _max: Olfactory_examsMaxAggregateOutputType | null
+  }
+
+  export type Olfactory_examsAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type Olfactory_examsSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type Olfactory_examsMinAggregateOutputType = {
+    id: number | null
+    tid: string | null
+    intensity: string | null
+    complexity: string | null
+    quality: string | null
+    aromatic: boolean | null
+    vinous: boolean | null
+    floral: boolean | null
+    fruity: boolean | null
+    fragrant: boolean | null
+    herbaceous: boolean | null
+    mineral: boolean | null
+    spicy: boolean | null
+    ethereal: boolean | null
+    frank: boolean | null
+    notes: string | null
+  }
+
+  export type Olfactory_examsMaxAggregateOutputType = {
+    id: number | null
+    tid: string | null
+    intensity: string | null
+    complexity: string | null
+    quality: string | null
+    aromatic: boolean | null
+    vinous: boolean | null
+    floral: boolean | null
+    fruity: boolean | null
+    fragrant: boolean | null
+    herbaceous: boolean | null
+    mineral: boolean | null
+    spicy: boolean | null
+    ethereal: boolean | null
+    frank: boolean | null
+    notes: string | null
+  }
+
+  export type Olfactory_examsCountAggregateOutputType = {
+    id: number
+    tid: number
+    intensity: number
+    complexity: number
+    quality: number
+    aromatic: number
+    vinous: number
+    floral: number
+    fruity: number
+    fragrant: number
+    herbaceous: number
+    mineral: number
+    spicy: number
+    ethereal: number
+    frank: number
+    notes: number
+    _all: number
+  }
+
+
+  export type Olfactory_examsAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type Olfactory_examsSumAggregateInputType = {
+    id?: true
+  }
+
+  export type Olfactory_examsMinAggregateInputType = {
+    id?: true
+    tid?: true
+    intensity?: true
+    complexity?: true
+    quality?: true
+    aromatic?: true
+    vinous?: true
+    floral?: true
+    fruity?: true
+    fragrant?: true
+    herbaceous?: true
+    mineral?: true
+    spicy?: true
+    ethereal?: true
+    frank?: true
+    notes?: true
+  }
+
+  export type Olfactory_examsMaxAggregateInputType = {
+    id?: true
+    tid?: true
+    intensity?: true
+    complexity?: true
+    quality?: true
+    aromatic?: true
+    vinous?: true
+    floral?: true
+    fruity?: true
+    fragrant?: true
+    herbaceous?: true
+    mineral?: true
+    spicy?: true
+    ethereal?: true
+    frank?: true
+    notes?: true
+  }
+
+  export type Olfactory_examsCountAggregateInputType = {
+    id?: true
+    tid?: true
+    intensity?: true
+    complexity?: true
+    quality?: true
+    aromatic?: true
+    vinous?: true
+    floral?: true
+    fruity?: true
+    fragrant?: true
+    herbaceous?: true
+    mineral?: true
+    spicy?: true
+    ethereal?: true
+    frank?: true
+    notes?: true
+    _all?: true
+  }
+
+  export type Olfactory_examsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which olfactory_exams to aggregate.
+     */
+    where?: olfactory_examsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of olfactory_exams to fetch.
+     */
+    orderBy?: olfactory_examsOrderByWithRelationInput | olfactory_examsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: olfactory_examsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` olfactory_exams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` olfactory_exams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned olfactory_exams
+    **/
+    _count?: true | Olfactory_examsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Olfactory_examsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Olfactory_examsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Olfactory_examsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Olfactory_examsMaxAggregateInputType
+  }
+
+  export type GetOlfactory_examsAggregateType<T extends Olfactory_examsAggregateArgs> = {
+        [P in keyof T & keyof AggregateOlfactory_exams]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateOlfactory_exams[P]>
+      : GetScalarType<T[P], AggregateOlfactory_exams[P]>
+  }
+
+
+
+
+  export type olfactory_examsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: olfactory_examsWhereInput
+    orderBy?: olfactory_examsOrderByWithAggregationInput | olfactory_examsOrderByWithAggregationInput[]
+    by: Olfactory_examsScalarFieldEnum[] | Olfactory_examsScalarFieldEnum
+    having?: olfactory_examsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Olfactory_examsCountAggregateInputType | true
+    _avg?: Olfactory_examsAvgAggregateInputType
+    _sum?: Olfactory_examsSumAggregateInputType
+    _min?: Olfactory_examsMinAggregateInputType
+    _max?: Olfactory_examsMaxAggregateInputType
+  }
+
+  export type Olfactory_examsGroupByOutputType = {
+    id: number
+    tid: string | null
+    intensity: string
+    complexity: string
+    quality: string
+    aromatic: boolean | null
+    vinous: boolean | null
+    floral: boolean | null
+    fruity: boolean | null
+    fragrant: boolean | null
+    herbaceous: boolean | null
+    mineral: boolean | null
+    spicy: boolean | null
+    ethereal: boolean | null
+    frank: boolean | null
+    notes: string | null
+    _count: Olfactory_examsCountAggregateOutputType | null
+    _avg: Olfactory_examsAvgAggregateOutputType | null
+    _sum: Olfactory_examsSumAggregateOutputType | null
+    _min: Olfactory_examsMinAggregateOutputType | null
+    _max: Olfactory_examsMaxAggregateOutputType | null
+  }
+
+  type GetOlfactory_examsGroupByPayload<T extends olfactory_examsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Olfactory_examsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Olfactory_examsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Olfactory_examsGroupByOutputType[P]>
+            : GetScalarType<T[P], Olfactory_examsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type olfactory_examsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tid?: boolean
+    intensity?: boolean
+    complexity?: boolean
+    quality?: boolean
+    aromatic?: boolean
+    vinous?: boolean
+    floral?: boolean
+    fruity?: boolean
+    fragrant?: boolean
+    herbaceous?: boolean
+    mineral?: boolean
+    spicy?: boolean
+    ethereal?: boolean
+    frank?: boolean
+    notes?: boolean
+    tastings?: boolean | olfactory_exams$tastingsArgs<ExtArgs>
+  }, ExtArgs["result"]["olfactory_exams"]>
+
+  export type olfactory_examsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tid?: boolean
+    intensity?: boolean
+    complexity?: boolean
+    quality?: boolean
+    aromatic?: boolean
+    vinous?: boolean
+    floral?: boolean
+    fruity?: boolean
+    fragrant?: boolean
+    herbaceous?: boolean
+    mineral?: boolean
+    spicy?: boolean
+    ethereal?: boolean
+    frank?: boolean
+    notes?: boolean
+    tastings?: boolean | olfactory_exams$tastingsArgs<ExtArgs>
+  }, ExtArgs["result"]["olfactory_exams"]>
+
+  export type olfactory_examsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tid?: boolean
+    intensity?: boolean
+    complexity?: boolean
+    quality?: boolean
+    aromatic?: boolean
+    vinous?: boolean
+    floral?: boolean
+    fruity?: boolean
+    fragrant?: boolean
+    herbaceous?: boolean
+    mineral?: boolean
+    spicy?: boolean
+    ethereal?: boolean
+    frank?: boolean
+    notes?: boolean
+    tastings?: boolean | olfactory_exams$tastingsArgs<ExtArgs>
+  }, ExtArgs["result"]["olfactory_exams"]>
+
+  export type olfactory_examsSelectScalar = {
+    id?: boolean
+    tid?: boolean
+    intensity?: boolean
+    complexity?: boolean
+    quality?: boolean
+    aromatic?: boolean
+    vinous?: boolean
+    floral?: boolean
+    fruity?: boolean
+    fragrant?: boolean
+    herbaceous?: boolean
+    mineral?: boolean
+    spicy?: boolean
+    ethereal?: boolean
+    frank?: boolean
+    notes?: boolean
+  }
+
+  export type olfactory_examsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "intensity" | "complexity" | "quality" | "aromatic" | "vinous" | "floral" | "fruity" | "fragrant" | "herbaceous" | "mineral" | "spicy" | "ethereal" | "frank" | "notes", ExtArgs["result"]["olfactory_exams"]>
+  export type olfactory_examsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tastings?: boolean | olfactory_exams$tastingsArgs<ExtArgs>
+  }
+  export type olfactory_examsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tastings?: boolean | olfactory_exams$tastingsArgs<ExtArgs>
+  }
+  export type olfactory_examsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tastings?: boolean | olfactory_exams$tastingsArgs<ExtArgs>
+  }
+
+  export type $olfactory_examsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "olfactory_exams"
+    objects: {
+      tastings: Prisma.$tastingsPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      tid: string | null
+      intensity: string
+      complexity: string
+      quality: string
+      aromatic: boolean | null
+      vinous: boolean | null
+      floral: boolean | null
+      fruity: boolean | null
+      fragrant: boolean | null
+      herbaceous: boolean | null
+      mineral: boolean | null
+      spicy: boolean | null
+      ethereal: boolean | null
+      frank: boolean | null
+      notes: string | null
+    }, ExtArgs["result"]["olfactory_exams"]>
+    composites: {}
+  }
+
+  type olfactory_examsGetPayload<S extends boolean | null | undefined | olfactory_examsDefaultArgs> = $Result.GetResult<Prisma.$olfactory_examsPayload, S>
+
+  type olfactory_examsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<olfactory_examsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Olfactory_examsCountAggregateInputType | true
+    }
+
+  export interface olfactory_examsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['olfactory_exams'], meta: { name: 'olfactory_exams' } }
+    /**
+     * Find zero or one Olfactory_exams that matches the filter.
+     * @param {olfactory_examsFindUniqueArgs} args - Arguments to find a Olfactory_exams
+     * @example
+     * // Get one Olfactory_exams
+     * const olfactory_exams = await prisma.olfactory_exams.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends olfactory_examsFindUniqueArgs>(args: SelectSubset<T, olfactory_examsFindUniqueArgs<ExtArgs>>): Prisma__olfactory_examsClient<$Result.GetResult<Prisma.$olfactory_examsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Olfactory_exams that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {olfactory_examsFindUniqueOrThrowArgs} args - Arguments to find a Olfactory_exams
+     * @example
+     * // Get one Olfactory_exams
+     * const olfactory_exams = await prisma.olfactory_exams.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends olfactory_examsFindUniqueOrThrowArgs>(args: SelectSubset<T, olfactory_examsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__olfactory_examsClient<$Result.GetResult<Prisma.$olfactory_examsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Olfactory_exams that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {olfactory_examsFindFirstArgs} args - Arguments to find a Olfactory_exams
+     * @example
+     * // Get one Olfactory_exams
+     * const olfactory_exams = await prisma.olfactory_exams.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends olfactory_examsFindFirstArgs>(args?: SelectSubset<T, olfactory_examsFindFirstArgs<ExtArgs>>): Prisma__olfactory_examsClient<$Result.GetResult<Prisma.$olfactory_examsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Olfactory_exams that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {olfactory_examsFindFirstOrThrowArgs} args - Arguments to find a Olfactory_exams
+     * @example
+     * // Get one Olfactory_exams
+     * const olfactory_exams = await prisma.olfactory_exams.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends olfactory_examsFindFirstOrThrowArgs>(args?: SelectSubset<T, olfactory_examsFindFirstOrThrowArgs<ExtArgs>>): Prisma__olfactory_examsClient<$Result.GetResult<Prisma.$olfactory_examsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Olfactory_exams that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {olfactory_examsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Olfactory_exams
+     * const olfactory_exams = await prisma.olfactory_exams.findMany()
+     * 
+     * // Get first 10 Olfactory_exams
+     * const olfactory_exams = await prisma.olfactory_exams.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const olfactory_examsWithIdOnly = await prisma.olfactory_exams.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends olfactory_examsFindManyArgs>(args?: SelectSubset<T, olfactory_examsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$olfactory_examsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Olfactory_exams.
+     * @param {olfactory_examsCreateArgs} args - Arguments to create a Olfactory_exams.
+     * @example
+     * // Create one Olfactory_exams
+     * const Olfactory_exams = await prisma.olfactory_exams.create({
+     *   data: {
+     *     // ... data to create a Olfactory_exams
+     *   }
+     * })
+     * 
+     */
+    create<T extends olfactory_examsCreateArgs>(args: SelectSubset<T, olfactory_examsCreateArgs<ExtArgs>>): Prisma__olfactory_examsClient<$Result.GetResult<Prisma.$olfactory_examsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Olfactory_exams.
+     * @param {olfactory_examsCreateManyArgs} args - Arguments to create many Olfactory_exams.
+     * @example
+     * // Create many Olfactory_exams
+     * const olfactory_exams = await prisma.olfactory_exams.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends olfactory_examsCreateManyArgs>(args?: SelectSubset<T, olfactory_examsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Olfactory_exams and returns the data saved in the database.
+     * @param {olfactory_examsCreateManyAndReturnArgs} args - Arguments to create many Olfactory_exams.
+     * @example
+     * // Create many Olfactory_exams
+     * const olfactory_exams = await prisma.olfactory_exams.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Olfactory_exams and only return the `id`
+     * const olfactory_examsWithIdOnly = await prisma.olfactory_exams.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends olfactory_examsCreateManyAndReturnArgs>(args?: SelectSubset<T, olfactory_examsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$olfactory_examsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Olfactory_exams.
+     * @param {olfactory_examsDeleteArgs} args - Arguments to delete one Olfactory_exams.
+     * @example
+     * // Delete one Olfactory_exams
+     * const Olfactory_exams = await prisma.olfactory_exams.delete({
+     *   where: {
+     *     // ... filter to delete one Olfactory_exams
+     *   }
+     * })
+     * 
+     */
+    delete<T extends olfactory_examsDeleteArgs>(args: SelectSubset<T, olfactory_examsDeleteArgs<ExtArgs>>): Prisma__olfactory_examsClient<$Result.GetResult<Prisma.$olfactory_examsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Olfactory_exams.
+     * @param {olfactory_examsUpdateArgs} args - Arguments to update one Olfactory_exams.
+     * @example
+     * // Update one Olfactory_exams
+     * const olfactory_exams = await prisma.olfactory_exams.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends olfactory_examsUpdateArgs>(args: SelectSubset<T, olfactory_examsUpdateArgs<ExtArgs>>): Prisma__olfactory_examsClient<$Result.GetResult<Prisma.$olfactory_examsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Olfactory_exams.
+     * @param {olfactory_examsDeleteManyArgs} args - Arguments to filter Olfactory_exams to delete.
+     * @example
+     * // Delete a few Olfactory_exams
+     * const { count } = await prisma.olfactory_exams.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends olfactory_examsDeleteManyArgs>(args?: SelectSubset<T, olfactory_examsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Olfactory_exams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {olfactory_examsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Olfactory_exams
+     * const olfactory_exams = await prisma.olfactory_exams.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends olfactory_examsUpdateManyArgs>(args: SelectSubset<T, olfactory_examsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Olfactory_exams and returns the data updated in the database.
+     * @param {olfactory_examsUpdateManyAndReturnArgs} args - Arguments to update many Olfactory_exams.
+     * @example
+     * // Update many Olfactory_exams
+     * const olfactory_exams = await prisma.olfactory_exams.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Olfactory_exams and only return the `id`
+     * const olfactory_examsWithIdOnly = await prisma.olfactory_exams.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends olfactory_examsUpdateManyAndReturnArgs>(args: SelectSubset<T, olfactory_examsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$olfactory_examsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Olfactory_exams.
+     * @param {olfactory_examsUpsertArgs} args - Arguments to update or create a Olfactory_exams.
+     * @example
+     * // Update or create a Olfactory_exams
+     * const olfactory_exams = await prisma.olfactory_exams.upsert({
+     *   create: {
+     *     // ... data to create a Olfactory_exams
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Olfactory_exams we want to update
+     *   }
+     * })
+     */
+    upsert<T extends olfactory_examsUpsertArgs>(args: SelectSubset<T, olfactory_examsUpsertArgs<ExtArgs>>): Prisma__olfactory_examsClient<$Result.GetResult<Prisma.$olfactory_examsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Olfactory_exams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {olfactory_examsCountArgs} args - Arguments to filter Olfactory_exams to count.
+     * @example
+     * // Count the number of Olfactory_exams
+     * const count = await prisma.olfactory_exams.count({
+     *   where: {
+     *     // ... the filter for the Olfactory_exams we want to count
+     *   }
+     * })
+    **/
+    count<T extends olfactory_examsCountArgs>(
+      args?: Subset<T, olfactory_examsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Olfactory_examsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Olfactory_exams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Olfactory_examsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Olfactory_examsAggregateArgs>(args: Subset<T, Olfactory_examsAggregateArgs>): Prisma.PrismaPromise<GetOlfactory_examsAggregateType<T>>
+
+    /**
+     * Group by Olfactory_exams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {olfactory_examsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends olfactory_examsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: olfactory_examsGroupByArgs['orderBy'] }
+        : { orderBy?: olfactory_examsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, olfactory_examsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOlfactory_examsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the olfactory_exams model
+   */
+  readonly fields: olfactory_examsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for olfactory_exams.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__olfactory_examsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tastings<T extends olfactory_exams$tastingsArgs<ExtArgs> = {}>(args?: Subset<T, olfactory_exams$tastingsArgs<ExtArgs>>): Prisma__tastingsClient<$Result.GetResult<Prisma.$tastingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the olfactory_exams model
+   */
+  interface olfactory_examsFieldRefs {
+    readonly id: FieldRef<"olfactory_exams", 'Int'>
+    readonly tid: FieldRef<"olfactory_exams", 'String'>
+    readonly intensity: FieldRef<"olfactory_exams", 'String'>
+    readonly complexity: FieldRef<"olfactory_exams", 'String'>
+    readonly quality: FieldRef<"olfactory_exams", 'String'>
+    readonly aromatic: FieldRef<"olfactory_exams", 'Boolean'>
+    readonly vinous: FieldRef<"olfactory_exams", 'Boolean'>
+    readonly floral: FieldRef<"olfactory_exams", 'Boolean'>
+    readonly fruity: FieldRef<"olfactory_exams", 'Boolean'>
+    readonly fragrant: FieldRef<"olfactory_exams", 'Boolean'>
+    readonly herbaceous: FieldRef<"olfactory_exams", 'Boolean'>
+    readonly mineral: FieldRef<"olfactory_exams", 'Boolean'>
+    readonly spicy: FieldRef<"olfactory_exams", 'Boolean'>
+    readonly ethereal: FieldRef<"olfactory_exams", 'Boolean'>
+    readonly frank: FieldRef<"olfactory_exams", 'Boolean'>
+    readonly notes: FieldRef<"olfactory_exams", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * olfactory_exams findUnique
+   */
+  export type olfactory_examsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the olfactory_exams
+     */
+    select?: olfactory_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the olfactory_exams
+     */
+    omit?: olfactory_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: olfactory_examsInclude<ExtArgs> | null
+    /**
+     * Filter, which olfactory_exams to fetch.
+     */
+    where: olfactory_examsWhereUniqueInput
+  }
+
+  /**
+   * olfactory_exams findUniqueOrThrow
+   */
+  export type olfactory_examsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the olfactory_exams
+     */
+    select?: olfactory_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the olfactory_exams
+     */
+    omit?: olfactory_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: olfactory_examsInclude<ExtArgs> | null
+    /**
+     * Filter, which olfactory_exams to fetch.
+     */
+    where: olfactory_examsWhereUniqueInput
+  }
+
+  /**
+   * olfactory_exams findFirst
+   */
+  export type olfactory_examsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the olfactory_exams
+     */
+    select?: olfactory_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the olfactory_exams
+     */
+    omit?: olfactory_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: olfactory_examsInclude<ExtArgs> | null
+    /**
+     * Filter, which olfactory_exams to fetch.
+     */
+    where?: olfactory_examsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of olfactory_exams to fetch.
+     */
+    orderBy?: olfactory_examsOrderByWithRelationInput | olfactory_examsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for olfactory_exams.
+     */
+    cursor?: olfactory_examsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` olfactory_exams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` olfactory_exams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of olfactory_exams.
+     */
+    distinct?: Olfactory_examsScalarFieldEnum | Olfactory_examsScalarFieldEnum[]
+  }
+
+  /**
+   * olfactory_exams findFirstOrThrow
+   */
+  export type olfactory_examsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the olfactory_exams
+     */
+    select?: olfactory_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the olfactory_exams
+     */
+    omit?: olfactory_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: olfactory_examsInclude<ExtArgs> | null
+    /**
+     * Filter, which olfactory_exams to fetch.
+     */
+    where?: olfactory_examsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of olfactory_exams to fetch.
+     */
+    orderBy?: olfactory_examsOrderByWithRelationInput | olfactory_examsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for olfactory_exams.
+     */
+    cursor?: olfactory_examsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` olfactory_exams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` olfactory_exams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of olfactory_exams.
+     */
+    distinct?: Olfactory_examsScalarFieldEnum | Olfactory_examsScalarFieldEnum[]
+  }
+
+  /**
+   * olfactory_exams findMany
+   */
+  export type olfactory_examsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the olfactory_exams
+     */
+    select?: olfactory_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the olfactory_exams
+     */
+    omit?: olfactory_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: olfactory_examsInclude<ExtArgs> | null
+    /**
+     * Filter, which olfactory_exams to fetch.
+     */
+    where?: olfactory_examsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of olfactory_exams to fetch.
+     */
+    orderBy?: olfactory_examsOrderByWithRelationInput | olfactory_examsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing olfactory_exams.
+     */
+    cursor?: olfactory_examsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` olfactory_exams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` olfactory_exams.
+     */
+    skip?: number
+    distinct?: Olfactory_examsScalarFieldEnum | Olfactory_examsScalarFieldEnum[]
+  }
+
+  /**
+   * olfactory_exams create
+   */
+  export type olfactory_examsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the olfactory_exams
+     */
+    select?: olfactory_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the olfactory_exams
+     */
+    omit?: olfactory_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: olfactory_examsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a olfactory_exams.
+     */
+    data: XOR<olfactory_examsCreateInput, olfactory_examsUncheckedCreateInput>
+  }
+
+  /**
+   * olfactory_exams createMany
+   */
+  export type olfactory_examsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many olfactory_exams.
+     */
+    data: olfactory_examsCreateManyInput | olfactory_examsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * olfactory_exams createManyAndReturn
+   */
+  export type olfactory_examsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the olfactory_exams
+     */
+    select?: olfactory_examsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the olfactory_exams
+     */
+    omit?: olfactory_examsOmit<ExtArgs> | null
+    /**
+     * The data used to create many olfactory_exams.
+     */
+    data: olfactory_examsCreateManyInput | olfactory_examsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: olfactory_examsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * olfactory_exams update
+   */
+  export type olfactory_examsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the olfactory_exams
+     */
+    select?: olfactory_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the olfactory_exams
+     */
+    omit?: olfactory_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: olfactory_examsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a olfactory_exams.
+     */
+    data: XOR<olfactory_examsUpdateInput, olfactory_examsUncheckedUpdateInput>
+    /**
+     * Choose, which olfactory_exams to update.
+     */
+    where: olfactory_examsWhereUniqueInput
+  }
+
+  /**
+   * olfactory_exams updateMany
+   */
+  export type olfactory_examsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update olfactory_exams.
+     */
+    data: XOR<olfactory_examsUpdateManyMutationInput, olfactory_examsUncheckedUpdateManyInput>
+    /**
+     * Filter which olfactory_exams to update
+     */
+    where?: olfactory_examsWhereInput
+    /**
+     * Limit how many olfactory_exams to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * olfactory_exams updateManyAndReturn
+   */
+  export type olfactory_examsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the olfactory_exams
+     */
+    select?: olfactory_examsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the olfactory_exams
+     */
+    omit?: olfactory_examsOmit<ExtArgs> | null
+    /**
+     * The data used to update olfactory_exams.
+     */
+    data: XOR<olfactory_examsUpdateManyMutationInput, olfactory_examsUncheckedUpdateManyInput>
+    /**
+     * Filter which olfactory_exams to update
+     */
+    where?: olfactory_examsWhereInput
+    /**
+     * Limit how many olfactory_exams to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: olfactory_examsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * olfactory_exams upsert
+   */
+  export type olfactory_examsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the olfactory_exams
+     */
+    select?: olfactory_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the olfactory_exams
+     */
+    omit?: olfactory_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: olfactory_examsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the olfactory_exams to update in case it exists.
+     */
+    where: olfactory_examsWhereUniqueInput
+    /**
+     * In case the olfactory_exams found by the `where` argument doesn't exist, create a new olfactory_exams with this data.
+     */
+    create: XOR<olfactory_examsCreateInput, olfactory_examsUncheckedCreateInput>
+    /**
+     * In case the olfactory_exams was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<olfactory_examsUpdateInput, olfactory_examsUncheckedUpdateInput>
+  }
+
+  /**
+   * olfactory_exams delete
+   */
+  export type olfactory_examsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the olfactory_exams
+     */
+    select?: olfactory_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the olfactory_exams
+     */
+    omit?: olfactory_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: olfactory_examsInclude<ExtArgs> | null
+    /**
+     * Filter which olfactory_exams to delete.
+     */
+    where: olfactory_examsWhereUniqueInput
+  }
+
+  /**
+   * olfactory_exams deleteMany
+   */
+  export type olfactory_examsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which olfactory_exams to delete
+     */
+    where?: olfactory_examsWhereInput
+    /**
+     * Limit how many olfactory_exams to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * olfactory_exams.tastings
+   */
+  export type olfactory_exams$tastingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tastings
+     */
+    select?: tastingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tastings
+     */
+    omit?: tastingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tastingsInclude<ExtArgs> | null
+    where?: tastingsWhereInput
+  }
+
+  /**
+   * olfactory_exams without action
+   */
+  export type olfactory_examsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the olfactory_exams
+     */
+    select?: olfactory_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the olfactory_exams
+     */
+    omit?: olfactory_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: olfactory_examsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model taste_olfactory_exams
+   */
+
+  export type AggregateTaste_olfactory_exams = {
+    _count: Taste_olfactory_examsCountAggregateOutputType | null
+    _avg: Taste_olfactory_examsAvgAggregateOutputType | null
+    _sum: Taste_olfactory_examsSumAggregateOutputType | null
+    _min: Taste_olfactory_examsMinAggregateOutputType | null
+    _max: Taste_olfactory_examsMaxAggregateOutputType | null
+  }
+
+  export type Taste_olfactory_examsAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type Taste_olfactory_examsSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type Taste_olfactory_examsMinAggregateOutputType = {
+    id: number | null
+    tid: string | null
+    sugars: string | null
+    alcohols: string | null
+    polyalcohols: string | null
+    acids: string | null
+    tannins: string | null
+    minerals: string | null
+    balance: string | null
+    intensity: string | null
+    persistence: string | null
+    quality: string | null
+    structure: string | null
+    notes: string | null
+  }
+
+  export type Taste_olfactory_examsMaxAggregateOutputType = {
+    id: number | null
+    tid: string | null
+    sugars: string | null
+    alcohols: string | null
+    polyalcohols: string | null
+    acids: string | null
+    tannins: string | null
+    minerals: string | null
+    balance: string | null
+    intensity: string | null
+    persistence: string | null
+    quality: string | null
+    structure: string | null
+    notes: string | null
+  }
+
+  export type Taste_olfactory_examsCountAggregateOutputType = {
+    id: number
+    tid: number
+    sugars: number
+    alcohols: number
+    polyalcohols: number
+    acids: number
+    tannins: number
+    minerals: number
+    balance: number
+    intensity: number
+    persistence: number
+    quality: number
+    structure: number
+    notes: number
+    _all: number
+  }
+
+
+  export type Taste_olfactory_examsAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type Taste_olfactory_examsSumAggregateInputType = {
+    id?: true
+  }
+
+  export type Taste_olfactory_examsMinAggregateInputType = {
+    id?: true
+    tid?: true
+    sugars?: true
+    alcohols?: true
+    polyalcohols?: true
+    acids?: true
+    tannins?: true
+    minerals?: true
+    balance?: true
+    intensity?: true
+    persistence?: true
+    quality?: true
+    structure?: true
+    notes?: true
+  }
+
+  export type Taste_olfactory_examsMaxAggregateInputType = {
+    id?: true
+    tid?: true
+    sugars?: true
+    alcohols?: true
+    polyalcohols?: true
+    acids?: true
+    tannins?: true
+    minerals?: true
+    balance?: true
+    intensity?: true
+    persistence?: true
+    quality?: true
+    structure?: true
+    notes?: true
+  }
+
+  export type Taste_olfactory_examsCountAggregateInputType = {
+    id?: true
+    tid?: true
+    sugars?: true
+    alcohols?: true
+    polyalcohols?: true
+    acids?: true
+    tannins?: true
+    minerals?: true
+    balance?: true
+    intensity?: true
+    persistence?: true
+    quality?: true
+    structure?: true
+    notes?: true
+    _all?: true
+  }
+
+  export type Taste_olfactory_examsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which taste_olfactory_exams to aggregate.
+     */
+    where?: taste_olfactory_examsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of taste_olfactory_exams to fetch.
+     */
+    orderBy?: taste_olfactory_examsOrderByWithRelationInput | taste_olfactory_examsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: taste_olfactory_examsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` taste_olfactory_exams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` taste_olfactory_exams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned taste_olfactory_exams
+    **/
+    _count?: true | Taste_olfactory_examsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Taste_olfactory_examsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Taste_olfactory_examsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Taste_olfactory_examsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Taste_olfactory_examsMaxAggregateInputType
+  }
+
+  export type GetTaste_olfactory_examsAggregateType<T extends Taste_olfactory_examsAggregateArgs> = {
+        [P in keyof T & keyof AggregateTaste_olfactory_exams]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTaste_olfactory_exams[P]>
+      : GetScalarType<T[P], AggregateTaste_olfactory_exams[P]>
+  }
+
+
+
+
+  export type taste_olfactory_examsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: taste_olfactory_examsWhereInput
+    orderBy?: taste_olfactory_examsOrderByWithAggregationInput | taste_olfactory_examsOrderByWithAggregationInput[]
+    by: Taste_olfactory_examsScalarFieldEnum[] | Taste_olfactory_examsScalarFieldEnum
+    having?: taste_olfactory_examsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Taste_olfactory_examsCountAggregateInputType | true
+    _avg?: Taste_olfactory_examsAvgAggregateInputType
+    _sum?: Taste_olfactory_examsSumAggregateInputType
+    _min?: Taste_olfactory_examsMinAggregateInputType
+    _max?: Taste_olfactory_examsMaxAggregateInputType
+  }
+
+  export type Taste_olfactory_examsGroupByOutputType = {
+    id: number
+    tid: string | null
+    sugars: string
+    alcohols: string
+    polyalcohols: string
+    acids: string
+    tannins: string
+    minerals: string
+    balance: string
+    intensity: string
+    persistence: string
+    quality: string
+    structure: string
+    notes: string | null
+    _count: Taste_olfactory_examsCountAggregateOutputType | null
+    _avg: Taste_olfactory_examsAvgAggregateOutputType | null
+    _sum: Taste_olfactory_examsSumAggregateOutputType | null
+    _min: Taste_olfactory_examsMinAggregateOutputType | null
+    _max: Taste_olfactory_examsMaxAggregateOutputType | null
+  }
+
+  type GetTaste_olfactory_examsGroupByPayload<T extends taste_olfactory_examsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Taste_olfactory_examsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Taste_olfactory_examsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Taste_olfactory_examsGroupByOutputType[P]>
+            : GetScalarType<T[P], Taste_olfactory_examsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type taste_olfactory_examsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tid?: boolean
+    sugars?: boolean
+    alcohols?: boolean
+    polyalcohols?: boolean
+    acids?: boolean
+    tannins?: boolean
+    minerals?: boolean
+    balance?: boolean
+    intensity?: boolean
+    persistence?: boolean
+    quality?: boolean
+    structure?: boolean
+    notes?: boolean
+    tastings?: boolean | taste_olfactory_exams$tastingsArgs<ExtArgs>
+  }, ExtArgs["result"]["taste_olfactory_exams"]>
+
+  export type taste_olfactory_examsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tid?: boolean
+    sugars?: boolean
+    alcohols?: boolean
+    polyalcohols?: boolean
+    acids?: boolean
+    tannins?: boolean
+    minerals?: boolean
+    balance?: boolean
+    intensity?: boolean
+    persistence?: boolean
+    quality?: boolean
+    structure?: boolean
+    notes?: boolean
+    tastings?: boolean | taste_olfactory_exams$tastingsArgs<ExtArgs>
+  }, ExtArgs["result"]["taste_olfactory_exams"]>
+
+  export type taste_olfactory_examsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tid?: boolean
+    sugars?: boolean
+    alcohols?: boolean
+    polyalcohols?: boolean
+    acids?: boolean
+    tannins?: boolean
+    minerals?: boolean
+    balance?: boolean
+    intensity?: boolean
+    persistence?: boolean
+    quality?: boolean
+    structure?: boolean
+    notes?: boolean
+    tastings?: boolean | taste_olfactory_exams$tastingsArgs<ExtArgs>
+  }, ExtArgs["result"]["taste_olfactory_exams"]>
+
+  export type taste_olfactory_examsSelectScalar = {
+    id?: boolean
+    tid?: boolean
+    sugars?: boolean
+    alcohols?: boolean
+    polyalcohols?: boolean
+    acids?: boolean
+    tannins?: boolean
+    minerals?: boolean
+    balance?: boolean
+    intensity?: boolean
+    persistence?: boolean
+    quality?: boolean
+    structure?: boolean
+    notes?: boolean
+  }
+
+  export type taste_olfactory_examsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "sugars" | "alcohols" | "polyalcohols" | "acids" | "tannins" | "minerals" | "balance" | "intensity" | "persistence" | "quality" | "structure" | "notes", ExtArgs["result"]["taste_olfactory_exams"]>
+  export type taste_olfactory_examsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tastings?: boolean | taste_olfactory_exams$tastingsArgs<ExtArgs>
+  }
+  export type taste_olfactory_examsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tastings?: boolean | taste_olfactory_exams$tastingsArgs<ExtArgs>
+  }
+  export type taste_olfactory_examsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tastings?: boolean | taste_olfactory_exams$tastingsArgs<ExtArgs>
+  }
+
+  export type $taste_olfactory_examsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "taste_olfactory_exams"
+    objects: {
+      tastings: Prisma.$tastingsPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      tid: string | null
+      sugars: string
+      alcohols: string
+      polyalcohols: string
+      acids: string
+      tannins: string
+      minerals: string
+      balance: string
+      intensity: string
+      persistence: string
+      quality: string
+      structure: string
+      notes: string | null
+    }, ExtArgs["result"]["taste_olfactory_exams"]>
+    composites: {}
+  }
+
+  type taste_olfactory_examsGetPayload<S extends boolean | null | undefined | taste_olfactory_examsDefaultArgs> = $Result.GetResult<Prisma.$taste_olfactory_examsPayload, S>
+
+  type taste_olfactory_examsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<taste_olfactory_examsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Taste_olfactory_examsCountAggregateInputType | true
+    }
+
+  export interface taste_olfactory_examsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['taste_olfactory_exams'], meta: { name: 'taste_olfactory_exams' } }
+    /**
+     * Find zero or one Taste_olfactory_exams that matches the filter.
+     * @param {taste_olfactory_examsFindUniqueArgs} args - Arguments to find a Taste_olfactory_exams
+     * @example
+     * // Get one Taste_olfactory_exams
+     * const taste_olfactory_exams = await prisma.taste_olfactory_exams.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends taste_olfactory_examsFindUniqueArgs>(args: SelectSubset<T, taste_olfactory_examsFindUniqueArgs<ExtArgs>>): Prisma__taste_olfactory_examsClient<$Result.GetResult<Prisma.$taste_olfactory_examsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Taste_olfactory_exams that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {taste_olfactory_examsFindUniqueOrThrowArgs} args - Arguments to find a Taste_olfactory_exams
+     * @example
+     * // Get one Taste_olfactory_exams
+     * const taste_olfactory_exams = await prisma.taste_olfactory_exams.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends taste_olfactory_examsFindUniqueOrThrowArgs>(args: SelectSubset<T, taste_olfactory_examsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__taste_olfactory_examsClient<$Result.GetResult<Prisma.$taste_olfactory_examsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Taste_olfactory_exams that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {taste_olfactory_examsFindFirstArgs} args - Arguments to find a Taste_olfactory_exams
+     * @example
+     * // Get one Taste_olfactory_exams
+     * const taste_olfactory_exams = await prisma.taste_olfactory_exams.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends taste_olfactory_examsFindFirstArgs>(args?: SelectSubset<T, taste_olfactory_examsFindFirstArgs<ExtArgs>>): Prisma__taste_olfactory_examsClient<$Result.GetResult<Prisma.$taste_olfactory_examsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Taste_olfactory_exams that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {taste_olfactory_examsFindFirstOrThrowArgs} args - Arguments to find a Taste_olfactory_exams
+     * @example
+     * // Get one Taste_olfactory_exams
+     * const taste_olfactory_exams = await prisma.taste_olfactory_exams.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends taste_olfactory_examsFindFirstOrThrowArgs>(args?: SelectSubset<T, taste_olfactory_examsFindFirstOrThrowArgs<ExtArgs>>): Prisma__taste_olfactory_examsClient<$Result.GetResult<Prisma.$taste_olfactory_examsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Taste_olfactory_exams that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {taste_olfactory_examsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Taste_olfactory_exams
+     * const taste_olfactory_exams = await prisma.taste_olfactory_exams.findMany()
+     * 
+     * // Get first 10 Taste_olfactory_exams
+     * const taste_olfactory_exams = await prisma.taste_olfactory_exams.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const taste_olfactory_examsWithIdOnly = await prisma.taste_olfactory_exams.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends taste_olfactory_examsFindManyArgs>(args?: SelectSubset<T, taste_olfactory_examsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$taste_olfactory_examsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Taste_olfactory_exams.
+     * @param {taste_olfactory_examsCreateArgs} args - Arguments to create a Taste_olfactory_exams.
+     * @example
+     * // Create one Taste_olfactory_exams
+     * const Taste_olfactory_exams = await prisma.taste_olfactory_exams.create({
+     *   data: {
+     *     // ... data to create a Taste_olfactory_exams
+     *   }
+     * })
+     * 
+     */
+    create<T extends taste_olfactory_examsCreateArgs>(args: SelectSubset<T, taste_olfactory_examsCreateArgs<ExtArgs>>): Prisma__taste_olfactory_examsClient<$Result.GetResult<Prisma.$taste_olfactory_examsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Taste_olfactory_exams.
+     * @param {taste_olfactory_examsCreateManyArgs} args - Arguments to create many Taste_olfactory_exams.
+     * @example
+     * // Create many Taste_olfactory_exams
+     * const taste_olfactory_exams = await prisma.taste_olfactory_exams.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends taste_olfactory_examsCreateManyArgs>(args?: SelectSubset<T, taste_olfactory_examsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Taste_olfactory_exams and returns the data saved in the database.
+     * @param {taste_olfactory_examsCreateManyAndReturnArgs} args - Arguments to create many Taste_olfactory_exams.
+     * @example
+     * // Create many Taste_olfactory_exams
+     * const taste_olfactory_exams = await prisma.taste_olfactory_exams.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Taste_olfactory_exams and only return the `id`
+     * const taste_olfactory_examsWithIdOnly = await prisma.taste_olfactory_exams.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends taste_olfactory_examsCreateManyAndReturnArgs>(args?: SelectSubset<T, taste_olfactory_examsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$taste_olfactory_examsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Taste_olfactory_exams.
+     * @param {taste_olfactory_examsDeleteArgs} args - Arguments to delete one Taste_olfactory_exams.
+     * @example
+     * // Delete one Taste_olfactory_exams
+     * const Taste_olfactory_exams = await prisma.taste_olfactory_exams.delete({
+     *   where: {
+     *     // ... filter to delete one Taste_olfactory_exams
+     *   }
+     * })
+     * 
+     */
+    delete<T extends taste_olfactory_examsDeleteArgs>(args: SelectSubset<T, taste_olfactory_examsDeleteArgs<ExtArgs>>): Prisma__taste_olfactory_examsClient<$Result.GetResult<Prisma.$taste_olfactory_examsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Taste_olfactory_exams.
+     * @param {taste_olfactory_examsUpdateArgs} args - Arguments to update one Taste_olfactory_exams.
+     * @example
+     * // Update one Taste_olfactory_exams
+     * const taste_olfactory_exams = await prisma.taste_olfactory_exams.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends taste_olfactory_examsUpdateArgs>(args: SelectSubset<T, taste_olfactory_examsUpdateArgs<ExtArgs>>): Prisma__taste_olfactory_examsClient<$Result.GetResult<Prisma.$taste_olfactory_examsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Taste_olfactory_exams.
+     * @param {taste_olfactory_examsDeleteManyArgs} args - Arguments to filter Taste_olfactory_exams to delete.
+     * @example
+     * // Delete a few Taste_olfactory_exams
+     * const { count } = await prisma.taste_olfactory_exams.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends taste_olfactory_examsDeleteManyArgs>(args?: SelectSubset<T, taste_olfactory_examsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Taste_olfactory_exams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {taste_olfactory_examsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Taste_olfactory_exams
+     * const taste_olfactory_exams = await prisma.taste_olfactory_exams.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends taste_olfactory_examsUpdateManyArgs>(args: SelectSubset<T, taste_olfactory_examsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Taste_olfactory_exams and returns the data updated in the database.
+     * @param {taste_olfactory_examsUpdateManyAndReturnArgs} args - Arguments to update many Taste_olfactory_exams.
+     * @example
+     * // Update many Taste_olfactory_exams
+     * const taste_olfactory_exams = await prisma.taste_olfactory_exams.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Taste_olfactory_exams and only return the `id`
+     * const taste_olfactory_examsWithIdOnly = await prisma.taste_olfactory_exams.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends taste_olfactory_examsUpdateManyAndReturnArgs>(args: SelectSubset<T, taste_olfactory_examsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$taste_olfactory_examsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Taste_olfactory_exams.
+     * @param {taste_olfactory_examsUpsertArgs} args - Arguments to update or create a Taste_olfactory_exams.
+     * @example
+     * // Update or create a Taste_olfactory_exams
+     * const taste_olfactory_exams = await prisma.taste_olfactory_exams.upsert({
+     *   create: {
+     *     // ... data to create a Taste_olfactory_exams
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Taste_olfactory_exams we want to update
+     *   }
+     * })
+     */
+    upsert<T extends taste_olfactory_examsUpsertArgs>(args: SelectSubset<T, taste_olfactory_examsUpsertArgs<ExtArgs>>): Prisma__taste_olfactory_examsClient<$Result.GetResult<Prisma.$taste_olfactory_examsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Taste_olfactory_exams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {taste_olfactory_examsCountArgs} args - Arguments to filter Taste_olfactory_exams to count.
+     * @example
+     * // Count the number of Taste_olfactory_exams
+     * const count = await prisma.taste_olfactory_exams.count({
+     *   where: {
+     *     // ... the filter for the Taste_olfactory_exams we want to count
+     *   }
+     * })
+    **/
+    count<T extends taste_olfactory_examsCountArgs>(
+      args?: Subset<T, taste_olfactory_examsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Taste_olfactory_examsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Taste_olfactory_exams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Taste_olfactory_examsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Taste_olfactory_examsAggregateArgs>(args: Subset<T, Taste_olfactory_examsAggregateArgs>): Prisma.PrismaPromise<GetTaste_olfactory_examsAggregateType<T>>
+
+    /**
+     * Group by Taste_olfactory_exams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {taste_olfactory_examsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends taste_olfactory_examsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: taste_olfactory_examsGroupByArgs['orderBy'] }
+        : { orderBy?: taste_olfactory_examsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, taste_olfactory_examsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTaste_olfactory_examsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the taste_olfactory_exams model
+   */
+  readonly fields: taste_olfactory_examsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for taste_olfactory_exams.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__taste_olfactory_examsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tastings<T extends taste_olfactory_exams$tastingsArgs<ExtArgs> = {}>(args?: Subset<T, taste_olfactory_exams$tastingsArgs<ExtArgs>>): Prisma__tastingsClient<$Result.GetResult<Prisma.$tastingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the taste_olfactory_exams model
+   */
+  interface taste_olfactory_examsFieldRefs {
+    readonly id: FieldRef<"taste_olfactory_exams", 'Int'>
+    readonly tid: FieldRef<"taste_olfactory_exams", 'String'>
+    readonly sugars: FieldRef<"taste_olfactory_exams", 'String'>
+    readonly alcohols: FieldRef<"taste_olfactory_exams", 'String'>
+    readonly polyalcohols: FieldRef<"taste_olfactory_exams", 'String'>
+    readonly acids: FieldRef<"taste_olfactory_exams", 'String'>
+    readonly tannins: FieldRef<"taste_olfactory_exams", 'String'>
+    readonly minerals: FieldRef<"taste_olfactory_exams", 'String'>
+    readonly balance: FieldRef<"taste_olfactory_exams", 'String'>
+    readonly intensity: FieldRef<"taste_olfactory_exams", 'String'>
+    readonly persistence: FieldRef<"taste_olfactory_exams", 'String'>
+    readonly quality: FieldRef<"taste_olfactory_exams", 'String'>
+    readonly structure: FieldRef<"taste_olfactory_exams", 'String'>
+    readonly notes: FieldRef<"taste_olfactory_exams", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * taste_olfactory_exams findUnique
+   */
+  export type taste_olfactory_examsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the taste_olfactory_exams
+     */
+    select?: taste_olfactory_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the taste_olfactory_exams
+     */
+    omit?: taste_olfactory_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: taste_olfactory_examsInclude<ExtArgs> | null
+    /**
+     * Filter, which taste_olfactory_exams to fetch.
+     */
+    where: taste_olfactory_examsWhereUniqueInput
+  }
+
+  /**
+   * taste_olfactory_exams findUniqueOrThrow
+   */
+  export type taste_olfactory_examsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the taste_olfactory_exams
+     */
+    select?: taste_olfactory_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the taste_olfactory_exams
+     */
+    omit?: taste_olfactory_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: taste_olfactory_examsInclude<ExtArgs> | null
+    /**
+     * Filter, which taste_olfactory_exams to fetch.
+     */
+    where: taste_olfactory_examsWhereUniqueInput
+  }
+
+  /**
+   * taste_olfactory_exams findFirst
+   */
+  export type taste_olfactory_examsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the taste_olfactory_exams
+     */
+    select?: taste_olfactory_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the taste_olfactory_exams
+     */
+    omit?: taste_olfactory_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: taste_olfactory_examsInclude<ExtArgs> | null
+    /**
+     * Filter, which taste_olfactory_exams to fetch.
+     */
+    where?: taste_olfactory_examsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of taste_olfactory_exams to fetch.
+     */
+    orderBy?: taste_olfactory_examsOrderByWithRelationInput | taste_olfactory_examsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for taste_olfactory_exams.
+     */
+    cursor?: taste_olfactory_examsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` taste_olfactory_exams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` taste_olfactory_exams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of taste_olfactory_exams.
+     */
+    distinct?: Taste_olfactory_examsScalarFieldEnum | Taste_olfactory_examsScalarFieldEnum[]
+  }
+
+  /**
+   * taste_olfactory_exams findFirstOrThrow
+   */
+  export type taste_olfactory_examsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the taste_olfactory_exams
+     */
+    select?: taste_olfactory_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the taste_olfactory_exams
+     */
+    omit?: taste_olfactory_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: taste_olfactory_examsInclude<ExtArgs> | null
+    /**
+     * Filter, which taste_olfactory_exams to fetch.
+     */
+    where?: taste_olfactory_examsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of taste_olfactory_exams to fetch.
+     */
+    orderBy?: taste_olfactory_examsOrderByWithRelationInput | taste_olfactory_examsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for taste_olfactory_exams.
+     */
+    cursor?: taste_olfactory_examsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` taste_olfactory_exams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` taste_olfactory_exams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of taste_olfactory_exams.
+     */
+    distinct?: Taste_olfactory_examsScalarFieldEnum | Taste_olfactory_examsScalarFieldEnum[]
+  }
+
+  /**
+   * taste_olfactory_exams findMany
+   */
+  export type taste_olfactory_examsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the taste_olfactory_exams
+     */
+    select?: taste_olfactory_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the taste_olfactory_exams
+     */
+    omit?: taste_olfactory_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: taste_olfactory_examsInclude<ExtArgs> | null
+    /**
+     * Filter, which taste_olfactory_exams to fetch.
+     */
+    where?: taste_olfactory_examsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of taste_olfactory_exams to fetch.
+     */
+    orderBy?: taste_olfactory_examsOrderByWithRelationInput | taste_olfactory_examsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing taste_olfactory_exams.
+     */
+    cursor?: taste_olfactory_examsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` taste_olfactory_exams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` taste_olfactory_exams.
+     */
+    skip?: number
+    distinct?: Taste_olfactory_examsScalarFieldEnum | Taste_olfactory_examsScalarFieldEnum[]
+  }
+
+  /**
+   * taste_olfactory_exams create
+   */
+  export type taste_olfactory_examsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the taste_olfactory_exams
+     */
+    select?: taste_olfactory_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the taste_olfactory_exams
+     */
+    omit?: taste_olfactory_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: taste_olfactory_examsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a taste_olfactory_exams.
+     */
+    data: XOR<taste_olfactory_examsCreateInput, taste_olfactory_examsUncheckedCreateInput>
+  }
+
+  /**
+   * taste_olfactory_exams createMany
+   */
+  export type taste_olfactory_examsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many taste_olfactory_exams.
+     */
+    data: taste_olfactory_examsCreateManyInput | taste_olfactory_examsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * taste_olfactory_exams createManyAndReturn
+   */
+  export type taste_olfactory_examsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the taste_olfactory_exams
+     */
+    select?: taste_olfactory_examsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the taste_olfactory_exams
+     */
+    omit?: taste_olfactory_examsOmit<ExtArgs> | null
+    /**
+     * The data used to create many taste_olfactory_exams.
+     */
+    data: taste_olfactory_examsCreateManyInput | taste_olfactory_examsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: taste_olfactory_examsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * taste_olfactory_exams update
+   */
+  export type taste_olfactory_examsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the taste_olfactory_exams
+     */
+    select?: taste_olfactory_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the taste_olfactory_exams
+     */
+    omit?: taste_olfactory_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: taste_olfactory_examsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a taste_olfactory_exams.
+     */
+    data: XOR<taste_olfactory_examsUpdateInput, taste_olfactory_examsUncheckedUpdateInput>
+    /**
+     * Choose, which taste_olfactory_exams to update.
+     */
+    where: taste_olfactory_examsWhereUniqueInput
+  }
+
+  /**
+   * taste_olfactory_exams updateMany
+   */
+  export type taste_olfactory_examsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update taste_olfactory_exams.
+     */
+    data: XOR<taste_olfactory_examsUpdateManyMutationInput, taste_olfactory_examsUncheckedUpdateManyInput>
+    /**
+     * Filter which taste_olfactory_exams to update
+     */
+    where?: taste_olfactory_examsWhereInput
+    /**
+     * Limit how many taste_olfactory_exams to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * taste_olfactory_exams updateManyAndReturn
+   */
+  export type taste_olfactory_examsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the taste_olfactory_exams
+     */
+    select?: taste_olfactory_examsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the taste_olfactory_exams
+     */
+    omit?: taste_olfactory_examsOmit<ExtArgs> | null
+    /**
+     * The data used to update taste_olfactory_exams.
+     */
+    data: XOR<taste_olfactory_examsUpdateManyMutationInput, taste_olfactory_examsUncheckedUpdateManyInput>
+    /**
+     * Filter which taste_olfactory_exams to update
+     */
+    where?: taste_olfactory_examsWhereInput
+    /**
+     * Limit how many taste_olfactory_exams to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: taste_olfactory_examsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * taste_olfactory_exams upsert
+   */
+  export type taste_olfactory_examsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the taste_olfactory_exams
+     */
+    select?: taste_olfactory_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the taste_olfactory_exams
+     */
+    omit?: taste_olfactory_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: taste_olfactory_examsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the taste_olfactory_exams to update in case it exists.
+     */
+    where: taste_olfactory_examsWhereUniqueInput
+    /**
+     * In case the taste_olfactory_exams found by the `where` argument doesn't exist, create a new taste_olfactory_exams with this data.
+     */
+    create: XOR<taste_olfactory_examsCreateInput, taste_olfactory_examsUncheckedCreateInput>
+    /**
+     * In case the taste_olfactory_exams was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<taste_olfactory_examsUpdateInput, taste_olfactory_examsUncheckedUpdateInput>
+  }
+
+  /**
+   * taste_olfactory_exams delete
+   */
+  export type taste_olfactory_examsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the taste_olfactory_exams
+     */
+    select?: taste_olfactory_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the taste_olfactory_exams
+     */
+    omit?: taste_olfactory_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: taste_olfactory_examsInclude<ExtArgs> | null
+    /**
+     * Filter which taste_olfactory_exams to delete.
+     */
+    where: taste_olfactory_examsWhereUniqueInput
+  }
+
+  /**
+   * taste_olfactory_exams deleteMany
+   */
+  export type taste_olfactory_examsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which taste_olfactory_exams to delete
+     */
+    where?: taste_olfactory_examsWhereInput
+    /**
+     * Limit how many taste_olfactory_exams to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * taste_olfactory_exams.tastings
+   */
+  export type taste_olfactory_exams$tastingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tastings
+     */
+    select?: tastingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tastings
+     */
+    omit?: tastingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tastingsInclude<ExtArgs> | null
+    where?: tastingsWhereInput
+  }
+
+  /**
+   * taste_olfactory_exams without action
+   */
+  export type taste_olfactory_examsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the taste_olfactory_exams
+     */
+    select?: taste_olfactory_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the taste_olfactory_exams
+     */
+    omit?: taste_olfactory_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: taste_olfactory_examsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model visual_exams
+   */
+
+  export type AggregateVisual_exams = {
+    _count: Visual_examsCountAggregateOutputType | null
+    _avg: Visual_examsAvgAggregateOutputType | null
+    _sum: Visual_examsSumAggregateOutputType | null
+    _min: Visual_examsMinAggregateOutputType | null
+    _max: Visual_examsMaxAggregateOutputType | null
+  }
+
+  export type Visual_examsAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type Visual_examsSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type Visual_examsMinAggregateOutputType = {
+    id: number | null
+    tid: string | null
+    limpidity: string | null
+    color_family: string | null
+    color_shade: string | null
+    consistency: string | null
+    bubble_grain: string | null
+    bubble_number: string | null
+    bubble_persistence: string | null
+    notes: string | null
+  }
+
+  export type Visual_examsMaxAggregateOutputType = {
+    id: number | null
+    tid: string | null
+    limpidity: string | null
+    color_family: string | null
+    color_shade: string | null
+    consistency: string | null
+    bubble_grain: string | null
+    bubble_number: string | null
+    bubble_persistence: string | null
+    notes: string | null
+  }
+
+  export type Visual_examsCountAggregateOutputType = {
+    id: number
+    tid: number
+    limpidity: number
+    color_family: number
+    color_shade: number
+    consistency: number
+    bubble_grain: number
+    bubble_number: number
+    bubble_persistence: number
+    notes: number
+    _all: number
+  }
+
+
+  export type Visual_examsAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type Visual_examsSumAggregateInputType = {
+    id?: true
+  }
+
+  export type Visual_examsMinAggregateInputType = {
+    id?: true
+    tid?: true
+    limpidity?: true
+    color_family?: true
+    color_shade?: true
+    consistency?: true
+    bubble_grain?: true
+    bubble_number?: true
+    bubble_persistence?: true
+    notes?: true
+  }
+
+  export type Visual_examsMaxAggregateInputType = {
+    id?: true
+    tid?: true
+    limpidity?: true
+    color_family?: true
+    color_shade?: true
+    consistency?: true
+    bubble_grain?: true
+    bubble_number?: true
+    bubble_persistence?: true
+    notes?: true
+  }
+
+  export type Visual_examsCountAggregateInputType = {
+    id?: true
+    tid?: true
+    limpidity?: true
+    color_family?: true
+    color_shade?: true
+    consistency?: true
+    bubble_grain?: true
+    bubble_number?: true
+    bubble_persistence?: true
+    notes?: true
+    _all?: true
+  }
+
+  export type Visual_examsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which visual_exams to aggregate.
+     */
+    where?: visual_examsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of visual_exams to fetch.
+     */
+    orderBy?: visual_examsOrderByWithRelationInput | visual_examsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: visual_examsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` visual_exams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` visual_exams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned visual_exams
+    **/
+    _count?: true | Visual_examsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Visual_examsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Visual_examsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Visual_examsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Visual_examsMaxAggregateInputType
+  }
+
+  export type GetVisual_examsAggregateType<T extends Visual_examsAggregateArgs> = {
+        [P in keyof T & keyof AggregateVisual_exams]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVisual_exams[P]>
+      : GetScalarType<T[P], AggregateVisual_exams[P]>
+  }
+
+
+
+
+  export type visual_examsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: visual_examsWhereInput
+    orderBy?: visual_examsOrderByWithAggregationInput | visual_examsOrderByWithAggregationInput[]
+    by: Visual_examsScalarFieldEnum[] | Visual_examsScalarFieldEnum
+    having?: visual_examsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Visual_examsCountAggregateInputType | true
+    _avg?: Visual_examsAvgAggregateInputType
+    _sum?: Visual_examsSumAggregateInputType
+    _min?: Visual_examsMinAggregateInputType
+    _max?: Visual_examsMaxAggregateInputType
+  }
+
+  export type Visual_examsGroupByOutputType = {
+    id: number
+    tid: string | null
+    limpidity: string | null
+    color_family: string
+    color_shade: string
+    consistency: string
+    bubble_grain: string | null
+    bubble_number: string | null
+    bubble_persistence: string | null
+    notes: string | null
+    _count: Visual_examsCountAggregateOutputType | null
+    _avg: Visual_examsAvgAggregateOutputType | null
+    _sum: Visual_examsSumAggregateOutputType | null
+    _min: Visual_examsMinAggregateOutputType | null
+    _max: Visual_examsMaxAggregateOutputType | null
+  }
+
+  type GetVisual_examsGroupByPayload<T extends visual_examsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Visual_examsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Visual_examsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Visual_examsGroupByOutputType[P]>
+            : GetScalarType<T[P], Visual_examsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type visual_examsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tid?: boolean
+    limpidity?: boolean
+    color_family?: boolean
+    color_shade?: boolean
+    consistency?: boolean
+    bubble_grain?: boolean
+    bubble_number?: boolean
+    bubble_persistence?: boolean
+    notes?: boolean
+    tastings?: boolean | visual_exams$tastingsArgs<ExtArgs>
+  }, ExtArgs["result"]["visual_exams"]>
+
+  export type visual_examsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tid?: boolean
+    limpidity?: boolean
+    color_family?: boolean
+    color_shade?: boolean
+    consistency?: boolean
+    bubble_grain?: boolean
+    bubble_number?: boolean
+    bubble_persistence?: boolean
+    notes?: boolean
+    tastings?: boolean | visual_exams$tastingsArgs<ExtArgs>
+  }, ExtArgs["result"]["visual_exams"]>
+
+  export type visual_examsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tid?: boolean
+    limpidity?: boolean
+    color_family?: boolean
+    color_shade?: boolean
+    consistency?: boolean
+    bubble_grain?: boolean
+    bubble_number?: boolean
+    bubble_persistence?: boolean
+    notes?: boolean
+    tastings?: boolean | visual_exams$tastingsArgs<ExtArgs>
+  }, ExtArgs["result"]["visual_exams"]>
+
+  export type visual_examsSelectScalar = {
+    id?: boolean
+    tid?: boolean
+    limpidity?: boolean
+    color_family?: boolean
+    color_shade?: boolean
+    consistency?: boolean
+    bubble_grain?: boolean
+    bubble_number?: boolean
+    bubble_persistence?: boolean
+    notes?: boolean
+  }
+
+  export type visual_examsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "limpidity" | "color_family" | "color_shade" | "consistency" | "bubble_grain" | "bubble_number" | "bubble_persistence" | "notes", ExtArgs["result"]["visual_exams"]>
+  export type visual_examsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tastings?: boolean | visual_exams$tastingsArgs<ExtArgs>
+  }
+  export type visual_examsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tastings?: boolean | visual_exams$tastingsArgs<ExtArgs>
+  }
+  export type visual_examsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tastings?: boolean | visual_exams$tastingsArgs<ExtArgs>
+  }
+
+  export type $visual_examsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "visual_exams"
+    objects: {
+      tastings: Prisma.$tastingsPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      tid: string | null
+      limpidity: string | null
+      color_family: string
+      color_shade: string
+      consistency: string
+      bubble_grain: string | null
+      bubble_number: string | null
+      bubble_persistence: string | null
+      notes: string | null
+    }, ExtArgs["result"]["visual_exams"]>
+    composites: {}
+  }
+
+  type visual_examsGetPayload<S extends boolean | null | undefined | visual_examsDefaultArgs> = $Result.GetResult<Prisma.$visual_examsPayload, S>
+
+  type visual_examsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<visual_examsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Visual_examsCountAggregateInputType | true
+    }
+
+  export interface visual_examsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['visual_exams'], meta: { name: 'visual_exams' } }
+    /**
+     * Find zero or one Visual_exams that matches the filter.
+     * @param {visual_examsFindUniqueArgs} args - Arguments to find a Visual_exams
+     * @example
+     * // Get one Visual_exams
+     * const visual_exams = await prisma.visual_exams.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends visual_examsFindUniqueArgs>(args: SelectSubset<T, visual_examsFindUniqueArgs<ExtArgs>>): Prisma__visual_examsClient<$Result.GetResult<Prisma.$visual_examsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Visual_exams that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {visual_examsFindUniqueOrThrowArgs} args - Arguments to find a Visual_exams
+     * @example
+     * // Get one Visual_exams
+     * const visual_exams = await prisma.visual_exams.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends visual_examsFindUniqueOrThrowArgs>(args: SelectSubset<T, visual_examsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__visual_examsClient<$Result.GetResult<Prisma.$visual_examsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Visual_exams that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {visual_examsFindFirstArgs} args - Arguments to find a Visual_exams
+     * @example
+     * // Get one Visual_exams
+     * const visual_exams = await prisma.visual_exams.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends visual_examsFindFirstArgs>(args?: SelectSubset<T, visual_examsFindFirstArgs<ExtArgs>>): Prisma__visual_examsClient<$Result.GetResult<Prisma.$visual_examsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Visual_exams that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {visual_examsFindFirstOrThrowArgs} args - Arguments to find a Visual_exams
+     * @example
+     * // Get one Visual_exams
+     * const visual_exams = await prisma.visual_exams.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends visual_examsFindFirstOrThrowArgs>(args?: SelectSubset<T, visual_examsFindFirstOrThrowArgs<ExtArgs>>): Prisma__visual_examsClient<$Result.GetResult<Prisma.$visual_examsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Visual_exams that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {visual_examsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Visual_exams
+     * const visual_exams = await prisma.visual_exams.findMany()
+     * 
+     * // Get first 10 Visual_exams
+     * const visual_exams = await prisma.visual_exams.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const visual_examsWithIdOnly = await prisma.visual_exams.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends visual_examsFindManyArgs>(args?: SelectSubset<T, visual_examsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$visual_examsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Visual_exams.
+     * @param {visual_examsCreateArgs} args - Arguments to create a Visual_exams.
+     * @example
+     * // Create one Visual_exams
+     * const Visual_exams = await prisma.visual_exams.create({
+     *   data: {
+     *     // ... data to create a Visual_exams
+     *   }
+     * })
+     * 
+     */
+    create<T extends visual_examsCreateArgs>(args: SelectSubset<T, visual_examsCreateArgs<ExtArgs>>): Prisma__visual_examsClient<$Result.GetResult<Prisma.$visual_examsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Visual_exams.
+     * @param {visual_examsCreateManyArgs} args - Arguments to create many Visual_exams.
+     * @example
+     * // Create many Visual_exams
+     * const visual_exams = await prisma.visual_exams.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends visual_examsCreateManyArgs>(args?: SelectSubset<T, visual_examsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Visual_exams and returns the data saved in the database.
+     * @param {visual_examsCreateManyAndReturnArgs} args - Arguments to create many Visual_exams.
+     * @example
+     * // Create many Visual_exams
+     * const visual_exams = await prisma.visual_exams.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Visual_exams and only return the `id`
+     * const visual_examsWithIdOnly = await prisma.visual_exams.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends visual_examsCreateManyAndReturnArgs>(args?: SelectSubset<T, visual_examsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$visual_examsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Visual_exams.
+     * @param {visual_examsDeleteArgs} args - Arguments to delete one Visual_exams.
+     * @example
+     * // Delete one Visual_exams
+     * const Visual_exams = await prisma.visual_exams.delete({
+     *   where: {
+     *     // ... filter to delete one Visual_exams
+     *   }
+     * })
+     * 
+     */
+    delete<T extends visual_examsDeleteArgs>(args: SelectSubset<T, visual_examsDeleteArgs<ExtArgs>>): Prisma__visual_examsClient<$Result.GetResult<Prisma.$visual_examsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Visual_exams.
+     * @param {visual_examsUpdateArgs} args - Arguments to update one Visual_exams.
+     * @example
+     * // Update one Visual_exams
+     * const visual_exams = await prisma.visual_exams.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends visual_examsUpdateArgs>(args: SelectSubset<T, visual_examsUpdateArgs<ExtArgs>>): Prisma__visual_examsClient<$Result.GetResult<Prisma.$visual_examsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Visual_exams.
+     * @param {visual_examsDeleteManyArgs} args - Arguments to filter Visual_exams to delete.
+     * @example
+     * // Delete a few Visual_exams
+     * const { count } = await prisma.visual_exams.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends visual_examsDeleteManyArgs>(args?: SelectSubset<T, visual_examsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Visual_exams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {visual_examsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Visual_exams
+     * const visual_exams = await prisma.visual_exams.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends visual_examsUpdateManyArgs>(args: SelectSubset<T, visual_examsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Visual_exams and returns the data updated in the database.
+     * @param {visual_examsUpdateManyAndReturnArgs} args - Arguments to update many Visual_exams.
+     * @example
+     * // Update many Visual_exams
+     * const visual_exams = await prisma.visual_exams.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Visual_exams and only return the `id`
+     * const visual_examsWithIdOnly = await prisma.visual_exams.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends visual_examsUpdateManyAndReturnArgs>(args: SelectSubset<T, visual_examsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$visual_examsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Visual_exams.
+     * @param {visual_examsUpsertArgs} args - Arguments to update or create a Visual_exams.
+     * @example
+     * // Update or create a Visual_exams
+     * const visual_exams = await prisma.visual_exams.upsert({
+     *   create: {
+     *     // ... data to create a Visual_exams
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Visual_exams we want to update
+     *   }
+     * })
+     */
+    upsert<T extends visual_examsUpsertArgs>(args: SelectSubset<T, visual_examsUpsertArgs<ExtArgs>>): Prisma__visual_examsClient<$Result.GetResult<Prisma.$visual_examsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Visual_exams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {visual_examsCountArgs} args - Arguments to filter Visual_exams to count.
+     * @example
+     * // Count the number of Visual_exams
+     * const count = await prisma.visual_exams.count({
+     *   where: {
+     *     // ... the filter for the Visual_exams we want to count
+     *   }
+     * })
+    **/
+    count<T extends visual_examsCountArgs>(
+      args?: Subset<T, visual_examsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Visual_examsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Visual_exams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Visual_examsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Visual_examsAggregateArgs>(args: Subset<T, Visual_examsAggregateArgs>): Prisma.PrismaPromise<GetVisual_examsAggregateType<T>>
+
+    /**
+     * Group by Visual_exams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {visual_examsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends visual_examsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: visual_examsGroupByArgs['orderBy'] }
+        : { orderBy?: visual_examsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, visual_examsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVisual_examsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the visual_exams model
+   */
+  readonly fields: visual_examsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for visual_exams.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__visual_examsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tastings<T extends visual_exams$tastingsArgs<ExtArgs> = {}>(args?: Subset<T, visual_exams$tastingsArgs<ExtArgs>>): Prisma__tastingsClient<$Result.GetResult<Prisma.$tastingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the visual_exams model
+   */
+  interface visual_examsFieldRefs {
+    readonly id: FieldRef<"visual_exams", 'Int'>
+    readonly tid: FieldRef<"visual_exams", 'String'>
+    readonly limpidity: FieldRef<"visual_exams", 'String'>
+    readonly color_family: FieldRef<"visual_exams", 'String'>
+    readonly color_shade: FieldRef<"visual_exams", 'String'>
+    readonly consistency: FieldRef<"visual_exams", 'String'>
+    readonly bubble_grain: FieldRef<"visual_exams", 'String'>
+    readonly bubble_number: FieldRef<"visual_exams", 'String'>
+    readonly bubble_persistence: FieldRef<"visual_exams", 'String'>
+    readonly notes: FieldRef<"visual_exams", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * visual_exams findUnique
+   */
+  export type visual_examsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the visual_exams
+     */
+    select?: visual_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the visual_exams
+     */
+    omit?: visual_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: visual_examsInclude<ExtArgs> | null
+    /**
+     * Filter, which visual_exams to fetch.
+     */
+    where: visual_examsWhereUniqueInput
+  }
+
+  /**
+   * visual_exams findUniqueOrThrow
+   */
+  export type visual_examsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the visual_exams
+     */
+    select?: visual_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the visual_exams
+     */
+    omit?: visual_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: visual_examsInclude<ExtArgs> | null
+    /**
+     * Filter, which visual_exams to fetch.
+     */
+    where: visual_examsWhereUniqueInput
+  }
+
+  /**
+   * visual_exams findFirst
+   */
+  export type visual_examsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the visual_exams
+     */
+    select?: visual_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the visual_exams
+     */
+    omit?: visual_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: visual_examsInclude<ExtArgs> | null
+    /**
+     * Filter, which visual_exams to fetch.
+     */
+    where?: visual_examsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of visual_exams to fetch.
+     */
+    orderBy?: visual_examsOrderByWithRelationInput | visual_examsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for visual_exams.
+     */
+    cursor?: visual_examsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` visual_exams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` visual_exams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of visual_exams.
+     */
+    distinct?: Visual_examsScalarFieldEnum | Visual_examsScalarFieldEnum[]
+  }
+
+  /**
+   * visual_exams findFirstOrThrow
+   */
+  export type visual_examsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the visual_exams
+     */
+    select?: visual_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the visual_exams
+     */
+    omit?: visual_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: visual_examsInclude<ExtArgs> | null
+    /**
+     * Filter, which visual_exams to fetch.
+     */
+    where?: visual_examsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of visual_exams to fetch.
+     */
+    orderBy?: visual_examsOrderByWithRelationInput | visual_examsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for visual_exams.
+     */
+    cursor?: visual_examsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` visual_exams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` visual_exams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of visual_exams.
+     */
+    distinct?: Visual_examsScalarFieldEnum | Visual_examsScalarFieldEnum[]
+  }
+
+  /**
+   * visual_exams findMany
+   */
+  export type visual_examsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the visual_exams
+     */
+    select?: visual_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the visual_exams
+     */
+    omit?: visual_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: visual_examsInclude<ExtArgs> | null
+    /**
+     * Filter, which visual_exams to fetch.
+     */
+    where?: visual_examsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of visual_exams to fetch.
+     */
+    orderBy?: visual_examsOrderByWithRelationInput | visual_examsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing visual_exams.
+     */
+    cursor?: visual_examsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` visual_exams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` visual_exams.
+     */
+    skip?: number
+    distinct?: Visual_examsScalarFieldEnum | Visual_examsScalarFieldEnum[]
+  }
+
+  /**
+   * visual_exams create
+   */
+  export type visual_examsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the visual_exams
+     */
+    select?: visual_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the visual_exams
+     */
+    omit?: visual_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: visual_examsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a visual_exams.
+     */
+    data: XOR<visual_examsCreateInput, visual_examsUncheckedCreateInput>
+  }
+
+  /**
+   * visual_exams createMany
+   */
+  export type visual_examsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many visual_exams.
+     */
+    data: visual_examsCreateManyInput | visual_examsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * visual_exams createManyAndReturn
+   */
+  export type visual_examsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the visual_exams
+     */
+    select?: visual_examsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the visual_exams
+     */
+    omit?: visual_examsOmit<ExtArgs> | null
+    /**
+     * The data used to create many visual_exams.
+     */
+    data: visual_examsCreateManyInput | visual_examsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: visual_examsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * visual_exams update
+   */
+  export type visual_examsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the visual_exams
+     */
+    select?: visual_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the visual_exams
+     */
+    omit?: visual_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: visual_examsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a visual_exams.
+     */
+    data: XOR<visual_examsUpdateInput, visual_examsUncheckedUpdateInput>
+    /**
+     * Choose, which visual_exams to update.
+     */
+    where: visual_examsWhereUniqueInput
+  }
+
+  /**
+   * visual_exams updateMany
+   */
+  export type visual_examsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update visual_exams.
+     */
+    data: XOR<visual_examsUpdateManyMutationInput, visual_examsUncheckedUpdateManyInput>
+    /**
+     * Filter which visual_exams to update
+     */
+    where?: visual_examsWhereInput
+    /**
+     * Limit how many visual_exams to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * visual_exams updateManyAndReturn
+   */
+  export type visual_examsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the visual_exams
+     */
+    select?: visual_examsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the visual_exams
+     */
+    omit?: visual_examsOmit<ExtArgs> | null
+    /**
+     * The data used to update visual_exams.
+     */
+    data: XOR<visual_examsUpdateManyMutationInput, visual_examsUncheckedUpdateManyInput>
+    /**
+     * Filter which visual_exams to update
+     */
+    where?: visual_examsWhereInput
+    /**
+     * Limit how many visual_exams to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: visual_examsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * visual_exams upsert
+   */
+  export type visual_examsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the visual_exams
+     */
+    select?: visual_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the visual_exams
+     */
+    omit?: visual_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: visual_examsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the visual_exams to update in case it exists.
+     */
+    where: visual_examsWhereUniqueInput
+    /**
+     * In case the visual_exams found by the `where` argument doesn't exist, create a new visual_exams with this data.
+     */
+    create: XOR<visual_examsCreateInput, visual_examsUncheckedCreateInput>
+    /**
+     * In case the visual_exams was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<visual_examsUpdateInput, visual_examsUncheckedUpdateInput>
+  }
+
+  /**
+   * visual_exams delete
+   */
+  export type visual_examsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the visual_exams
+     */
+    select?: visual_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the visual_exams
+     */
+    omit?: visual_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: visual_examsInclude<ExtArgs> | null
+    /**
+     * Filter which visual_exams to delete.
+     */
+    where: visual_examsWhereUniqueInput
+  }
+
+  /**
+   * visual_exams deleteMany
+   */
+  export type visual_examsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which visual_exams to delete
+     */
+    where?: visual_examsWhereInput
+    /**
+     * Limit how many visual_exams to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * visual_exams.tastings
+   */
+  export type visual_exams$tastingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tastings
+     */
+    select?: tastingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tastings
+     */
+    omit?: tastingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tastingsInclude<ExtArgs> | null
+    where?: tastingsWhereInput
+  }
+
+  /**
+   * visual_exams without action
+   */
+  export type visual_examsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the visual_exams
+     */
+    select?: visual_examsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the visual_exams
+     */
+    omit?: visual_examsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: visual_examsInclude<ExtArgs> | null
   }
 
 
@@ -5963,6 +10029,64 @@ export namespace Prisma {
   };
 
   export type TastingsScalarFieldEnum = (typeof TastingsScalarFieldEnum)[keyof typeof TastingsScalarFieldEnum]
+
+
+  export const Olfactory_examsScalarFieldEnum: {
+    id: 'id',
+    tid: 'tid',
+    intensity: 'intensity',
+    complexity: 'complexity',
+    quality: 'quality',
+    aromatic: 'aromatic',
+    vinous: 'vinous',
+    floral: 'floral',
+    fruity: 'fruity',
+    fragrant: 'fragrant',
+    herbaceous: 'herbaceous',
+    mineral: 'mineral',
+    spicy: 'spicy',
+    ethereal: 'ethereal',
+    frank: 'frank',
+    notes: 'notes'
+  };
+
+  export type Olfactory_examsScalarFieldEnum = (typeof Olfactory_examsScalarFieldEnum)[keyof typeof Olfactory_examsScalarFieldEnum]
+
+
+  export const Taste_olfactory_examsScalarFieldEnum: {
+    id: 'id',
+    tid: 'tid',
+    sugars: 'sugars',
+    alcohols: 'alcohols',
+    polyalcohols: 'polyalcohols',
+    acids: 'acids',
+    tannins: 'tannins',
+    minerals: 'minerals',
+    balance: 'balance',
+    intensity: 'intensity',
+    persistence: 'persistence',
+    quality: 'quality',
+    structure: 'structure',
+    notes: 'notes'
+  };
+
+  export type Taste_olfactory_examsScalarFieldEnum = (typeof Taste_olfactory_examsScalarFieldEnum)[keyof typeof Taste_olfactory_examsScalarFieldEnum]
+
+
+  export const Visual_examsScalarFieldEnum: {
+    id: 'id',
+    tid: 'tid',
+    limpidity: 'limpidity',
+    color_family: 'color_family',
+    color_shade: 'color_shade',
+    consistency: 'consistency',
+    bubble_grain: 'bubble_grain',
+    bubble_number: 'bubble_number',
+    bubble_persistence: 'bubble_persistence',
+    notes: 'notes'
+  };
+
+  export type Visual_examsScalarFieldEnum = (typeof Visual_examsScalarFieldEnum)[keyof typeof Visual_examsScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -6294,8 +10418,11 @@ export namespace Prisma {
     tasting_location?: StringFilter<"tastings"> | string
     created_at?: DateTimeNullableFilter<"tastings"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"tastings"> | Date | string | null
+    olfactory_exams?: Olfactory_examsListRelationFilter
+    taste_olfactory_exams?: Taste_olfactory_examsListRelationFilter
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
     wine_categories?: XOR<Wine_categoriesScalarRelationFilter, wine_categoriesWhereInput>
+    visual_exams?: Visual_examsListRelationFilter
   }
 
   export type tastingsOrderByWithRelationInput = {
@@ -6315,8 +10442,11 @@ export namespace Prisma {
     tasting_location?: SortOrder
     created_at?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
+    olfactory_exams?: olfactory_examsOrderByRelationAggregateInput
+    taste_olfactory_exams?: taste_olfactory_examsOrderByRelationAggregateInput
     users?: usersOrderByWithRelationInput
     wine_categories?: wine_categoriesOrderByWithRelationInput
+    visual_exams?: visual_examsOrderByRelationAggregateInput
   }
 
   export type tastingsWhereUniqueInput = Prisma.AtLeast<{
@@ -6339,8 +10469,11 @@ export namespace Prisma {
     tasting_location?: StringFilter<"tastings"> | string
     created_at?: DateTimeNullableFilter<"tastings"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"tastings"> | Date | string | null
+    olfactory_exams?: Olfactory_examsListRelationFilter
+    taste_olfactory_exams?: Taste_olfactory_examsListRelationFilter
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
     wine_categories?: XOR<Wine_categoriesScalarRelationFilter, wine_categoriesWhereInput>
+    visual_exams?: Visual_examsListRelationFilter
   }, "id" | "tid">
 
   export type tastingsOrderByWithAggregationInput = {
@@ -6387,6 +10520,302 @@ export namespace Prisma {
     tasting_location?: StringWithAggregatesFilter<"tastings"> | string
     created_at?: DateTimeNullableWithAggregatesFilter<"tastings"> | Date | string | null
     updated_at?: DateTimeNullableWithAggregatesFilter<"tastings"> | Date | string | null
+  }
+
+  export type olfactory_examsWhereInput = {
+    AND?: olfactory_examsWhereInput | olfactory_examsWhereInput[]
+    OR?: olfactory_examsWhereInput[]
+    NOT?: olfactory_examsWhereInput | olfactory_examsWhereInput[]
+    id?: IntFilter<"olfactory_exams"> | number
+    tid?: UuidNullableFilter<"olfactory_exams"> | string | null
+    intensity?: StringFilter<"olfactory_exams"> | string
+    complexity?: StringFilter<"olfactory_exams"> | string
+    quality?: StringFilter<"olfactory_exams"> | string
+    aromatic?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    vinous?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    floral?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    fruity?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    fragrant?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    herbaceous?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    mineral?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    spicy?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    ethereal?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    frank?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    notes?: StringNullableFilter<"olfactory_exams"> | string | null
+    tastings?: XOR<TastingsNullableScalarRelationFilter, tastingsWhereInput> | null
+  }
+
+  export type olfactory_examsOrderByWithRelationInput = {
+    id?: SortOrder
+    tid?: SortOrderInput | SortOrder
+    intensity?: SortOrder
+    complexity?: SortOrder
+    quality?: SortOrder
+    aromatic?: SortOrderInput | SortOrder
+    vinous?: SortOrderInput | SortOrder
+    floral?: SortOrderInput | SortOrder
+    fruity?: SortOrderInput | SortOrder
+    fragrant?: SortOrderInput | SortOrder
+    herbaceous?: SortOrderInput | SortOrder
+    mineral?: SortOrderInput | SortOrder
+    spicy?: SortOrderInput | SortOrder
+    ethereal?: SortOrderInput | SortOrder
+    frank?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
+    tastings?: tastingsOrderByWithRelationInput
+  }
+
+  export type olfactory_examsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: olfactory_examsWhereInput | olfactory_examsWhereInput[]
+    OR?: olfactory_examsWhereInput[]
+    NOT?: olfactory_examsWhereInput | olfactory_examsWhereInput[]
+    tid?: UuidNullableFilter<"olfactory_exams"> | string | null
+    intensity?: StringFilter<"olfactory_exams"> | string
+    complexity?: StringFilter<"olfactory_exams"> | string
+    quality?: StringFilter<"olfactory_exams"> | string
+    aromatic?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    vinous?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    floral?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    fruity?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    fragrant?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    herbaceous?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    mineral?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    spicy?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    ethereal?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    frank?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    notes?: StringNullableFilter<"olfactory_exams"> | string | null
+    tastings?: XOR<TastingsNullableScalarRelationFilter, tastingsWhereInput> | null
+  }, "id">
+
+  export type olfactory_examsOrderByWithAggregationInput = {
+    id?: SortOrder
+    tid?: SortOrderInput | SortOrder
+    intensity?: SortOrder
+    complexity?: SortOrder
+    quality?: SortOrder
+    aromatic?: SortOrderInput | SortOrder
+    vinous?: SortOrderInput | SortOrder
+    floral?: SortOrderInput | SortOrder
+    fruity?: SortOrderInput | SortOrder
+    fragrant?: SortOrderInput | SortOrder
+    herbaceous?: SortOrderInput | SortOrder
+    mineral?: SortOrderInput | SortOrder
+    spicy?: SortOrderInput | SortOrder
+    ethereal?: SortOrderInput | SortOrder
+    frank?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
+    _count?: olfactory_examsCountOrderByAggregateInput
+    _avg?: olfactory_examsAvgOrderByAggregateInput
+    _max?: olfactory_examsMaxOrderByAggregateInput
+    _min?: olfactory_examsMinOrderByAggregateInput
+    _sum?: olfactory_examsSumOrderByAggregateInput
+  }
+
+  export type olfactory_examsScalarWhereWithAggregatesInput = {
+    AND?: olfactory_examsScalarWhereWithAggregatesInput | olfactory_examsScalarWhereWithAggregatesInput[]
+    OR?: olfactory_examsScalarWhereWithAggregatesInput[]
+    NOT?: olfactory_examsScalarWhereWithAggregatesInput | olfactory_examsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"olfactory_exams"> | number
+    tid?: UuidNullableWithAggregatesFilter<"olfactory_exams"> | string | null
+    intensity?: StringWithAggregatesFilter<"olfactory_exams"> | string
+    complexity?: StringWithAggregatesFilter<"olfactory_exams"> | string
+    quality?: StringWithAggregatesFilter<"olfactory_exams"> | string
+    aromatic?: BoolNullableWithAggregatesFilter<"olfactory_exams"> | boolean | null
+    vinous?: BoolNullableWithAggregatesFilter<"olfactory_exams"> | boolean | null
+    floral?: BoolNullableWithAggregatesFilter<"olfactory_exams"> | boolean | null
+    fruity?: BoolNullableWithAggregatesFilter<"olfactory_exams"> | boolean | null
+    fragrant?: BoolNullableWithAggregatesFilter<"olfactory_exams"> | boolean | null
+    herbaceous?: BoolNullableWithAggregatesFilter<"olfactory_exams"> | boolean | null
+    mineral?: BoolNullableWithAggregatesFilter<"olfactory_exams"> | boolean | null
+    spicy?: BoolNullableWithAggregatesFilter<"olfactory_exams"> | boolean | null
+    ethereal?: BoolNullableWithAggregatesFilter<"olfactory_exams"> | boolean | null
+    frank?: BoolNullableWithAggregatesFilter<"olfactory_exams"> | boolean | null
+    notes?: StringNullableWithAggregatesFilter<"olfactory_exams"> | string | null
+  }
+
+  export type taste_olfactory_examsWhereInput = {
+    AND?: taste_olfactory_examsWhereInput | taste_olfactory_examsWhereInput[]
+    OR?: taste_olfactory_examsWhereInput[]
+    NOT?: taste_olfactory_examsWhereInput | taste_olfactory_examsWhereInput[]
+    id?: IntFilter<"taste_olfactory_exams"> | number
+    tid?: UuidNullableFilter<"taste_olfactory_exams"> | string | null
+    sugars?: StringFilter<"taste_olfactory_exams"> | string
+    alcohols?: StringFilter<"taste_olfactory_exams"> | string
+    polyalcohols?: StringFilter<"taste_olfactory_exams"> | string
+    acids?: StringFilter<"taste_olfactory_exams"> | string
+    tannins?: StringFilter<"taste_olfactory_exams"> | string
+    minerals?: StringFilter<"taste_olfactory_exams"> | string
+    balance?: StringFilter<"taste_olfactory_exams"> | string
+    intensity?: StringFilter<"taste_olfactory_exams"> | string
+    persistence?: StringFilter<"taste_olfactory_exams"> | string
+    quality?: StringFilter<"taste_olfactory_exams"> | string
+    structure?: StringFilter<"taste_olfactory_exams"> | string
+    notes?: StringNullableFilter<"taste_olfactory_exams"> | string | null
+    tastings?: XOR<TastingsNullableScalarRelationFilter, tastingsWhereInput> | null
+  }
+
+  export type taste_olfactory_examsOrderByWithRelationInput = {
+    id?: SortOrder
+    tid?: SortOrderInput | SortOrder
+    sugars?: SortOrder
+    alcohols?: SortOrder
+    polyalcohols?: SortOrder
+    acids?: SortOrder
+    tannins?: SortOrder
+    minerals?: SortOrder
+    balance?: SortOrder
+    intensity?: SortOrder
+    persistence?: SortOrder
+    quality?: SortOrder
+    structure?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    tastings?: tastingsOrderByWithRelationInput
+  }
+
+  export type taste_olfactory_examsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: taste_olfactory_examsWhereInput | taste_olfactory_examsWhereInput[]
+    OR?: taste_olfactory_examsWhereInput[]
+    NOT?: taste_olfactory_examsWhereInput | taste_olfactory_examsWhereInput[]
+    tid?: UuidNullableFilter<"taste_olfactory_exams"> | string | null
+    sugars?: StringFilter<"taste_olfactory_exams"> | string
+    alcohols?: StringFilter<"taste_olfactory_exams"> | string
+    polyalcohols?: StringFilter<"taste_olfactory_exams"> | string
+    acids?: StringFilter<"taste_olfactory_exams"> | string
+    tannins?: StringFilter<"taste_olfactory_exams"> | string
+    minerals?: StringFilter<"taste_olfactory_exams"> | string
+    balance?: StringFilter<"taste_olfactory_exams"> | string
+    intensity?: StringFilter<"taste_olfactory_exams"> | string
+    persistence?: StringFilter<"taste_olfactory_exams"> | string
+    quality?: StringFilter<"taste_olfactory_exams"> | string
+    structure?: StringFilter<"taste_olfactory_exams"> | string
+    notes?: StringNullableFilter<"taste_olfactory_exams"> | string | null
+    tastings?: XOR<TastingsNullableScalarRelationFilter, tastingsWhereInput> | null
+  }, "id">
+
+  export type taste_olfactory_examsOrderByWithAggregationInput = {
+    id?: SortOrder
+    tid?: SortOrderInput | SortOrder
+    sugars?: SortOrder
+    alcohols?: SortOrder
+    polyalcohols?: SortOrder
+    acids?: SortOrder
+    tannins?: SortOrder
+    minerals?: SortOrder
+    balance?: SortOrder
+    intensity?: SortOrder
+    persistence?: SortOrder
+    quality?: SortOrder
+    structure?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    _count?: taste_olfactory_examsCountOrderByAggregateInput
+    _avg?: taste_olfactory_examsAvgOrderByAggregateInput
+    _max?: taste_olfactory_examsMaxOrderByAggregateInput
+    _min?: taste_olfactory_examsMinOrderByAggregateInput
+    _sum?: taste_olfactory_examsSumOrderByAggregateInput
+  }
+
+  export type taste_olfactory_examsScalarWhereWithAggregatesInput = {
+    AND?: taste_olfactory_examsScalarWhereWithAggregatesInput | taste_olfactory_examsScalarWhereWithAggregatesInput[]
+    OR?: taste_olfactory_examsScalarWhereWithAggregatesInput[]
+    NOT?: taste_olfactory_examsScalarWhereWithAggregatesInput | taste_olfactory_examsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"taste_olfactory_exams"> | number
+    tid?: UuidNullableWithAggregatesFilter<"taste_olfactory_exams"> | string | null
+    sugars?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
+    alcohols?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
+    polyalcohols?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
+    acids?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
+    tannins?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
+    minerals?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
+    balance?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
+    intensity?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
+    persistence?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
+    quality?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
+    structure?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
+    notes?: StringNullableWithAggregatesFilter<"taste_olfactory_exams"> | string | null
+  }
+
+  export type visual_examsWhereInput = {
+    AND?: visual_examsWhereInput | visual_examsWhereInput[]
+    OR?: visual_examsWhereInput[]
+    NOT?: visual_examsWhereInput | visual_examsWhereInput[]
+    id?: IntFilter<"visual_exams"> | number
+    tid?: UuidNullableFilter<"visual_exams"> | string | null
+    limpidity?: StringNullableFilter<"visual_exams"> | string | null
+    color_family?: StringFilter<"visual_exams"> | string
+    color_shade?: StringFilter<"visual_exams"> | string
+    consistency?: StringFilter<"visual_exams"> | string
+    bubble_grain?: StringNullableFilter<"visual_exams"> | string | null
+    bubble_number?: StringNullableFilter<"visual_exams"> | string | null
+    bubble_persistence?: StringNullableFilter<"visual_exams"> | string | null
+    notes?: StringNullableFilter<"visual_exams"> | string | null
+    tastings?: XOR<TastingsNullableScalarRelationFilter, tastingsWhereInput> | null
+  }
+
+  export type visual_examsOrderByWithRelationInput = {
+    id?: SortOrder
+    tid?: SortOrderInput | SortOrder
+    limpidity?: SortOrderInput | SortOrder
+    color_family?: SortOrder
+    color_shade?: SortOrder
+    consistency?: SortOrder
+    bubble_grain?: SortOrderInput | SortOrder
+    bubble_number?: SortOrderInput | SortOrder
+    bubble_persistence?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
+    tastings?: tastingsOrderByWithRelationInput
+  }
+
+  export type visual_examsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: visual_examsWhereInput | visual_examsWhereInput[]
+    OR?: visual_examsWhereInput[]
+    NOT?: visual_examsWhereInput | visual_examsWhereInput[]
+    tid?: UuidNullableFilter<"visual_exams"> | string | null
+    limpidity?: StringNullableFilter<"visual_exams"> | string | null
+    color_family?: StringFilter<"visual_exams"> | string
+    color_shade?: StringFilter<"visual_exams"> | string
+    consistency?: StringFilter<"visual_exams"> | string
+    bubble_grain?: StringNullableFilter<"visual_exams"> | string | null
+    bubble_number?: StringNullableFilter<"visual_exams"> | string | null
+    bubble_persistence?: StringNullableFilter<"visual_exams"> | string | null
+    notes?: StringNullableFilter<"visual_exams"> | string | null
+    tastings?: XOR<TastingsNullableScalarRelationFilter, tastingsWhereInput> | null
+  }, "id">
+
+  export type visual_examsOrderByWithAggregationInput = {
+    id?: SortOrder
+    tid?: SortOrderInput | SortOrder
+    limpidity?: SortOrderInput | SortOrder
+    color_family?: SortOrder
+    color_shade?: SortOrder
+    consistency?: SortOrder
+    bubble_grain?: SortOrderInput | SortOrder
+    bubble_number?: SortOrderInput | SortOrder
+    bubble_persistence?: SortOrderInput | SortOrder
+    notes?: SortOrderInput | SortOrder
+    _count?: visual_examsCountOrderByAggregateInput
+    _avg?: visual_examsAvgOrderByAggregateInput
+    _max?: visual_examsMaxOrderByAggregateInput
+    _min?: visual_examsMinOrderByAggregateInput
+    _sum?: visual_examsSumOrderByAggregateInput
+  }
+
+  export type visual_examsScalarWhereWithAggregatesInput = {
+    AND?: visual_examsScalarWhereWithAggregatesInput | visual_examsScalarWhereWithAggregatesInput[]
+    OR?: visual_examsScalarWhereWithAggregatesInput[]
+    NOT?: visual_examsScalarWhereWithAggregatesInput | visual_examsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"visual_exams"> | number
+    tid?: UuidNullableWithAggregatesFilter<"visual_exams"> | string | null
+    limpidity?: StringNullableWithAggregatesFilter<"visual_exams"> | string | null
+    color_family?: StringWithAggregatesFilter<"visual_exams"> | string
+    color_shade?: StringWithAggregatesFilter<"visual_exams"> | string
+    consistency?: StringWithAggregatesFilter<"visual_exams"> | string
+    bubble_grain?: StringNullableWithAggregatesFilter<"visual_exams"> | string | null
+    bubble_number?: StringNullableWithAggregatesFilter<"visual_exams"> | string | null
+    bubble_persistence?: StringNullableWithAggregatesFilter<"visual_exams"> | string | null
+    notes?: StringNullableWithAggregatesFilter<"visual_exams"> | string | null
   }
 
   export type usersCreateInput = {
@@ -6608,8 +11037,11 @@ export namespace Prisma {
     tasting_location: string
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    olfactory_exams?: olfactory_examsCreateNestedManyWithoutTastingsInput
+    taste_olfactory_exams?: taste_olfactory_examsCreateNestedManyWithoutTastingsInput
     users: usersCreateNestedOneWithoutTastingsInput
     wine_categories: wine_categoriesCreateNestedOneWithoutTastingsInput
+    visual_exams?: visual_examsCreateNestedManyWithoutTastingsInput
   }
 
   export type tastingsUncheckedCreateInput = {
@@ -6629,6 +11061,9 @@ export namespace Prisma {
     tasting_location: string
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    olfactory_exams?: olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput
+    taste_olfactory_exams?: taste_olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput
+    visual_exams?: visual_examsUncheckedCreateNestedManyWithoutTastingsInput
   }
 
   export type tastingsUpdateInput = {
@@ -6645,8 +11080,11 @@ export namespace Prisma {
     tasting_location?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    olfactory_exams?: olfactory_examsUpdateManyWithoutTastingsNestedInput
+    taste_olfactory_exams?: taste_olfactory_examsUpdateManyWithoutTastingsNestedInput
     users?: usersUpdateOneRequiredWithoutTastingsNestedInput
     wine_categories?: wine_categoriesUpdateOneRequiredWithoutTastingsNestedInput
+    visual_exams?: visual_examsUpdateManyWithoutTastingsNestedInput
   }
 
   export type tastingsUncheckedUpdateInput = {
@@ -6666,6 +11104,9 @@ export namespace Prisma {
     tasting_location?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    olfactory_exams?: olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput
+    taste_olfactory_exams?: taste_olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput
+    visual_exams?: visual_examsUncheckedUpdateManyWithoutTastingsNestedInput
   }
 
   export type tastingsCreateManyInput = {
@@ -6720,6 +11161,337 @@ export namespace Prisma {
     tasting_location?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type olfactory_examsCreateInput = {
+    intensity: string
+    complexity: string
+    quality: string
+    aromatic?: boolean | null
+    vinous?: boolean | null
+    floral?: boolean | null
+    fruity?: boolean | null
+    fragrant?: boolean | null
+    herbaceous?: boolean | null
+    mineral?: boolean | null
+    spicy?: boolean | null
+    ethereal?: boolean | null
+    frank?: boolean | null
+    notes?: string | null
+    tastings?: tastingsCreateNestedOneWithoutOlfactory_examsInput
+  }
+
+  export type olfactory_examsUncheckedCreateInput = {
+    id?: number
+    tid?: string | null
+    intensity: string
+    complexity: string
+    quality: string
+    aromatic?: boolean | null
+    vinous?: boolean | null
+    floral?: boolean | null
+    fruity?: boolean | null
+    fragrant?: boolean | null
+    herbaceous?: boolean | null
+    mineral?: boolean | null
+    spicy?: boolean | null
+    ethereal?: boolean | null
+    frank?: boolean | null
+    notes?: string | null
+  }
+
+  export type olfactory_examsUpdateInput = {
+    intensity?: StringFieldUpdateOperationsInput | string
+    complexity?: StringFieldUpdateOperationsInput | string
+    quality?: StringFieldUpdateOperationsInput | string
+    aromatic?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    vinous?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    floral?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fruity?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fragrant?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    herbaceous?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    mineral?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    spicy?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    ethereal?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    frank?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    tastings?: tastingsUpdateOneWithoutOlfactory_examsNestedInput
+  }
+
+  export type olfactory_examsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tid?: NullableStringFieldUpdateOperationsInput | string | null
+    intensity?: StringFieldUpdateOperationsInput | string
+    complexity?: StringFieldUpdateOperationsInput | string
+    quality?: StringFieldUpdateOperationsInput | string
+    aromatic?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    vinous?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    floral?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fruity?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fragrant?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    herbaceous?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    mineral?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    spicy?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    ethereal?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    frank?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type olfactory_examsCreateManyInput = {
+    id?: number
+    tid?: string | null
+    intensity: string
+    complexity: string
+    quality: string
+    aromatic?: boolean | null
+    vinous?: boolean | null
+    floral?: boolean | null
+    fruity?: boolean | null
+    fragrant?: boolean | null
+    herbaceous?: boolean | null
+    mineral?: boolean | null
+    spicy?: boolean | null
+    ethereal?: boolean | null
+    frank?: boolean | null
+    notes?: string | null
+  }
+
+  export type olfactory_examsUpdateManyMutationInput = {
+    intensity?: StringFieldUpdateOperationsInput | string
+    complexity?: StringFieldUpdateOperationsInput | string
+    quality?: StringFieldUpdateOperationsInput | string
+    aromatic?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    vinous?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    floral?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fruity?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fragrant?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    herbaceous?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    mineral?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    spicy?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    ethereal?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    frank?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type olfactory_examsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tid?: NullableStringFieldUpdateOperationsInput | string | null
+    intensity?: StringFieldUpdateOperationsInput | string
+    complexity?: StringFieldUpdateOperationsInput | string
+    quality?: StringFieldUpdateOperationsInput | string
+    aromatic?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    vinous?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    floral?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fruity?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fragrant?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    herbaceous?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    mineral?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    spicy?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    ethereal?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    frank?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type taste_olfactory_examsCreateInput = {
+    sugars: string
+    alcohols: string
+    polyalcohols: string
+    acids: string
+    tannins: string
+    minerals: string
+    balance: string
+    intensity: string
+    persistence: string
+    quality: string
+    structure: string
+    notes?: string | null
+    tastings?: tastingsCreateNestedOneWithoutTaste_olfactory_examsInput
+  }
+
+  export type taste_olfactory_examsUncheckedCreateInput = {
+    id?: number
+    tid?: string | null
+    sugars: string
+    alcohols: string
+    polyalcohols: string
+    acids: string
+    tannins: string
+    minerals: string
+    balance: string
+    intensity: string
+    persistence: string
+    quality: string
+    structure: string
+    notes?: string | null
+  }
+
+  export type taste_olfactory_examsUpdateInput = {
+    sugars?: StringFieldUpdateOperationsInput | string
+    alcohols?: StringFieldUpdateOperationsInput | string
+    polyalcohols?: StringFieldUpdateOperationsInput | string
+    acids?: StringFieldUpdateOperationsInput | string
+    tannins?: StringFieldUpdateOperationsInput | string
+    minerals?: StringFieldUpdateOperationsInput | string
+    balance?: StringFieldUpdateOperationsInput | string
+    intensity?: StringFieldUpdateOperationsInput | string
+    persistence?: StringFieldUpdateOperationsInput | string
+    quality?: StringFieldUpdateOperationsInput | string
+    structure?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    tastings?: tastingsUpdateOneWithoutTaste_olfactory_examsNestedInput
+  }
+
+  export type taste_olfactory_examsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tid?: NullableStringFieldUpdateOperationsInput | string | null
+    sugars?: StringFieldUpdateOperationsInput | string
+    alcohols?: StringFieldUpdateOperationsInput | string
+    polyalcohols?: StringFieldUpdateOperationsInput | string
+    acids?: StringFieldUpdateOperationsInput | string
+    tannins?: StringFieldUpdateOperationsInput | string
+    minerals?: StringFieldUpdateOperationsInput | string
+    balance?: StringFieldUpdateOperationsInput | string
+    intensity?: StringFieldUpdateOperationsInput | string
+    persistence?: StringFieldUpdateOperationsInput | string
+    quality?: StringFieldUpdateOperationsInput | string
+    structure?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type taste_olfactory_examsCreateManyInput = {
+    id?: number
+    tid?: string | null
+    sugars: string
+    alcohols: string
+    polyalcohols: string
+    acids: string
+    tannins: string
+    minerals: string
+    balance: string
+    intensity: string
+    persistence: string
+    quality: string
+    structure: string
+    notes?: string | null
+  }
+
+  export type taste_olfactory_examsUpdateManyMutationInput = {
+    sugars?: StringFieldUpdateOperationsInput | string
+    alcohols?: StringFieldUpdateOperationsInput | string
+    polyalcohols?: StringFieldUpdateOperationsInput | string
+    acids?: StringFieldUpdateOperationsInput | string
+    tannins?: StringFieldUpdateOperationsInput | string
+    minerals?: StringFieldUpdateOperationsInput | string
+    balance?: StringFieldUpdateOperationsInput | string
+    intensity?: StringFieldUpdateOperationsInput | string
+    persistence?: StringFieldUpdateOperationsInput | string
+    quality?: StringFieldUpdateOperationsInput | string
+    structure?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type taste_olfactory_examsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tid?: NullableStringFieldUpdateOperationsInput | string | null
+    sugars?: StringFieldUpdateOperationsInput | string
+    alcohols?: StringFieldUpdateOperationsInput | string
+    polyalcohols?: StringFieldUpdateOperationsInput | string
+    acids?: StringFieldUpdateOperationsInput | string
+    tannins?: StringFieldUpdateOperationsInput | string
+    minerals?: StringFieldUpdateOperationsInput | string
+    balance?: StringFieldUpdateOperationsInput | string
+    intensity?: StringFieldUpdateOperationsInput | string
+    persistence?: StringFieldUpdateOperationsInput | string
+    quality?: StringFieldUpdateOperationsInput | string
+    structure?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type visual_examsCreateInput = {
+    limpidity?: string | null
+    color_family: string
+    color_shade: string
+    consistency: string
+    bubble_grain?: string | null
+    bubble_number?: string | null
+    bubble_persistence?: string | null
+    notes?: string | null
+    tastings?: tastingsCreateNestedOneWithoutVisual_examsInput
+  }
+
+  export type visual_examsUncheckedCreateInput = {
+    id?: number
+    tid?: string | null
+    limpidity?: string | null
+    color_family: string
+    color_shade: string
+    consistency: string
+    bubble_grain?: string | null
+    bubble_number?: string | null
+    bubble_persistence?: string | null
+    notes?: string | null
+  }
+
+  export type visual_examsUpdateInput = {
+    limpidity?: NullableStringFieldUpdateOperationsInput | string | null
+    color_family?: StringFieldUpdateOperationsInput | string
+    color_shade?: StringFieldUpdateOperationsInput | string
+    consistency?: StringFieldUpdateOperationsInput | string
+    bubble_grain?: NullableStringFieldUpdateOperationsInput | string | null
+    bubble_number?: NullableStringFieldUpdateOperationsInput | string | null
+    bubble_persistence?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    tastings?: tastingsUpdateOneWithoutVisual_examsNestedInput
+  }
+
+  export type visual_examsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tid?: NullableStringFieldUpdateOperationsInput | string | null
+    limpidity?: NullableStringFieldUpdateOperationsInput | string | null
+    color_family?: StringFieldUpdateOperationsInput | string
+    color_shade?: StringFieldUpdateOperationsInput | string
+    consistency?: StringFieldUpdateOperationsInput | string
+    bubble_grain?: NullableStringFieldUpdateOperationsInput | string | null
+    bubble_number?: NullableStringFieldUpdateOperationsInput | string | null
+    bubble_persistence?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type visual_examsCreateManyInput = {
+    id?: number
+    tid?: string | null
+    limpidity?: string | null
+    color_family: string
+    color_shade: string
+    consistency: string
+    bubble_grain?: string | null
+    bubble_number?: string | null
+    bubble_persistence?: string | null
+    notes?: string | null
+  }
+
+  export type visual_examsUpdateManyMutationInput = {
+    limpidity?: NullableStringFieldUpdateOperationsInput | string | null
+    color_family?: StringFieldUpdateOperationsInput | string
+    color_shade?: StringFieldUpdateOperationsInput | string
+    consistency?: StringFieldUpdateOperationsInput | string
+    bubble_grain?: NullableStringFieldUpdateOperationsInput | string | null
+    bubble_number?: NullableStringFieldUpdateOperationsInput | string | null
+    bubble_persistence?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type visual_examsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tid?: NullableStringFieldUpdateOperationsInput | string | null
+    limpidity?: NullableStringFieldUpdateOperationsInput | string | null
+    color_family?: StringFieldUpdateOperationsInput | string
+    color_shade?: StringFieldUpdateOperationsInput | string
+    consistency?: StringFieldUpdateOperationsInput | string
+    bubble_grain?: NullableStringFieldUpdateOperationsInput | string | null
+    bubble_number?: NullableStringFieldUpdateOperationsInput | string | null
+    bubble_persistence?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -7077,6 +11849,18 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type Olfactory_examsListRelationFilter = {
+    every?: olfactory_examsWhereInput
+    some?: olfactory_examsWhereInput
+    none?: olfactory_examsWhereInput
+  }
+
+  export type Taste_olfactory_examsListRelationFilter = {
+    every?: taste_olfactory_examsWhereInput
+    some?: taste_olfactory_examsWhereInput
+    none?: taste_olfactory_examsWhereInput
+  }
+
   export type UsersScalarRelationFilter = {
     is?: usersWhereInput
     isNot?: usersWhereInput
@@ -7085,6 +11869,24 @@ export namespace Prisma {
   export type Wine_categoriesScalarRelationFilter = {
     is?: wine_categoriesWhereInput
     isNot?: wine_categoriesWhereInput
+  }
+
+  export type Visual_examsListRelationFilter = {
+    every?: visual_examsWhereInput
+    some?: visual_examsWhereInput
+    none?: visual_examsWhereInput
+  }
+
+  export type olfactory_examsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type taste_olfactory_examsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type visual_examsOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type tastingsCountOrderByAggregateInput = {
@@ -7190,6 +11992,209 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type UuidNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type TastingsNullableScalarRelationFilter = {
+    is?: tastingsWhereInput | null
+    isNot?: tastingsWhereInput | null
+  }
+
+  export type olfactory_examsCountOrderByAggregateInput = {
+    id?: SortOrder
+    tid?: SortOrder
+    intensity?: SortOrder
+    complexity?: SortOrder
+    quality?: SortOrder
+    aromatic?: SortOrder
+    vinous?: SortOrder
+    floral?: SortOrder
+    fruity?: SortOrder
+    fragrant?: SortOrder
+    herbaceous?: SortOrder
+    mineral?: SortOrder
+    spicy?: SortOrder
+    ethereal?: SortOrder
+    frank?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type olfactory_examsAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type olfactory_examsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tid?: SortOrder
+    intensity?: SortOrder
+    complexity?: SortOrder
+    quality?: SortOrder
+    aromatic?: SortOrder
+    vinous?: SortOrder
+    floral?: SortOrder
+    fruity?: SortOrder
+    fragrant?: SortOrder
+    herbaceous?: SortOrder
+    mineral?: SortOrder
+    spicy?: SortOrder
+    ethereal?: SortOrder
+    frank?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type olfactory_examsMinOrderByAggregateInput = {
+    id?: SortOrder
+    tid?: SortOrder
+    intensity?: SortOrder
+    complexity?: SortOrder
+    quality?: SortOrder
+    aromatic?: SortOrder
+    vinous?: SortOrder
+    floral?: SortOrder
+    fruity?: SortOrder
+    fragrant?: SortOrder
+    herbaceous?: SortOrder
+    mineral?: SortOrder
+    spicy?: SortOrder
+    ethereal?: SortOrder
+    frank?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type olfactory_examsSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type UuidNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type taste_olfactory_examsCountOrderByAggregateInput = {
+    id?: SortOrder
+    tid?: SortOrder
+    sugars?: SortOrder
+    alcohols?: SortOrder
+    polyalcohols?: SortOrder
+    acids?: SortOrder
+    tannins?: SortOrder
+    minerals?: SortOrder
+    balance?: SortOrder
+    intensity?: SortOrder
+    persistence?: SortOrder
+    quality?: SortOrder
+    structure?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type taste_olfactory_examsAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type taste_olfactory_examsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tid?: SortOrder
+    sugars?: SortOrder
+    alcohols?: SortOrder
+    polyalcohols?: SortOrder
+    acids?: SortOrder
+    tannins?: SortOrder
+    minerals?: SortOrder
+    balance?: SortOrder
+    intensity?: SortOrder
+    persistence?: SortOrder
+    quality?: SortOrder
+    structure?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type taste_olfactory_examsMinOrderByAggregateInput = {
+    id?: SortOrder
+    tid?: SortOrder
+    sugars?: SortOrder
+    alcohols?: SortOrder
+    polyalcohols?: SortOrder
+    acids?: SortOrder
+    tannins?: SortOrder
+    minerals?: SortOrder
+    balance?: SortOrder
+    intensity?: SortOrder
+    persistence?: SortOrder
+    quality?: SortOrder
+    structure?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type taste_olfactory_examsSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type visual_examsCountOrderByAggregateInput = {
+    id?: SortOrder
+    tid?: SortOrder
+    limpidity?: SortOrder
+    color_family?: SortOrder
+    color_shade?: SortOrder
+    consistency?: SortOrder
+    bubble_grain?: SortOrder
+    bubble_number?: SortOrder
+    bubble_persistence?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type visual_examsAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type visual_examsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tid?: SortOrder
+    limpidity?: SortOrder
+    color_family?: SortOrder
+    color_shade?: SortOrder
+    consistency?: SortOrder
+    bubble_grain?: SortOrder
+    bubble_number?: SortOrder
+    bubble_persistence?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type visual_examsMinOrderByAggregateInput = {
+    id?: SortOrder
+    tid?: SortOrder
+    limpidity?: SortOrder
+    color_family?: SortOrder
+    color_shade?: SortOrder
+    consistency?: SortOrder
+    bubble_grain?: SortOrder
+    bubble_number?: SortOrder
+    bubble_persistence?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type visual_examsSumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type tastingsCreateNestedManyWithoutUsersInput = {
@@ -7366,6 +12371,20 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type olfactory_examsCreateNestedManyWithoutTastingsInput = {
+    create?: XOR<olfactory_examsCreateWithoutTastingsInput, olfactory_examsUncheckedCreateWithoutTastingsInput> | olfactory_examsCreateWithoutTastingsInput[] | olfactory_examsUncheckedCreateWithoutTastingsInput[]
+    connectOrCreate?: olfactory_examsCreateOrConnectWithoutTastingsInput | olfactory_examsCreateOrConnectWithoutTastingsInput[]
+    createMany?: olfactory_examsCreateManyTastingsInputEnvelope
+    connect?: olfactory_examsWhereUniqueInput | olfactory_examsWhereUniqueInput[]
+  }
+
+  export type taste_olfactory_examsCreateNestedManyWithoutTastingsInput = {
+    create?: XOR<taste_olfactory_examsCreateWithoutTastingsInput, taste_olfactory_examsUncheckedCreateWithoutTastingsInput> | taste_olfactory_examsCreateWithoutTastingsInput[] | taste_olfactory_examsUncheckedCreateWithoutTastingsInput[]
+    connectOrCreate?: taste_olfactory_examsCreateOrConnectWithoutTastingsInput | taste_olfactory_examsCreateOrConnectWithoutTastingsInput[]
+    createMany?: taste_olfactory_examsCreateManyTastingsInputEnvelope
+    connect?: taste_olfactory_examsWhereUniqueInput | taste_olfactory_examsWhereUniqueInput[]
+  }
+
   export type usersCreateNestedOneWithoutTastingsInput = {
     create?: XOR<usersCreateWithoutTastingsInput, usersUncheckedCreateWithoutTastingsInput>
     connectOrCreate?: usersCreateOrConnectWithoutTastingsInput
@@ -7378,6 +12397,34 @@ export namespace Prisma {
     connect?: wine_categoriesWhereUniqueInput
   }
 
+  export type visual_examsCreateNestedManyWithoutTastingsInput = {
+    create?: XOR<visual_examsCreateWithoutTastingsInput, visual_examsUncheckedCreateWithoutTastingsInput> | visual_examsCreateWithoutTastingsInput[] | visual_examsUncheckedCreateWithoutTastingsInput[]
+    connectOrCreate?: visual_examsCreateOrConnectWithoutTastingsInput | visual_examsCreateOrConnectWithoutTastingsInput[]
+    createMany?: visual_examsCreateManyTastingsInputEnvelope
+    connect?: visual_examsWhereUniqueInput | visual_examsWhereUniqueInput[]
+  }
+
+  export type olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput = {
+    create?: XOR<olfactory_examsCreateWithoutTastingsInput, olfactory_examsUncheckedCreateWithoutTastingsInput> | olfactory_examsCreateWithoutTastingsInput[] | olfactory_examsUncheckedCreateWithoutTastingsInput[]
+    connectOrCreate?: olfactory_examsCreateOrConnectWithoutTastingsInput | olfactory_examsCreateOrConnectWithoutTastingsInput[]
+    createMany?: olfactory_examsCreateManyTastingsInputEnvelope
+    connect?: olfactory_examsWhereUniqueInput | olfactory_examsWhereUniqueInput[]
+  }
+
+  export type taste_olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput = {
+    create?: XOR<taste_olfactory_examsCreateWithoutTastingsInput, taste_olfactory_examsUncheckedCreateWithoutTastingsInput> | taste_olfactory_examsCreateWithoutTastingsInput[] | taste_olfactory_examsUncheckedCreateWithoutTastingsInput[]
+    connectOrCreate?: taste_olfactory_examsCreateOrConnectWithoutTastingsInput | taste_olfactory_examsCreateOrConnectWithoutTastingsInput[]
+    createMany?: taste_olfactory_examsCreateManyTastingsInputEnvelope
+    connect?: taste_olfactory_examsWhereUniqueInput | taste_olfactory_examsWhereUniqueInput[]
+  }
+
+  export type visual_examsUncheckedCreateNestedManyWithoutTastingsInput = {
+    create?: XOR<visual_examsCreateWithoutTastingsInput, visual_examsUncheckedCreateWithoutTastingsInput> | visual_examsCreateWithoutTastingsInput[] | visual_examsUncheckedCreateWithoutTastingsInput[]
+    connectOrCreate?: visual_examsCreateOrConnectWithoutTastingsInput | visual_examsCreateOrConnectWithoutTastingsInput[]
+    createMany?: visual_examsCreateManyTastingsInputEnvelope
+    connect?: visual_examsWhereUniqueInput | visual_examsWhereUniqueInput[]
+  }
+
   export type DecimalFieldUpdateOperationsInput = {
     set?: Decimal | DecimalJsLike | number | string
     increment?: Decimal | DecimalJsLike | number | string
@@ -7388,6 +12435,34 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type olfactory_examsUpdateManyWithoutTastingsNestedInput = {
+    create?: XOR<olfactory_examsCreateWithoutTastingsInput, olfactory_examsUncheckedCreateWithoutTastingsInput> | olfactory_examsCreateWithoutTastingsInput[] | olfactory_examsUncheckedCreateWithoutTastingsInput[]
+    connectOrCreate?: olfactory_examsCreateOrConnectWithoutTastingsInput | olfactory_examsCreateOrConnectWithoutTastingsInput[]
+    upsert?: olfactory_examsUpsertWithWhereUniqueWithoutTastingsInput | olfactory_examsUpsertWithWhereUniqueWithoutTastingsInput[]
+    createMany?: olfactory_examsCreateManyTastingsInputEnvelope
+    set?: olfactory_examsWhereUniqueInput | olfactory_examsWhereUniqueInput[]
+    disconnect?: olfactory_examsWhereUniqueInput | olfactory_examsWhereUniqueInput[]
+    delete?: olfactory_examsWhereUniqueInput | olfactory_examsWhereUniqueInput[]
+    connect?: olfactory_examsWhereUniqueInput | olfactory_examsWhereUniqueInput[]
+    update?: olfactory_examsUpdateWithWhereUniqueWithoutTastingsInput | olfactory_examsUpdateWithWhereUniqueWithoutTastingsInput[]
+    updateMany?: olfactory_examsUpdateManyWithWhereWithoutTastingsInput | olfactory_examsUpdateManyWithWhereWithoutTastingsInput[]
+    deleteMany?: olfactory_examsScalarWhereInput | olfactory_examsScalarWhereInput[]
+  }
+
+  export type taste_olfactory_examsUpdateManyWithoutTastingsNestedInput = {
+    create?: XOR<taste_olfactory_examsCreateWithoutTastingsInput, taste_olfactory_examsUncheckedCreateWithoutTastingsInput> | taste_olfactory_examsCreateWithoutTastingsInput[] | taste_olfactory_examsUncheckedCreateWithoutTastingsInput[]
+    connectOrCreate?: taste_olfactory_examsCreateOrConnectWithoutTastingsInput | taste_olfactory_examsCreateOrConnectWithoutTastingsInput[]
+    upsert?: taste_olfactory_examsUpsertWithWhereUniqueWithoutTastingsInput | taste_olfactory_examsUpsertWithWhereUniqueWithoutTastingsInput[]
+    createMany?: taste_olfactory_examsCreateManyTastingsInputEnvelope
+    set?: taste_olfactory_examsWhereUniqueInput | taste_olfactory_examsWhereUniqueInput[]
+    disconnect?: taste_olfactory_examsWhereUniqueInput | taste_olfactory_examsWhereUniqueInput[]
+    delete?: taste_olfactory_examsWhereUniqueInput | taste_olfactory_examsWhereUniqueInput[]
+    connect?: taste_olfactory_examsWhereUniqueInput | taste_olfactory_examsWhereUniqueInput[]
+    update?: taste_olfactory_examsUpdateWithWhereUniqueWithoutTastingsInput | taste_olfactory_examsUpdateWithWhereUniqueWithoutTastingsInput[]
+    updateMany?: taste_olfactory_examsUpdateManyWithWhereWithoutTastingsInput | taste_olfactory_examsUpdateManyWithWhereWithoutTastingsInput[]
+    deleteMany?: taste_olfactory_examsScalarWhereInput | taste_olfactory_examsScalarWhereInput[]
   }
 
   export type usersUpdateOneRequiredWithoutTastingsNestedInput = {
@@ -7404,6 +12479,110 @@ export namespace Prisma {
     upsert?: wine_categoriesUpsertWithoutTastingsInput
     connect?: wine_categoriesWhereUniqueInput
     update?: XOR<XOR<wine_categoriesUpdateToOneWithWhereWithoutTastingsInput, wine_categoriesUpdateWithoutTastingsInput>, wine_categoriesUncheckedUpdateWithoutTastingsInput>
+  }
+
+  export type visual_examsUpdateManyWithoutTastingsNestedInput = {
+    create?: XOR<visual_examsCreateWithoutTastingsInput, visual_examsUncheckedCreateWithoutTastingsInput> | visual_examsCreateWithoutTastingsInput[] | visual_examsUncheckedCreateWithoutTastingsInput[]
+    connectOrCreate?: visual_examsCreateOrConnectWithoutTastingsInput | visual_examsCreateOrConnectWithoutTastingsInput[]
+    upsert?: visual_examsUpsertWithWhereUniqueWithoutTastingsInput | visual_examsUpsertWithWhereUniqueWithoutTastingsInput[]
+    createMany?: visual_examsCreateManyTastingsInputEnvelope
+    set?: visual_examsWhereUniqueInput | visual_examsWhereUniqueInput[]
+    disconnect?: visual_examsWhereUniqueInput | visual_examsWhereUniqueInput[]
+    delete?: visual_examsWhereUniqueInput | visual_examsWhereUniqueInput[]
+    connect?: visual_examsWhereUniqueInput | visual_examsWhereUniqueInput[]
+    update?: visual_examsUpdateWithWhereUniqueWithoutTastingsInput | visual_examsUpdateWithWhereUniqueWithoutTastingsInput[]
+    updateMany?: visual_examsUpdateManyWithWhereWithoutTastingsInput | visual_examsUpdateManyWithWhereWithoutTastingsInput[]
+    deleteMany?: visual_examsScalarWhereInput | visual_examsScalarWhereInput[]
+  }
+
+  export type olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput = {
+    create?: XOR<olfactory_examsCreateWithoutTastingsInput, olfactory_examsUncheckedCreateWithoutTastingsInput> | olfactory_examsCreateWithoutTastingsInput[] | olfactory_examsUncheckedCreateWithoutTastingsInput[]
+    connectOrCreate?: olfactory_examsCreateOrConnectWithoutTastingsInput | olfactory_examsCreateOrConnectWithoutTastingsInput[]
+    upsert?: olfactory_examsUpsertWithWhereUniqueWithoutTastingsInput | olfactory_examsUpsertWithWhereUniqueWithoutTastingsInput[]
+    createMany?: olfactory_examsCreateManyTastingsInputEnvelope
+    set?: olfactory_examsWhereUniqueInput | olfactory_examsWhereUniqueInput[]
+    disconnect?: olfactory_examsWhereUniqueInput | olfactory_examsWhereUniqueInput[]
+    delete?: olfactory_examsWhereUniqueInput | olfactory_examsWhereUniqueInput[]
+    connect?: olfactory_examsWhereUniqueInput | olfactory_examsWhereUniqueInput[]
+    update?: olfactory_examsUpdateWithWhereUniqueWithoutTastingsInput | olfactory_examsUpdateWithWhereUniqueWithoutTastingsInput[]
+    updateMany?: olfactory_examsUpdateManyWithWhereWithoutTastingsInput | olfactory_examsUpdateManyWithWhereWithoutTastingsInput[]
+    deleteMany?: olfactory_examsScalarWhereInput | olfactory_examsScalarWhereInput[]
+  }
+
+  export type taste_olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput = {
+    create?: XOR<taste_olfactory_examsCreateWithoutTastingsInput, taste_olfactory_examsUncheckedCreateWithoutTastingsInput> | taste_olfactory_examsCreateWithoutTastingsInput[] | taste_olfactory_examsUncheckedCreateWithoutTastingsInput[]
+    connectOrCreate?: taste_olfactory_examsCreateOrConnectWithoutTastingsInput | taste_olfactory_examsCreateOrConnectWithoutTastingsInput[]
+    upsert?: taste_olfactory_examsUpsertWithWhereUniqueWithoutTastingsInput | taste_olfactory_examsUpsertWithWhereUniqueWithoutTastingsInput[]
+    createMany?: taste_olfactory_examsCreateManyTastingsInputEnvelope
+    set?: taste_olfactory_examsWhereUniqueInput | taste_olfactory_examsWhereUniqueInput[]
+    disconnect?: taste_olfactory_examsWhereUniqueInput | taste_olfactory_examsWhereUniqueInput[]
+    delete?: taste_olfactory_examsWhereUniqueInput | taste_olfactory_examsWhereUniqueInput[]
+    connect?: taste_olfactory_examsWhereUniqueInput | taste_olfactory_examsWhereUniqueInput[]
+    update?: taste_olfactory_examsUpdateWithWhereUniqueWithoutTastingsInput | taste_olfactory_examsUpdateWithWhereUniqueWithoutTastingsInput[]
+    updateMany?: taste_olfactory_examsUpdateManyWithWhereWithoutTastingsInput | taste_olfactory_examsUpdateManyWithWhereWithoutTastingsInput[]
+    deleteMany?: taste_olfactory_examsScalarWhereInput | taste_olfactory_examsScalarWhereInput[]
+  }
+
+  export type visual_examsUncheckedUpdateManyWithoutTastingsNestedInput = {
+    create?: XOR<visual_examsCreateWithoutTastingsInput, visual_examsUncheckedCreateWithoutTastingsInput> | visual_examsCreateWithoutTastingsInput[] | visual_examsUncheckedCreateWithoutTastingsInput[]
+    connectOrCreate?: visual_examsCreateOrConnectWithoutTastingsInput | visual_examsCreateOrConnectWithoutTastingsInput[]
+    upsert?: visual_examsUpsertWithWhereUniqueWithoutTastingsInput | visual_examsUpsertWithWhereUniqueWithoutTastingsInput[]
+    createMany?: visual_examsCreateManyTastingsInputEnvelope
+    set?: visual_examsWhereUniqueInput | visual_examsWhereUniqueInput[]
+    disconnect?: visual_examsWhereUniqueInput | visual_examsWhereUniqueInput[]
+    delete?: visual_examsWhereUniqueInput | visual_examsWhereUniqueInput[]
+    connect?: visual_examsWhereUniqueInput | visual_examsWhereUniqueInput[]
+    update?: visual_examsUpdateWithWhereUniqueWithoutTastingsInput | visual_examsUpdateWithWhereUniqueWithoutTastingsInput[]
+    updateMany?: visual_examsUpdateManyWithWhereWithoutTastingsInput | visual_examsUpdateManyWithWhereWithoutTastingsInput[]
+    deleteMany?: visual_examsScalarWhereInput | visual_examsScalarWhereInput[]
+  }
+
+  export type tastingsCreateNestedOneWithoutOlfactory_examsInput = {
+    create?: XOR<tastingsCreateWithoutOlfactory_examsInput, tastingsUncheckedCreateWithoutOlfactory_examsInput>
+    connectOrCreate?: tastingsCreateOrConnectWithoutOlfactory_examsInput
+    connect?: tastingsWhereUniqueInput
+  }
+
+  export type tastingsUpdateOneWithoutOlfactory_examsNestedInput = {
+    create?: XOR<tastingsCreateWithoutOlfactory_examsInput, tastingsUncheckedCreateWithoutOlfactory_examsInput>
+    connectOrCreate?: tastingsCreateOrConnectWithoutOlfactory_examsInput
+    upsert?: tastingsUpsertWithoutOlfactory_examsInput
+    disconnect?: tastingsWhereInput | boolean
+    delete?: tastingsWhereInput | boolean
+    connect?: tastingsWhereUniqueInput
+    update?: XOR<XOR<tastingsUpdateToOneWithWhereWithoutOlfactory_examsInput, tastingsUpdateWithoutOlfactory_examsInput>, tastingsUncheckedUpdateWithoutOlfactory_examsInput>
+  }
+
+  export type tastingsCreateNestedOneWithoutTaste_olfactory_examsInput = {
+    create?: XOR<tastingsCreateWithoutTaste_olfactory_examsInput, tastingsUncheckedCreateWithoutTaste_olfactory_examsInput>
+    connectOrCreate?: tastingsCreateOrConnectWithoutTaste_olfactory_examsInput
+    connect?: tastingsWhereUniqueInput
+  }
+
+  export type tastingsUpdateOneWithoutTaste_olfactory_examsNestedInput = {
+    create?: XOR<tastingsCreateWithoutTaste_olfactory_examsInput, tastingsUncheckedCreateWithoutTaste_olfactory_examsInput>
+    connectOrCreate?: tastingsCreateOrConnectWithoutTaste_olfactory_examsInput
+    upsert?: tastingsUpsertWithoutTaste_olfactory_examsInput
+    disconnect?: tastingsWhereInput | boolean
+    delete?: tastingsWhereInput | boolean
+    connect?: tastingsWhereUniqueInput
+    update?: XOR<XOR<tastingsUpdateToOneWithWhereWithoutTaste_olfactory_examsInput, tastingsUpdateWithoutTaste_olfactory_examsInput>, tastingsUncheckedUpdateWithoutTaste_olfactory_examsInput>
+  }
+
+  export type tastingsCreateNestedOneWithoutVisual_examsInput = {
+    create?: XOR<tastingsCreateWithoutVisual_examsInput, tastingsUncheckedCreateWithoutVisual_examsInput>
+    connectOrCreate?: tastingsCreateOrConnectWithoutVisual_examsInput
+    connect?: tastingsWhereUniqueInput
+  }
+
+  export type tastingsUpdateOneWithoutVisual_examsNestedInput = {
+    create?: XOR<tastingsCreateWithoutVisual_examsInput, tastingsUncheckedCreateWithoutVisual_examsInput>
+    connectOrCreate?: tastingsCreateOrConnectWithoutVisual_examsInput
+    upsert?: tastingsUpsertWithoutVisual_examsInput
+    disconnect?: tastingsWhereInput | boolean
+    delete?: tastingsWhereInput | boolean
+    connect?: tastingsWhereUniqueInput
+    update?: XOR<XOR<tastingsUpdateToOneWithWhereWithoutVisual_examsInput, tastingsUpdateWithoutVisual_examsInput>, tastingsUncheckedUpdateWithoutVisual_examsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -7659,6 +12838,31 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedUuidNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedUuidNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedUuidNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedUuidNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
   export type tastingsCreateWithoutUsersInput = {
     tid?: string
     full_name?: string | null
@@ -7673,7 +12877,10 @@ export namespace Prisma {
     tasting_location: string
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    olfactory_exams?: olfactory_examsCreateNestedManyWithoutTastingsInput
+    taste_olfactory_exams?: taste_olfactory_examsCreateNestedManyWithoutTastingsInput
     wine_categories: wine_categoriesCreateNestedOneWithoutTastingsInput
+    visual_exams?: visual_examsCreateNestedManyWithoutTastingsInput
   }
 
   export type tastingsUncheckedCreateWithoutUsersInput = {
@@ -7692,6 +12899,9 @@ export namespace Prisma {
     tasting_location: string
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    olfactory_exams?: olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput
+    taste_olfactory_exams?: taste_olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput
+    visual_exams?: visual_examsUncheckedCreateNestedManyWithoutTastingsInput
   }
 
   export type tastingsCreateOrConnectWithoutUsersInput = {
@@ -7756,7 +12966,10 @@ export namespace Prisma {
     tasting_location: string
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    olfactory_exams?: olfactory_examsCreateNestedManyWithoutTastingsInput
+    taste_olfactory_exams?: taste_olfactory_examsCreateNestedManyWithoutTastingsInput
     users: usersCreateNestedOneWithoutTastingsInput
+    visual_exams?: visual_examsCreateNestedManyWithoutTastingsInput
   }
 
   export type tastingsUncheckedCreateWithoutWine_categoriesInput = {
@@ -7775,6 +12988,9 @@ export namespace Prisma {
     tasting_location: string
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    olfactory_exams?: olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput
+    taste_olfactory_exams?: taste_olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput
+    visual_exams?: visual_examsUncheckedCreateNestedManyWithoutTastingsInput
   }
 
   export type tastingsCreateOrConnectWithoutWine_categoriesInput = {
@@ -7888,6 +13104,92 @@ export namespace Prisma {
     tastings?: tastingsUncheckedUpdateManyWithoutWine_categoriesNestedInput
   }
 
+  export type olfactory_examsCreateWithoutTastingsInput = {
+    intensity: string
+    complexity: string
+    quality: string
+    aromatic?: boolean | null
+    vinous?: boolean | null
+    floral?: boolean | null
+    fruity?: boolean | null
+    fragrant?: boolean | null
+    herbaceous?: boolean | null
+    mineral?: boolean | null
+    spicy?: boolean | null
+    ethereal?: boolean | null
+    frank?: boolean | null
+    notes?: string | null
+  }
+
+  export type olfactory_examsUncheckedCreateWithoutTastingsInput = {
+    id?: number
+    intensity: string
+    complexity: string
+    quality: string
+    aromatic?: boolean | null
+    vinous?: boolean | null
+    floral?: boolean | null
+    fruity?: boolean | null
+    fragrant?: boolean | null
+    herbaceous?: boolean | null
+    mineral?: boolean | null
+    spicy?: boolean | null
+    ethereal?: boolean | null
+    frank?: boolean | null
+    notes?: string | null
+  }
+
+  export type olfactory_examsCreateOrConnectWithoutTastingsInput = {
+    where: olfactory_examsWhereUniqueInput
+    create: XOR<olfactory_examsCreateWithoutTastingsInput, olfactory_examsUncheckedCreateWithoutTastingsInput>
+  }
+
+  export type olfactory_examsCreateManyTastingsInputEnvelope = {
+    data: olfactory_examsCreateManyTastingsInput | olfactory_examsCreateManyTastingsInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type taste_olfactory_examsCreateWithoutTastingsInput = {
+    sugars: string
+    alcohols: string
+    polyalcohols: string
+    acids: string
+    tannins: string
+    minerals: string
+    balance: string
+    intensity: string
+    persistence: string
+    quality: string
+    structure: string
+    notes?: string | null
+  }
+
+  export type taste_olfactory_examsUncheckedCreateWithoutTastingsInput = {
+    id?: number
+    sugars: string
+    alcohols: string
+    polyalcohols: string
+    acids: string
+    tannins: string
+    minerals: string
+    balance: string
+    intensity: string
+    persistence: string
+    quality: string
+    structure: string
+    notes?: string | null
+  }
+
+  export type taste_olfactory_examsCreateOrConnectWithoutTastingsInput = {
+    where: taste_olfactory_examsWhereUniqueInput
+    create: XOR<taste_olfactory_examsCreateWithoutTastingsInput, taste_olfactory_examsUncheckedCreateWithoutTastingsInput>
+  }
+
+  export type taste_olfactory_examsCreateManyTastingsInputEnvelope = {
+    data: taste_olfactory_examsCreateManyTastingsInput | taste_olfactory_examsCreateManyTastingsInput[]
+    skipDuplicates?: boolean
+  }
+
   export type usersCreateWithoutTastingsInput = {
     uid?: string
     username?: string | null
@@ -7940,6 +13242,113 @@ export namespace Prisma {
   export type wine_categoriesCreateOrConnectWithoutTastingsInput = {
     where: wine_categoriesWhereUniqueInput
     create: XOR<wine_categoriesCreateWithoutTastingsInput, wine_categoriesUncheckedCreateWithoutTastingsInput>
+  }
+
+  export type visual_examsCreateWithoutTastingsInput = {
+    limpidity?: string | null
+    color_family: string
+    color_shade: string
+    consistency: string
+    bubble_grain?: string | null
+    bubble_number?: string | null
+    bubble_persistence?: string | null
+    notes?: string | null
+  }
+
+  export type visual_examsUncheckedCreateWithoutTastingsInput = {
+    id?: number
+    limpidity?: string | null
+    color_family: string
+    color_shade: string
+    consistency: string
+    bubble_grain?: string | null
+    bubble_number?: string | null
+    bubble_persistence?: string | null
+    notes?: string | null
+  }
+
+  export type visual_examsCreateOrConnectWithoutTastingsInput = {
+    where: visual_examsWhereUniqueInput
+    create: XOR<visual_examsCreateWithoutTastingsInput, visual_examsUncheckedCreateWithoutTastingsInput>
+  }
+
+  export type visual_examsCreateManyTastingsInputEnvelope = {
+    data: visual_examsCreateManyTastingsInput | visual_examsCreateManyTastingsInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type olfactory_examsUpsertWithWhereUniqueWithoutTastingsInput = {
+    where: olfactory_examsWhereUniqueInput
+    update: XOR<olfactory_examsUpdateWithoutTastingsInput, olfactory_examsUncheckedUpdateWithoutTastingsInput>
+    create: XOR<olfactory_examsCreateWithoutTastingsInput, olfactory_examsUncheckedCreateWithoutTastingsInput>
+  }
+
+  export type olfactory_examsUpdateWithWhereUniqueWithoutTastingsInput = {
+    where: olfactory_examsWhereUniqueInput
+    data: XOR<olfactory_examsUpdateWithoutTastingsInput, olfactory_examsUncheckedUpdateWithoutTastingsInput>
+  }
+
+  export type olfactory_examsUpdateManyWithWhereWithoutTastingsInput = {
+    where: olfactory_examsScalarWhereInput
+    data: XOR<olfactory_examsUpdateManyMutationInput, olfactory_examsUncheckedUpdateManyWithoutTastingsInput>
+  }
+
+  export type olfactory_examsScalarWhereInput = {
+    AND?: olfactory_examsScalarWhereInput | olfactory_examsScalarWhereInput[]
+    OR?: olfactory_examsScalarWhereInput[]
+    NOT?: olfactory_examsScalarWhereInput | olfactory_examsScalarWhereInput[]
+    id?: IntFilter<"olfactory_exams"> | number
+    tid?: UuidNullableFilter<"olfactory_exams"> | string | null
+    intensity?: StringFilter<"olfactory_exams"> | string
+    complexity?: StringFilter<"olfactory_exams"> | string
+    quality?: StringFilter<"olfactory_exams"> | string
+    aromatic?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    vinous?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    floral?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    fruity?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    fragrant?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    herbaceous?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    mineral?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    spicy?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    ethereal?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    frank?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    notes?: StringNullableFilter<"olfactory_exams"> | string | null
+  }
+
+  export type taste_olfactory_examsUpsertWithWhereUniqueWithoutTastingsInput = {
+    where: taste_olfactory_examsWhereUniqueInput
+    update: XOR<taste_olfactory_examsUpdateWithoutTastingsInput, taste_olfactory_examsUncheckedUpdateWithoutTastingsInput>
+    create: XOR<taste_olfactory_examsCreateWithoutTastingsInput, taste_olfactory_examsUncheckedCreateWithoutTastingsInput>
+  }
+
+  export type taste_olfactory_examsUpdateWithWhereUniqueWithoutTastingsInput = {
+    where: taste_olfactory_examsWhereUniqueInput
+    data: XOR<taste_olfactory_examsUpdateWithoutTastingsInput, taste_olfactory_examsUncheckedUpdateWithoutTastingsInput>
+  }
+
+  export type taste_olfactory_examsUpdateManyWithWhereWithoutTastingsInput = {
+    where: taste_olfactory_examsScalarWhereInput
+    data: XOR<taste_olfactory_examsUpdateManyMutationInput, taste_olfactory_examsUncheckedUpdateManyWithoutTastingsInput>
+  }
+
+  export type taste_olfactory_examsScalarWhereInput = {
+    AND?: taste_olfactory_examsScalarWhereInput | taste_olfactory_examsScalarWhereInput[]
+    OR?: taste_olfactory_examsScalarWhereInput[]
+    NOT?: taste_olfactory_examsScalarWhereInput | taste_olfactory_examsScalarWhereInput[]
+    id?: IntFilter<"taste_olfactory_exams"> | number
+    tid?: UuidNullableFilter<"taste_olfactory_exams"> | string | null
+    sugars?: StringFilter<"taste_olfactory_exams"> | string
+    alcohols?: StringFilter<"taste_olfactory_exams"> | string
+    polyalcohols?: StringFilter<"taste_olfactory_exams"> | string
+    acids?: StringFilter<"taste_olfactory_exams"> | string
+    tannins?: StringFilter<"taste_olfactory_exams"> | string
+    minerals?: StringFilter<"taste_olfactory_exams"> | string
+    balance?: StringFilter<"taste_olfactory_exams"> | string
+    intensity?: StringFilter<"taste_olfactory_exams"> | string
+    persistence?: StringFilter<"taste_olfactory_exams"> | string
+    quality?: StringFilter<"taste_olfactory_exams"> | string
+    structure?: StringFilter<"taste_olfactory_exams"> | string
+    notes?: StringNullableFilter<"taste_olfactory_exams"> | string | null
   }
 
   export type usersUpsertWithoutTastingsInput = {
@@ -8008,6 +13417,332 @@ export namespace Prisma {
     wine_category_translations?: wine_category_translationsUncheckedUpdateManyWithoutWine_categoriesNestedInput
   }
 
+  export type visual_examsUpsertWithWhereUniqueWithoutTastingsInput = {
+    where: visual_examsWhereUniqueInput
+    update: XOR<visual_examsUpdateWithoutTastingsInput, visual_examsUncheckedUpdateWithoutTastingsInput>
+    create: XOR<visual_examsCreateWithoutTastingsInput, visual_examsUncheckedCreateWithoutTastingsInput>
+  }
+
+  export type visual_examsUpdateWithWhereUniqueWithoutTastingsInput = {
+    where: visual_examsWhereUniqueInput
+    data: XOR<visual_examsUpdateWithoutTastingsInput, visual_examsUncheckedUpdateWithoutTastingsInput>
+  }
+
+  export type visual_examsUpdateManyWithWhereWithoutTastingsInput = {
+    where: visual_examsScalarWhereInput
+    data: XOR<visual_examsUpdateManyMutationInput, visual_examsUncheckedUpdateManyWithoutTastingsInput>
+  }
+
+  export type visual_examsScalarWhereInput = {
+    AND?: visual_examsScalarWhereInput | visual_examsScalarWhereInput[]
+    OR?: visual_examsScalarWhereInput[]
+    NOT?: visual_examsScalarWhereInput | visual_examsScalarWhereInput[]
+    id?: IntFilter<"visual_exams"> | number
+    tid?: UuidNullableFilter<"visual_exams"> | string | null
+    limpidity?: StringNullableFilter<"visual_exams"> | string | null
+    color_family?: StringFilter<"visual_exams"> | string
+    color_shade?: StringFilter<"visual_exams"> | string
+    consistency?: StringFilter<"visual_exams"> | string
+    bubble_grain?: StringNullableFilter<"visual_exams"> | string | null
+    bubble_number?: StringNullableFilter<"visual_exams"> | string | null
+    bubble_persistence?: StringNullableFilter<"visual_exams"> | string | null
+    notes?: StringNullableFilter<"visual_exams"> | string | null
+  }
+
+  export type tastingsCreateWithoutOlfactory_examsInput = {
+    tid?: string
+    full_name?: string | null
+    sample_number?: string | null
+    wine_denomination: string
+    alcohol_content: Decimal | DecimalJsLike | number | string
+    vintage: number
+    wine_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature: Decimal | DecimalJsLike | number | string
+    tasting_date: Date | string
+    tasting_time: Date | string
+    tasting_location: string
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    taste_olfactory_exams?: taste_olfactory_examsCreateNestedManyWithoutTastingsInput
+    users: usersCreateNestedOneWithoutTastingsInput
+    wine_categories: wine_categoriesCreateNestedOneWithoutTastingsInput
+    visual_exams?: visual_examsCreateNestedManyWithoutTastingsInput
+  }
+
+  export type tastingsUncheckedCreateWithoutOlfactory_examsInput = {
+    id?: number
+    tid?: string
+    uid: string
+    full_name?: string | null
+    wine_category_id: number
+    sample_number?: string | null
+    wine_denomination: string
+    alcohol_content: Decimal | DecimalJsLike | number | string
+    vintage: number
+    wine_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature: Decimal | DecimalJsLike | number | string
+    tasting_date: Date | string
+    tasting_time: Date | string
+    tasting_location: string
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    taste_olfactory_exams?: taste_olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput
+    visual_exams?: visual_examsUncheckedCreateNestedManyWithoutTastingsInput
+  }
+
+  export type tastingsCreateOrConnectWithoutOlfactory_examsInput = {
+    where: tastingsWhereUniqueInput
+    create: XOR<tastingsCreateWithoutOlfactory_examsInput, tastingsUncheckedCreateWithoutOlfactory_examsInput>
+  }
+
+  export type tastingsUpsertWithoutOlfactory_examsInput = {
+    update: XOR<tastingsUpdateWithoutOlfactory_examsInput, tastingsUncheckedUpdateWithoutOlfactory_examsInput>
+    create: XOR<tastingsCreateWithoutOlfactory_examsInput, tastingsUncheckedCreateWithoutOlfactory_examsInput>
+    where?: tastingsWhereInput
+  }
+
+  export type tastingsUpdateToOneWithWhereWithoutOlfactory_examsInput = {
+    where?: tastingsWhereInput
+    data: XOR<tastingsUpdateWithoutOlfactory_examsInput, tastingsUncheckedUpdateWithoutOlfactory_examsInput>
+  }
+
+  export type tastingsUpdateWithoutOlfactory_examsInput = {
+    tid?: StringFieldUpdateOperationsInput | string
+    full_name?: NullableStringFieldUpdateOperationsInput | string | null
+    sample_number?: NullableStringFieldUpdateOperationsInput | string | null
+    wine_denomination?: StringFieldUpdateOperationsInput | string
+    alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    vintage?: IntFieldUpdateOperationsInput | number
+    wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    tasting_location?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    taste_olfactory_exams?: taste_olfactory_examsUpdateManyWithoutTastingsNestedInput
+    users?: usersUpdateOneRequiredWithoutTastingsNestedInput
+    wine_categories?: wine_categoriesUpdateOneRequiredWithoutTastingsNestedInput
+    visual_exams?: visual_examsUpdateManyWithoutTastingsNestedInput
+  }
+
+  export type tastingsUncheckedUpdateWithoutOlfactory_examsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tid?: StringFieldUpdateOperationsInput | string
+    uid?: StringFieldUpdateOperationsInput | string
+    full_name?: NullableStringFieldUpdateOperationsInput | string | null
+    wine_category_id?: IntFieldUpdateOperationsInput | number
+    sample_number?: NullableStringFieldUpdateOperationsInput | string | null
+    wine_denomination?: StringFieldUpdateOperationsInput | string
+    alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    vintage?: IntFieldUpdateOperationsInput | number
+    wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    tasting_location?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    taste_olfactory_exams?: taste_olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput
+    visual_exams?: visual_examsUncheckedUpdateManyWithoutTastingsNestedInput
+  }
+
+  export type tastingsCreateWithoutTaste_olfactory_examsInput = {
+    tid?: string
+    full_name?: string | null
+    sample_number?: string | null
+    wine_denomination: string
+    alcohol_content: Decimal | DecimalJsLike | number | string
+    vintage: number
+    wine_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature: Decimal | DecimalJsLike | number | string
+    tasting_date: Date | string
+    tasting_time: Date | string
+    tasting_location: string
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    olfactory_exams?: olfactory_examsCreateNestedManyWithoutTastingsInput
+    users: usersCreateNestedOneWithoutTastingsInput
+    wine_categories: wine_categoriesCreateNestedOneWithoutTastingsInput
+    visual_exams?: visual_examsCreateNestedManyWithoutTastingsInput
+  }
+
+  export type tastingsUncheckedCreateWithoutTaste_olfactory_examsInput = {
+    id?: number
+    tid?: string
+    uid: string
+    full_name?: string | null
+    wine_category_id: number
+    sample_number?: string | null
+    wine_denomination: string
+    alcohol_content: Decimal | DecimalJsLike | number | string
+    vintage: number
+    wine_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature: Decimal | DecimalJsLike | number | string
+    tasting_date: Date | string
+    tasting_time: Date | string
+    tasting_location: string
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    olfactory_exams?: olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput
+    visual_exams?: visual_examsUncheckedCreateNestedManyWithoutTastingsInput
+  }
+
+  export type tastingsCreateOrConnectWithoutTaste_olfactory_examsInput = {
+    where: tastingsWhereUniqueInput
+    create: XOR<tastingsCreateWithoutTaste_olfactory_examsInput, tastingsUncheckedCreateWithoutTaste_olfactory_examsInput>
+  }
+
+  export type tastingsUpsertWithoutTaste_olfactory_examsInput = {
+    update: XOR<tastingsUpdateWithoutTaste_olfactory_examsInput, tastingsUncheckedUpdateWithoutTaste_olfactory_examsInput>
+    create: XOR<tastingsCreateWithoutTaste_olfactory_examsInput, tastingsUncheckedCreateWithoutTaste_olfactory_examsInput>
+    where?: tastingsWhereInput
+  }
+
+  export type tastingsUpdateToOneWithWhereWithoutTaste_olfactory_examsInput = {
+    where?: tastingsWhereInput
+    data: XOR<tastingsUpdateWithoutTaste_olfactory_examsInput, tastingsUncheckedUpdateWithoutTaste_olfactory_examsInput>
+  }
+
+  export type tastingsUpdateWithoutTaste_olfactory_examsInput = {
+    tid?: StringFieldUpdateOperationsInput | string
+    full_name?: NullableStringFieldUpdateOperationsInput | string | null
+    sample_number?: NullableStringFieldUpdateOperationsInput | string | null
+    wine_denomination?: StringFieldUpdateOperationsInput | string
+    alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    vintage?: IntFieldUpdateOperationsInput | number
+    wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    tasting_location?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    olfactory_exams?: olfactory_examsUpdateManyWithoutTastingsNestedInput
+    users?: usersUpdateOneRequiredWithoutTastingsNestedInput
+    wine_categories?: wine_categoriesUpdateOneRequiredWithoutTastingsNestedInput
+    visual_exams?: visual_examsUpdateManyWithoutTastingsNestedInput
+  }
+
+  export type tastingsUncheckedUpdateWithoutTaste_olfactory_examsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tid?: StringFieldUpdateOperationsInput | string
+    uid?: StringFieldUpdateOperationsInput | string
+    full_name?: NullableStringFieldUpdateOperationsInput | string | null
+    wine_category_id?: IntFieldUpdateOperationsInput | number
+    sample_number?: NullableStringFieldUpdateOperationsInput | string | null
+    wine_denomination?: StringFieldUpdateOperationsInput | string
+    alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    vintage?: IntFieldUpdateOperationsInput | number
+    wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    tasting_location?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    olfactory_exams?: olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput
+    visual_exams?: visual_examsUncheckedUpdateManyWithoutTastingsNestedInput
+  }
+
+  export type tastingsCreateWithoutVisual_examsInput = {
+    tid?: string
+    full_name?: string | null
+    sample_number?: string | null
+    wine_denomination: string
+    alcohol_content: Decimal | DecimalJsLike | number | string
+    vintage: number
+    wine_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature: Decimal | DecimalJsLike | number | string
+    tasting_date: Date | string
+    tasting_time: Date | string
+    tasting_location: string
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    olfactory_exams?: olfactory_examsCreateNestedManyWithoutTastingsInput
+    taste_olfactory_exams?: taste_olfactory_examsCreateNestedManyWithoutTastingsInput
+    users: usersCreateNestedOneWithoutTastingsInput
+    wine_categories: wine_categoriesCreateNestedOneWithoutTastingsInput
+  }
+
+  export type tastingsUncheckedCreateWithoutVisual_examsInput = {
+    id?: number
+    tid?: string
+    uid: string
+    full_name?: string | null
+    wine_category_id: number
+    sample_number?: string | null
+    wine_denomination: string
+    alcohol_content: Decimal | DecimalJsLike | number | string
+    vintage: number
+    wine_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature: Decimal | DecimalJsLike | number | string
+    tasting_date: Date | string
+    tasting_time: Date | string
+    tasting_location: string
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    olfactory_exams?: olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput
+    taste_olfactory_exams?: taste_olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput
+  }
+
+  export type tastingsCreateOrConnectWithoutVisual_examsInput = {
+    where: tastingsWhereUniqueInput
+    create: XOR<tastingsCreateWithoutVisual_examsInput, tastingsUncheckedCreateWithoutVisual_examsInput>
+  }
+
+  export type tastingsUpsertWithoutVisual_examsInput = {
+    update: XOR<tastingsUpdateWithoutVisual_examsInput, tastingsUncheckedUpdateWithoutVisual_examsInput>
+    create: XOR<tastingsCreateWithoutVisual_examsInput, tastingsUncheckedCreateWithoutVisual_examsInput>
+    where?: tastingsWhereInput
+  }
+
+  export type tastingsUpdateToOneWithWhereWithoutVisual_examsInput = {
+    where?: tastingsWhereInput
+    data: XOR<tastingsUpdateWithoutVisual_examsInput, tastingsUncheckedUpdateWithoutVisual_examsInput>
+  }
+
+  export type tastingsUpdateWithoutVisual_examsInput = {
+    tid?: StringFieldUpdateOperationsInput | string
+    full_name?: NullableStringFieldUpdateOperationsInput | string | null
+    sample_number?: NullableStringFieldUpdateOperationsInput | string | null
+    wine_denomination?: StringFieldUpdateOperationsInput | string
+    alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    vintage?: IntFieldUpdateOperationsInput | number
+    wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    tasting_location?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    olfactory_exams?: olfactory_examsUpdateManyWithoutTastingsNestedInput
+    taste_olfactory_exams?: taste_olfactory_examsUpdateManyWithoutTastingsNestedInput
+    users?: usersUpdateOneRequiredWithoutTastingsNestedInput
+    wine_categories?: wine_categoriesUpdateOneRequiredWithoutTastingsNestedInput
+  }
+
+  export type tastingsUncheckedUpdateWithoutVisual_examsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tid?: StringFieldUpdateOperationsInput | string
+    uid?: StringFieldUpdateOperationsInput | string
+    full_name?: NullableStringFieldUpdateOperationsInput | string | null
+    wine_category_id?: IntFieldUpdateOperationsInput | number
+    sample_number?: NullableStringFieldUpdateOperationsInput | string | null
+    wine_denomination?: StringFieldUpdateOperationsInput | string
+    alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    vintage?: IntFieldUpdateOperationsInput | number
+    wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    tasting_location?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    olfactory_exams?: olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput
+    taste_olfactory_exams?: taste_olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput
+  }
+
   export type tastingsCreateManyUsersInput = {
     id?: number
     tid?: string
@@ -8040,7 +13775,10 @@ export namespace Prisma {
     tasting_location?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    olfactory_exams?: olfactory_examsUpdateManyWithoutTastingsNestedInput
+    taste_olfactory_exams?: taste_olfactory_examsUpdateManyWithoutTastingsNestedInput
     wine_categories?: wine_categoriesUpdateOneRequiredWithoutTastingsNestedInput
+    visual_exams?: visual_examsUpdateManyWithoutTastingsNestedInput
   }
 
   export type tastingsUncheckedUpdateWithoutUsersInput = {
@@ -8059,6 +13797,9 @@ export namespace Prisma {
     tasting_location?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    olfactory_exams?: olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput
+    taste_olfactory_exams?: taste_olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput
+    visual_exams?: visual_examsUncheckedUpdateManyWithoutTastingsNestedInput
   }
 
   export type tastingsUncheckedUpdateManyWithoutUsersInput = {
@@ -8117,7 +13858,10 @@ export namespace Prisma {
     tasting_location?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    olfactory_exams?: olfactory_examsUpdateManyWithoutTastingsNestedInput
+    taste_olfactory_exams?: taste_olfactory_examsUpdateManyWithoutTastingsNestedInput
     users?: usersUpdateOneRequiredWithoutTastingsNestedInput
+    visual_exams?: visual_examsUpdateManyWithoutTastingsNestedInput
   }
 
   export type tastingsUncheckedUpdateWithoutWine_categoriesInput = {
@@ -8136,6 +13880,9 @@ export namespace Prisma {
     tasting_location?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    olfactory_exams?: olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput
+    taste_olfactory_exams?: taste_olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput
+    visual_exams?: visual_examsUncheckedUpdateManyWithoutTastingsNestedInput
   }
 
   export type tastingsUncheckedUpdateManyWithoutWine_categoriesInput = {
@@ -8171,6 +13918,187 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     language_code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type olfactory_examsCreateManyTastingsInput = {
+    id?: number
+    intensity: string
+    complexity: string
+    quality: string
+    aromatic?: boolean | null
+    vinous?: boolean | null
+    floral?: boolean | null
+    fruity?: boolean | null
+    fragrant?: boolean | null
+    herbaceous?: boolean | null
+    mineral?: boolean | null
+    spicy?: boolean | null
+    ethereal?: boolean | null
+    frank?: boolean | null
+    notes?: string | null
+  }
+
+  export type taste_olfactory_examsCreateManyTastingsInput = {
+    id?: number
+    sugars: string
+    alcohols: string
+    polyalcohols: string
+    acids: string
+    tannins: string
+    minerals: string
+    balance: string
+    intensity: string
+    persistence: string
+    quality: string
+    structure: string
+    notes?: string | null
+  }
+
+  export type visual_examsCreateManyTastingsInput = {
+    id?: number
+    limpidity?: string | null
+    color_family: string
+    color_shade: string
+    consistency: string
+    bubble_grain?: string | null
+    bubble_number?: string | null
+    bubble_persistence?: string | null
+    notes?: string | null
+  }
+
+  export type olfactory_examsUpdateWithoutTastingsInput = {
+    intensity?: StringFieldUpdateOperationsInput | string
+    complexity?: StringFieldUpdateOperationsInput | string
+    quality?: StringFieldUpdateOperationsInput | string
+    aromatic?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    vinous?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    floral?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fruity?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fragrant?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    herbaceous?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    mineral?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    spicy?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    ethereal?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    frank?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type olfactory_examsUncheckedUpdateWithoutTastingsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    intensity?: StringFieldUpdateOperationsInput | string
+    complexity?: StringFieldUpdateOperationsInput | string
+    quality?: StringFieldUpdateOperationsInput | string
+    aromatic?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    vinous?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    floral?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fruity?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fragrant?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    herbaceous?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    mineral?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    spicy?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    ethereal?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    frank?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type olfactory_examsUncheckedUpdateManyWithoutTastingsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    intensity?: StringFieldUpdateOperationsInput | string
+    complexity?: StringFieldUpdateOperationsInput | string
+    quality?: StringFieldUpdateOperationsInput | string
+    aromatic?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    vinous?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    floral?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fruity?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fragrant?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    herbaceous?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    mineral?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    spicy?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    ethereal?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    frank?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type taste_olfactory_examsUpdateWithoutTastingsInput = {
+    sugars?: StringFieldUpdateOperationsInput | string
+    alcohols?: StringFieldUpdateOperationsInput | string
+    polyalcohols?: StringFieldUpdateOperationsInput | string
+    acids?: StringFieldUpdateOperationsInput | string
+    tannins?: StringFieldUpdateOperationsInput | string
+    minerals?: StringFieldUpdateOperationsInput | string
+    balance?: StringFieldUpdateOperationsInput | string
+    intensity?: StringFieldUpdateOperationsInput | string
+    persistence?: StringFieldUpdateOperationsInput | string
+    quality?: StringFieldUpdateOperationsInput | string
+    structure?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type taste_olfactory_examsUncheckedUpdateWithoutTastingsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    sugars?: StringFieldUpdateOperationsInput | string
+    alcohols?: StringFieldUpdateOperationsInput | string
+    polyalcohols?: StringFieldUpdateOperationsInput | string
+    acids?: StringFieldUpdateOperationsInput | string
+    tannins?: StringFieldUpdateOperationsInput | string
+    minerals?: StringFieldUpdateOperationsInput | string
+    balance?: StringFieldUpdateOperationsInput | string
+    intensity?: StringFieldUpdateOperationsInput | string
+    persistence?: StringFieldUpdateOperationsInput | string
+    quality?: StringFieldUpdateOperationsInput | string
+    structure?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type taste_olfactory_examsUncheckedUpdateManyWithoutTastingsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    sugars?: StringFieldUpdateOperationsInput | string
+    alcohols?: StringFieldUpdateOperationsInput | string
+    polyalcohols?: StringFieldUpdateOperationsInput | string
+    acids?: StringFieldUpdateOperationsInput | string
+    tannins?: StringFieldUpdateOperationsInput | string
+    minerals?: StringFieldUpdateOperationsInput | string
+    balance?: StringFieldUpdateOperationsInput | string
+    intensity?: StringFieldUpdateOperationsInput | string
+    persistence?: StringFieldUpdateOperationsInput | string
+    quality?: StringFieldUpdateOperationsInput | string
+    structure?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type visual_examsUpdateWithoutTastingsInput = {
+    limpidity?: NullableStringFieldUpdateOperationsInput | string | null
+    color_family?: StringFieldUpdateOperationsInput | string
+    color_shade?: StringFieldUpdateOperationsInput | string
+    consistency?: StringFieldUpdateOperationsInput | string
+    bubble_grain?: NullableStringFieldUpdateOperationsInput | string | null
+    bubble_number?: NullableStringFieldUpdateOperationsInput | string | null
+    bubble_persistence?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type visual_examsUncheckedUpdateWithoutTastingsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    limpidity?: NullableStringFieldUpdateOperationsInput | string | null
+    color_family?: StringFieldUpdateOperationsInput | string
+    color_shade?: StringFieldUpdateOperationsInput | string
+    consistency?: StringFieldUpdateOperationsInput | string
+    bubble_grain?: NullableStringFieldUpdateOperationsInput | string | null
+    bubble_number?: NullableStringFieldUpdateOperationsInput | string | null
+    bubble_persistence?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type visual_examsUncheckedUpdateManyWithoutTastingsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    limpidity?: NullableStringFieldUpdateOperationsInput | string | null
+    color_family?: StringFieldUpdateOperationsInput | string
+    color_shade?: StringFieldUpdateOperationsInput | string
+    consistency?: StringFieldUpdateOperationsInput | string
+    bubble_grain?: NullableStringFieldUpdateOperationsInput | string | null
+    bubble_number?: NullableStringFieldUpdateOperationsInput | string | null
+    bubble_persistence?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 
