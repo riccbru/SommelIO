@@ -1,4 +1,4 @@
-@token = 
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NjdhNjIzNi00YjJlLTQ0N2UtOGYyMC0zOTdkNDUyZDE0MTIiLCJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJiYW5raWNoIiwiZnVsbE5hbWUiOiJCYW5raWNoIEFkbWluIiwiaWF0IjoxNzUzNTI3ODg1LCJleHAiOjE3NTM1Mjg3ODV9.sjuDahL4mBfaO5vg3g6QQ9U6tfji4nF9YW0lkvikxoI
 @refresh = 
 
 ### LOGIN + TOKEN
@@ -7,8 +7,8 @@ POST http://localhost:3001/api/v1/auth/login
 Content-Type: application/json
 
 {
-    "username": "ciclarimpo",
-    "password": "ciclarimpo_pwd"
+    "username": "bankich",
+    "password": "bankich_pwd"
 }
 
 ### WELCOME
@@ -28,7 +28,8 @@ Authorization: Bearer {{token}}
 
 ### GET TASTING BY ID
 
-GET http://localhost:3001/api/v1/tastings HTTP/1.1
+GET http://localhost:3001/api/v1/tastings/ HTTP/1.1
+Accept-Language: it
 Authorization: Bearer {{token}}
 
 

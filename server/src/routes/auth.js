@@ -27,6 +27,7 @@ router.post("/login",
 
             const payload = {
                 uid: user?.uid,
+                admin: user?.admin,
                 username: user?.username,
                 fullName: user?.full_name,
             }

@@ -1,4 +1,9 @@
 import { Router } from "express";
+import {
+    getPreferredLanguage,
+    formatTasting,
+    injectWineCategoryName
+} from "../utils/tastings.js";
 import { PrismaClient } from "../generated/prisma/index.js";
 
 const router = Router();
@@ -7,22 +12,20 @@ const prisma = new PrismaClient();
 router.get("/",
     async (req, res) => {
         const uid = req.user.uid;
-        const tid = req.params.tid;
-        try {
+        const language = getPreferredLanguage(req);
 
-            const tastings = await prisma.tastings.findMany({
+        try {
+            const result = await prisma.tastings.findMany({
                 where: { uid: uid }
             });
 
-            if (!tastings) {
-                res.status(404).json({ error: `Tasting ${tid} not found` });
-                return;
-            }
-
-            if (tastings.length === 0) {
+            if (!result || result.length === 0) {
                 res.status(404).json({ error: `No tastings found for user ${uid}` });
                 return;
             }
+
+            const tastingsWithNames = await injectWineCategoryName(result, language, prisma);
+            const tastings = tastingsWithNames.map(t => formatTasting(t, language));
 
             res.json({ tastings: tastings });
 
@@ -33,24 +36,28 @@ router.get("/",
     }
 );
 
+
 router.get("/:tid",
     async (req, res) => {
         const uid = req.user.uid;
         const tid = req.params.tid;
+        const language = getPreferredLanguage(req);
         try {
             
-            const tasting = await prisma.tastings.findUnique(
+            const result = await prisma.tastings.findUnique(
                 { where : {
                     tid: tid,
                     uid: uid
                 }}
             );
 
-            if (!tasting) {
+            if (!result) {
                 res.status(404).json({ error: `Tasting ${tid} not found` });
                 return;
             }
 
+            const [tastingWithName] = await injectWineCategoryName([result], language, prisma);
+            const tasting = formatTasting(tastingWithName, language);
             res.json(tasting);
 
         } catch (err) {

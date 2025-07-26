@@ -8,9 +8,9 @@ node_modules/
 
 # Misc
 script.js
-/db/AI/*.sql
 
 # DB Stuff
+/db/AI/
 /db/dumps/
 /db/backups/
 /db/init/*.sql
