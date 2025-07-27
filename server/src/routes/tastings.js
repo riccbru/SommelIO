@@ -48,12 +48,18 @@ router.get("/:tid",
         const language = getPreferredLanguage(req);
         try {
             
-            const result = await prisma.tastings.findUnique(
-                { where : {
+            const result = await prisma.tastings.findUnique({
+              where : {
                     tid: tid,
                     uid: uid
-                }}
-            );
+                },
+              include: {
+                visual_exams: true,
+                olfactory_exams: true,
+                taste_olfactory_exams: true,
+                final_considerations: true
+              }
+            });
 
             if (!result) {
                 res.status(404).json({ error: `Tasting ${tid} not found` });

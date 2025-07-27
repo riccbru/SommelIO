@@ -44,57 +44,57 @@ model wine_category_translations {
 }
 
 model tastings {
-  id                    Int                     @id @default(autoincrement())
-  tid                   String                  @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  uid                   String                  @db.Uuid
+  id                    Int                    @id @default(autoincrement())
+  tid                   String                 @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  uid                   String                 @db.Uuid
   full_name             String?
   wine_category_id      Int
   sample_number         String?
   wine_denomination     String
-  alcohol_content       Decimal                 @db.Decimal(4, 2)
+  alcohol_content       Decimal                @db.Decimal(4, 2)
   vintage               Int
-  wine_temperature      Decimal                 @db.Decimal(4, 1)
-  ambient_temperature   Decimal?                @db.Decimal(4, 1)
-  tasting_date          DateTime                @db.Date
-  tasting_time          DateTime                @db.Time(6)
+  wine_temperature      Decimal                @db.Decimal(4, 1)
+  ambient_temperature   Decimal?               @db.Decimal(4, 1)
+  tasting_date          DateTime               @db.Date
+  tasting_time          DateTime               @db.Time(6)
   tasting_location      String
-  created_at            DateTime?               @default(now()) @db.Timestamptz(6)
-  updated_at            DateTime?               @default(now()) @db.Timestamptz(6)
-  final_considerations  final_considerations[]
-  olfactory_exams       olfactory_exams[]
-  taste_olfactory_exams taste_olfactory_exams[]
-  users                 users                   @relation(fields: [uid], references: [uid], onDelete: Cascade, onUpdate: NoAction)
-  wine_categories       wine_categories         @relation(fields: [wine_category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  visual_exams          visual_exams[]
+  created_at            DateTime?              @default(now()) @db.Timestamptz(6)
+  updated_at            DateTime?              @default(now()) @db.Timestamptz(6)
+  final_considerations  final_considerations?
+  olfactory_exams       olfactory_exams?
+  taste_olfactory_exams taste_olfactory_exams?
+  users                 users                  @relation(fields: [uid], references: [uid], onDelete: Cascade, onUpdate: NoAction)
+  wine_categories       wine_categories        @relation(fields: [wine_category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  visual_exams          visual_exams?
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model olfactory_exams {
-  id         Int       @id @default(autoincrement())
-  tid        String?   @db.Uuid
-  uuid       String    @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id         Int      @id @default(autoincrement())
+  tid        String   @unique @db.Uuid
+  exam_uuid  String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   intensity  String
   complexity String
   quality    String
-  aromatic   Boolean?  @default(false)
-  vinous     Boolean?  @default(false)
-  floral     Boolean?  @default(false)
-  fruity     Boolean?  @default(false)
-  fragrant   Boolean?  @default(false)
-  herbaceous Boolean?  @default(false)
-  mineral    Boolean?  @default(false)
-  spicy      Boolean?  @default(false)
-  ethereal   Boolean?  @default(false)
-  frank      Boolean?  @default(false)
+  aromatic   Boolean? @default(false)
+  vinous     Boolean? @default(false)
+  floral     Boolean? @default(false)
+  fruity     Boolean? @default(false)
+  fragrant   Boolean? @default(false)
+  herbaceous Boolean? @default(false)
+  mineral    Boolean? @default(false)
+  spicy      Boolean? @default(false)
+  ethereal   Boolean? @default(false)
+  frank      Boolean? @default(false)
   notes      String?
-  tastings   tastings? @relation(fields: [tid], references: [tid], onDelete: Cascade, onUpdate: NoAction)
+  tastings   tastings @relation(fields: [tid], references: [tid], onDelete: Cascade, onUpdate: NoAction)
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model taste_olfactory_exams {
-  id           Int       @id @default(autoincrement())
-  tid          String?   @db.Uuid
-  uuid         String    @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id           Int      @id @default(autoincrement())
+  tid          String   @unique @db.Uuid
+  exam_uuid    String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   sugars       String
   alcohols     String
   polyalcohols String
@@ -107,14 +107,14 @@ model taste_olfactory_exams {
   quality      String
   structure    String
   notes        String?
-  tastings     tastings? @relation(fields: [tid], references: [tid], onDelete: Cascade, onUpdate: NoAction)
+  tastings     tastings @relation(fields: [tid], references: [tid], onDelete: Cascade, onUpdate: NoAction)
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model visual_exams {
-  id                 Int       @id @default(autoincrement())
-  tid                String?   @db.Uuid
-  uuid               String    @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id                 Int      @id @default(autoincrement())
+  tid                String   @unique @db.Uuid
+  exam_uuid          String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   limpidity          String?
   color_family       String
   color_shade        String
@@ -123,17 +123,17 @@ model visual_exams {
   bubble_number      String?
   bubble_persistence String?
   notes              String?
-  tastings           tastings? @relation(fields: [tid], references: [tid], onDelete: Cascade, onUpdate: NoAction)
+  tastings           tastings @relation(fields: [tid], references: [tid], onDelete: Cascade, onUpdate: NoAction)
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model final_considerations {
-  id        Int       @id @default(autoincrement())
-  tid       String?   @db.Uuid
-  uuid      String    @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id        Int      @id @default(autoincrement())
+  tid       String   @unique @db.Uuid
+  exam_uuid String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   evolution String
   harmony   String
   pairings  String
   notes     String?
-  tastings  tastings? @relation(fields: [tid], references: [tid], onDelete: Cascade, onUpdate: NoAction)
+  tastings  tastings @relation(fields: [tid], references: [tid], onDelete: Cascade, onUpdate: NoAction)
 }

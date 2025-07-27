@@ -1,5 +1,6 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NjdhNjIzNi00YjJlLTQ0N2UtOGYyMC0zOTdkNDUyZDE0MTIiLCJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJiYW5raWNoIiwiZnVsbE5hbWUiOiJCYW5raWNoIEFkbWluIiwiZW1haWwiOiJiYW5raWNoQHNvbW1lbC5pbyIsImlhdCI6MTc1MzYyODE4OSwiZXhwIjoxNzUzNjI5MDg5fQ.0B9pUbGnBx4uICaH1-VfS9_pzGHr2qLvrtQCF2vdypI
+@token = 
 @refresh = 
+@tid = 
 
 ### LOGIN + TOKEN
 
@@ -23,8 +24,8 @@ Authorization: Bearer {{token}}
 
 ### GET TASTING BY ID
 
-GET http://localhost:3001/api/v1/tastings/ HTTP/1.1
-Accept-Language: en
+GET http://localhost:3001/api/v1/tastings/{{tid}} HTTP/1.1
+Accept-Language: it
 Authorization: Bearer {{token}}
 
 ### POST NEW TASTING
@@ -49,12 +50,12 @@ Authorization: Bearer {{token}}
 
 ### GET EXAMS
 
-GET http://localhost:3001/api/v1/exams/5f6324af-5ed7-4371-8166-28b7057cba85/ HTTP/1.1
+GET http://localhost:3001/api/v1/exams/{{tid}} HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### POST EXAMS
 
-POST http://localhost:3001/api/v1/exams/5f6324af-5ed7-4371-8166-28b7057cba85 HTTP/1.1
+POST http://localhost:3001/api/v1/exams/{{tid}} HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
@@ -109,7 +110,7 @@ Authorization: Bearer {{token}}
 
 ### POST VISUAL EXAM
 
-POST http://localhost:3001/api/v1/exams/5f6324af-5ed7-4371-8166-28b7057cba85/visual HTTP/1.1
+POST http://localhost:3001/api/v1/exams/{{tid}}/visual HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
@@ -126,7 +127,7 @@ Authorization: Bearer {{token}}
 
 ### POST OLFACTORY EXAM
 
-POST http://localhost:3001/api/v1/exams/5f6324af-5ed7-4371-8166-28b7057cba85/olfactory HTTP/1.1
+POST http://localhost:3001/api/v1/exams/{{tid}}/olfactory HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
@@ -149,7 +150,7 @@ Authorization: Bearer {{token}}
 
 ### POST TASTE-OLFACTORY EXAM
 
-POST http://localhost:3001/api/v1/exams/5f6324af-5ed7-4371-8166-28b7057cba85/taste HTTP/1.1
+POST http://localhost:3001/api/v1/exams/{{tid}}/taste HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
@@ -170,7 +171,7 @@ Authorization: Bearer {{token}}
 
 ### POST FINAL-CONSIDERATIONS EXAM
 
-POST http://localhost:3001/api/v1/exams/5f6324af-5ed7-4371-8166-28b7057cba85/final HTTP/1.1
+POST http://localhost:3001/api/v1/exams/{{tid}}/final HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{token}}
 

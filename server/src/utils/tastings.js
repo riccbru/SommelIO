@@ -7,24 +7,44 @@ const getPreferredLanguage = (req) => {
 };
 
 const formatTasting = (tasting) => {
-    const tastingFormatted = {
-        tid: tasting.tid,
-        uid: tasting.uid,
-        full_name: tasting.full_name,
-        wine_category_name: tasting.wine_category_name || null,
-        sample_number: tasting.sample_number || null,
-        wine_denomination: tasting.wine_denomination,
-        alcohol_content: `${tasting.alcohol_content}%`,
-        vintage: tasting.vintage,
-        wine_temperature: `${tasting.wine_temperature}°C`,
-        ambient_temperature: `${tasting.ambient_temperature}°C`,
-        tasting_date: tasting.tasting_date,
-        tasting_time: tasting.tasting_time,
-        tasting_location: tasting.tasting_location,
-        created_at: tasting.created_at,
-        updated_at: tasting.updated_at
-    }
-    return tastingFormatted;
+  if (tasting.visual_exams) {
+    delete tasting.visual_exams?.id;
+    delete tasting.visual_exams?.tid;
+  }
+  if (tasting.olfactory_exams) {
+    delete tasting.olfactory_exams?.id;
+    delete tasting.olfactory_exams?.tid;
+  }
+  if (tasting.taste_olfactory_exams) {
+    delete tasting.taste_olfactory_exams?.id;
+    delete tasting.taste_olfactory_exams?.tid;
+  }
+  if (tasting.final_considerations) {
+    delete tasting.final_considerations?.id;
+    delete tasting.final_considerations?.tid;
+  }
+  const tastingFormatted = {
+    tid: tasting.tid,
+    uid: tasting.uid,
+    full_name: tasting.full_name,
+    wine_category_name: tasting.wine_category_name || null,
+    sample_number: tasting.sample_number || null,
+    wine_denomination: tasting.wine_denomination,
+    alcohol_content: `${tasting.alcohol_content}%`,
+    vintage: tasting.vintage,
+    wine_temperature: `${tasting.wine_temperature}°C`,
+    ambient_temperature: `${tasting.ambient_temperature}°C`,
+    tasting_date: tasting.tasting_date,
+    tasting_time: tasting.tasting_time,
+    tasting_location: tasting.tasting_location,
+    created_at: tasting.created_at,
+    updated_at: tasting.updated_at,
+    visual_exam: tasting.visual_exams || {},
+    olfactory_exam: tasting.olfactory_exams || {},
+    taste_olfactory_exam: tasting.taste_olfactory_exams || {},
+    final_considerations: tasting.final_considerations || {}
+  }
+  return tastingFormatted;
 }
 
 const fetchWineCategoryNames = async (categoryIds, language, prisma) => {

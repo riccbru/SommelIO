@@ -11,6 +11,12 @@ const examTypes = {
   "final": prisma.final_considerations
 };
 
+function omitIdTid(exam) {
+  if (!exam) return null;
+  const { id, tid, ...rest } = exam;
+  return rest;
+}
+
 async function validateTastingOwnership(tid, uid, res) {
   if (!tid || tid.length !== 36) {
     res.status(400).json({ error: `URL parameter 'tasting_uuid' is an invalid UUID-32` });
@@ -125,13 +131,16 @@ router.post('/:tid',
       res.status(201).json({
         tasting_uuid: tid,
         exams: {
-          visual_exam: results[0],
-          olfactory_exam: results[1],
-          taste_olfactory_exam: results[2],
-          final_considerations: results[3],
+          visual_exam: omitIdTid(results[0]),
+          olfactory_exam: omitIdTid(results[1]),
+          taste_olfactory_exam: omitIdTid(results[2]),
+          final_considerations: omitIdTid(results[3]),
         }
       });
     } catch (err) {
+      if (err.code === 'P2014' || err instanceof prisma.PrismaClientKnownRequestError) {
+        return res.status(409).json({ error: `Tasting ${tid} has already been examined` });
+      }
       console.error(err);
       res.status(500).json({ error: 'Error creating exams' });
     }
@@ -160,6 +169,9 @@ router.post('/:tid/:exam',
       delete newExam.tid;
       res.status(201).json(newExam);
     } catch (err) {
+      if (err.code === 'P2014' || err instanceof prisma.PrismaClientKnownRequestError) {
+        return res.status(409).json({ error: `Tasting ${tid} already has ${exam} exam` });
+      }
       console.error(err);
       res.status(500).json({ error: `Error creating ${exam} exam` });
     }
