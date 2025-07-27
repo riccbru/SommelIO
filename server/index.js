@@ -5,6 +5,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 
 import loginRoutes from "./src/routes/auth.js";
+import examsRoutes from "./src/routes/exams.js";
 import usersRoutes from "./src/routes/users.js";
 import welcomeRoute from "./src/routes/welcome.js";
 import { isAuthZ } from "./src/middlewares/auth.js";
@@ -33,3 +34,4 @@ app.use("/api/v1/auth", loginRoutes);
 app.use("/api/v1/users", isAuthZ, usersRoutes);
 app.use("/api/v1/welcome", isAuthZ, welcomeRoute);
 app.use("/api/v1/tastings", isAuthZ, tastingsRoutes);
+app.use("/api/v1/exams", isAuthZ, examsRoutes);

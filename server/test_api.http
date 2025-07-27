@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NjdhNjIzNi00YjJlLTQ0N2UtOGYyMC0zOTdkNDUyZDE0MTIiLCJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJiYW5raWNoIiwiZnVsbE5hbWUiOiJCYW5raWNoIEFkbWluIiwiZW1haWwiOiJiYW5raWNoQHNvbW1lbC5pbyIsImlhdCI6MTc1MzUzNzQzOCwiZXhwIjoxNzUzNTM4MzM4fQ.knGM10KWMSpoWApZHXEQpDkmj0teK1HTiDaQ9AoB5ZU
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NjdhNjIzNi00YjJlLTQ0N2UtOGYyMC0zOTdkNDUyZDE0MTIiLCJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJiYW5raWNoIiwiZnVsbE5hbWUiOiJCYW5raWNoIEFkbWluIiwiZW1haWwiOiJiYW5raWNoQHNvbW1lbC5pbyIsImlhdCI6MTc1MzYyODE4OSwiZXhwIjoxNzUzNjI5MDg5fQ.0B9pUbGnBx4uICaH1-VfS9_pzGHr2qLvrtQCF2vdypI
 @refresh = 
 
 ### LOGIN + TOKEN
@@ -23,13 +23,8 @@ Authorization: Bearer {{token}}
 
 ### GET TASTING BY ID
 
-GET http://localhost:3001/api/v1/tastings HTTP/1.1
+GET http://localhost:3001/api/v1/tastings/ HTTP/1.1
 Accept-Language: en
-Authorization: Bearer {{token}}
-
-### GET EXAMS
-
-GET http://localhost:3001/api/v1/tastings/b48b94cd-9173-415e-b258-76bf3341b087/exams HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### POST NEW TASTING
@@ -47,9 +42,143 @@ Authorization: Bearer {{token}}
     "vintage": 2023,
     "wine_temperature": "16",
     "ambient_temperature": "25",
-    "tasting_date": "2024-07-25T00:00:00.000Z",
+    "tasting_date": "2024-07-25",
     "tasting_time": "21:00",
     "tasting_location": "Art Cafè"
+}
+
+### GET EXAMS
+
+GET http://localhost:3001/api/v1/exams/5f6324af-5ed7-4371-8166-28b7057cba85/ HTTP/1.1
+Authorization: Bearer {{token}}
+
+### POST EXAMS
+
+POST http://localhost:3001/api/v1/exams/5f6324af-5ed7-4371-8166-28b7057cba85 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "visual_exam": {
+        "limpidity": "abbastanza_limpido",
+        "color_family": "rosa",
+        "color_shade": "cerasuolo",
+        "consistency": "fluido",
+        "bubble_grain": null,
+        "bubble_number": null,
+        "bubble_persistence": null,
+        "notes": "qualche annotazione visuale"
+    },
+    "olfactory_exam": {
+        "intensity": "intenso",
+        "complexity": "complesso",
+        "quality": "abbastanza_fine",
+        "aromatic": false,
+        "vinous": false,
+        "floral": true,
+        "fruity": true,
+        "fragrant": true,
+        "herbaceous": false,
+        "mineral": true,
+        "spicy": false,
+        "ethereal": false,
+        "frank": false,
+        "notes": "qualche annotazione olfattiva"
+    },
+    "taste_olfactory_exam": {
+        "sugars": "secco",
+        "alcohols": "poco_caldo",
+        "polyalcohols": "morbido",
+        "acids": "abbastanza_fresco",
+        "tannins": "poco_tannico",
+        "minerals": "abbastanza_sapido",
+        "balance": "abbastanza_equilibrato",
+        "intensity": "intenso",
+        "persistence": "persistente",
+        "quality": "abbastanza_fine",
+        "structure": "di_corpo",
+        "notes": "qualche annotazione gustativa"
+    },
+    "final_considerations": {
+        "evolution": "pronto",
+        "harmony": "abbastanza_armonico",
+        "pairings": "pesce, carni rosse, formaggi",
+        "notes": ""
+    }
+}
+
+### POST VISUAL EXAM
+
+POST http://localhost:3001/api/v1/exams/5f6324af-5ed7-4371-8166-28b7057cba85/visual HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "limpidity": "limpido",
+    "color_family": "rosa",
+    "color_shade": "cerasuolo",
+    "consistency": "fluido",
+    "bubble_grain": null,
+    "bubble_number": null,
+    "bubble_persistence": null,
+    "notes": "qualche annotazione visuale"
+}
+
+### POST OLFACTORY EXAM
+
+POST http://localhost:3001/api/v1/exams/5f6324af-5ed7-4371-8166-28b7057cba85/olfactory HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "intensity": "intenso",
+    "complexity": "complesso",
+    "quality": "abbastanza_fine",
+    "aromatic": false,
+    "vinous": false,
+    "floral": true,
+    "fruity": true,
+    "fragrant": true,
+    "herbaceous": false,
+    "mineral": true,
+    "spicy": false,
+    "ethereal": false,
+    "frank": false,
+    "notes": "qualche annotazione olfattiva"
+}
+
+### POST TASTE-OLFACTORY EXAM
+
+POST http://localhost:3001/api/v1/exams/5f6324af-5ed7-4371-8166-28b7057cba85/taste HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "sugars": "secco",
+    "alcohols": "poco_caldo",
+    "polyalcohols": "morbido",
+    "acids": "abbastanza_fresco",
+    "tannins": "poco_tannico",
+    "minerals": "abbastanza_sapido",
+    "balance": "abbastanza_equilibrato",
+    "intensity": "intenso",
+    "persistence": "persistente",
+    "quality": "abbastanza_fine",
+    "structure": "di_corpo",
+    "notes": "qualche annotazione gustativa"
+}
+
+### POST FINAL-CONSIDERATIONS EXAM
+
+POST http://localhost:3001/api/v1/exams/5f6324af-5ed7-4371-8166-28b7057cba85/final HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "evolution": "pronto",
+    "harmony": "abbastanza_armonico",
+    "pairings": "pesce, carni rosse, formaggi",
+    "notes": ""
 }
 
 ### REFRESH TOKEN

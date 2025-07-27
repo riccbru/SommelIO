@@ -11,4 +11,5 @@ script.js
 /db/AI/
 /db/dumps/
 /db/backups/
+/db/README.md
 /db/init/*.sql

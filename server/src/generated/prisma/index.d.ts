@@ -48,6 +48,11 @@ export type taste_olfactory_exams = $Result.DefaultSelection<Prisma.$taste_olfac
  * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
  */
 export type visual_exams = $Result.DefaultSelection<Prisma.$visual_examsPayload>
+/**
+ * Model final_considerations
+ * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+ */
+export type final_considerations = $Result.DefaultSelection<Prisma.$final_considerationsPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -243,6 +248,16 @@ export class PrismaClient<
     * ```
     */
   get visual_exams(): Prisma.visual_examsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.final_considerations`: Exposes CRUD operations for the **final_considerations** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Final_considerations
+    * const final_considerations = await prisma.final_considerations.findMany()
+    * ```
+    */
+  get final_considerations(): Prisma.final_considerationsDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -689,7 +704,8 @@ export namespace Prisma {
     tastings: 'tastings',
     olfactory_exams: 'olfactory_exams',
     taste_olfactory_exams: 'taste_olfactory_exams',
-    visual_exams: 'visual_exams'
+    visual_exams: 'visual_exams',
+    final_considerations: 'final_considerations'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -708,7 +724,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "users" | "wine_categories" | "wine_category_translations" | "tastings" | "olfactory_exams" | "taste_olfactory_exams" | "visual_exams"
+      modelProps: "users" | "wine_categories" | "wine_category_translations" | "tastings" | "olfactory_exams" | "taste_olfactory_exams" | "visual_exams" | "final_considerations"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1230,6 +1246,80 @@ export namespace Prisma {
           }
         }
       }
+      final_considerations: {
+        payload: Prisma.$final_considerationsPayload<ExtArgs>
+        fields: Prisma.final_considerationsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.final_considerationsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$final_considerationsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.final_considerationsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$final_considerationsPayload>
+          }
+          findFirst: {
+            args: Prisma.final_considerationsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$final_considerationsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.final_considerationsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$final_considerationsPayload>
+          }
+          findMany: {
+            args: Prisma.final_considerationsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$final_considerationsPayload>[]
+          }
+          create: {
+            args: Prisma.final_considerationsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$final_considerationsPayload>
+          }
+          createMany: {
+            args: Prisma.final_considerationsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.final_considerationsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$final_considerationsPayload>[]
+          }
+          delete: {
+            args: Prisma.final_considerationsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$final_considerationsPayload>
+          }
+          update: {
+            args: Prisma.final_considerationsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$final_considerationsPayload>
+          }
+          deleteMany: {
+            args: Prisma.final_considerationsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.final_considerationsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.final_considerationsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$final_considerationsPayload>[]
+          }
+          upsert: {
+            args: Prisma.final_considerationsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$final_considerationsPayload>
+          }
+          aggregate: {
+            args: Prisma.Final_considerationsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFinal_considerations>
+          }
+          groupBy: {
+            args: Prisma.final_considerationsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Final_considerationsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.final_considerationsCountArgs<ExtArgs>
+            result: $Utils.Optional<Final_considerationsCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1321,6 +1411,7 @@ export namespace Prisma {
     olfactory_exams?: olfactory_examsOmit
     taste_olfactory_exams?: taste_olfactory_examsOmit
     visual_exams?: visual_examsOmit
+    final_considerations?: final_considerationsOmit
   }
 
   /* Types for Logging */
@@ -1486,12 +1577,14 @@ export namespace Prisma {
    */
 
   export type TastingsCountOutputType = {
+    final_considerations: number
     olfactory_exams: number
     taste_olfactory_exams: number
     visual_exams: number
   }
 
   export type TastingsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    final_considerations?: boolean | TastingsCountOutputTypeCountFinal_considerationsArgs
     olfactory_exams?: boolean | TastingsCountOutputTypeCountOlfactory_examsArgs
     taste_olfactory_exams?: boolean | TastingsCountOutputTypeCountTaste_olfactory_examsArgs
     visual_exams?: boolean | TastingsCountOutputTypeCountVisual_examsArgs
@@ -1506,6 +1599,13 @@ export namespace Prisma {
      * Select specific fields to fetch from the TastingsCountOutputType
      */
     select?: TastingsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * TastingsCountOutputType without action
+   */
+  export type TastingsCountOutputTypeCountFinal_considerationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: final_considerationsWhereInput
   }
 
   /**
@@ -5212,7 +5312,7 @@ export namespace Prisma {
     alcohol_content: Decimal
     vintage: number
     wine_temperature: Decimal
-    ambient_temperature: Decimal
+    ambient_temperature: Decimal | null
     tasting_date: Date
     tasting_time: Date
     tasting_location: string
@@ -5256,6 +5356,7 @@ export namespace Prisma {
     tasting_location?: boolean
     created_at?: boolean
     updated_at?: boolean
+    final_considerations?: boolean | tastings$final_considerationsArgs<ExtArgs>
     olfactory_exams?: boolean | tastings$olfactory_examsArgs<ExtArgs>
     taste_olfactory_exams?: boolean | tastings$taste_olfactory_examsArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
@@ -5327,6 +5428,7 @@ export namespace Prisma {
 
   export type tastingsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "uid" | "full_name" | "wine_category_id" | "sample_number" | "wine_denomination" | "alcohol_content" | "vintage" | "wine_temperature" | "ambient_temperature" | "tasting_date" | "tasting_time" | "tasting_location" | "created_at" | "updated_at", ExtArgs["result"]["tastings"]>
   export type tastingsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    final_considerations?: boolean | tastings$final_considerationsArgs<ExtArgs>
     olfactory_exams?: boolean | tastings$olfactory_examsArgs<ExtArgs>
     taste_olfactory_exams?: boolean | tastings$taste_olfactory_examsArgs<ExtArgs>
     users?: boolean | usersDefaultArgs<ExtArgs>
@@ -5346,6 +5448,7 @@ export namespace Prisma {
   export type $tastingsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "tastings"
     objects: {
+      final_considerations: Prisma.$final_considerationsPayload<ExtArgs>[]
       olfactory_exams: Prisma.$olfactory_examsPayload<ExtArgs>[]
       taste_olfactory_exams: Prisma.$taste_olfactory_examsPayload<ExtArgs>[]
       users: Prisma.$usersPayload<ExtArgs>
@@ -5363,7 +5466,7 @@ export namespace Prisma {
       alcohol_content: Prisma.Decimal
       vintage: number
       wine_temperature: Prisma.Decimal
-      ambient_temperature: Prisma.Decimal
+      ambient_temperature: Prisma.Decimal | null
       tasting_date: Date
       tasting_time: Date
       tasting_location: string
@@ -5763,6 +5866,7 @@ export namespace Prisma {
    */
   export interface Prisma__tastingsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    final_considerations<T extends tastings$final_considerationsArgs<ExtArgs> = {}>(args?: Subset<T, tastings$final_considerationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$final_considerationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     olfactory_exams<T extends tastings$olfactory_examsArgs<ExtArgs> = {}>(args?: Subset<T, tastings$olfactory_examsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$olfactory_examsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     taste_olfactory_exams<T extends tastings$taste_olfactory_examsArgs<ExtArgs> = {}>(args?: Subset<T, tastings$taste_olfactory_examsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$taste_olfactory_examsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     users<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
@@ -6209,6 +6313,30 @@ export namespace Prisma {
   }
 
   /**
+   * tastings.final_considerations
+   */
+  export type tastings$final_considerationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the final_considerations
+     */
+    select?: final_considerationsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the final_considerations
+     */
+    omit?: final_considerationsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: final_considerationsInclude<ExtArgs> | null
+    where?: final_considerationsWhereInput
+    orderBy?: final_considerationsOrderByWithRelationInput | final_considerationsOrderByWithRelationInput[]
+    cursor?: final_considerationsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Final_considerationsScalarFieldEnum | Final_considerationsScalarFieldEnum[]
+  }
+
+  /**
    * tastings.olfactory_exams
    */
   export type tastings$olfactory_examsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6322,6 +6450,7 @@ export namespace Prisma {
   export type Olfactory_examsMinAggregateOutputType = {
     id: number | null
     tid: string | null
+    uuid: string | null
     intensity: string | null
     complexity: string | null
     quality: string | null
@@ -6341,6 +6470,7 @@ export namespace Prisma {
   export type Olfactory_examsMaxAggregateOutputType = {
     id: number | null
     tid: string | null
+    uuid: string | null
     intensity: string | null
     complexity: string | null
     quality: string | null
@@ -6360,6 +6490,7 @@ export namespace Prisma {
   export type Olfactory_examsCountAggregateOutputType = {
     id: number
     tid: number
+    uuid: number
     intensity: number
     complexity: number
     quality: number
@@ -6389,6 +6520,7 @@ export namespace Prisma {
   export type Olfactory_examsMinAggregateInputType = {
     id?: true
     tid?: true
+    uuid?: true
     intensity?: true
     complexity?: true
     quality?: true
@@ -6408,6 +6540,7 @@ export namespace Prisma {
   export type Olfactory_examsMaxAggregateInputType = {
     id?: true
     tid?: true
+    uuid?: true
     intensity?: true
     complexity?: true
     quality?: true
@@ -6427,6 +6560,7 @@ export namespace Prisma {
   export type Olfactory_examsCountAggregateInputType = {
     id?: true
     tid?: true
+    uuid?: true
     intensity?: true
     complexity?: true
     quality?: true
@@ -6533,6 +6667,7 @@ export namespace Prisma {
   export type Olfactory_examsGroupByOutputType = {
     id: number
     tid: string | null
+    uuid: string
     intensity: string
     complexity: string
     quality: string
@@ -6571,6 +6706,7 @@ export namespace Prisma {
   export type olfactory_examsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tid?: boolean
+    uuid?: boolean
     intensity?: boolean
     complexity?: boolean
     quality?: boolean
@@ -6591,6 +6727,7 @@ export namespace Prisma {
   export type olfactory_examsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tid?: boolean
+    uuid?: boolean
     intensity?: boolean
     complexity?: boolean
     quality?: boolean
@@ -6611,6 +6748,7 @@ export namespace Prisma {
   export type olfactory_examsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tid?: boolean
+    uuid?: boolean
     intensity?: boolean
     complexity?: boolean
     quality?: boolean
@@ -6631,6 +6769,7 @@ export namespace Prisma {
   export type olfactory_examsSelectScalar = {
     id?: boolean
     tid?: boolean
+    uuid?: boolean
     intensity?: boolean
     complexity?: boolean
     quality?: boolean
@@ -6647,7 +6786,7 @@ export namespace Prisma {
     notes?: boolean
   }
 
-  export type olfactory_examsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "intensity" | "complexity" | "quality" | "aromatic" | "vinous" | "floral" | "fruity" | "fragrant" | "herbaceous" | "mineral" | "spicy" | "ethereal" | "frank" | "notes", ExtArgs["result"]["olfactory_exams"]>
+  export type olfactory_examsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "uuid" | "intensity" | "complexity" | "quality" | "aromatic" | "vinous" | "floral" | "fruity" | "fragrant" | "herbaceous" | "mineral" | "spicy" | "ethereal" | "frank" | "notes", ExtArgs["result"]["olfactory_exams"]>
   export type olfactory_examsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tastings?: boolean | olfactory_exams$tastingsArgs<ExtArgs>
   }
@@ -6666,6 +6805,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       tid: string | null
+      uuid: string
       intensity: string
       complexity: string
       quality: string
@@ -7106,6 +7246,7 @@ export namespace Prisma {
   interface olfactory_examsFieldRefs {
     readonly id: FieldRef<"olfactory_exams", 'Int'>
     readonly tid: FieldRef<"olfactory_exams", 'String'>
+    readonly uuid: FieldRef<"olfactory_exams", 'String'>
     readonly intensity: FieldRef<"olfactory_exams", 'String'>
     readonly complexity: FieldRef<"olfactory_exams", 'String'>
     readonly quality: FieldRef<"olfactory_exams", 'String'>
@@ -7576,6 +7717,7 @@ export namespace Prisma {
   export type Taste_olfactory_examsMinAggregateOutputType = {
     id: number | null
     tid: string | null
+    uuid: string | null
     sugars: string | null
     alcohols: string | null
     polyalcohols: string | null
@@ -7593,6 +7735,7 @@ export namespace Prisma {
   export type Taste_olfactory_examsMaxAggregateOutputType = {
     id: number | null
     tid: string | null
+    uuid: string | null
     sugars: string | null
     alcohols: string | null
     polyalcohols: string | null
@@ -7610,6 +7753,7 @@ export namespace Prisma {
   export type Taste_olfactory_examsCountAggregateOutputType = {
     id: number
     tid: number
+    uuid: number
     sugars: number
     alcohols: number
     polyalcohols: number
@@ -7637,6 +7781,7 @@ export namespace Prisma {
   export type Taste_olfactory_examsMinAggregateInputType = {
     id?: true
     tid?: true
+    uuid?: true
     sugars?: true
     alcohols?: true
     polyalcohols?: true
@@ -7654,6 +7799,7 @@ export namespace Prisma {
   export type Taste_olfactory_examsMaxAggregateInputType = {
     id?: true
     tid?: true
+    uuid?: true
     sugars?: true
     alcohols?: true
     polyalcohols?: true
@@ -7671,6 +7817,7 @@ export namespace Prisma {
   export type Taste_olfactory_examsCountAggregateInputType = {
     id?: true
     tid?: true
+    uuid?: true
     sugars?: true
     alcohols?: true
     polyalcohols?: true
@@ -7775,6 +7922,7 @@ export namespace Prisma {
   export type Taste_olfactory_examsGroupByOutputType = {
     id: number
     tid: string | null
+    uuid: string
     sugars: string
     alcohols: string
     polyalcohols: string
@@ -7811,6 +7959,7 @@ export namespace Prisma {
   export type taste_olfactory_examsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tid?: boolean
+    uuid?: boolean
     sugars?: boolean
     alcohols?: boolean
     polyalcohols?: boolean
@@ -7829,6 +7978,7 @@ export namespace Prisma {
   export type taste_olfactory_examsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tid?: boolean
+    uuid?: boolean
     sugars?: boolean
     alcohols?: boolean
     polyalcohols?: boolean
@@ -7847,6 +7997,7 @@ export namespace Prisma {
   export type taste_olfactory_examsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tid?: boolean
+    uuid?: boolean
     sugars?: boolean
     alcohols?: boolean
     polyalcohols?: boolean
@@ -7865,6 +8016,7 @@ export namespace Prisma {
   export type taste_olfactory_examsSelectScalar = {
     id?: boolean
     tid?: boolean
+    uuid?: boolean
     sugars?: boolean
     alcohols?: boolean
     polyalcohols?: boolean
@@ -7879,7 +8031,7 @@ export namespace Prisma {
     notes?: boolean
   }
 
-  export type taste_olfactory_examsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "sugars" | "alcohols" | "polyalcohols" | "acids" | "tannins" | "minerals" | "balance" | "intensity" | "persistence" | "quality" | "structure" | "notes", ExtArgs["result"]["taste_olfactory_exams"]>
+  export type taste_olfactory_examsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "uuid" | "sugars" | "alcohols" | "polyalcohols" | "acids" | "tannins" | "minerals" | "balance" | "intensity" | "persistence" | "quality" | "structure" | "notes", ExtArgs["result"]["taste_olfactory_exams"]>
   export type taste_olfactory_examsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tastings?: boolean | taste_olfactory_exams$tastingsArgs<ExtArgs>
   }
@@ -7898,6 +8050,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       tid: string | null
+      uuid: string
       sugars: string
       alcohols: string
       polyalcohols: string
@@ -8336,6 +8489,7 @@ export namespace Prisma {
   interface taste_olfactory_examsFieldRefs {
     readonly id: FieldRef<"taste_olfactory_exams", 'Int'>
     readonly tid: FieldRef<"taste_olfactory_exams", 'String'>
+    readonly uuid: FieldRef<"taste_olfactory_exams", 'String'>
     readonly sugars: FieldRef<"taste_olfactory_exams", 'String'>
     readonly alcohols: FieldRef<"taste_olfactory_exams", 'String'>
     readonly polyalcohols: FieldRef<"taste_olfactory_exams", 'String'>
@@ -8804,6 +8958,7 @@ export namespace Prisma {
   export type Visual_examsMinAggregateOutputType = {
     id: number | null
     tid: string | null
+    uuid: string | null
     limpidity: string | null
     color_family: string | null
     color_shade: string | null
@@ -8817,6 +8972,7 @@ export namespace Prisma {
   export type Visual_examsMaxAggregateOutputType = {
     id: number | null
     tid: string | null
+    uuid: string | null
     limpidity: string | null
     color_family: string | null
     color_shade: string | null
@@ -8830,6 +8986,7 @@ export namespace Prisma {
   export type Visual_examsCountAggregateOutputType = {
     id: number
     tid: number
+    uuid: number
     limpidity: number
     color_family: number
     color_shade: number
@@ -8853,6 +9010,7 @@ export namespace Prisma {
   export type Visual_examsMinAggregateInputType = {
     id?: true
     tid?: true
+    uuid?: true
     limpidity?: true
     color_family?: true
     color_shade?: true
@@ -8866,6 +9024,7 @@ export namespace Prisma {
   export type Visual_examsMaxAggregateInputType = {
     id?: true
     tid?: true
+    uuid?: true
     limpidity?: true
     color_family?: true
     color_shade?: true
@@ -8879,6 +9038,7 @@ export namespace Prisma {
   export type Visual_examsCountAggregateInputType = {
     id?: true
     tid?: true
+    uuid?: true
     limpidity?: true
     color_family?: true
     color_shade?: true
@@ -8979,6 +9139,7 @@ export namespace Prisma {
   export type Visual_examsGroupByOutputType = {
     id: number
     tid: string | null
+    uuid: string
     limpidity: string | null
     color_family: string
     color_shade: string
@@ -9011,6 +9172,7 @@ export namespace Prisma {
   export type visual_examsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tid?: boolean
+    uuid?: boolean
     limpidity?: boolean
     color_family?: boolean
     color_shade?: boolean
@@ -9025,6 +9187,7 @@ export namespace Prisma {
   export type visual_examsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tid?: boolean
+    uuid?: boolean
     limpidity?: boolean
     color_family?: boolean
     color_shade?: boolean
@@ -9039,6 +9202,7 @@ export namespace Prisma {
   export type visual_examsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tid?: boolean
+    uuid?: boolean
     limpidity?: boolean
     color_family?: boolean
     color_shade?: boolean
@@ -9053,6 +9217,7 @@ export namespace Prisma {
   export type visual_examsSelectScalar = {
     id?: boolean
     tid?: boolean
+    uuid?: boolean
     limpidity?: boolean
     color_family?: boolean
     color_shade?: boolean
@@ -9063,7 +9228,7 @@ export namespace Prisma {
     notes?: boolean
   }
 
-  export type visual_examsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "limpidity" | "color_family" | "color_shade" | "consistency" | "bubble_grain" | "bubble_number" | "bubble_persistence" | "notes", ExtArgs["result"]["visual_exams"]>
+  export type visual_examsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "uuid" | "limpidity" | "color_family" | "color_shade" | "consistency" | "bubble_grain" | "bubble_number" | "bubble_persistence" | "notes", ExtArgs["result"]["visual_exams"]>
   export type visual_examsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tastings?: boolean | visual_exams$tastingsArgs<ExtArgs>
   }
@@ -9082,6 +9247,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       tid: string | null
+      uuid: string
       limpidity: string | null
       color_family: string
       color_shade: string
@@ -9516,6 +9682,7 @@ export namespace Prisma {
   interface visual_examsFieldRefs {
     readonly id: FieldRef<"visual_exams", 'Int'>
     readonly tid: FieldRef<"visual_exams", 'String'>
+    readonly uuid: FieldRef<"visual_exams", 'String'>
     readonly limpidity: FieldRef<"visual_exams", 'String'>
     readonly color_family: FieldRef<"visual_exams", 'String'>
     readonly color_shade: FieldRef<"visual_exams", 'String'>
@@ -9958,6 +10125,1143 @@ export namespace Prisma {
 
 
   /**
+   * Model final_considerations
+   */
+
+  export type AggregateFinal_considerations = {
+    _count: Final_considerationsCountAggregateOutputType | null
+    _avg: Final_considerationsAvgAggregateOutputType | null
+    _sum: Final_considerationsSumAggregateOutputType | null
+    _min: Final_considerationsMinAggregateOutputType | null
+    _max: Final_considerationsMaxAggregateOutputType | null
+  }
+
+  export type Final_considerationsAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type Final_considerationsSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type Final_considerationsMinAggregateOutputType = {
+    id: number | null
+    tid: string | null
+    uuid: string | null
+    evolution: string | null
+    harmony: string | null
+    pairings: string | null
+    notes: string | null
+  }
+
+  export type Final_considerationsMaxAggregateOutputType = {
+    id: number | null
+    tid: string | null
+    uuid: string | null
+    evolution: string | null
+    harmony: string | null
+    pairings: string | null
+    notes: string | null
+  }
+
+  export type Final_considerationsCountAggregateOutputType = {
+    id: number
+    tid: number
+    uuid: number
+    evolution: number
+    harmony: number
+    pairings: number
+    notes: number
+    _all: number
+  }
+
+
+  export type Final_considerationsAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type Final_considerationsSumAggregateInputType = {
+    id?: true
+  }
+
+  export type Final_considerationsMinAggregateInputType = {
+    id?: true
+    tid?: true
+    uuid?: true
+    evolution?: true
+    harmony?: true
+    pairings?: true
+    notes?: true
+  }
+
+  export type Final_considerationsMaxAggregateInputType = {
+    id?: true
+    tid?: true
+    uuid?: true
+    evolution?: true
+    harmony?: true
+    pairings?: true
+    notes?: true
+  }
+
+  export type Final_considerationsCountAggregateInputType = {
+    id?: true
+    tid?: true
+    uuid?: true
+    evolution?: true
+    harmony?: true
+    pairings?: true
+    notes?: true
+    _all?: true
+  }
+
+  export type Final_considerationsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which final_considerations to aggregate.
+     */
+    where?: final_considerationsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of final_considerations to fetch.
+     */
+    orderBy?: final_considerationsOrderByWithRelationInput | final_considerationsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: final_considerationsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` final_considerations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` final_considerations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned final_considerations
+    **/
+    _count?: true | Final_considerationsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Final_considerationsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Final_considerationsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Final_considerationsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Final_considerationsMaxAggregateInputType
+  }
+
+  export type GetFinal_considerationsAggregateType<T extends Final_considerationsAggregateArgs> = {
+        [P in keyof T & keyof AggregateFinal_considerations]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFinal_considerations[P]>
+      : GetScalarType<T[P], AggregateFinal_considerations[P]>
+  }
+
+
+
+
+  export type final_considerationsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: final_considerationsWhereInput
+    orderBy?: final_considerationsOrderByWithAggregationInput | final_considerationsOrderByWithAggregationInput[]
+    by: Final_considerationsScalarFieldEnum[] | Final_considerationsScalarFieldEnum
+    having?: final_considerationsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Final_considerationsCountAggregateInputType | true
+    _avg?: Final_considerationsAvgAggregateInputType
+    _sum?: Final_considerationsSumAggregateInputType
+    _min?: Final_considerationsMinAggregateInputType
+    _max?: Final_considerationsMaxAggregateInputType
+  }
+
+  export type Final_considerationsGroupByOutputType = {
+    id: number
+    tid: string | null
+    uuid: string
+    evolution: string
+    harmony: string
+    pairings: string
+    notes: string | null
+    _count: Final_considerationsCountAggregateOutputType | null
+    _avg: Final_considerationsAvgAggregateOutputType | null
+    _sum: Final_considerationsSumAggregateOutputType | null
+    _min: Final_considerationsMinAggregateOutputType | null
+    _max: Final_considerationsMaxAggregateOutputType | null
+  }
+
+  type GetFinal_considerationsGroupByPayload<T extends final_considerationsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Final_considerationsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Final_considerationsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Final_considerationsGroupByOutputType[P]>
+            : GetScalarType<T[P], Final_considerationsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type final_considerationsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tid?: boolean
+    uuid?: boolean
+    evolution?: boolean
+    harmony?: boolean
+    pairings?: boolean
+    notes?: boolean
+    tastings?: boolean | final_considerations$tastingsArgs<ExtArgs>
+  }, ExtArgs["result"]["final_considerations"]>
+
+  export type final_considerationsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tid?: boolean
+    uuid?: boolean
+    evolution?: boolean
+    harmony?: boolean
+    pairings?: boolean
+    notes?: boolean
+    tastings?: boolean | final_considerations$tastingsArgs<ExtArgs>
+  }, ExtArgs["result"]["final_considerations"]>
+
+  export type final_considerationsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    tid?: boolean
+    uuid?: boolean
+    evolution?: boolean
+    harmony?: boolean
+    pairings?: boolean
+    notes?: boolean
+    tastings?: boolean | final_considerations$tastingsArgs<ExtArgs>
+  }, ExtArgs["result"]["final_considerations"]>
+
+  export type final_considerationsSelectScalar = {
+    id?: boolean
+    tid?: boolean
+    uuid?: boolean
+    evolution?: boolean
+    harmony?: boolean
+    pairings?: boolean
+    notes?: boolean
+  }
+
+  export type final_considerationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "uuid" | "evolution" | "harmony" | "pairings" | "notes", ExtArgs["result"]["final_considerations"]>
+  export type final_considerationsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tastings?: boolean | final_considerations$tastingsArgs<ExtArgs>
+  }
+  export type final_considerationsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tastings?: boolean | final_considerations$tastingsArgs<ExtArgs>
+  }
+  export type final_considerationsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tastings?: boolean | final_considerations$tastingsArgs<ExtArgs>
+  }
+
+  export type $final_considerationsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "final_considerations"
+    objects: {
+      tastings: Prisma.$tastingsPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      tid: string | null
+      uuid: string
+      evolution: string
+      harmony: string
+      pairings: string
+      notes: string | null
+    }, ExtArgs["result"]["final_considerations"]>
+    composites: {}
+  }
+
+  type final_considerationsGetPayload<S extends boolean | null | undefined | final_considerationsDefaultArgs> = $Result.GetResult<Prisma.$final_considerationsPayload, S>
+
+  type final_considerationsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<final_considerationsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Final_considerationsCountAggregateInputType | true
+    }
+
+  export interface final_considerationsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['final_considerations'], meta: { name: 'final_considerations' } }
+    /**
+     * Find zero or one Final_considerations that matches the filter.
+     * @param {final_considerationsFindUniqueArgs} args - Arguments to find a Final_considerations
+     * @example
+     * // Get one Final_considerations
+     * const final_considerations = await prisma.final_considerations.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends final_considerationsFindUniqueArgs>(args: SelectSubset<T, final_considerationsFindUniqueArgs<ExtArgs>>): Prisma__final_considerationsClient<$Result.GetResult<Prisma.$final_considerationsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Final_considerations that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {final_considerationsFindUniqueOrThrowArgs} args - Arguments to find a Final_considerations
+     * @example
+     * // Get one Final_considerations
+     * const final_considerations = await prisma.final_considerations.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends final_considerationsFindUniqueOrThrowArgs>(args: SelectSubset<T, final_considerationsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__final_considerationsClient<$Result.GetResult<Prisma.$final_considerationsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Final_considerations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {final_considerationsFindFirstArgs} args - Arguments to find a Final_considerations
+     * @example
+     * // Get one Final_considerations
+     * const final_considerations = await prisma.final_considerations.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends final_considerationsFindFirstArgs>(args?: SelectSubset<T, final_considerationsFindFirstArgs<ExtArgs>>): Prisma__final_considerationsClient<$Result.GetResult<Prisma.$final_considerationsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Final_considerations that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {final_considerationsFindFirstOrThrowArgs} args - Arguments to find a Final_considerations
+     * @example
+     * // Get one Final_considerations
+     * const final_considerations = await prisma.final_considerations.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends final_considerationsFindFirstOrThrowArgs>(args?: SelectSubset<T, final_considerationsFindFirstOrThrowArgs<ExtArgs>>): Prisma__final_considerationsClient<$Result.GetResult<Prisma.$final_considerationsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Final_considerations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {final_considerationsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Final_considerations
+     * const final_considerations = await prisma.final_considerations.findMany()
+     * 
+     * // Get first 10 Final_considerations
+     * const final_considerations = await prisma.final_considerations.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const final_considerationsWithIdOnly = await prisma.final_considerations.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends final_considerationsFindManyArgs>(args?: SelectSubset<T, final_considerationsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$final_considerationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Final_considerations.
+     * @param {final_considerationsCreateArgs} args - Arguments to create a Final_considerations.
+     * @example
+     * // Create one Final_considerations
+     * const Final_considerations = await prisma.final_considerations.create({
+     *   data: {
+     *     // ... data to create a Final_considerations
+     *   }
+     * })
+     * 
+     */
+    create<T extends final_considerationsCreateArgs>(args: SelectSubset<T, final_considerationsCreateArgs<ExtArgs>>): Prisma__final_considerationsClient<$Result.GetResult<Prisma.$final_considerationsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Final_considerations.
+     * @param {final_considerationsCreateManyArgs} args - Arguments to create many Final_considerations.
+     * @example
+     * // Create many Final_considerations
+     * const final_considerations = await prisma.final_considerations.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends final_considerationsCreateManyArgs>(args?: SelectSubset<T, final_considerationsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Final_considerations and returns the data saved in the database.
+     * @param {final_considerationsCreateManyAndReturnArgs} args - Arguments to create many Final_considerations.
+     * @example
+     * // Create many Final_considerations
+     * const final_considerations = await prisma.final_considerations.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Final_considerations and only return the `id`
+     * const final_considerationsWithIdOnly = await prisma.final_considerations.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends final_considerationsCreateManyAndReturnArgs>(args?: SelectSubset<T, final_considerationsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$final_considerationsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Final_considerations.
+     * @param {final_considerationsDeleteArgs} args - Arguments to delete one Final_considerations.
+     * @example
+     * // Delete one Final_considerations
+     * const Final_considerations = await prisma.final_considerations.delete({
+     *   where: {
+     *     // ... filter to delete one Final_considerations
+     *   }
+     * })
+     * 
+     */
+    delete<T extends final_considerationsDeleteArgs>(args: SelectSubset<T, final_considerationsDeleteArgs<ExtArgs>>): Prisma__final_considerationsClient<$Result.GetResult<Prisma.$final_considerationsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Final_considerations.
+     * @param {final_considerationsUpdateArgs} args - Arguments to update one Final_considerations.
+     * @example
+     * // Update one Final_considerations
+     * const final_considerations = await prisma.final_considerations.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends final_considerationsUpdateArgs>(args: SelectSubset<T, final_considerationsUpdateArgs<ExtArgs>>): Prisma__final_considerationsClient<$Result.GetResult<Prisma.$final_considerationsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Final_considerations.
+     * @param {final_considerationsDeleteManyArgs} args - Arguments to filter Final_considerations to delete.
+     * @example
+     * // Delete a few Final_considerations
+     * const { count } = await prisma.final_considerations.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends final_considerationsDeleteManyArgs>(args?: SelectSubset<T, final_considerationsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Final_considerations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {final_considerationsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Final_considerations
+     * const final_considerations = await prisma.final_considerations.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends final_considerationsUpdateManyArgs>(args: SelectSubset<T, final_considerationsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Final_considerations and returns the data updated in the database.
+     * @param {final_considerationsUpdateManyAndReturnArgs} args - Arguments to update many Final_considerations.
+     * @example
+     * // Update many Final_considerations
+     * const final_considerations = await prisma.final_considerations.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Final_considerations and only return the `id`
+     * const final_considerationsWithIdOnly = await prisma.final_considerations.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends final_considerationsUpdateManyAndReturnArgs>(args: SelectSubset<T, final_considerationsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$final_considerationsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Final_considerations.
+     * @param {final_considerationsUpsertArgs} args - Arguments to update or create a Final_considerations.
+     * @example
+     * // Update or create a Final_considerations
+     * const final_considerations = await prisma.final_considerations.upsert({
+     *   create: {
+     *     // ... data to create a Final_considerations
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Final_considerations we want to update
+     *   }
+     * })
+     */
+    upsert<T extends final_considerationsUpsertArgs>(args: SelectSubset<T, final_considerationsUpsertArgs<ExtArgs>>): Prisma__final_considerationsClient<$Result.GetResult<Prisma.$final_considerationsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Final_considerations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {final_considerationsCountArgs} args - Arguments to filter Final_considerations to count.
+     * @example
+     * // Count the number of Final_considerations
+     * const count = await prisma.final_considerations.count({
+     *   where: {
+     *     // ... the filter for the Final_considerations we want to count
+     *   }
+     * })
+    **/
+    count<T extends final_considerationsCountArgs>(
+      args?: Subset<T, final_considerationsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Final_considerationsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Final_considerations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Final_considerationsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Final_considerationsAggregateArgs>(args: Subset<T, Final_considerationsAggregateArgs>): Prisma.PrismaPromise<GetFinal_considerationsAggregateType<T>>
+
+    /**
+     * Group by Final_considerations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {final_considerationsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends final_considerationsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: final_considerationsGroupByArgs['orderBy'] }
+        : { orderBy?: final_considerationsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, final_considerationsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFinal_considerationsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the final_considerations model
+   */
+  readonly fields: final_considerationsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for final_considerations.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__final_considerationsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    tastings<T extends final_considerations$tastingsArgs<ExtArgs> = {}>(args?: Subset<T, final_considerations$tastingsArgs<ExtArgs>>): Prisma__tastingsClient<$Result.GetResult<Prisma.$tastingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the final_considerations model
+   */
+  interface final_considerationsFieldRefs {
+    readonly id: FieldRef<"final_considerations", 'Int'>
+    readonly tid: FieldRef<"final_considerations", 'String'>
+    readonly uuid: FieldRef<"final_considerations", 'String'>
+    readonly evolution: FieldRef<"final_considerations", 'String'>
+    readonly harmony: FieldRef<"final_considerations", 'String'>
+    readonly pairings: FieldRef<"final_considerations", 'String'>
+    readonly notes: FieldRef<"final_considerations", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * final_considerations findUnique
+   */
+  export type final_considerationsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the final_considerations
+     */
+    select?: final_considerationsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the final_considerations
+     */
+    omit?: final_considerationsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: final_considerationsInclude<ExtArgs> | null
+    /**
+     * Filter, which final_considerations to fetch.
+     */
+    where: final_considerationsWhereUniqueInput
+  }
+
+  /**
+   * final_considerations findUniqueOrThrow
+   */
+  export type final_considerationsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the final_considerations
+     */
+    select?: final_considerationsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the final_considerations
+     */
+    omit?: final_considerationsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: final_considerationsInclude<ExtArgs> | null
+    /**
+     * Filter, which final_considerations to fetch.
+     */
+    where: final_considerationsWhereUniqueInput
+  }
+
+  /**
+   * final_considerations findFirst
+   */
+  export type final_considerationsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the final_considerations
+     */
+    select?: final_considerationsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the final_considerations
+     */
+    omit?: final_considerationsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: final_considerationsInclude<ExtArgs> | null
+    /**
+     * Filter, which final_considerations to fetch.
+     */
+    where?: final_considerationsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of final_considerations to fetch.
+     */
+    orderBy?: final_considerationsOrderByWithRelationInput | final_considerationsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for final_considerations.
+     */
+    cursor?: final_considerationsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` final_considerations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` final_considerations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of final_considerations.
+     */
+    distinct?: Final_considerationsScalarFieldEnum | Final_considerationsScalarFieldEnum[]
+  }
+
+  /**
+   * final_considerations findFirstOrThrow
+   */
+  export type final_considerationsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the final_considerations
+     */
+    select?: final_considerationsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the final_considerations
+     */
+    omit?: final_considerationsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: final_considerationsInclude<ExtArgs> | null
+    /**
+     * Filter, which final_considerations to fetch.
+     */
+    where?: final_considerationsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of final_considerations to fetch.
+     */
+    orderBy?: final_considerationsOrderByWithRelationInput | final_considerationsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for final_considerations.
+     */
+    cursor?: final_considerationsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` final_considerations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` final_considerations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of final_considerations.
+     */
+    distinct?: Final_considerationsScalarFieldEnum | Final_considerationsScalarFieldEnum[]
+  }
+
+  /**
+   * final_considerations findMany
+   */
+  export type final_considerationsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the final_considerations
+     */
+    select?: final_considerationsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the final_considerations
+     */
+    omit?: final_considerationsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: final_considerationsInclude<ExtArgs> | null
+    /**
+     * Filter, which final_considerations to fetch.
+     */
+    where?: final_considerationsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of final_considerations to fetch.
+     */
+    orderBy?: final_considerationsOrderByWithRelationInput | final_considerationsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing final_considerations.
+     */
+    cursor?: final_considerationsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` final_considerations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` final_considerations.
+     */
+    skip?: number
+    distinct?: Final_considerationsScalarFieldEnum | Final_considerationsScalarFieldEnum[]
+  }
+
+  /**
+   * final_considerations create
+   */
+  export type final_considerationsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the final_considerations
+     */
+    select?: final_considerationsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the final_considerations
+     */
+    omit?: final_considerationsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: final_considerationsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a final_considerations.
+     */
+    data: XOR<final_considerationsCreateInput, final_considerationsUncheckedCreateInput>
+  }
+
+  /**
+   * final_considerations createMany
+   */
+  export type final_considerationsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many final_considerations.
+     */
+    data: final_considerationsCreateManyInput | final_considerationsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * final_considerations createManyAndReturn
+   */
+  export type final_considerationsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the final_considerations
+     */
+    select?: final_considerationsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the final_considerations
+     */
+    omit?: final_considerationsOmit<ExtArgs> | null
+    /**
+     * The data used to create many final_considerations.
+     */
+    data: final_considerationsCreateManyInput | final_considerationsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: final_considerationsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * final_considerations update
+   */
+  export type final_considerationsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the final_considerations
+     */
+    select?: final_considerationsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the final_considerations
+     */
+    omit?: final_considerationsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: final_considerationsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a final_considerations.
+     */
+    data: XOR<final_considerationsUpdateInput, final_considerationsUncheckedUpdateInput>
+    /**
+     * Choose, which final_considerations to update.
+     */
+    where: final_considerationsWhereUniqueInput
+  }
+
+  /**
+   * final_considerations updateMany
+   */
+  export type final_considerationsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update final_considerations.
+     */
+    data: XOR<final_considerationsUpdateManyMutationInput, final_considerationsUncheckedUpdateManyInput>
+    /**
+     * Filter which final_considerations to update
+     */
+    where?: final_considerationsWhereInput
+    /**
+     * Limit how many final_considerations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * final_considerations updateManyAndReturn
+   */
+  export type final_considerationsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the final_considerations
+     */
+    select?: final_considerationsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the final_considerations
+     */
+    omit?: final_considerationsOmit<ExtArgs> | null
+    /**
+     * The data used to update final_considerations.
+     */
+    data: XOR<final_considerationsUpdateManyMutationInput, final_considerationsUncheckedUpdateManyInput>
+    /**
+     * Filter which final_considerations to update
+     */
+    where?: final_considerationsWhereInput
+    /**
+     * Limit how many final_considerations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: final_considerationsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * final_considerations upsert
+   */
+  export type final_considerationsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the final_considerations
+     */
+    select?: final_considerationsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the final_considerations
+     */
+    omit?: final_considerationsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: final_considerationsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the final_considerations to update in case it exists.
+     */
+    where: final_considerationsWhereUniqueInput
+    /**
+     * In case the final_considerations found by the `where` argument doesn't exist, create a new final_considerations with this data.
+     */
+    create: XOR<final_considerationsCreateInput, final_considerationsUncheckedCreateInput>
+    /**
+     * In case the final_considerations was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<final_considerationsUpdateInput, final_considerationsUncheckedUpdateInput>
+  }
+
+  /**
+   * final_considerations delete
+   */
+  export type final_considerationsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the final_considerations
+     */
+    select?: final_considerationsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the final_considerations
+     */
+    omit?: final_considerationsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: final_considerationsInclude<ExtArgs> | null
+    /**
+     * Filter which final_considerations to delete.
+     */
+    where: final_considerationsWhereUniqueInput
+  }
+
+  /**
+   * final_considerations deleteMany
+   */
+  export type final_considerationsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which final_considerations to delete
+     */
+    where?: final_considerationsWhereInput
+    /**
+     * Limit how many final_considerations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * final_considerations.tastings
+   */
+  export type final_considerations$tastingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tastings
+     */
+    select?: tastingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tastings
+     */
+    omit?: tastingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tastingsInclude<ExtArgs> | null
+    where?: tastingsWhereInput
+  }
+
+  /**
+   * final_considerations without action
+   */
+  export type final_considerationsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the final_considerations
+     */
+    select?: final_considerationsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the final_considerations
+     */
+    omit?: final_considerationsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: final_considerationsInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -10034,6 +11338,7 @@ export namespace Prisma {
   export const Olfactory_examsScalarFieldEnum: {
     id: 'id',
     tid: 'tid',
+    uuid: 'uuid',
     intensity: 'intensity',
     complexity: 'complexity',
     quality: 'quality',
@@ -10056,6 +11361,7 @@ export namespace Prisma {
   export const Taste_olfactory_examsScalarFieldEnum: {
     id: 'id',
     tid: 'tid',
+    uuid: 'uuid',
     sugars: 'sugars',
     alcohols: 'alcohols',
     polyalcohols: 'polyalcohols',
@@ -10076,6 +11382,7 @@ export namespace Prisma {
   export const Visual_examsScalarFieldEnum: {
     id: 'id',
     tid: 'tid',
+    uuid: 'uuid',
     limpidity: 'limpidity',
     color_family: 'color_family',
     color_shade: 'color_shade',
@@ -10087,6 +11394,19 @@ export namespace Prisma {
   };
 
   export type Visual_examsScalarFieldEnum = (typeof Visual_examsScalarFieldEnum)[keyof typeof Visual_examsScalarFieldEnum]
+
+
+  export const Final_considerationsScalarFieldEnum: {
+    id: 'id',
+    tid: 'tid',
+    uuid: 'uuid',
+    evolution: 'evolution',
+    harmony: 'harmony',
+    pairings: 'pairings',
+    notes: 'notes'
+  };
+
+  export type Final_considerationsScalarFieldEnum = (typeof Final_considerationsScalarFieldEnum)[keyof typeof Final_considerationsScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -10412,12 +11732,13 @@ export namespace Prisma {
     alcohol_content?: DecimalFilter<"tastings"> | Decimal | DecimalJsLike | number | string
     vintage?: IntFilter<"tastings"> | number
     wine_temperature?: DecimalFilter<"tastings"> | Decimal | DecimalJsLike | number | string
-    ambient_temperature?: DecimalFilter<"tastings"> | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: DecimalNullableFilter<"tastings"> | Decimal | DecimalJsLike | number | string | null
     tasting_date?: DateTimeFilter<"tastings"> | Date | string
     tasting_time?: DateTimeFilter<"tastings"> | Date | string
     tasting_location?: StringFilter<"tastings"> | string
     created_at?: DateTimeNullableFilter<"tastings"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"tastings"> | Date | string | null
+    final_considerations?: Final_considerationsListRelationFilter
     olfactory_exams?: Olfactory_examsListRelationFilter
     taste_olfactory_exams?: Taste_olfactory_examsListRelationFilter
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
@@ -10436,12 +11757,13 @@ export namespace Prisma {
     alcohol_content?: SortOrder
     vintage?: SortOrder
     wine_temperature?: SortOrder
-    ambient_temperature?: SortOrder
+    ambient_temperature?: SortOrderInput | SortOrder
     tasting_date?: SortOrder
     tasting_time?: SortOrder
     tasting_location?: SortOrder
     created_at?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
+    final_considerations?: final_considerationsOrderByRelationAggregateInput
     olfactory_exams?: olfactory_examsOrderByRelationAggregateInput
     taste_olfactory_exams?: taste_olfactory_examsOrderByRelationAggregateInput
     users?: usersOrderByWithRelationInput
@@ -10463,12 +11785,13 @@ export namespace Prisma {
     alcohol_content?: DecimalFilter<"tastings"> | Decimal | DecimalJsLike | number | string
     vintage?: IntFilter<"tastings"> | number
     wine_temperature?: DecimalFilter<"tastings"> | Decimal | DecimalJsLike | number | string
-    ambient_temperature?: DecimalFilter<"tastings"> | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: DecimalNullableFilter<"tastings"> | Decimal | DecimalJsLike | number | string | null
     tasting_date?: DateTimeFilter<"tastings"> | Date | string
     tasting_time?: DateTimeFilter<"tastings"> | Date | string
     tasting_location?: StringFilter<"tastings"> | string
     created_at?: DateTimeNullableFilter<"tastings"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"tastings"> | Date | string | null
+    final_considerations?: Final_considerationsListRelationFilter
     olfactory_exams?: Olfactory_examsListRelationFilter
     taste_olfactory_exams?: Taste_olfactory_examsListRelationFilter
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
@@ -10487,7 +11810,7 @@ export namespace Prisma {
     alcohol_content?: SortOrder
     vintage?: SortOrder
     wine_temperature?: SortOrder
-    ambient_temperature?: SortOrder
+    ambient_temperature?: SortOrderInput | SortOrder
     tasting_date?: SortOrder
     tasting_time?: SortOrder
     tasting_location?: SortOrder
@@ -10514,7 +11837,7 @@ export namespace Prisma {
     alcohol_content?: DecimalWithAggregatesFilter<"tastings"> | Decimal | DecimalJsLike | number | string
     vintage?: IntWithAggregatesFilter<"tastings"> | number
     wine_temperature?: DecimalWithAggregatesFilter<"tastings"> | Decimal | DecimalJsLike | number | string
-    ambient_temperature?: DecimalWithAggregatesFilter<"tastings"> | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: DecimalNullableWithAggregatesFilter<"tastings"> | Decimal | DecimalJsLike | number | string | null
     tasting_date?: DateTimeWithAggregatesFilter<"tastings"> | Date | string
     tasting_time?: DateTimeWithAggregatesFilter<"tastings"> | Date | string
     tasting_location?: StringWithAggregatesFilter<"tastings"> | string
@@ -10528,6 +11851,7 @@ export namespace Prisma {
     NOT?: olfactory_examsWhereInput | olfactory_examsWhereInput[]
     id?: IntFilter<"olfactory_exams"> | number
     tid?: UuidNullableFilter<"olfactory_exams"> | string | null
+    uuid?: UuidFilter<"olfactory_exams"> | string
     intensity?: StringFilter<"olfactory_exams"> | string
     complexity?: StringFilter<"olfactory_exams"> | string
     quality?: StringFilter<"olfactory_exams"> | string
@@ -10548,6 +11872,7 @@ export namespace Prisma {
   export type olfactory_examsOrderByWithRelationInput = {
     id?: SortOrder
     tid?: SortOrderInput | SortOrder
+    uuid?: SortOrder
     intensity?: SortOrder
     complexity?: SortOrder
     quality?: SortOrder
@@ -10567,6 +11892,7 @@ export namespace Prisma {
 
   export type olfactory_examsWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    uuid?: string
     AND?: olfactory_examsWhereInput | olfactory_examsWhereInput[]
     OR?: olfactory_examsWhereInput[]
     NOT?: olfactory_examsWhereInput | olfactory_examsWhereInput[]
@@ -10586,11 +11912,12 @@ export namespace Prisma {
     frank?: BoolNullableFilter<"olfactory_exams"> | boolean | null
     notes?: StringNullableFilter<"olfactory_exams"> | string | null
     tastings?: XOR<TastingsNullableScalarRelationFilter, tastingsWhereInput> | null
-  }, "id">
+  }, "id" | "uuid">
 
   export type olfactory_examsOrderByWithAggregationInput = {
     id?: SortOrder
     tid?: SortOrderInput | SortOrder
+    uuid?: SortOrder
     intensity?: SortOrder
     complexity?: SortOrder
     quality?: SortOrder
@@ -10618,6 +11945,7 @@ export namespace Prisma {
     NOT?: olfactory_examsScalarWhereWithAggregatesInput | olfactory_examsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"olfactory_exams"> | number
     tid?: UuidNullableWithAggregatesFilter<"olfactory_exams"> | string | null
+    uuid?: UuidWithAggregatesFilter<"olfactory_exams"> | string
     intensity?: StringWithAggregatesFilter<"olfactory_exams"> | string
     complexity?: StringWithAggregatesFilter<"olfactory_exams"> | string
     quality?: StringWithAggregatesFilter<"olfactory_exams"> | string
@@ -10640,6 +11968,7 @@ export namespace Prisma {
     NOT?: taste_olfactory_examsWhereInput | taste_olfactory_examsWhereInput[]
     id?: IntFilter<"taste_olfactory_exams"> | number
     tid?: UuidNullableFilter<"taste_olfactory_exams"> | string | null
+    uuid?: UuidFilter<"taste_olfactory_exams"> | string
     sugars?: StringFilter<"taste_olfactory_exams"> | string
     alcohols?: StringFilter<"taste_olfactory_exams"> | string
     polyalcohols?: StringFilter<"taste_olfactory_exams"> | string
@@ -10658,6 +11987,7 @@ export namespace Prisma {
   export type taste_olfactory_examsOrderByWithRelationInput = {
     id?: SortOrder
     tid?: SortOrderInput | SortOrder
+    uuid?: SortOrder
     sugars?: SortOrder
     alcohols?: SortOrder
     polyalcohols?: SortOrder
@@ -10675,6 +12005,7 @@ export namespace Prisma {
 
   export type taste_olfactory_examsWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    uuid?: string
     AND?: taste_olfactory_examsWhereInput | taste_olfactory_examsWhereInput[]
     OR?: taste_olfactory_examsWhereInput[]
     NOT?: taste_olfactory_examsWhereInput | taste_olfactory_examsWhereInput[]
@@ -10692,11 +12023,12 @@ export namespace Prisma {
     structure?: StringFilter<"taste_olfactory_exams"> | string
     notes?: StringNullableFilter<"taste_olfactory_exams"> | string | null
     tastings?: XOR<TastingsNullableScalarRelationFilter, tastingsWhereInput> | null
-  }, "id">
+  }, "id" | "uuid">
 
   export type taste_olfactory_examsOrderByWithAggregationInput = {
     id?: SortOrder
     tid?: SortOrderInput | SortOrder
+    uuid?: SortOrder
     sugars?: SortOrder
     alcohols?: SortOrder
     polyalcohols?: SortOrder
@@ -10722,6 +12054,7 @@ export namespace Prisma {
     NOT?: taste_olfactory_examsScalarWhereWithAggregatesInput | taste_olfactory_examsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"taste_olfactory_exams"> | number
     tid?: UuidNullableWithAggregatesFilter<"taste_olfactory_exams"> | string | null
+    uuid?: UuidWithAggregatesFilter<"taste_olfactory_exams"> | string
     sugars?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
     alcohols?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
     polyalcohols?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
@@ -10742,6 +12075,7 @@ export namespace Prisma {
     NOT?: visual_examsWhereInput | visual_examsWhereInput[]
     id?: IntFilter<"visual_exams"> | number
     tid?: UuidNullableFilter<"visual_exams"> | string | null
+    uuid?: UuidFilter<"visual_exams"> | string
     limpidity?: StringNullableFilter<"visual_exams"> | string | null
     color_family?: StringFilter<"visual_exams"> | string
     color_shade?: StringFilter<"visual_exams"> | string
@@ -10756,6 +12090,7 @@ export namespace Prisma {
   export type visual_examsOrderByWithRelationInput = {
     id?: SortOrder
     tid?: SortOrderInput | SortOrder
+    uuid?: SortOrder
     limpidity?: SortOrderInput | SortOrder
     color_family?: SortOrder
     color_shade?: SortOrder
@@ -10769,6 +12104,7 @@ export namespace Prisma {
 
   export type visual_examsWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    uuid?: string
     AND?: visual_examsWhereInput | visual_examsWhereInput[]
     OR?: visual_examsWhereInput[]
     NOT?: visual_examsWhereInput | visual_examsWhereInput[]
@@ -10782,11 +12118,12 @@ export namespace Prisma {
     bubble_persistence?: StringNullableFilter<"visual_exams"> | string | null
     notes?: StringNullableFilter<"visual_exams"> | string | null
     tastings?: XOR<TastingsNullableScalarRelationFilter, tastingsWhereInput> | null
-  }, "id">
+  }, "id" | "uuid">
 
   export type visual_examsOrderByWithAggregationInput = {
     id?: SortOrder
     tid?: SortOrderInput | SortOrder
+    uuid?: SortOrder
     limpidity?: SortOrderInput | SortOrder
     color_family?: SortOrder
     color_shade?: SortOrder
@@ -10808,6 +12145,7 @@ export namespace Prisma {
     NOT?: visual_examsScalarWhereWithAggregatesInput | visual_examsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"visual_exams"> | number
     tid?: UuidNullableWithAggregatesFilter<"visual_exams"> | string | null
+    uuid?: UuidWithAggregatesFilter<"visual_exams"> | string
     limpidity?: StringNullableWithAggregatesFilter<"visual_exams"> | string | null
     color_family?: StringWithAggregatesFilter<"visual_exams"> | string
     color_shade?: StringWithAggregatesFilter<"visual_exams"> | string
@@ -10816,6 +12154,73 @@ export namespace Prisma {
     bubble_number?: StringNullableWithAggregatesFilter<"visual_exams"> | string | null
     bubble_persistence?: StringNullableWithAggregatesFilter<"visual_exams"> | string | null
     notes?: StringNullableWithAggregatesFilter<"visual_exams"> | string | null
+  }
+
+  export type final_considerationsWhereInput = {
+    AND?: final_considerationsWhereInput | final_considerationsWhereInput[]
+    OR?: final_considerationsWhereInput[]
+    NOT?: final_considerationsWhereInput | final_considerationsWhereInput[]
+    id?: IntFilter<"final_considerations"> | number
+    tid?: UuidNullableFilter<"final_considerations"> | string | null
+    uuid?: UuidFilter<"final_considerations"> | string
+    evolution?: StringFilter<"final_considerations"> | string
+    harmony?: StringFilter<"final_considerations"> | string
+    pairings?: StringFilter<"final_considerations"> | string
+    notes?: StringNullableFilter<"final_considerations"> | string | null
+    tastings?: XOR<TastingsNullableScalarRelationFilter, tastingsWhereInput> | null
+  }
+
+  export type final_considerationsOrderByWithRelationInput = {
+    id?: SortOrder
+    tid?: SortOrderInput | SortOrder
+    uuid?: SortOrder
+    evolution?: SortOrder
+    harmony?: SortOrder
+    pairings?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    tastings?: tastingsOrderByWithRelationInput
+  }
+
+  export type final_considerationsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    uuid?: string
+    AND?: final_considerationsWhereInput | final_considerationsWhereInput[]
+    OR?: final_considerationsWhereInput[]
+    NOT?: final_considerationsWhereInput | final_considerationsWhereInput[]
+    tid?: UuidNullableFilter<"final_considerations"> | string | null
+    evolution?: StringFilter<"final_considerations"> | string
+    harmony?: StringFilter<"final_considerations"> | string
+    pairings?: StringFilter<"final_considerations"> | string
+    notes?: StringNullableFilter<"final_considerations"> | string | null
+    tastings?: XOR<TastingsNullableScalarRelationFilter, tastingsWhereInput> | null
+  }, "id" | "uuid">
+
+  export type final_considerationsOrderByWithAggregationInput = {
+    id?: SortOrder
+    tid?: SortOrderInput | SortOrder
+    uuid?: SortOrder
+    evolution?: SortOrder
+    harmony?: SortOrder
+    pairings?: SortOrder
+    notes?: SortOrderInput | SortOrder
+    _count?: final_considerationsCountOrderByAggregateInput
+    _avg?: final_considerationsAvgOrderByAggregateInput
+    _max?: final_considerationsMaxOrderByAggregateInput
+    _min?: final_considerationsMinOrderByAggregateInput
+    _sum?: final_considerationsSumOrderByAggregateInput
+  }
+
+  export type final_considerationsScalarWhereWithAggregatesInput = {
+    AND?: final_considerationsScalarWhereWithAggregatesInput | final_considerationsScalarWhereWithAggregatesInput[]
+    OR?: final_considerationsScalarWhereWithAggregatesInput[]
+    NOT?: final_considerationsScalarWhereWithAggregatesInput | final_considerationsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"final_considerations"> | number
+    tid?: UuidNullableWithAggregatesFilter<"final_considerations"> | string | null
+    uuid?: UuidWithAggregatesFilter<"final_considerations"> | string
+    evolution?: StringWithAggregatesFilter<"final_considerations"> | string
+    harmony?: StringWithAggregatesFilter<"final_considerations"> | string
+    pairings?: StringWithAggregatesFilter<"final_considerations"> | string
+    notes?: StringNullableWithAggregatesFilter<"final_considerations"> | string | null
   }
 
   export type usersCreateInput = {
@@ -11031,12 +12436,13 @@ export namespace Prisma {
     alcohol_content: Decimal | DecimalJsLike | number | string
     vintage: number
     wine_temperature: Decimal | DecimalJsLike | number | string
-    ambient_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature?: Decimal | DecimalJsLike | number | string | null
     tasting_date: Date | string
     tasting_time: Date | string
     tasting_location: string
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    final_considerations?: final_considerationsCreateNestedManyWithoutTastingsInput
     olfactory_exams?: olfactory_examsCreateNestedManyWithoutTastingsInput
     taste_olfactory_exams?: taste_olfactory_examsCreateNestedManyWithoutTastingsInput
     users: usersCreateNestedOneWithoutTastingsInput
@@ -11055,12 +12461,13 @@ export namespace Prisma {
     alcohol_content: Decimal | DecimalJsLike | number | string
     vintage: number
     wine_temperature: Decimal | DecimalJsLike | number | string
-    ambient_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature?: Decimal | DecimalJsLike | number | string | null
     tasting_date: Date | string
     tasting_time: Date | string
     tasting_location: string
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    final_considerations?: final_considerationsUncheckedCreateNestedManyWithoutTastingsInput
     olfactory_exams?: olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput
     taste_olfactory_exams?: taste_olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput
     visual_exams?: visual_examsUncheckedCreateNestedManyWithoutTastingsInput
@@ -11074,12 +12481,13 @@ export namespace Prisma {
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     vintage?: IntFieldUpdateOperationsInput | number
     wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    ambient_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_location?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    final_considerations?: final_considerationsUpdateManyWithoutTastingsNestedInput
     olfactory_exams?: olfactory_examsUpdateManyWithoutTastingsNestedInput
     taste_olfactory_exams?: taste_olfactory_examsUpdateManyWithoutTastingsNestedInput
     users?: usersUpdateOneRequiredWithoutTastingsNestedInput
@@ -11098,12 +12506,13 @@ export namespace Prisma {
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     vintage?: IntFieldUpdateOperationsInput | number
     wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    ambient_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_location?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    final_considerations?: final_considerationsUncheckedUpdateManyWithoutTastingsNestedInput
     olfactory_exams?: olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput
     taste_olfactory_exams?: taste_olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput
     visual_exams?: visual_examsUncheckedUpdateManyWithoutTastingsNestedInput
@@ -11120,7 +12529,7 @@ export namespace Prisma {
     alcohol_content: Decimal | DecimalJsLike | number | string
     vintage: number
     wine_temperature: Decimal | DecimalJsLike | number | string
-    ambient_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature?: Decimal | DecimalJsLike | number | string | null
     tasting_date: Date | string
     tasting_time: Date | string
     tasting_location: string
@@ -11136,7 +12545,7 @@ export namespace Prisma {
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     vintage?: IntFieldUpdateOperationsInput | number
     wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    ambient_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_location?: StringFieldUpdateOperationsInput | string
@@ -11155,7 +12564,7 @@ export namespace Prisma {
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     vintage?: IntFieldUpdateOperationsInput | number
     wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    ambient_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_location?: StringFieldUpdateOperationsInput | string
@@ -11164,6 +12573,7 @@ export namespace Prisma {
   }
 
   export type olfactory_examsCreateInput = {
+    uuid?: string
     intensity: string
     complexity: string
     quality: string
@@ -11184,6 +12594,7 @@ export namespace Prisma {
   export type olfactory_examsUncheckedCreateInput = {
     id?: number
     tid?: string | null
+    uuid?: string
     intensity: string
     complexity: string
     quality: string
@@ -11201,6 +12612,7 @@ export namespace Prisma {
   }
 
   export type olfactory_examsUpdateInput = {
+    uuid?: StringFieldUpdateOperationsInput | string
     intensity?: StringFieldUpdateOperationsInput | string
     complexity?: StringFieldUpdateOperationsInput | string
     quality?: StringFieldUpdateOperationsInput | string
@@ -11221,6 +12633,7 @@ export namespace Prisma {
   export type olfactory_examsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     tid?: NullableStringFieldUpdateOperationsInput | string | null
+    uuid?: StringFieldUpdateOperationsInput | string
     intensity?: StringFieldUpdateOperationsInput | string
     complexity?: StringFieldUpdateOperationsInput | string
     quality?: StringFieldUpdateOperationsInput | string
@@ -11240,6 +12653,7 @@ export namespace Prisma {
   export type olfactory_examsCreateManyInput = {
     id?: number
     tid?: string | null
+    uuid?: string
     intensity: string
     complexity: string
     quality: string
@@ -11257,6 +12671,7 @@ export namespace Prisma {
   }
 
   export type olfactory_examsUpdateManyMutationInput = {
+    uuid?: StringFieldUpdateOperationsInput | string
     intensity?: StringFieldUpdateOperationsInput | string
     complexity?: StringFieldUpdateOperationsInput | string
     quality?: StringFieldUpdateOperationsInput | string
@@ -11276,6 +12691,7 @@ export namespace Prisma {
   export type olfactory_examsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     tid?: NullableStringFieldUpdateOperationsInput | string | null
+    uuid?: StringFieldUpdateOperationsInput | string
     intensity?: StringFieldUpdateOperationsInput | string
     complexity?: StringFieldUpdateOperationsInput | string
     quality?: StringFieldUpdateOperationsInput | string
@@ -11293,6 +12709,7 @@ export namespace Prisma {
   }
 
   export type taste_olfactory_examsCreateInput = {
+    uuid?: string
     sugars: string
     alcohols: string
     polyalcohols: string
@@ -11311,6 +12728,7 @@ export namespace Prisma {
   export type taste_olfactory_examsUncheckedCreateInput = {
     id?: number
     tid?: string | null
+    uuid?: string
     sugars: string
     alcohols: string
     polyalcohols: string
@@ -11326,6 +12744,7 @@ export namespace Prisma {
   }
 
   export type taste_olfactory_examsUpdateInput = {
+    uuid?: StringFieldUpdateOperationsInput | string
     sugars?: StringFieldUpdateOperationsInput | string
     alcohols?: StringFieldUpdateOperationsInput | string
     polyalcohols?: StringFieldUpdateOperationsInput | string
@@ -11344,6 +12763,7 @@ export namespace Prisma {
   export type taste_olfactory_examsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     tid?: NullableStringFieldUpdateOperationsInput | string | null
+    uuid?: StringFieldUpdateOperationsInput | string
     sugars?: StringFieldUpdateOperationsInput | string
     alcohols?: StringFieldUpdateOperationsInput | string
     polyalcohols?: StringFieldUpdateOperationsInput | string
@@ -11361,6 +12781,7 @@ export namespace Prisma {
   export type taste_olfactory_examsCreateManyInput = {
     id?: number
     tid?: string | null
+    uuid?: string
     sugars: string
     alcohols: string
     polyalcohols: string
@@ -11376,6 +12797,7 @@ export namespace Prisma {
   }
 
   export type taste_olfactory_examsUpdateManyMutationInput = {
+    uuid?: StringFieldUpdateOperationsInput | string
     sugars?: StringFieldUpdateOperationsInput | string
     alcohols?: StringFieldUpdateOperationsInput | string
     polyalcohols?: StringFieldUpdateOperationsInput | string
@@ -11393,6 +12815,7 @@ export namespace Prisma {
   export type taste_olfactory_examsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     tid?: NullableStringFieldUpdateOperationsInput | string | null
+    uuid?: StringFieldUpdateOperationsInput | string
     sugars?: StringFieldUpdateOperationsInput | string
     alcohols?: StringFieldUpdateOperationsInput | string
     polyalcohols?: StringFieldUpdateOperationsInput | string
@@ -11408,6 +12831,7 @@ export namespace Prisma {
   }
 
   export type visual_examsCreateInput = {
+    uuid?: string
     limpidity?: string | null
     color_family: string
     color_shade: string
@@ -11422,6 +12846,7 @@ export namespace Prisma {
   export type visual_examsUncheckedCreateInput = {
     id?: number
     tid?: string | null
+    uuid?: string
     limpidity?: string | null
     color_family: string
     color_shade: string
@@ -11433,6 +12858,7 @@ export namespace Prisma {
   }
 
   export type visual_examsUpdateInput = {
+    uuid?: StringFieldUpdateOperationsInput | string
     limpidity?: NullableStringFieldUpdateOperationsInput | string | null
     color_family?: StringFieldUpdateOperationsInput | string
     color_shade?: StringFieldUpdateOperationsInput | string
@@ -11447,6 +12873,7 @@ export namespace Prisma {
   export type visual_examsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     tid?: NullableStringFieldUpdateOperationsInput | string | null
+    uuid?: StringFieldUpdateOperationsInput | string
     limpidity?: NullableStringFieldUpdateOperationsInput | string | null
     color_family?: StringFieldUpdateOperationsInput | string
     color_shade?: StringFieldUpdateOperationsInput | string
@@ -11460,6 +12887,7 @@ export namespace Prisma {
   export type visual_examsCreateManyInput = {
     id?: number
     tid?: string | null
+    uuid?: string
     limpidity?: string | null
     color_family: string
     color_shade: string
@@ -11471,6 +12899,7 @@ export namespace Prisma {
   }
 
   export type visual_examsUpdateManyMutationInput = {
+    uuid?: StringFieldUpdateOperationsInput | string
     limpidity?: NullableStringFieldUpdateOperationsInput | string | null
     color_family?: StringFieldUpdateOperationsInput | string
     color_shade?: StringFieldUpdateOperationsInput | string
@@ -11484,6 +12913,7 @@ export namespace Prisma {
   export type visual_examsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     tid?: NullableStringFieldUpdateOperationsInput | string | null
+    uuid?: StringFieldUpdateOperationsInput | string
     limpidity?: NullableStringFieldUpdateOperationsInput | string | null
     color_family?: StringFieldUpdateOperationsInput | string
     color_shade?: StringFieldUpdateOperationsInput | string
@@ -11491,6 +12921,72 @@ export namespace Prisma {
     bubble_grain?: NullableStringFieldUpdateOperationsInput | string | null
     bubble_number?: NullableStringFieldUpdateOperationsInput | string | null
     bubble_persistence?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type final_considerationsCreateInput = {
+    uuid?: string
+    evolution: string
+    harmony: string
+    pairings: string
+    notes?: string | null
+    tastings?: tastingsCreateNestedOneWithoutFinal_considerationsInput
+  }
+
+  export type final_considerationsUncheckedCreateInput = {
+    id?: number
+    tid?: string | null
+    uuid?: string
+    evolution: string
+    harmony: string
+    pairings: string
+    notes?: string | null
+  }
+
+  export type final_considerationsUpdateInput = {
+    uuid?: StringFieldUpdateOperationsInput | string
+    evolution?: StringFieldUpdateOperationsInput | string
+    harmony?: StringFieldUpdateOperationsInput | string
+    pairings?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    tastings?: tastingsUpdateOneWithoutFinal_considerationsNestedInput
+  }
+
+  export type final_considerationsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tid?: NullableStringFieldUpdateOperationsInput | string | null
+    uuid?: StringFieldUpdateOperationsInput | string
+    evolution?: StringFieldUpdateOperationsInput | string
+    harmony?: StringFieldUpdateOperationsInput | string
+    pairings?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type final_considerationsCreateManyInput = {
+    id?: number
+    tid?: string | null
+    uuid?: string
+    evolution: string
+    harmony: string
+    pairings: string
+    notes?: string | null
+  }
+
+  export type final_considerationsUpdateManyMutationInput = {
+    uuid?: StringFieldUpdateOperationsInput | string
+    evolution?: StringFieldUpdateOperationsInput | string
+    harmony?: StringFieldUpdateOperationsInput | string
+    pairings?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type final_considerationsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tid?: NullableStringFieldUpdateOperationsInput | string | null
+    uuid?: StringFieldUpdateOperationsInput | string
+    evolution?: StringFieldUpdateOperationsInput | string
+    harmony?: StringFieldUpdateOperationsInput | string
+    pairings?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -11838,6 +13334,17 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
+  export type DecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -11847,6 +13354,12 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type Final_considerationsListRelationFilter = {
+    every?: final_considerationsWhereInput
+    some?: final_considerationsWhereInput
+    none?: final_considerationsWhereInput
   }
 
   export type Olfactory_examsListRelationFilter = {
@@ -11875,6 +13388,10 @@ export namespace Prisma {
     every?: visual_examsWhereInput
     some?: visual_examsWhereInput
     none?: visual_examsWhereInput
+  }
+
+  export type final_considerationsOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type olfactory_examsOrderByRelationAggregateInput = {
@@ -11980,6 +13497,22 @@ export namespace Prisma {
     _max?: NestedDecimalFilter<$PrismaModel>
   }
 
+  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -12014,6 +13547,7 @@ export namespace Prisma {
   export type olfactory_examsCountOrderByAggregateInput = {
     id?: SortOrder
     tid?: SortOrder
+    uuid?: SortOrder
     intensity?: SortOrder
     complexity?: SortOrder
     quality?: SortOrder
@@ -12037,6 +13571,7 @@ export namespace Prisma {
   export type olfactory_examsMaxOrderByAggregateInput = {
     id?: SortOrder
     tid?: SortOrder
+    uuid?: SortOrder
     intensity?: SortOrder
     complexity?: SortOrder
     quality?: SortOrder
@@ -12056,6 +13591,7 @@ export namespace Prisma {
   export type olfactory_examsMinOrderByAggregateInput = {
     id?: SortOrder
     tid?: SortOrder
+    uuid?: SortOrder
     intensity?: SortOrder
     complexity?: SortOrder
     quality?: SortOrder
@@ -12094,6 +13630,7 @@ export namespace Prisma {
   export type taste_olfactory_examsCountOrderByAggregateInput = {
     id?: SortOrder
     tid?: SortOrder
+    uuid?: SortOrder
     sugars?: SortOrder
     alcohols?: SortOrder
     polyalcohols?: SortOrder
@@ -12115,6 +13652,7 @@ export namespace Prisma {
   export type taste_olfactory_examsMaxOrderByAggregateInput = {
     id?: SortOrder
     tid?: SortOrder
+    uuid?: SortOrder
     sugars?: SortOrder
     alcohols?: SortOrder
     polyalcohols?: SortOrder
@@ -12132,6 +13670,7 @@ export namespace Prisma {
   export type taste_olfactory_examsMinOrderByAggregateInput = {
     id?: SortOrder
     tid?: SortOrder
+    uuid?: SortOrder
     sugars?: SortOrder
     alcohols?: SortOrder
     polyalcohols?: SortOrder
@@ -12153,6 +13692,7 @@ export namespace Prisma {
   export type visual_examsCountOrderByAggregateInput = {
     id?: SortOrder
     tid?: SortOrder
+    uuid?: SortOrder
     limpidity?: SortOrder
     color_family?: SortOrder
     color_shade?: SortOrder
@@ -12170,6 +13710,7 @@ export namespace Prisma {
   export type visual_examsMaxOrderByAggregateInput = {
     id?: SortOrder
     tid?: SortOrder
+    uuid?: SortOrder
     limpidity?: SortOrder
     color_family?: SortOrder
     color_shade?: SortOrder
@@ -12183,6 +13724,7 @@ export namespace Prisma {
   export type visual_examsMinOrderByAggregateInput = {
     id?: SortOrder
     tid?: SortOrder
+    uuid?: SortOrder
     limpidity?: SortOrder
     color_family?: SortOrder
     color_shade?: SortOrder
@@ -12194,6 +13736,44 @@ export namespace Prisma {
   }
 
   export type visual_examsSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type final_considerationsCountOrderByAggregateInput = {
+    id?: SortOrder
+    tid?: SortOrder
+    uuid?: SortOrder
+    evolution?: SortOrder
+    harmony?: SortOrder
+    pairings?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type final_considerationsAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type final_considerationsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    tid?: SortOrder
+    uuid?: SortOrder
+    evolution?: SortOrder
+    harmony?: SortOrder
+    pairings?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type final_considerationsMinOrderByAggregateInput = {
+    id?: SortOrder
+    tid?: SortOrder
+    uuid?: SortOrder
+    evolution?: SortOrder
+    harmony?: SortOrder
+    pairings?: SortOrder
+    notes?: SortOrder
+  }
+
+  export type final_considerationsSumOrderByAggregateInput = {
     id?: SortOrder
   }
 
@@ -12371,6 +13951,13 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type final_considerationsCreateNestedManyWithoutTastingsInput = {
+    create?: XOR<final_considerationsCreateWithoutTastingsInput, final_considerationsUncheckedCreateWithoutTastingsInput> | final_considerationsCreateWithoutTastingsInput[] | final_considerationsUncheckedCreateWithoutTastingsInput[]
+    connectOrCreate?: final_considerationsCreateOrConnectWithoutTastingsInput | final_considerationsCreateOrConnectWithoutTastingsInput[]
+    createMany?: final_considerationsCreateManyTastingsInputEnvelope
+    connect?: final_considerationsWhereUniqueInput | final_considerationsWhereUniqueInput[]
+  }
+
   export type olfactory_examsCreateNestedManyWithoutTastingsInput = {
     create?: XOR<olfactory_examsCreateWithoutTastingsInput, olfactory_examsUncheckedCreateWithoutTastingsInput> | olfactory_examsCreateWithoutTastingsInput[] | olfactory_examsUncheckedCreateWithoutTastingsInput[]
     connectOrCreate?: olfactory_examsCreateOrConnectWithoutTastingsInput | olfactory_examsCreateOrConnectWithoutTastingsInput[]
@@ -12404,6 +13991,13 @@ export namespace Prisma {
     connect?: visual_examsWhereUniqueInput | visual_examsWhereUniqueInput[]
   }
 
+  export type final_considerationsUncheckedCreateNestedManyWithoutTastingsInput = {
+    create?: XOR<final_considerationsCreateWithoutTastingsInput, final_considerationsUncheckedCreateWithoutTastingsInput> | final_considerationsCreateWithoutTastingsInput[] | final_considerationsUncheckedCreateWithoutTastingsInput[]
+    connectOrCreate?: final_considerationsCreateOrConnectWithoutTastingsInput | final_considerationsCreateOrConnectWithoutTastingsInput[]
+    createMany?: final_considerationsCreateManyTastingsInputEnvelope
+    connect?: final_considerationsWhereUniqueInput | final_considerationsWhereUniqueInput[]
+  }
+
   export type olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput = {
     create?: XOR<olfactory_examsCreateWithoutTastingsInput, olfactory_examsUncheckedCreateWithoutTastingsInput> | olfactory_examsCreateWithoutTastingsInput[] | olfactory_examsUncheckedCreateWithoutTastingsInput[]
     connectOrCreate?: olfactory_examsCreateOrConnectWithoutTastingsInput | olfactory_examsCreateOrConnectWithoutTastingsInput[]
@@ -12433,8 +14027,30 @@ export namespace Prisma {
     divide?: Decimal | DecimalJsLike | number | string
   }
 
+  export type NullableDecimalFieldUpdateOperationsInput = {
+    set?: Decimal | DecimalJsLike | number | string | null
+    increment?: Decimal | DecimalJsLike | number | string
+    decrement?: Decimal | DecimalJsLike | number | string
+    multiply?: Decimal | DecimalJsLike | number | string
+    divide?: Decimal | DecimalJsLike | number | string
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type final_considerationsUpdateManyWithoutTastingsNestedInput = {
+    create?: XOR<final_considerationsCreateWithoutTastingsInput, final_considerationsUncheckedCreateWithoutTastingsInput> | final_considerationsCreateWithoutTastingsInput[] | final_considerationsUncheckedCreateWithoutTastingsInput[]
+    connectOrCreate?: final_considerationsCreateOrConnectWithoutTastingsInput | final_considerationsCreateOrConnectWithoutTastingsInput[]
+    upsert?: final_considerationsUpsertWithWhereUniqueWithoutTastingsInput | final_considerationsUpsertWithWhereUniqueWithoutTastingsInput[]
+    createMany?: final_considerationsCreateManyTastingsInputEnvelope
+    set?: final_considerationsWhereUniqueInput | final_considerationsWhereUniqueInput[]
+    disconnect?: final_considerationsWhereUniqueInput | final_considerationsWhereUniqueInput[]
+    delete?: final_considerationsWhereUniqueInput | final_considerationsWhereUniqueInput[]
+    connect?: final_considerationsWhereUniqueInput | final_considerationsWhereUniqueInput[]
+    update?: final_considerationsUpdateWithWhereUniqueWithoutTastingsInput | final_considerationsUpdateWithWhereUniqueWithoutTastingsInput[]
+    updateMany?: final_considerationsUpdateManyWithWhereWithoutTastingsInput | final_considerationsUpdateManyWithWhereWithoutTastingsInput[]
+    deleteMany?: final_considerationsScalarWhereInput | final_considerationsScalarWhereInput[]
   }
 
   export type olfactory_examsUpdateManyWithoutTastingsNestedInput = {
@@ -12493,6 +14109,20 @@ export namespace Prisma {
     update?: visual_examsUpdateWithWhereUniqueWithoutTastingsInput | visual_examsUpdateWithWhereUniqueWithoutTastingsInput[]
     updateMany?: visual_examsUpdateManyWithWhereWithoutTastingsInput | visual_examsUpdateManyWithWhereWithoutTastingsInput[]
     deleteMany?: visual_examsScalarWhereInput | visual_examsScalarWhereInput[]
+  }
+
+  export type final_considerationsUncheckedUpdateManyWithoutTastingsNestedInput = {
+    create?: XOR<final_considerationsCreateWithoutTastingsInput, final_considerationsUncheckedCreateWithoutTastingsInput> | final_considerationsCreateWithoutTastingsInput[] | final_considerationsUncheckedCreateWithoutTastingsInput[]
+    connectOrCreate?: final_considerationsCreateOrConnectWithoutTastingsInput | final_considerationsCreateOrConnectWithoutTastingsInput[]
+    upsert?: final_considerationsUpsertWithWhereUniqueWithoutTastingsInput | final_considerationsUpsertWithWhereUniqueWithoutTastingsInput[]
+    createMany?: final_considerationsCreateManyTastingsInputEnvelope
+    set?: final_considerationsWhereUniqueInput | final_considerationsWhereUniqueInput[]
+    disconnect?: final_considerationsWhereUniqueInput | final_considerationsWhereUniqueInput[]
+    delete?: final_considerationsWhereUniqueInput | final_considerationsWhereUniqueInput[]
+    connect?: final_considerationsWhereUniqueInput | final_considerationsWhereUniqueInput[]
+    update?: final_considerationsUpdateWithWhereUniqueWithoutTastingsInput | final_considerationsUpdateWithWhereUniqueWithoutTastingsInput[]
+    updateMany?: final_considerationsUpdateManyWithWhereWithoutTastingsInput | final_considerationsUpdateManyWithWhereWithoutTastingsInput[]
+    deleteMany?: final_considerationsScalarWhereInput | final_considerationsScalarWhereInput[]
   }
 
   export type olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput = {
@@ -12583,6 +14213,22 @@ export namespace Prisma {
     delete?: tastingsWhereInput | boolean
     connect?: tastingsWhereUniqueInput
     update?: XOR<XOR<tastingsUpdateToOneWithWhereWithoutVisual_examsInput, tastingsUpdateWithoutVisual_examsInput>, tastingsUncheckedUpdateWithoutVisual_examsInput>
+  }
+
+  export type tastingsCreateNestedOneWithoutFinal_considerationsInput = {
+    create?: XOR<tastingsCreateWithoutFinal_considerationsInput, tastingsUncheckedCreateWithoutFinal_considerationsInput>
+    connectOrCreate?: tastingsCreateOrConnectWithoutFinal_considerationsInput
+    connect?: tastingsWhereUniqueInput
+  }
+
+  export type tastingsUpdateOneWithoutFinal_considerationsNestedInput = {
+    create?: XOR<tastingsCreateWithoutFinal_considerationsInput, tastingsUncheckedCreateWithoutFinal_considerationsInput>
+    connectOrCreate?: tastingsCreateOrConnectWithoutFinal_considerationsInput
+    upsert?: tastingsUpsertWithoutFinal_considerationsInput
+    disconnect?: tastingsWhereInput | boolean
+    delete?: tastingsWhereInput | boolean
+    connect?: tastingsWhereUniqueInput
+    update?: XOR<XOR<tastingsUpdateToOneWithWhereWithoutFinal_considerationsInput, tastingsUpdateWithoutFinal_considerationsInput>, tastingsUncheckedUpdateWithoutFinal_considerationsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -12797,6 +14443,17 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
+  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -12822,6 +14479,22 @@ export namespace Prisma {
     _sum?: NestedDecimalFilter<$PrismaModel>
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedDecimalNullableFilter<$PrismaModel>
+    _sum?: NestedDecimalNullableFilter<$PrismaModel>
+    _min?: NestedDecimalNullableFilter<$PrismaModel>
+    _max?: NestedDecimalNullableFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -12871,12 +14544,13 @@ export namespace Prisma {
     alcohol_content: Decimal | DecimalJsLike | number | string
     vintage: number
     wine_temperature: Decimal | DecimalJsLike | number | string
-    ambient_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature?: Decimal | DecimalJsLike | number | string | null
     tasting_date: Date | string
     tasting_time: Date | string
     tasting_location: string
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    final_considerations?: final_considerationsCreateNestedManyWithoutTastingsInput
     olfactory_exams?: olfactory_examsCreateNestedManyWithoutTastingsInput
     taste_olfactory_exams?: taste_olfactory_examsCreateNestedManyWithoutTastingsInput
     wine_categories: wine_categoriesCreateNestedOneWithoutTastingsInput
@@ -12893,12 +14567,13 @@ export namespace Prisma {
     alcohol_content: Decimal | DecimalJsLike | number | string
     vintage: number
     wine_temperature: Decimal | DecimalJsLike | number | string
-    ambient_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature?: Decimal | DecimalJsLike | number | string | null
     tasting_date: Date | string
     tasting_time: Date | string
     tasting_location: string
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    final_considerations?: final_considerationsUncheckedCreateNestedManyWithoutTastingsInput
     olfactory_exams?: olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput
     taste_olfactory_exams?: taste_olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput
     visual_exams?: visual_examsUncheckedCreateNestedManyWithoutTastingsInput
@@ -12944,7 +14619,7 @@ export namespace Prisma {
     alcohol_content?: DecimalFilter<"tastings"> | Decimal | DecimalJsLike | number | string
     vintage?: IntFilter<"tastings"> | number
     wine_temperature?: DecimalFilter<"tastings"> | Decimal | DecimalJsLike | number | string
-    ambient_temperature?: DecimalFilter<"tastings"> | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: DecimalNullableFilter<"tastings"> | Decimal | DecimalJsLike | number | string | null
     tasting_date?: DateTimeFilter<"tastings"> | Date | string
     tasting_time?: DateTimeFilter<"tastings"> | Date | string
     tasting_location?: StringFilter<"tastings"> | string
@@ -12960,12 +14635,13 @@ export namespace Prisma {
     alcohol_content: Decimal | DecimalJsLike | number | string
     vintage: number
     wine_temperature: Decimal | DecimalJsLike | number | string
-    ambient_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature?: Decimal | DecimalJsLike | number | string | null
     tasting_date: Date | string
     tasting_time: Date | string
     tasting_location: string
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    final_considerations?: final_considerationsCreateNestedManyWithoutTastingsInput
     olfactory_exams?: olfactory_examsCreateNestedManyWithoutTastingsInput
     taste_olfactory_exams?: taste_olfactory_examsCreateNestedManyWithoutTastingsInput
     users: usersCreateNestedOneWithoutTastingsInput
@@ -12982,12 +14658,13 @@ export namespace Prisma {
     alcohol_content: Decimal | DecimalJsLike | number | string
     vintage: number
     wine_temperature: Decimal | DecimalJsLike | number | string
-    ambient_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature?: Decimal | DecimalJsLike | number | string | null
     tasting_date: Date | string
     tasting_time: Date | string
     tasting_location: string
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    final_considerations?: final_considerationsUncheckedCreateNestedManyWithoutTastingsInput
     olfactory_exams?: olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput
     taste_olfactory_exams?: taste_olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput
     visual_exams?: visual_examsUncheckedCreateNestedManyWithoutTastingsInput
@@ -13104,7 +14781,35 @@ export namespace Prisma {
     tastings?: tastingsUncheckedUpdateManyWithoutWine_categoriesNestedInput
   }
 
+  export type final_considerationsCreateWithoutTastingsInput = {
+    uuid?: string
+    evolution: string
+    harmony: string
+    pairings: string
+    notes?: string | null
+  }
+
+  export type final_considerationsUncheckedCreateWithoutTastingsInput = {
+    id?: number
+    uuid?: string
+    evolution: string
+    harmony: string
+    pairings: string
+    notes?: string | null
+  }
+
+  export type final_considerationsCreateOrConnectWithoutTastingsInput = {
+    where: final_considerationsWhereUniqueInput
+    create: XOR<final_considerationsCreateWithoutTastingsInput, final_considerationsUncheckedCreateWithoutTastingsInput>
+  }
+
+  export type final_considerationsCreateManyTastingsInputEnvelope = {
+    data: final_considerationsCreateManyTastingsInput | final_considerationsCreateManyTastingsInput[]
+    skipDuplicates?: boolean
+  }
+
   export type olfactory_examsCreateWithoutTastingsInput = {
+    uuid?: string
     intensity: string
     complexity: string
     quality: string
@@ -13123,6 +14828,7 @@ export namespace Prisma {
 
   export type olfactory_examsUncheckedCreateWithoutTastingsInput = {
     id?: number
+    uuid?: string
     intensity: string
     complexity: string
     quality: string
@@ -13150,6 +14856,7 @@ export namespace Prisma {
   }
 
   export type taste_olfactory_examsCreateWithoutTastingsInput = {
+    uuid?: string
     sugars: string
     alcohols: string
     polyalcohols: string
@@ -13166,6 +14873,7 @@ export namespace Prisma {
 
   export type taste_olfactory_examsUncheckedCreateWithoutTastingsInput = {
     id?: number
+    uuid?: string
     sugars: string
     alcohols: string
     polyalcohols: string
@@ -13245,6 +14953,7 @@ export namespace Prisma {
   }
 
   export type visual_examsCreateWithoutTastingsInput = {
+    uuid?: string
     limpidity?: string | null
     color_family: string
     color_shade: string
@@ -13257,6 +14966,7 @@ export namespace Prisma {
 
   export type visual_examsUncheckedCreateWithoutTastingsInput = {
     id?: number
+    uuid?: string
     limpidity?: string | null
     color_family: string
     color_shade: string
@@ -13275,6 +14985,35 @@ export namespace Prisma {
   export type visual_examsCreateManyTastingsInputEnvelope = {
     data: visual_examsCreateManyTastingsInput | visual_examsCreateManyTastingsInput[]
     skipDuplicates?: boolean
+  }
+
+  export type final_considerationsUpsertWithWhereUniqueWithoutTastingsInput = {
+    where: final_considerationsWhereUniqueInput
+    update: XOR<final_considerationsUpdateWithoutTastingsInput, final_considerationsUncheckedUpdateWithoutTastingsInput>
+    create: XOR<final_considerationsCreateWithoutTastingsInput, final_considerationsUncheckedCreateWithoutTastingsInput>
+  }
+
+  export type final_considerationsUpdateWithWhereUniqueWithoutTastingsInput = {
+    where: final_considerationsWhereUniqueInput
+    data: XOR<final_considerationsUpdateWithoutTastingsInput, final_considerationsUncheckedUpdateWithoutTastingsInput>
+  }
+
+  export type final_considerationsUpdateManyWithWhereWithoutTastingsInput = {
+    where: final_considerationsScalarWhereInput
+    data: XOR<final_considerationsUpdateManyMutationInput, final_considerationsUncheckedUpdateManyWithoutTastingsInput>
+  }
+
+  export type final_considerationsScalarWhereInput = {
+    AND?: final_considerationsScalarWhereInput | final_considerationsScalarWhereInput[]
+    OR?: final_considerationsScalarWhereInput[]
+    NOT?: final_considerationsScalarWhereInput | final_considerationsScalarWhereInput[]
+    id?: IntFilter<"final_considerations"> | number
+    tid?: UuidNullableFilter<"final_considerations"> | string | null
+    uuid?: UuidFilter<"final_considerations"> | string
+    evolution?: StringFilter<"final_considerations"> | string
+    harmony?: StringFilter<"final_considerations"> | string
+    pairings?: StringFilter<"final_considerations"> | string
+    notes?: StringNullableFilter<"final_considerations"> | string | null
   }
 
   export type olfactory_examsUpsertWithWhereUniqueWithoutTastingsInput = {
@@ -13299,6 +15038,7 @@ export namespace Prisma {
     NOT?: olfactory_examsScalarWhereInput | olfactory_examsScalarWhereInput[]
     id?: IntFilter<"olfactory_exams"> | number
     tid?: UuidNullableFilter<"olfactory_exams"> | string | null
+    uuid?: UuidFilter<"olfactory_exams"> | string
     intensity?: StringFilter<"olfactory_exams"> | string
     complexity?: StringFilter<"olfactory_exams"> | string
     quality?: StringFilter<"olfactory_exams"> | string
@@ -13337,6 +15077,7 @@ export namespace Prisma {
     NOT?: taste_olfactory_examsScalarWhereInput | taste_olfactory_examsScalarWhereInput[]
     id?: IntFilter<"taste_olfactory_exams"> | number
     tid?: UuidNullableFilter<"taste_olfactory_exams"> | string | null
+    uuid?: UuidFilter<"taste_olfactory_exams"> | string
     sugars?: StringFilter<"taste_olfactory_exams"> | string
     alcohols?: StringFilter<"taste_olfactory_exams"> | string
     polyalcohols?: StringFilter<"taste_olfactory_exams"> | string
@@ -13439,6 +15180,7 @@ export namespace Prisma {
     NOT?: visual_examsScalarWhereInput | visual_examsScalarWhereInput[]
     id?: IntFilter<"visual_exams"> | number
     tid?: UuidNullableFilter<"visual_exams"> | string | null
+    uuid?: UuidFilter<"visual_exams"> | string
     limpidity?: StringNullableFilter<"visual_exams"> | string | null
     color_family?: StringFilter<"visual_exams"> | string
     color_shade?: StringFilter<"visual_exams"> | string
@@ -13457,12 +15199,13 @@ export namespace Prisma {
     alcohol_content: Decimal | DecimalJsLike | number | string
     vintage: number
     wine_temperature: Decimal | DecimalJsLike | number | string
-    ambient_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature?: Decimal | DecimalJsLike | number | string | null
     tasting_date: Date | string
     tasting_time: Date | string
     tasting_location: string
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    final_considerations?: final_considerationsCreateNestedManyWithoutTastingsInput
     taste_olfactory_exams?: taste_olfactory_examsCreateNestedManyWithoutTastingsInput
     users: usersCreateNestedOneWithoutTastingsInput
     wine_categories: wine_categoriesCreateNestedOneWithoutTastingsInput
@@ -13480,12 +15223,13 @@ export namespace Prisma {
     alcohol_content: Decimal | DecimalJsLike | number | string
     vintage: number
     wine_temperature: Decimal | DecimalJsLike | number | string
-    ambient_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature?: Decimal | DecimalJsLike | number | string | null
     tasting_date: Date | string
     tasting_time: Date | string
     tasting_location: string
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    final_considerations?: final_considerationsUncheckedCreateNestedManyWithoutTastingsInput
     taste_olfactory_exams?: taste_olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput
     visual_exams?: visual_examsUncheckedCreateNestedManyWithoutTastingsInput
   }
@@ -13514,12 +15258,13 @@ export namespace Prisma {
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     vintage?: IntFieldUpdateOperationsInput | number
     wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    ambient_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_location?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    final_considerations?: final_considerationsUpdateManyWithoutTastingsNestedInput
     taste_olfactory_exams?: taste_olfactory_examsUpdateManyWithoutTastingsNestedInput
     users?: usersUpdateOneRequiredWithoutTastingsNestedInput
     wine_categories?: wine_categoriesUpdateOneRequiredWithoutTastingsNestedInput
@@ -13537,12 +15282,13 @@ export namespace Prisma {
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     vintage?: IntFieldUpdateOperationsInput | number
     wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    ambient_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_location?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    final_considerations?: final_considerationsUncheckedUpdateManyWithoutTastingsNestedInput
     taste_olfactory_exams?: taste_olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput
     visual_exams?: visual_examsUncheckedUpdateManyWithoutTastingsNestedInput
   }
@@ -13555,12 +15301,13 @@ export namespace Prisma {
     alcohol_content: Decimal | DecimalJsLike | number | string
     vintage: number
     wine_temperature: Decimal | DecimalJsLike | number | string
-    ambient_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature?: Decimal | DecimalJsLike | number | string | null
     tasting_date: Date | string
     tasting_time: Date | string
     tasting_location: string
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    final_considerations?: final_considerationsCreateNestedManyWithoutTastingsInput
     olfactory_exams?: olfactory_examsCreateNestedManyWithoutTastingsInput
     users: usersCreateNestedOneWithoutTastingsInput
     wine_categories: wine_categoriesCreateNestedOneWithoutTastingsInput
@@ -13578,12 +15325,13 @@ export namespace Prisma {
     alcohol_content: Decimal | DecimalJsLike | number | string
     vintage: number
     wine_temperature: Decimal | DecimalJsLike | number | string
-    ambient_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature?: Decimal | DecimalJsLike | number | string | null
     tasting_date: Date | string
     tasting_time: Date | string
     tasting_location: string
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    final_considerations?: final_considerationsUncheckedCreateNestedManyWithoutTastingsInput
     olfactory_exams?: olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput
     visual_exams?: visual_examsUncheckedCreateNestedManyWithoutTastingsInput
   }
@@ -13612,12 +15360,13 @@ export namespace Prisma {
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     vintage?: IntFieldUpdateOperationsInput | number
     wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    ambient_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_location?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    final_considerations?: final_considerationsUpdateManyWithoutTastingsNestedInput
     olfactory_exams?: olfactory_examsUpdateManyWithoutTastingsNestedInput
     users?: usersUpdateOneRequiredWithoutTastingsNestedInput
     wine_categories?: wine_categoriesUpdateOneRequiredWithoutTastingsNestedInput
@@ -13635,12 +15384,13 @@ export namespace Prisma {
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     vintage?: IntFieldUpdateOperationsInput | number
     wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    ambient_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_location?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    final_considerations?: final_considerationsUncheckedUpdateManyWithoutTastingsNestedInput
     olfactory_exams?: olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput
     visual_exams?: visual_examsUncheckedUpdateManyWithoutTastingsNestedInput
   }
@@ -13653,12 +15403,13 @@ export namespace Prisma {
     alcohol_content: Decimal | DecimalJsLike | number | string
     vintage: number
     wine_temperature: Decimal | DecimalJsLike | number | string
-    ambient_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature?: Decimal | DecimalJsLike | number | string | null
     tasting_date: Date | string
     tasting_time: Date | string
     tasting_location: string
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    final_considerations?: final_considerationsCreateNestedManyWithoutTastingsInput
     olfactory_exams?: olfactory_examsCreateNestedManyWithoutTastingsInput
     taste_olfactory_exams?: taste_olfactory_examsCreateNestedManyWithoutTastingsInput
     users: usersCreateNestedOneWithoutTastingsInput
@@ -13676,12 +15427,13 @@ export namespace Prisma {
     alcohol_content: Decimal | DecimalJsLike | number | string
     vintage: number
     wine_temperature: Decimal | DecimalJsLike | number | string
-    ambient_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature?: Decimal | DecimalJsLike | number | string | null
     tasting_date: Date | string
     tasting_time: Date | string
     tasting_location: string
     created_at?: Date | string | null
     updated_at?: Date | string | null
+    final_considerations?: final_considerationsUncheckedCreateNestedManyWithoutTastingsInput
     olfactory_exams?: olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput
     taste_olfactory_exams?: taste_olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput
   }
@@ -13710,12 +15462,13 @@ export namespace Prisma {
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     vintage?: IntFieldUpdateOperationsInput | number
     wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    ambient_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_location?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    final_considerations?: final_considerationsUpdateManyWithoutTastingsNestedInput
     olfactory_exams?: olfactory_examsUpdateManyWithoutTastingsNestedInput
     taste_olfactory_exams?: taste_olfactory_examsUpdateManyWithoutTastingsNestedInput
     users?: usersUpdateOneRequiredWithoutTastingsNestedInput
@@ -13733,7 +15486,109 @@ export namespace Prisma {
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     vintage?: IntFieldUpdateOperationsInput | number
     wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    ambient_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    tasting_location?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    final_considerations?: final_considerationsUncheckedUpdateManyWithoutTastingsNestedInput
+    olfactory_exams?: olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput
+    taste_olfactory_exams?: taste_olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput
+  }
+
+  export type tastingsCreateWithoutFinal_considerationsInput = {
+    tid?: string
+    full_name?: string | null
+    sample_number?: string | null
+    wine_denomination: string
+    alcohol_content: Decimal | DecimalJsLike | number | string
+    vintage: number
+    wine_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature?: Decimal | DecimalJsLike | number | string | null
+    tasting_date: Date | string
+    tasting_time: Date | string
+    tasting_location: string
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    olfactory_exams?: olfactory_examsCreateNestedManyWithoutTastingsInput
+    taste_olfactory_exams?: taste_olfactory_examsCreateNestedManyWithoutTastingsInput
+    users: usersCreateNestedOneWithoutTastingsInput
+    wine_categories: wine_categoriesCreateNestedOneWithoutTastingsInput
+    visual_exams?: visual_examsCreateNestedManyWithoutTastingsInput
+  }
+
+  export type tastingsUncheckedCreateWithoutFinal_considerationsInput = {
+    id?: number
+    tid?: string
+    uid: string
+    full_name?: string | null
+    wine_category_id: number
+    sample_number?: string | null
+    wine_denomination: string
+    alcohol_content: Decimal | DecimalJsLike | number | string
+    vintage: number
+    wine_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature?: Decimal | DecimalJsLike | number | string | null
+    tasting_date: Date | string
+    tasting_time: Date | string
+    tasting_location: string
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    olfactory_exams?: olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput
+    taste_olfactory_exams?: taste_olfactory_examsUncheckedCreateNestedManyWithoutTastingsInput
+    visual_exams?: visual_examsUncheckedCreateNestedManyWithoutTastingsInput
+  }
+
+  export type tastingsCreateOrConnectWithoutFinal_considerationsInput = {
+    where: tastingsWhereUniqueInput
+    create: XOR<tastingsCreateWithoutFinal_considerationsInput, tastingsUncheckedCreateWithoutFinal_considerationsInput>
+  }
+
+  export type tastingsUpsertWithoutFinal_considerationsInput = {
+    update: XOR<tastingsUpdateWithoutFinal_considerationsInput, tastingsUncheckedUpdateWithoutFinal_considerationsInput>
+    create: XOR<tastingsCreateWithoutFinal_considerationsInput, tastingsUncheckedCreateWithoutFinal_considerationsInput>
+    where?: tastingsWhereInput
+  }
+
+  export type tastingsUpdateToOneWithWhereWithoutFinal_considerationsInput = {
+    where?: tastingsWhereInput
+    data: XOR<tastingsUpdateWithoutFinal_considerationsInput, tastingsUncheckedUpdateWithoutFinal_considerationsInput>
+  }
+
+  export type tastingsUpdateWithoutFinal_considerationsInput = {
+    tid?: StringFieldUpdateOperationsInput | string
+    full_name?: NullableStringFieldUpdateOperationsInput | string | null
+    sample_number?: NullableStringFieldUpdateOperationsInput | string | null
+    wine_denomination?: StringFieldUpdateOperationsInput | string
+    alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    vintage?: IntFieldUpdateOperationsInput | number
+    wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    tasting_location?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    olfactory_exams?: olfactory_examsUpdateManyWithoutTastingsNestedInput
+    taste_olfactory_exams?: taste_olfactory_examsUpdateManyWithoutTastingsNestedInput
+    users?: usersUpdateOneRequiredWithoutTastingsNestedInput
+    wine_categories?: wine_categoriesUpdateOneRequiredWithoutTastingsNestedInput
+    visual_exams?: visual_examsUpdateManyWithoutTastingsNestedInput
+  }
+
+  export type tastingsUncheckedUpdateWithoutFinal_considerationsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    tid?: StringFieldUpdateOperationsInput | string
+    uid?: StringFieldUpdateOperationsInput | string
+    full_name?: NullableStringFieldUpdateOperationsInput | string | null
+    wine_category_id?: IntFieldUpdateOperationsInput | number
+    sample_number?: NullableStringFieldUpdateOperationsInput | string | null
+    wine_denomination?: StringFieldUpdateOperationsInput | string
+    alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    vintage?: IntFieldUpdateOperationsInput | number
+    wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_location?: StringFieldUpdateOperationsInput | string
@@ -13741,6 +15596,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     olfactory_exams?: olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput
     taste_olfactory_exams?: taste_olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput
+    visual_exams?: visual_examsUncheckedUpdateManyWithoutTastingsNestedInput
   }
 
   export type tastingsCreateManyUsersInput = {
@@ -13753,7 +15609,7 @@ export namespace Prisma {
     alcohol_content: Decimal | DecimalJsLike | number | string
     vintage: number
     wine_temperature: Decimal | DecimalJsLike | number | string
-    ambient_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature?: Decimal | DecimalJsLike | number | string | null
     tasting_date: Date | string
     tasting_time: Date | string
     tasting_location: string
@@ -13769,12 +15625,13 @@ export namespace Prisma {
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     vintage?: IntFieldUpdateOperationsInput | number
     wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    ambient_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_location?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    final_considerations?: final_considerationsUpdateManyWithoutTastingsNestedInput
     olfactory_exams?: olfactory_examsUpdateManyWithoutTastingsNestedInput
     taste_olfactory_exams?: taste_olfactory_examsUpdateManyWithoutTastingsNestedInput
     wine_categories?: wine_categoriesUpdateOneRequiredWithoutTastingsNestedInput
@@ -13791,12 +15648,13 @@ export namespace Prisma {
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     vintage?: IntFieldUpdateOperationsInput | number
     wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    ambient_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_location?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    final_considerations?: final_considerationsUncheckedUpdateManyWithoutTastingsNestedInput
     olfactory_exams?: olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput
     taste_olfactory_exams?: taste_olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput
     visual_exams?: visual_examsUncheckedUpdateManyWithoutTastingsNestedInput
@@ -13812,7 +15670,7 @@ export namespace Prisma {
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     vintage?: IntFieldUpdateOperationsInput | number
     wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    ambient_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_location?: StringFieldUpdateOperationsInput | string
@@ -13830,7 +15688,7 @@ export namespace Prisma {
     alcohol_content: Decimal | DecimalJsLike | number | string
     vintage: number
     wine_temperature: Decimal | DecimalJsLike | number | string
-    ambient_temperature: Decimal | DecimalJsLike | number | string
+    ambient_temperature?: Decimal | DecimalJsLike | number | string | null
     tasting_date: Date | string
     tasting_time: Date | string
     tasting_location: string
@@ -13852,12 +15710,13 @@ export namespace Prisma {
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     vintage?: IntFieldUpdateOperationsInput | number
     wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    ambient_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_location?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    final_considerations?: final_considerationsUpdateManyWithoutTastingsNestedInput
     olfactory_exams?: olfactory_examsUpdateManyWithoutTastingsNestedInput
     taste_olfactory_exams?: taste_olfactory_examsUpdateManyWithoutTastingsNestedInput
     users?: usersUpdateOneRequiredWithoutTastingsNestedInput
@@ -13874,12 +15733,13 @@ export namespace Prisma {
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     vintage?: IntFieldUpdateOperationsInput | number
     wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    ambient_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_location?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    final_considerations?: final_considerationsUncheckedUpdateManyWithoutTastingsNestedInput
     olfactory_exams?: olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput
     taste_olfactory_exams?: taste_olfactory_examsUncheckedUpdateManyWithoutTastingsNestedInput
     visual_exams?: visual_examsUncheckedUpdateManyWithoutTastingsNestedInput
@@ -13895,7 +15755,7 @@ export namespace Prisma {
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     vintage?: IntFieldUpdateOperationsInput | number
     wine_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    ambient_temperature?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ambient_temperature?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     tasting_date?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_time?: DateTimeFieldUpdateOperationsInput | Date | string
     tasting_location?: StringFieldUpdateOperationsInput | string
@@ -13920,8 +15780,18 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
   }
 
+  export type final_considerationsCreateManyTastingsInput = {
+    id?: number
+    uuid?: string
+    evolution: string
+    harmony: string
+    pairings: string
+    notes?: string | null
+  }
+
   export type olfactory_examsCreateManyTastingsInput = {
     id?: number
+    uuid?: string
     intensity: string
     complexity: string
     quality: string
@@ -13940,6 +15810,7 @@ export namespace Prisma {
 
   export type taste_olfactory_examsCreateManyTastingsInput = {
     id?: number
+    uuid?: string
     sugars: string
     alcohols: string
     polyalcohols: string
@@ -13956,6 +15827,7 @@ export namespace Prisma {
 
   export type visual_examsCreateManyTastingsInput = {
     id?: number
+    uuid?: string
     limpidity?: string | null
     color_family: string
     color_shade: string
@@ -13966,7 +15838,34 @@ export namespace Prisma {
     notes?: string | null
   }
 
+  export type final_considerationsUpdateWithoutTastingsInput = {
+    uuid?: StringFieldUpdateOperationsInput | string
+    evolution?: StringFieldUpdateOperationsInput | string
+    harmony?: StringFieldUpdateOperationsInput | string
+    pairings?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type final_considerationsUncheckedUpdateWithoutTastingsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    evolution?: StringFieldUpdateOperationsInput | string
+    harmony?: StringFieldUpdateOperationsInput | string
+    pairings?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type final_considerationsUncheckedUpdateManyWithoutTastingsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
+    evolution?: StringFieldUpdateOperationsInput | string
+    harmony?: StringFieldUpdateOperationsInput | string
+    pairings?: StringFieldUpdateOperationsInput | string
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type olfactory_examsUpdateWithoutTastingsInput = {
+    uuid?: StringFieldUpdateOperationsInput | string
     intensity?: StringFieldUpdateOperationsInput | string
     complexity?: StringFieldUpdateOperationsInput | string
     quality?: StringFieldUpdateOperationsInput | string
@@ -13985,6 +15884,7 @@ export namespace Prisma {
 
   export type olfactory_examsUncheckedUpdateWithoutTastingsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
     intensity?: StringFieldUpdateOperationsInput | string
     complexity?: StringFieldUpdateOperationsInput | string
     quality?: StringFieldUpdateOperationsInput | string
@@ -14003,6 +15903,7 @@ export namespace Prisma {
 
   export type olfactory_examsUncheckedUpdateManyWithoutTastingsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
     intensity?: StringFieldUpdateOperationsInput | string
     complexity?: StringFieldUpdateOperationsInput | string
     quality?: StringFieldUpdateOperationsInput | string
@@ -14020,6 +15921,7 @@ export namespace Prisma {
   }
 
   export type taste_olfactory_examsUpdateWithoutTastingsInput = {
+    uuid?: StringFieldUpdateOperationsInput | string
     sugars?: StringFieldUpdateOperationsInput | string
     alcohols?: StringFieldUpdateOperationsInput | string
     polyalcohols?: StringFieldUpdateOperationsInput | string
@@ -14036,6 +15938,7 @@ export namespace Prisma {
 
   export type taste_olfactory_examsUncheckedUpdateWithoutTastingsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
     sugars?: StringFieldUpdateOperationsInput | string
     alcohols?: StringFieldUpdateOperationsInput | string
     polyalcohols?: StringFieldUpdateOperationsInput | string
@@ -14052,6 +15955,7 @@ export namespace Prisma {
 
   export type taste_olfactory_examsUncheckedUpdateManyWithoutTastingsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
     sugars?: StringFieldUpdateOperationsInput | string
     alcohols?: StringFieldUpdateOperationsInput | string
     polyalcohols?: StringFieldUpdateOperationsInput | string
@@ -14067,6 +15971,7 @@ export namespace Prisma {
   }
 
   export type visual_examsUpdateWithoutTastingsInput = {
+    uuid?: StringFieldUpdateOperationsInput | string
     limpidity?: NullableStringFieldUpdateOperationsInput | string | null
     color_family?: StringFieldUpdateOperationsInput | string
     color_shade?: StringFieldUpdateOperationsInput | string
@@ -14079,6 +15984,7 @@ export namespace Prisma {
 
   export type visual_examsUncheckedUpdateWithoutTastingsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
     limpidity?: NullableStringFieldUpdateOperationsInput | string | null
     color_family?: StringFieldUpdateOperationsInput | string
     color_shade?: StringFieldUpdateOperationsInput | string
@@ -14091,6 +15997,7 @@ export namespace Prisma {
 
   export type visual_examsUncheckedUpdateManyWithoutTastingsInput = {
     id?: IntFieldUpdateOperationsInput | number
+    uuid?: StringFieldUpdateOperationsInput | string
     limpidity?: NullableStringFieldUpdateOperationsInput | string | null
     color_family?: StringFieldUpdateOperationsInput | string
     color_shade?: StringFieldUpdateOperationsInput | string
