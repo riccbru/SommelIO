@@ -7,17 +7,16 @@ export default function Index() {
       flex: 1,
       alignItems: "center",
       justifyContent: "center",
-      backgroundColor: "#ff00ff",
+      backgroundColor: "#000000",
     },
     text: {
-      fontSize: 20,
-      color: "#fefefe",
+      fontSize: 30,
+      color: "#ffffff",
     },
     link: {
       fontSize: 20,
-      color: "#0000ff",
+      color: "#9e9eff",
       textDecorationLine: "underline",
-
     }
   });
 
@@ -31,7 +30,7 @@ export default function Index() {
     >
       <Text style={styles.text}>Welcome to SommelIO 🍷</Text>
       <Pressable onPress={handlePress}>
-        <Text style={styles.link}>https://aisitalia.it/</Text>
+        <Text style={styles.link}>https://aisitalia.it</Text>
       </Pressable>
     </View>
   );
