@@ -1,6 +1,6 @@
-@token = 
+@token =
 @refresh = 
-@tid = 
+@tid =
 
 ### LOGIN + TOKEN
 
@@ -20,6 +20,12 @@ Authorization: Bearer {{token}}
 ### GET USER BY ID
 
 GET http://localhost:3001/api/v1/users/me HTTP/1.1
+Authorization: Bearer {{token}}
+
+### GET TASTINGS
+
+GET http://localhost:3001/api/v1/tastings HTTP/1.1
+Accept-Language: it
 Authorization: Bearer {{token}}
 
 ### GET TASTING BY ID

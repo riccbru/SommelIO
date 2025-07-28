@@ -72,7 +72,7 @@ model tastings {
 model olfactory_exams {
   id         Int      @id @default(autoincrement())
   tid        String   @unique @db.Uuid
-  exam_uuid  String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  eid        String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   intensity  String
   complexity String
   quality    String
@@ -94,7 +94,7 @@ model olfactory_exams {
 model taste_olfactory_exams {
   id           Int      @id @default(autoincrement())
   tid          String   @unique @db.Uuid
-  exam_uuid    String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  eid          String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   sugars       String
   alcohols     String
   polyalcohols String
@@ -114,7 +114,7 @@ model taste_olfactory_exams {
 model visual_exams {
   id                 Int      @id @default(autoincrement())
   tid                String   @unique @db.Uuid
-  exam_uuid          String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  eid                String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   limpidity          String?
   color_family       String
   color_shade        String
@@ -130,7 +130,7 @@ model visual_exams {
 model final_considerations {
   id        Int      @id @default(autoincrement())
   tid       String   @unique @db.Uuid
-  exam_uuid String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  eid       String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   evolution String
   harmony   String
   pairings  String

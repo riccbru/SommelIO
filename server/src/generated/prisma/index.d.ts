@@ -6370,7 +6370,7 @@ export namespace Prisma {
   export type Olfactory_examsMinAggregateOutputType = {
     id: number | null
     tid: string | null
-    exam_uuid: string | null
+    eid: string | null
     intensity: string | null
     complexity: string | null
     quality: string | null
@@ -6390,7 +6390,7 @@ export namespace Prisma {
   export type Olfactory_examsMaxAggregateOutputType = {
     id: number | null
     tid: string | null
-    exam_uuid: string | null
+    eid: string | null
     intensity: string | null
     complexity: string | null
     quality: string | null
@@ -6410,7 +6410,7 @@ export namespace Prisma {
   export type Olfactory_examsCountAggregateOutputType = {
     id: number
     tid: number
-    exam_uuid: number
+    eid: number
     intensity: number
     complexity: number
     quality: number
@@ -6440,7 +6440,7 @@ export namespace Prisma {
   export type Olfactory_examsMinAggregateInputType = {
     id?: true
     tid?: true
-    exam_uuid?: true
+    eid?: true
     intensity?: true
     complexity?: true
     quality?: true
@@ -6460,7 +6460,7 @@ export namespace Prisma {
   export type Olfactory_examsMaxAggregateInputType = {
     id?: true
     tid?: true
-    exam_uuid?: true
+    eid?: true
     intensity?: true
     complexity?: true
     quality?: true
@@ -6480,7 +6480,7 @@ export namespace Prisma {
   export type Olfactory_examsCountAggregateInputType = {
     id?: true
     tid?: true
-    exam_uuid?: true
+    eid?: true
     intensity?: true
     complexity?: true
     quality?: true
@@ -6587,7 +6587,7 @@ export namespace Prisma {
   export type Olfactory_examsGroupByOutputType = {
     id: number
     tid: string
-    exam_uuid: string
+    eid: string
     intensity: string
     complexity: string
     quality: string
@@ -6626,7 +6626,7 @@ export namespace Prisma {
   export type olfactory_examsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tid?: boolean
-    exam_uuid?: boolean
+    eid?: boolean
     intensity?: boolean
     complexity?: boolean
     quality?: boolean
@@ -6647,7 +6647,7 @@ export namespace Prisma {
   export type olfactory_examsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tid?: boolean
-    exam_uuid?: boolean
+    eid?: boolean
     intensity?: boolean
     complexity?: boolean
     quality?: boolean
@@ -6668,7 +6668,7 @@ export namespace Prisma {
   export type olfactory_examsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tid?: boolean
-    exam_uuid?: boolean
+    eid?: boolean
     intensity?: boolean
     complexity?: boolean
     quality?: boolean
@@ -6689,7 +6689,7 @@ export namespace Prisma {
   export type olfactory_examsSelectScalar = {
     id?: boolean
     tid?: boolean
-    exam_uuid?: boolean
+    eid?: boolean
     intensity?: boolean
     complexity?: boolean
     quality?: boolean
@@ -6706,7 +6706,7 @@ export namespace Prisma {
     notes?: boolean
   }
 
-  export type olfactory_examsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "exam_uuid" | "intensity" | "complexity" | "quality" | "aromatic" | "vinous" | "floral" | "fruity" | "fragrant" | "herbaceous" | "mineral" | "spicy" | "ethereal" | "frank" | "notes", ExtArgs["result"]["olfactory_exams"]>
+  export type olfactory_examsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "eid" | "intensity" | "complexity" | "quality" | "aromatic" | "vinous" | "floral" | "fruity" | "fragrant" | "herbaceous" | "mineral" | "spicy" | "ethereal" | "frank" | "notes", ExtArgs["result"]["olfactory_exams"]>
   export type olfactory_examsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tastings?: boolean | tastingsDefaultArgs<ExtArgs>
   }
@@ -6725,7 +6725,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       tid: string
-      exam_uuid: string
+      eid: string
       intensity: string
       complexity: string
       quality: string
@@ -7166,7 +7166,7 @@ export namespace Prisma {
   interface olfactory_examsFieldRefs {
     readonly id: FieldRef<"olfactory_exams", 'Int'>
     readonly tid: FieldRef<"olfactory_exams", 'String'>
-    readonly exam_uuid: FieldRef<"olfactory_exams", 'String'>
+    readonly eid: FieldRef<"olfactory_exams", 'String'>
     readonly intensity: FieldRef<"olfactory_exams", 'String'>
     readonly complexity: FieldRef<"olfactory_exams", 'String'>
     readonly quality: FieldRef<"olfactory_exams", 'String'>
@@ -7618,7 +7618,7 @@ export namespace Prisma {
   export type Taste_olfactory_examsMinAggregateOutputType = {
     id: number | null
     tid: string | null
-    exam_uuid: string | null
+    eid: string | null
     sugars: string | null
     alcohols: string | null
     polyalcohols: string | null
@@ -7636,7 +7636,7 @@ export namespace Prisma {
   export type Taste_olfactory_examsMaxAggregateOutputType = {
     id: number | null
     tid: string | null
-    exam_uuid: string | null
+    eid: string | null
     sugars: string | null
     alcohols: string | null
     polyalcohols: string | null
@@ -7654,7 +7654,7 @@ export namespace Prisma {
   export type Taste_olfactory_examsCountAggregateOutputType = {
     id: number
     tid: number
-    exam_uuid: number
+    eid: number
     sugars: number
     alcohols: number
     polyalcohols: number
@@ -7682,7 +7682,7 @@ export namespace Prisma {
   export type Taste_olfactory_examsMinAggregateInputType = {
     id?: true
     tid?: true
-    exam_uuid?: true
+    eid?: true
     sugars?: true
     alcohols?: true
     polyalcohols?: true
@@ -7700,7 +7700,7 @@ export namespace Prisma {
   export type Taste_olfactory_examsMaxAggregateInputType = {
     id?: true
     tid?: true
-    exam_uuid?: true
+    eid?: true
     sugars?: true
     alcohols?: true
     polyalcohols?: true
@@ -7718,7 +7718,7 @@ export namespace Prisma {
   export type Taste_olfactory_examsCountAggregateInputType = {
     id?: true
     tid?: true
-    exam_uuid?: true
+    eid?: true
     sugars?: true
     alcohols?: true
     polyalcohols?: true
@@ -7823,7 +7823,7 @@ export namespace Prisma {
   export type Taste_olfactory_examsGroupByOutputType = {
     id: number
     tid: string
-    exam_uuid: string
+    eid: string
     sugars: string
     alcohols: string
     polyalcohols: string
@@ -7860,7 +7860,7 @@ export namespace Prisma {
   export type taste_olfactory_examsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tid?: boolean
-    exam_uuid?: boolean
+    eid?: boolean
     sugars?: boolean
     alcohols?: boolean
     polyalcohols?: boolean
@@ -7879,7 +7879,7 @@ export namespace Prisma {
   export type taste_olfactory_examsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tid?: boolean
-    exam_uuid?: boolean
+    eid?: boolean
     sugars?: boolean
     alcohols?: boolean
     polyalcohols?: boolean
@@ -7898,7 +7898,7 @@ export namespace Prisma {
   export type taste_olfactory_examsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tid?: boolean
-    exam_uuid?: boolean
+    eid?: boolean
     sugars?: boolean
     alcohols?: boolean
     polyalcohols?: boolean
@@ -7917,7 +7917,7 @@ export namespace Prisma {
   export type taste_olfactory_examsSelectScalar = {
     id?: boolean
     tid?: boolean
-    exam_uuid?: boolean
+    eid?: boolean
     sugars?: boolean
     alcohols?: boolean
     polyalcohols?: boolean
@@ -7932,7 +7932,7 @@ export namespace Prisma {
     notes?: boolean
   }
 
-  export type taste_olfactory_examsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "exam_uuid" | "sugars" | "alcohols" | "polyalcohols" | "acids" | "tannins" | "minerals" | "balance" | "intensity" | "persistence" | "quality" | "structure" | "notes", ExtArgs["result"]["taste_olfactory_exams"]>
+  export type taste_olfactory_examsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "eid" | "sugars" | "alcohols" | "polyalcohols" | "acids" | "tannins" | "minerals" | "balance" | "intensity" | "persistence" | "quality" | "structure" | "notes", ExtArgs["result"]["taste_olfactory_exams"]>
   export type taste_olfactory_examsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tastings?: boolean | tastingsDefaultArgs<ExtArgs>
   }
@@ -7951,7 +7951,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       tid: string
-      exam_uuid: string
+      eid: string
       sugars: string
       alcohols: string
       polyalcohols: string
@@ -8390,7 +8390,7 @@ export namespace Prisma {
   interface taste_olfactory_examsFieldRefs {
     readonly id: FieldRef<"taste_olfactory_exams", 'Int'>
     readonly tid: FieldRef<"taste_olfactory_exams", 'String'>
-    readonly exam_uuid: FieldRef<"taste_olfactory_exams", 'String'>
+    readonly eid: FieldRef<"taste_olfactory_exams", 'String'>
     readonly sugars: FieldRef<"taste_olfactory_exams", 'String'>
     readonly alcohols: FieldRef<"taste_olfactory_exams", 'String'>
     readonly polyalcohols: FieldRef<"taste_olfactory_exams", 'String'>
@@ -8840,7 +8840,7 @@ export namespace Prisma {
   export type Visual_examsMinAggregateOutputType = {
     id: number | null
     tid: string | null
-    exam_uuid: string | null
+    eid: string | null
     limpidity: string | null
     color_family: string | null
     color_shade: string | null
@@ -8854,7 +8854,7 @@ export namespace Prisma {
   export type Visual_examsMaxAggregateOutputType = {
     id: number | null
     tid: string | null
-    exam_uuid: string | null
+    eid: string | null
     limpidity: string | null
     color_family: string | null
     color_shade: string | null
@@ -8868,7 +8868,7 @@ export namespace Prisma {
   export type Visual_examsCountAggregateOutputType = {
     id: number
     tid: number
-    exam_uuid: number
+    eid: number
     limpidity: number
     color_family: number
     color_shade: number
@@ -8892,7 +8892,7 @@ export namespace Prisma {
   export type Visual_examsMinAggregateInputType = {
     id?: true
     tid?: true
-    exam_uuid?: true
+    eid?: true
     limpidity?: true
     color_family?: true
     color_shade?: true
@@ -8906,7 +8906,7 @@ export namespace Prisma {
   export type Visual_examsMaxAggregateInputType = {
     id?: true
     tid?: true
-    exam_uuid?: true
+    eid?: true
     limpidity?: true
     color_family?: true
     color_shade?: true
@@ -8920,7 +8920,7 @@ export namespace Prisma {
   export type Visual_examsCountAggregateInputType = {
     id?: true
     tid?: true
-    exam_uuid?: true
+    eid?: true
     limpidity?: true
     color_family?: true
     color_shade?: true
@@ -9021,7 +9021,7 @@ export namespace Prisma {
   export type Visual_examsGroupByOutputType = {
     id: number
     tid: string
-    exam_uuid: string
+    eid: string
     limpidity: string | null
     color_family: string
     color_shade: string
@@ -9054,7 +9054,7 @@ export namespace Prisma {
   export type visual_examsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tid?: boolean
-    exam_uuid?: boolean
+    eid?: boolean
     limpidity?: boolean
     color_family?: boolean
     color_shade?: boolean
@@ -9069,7 +9069,7 @@ export namespace Prisma {
   export type visual_examsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tid?: boolean
-    exam_uuid?: boolean
+    eid?: boolean
     limpidity?: boolean
     color_family?: boolean
     color_shade?: boolean
@@ -9084,7 +9084,7 @@ export namespace Prisma {
   export type visual_examsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tid?: boolean
-    exam_uuid?: boolean
+    eid?: boolean
     limpidity?: boolean
     color_family?: boolean
     color_shade?: boolean
@@ -9099,7 +9099,7 @@ export namespace Prisma {
   export type visual_examsSelectScalar = {
     id?: boolean
     tid?: boolean
-    exam_uuid?: boolean
+    eid?: boolean
     limpidity?: boolean
     color_family?: boolean
     color_shade?: boolean
@@ -9110,7 +9110,7 @@ export namespace Prisma {
     notes?: boolean
   }
 
-  export type visual_examsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "exam_uuid" | "limpidity" | "color_family" | "color_shade" | "consistency" | "bubble_grain" | "bubble_number" | "bubble_persistence" | "notes", ExtArgs["result"]["visual_exams"]>
+  export type visual_examsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "eid" | "limpidity" | "color_family" | "color_shade" | "consistency" | "bubble_grain" | "bubble_number" | "bubble_persistence" | "notes", ExtArgs["result"]["visual_exams"]>
   export type visual_examsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tastings?: boolean | tastingsDefaultArgs<ExtArgs>
   }
@@ -9129,7 +9129,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       tid: string
-      exam_uuid: string
+      eid: string
       limpidity: string | null
       color_family: string
       color_shade: string
@@ -9564,7 +9564,7 @@ export namespace Prisma {
   interface visual_examsFieldRefs {
     readonly id: FieldRef<"visual_exams", 'Int'>
     readonly tid: FieldRef<"visual_exams", 'String'>
-    readonly exam_uuid: FieldRef<"visual_exams", 'String'>
+    readonly eid: FieldRef<"visual_exams", 'String'>
     readonly limpidity: FieldRef<"visual_exams", 'String'>
     readonly color_family: FieldRef<"visual_exams", 'String'>
     readonly color_shade: FieldRef<"visual_exams", 'String'>
@@ -10010,7 +10010,7 @@ export namespace Prisma {
   export type Final_considerationsMinAggregateOutputType = {
     id: number | null
     tid: string | null
-    exam_uuid: string | null
+    eid: string | null
     evolution: string | null
     harmony: string | null
     pairings: string | null
@@ -10020,7 +10020,7 @@ export namespace Prisma {
   export type Final_considerationsMaxAggregateOutputType = {
     id: number | null
     tid: string | null
-    exam_uuid: string | null
+    eid: string | null
     evolution: string | null
     harmony: string | null
     pairings: string | null
@@ -10030,7 +10030,7 @@ export namespace Prisma {
   export type Final_considerationsCountAggregateOutputType = {
     id: number
     tid: number
-    exam_uuid: number
+    eid: number
     evolution: number
     harmony: number
     pairings: number
@@ -10050,7 +10050,7 @@ export namespace Prisma {
   export type Final_considerationsMinAggregateInputType = {
     id?: true
     tid?: true
-    exam_uuid?: true
+    eid?: true
     evolution?: true
     harmony?: true
     pairings?: true
@@ -10060,7 +10060,7 @@ export namespace Prisma {
   export type Final_considerationsMaxAggregateInputType = {
     id?: true
     tid?: true
-    exam_uuid?: true
+    eid?: true
     evolution?: true
     harmony?: true
     pairings?: true
@@ -10070,7 +10070,7 @@ export namespace Prisma {
   export type Final_considerationsCountAggregateInputType = {
     id?: true
     tid?: true
-    exam_uuid?: true
+    eid?: true
     evolution?: true
     harmony?: true
     pairings?: true
@@ -10167,7 +10167,7 @@ export namespace Prisma {
   export type Final_considerationsGroupByOutputType = {
     id: number
     tid: string
-    exam_uuid: string
+    eid: string
     evolution: string
     harmony: string
     pairings: string
@@ -10196,7 +10196,7 @@ export namespace Prisma {
   export type final_considerationsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tid?: boolean
-    exam_uuid?: boolean
+    eid?: boolean
     evolution?: boolean
     harmony?: boolean
     pairings?: boolean
@@ -10207,7 +10207,7 @@ export namespace Prisma {
   export type final_considerationsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tid?: boolean
-    exam_uuid?: boolean
+    eid?: boolean
     evolution?: boolean
     harmony?: boolean
     pairings?: boolean
@@ -10218,7 +10218,7 @@ export namespace Prisma {
   export type final_considerationsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     tid?: boolean
-    exam_uuid?: boolean
+    eid?: boolean
     evolution?: boolean
     harmony?: boolean
     pairings?: boolean
@@ -10229,14 +10229,14 @@ export namespace Prisma {
   export type final_considerationsSelectScalar = {
     id?: boolean
     tid?: boolean
-    exam_uuid?: boolean
+    eid?: boolean
     evolution?: boolean
     harmony?: boolean
     pairings?: boolean
     notes?: boolean
   }
 
-  export type final_considerationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "exam_uuid" | "evolution" | "harmony" | "pairings" | "notes", ExtArgs["result"]["final_considerations"]>
+  export type final_considerationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "eid" | "evolution" | "harmony" | "pairings" | "notes", ExtArgs["result"]["final_considerations"]>
   export type final_considerationsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tastings?: boolean | tastingsDefaultArgs<ExtArgs>
   }
@@ -10255,7 +10255,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       tid: string
-      exam_uuid: string
+      eid: string
       evolution: string
       harmony: string
       pairings: string
@@ -10686,7 +10686,7 @@ export namespace Prisma {
   interface final_considerationsFieldRefs {
     readonly id: FieldRef<"final_considerations", 'Int'>
     readonly tid: FieldRef<"final_considerations", 'String'>
-    readonly exam_uuid: FieldRef<"final_considerations", 'String'>
+    readonly eid: FieldRef<"final_considerations", 'String'>
     readonly evolution: FieldRef<"final_considerations", 'String'>
     readonly harmony: FieldRef<"final_considerations", 'String'>
     readonly pairings: FieldRef<"final_considerations", 'String'>
@@ -11182,7 +11182,7 @@ export namespace Prisma {
   export const Olfactory_examsScalarFieldEnum: {
     id: 'id',
     tid: 'tid',
-    exam_uuid: 'exam_uuid',
+    eid: 'eid',
     intensity: 'intensity',
     complexity: 'complexity',
     quality: 'quality',
@@ -11205,7 +11205,7 @@ export namespace Prisma {
   export const Taste_olfactory_examsScalarFieldEnum: {
     id: 'id',
     tid: 'tid',
-    exam_uuid: 'exam_uuid',
+    eid: 'eid',
     sugars: 'sugars',
     alcohols: 'alcohols',
     polyalcohols: 'polyalcohols',
@@ -11226,7 +11226,7 @@ export namespace Prisma {
   export const Visual_examsScalarFieldEnum: {
     id: 'id',
     tid: 'tid',
-    exam_uuid: 'exam_uuid',
+    eid: 'eid',
     limpidity: 'limpidity',
     color_family: 'color_family',
     color_shade: 'color_shade',
@@ -11243,7 +11243,7 @@ export namespace Prisma {
   export const Final_considerationsScalarFieldEnum: {
     id: 'id',
     tid: 'tid',
-    exam_uuid: 'exam_uuid',
+    eid: 'eid',
     evolution: 'evolution',
     harmony: 'harmony',
     pairings: 'pairings',
@@ -11695,7 +11695,7 @@ export namespace Prisma {
     NOT?: olfactory_examsWhereInput | olfactory_examsWhereInput[]
     id?: IntFilter<"olfactory_exams"> | number
     tid?: UuidFilter<"olfactory_exams"> | string
-    exam_uuid?: UuidFilter<"olfactory_exams"> | string
+    eid?: UuidFilter<"olfactory_exams"> | string
     intensity?: StringFilter<"olfactory_exams"> | string
     complexity?: StringFilter<"olfactory_exams"> | string
     quality?: StringFilter<"olfactory_exams"> | string
@@ -11716,7 +11716,7 @@ export namespace Prisma {
   export type olfactory_examsOrderByWithRelationInput = {
     id?: SortOrder
     tid?: SortOrder
-    exam_uuid?: SortOrder
+    eid?: SortOrder
     intensity?: SortOrder
     complexity?: SortOrder
     quality?: SortOrder
@@ -11737,7 +11737,7 @@ export namespace Prisma {
   export type olfactory_examsWhereUniqueInput = Prisma.AtLeast<{
     id?: number
     tid?: string
-    exam_uuid?: string
+    eid?: string
     AND?: olfactory_examsWhereInput | olfactory_examsWhereInput[]
     OR?: olfactory_examsWhereInput[]
     NOT?: olfactory_examsWhereInput | olfactory_examsWhereInput[]
@@ -11756,12 +11756,12 @@ export namespace Prisma {
     frank?: BoolNullableFilter<"olfactory_exams"> | boolean | null
     notes?: StringNullableFilter<"olfactory_exams"> | string | null
     tastings?: XOR<TastingsScalarRelationFilter, tastingsWhereInput>
-  }, "id" | "tid" | "exam_uuid">
+  }, "id" | "tid" | "eid">
 
   export type olfactory_examsOrderByWithAggregationInput = {
     id?: SortOrder
     tid?: SortOrder
-    exam_uuid?: SortOrder
+    eid?: SortOrder
     intensity?: SortOrder
     complexity?: SortOrder
     quality?: SortOrder
@@ -11789,7 +11789,7 @@ export namespace Prisma {
     NOT?: olfactory_examsScalarWhereWithAggregatesInput | olfactory_examsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"olfactory_exams"> | number
     tid?: UuidWithAggregatesFilter<"olfactory_exams"> | string
-    exam_uuid?: UuidWithAggregatesFilter<"olfactory_exams"> | string
+    eid?: UuidWithAggregatesFilter<"olfactory_exams"> | string
     intensity?: StringWithAggregatesFilter<"olfactory_exams"> | string
     complexity?: StringWithAggregatesFilter<"olfactory_exams"> | string
     quality?: StringWithAggregatesFilter<"olfactory_exams"> | string
@@ -11812,7 +11812,7 @@ export namespace Prisma {
     NOT?: taste_olfactory_examsWhereInput | taste_olfactory_examsWhereInput[]
     id?: IntFilter<"taste_olfactory_exams"> | number
     tid?: UuidFilter<"taste_olfactory_exams"> | string
-    exam_uuid?: UuidFilter<"taste_olfactory_exams"> | string
+    eid?: UuidFilter<"taste_olfactory_exams"> | string
     sugars?: StringFilter<"taste_olfactory_exams"> | string
     alcohols?: StringFilter<"taste_olfactory_exams"> | string
     polyalcohols?: StringFilter<"taste_olfactory_exams"> | string
@@ -11831,7 +11831,7 @@ export namespace Prisma {
   export type taste_olfactory_examsOrderByWithRelationInput = {
     id?: SortOrder
     tid?: SortOrder
-    exam_uuid?: SortOrder
+    eid?: SortOrder
     sugars?: SortOrder
     alcohols?: SortOrder
     polyalcohols?: SortOrder
@@ -11850,7 +11850,7 @@ export namespace Prisma {
   export type taste_olfactory_examsWhereUniqueInput = Prisma.AtLeast<{
     id?: number
     tid?: string
-    exam_uuid?: string
+    eid?: string
     AND?: taste_olfactory_examsWhereInput | taste_olfactory_examsWhereInput[]
     OR?: taste_olfactory_examsWhereInput[]
     NOT?: taste_olfactory_examsWhereInput | taste_olfactory_examsWhereInput[]
@@ -11867,12 +11867,12 @@ export namespace Prisma {
     structure?: StringFilter<"taste_olfactory_exams"> | string
     notes?: StringNullableFilter<"taste_olfactory_exams"> | string | null
     tastings?: XOR<TastingsScalarRelationFilter, tastingsWhereInput>
-  }, "id" | "tid" | "exam_uuid">
+  }, "id" | "tid" | "eid">
 
   export type taste_olfactory_examsOrderByWithAggregationInput = {
     id?: SortOrder
     tid?: SortOrder
-    exam_uuid?: SortOrder
+    eid?: SortOrder
     sugars?: SortOrder
     alcohols?: SortOrder
     polyalcohols?: SortOrder
@@ -11898,7 +11898,7 @@ export namespace Prisma {
     NOT?: taste_olfactory_examsScalarWhereWithAggregatesInput | taste_olfactory_examsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"taste_olfactory_exams"> | number
     tid?: UuidWithAggregatesFilter<"taste_olfactory_exams"> | string
-    exam_uuid?: UuidWithAggregatesFilter<"taste_olfactory_exams"> | string
+    eid?: UuidWithAggregatesFilter<"taste_olfactory_exams"> | string
     sugars?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
     alcohols?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
     polyalcohols?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
@@ -11919,7 +11919,7 @@ export namespace Prisma {
     NOT?: visual_examsWhereInput | visual_examsWhereInput[]
     id?: IntFilter<"visual_exams"> | number
     tid?: UuidFilter<"visual_exams"> | string
-    exam_uuid?: UuidFilter<"visual_exams"> | string
+    eid?: UuidFilter<"visual_exams"> | string
     limpidity?: StringNullableFilter<"visual_exams"> | string | null
     color_family?: StringFilter<"visual_exams"> | string
     color_shade?: StringFilter<"visual_exams"> | string
@@ -11934,7 +11934,7 @@ export namespace Prisma {
   export type visual_examsOrderByWithRelationInput = {
     id?: SortOrder
     tid?: SortOrder
-    exam_uuid?: SortOrder
+    eid?: SortOrder
     limpidity?: SortOrderInput | SortOrder
     color_family?: SortOrder
     color_shade?: SortOrder
@@ -11949,7 +11949,7 @@ export namespace Prisma {
   export type visual_examsWhereUniqueInput = Prisma.AtLeast<{
     id?: number
     tid?: string
-    exam_uuid?: string
+    eid?: string
     AND?: visual_examsWhereInput | visual_examsWhereInput[]
     OR?: visual_examsWhereInput[]
     NOT?: visual_examsWhereInput | visual_examsWhereInput[]
@@ -11962,12 +11962,12 @@ export namespace Prisma {
     bubble_persistence?: StringNullableFilter<"visual_exams"> | string | null
     notes?: StringNullableFilter<"visual_exams"> | string | null
     tastings?: XOR<TastingsScalarRelationFilter, tastingsWhereInput>
-  }, "id" | "tid" | "exam_uuid">
+  }, "id" | "tid" | "eid">
 
   export type visual_examsOrderByWithAggregationInput = {
     id?: SortOrder
     tid?: SortOrder
-    exam_uuid?: SortOrder
+    eid?: SortOrder
     limpidity?: SortOrderInput | SortOrder
     color_family?: SortOrder
     color_shade?: SortOrder
@@ -11989,7 +11989,7 @@ export namespace Prisma {
     NOT?: visual_examsScalarWhereWithAggregatesInput | visual_examsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"visual_exams"> | number
     tid?: UuidWithAggregatesFilter<"visual_exams"> | string
-    exam_uuid?: UuidWithAggregatesFilter<"visual_exams"> | string
+    eid?: UuidWithAggregatesFilter<"visual_exams"> | string
     limpidity?: StringNullableWithAggregatesFilter<"visual_exams"> | string | null
     color_family?: StringWithAggregatesFilter<"visual_exams"> | string
     color_shade?: StringWithAggregatesFilter<"visual_exams"> | string
@@ -12006,7 +12006,7 @@ export namespace Prisma {
     NOT?: final_considerationsWhereInput | final_considerationsWhereInput[]
     id?: IntFilter<"final_considerations"> | number
     tid?: UuidFilter<"final_considerations"> | string
-    exam_uuid?: UuidFilter<"final_considerations"> | string
+    eid?: UuidFilter<"final_considerations"> | string
     evolution?: StringFilter<"final_considerations"> | string
     harmony?: StringFilter<"final_considerations"> | string
     pairings?: StringFilter<"final_considerations"> | string
@@ -12017,7 +12017,7 @@ export namespace Prisma {
   export type final_considerationsOrderByWithRelationInput = {
     id?: SortOrder
     tid?: SortOrder
-    exam_uuid?: SortOrder
+    eid?: SortOrder
     evolution?: SortOrder
     harmony?: SortOrder
     pairings?: SortOrder
@@ -12028,7 +12028,7 @@ export namespace Prisma {
   export type final_considerationsWhereUniqueInput = Prisma.AtLeast<{
     id?: number
     tid?: string
-    exam_uuid?: string
+    eid?: string
     AND?: final_considerationsWhereInput | final_considerationsWhereInput[]
     OR?: final_considerationsWhereInput[]
     NOT?: final_considerationsWhereInput | final_considerationsWhereInput[]
@@ -12037,12 +12037,12 @@ export namespace Prisma {
     pairings?: StringFilter<"final_considerations"> | string
     notes?: StringNullableFilter<"final_considerations"> | string | null
     tastings?: XOR<TastingsScalarRelationFilter, tastingsWhereInput>
-  }, "id" | "tid" | "exam_uuid">
+  }, "id" | "tid" | "eid">
 
   export type final_considerationsOrderByWithAggregationInput = {
     id?: SortOrder
     tid?: SortOrder
-    exam_uuid?: SortOrder
+    eid?: SortOrder
     evolution?: SortOrder
     harmony?: SortOrder
     pairings?: SortOrder
@@ -12060,7 +12060,7 @@ export namespace Prisma {
     NOT?: final_considerationsScalarWhereWithAggregatesInput | final_considerationsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"final_considerations"> | number
     tid?: UuidWithAggregatesFilter<"final_considerations"> | string
-    exam_uuid?: UuidWithAggregatesFilter<"final_considerations"> | string
+    eid?: UuidWithAggregatesFilter<"final_considerations"> | string
     evolution?: StringWithAggregatesFilter<"final_considerations"> | string
     harmony?: StringWithAggregatesFilter<"final_considerations"> | string
     pairings?: StringWithAggregatesFilter<"final_considerations"> | string
@@ -12417,7 +12417,7 @@ export namespace Prisma {
   }
 
   export type olfactory_examsCreateInput = {
-    exam_uuid?: string
+    eid?: string
     intensity: string
     complexity: string
     quality: string
@@ -12438,7 +12438,7 @@ export namespace Prisma {
   export type olfactory_examsUncheckedCreateInput = {
     id?: number
     tid: string
-    exam_uuid?: string
+    eid?: string
     intensity: string
     complexity: string
     quality: string
@@ -12456,7 +12456,7 @@ export namespace Prisma {
   }
 
   export type olfactory_examsUpdateInput = {
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     intensity?: StringFieldUpdateOperationsInput | string
     complexity?: StringFieldUpdateOperationsInput | string
     quality?: StringFieldUpdateOperationsInput | string
@@ -12477,7 +12477,7 @@ export namespace Prisma {
   export type olfactory_examsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     tid?: StringFieldUpdateOperationsInput | string
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     intensity?: StringFieldUpdateOperationsInput | string
     complexity?: StringFieldUpdateOperationsInput | string
     quality?: StringFieldUpdateOperationsInput | string
@@ -12497,7 +12497,7 @@ export namespace Prisma {
   export type olfactory_examsCreateManyInput = {
     id?: number
     tid: string
-    exam_uuid?: string
+    eid?: string
     intensity: string
     complexity: string
     quality: string
@@ -12515,7 +12515,7 @@ export namespace Prisma {
   }
 
   export type olfactory_examsUpdateManyMutationInput = {
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     intensity?: StringFieldUpdateOperationsInput | string
     complexity?: StringFieldUpdateOperationsInput | string
     quality?: StringFieldUpdateOperationsInput | string
@@ -12535,7 +12535,7 @@ export namespace Prisma {
   export type olfactory_examsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     tid?: StringFieldUpdateOperationsInput | string
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     intensity?: StringFieldUpdateOperationsInput | string
     complexity?: StringFieldUpdateOperationsInput | string
     quality?: StringFieldUpdateOperationsInput | string
@@ -12553,7 +12553,7 @@ export namespace Prisma {
   }
 
   export type taste_olfactory_examsCreateInput = {
-    exam_uuid?: string
+    eid?: string
     sugars: string
     alcohols: string
     polyalcohols: string
@@ -12572,7 +12572,7 @@ export namespace Prisma {
   export type taste_olfactory_examsUncheckedCreateInput = {
     id?: number
     tid: string
-    exam_uuid?: string
+    eid?: string
     sugars: string
     alcohols: string
     polyalcohols: string
@@ -12588,7 +12588,7 @@ export namespace Prisma {
   }
 
   export type taste_olfactory_examsUpdateInput = {
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     sugars?: StringFieldUpdateOperationsInput | string
     alcohols?: StringFieldUpdateOperationsInput | string
     polyalcohols?: StringFieldUpdateOperationsInput | string
@@ -12607,7 +12607,7 @@ export namespace Prisma {
   export type taste_olfactory_examsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     tid?: StringFieldUpdateOperationsInput | string
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     sugars?: StringFieldUpdateOperationsInput | string
     alcohols?: StringFieldUpdateOperationsInput | string
     polyalcohols?: StringFieldUpdateOperationsInput | string
@@ -12625,7 +12625,7 @@ export namespace Prisma {
   export type taste_olfactory_examsCreateManyInput = {
     id?: number
     tid: string
-    exam_uuid?: string
+    eid?: string
     sugars: string
     alcohols: string
     polyalcohols: string
@@ -12641,7 +12641,7 @@ export namespace Prisma {
   }
 
   export type taste_olfactory_examsUpdateManyMutationInput = {
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     sugars?: StringFieldUpdateOperationsInput | string
     alcohols?: StringFieldUpdateOperationsInput | string
     polyalcohols?: StringFieldUpdateOperationsInput | string
@@ -12659,7 +12659,7 @@ export namespace Prisma {
   export type taste_olfactory_examsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     tid?: StringFieldUpdateOperationsInput | string
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     sugars?: StringFieldUpdateOperationsInput | string
     alcohols?: StringFieldUpdateOperationsInput | string
     polyalcohols?: StringFieldUpdateOperationsInput | string
@@ -12675,7 +12675,7 @@ export namespace Prisma {
   }
 
   export type visual_examsCreateInput = {
-    exam_uuid?: string
+    eid?: string
     limpidity?: string | null
     color_family: string
     color_shade: string
@@ -12690,7 +12690,7 @@ export namespace Prisma {
   export type visual_examsUncheckedCreateInput = {
     id?: number
     tid: string
-    exam_uuid?: string
+    eid?: string
     limpidity?: string | null
     color_family: string
     color_shade: string
@@ -12702,7 +12702,7 @@ export namespace Prisma {
   }
 
   export type visual_examsUpdateInput = {
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     limpidity?: NullableStringFieldUpdateOperationsInput | string | null
     color_family?: StringFieldUpdateOperationsInput | string
     color_shade?: StringFieldUpdateOperationsInput | string
@@ -12717,7 +12717,7 @@ export namespace Prisma {
   export type visual_examsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     tid?: StringFieldUpdateOperationsInput | string
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     limpidity?: NullableStringFieldUpdateOperationsInput | string | null
     color_family?: StringFieldUpdateOperationsInput | string
     color_shade?: StringFieldUpdateOperationsInput | string
@@ -12731,7 +12731,7 @@ export namespace Prisma {
   export type visual_examsCreateManyInput = {
     id?: number
     tid: string
-    exam_uuid?: string
+    eid?: string
     limpidity?: string | null
     color_family: string
     color_shade: string
@@ -12743,7 +12743,7 @@ export namespace Prisma {
   }
 
   export type visual_examsUpdateManyMutationInput = {
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     limpidity?: NullableStringFieldUpdateOperationsInput | string | null
     color_family?: StringFieldUpdateOperationsInput | string
     color_shade?: StringFieldUpdateOperationsInput | string
@@ -12757,7 +12757,7 @@ export namespace Prisma {
   export type visual_examsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     tid?: StringFieldUpdateOperationsInput | string
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     limpidity?: NullableStringFieldUpdateOperationsInput | string | null
     color_family?: StringFieldUpdateOperationsInput | string
     color_shade?: StringFieldUpdateOperationsInput | string
@@ -12769,7 +12769,7 @@ export namespace Prisma {
   }
 
   export type final_considerationsCreateInput = {
-    exam_uuid?: string
+    eid?: string
     evolution: string
     harmony: string
     pairings: string
@@ -12780,7 +12780,7 @@ export namespace Prisma {
   export type final_considerationsUncheckedCreateInput = {
     id?: number
     tid: string
-    exam_uuid?: string
+    eid?: string
     evolution: string
     harmony: string
     pairings: string
@@ -12788,7 +12788,7 @@ export namespace Prisma {
   }
 
   export type final_considerationsUpdateInput = {
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     evolution?: StringFieldUpdateOperationsInput | string
     harmony?: StringFieldUpdateOperationsInput | string
     pairings?: StringFieldUpdateOperationsInput | string
@@ -12799,7 +12799,7 @@ export namespace Prisma {
   export type final_considerationsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     tid?: StringFieldUpdateOperationsInput | string
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     evolution?: StringFieldUpdateOperationsInput | string
     harmony?: StringFieldUpdateOperationsInput | string
     pairings?: StringFieldUpdateOperationsInput | string
@@ -12809,7 +12809,7 @@ export namespace Prisma {
   export type final_considerationsCreateManyInput = {
     id?: number
     tid: string
-    exam_uuid?: string
+    eid?: string
     evolution: string
     harmony: string
     pairings: string
@@ -12817,7 +12817,7 @@ export namespace Prisma {
   }
 
   export type final_considerationsUpdateManyMutationInput = {
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     evolution?: StringFieldUpdateOperationsInput | string
     harmony?: StringFieldUpdateOperationsInput | string
     pairings?: StringFieldUpdateOperationsInput | string
@@ -12827,7 +12827,7 @@ export namespace Prisma {
   export type final_considerationsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     tid?: StringFieldUpdateOperationsInput | string
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     evolution?: StringFieldUpdateOperationsInput | string
     harmony?: StringFieldUpdateOperationsInput | string
     pairings?: StringFieldUpdateOperationsInput | string
@@ -13359,7 +13359,7 @@ export namespace Prisma {
   export type olfactory_examsCountOrderByAggregateInput = {
     id?: SortOrder
     tid?: SortOrder
-    exam_uuid?: SortOrder
+    eid?: SortOrder
     intensity?: SortOrder
     complexity?: SortOrder
     quality?: SortOrder
@@ -13383,7 +13383,7 @@ export namespace Prisma {
   export type olfactory_examsMaxOrderByAggregateInput = {
     id?: SortOrder
     tid?: SortOrder
-    exam_uuid?: SortOrder
+    eid?: SortOrder
     intensity?: SortOrder
     complexity?: SortOrder
     quality?: SortOrder
@@ -13403,7 +13403,7 @@ export namespace Prisma {
   export type olfactory_examsMinOrderByAggregateInput = {
     id?: SortOrder
     tid?: SortOrder
-    exam_uuid?: SortOrder
+    eid?: SortOrder
     intensity?: SortOrder
     complexity?: SortOrder
     quality?: SortOrder
@@ -13427,7 +13427,7 @@ export namespace Prisma {
   export type taste_olfactory_examsCountOrderByAggregateInput = {
     id?: SortOrder
     tid?: SortOrder
-    exam_uuid?: SortOrder
+    eid?: SortOrder
     sugars?: SortOrder
     alcohols?: SortOrder
     polyalcohols?: SortOrder
@@ -13449,7 +13449,7 @@ export namespace Prisma {
   export type taste_olfactory_examsMaxOrderByAggregateInput = {
     id?: SortOrder
     tid?: SortOrder
-    exam_uuid?: SortOrder
+    eid?: SortOrder
     sugars?: SortOrder
     alcohols?: SortOrder
     polyalcohols?: SortOrder
@@ -13467,7 +13467,7 @@ export namespace Prisma {
   export type taste_olfactory_examsMinOrderByAggregateInput = {
     id?: SortOrder
     tid?: SortOrder
-    exam_uuid?: SortOrder
+    eid?: SortOrder
     sugars?: SortOrder
     alcohols?: SortOrder
     polyalcohols?: SortOrder
@@ -13489,7 +13489,7 @@ export namespace Prisma {
   export type visual_examsCountOrderByAggregateInput = {
     id?: SortOrder
     tid?: SortOrder
-    exam_uuid?: SortOrder
+    eid?: SortOrder
     limpidity?: SortOrder
     color_family?: SortOrder
     color_shade?: SortOrder
@@ -13507,7 +13507,7 @@ export namespace Prisma {
   export type visual_examsMaxOrderByAggregateInput = {
     id?: SortOrder
     tid?: SortOrder
-    exam_uuid?: SortOrder
+    eid?: SortOrder
     limpidity?: SortOrder
     color_family?: SortOrder
     color_shade?: SortOrder
@@ -13521,7 +13521,7 @@ export namespace Prisma {
   export type visual_examsMinOrderByAggregateInput = {
     id?: SortOrder
     tid?: SortOrder
-    exam_uuid?: SortOrder
+    eid?: SortOrder
     limpidity?: SortOrder
     color_family?: SortOrder
     color_shade?: SortOrder
@@ -13539,7 +13539,7 @@ export namespace Prisma {
   export type final_considerationsCountOrderByAggregateInput = {
     id?: SortOrder
     tid?: SortOrder
-    exam_uuid?: SortOrder
+    eid?: SortOrder
     evolution?: SortOrder
     harmony?: SortOrder
     pairings?: SortOrder
@@ -13553,7 +13553,7 @@ export namespace Prisma {
   export type final_considerationsMaxOrderByAggregateInput = {
     id?: SortOrder
     tid?: SortOrder
-    exam_uuid?: SortOrder
+    eid?: SortOrder
     evolution?: SortOrder
     harmony?: SortOrder
     pairings?: SortOrder
@@ -13563,7 +13563,7 @@ export namespace Prisma {
   export type final_considerationsMinOrderByAggregateInput = {
     id?: SortOrder
     tid?: SortOrder
-    exam_uuid?: SortOrder
+    eid?: SortOrder
     evolution?: SortOrder
     harmony?: SortOrder
     pairings?: SortOrder
@@ -14506,7 +14506,7 @@ export namespace Prisma {
   }
 
   export type final_considerationsCreateWithoutTastingsInput = {
-    exam_uuid?: string
+    eid?: string
     evolution: string
     harmony: string
     pairings: string
@@ -14515,7 +14515,7 @@ export namespace Prisma {
 
   export type final_considerationsUncheckedCreateWithoutTastingsInput = {
     id?: number
-    exam_uuid?: string
+    eid?: string
     evolution: string
     harmony: string
     pairings: string
@@ -14528,7 +14528,7 @@ export namespace Prisma {
   }
 
   export type olfactory_examsCreateWithoutTastingsInput = {
-    exam_uuid?: string
+    eid?: string
     intensity: string
     complexity: string
     quality: string
@@ -14547,7 +14547,7 @@ export namespace Prisma {
 
   export type olfactory_examsUncheckedCreateWithoutTastingsInput = {
     id?: number
-    exam_uuid?: string
+    eid?: string
     intensity: string
     complexity: string
     quality: string
@@ -14570,7 +14570,7 @@ export namespace Prisma {
   }
 
   export type taste_olfactory_examsCreateWithoutTastingsInput = {
-    exam_uuid?: string
+    eid?: string
     sugars: string
     alcohols: string
     polyalcohols: string
@@ -14587,7 +14587,7 @@ export namespace Prisma {
 
   export type taste_olfactory_examsUncheckedCreateWithoutTastingsInput = {
     id?: number
-    exam_uuid?: string
+    eid?: string
     sugars: string
     alcohols: string
     polyalcohols: string
@@ -14662,7 +14662,7 @@ export namespace Prisma {
   }
 
   export type visual_examsCreateWithoutTastingsInput = {
-    exam_uuid?: string
+    eid?: string
     limpidity?: string | null
     color_family: string
     color_shade: string
@@ -14675,7 +14675,7 @@ export namespace Prisma {
 
   export type visual_examsUncheckedCreateWithoutTastingsInput = {
     id?: number
-    exam_uuid?: string
+    eid?: string
     limpidity?: string | null
     color_family: string
     color_shade: string
@@ -14703,7 +14703,7 @@ export namespace Prisma {
   }
 
   export type final_considerationsUpdateWithoutTastingsInput = {
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     evolution?: StringFieldUpdateOperationsInput | string
     harmony?: StringFieldUpdateOperationsInput | string
     pairings?: StringFieldUpdateOperationsInput | string
@@ -14712,7 +14712,7 @@ export namespace Prisma {
 
   export type final_considerationsUncheckedUpdateWithoutTastingsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     evolution?: StringFieldUpdateOperationsInput | string
     harmony?: StringFieldUpdateOperationsInput | string
     pairings?: StringFieldUpdateOperationsInput | string
@@ -14731,7 +14731,7 @@ export namespace Prisma {
   }
 
   export type olfactory_examsUpdateWithoutTastingsInput = {
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     intensity?: StringFieldUpdateOperationsInput | string
     complexity?: StringFieldUpdateOperationsInput | string
     quality?: StringFieldUpdateOperationsInput | string
@@ -14750,7 +14750,7 @@ export namespace Prisma {
 
   export type olfactory_examsUncheckedUpdateWithoutTastingsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     intensity?: StringFieldUpdateOperationsInput | string
     complexity?: StringFieldUpdateOperationsInput | string
     quality?: StringFieldUpdateOperationsInput | string
@@ -14779,7 +14779,7 @@ export namespace Prisma {
   }
 
   export type taste_olfactory_examsUpdateWithoutTastingsInput = {
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     sugars?: StringFieldUpdateOperationsInput | string
     alcohols?: StringFieldUpdateOperationsInput | string
     polyalcohols?: StringFieldUpdateOperationsInput | string
@@ -14796,7 +14796,7 @@ export namespace Prisma {
 
   export type taste_olfactory_examsUncheckedUpdateWithoutTastingsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     sugars?: StringFieldUpdateOperationsInput | string
     alcohols?: StringFieldUpdateOperationsInput | string
     polyalcohols?: StringFieldUpdateOperationsInput | string
@@ -14889,7 +14889,7 @@ export namespace Prisma {
   }
 
   export type visual_examsUpdateWithoutTastingsInput = {
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     limpidity?: NullableStringFieldUpdateOperationsInput | string | null
     color_family?: StringFieldUpdateOperationsInput | string
     color_shade?: StringFieldUpdateOperationsInput | string
@@ -14902,7 +14902,7 @@ export namespace Prisma {
 
   export type visual_examsUncheckedUpdateWithoutTastingsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    exam_uuid?: StringFieldUpdateOperationsInput | string
+    eid?: StringFieldUpdateOperationsInput | string
     limpidity?: NullableStringFieldUpdateOperationsInput | string | null
     color_family?: StringFieldUpdateOperationsInput | string
     color_shade?: StringFieldUpdateOperationsInput | string

@@ -171,7 +171,7 @@ exports.Prisma.TastingsScalarFieldEnum = {
 exports.Prisma.Olfactory_examsScalarFieldEnum = {
   id: 'id',
   tid: 'tid',
-  exam_uuid: 'exam_uuid',
+  eid: 'eid',
   intensity: 'intensity',
   complexity: 'complexity',
   quality: 'quality',
@@ -191,7 +191,7 @@ exports.Prisma.Olfactory_examsScalarFieldEnum = {
 exports.Prisma.Taste_olfactory_examsScalarFieldEnum = {
   id: 'id',
   tid: 'tid',
-  exam_uuid: 'exam_uuid',
+  eid: 'eid',
   sugars: 'sugars',
   alcohols: 'alcohols',
   polyalcohols: 'polyalcohols',
@@ -209,7 +209,7 @@ exports.Prisma.Taste_olfactory_examsScalarFieldEnum = {
 exports.Prisma.Visual_examsScalarFieldEnum = {
   id: 'id',
   tid: 'tid',
-  exam_uuid: 'exam_uuid',
+  eid: 'eid',
   limpidity: 'limpidity',
   color_family: 'color_family',
   color_shade: 'color_shade',
@@ -223,7 +223,7 @@ exports.Prisma.Visual_examsScalarFieldEnum = {
 exports.Prisma.Final_considerationsScalarFieldEnum = {
   id: 'id',
   tid: 'tid',
-  exam_uuid: 'exam_uuid',
+  eid: 'eid',
   evolution: 'evolution',
   harmony: 'harmony',
   pairings: 'pairings',

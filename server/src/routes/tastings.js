@@ -11,7 +11,7 @@ import { PrismaClient } from "../generated/prisma/index.js";
 const router = Router();
 const prisma = new PrismaClient();
 
-// GET /api/v1/tastings/
+// GET /api/v1/tastings
 router.get("/",
     async (req, res) => {
         const uid = req.user.uid;
@@ -20,6 +20,12 @@ router.get("/",
         try {
             const result = await prisma.tastings.findMany({
                 where: { uid: uid },
+                include: {
+                  visual_exams: true,
+                  olfactory_exams: true,
+                  taste_olfactory_exams: true,
+                  final_considerations: true
+                },
                 orderBy: { id: 'desc' },
             });
 
@@ -77,7 +83,7 @@ router.get("/:tid",
     }
 );
 
-// POST /api/v1/tastings/
+// POST /api/v1/tastings
 router.post('/', async (req, res) => {
   const uid = req.user.uid;
   const language = req.headers['accept-language']?.split(',')[0]?.toLowerCase() || 'en';
