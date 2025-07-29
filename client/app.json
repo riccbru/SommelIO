@@ -61,10 +61,13 @@
             ]
           },
           "ios": {
-            "fonts": ["./assets/fonts/Epilogue-Regular.ttf"]
+            "fonts": [
+              "./assets/fonts/Epilogue-Regular.ttf"
+            ]
           }
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true

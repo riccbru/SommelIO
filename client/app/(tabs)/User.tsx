@@ -1,30 +1,32 @@
+import { useAuth } from "@/hooks/useAuth";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function User() {
 
-    const styles = StyleSheet.create({
-        container: {
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "#000000",
-        },
-        text: {
-          fontSize: 30,
-          fontWeight: 300,
-          color: "#ffffff",
-          fontFamily: "Epilogue",
-        },
-        link: {
-          fontSize: 20,
-          color: "#9e9eff",
-          textDecorationLine: "underline",
-        }
-    });
+  const { token, user } = useAuth();
+  
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: "flex-start",
+      justifyContent: "space-evenly",
+      backgroundColor: "#000000",
+    },
+    text: {
+      fontSize: 25,
+      fontWeight: 300,
+      color: "#ffffff",
+      fontFamily: "Epilogue",
+    }
+  });
 
-    return (
-        <View style={styles.container}>
-            <Text style={styles.text}>profilo utente</Text>
-        </View>
-    );
+  return (
+      <View style={styles.container}>
+          <Text style={styles.text}>UID: {user?.uid}</Text>
+          <Text style={styles.text}>Username: {user?.username}</Text>
+          <Text style={styles.text}>Full Name: {user?.full_name}</Text>
+          <Text style={styles.text}>Email: {user?.email}</Text>
+          <Text style={styles.text}>JWT: {token}</Text>
+      </View>
+  );
 }

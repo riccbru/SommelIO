@@ -2,6 +2,7 @@
 
 # misc
 .vscode/
+API/config.ts
 
 # dependencies
 node_modules/
