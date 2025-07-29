@@ -11,11 +11,14 @@ export default function Index() {
     },
     text: {
       fontSize: 30,
+      fontWeight: 300,
       color: "#ffffff",
+      fontFamily: "Epilogue",
     },
     link: {
       fontSize: 20,
-      color: "#9e9eff",
+      // color: "#9e9eff",
+      color: "#b58638",
       textDecorationLine: "underline",
     }
   });

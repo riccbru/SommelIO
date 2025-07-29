@@ -11,7 +11,9 @@ export default function User() {
         },
         text: {
           fontSize: 30,
+          fontWeight: 300,
           color: "#ffffff",
+          fontFamily: "Epilogue",
         },
         link: {
           fontSize: 20,

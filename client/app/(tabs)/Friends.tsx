@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export default function Friend() {
+export default function Friends() {
     const styles = StyleSheet.create({
         container: {
           flex: 1,
@@ -10,7 +10,9 @@ export default function Friend() {
         },
         text: {
           fontSize: 30,
+          fontWeight: 300,
           color: "#ffffff",
+          fontFamily: "Epilogue",
         },
         link: {
           fontSize: 20,

@@ -1,6 +1,9 @@
 import { Tabs } from "expo-router";
 import { FilePlus, House, User, Users, Wine } from 'phosphor-react-native';
 
+// sabbia: #d3d5cb
+// giallo: #b58638
+
 export default function TabsLayout() {
   return(
     <Tabs
@@ -15,22 +18,22 @@ export default function TabsLayout() {
         }}
     >
         <Tabs.Screen name="index" options={{
-            headerTitle: "Welcome",
+            headerTitle: "AIS",
             tabBarLabel: "",
             tabBarIcon: ({focused, color}) => <House size={30} weight={!focused ? "regular" : "fill"} />
         }} />
         <Tabs.Screen name="Friends" options={{
-            headerTitle: "",
+            headerTitle: "Colleghi AIS",
             tabBarLabel: "",
             tabBarIcon: ({focused, color}) => <Users size={30} weight={!focused ? "regular" : "fill"} />
         }} />
-        <Tabs.Screen name="Add" options={{
-            headerTitle: "Nuova Degustazione",
+        <Tabs.Screen name="New" options={{
+            headerTitle: "Nuova degustazione",
             tabBarLabel: "",
             tabBarIcon: ({focused, color}) => <FilePlus size={30} weight={!focused ? "regular" : "fill"} />
         }} />
         <Tabs.Screen name="Tastings" options={{
-            headerTitle: "",
+            headerTitle: "Degustazioni",
             tabBarLabel: "",
             tabBarIcon: ({focused, color}) => <Wine size={30} weight={!focused ? "regular" : "fill"} />
         }} />

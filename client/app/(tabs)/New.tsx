@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export default function Add() {
+export default function New() {
 
     const styles = StyleSheet.create({
         container: {
@@ -11,7 +11,9 @@ export default function Add() {
         },
         text: {
           fontSize: 30,
+          fontWeight: 300,
           color: "#ffffff",
+          fontFamily: "Epilogue",
         },
         link: {
           fontSize: 20,

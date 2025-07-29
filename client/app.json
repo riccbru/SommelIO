@@ -28,10 +28,41 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/logo-ais.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#ffffff",
+          "dark": {
+            "image": "./assets/images/logo-neg.png",
+            "imageWidth": 200,
+            "resizeMode": "contain",
+            "backgroundColor": "#000000"
+          }
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Epilogue-Regular.ttf"
+          ],
+          "android": {
+            "fonts": [
+              {
+                "fontFamily": "Epilogue",
+                "fontDefinitions": [
+                  {
+                    "weight": 300,
+                    "style": "normal",
+                    "path": "./assets/fonts/Epilogue-Regular.ttf"
+                  }
+                ]
+              }
+            ]
+          },
+          "ios": {
+            "fonts": ["./assets/fonts/Epilogue-Regular.ttf"]
+          }
         }
       ]
     ],
