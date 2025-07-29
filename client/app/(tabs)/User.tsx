@@ -13,7 +13,7 @@ export default function User() {
       backgroundColor: "#000000",
     },
     text: {
-      fontSize: 25,
+      fontSize: 20,
       fontWeight: 300,
       color: "#ffffff",
       fontFamily: "Epilogue",
@@ -26,7 +26,7 @@ export default function User() {
           <Text style={styles.text}>Username: {user?.username}</Text>
           <Text style={styles.text}>Full Name: {user?.full_name}</Text>
           <Text style={styles.text}>Email: {user?.email}</Text>
-          <Text style={styles.text}>JWT: {token}</Text>
+          <Text style={styles.text}>JWT Access Token: {token}</Text>
       </View>
   );
 }

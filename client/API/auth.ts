@@ -5,12 +5,19 @@ async function login(username: string, password: string): Promise<{ accessToken:
         const response = await axiosClient.post('/auth/login', { username, password });
 
         const accessToken = response.data.token;
-        const refreshToken = response.headers['Set-Cookie']?.find(
+        const refreshToken = response.headers['set-cookie']?.find(
             (cookie: string) => cookie.startsWith('refreshToken=')
         )?.split(';')[0].split('=')[1];
 
-        console.log(`Access Token: ${accessToken}`);
-        console.log(`Refresh Token: ${refreshToken}`);
+        if (!accessToken || !refreshToken) {
+            throw new Error(
+                !accessToken && !refreshToken
+                ? 'accessToken and refreshToken are undefined'
+                : !accessToken
+                ? 'accessToken is undefined'
+                : 'refreshToken is undefined'
+            );
+        }
 
         return { accessToken, refreshToken };
     } catch (error: any) {
