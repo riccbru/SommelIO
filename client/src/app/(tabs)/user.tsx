@@ -19,11 +19,11 @@ export default function User() {
           logout();
           router.replace("/login");
         }}>
-          <SignOut size={25} color="#ffffff" />
+          <SignOut size={25} color={theme.dark ? "#ffffff" : "#000000"} />
         </TouchableOpacity>
       )
     });
-  }, [logout, navigation, router]);
+  }, [logout, navigation, router, theme]);
   
   const styles = StyleSheet.create({
     container: {

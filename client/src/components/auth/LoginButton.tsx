@@ -1,10 +1,9 @@
 import {
-  ActivityIndicator,
+  StyleSheet,
   Text,
-  TouchableOpacity,
-  StyleSheet
+  TouchableOpacity
 } from "react-native";
-import { useTheme } from "react-native-paper";
+import { useTheme, ActivityIndicator } from "react-native-paper";
 
 type Props = {
   loading: boolean;
@@ -40,7 +39,7 @@ export default function LoginButton({ loading, onPress, disabled }: Props) {
       onPress={onPress}
     >
       {loading ? (
-        <ActivityIndicator color="#ffffff" />
+        <ActivityIndicator animating={true} color="#ffffff" />
       ) : (
         <Text style={styles.buttonText}>LOGIN</Text>
       )}

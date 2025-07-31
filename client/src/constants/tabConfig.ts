@@ -1,27 +1,24 @@
-import { FilePlus, House, User, Users, Wine } from 'phosphor-react-native';
-
-// sabbia: #d3d5cb
-// giallo: #b58638
+import { FilePlusIcon, HouseIcon, UserIcon, UsersIcon, WineIcon } from 'phosphor-react-native';
 
 export const TAB_CONFIG = {
   index: {
-    title: "AIS",
-    icon: House,
+    title: "News AIS",
+    icon: HouseIcon,
   },
   friends: {
     title: "Colleghi AIS",
-    icon: Users,
+    icon: UsersIcon,
   },
   new: {
     title: "Nuova degustazione",
-    icon: FilePlus,
+    icon: FilePlusIcon,
   },
   tastings: {
     title: "Degustazioni",
-    icon: Wine,
+    icon: WineIcon,
   },
   user: {
     title: "Profilo",
-    icon: User,
+    icon: UserIcon,
   },
 } as const;

@@ -168,30 +168,25 @@ If the URL parameter `tasting_uuid` is passed the route returns the single tasti
     -
     ```json
     {
-        "tastings":
-        [
-            {
-                "tid": <UUID-32>,
-                "uid": <UUID-32>,
-                "full_name": <FULL_NAME>,
-                "wine_category_name": <TEXT>,
-                "sample_number": <TEXT>,
-                "wine_denomination": <TEXT>,
-                "alcohol_content": <TEXT %>,
-                "vintage": <YEAR>,
-                "wine_temperature": <TEXT°C>,
-                "ambient_temperature": <TEXT°C>,
-                "tasting_date": <YYYY-MM-DD>,
-                "tasting_time": <HH:MM>,
-                "tasting_location": <TEXT>,
-                "created_at": <DATE_ISO-8601>,
-                "updated_at": <DATE_ISO-8601>,
-                "visual_exam": { ... },
-                "olfactory_exam": { ... },
-                "taste_olfactory_exam": { ... },
-                "final_considerations": { ... }
-            },
-        ]
+        "tid": <UUID-32>,
+        "uid": <UUID-32>,
+        "full_name": <FULL_NAME>,
+        "wine_category_name": <TEXT>,
+        "sample_number": <TEXT>,
+        "wine_denomination": <TEXT>,
+        "alcohol_content": <TEXT %>,
+        "vintage": <YEAR>,
+        "wine_temperature": <TEXT°C>,
+        "ambient_temperature": <TEXT°C>,
+        "tasting_date": <YYYY-MM-DD>,
+        "tasting_time": <HH:MM>,
+        "tasting_location": <TEXT>,
+        "created_at": <DATE_ISO-8601>,
+        "updated_at": <DATE_ISO-8601>,
+        "visual_exam": { ... },
+        "olfactory_exam": { ... },
+        "taste_olfactory_exam": { ... },
+        "final_considerations": { ... }
     }
     ```
 

@@ -1,11 +1,11 @@
 import axiosClient from './axiosClient';
 
-async function getCurrentUser(token: string) {
+async function fetchTastings(token: string | null) {
     try {
-        const response = await axiosClient.get('/users/me', {
+        const response = await axiosClient.get('/tastings', {
             headers: {
-                Authorization: `Bearer ${token}`,
-            },
+                Authorization: `Bearer ${token}`
+            }
         });
         return response.data;
     } catch (error: any) {
@@ -14,6 +14,6 @@ async function getCurrentUser(token: string) {
     }
 }
 
-const UserAPI = { getCurrentUser }
+const TastingsAPI = { fetchTastings }
 
-export default UserAPI;
+export default TastingsAPI;
