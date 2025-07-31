@@ -1,28 +1,30 @@
-import AuthAPI from "@/API/auth";
-import UserAPI from "@/API/user";
+import AuthAPI from "@/src/API/auth";
+import UserAPI from "@/src/API/user";
 import * as SecureStore from 'expo-secure-store';
 import { createContext, ReactNode, useEffect, useState } from "react";
 
 export type User = {
-    uid: string;
-    username: string;
-    full_name: string;
-    email: string;
+  uid: string;
+  username: string;
+  full_name: string;
+  email: string;
 }
 
 export type AuthContextType = {
-    loading: boolean;
-    user: User | null;
-    token: string | null;
-    login: (username: string, password: string) => Promise<void>;
-    logout: () => void;
+  isReady: boolean;
+  user: User | null;
+  isLoggedIn: boolean;
+  token: string | null;
+  login: (username: string, password: string) => Promise<void>;
+  logout: () => void;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
     
-    const [loading, setLoading] = useState(true);
+    const [isReady, setIsReady] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [user, setUser] = useState<User | null>(null);
     const [token, setToken] = useState<string | null>(null);
 
@@ -39,40 +41,37 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         } catch (err) {
             console.log(err);
             await logout();
-        } finally {
-            setLoading(false);
         }
+        setIsReady(true);
     }
-    login('bankich', 'bankich_pwd');
     checkAuth();
   }, []);
 
   const login = async (username: string, password: string) => {
-    setLoading(true);
     try {
-        const { accessToken, refreshToken } = await AuthAPI.login(username, password);
-        setToken(accessToken);
-        await SecureStore.setItemAsync('token', accessToken);
-        await SecureStore.setItemAsync('refreshToken', refreshToken);
-        const userData = await UserAPI.getCurrentUser(accessToken);
-        setUser(userData);
+      const { accessToken, refreshToken } = await AuthAPI.login(username, password);
+      await SecureStore.setItemAsync('token', accessToken);
+      await SecureStore.setItemAsync('refreshToken', refreshToken);
+      const userData = await UserAPI.getCurrentUser(accessToken);
+      setUser(userData);
+      setIsLoggedIn(true);
+      setToken(accessToken);
     } catch (error) {
-        console.log(`AuthContext's useEffect: ${error}`);
-        throw new Error('Login failed');
-    } finally {
-        setLoading(false);
+      console.log(`AuthContext's useEffect: ${error}`);
+      throw new Error('Login failed');
     }
   };
 
   const logout = async () => {
     setUser(null);
     setToken(null);
+    setIsLoggedIn(false);
     await SecureStore.deleteItemAsync('token');
     await SecureStore.deleteItemAsync('refreshToken');
   };
   
   const values: AuthContextType = {
-    loading,
+    isReady, isLoggedIn,
     user, token,
     login, logout
   };

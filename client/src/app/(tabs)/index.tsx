@@ -1,7 +1,10 @@
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/src/hooks/useAuth";
+import { Redirect } from "expo-router";
 import { Linking, StyleSheet, Pressable, Text, View } from "react-native";
 
 export default function Index() {
+
+  const { token } = useAuth();
 
   const styles = StyleSheet.create({
     container: {
@@ -21,6 +24,12 @@ export default function Index() {
       // color: "#9e9eff",
       color: "#b58638",
       textDecorationLine: "underline",
+    },
+    tokenText: {
+      fontSize: 15,
+      fontWeight: 300,
+      color: "#ffffff",
+      fontFamily: "Epilogue",
     }
   });
 
@@ -36,6 +45,9 @@ export default function Index() {
       <Pressable onPress={handlePress}>
         <Text style={styles.link}>https://aisitalia.it</Text>
       </Pressable>
+
+      <Text style={styles.text}>Access Token:</Text>
+      <Text style={styles.tokenText}>{token}</Text>
     </View>
   );
 }
