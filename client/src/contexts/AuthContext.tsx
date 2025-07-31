@@ -1,5 +1,5 @@
-import AuthAPI from "@/src/API/auth";
-import UserAPI from "@/src/API/user";
+import AuthAPI from "@/src/services/auth";
+import UserAPI from "@/src/services/user";
 import * as SecureStore from "expo-secure-store";
 import { createContext, ReactNode, useEffect, useState } from "react";
 
