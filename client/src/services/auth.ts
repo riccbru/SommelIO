@@ -1,3 +1,4 @@
+import { router } from 'expo-router';
 import axiosClient from './axiosClient';
 
 async function login(username: string, password: string): Promise<{ newAccessToken: string; newRefreshToken: string }> {
@@ -30,9 +31,26 @@ async function logout(): Promise<void> {
     console.log('Logged out');
 }
 
+async function refresh(refreshToken: string): Promise<{ newAccessToken: string }> {
+    try {
+        const response = await axiosClient.post('/auth/refresh', null, {
+            headers: { Authorization: `Bearer ${refreshToken}` }
+        })
+        return { newAccessToken: response.data.token };
+    } catch (error: any) {
+        if (error.status === 401) {
+            logout();
+            router.replace("/login");
+        }
+        console.log('Refresh error:', error);
+        throw new Error(error.response?.data?.message || `Refresh failed: ${error}`);
+    }
+}
+
 const AuthAPI = {
     login,
-    logout
+    logout,
+    refresh
 };
 
 export default AuthAPI;

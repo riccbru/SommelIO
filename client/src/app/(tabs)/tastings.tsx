@@ -33,7 +33,7 @@ type Tasting = {
 export default function Tastings() {
 
   const theme = useTheme();
-  const { accessToken } = useAuth();
+  const { accessToken, refresh } = useAuth();
   const [loading, setLoading] = useState(true);
   const [tastings, setTastings] = useState<Tasting[]>([]);
 
@@ -51,13 +51,14 @@ export default function Tastings() {
         ]);
         setTastings(data.tastings || []);
       } catch (error) {
+        refresh();
         console.log(error);
       } finally {
         setLoading(false);
       }
     }
     fetchTastings();
-  }, [accessToken]);
+  }, [accessToken, refresh]);
 
   const styles = StyleSheet.create({
     container: {

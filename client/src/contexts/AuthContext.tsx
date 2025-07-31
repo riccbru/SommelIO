@@ -18,6 +18,7 @@ export type AuthContextType = {
   user: User | null;
   login: (username: string, password: string) => Promise<void>;
   logout: () => void;
+  refresh: () => void;
 };
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -93,10 +94,25 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setAuthStatus({ isReady: true, isLoggedIn: false });
     }
 
+    const refresh = async () => {
+        try {
+            if (!authData.refreshToken) {
+                console.log(`refreshToken = '${authData.refreshToken}'`);
+            } else {
+                const response = await AuthAPI.refresh(authData.refreshToken);
+                await SecureStore.setItemAsync("accessToken", response.newAccessToken);
+                setAuthData((prev) => ({...prev , accessToken: response.newAccessToken}));
+            }
+        } catch (error) {
+            console.log(error);
+            throw new Error("Refresh failed");
+        }
+    }
+
     const values = {
         ...authStatus,
         ...authData,
-        login, logout
+        login, logout, refresh
     }
 
     return(
