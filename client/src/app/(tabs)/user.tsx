@@ -3,9 +3,11 @@ import { useAuth } from "@/src/hooks/useAuth";
 import { SignOut } from "phosphor-react-native";
 import { useNavigation, useRouter } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useTheme } from "react-native-paper";
 
 export default function User() {
 
+  const theme = useTheme();
   const router = useRouter();
   const { user, logout } = useAuth();
   const navigation = useNavigation();
@@ -30,19 +32,19 @@ export default function User() {
       flex: 1,
       alignItems: "flex-start",
       justifyContent: "space-evenly",
-      backgroundColor: "#000000",
+      backgroundColor: theme.colors.background
     },
     text: {
       fontSize: 20,
       fontWeight: 300,
-      color: "#ffffff",
       fontFamily: "Epilogue",
+      color: theme.colors.text
     },
     boldText: {
       fontSize: 20,
       fontWeight: 700,
-      color: "#ffffff",
       fontFamily: "Epilogue",
+      color: theme.colors.text
     }
   });
 

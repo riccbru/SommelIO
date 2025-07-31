@@ -1,11 +1,13 @@
 import { Tabs } from "expo-router";
 import { TAB_CONFIG } from "@/src/constants/tabConfig";
-
-const focusedColor = "#b58638";
-const iconWeight = (focused: boolean) => (!focused ? "regular" : "fill");
-const iconColor = (focused: boolean) => (!focused ? "#000000" : focusedColor);
+import { useTheme } from "react-native-paper";
 
 export default function TabsLayout() {
+
+    const theme = useTheme();
+    const iconWeight = (focused: boolean) => (!focused ? "regular" : "fill");
+    const iconColor = (focused: boolean) => (!focused ? theme.colors.background : theme.colors.amber);
+
     return(
         <Tabs
             screenOptions={
@@ -14,11 +16,11 @@ export default function TabsLayout() {
                     const Icon = config?.icon;
                     return {
                         headerTitle: config?.title ?? route.name,
-                        headerStyle: { backgroundColor: "#000000" },
-                        headerTintColor: "#ffffff",
+                        headerStyle: { backgroundColor: theme.colors.background },
+                        headerTintColor: theme.colors.text,
                         tabBarStyle: {
                             paddingTop: 7,
-                            backgroundColor: "#ffffff"
+                            backgroundColor: theme.colors.primary
                         },
                         tabBarLabel: "",
                         tabBarIcon: ({ focused }) => (

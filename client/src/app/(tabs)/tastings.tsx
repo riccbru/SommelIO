@@ -1,25 +1,28 @@
+import { useTheme } from "react-native-paper";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function Tastings() {
+
+  const theme = useTheme();
   
   const styles = StyleSheet.create({
     container: {
       flex: 1,
       alignItems: "center",
       justifyContent: "center",
-      backgroundColor: "#000000",
+      backgroundColor: theme.colors.background
     },
     text: {
       fontSize: 30,
       fontWeight: 300,
-      color: "#ffffff",
       fontFamily: "Epilogue",
+      color: theme.colors.text
     }
   });
 
   return (
-      <View style={styles.container}>
-          <Text style={styles.text}>degustazioni</Text>
-      </View>
+    <View style={styles.container}>
+      <Text style={styles.text}>degustazioni</Text>
+    </View>
   );
 }

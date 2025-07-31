@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   StyleSheet
 } from "react-native";
+import { useTheme } from "react-native-paper";
 
 type Props = {
   loading: boolean;
@@ -12,6 +13,26 @@ type Props = {
 };
 
 export default function LoginButton({ loading, onPress, disabled }: Props) {
+
+  const theme = useTheme();
+
+  const styles = StyleSheet.create({
+    button: {
+      padding: 16,
+      borderRadius: 12,
+      alignItems: "center",
+      backgroundColor: theme.colors.amber
+    },
+    buttonDisabled: {
+      opacity: 0.7
+    },
+    buttonText: {
+      fontSize: 16,
+      fontWeight: "600",
+      color: "#ffffff"
+    }
+  });
+
   return (
     <TouchableOpacity
       disabled={disabled}
@@ -27,19 +48,3 @@ export default function LoginButton({ loading, onPress, disabled }: Props) {
   );
 }
 
-const styles = StyleSheet.create({
-  button: {
-    padding: 16,
-    borderRadius: 12,
-    alignItems: "center",
-    backgroundColor: "#b58638"
-  },
-  buttonDisabled: {
-    opacity: 0.7
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "#ffffff"
-  }
-});

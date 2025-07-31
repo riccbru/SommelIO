@@ -1,8 +1,10 @@
 import { useAuth } from "@/src/hooks/useAuth";
+import { useTheme } from "react-native-paper";
 import { Linking, StyleSheet, Pressable, Text, View } from "react-native";
 
 export default function Index() {
-
+  
+  const theme = useTheme();
   const { accessToken, refreshToken } = useAuth();
 
   const styles = StyleSheet.create({
@@ -10,25 +12,24 @@ export default function Index() {
       flex: 1,
       alignItems: "center",
       justifyContent: "center",
-      backgroundColor: "#000000",
+      backgroundColor: theme.colors.background,
     },
     text: {
       fontSize: 30,
       fontWeight: 300,
-      color: "#ffffff",
       fontFamily: "Epilogue",
+      color: theme.colors.text,
     },
     link: {
       fontSize: 20,
-      // color: "#9e9eff",
-      color: "#b58638",
+      color: theme.colors.amber,
       textDecorationLine: "underline",
     },
     tokenText: {
       fontSize: 15,
       fontWeight: 300,
-      color: "#ffffff",
       fontFamily: "Epilogue",
+      color: theme.colors.text,
     }
   });
 

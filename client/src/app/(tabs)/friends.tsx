@@ -1,18 +1,22 @@
+import { useTheme } from "react-native-paper";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function Friends() {
+
+  const theme = useTheme();
+
   const styles = StyleSheet.create({
     container: {
       flex: 1,
       alignItems: "center",
       justifyContent: "center",
-      backgroundColor: "#000000",
+      backgroundColor: theme.colors.background
     },
     text: {
       fontSize: 30,
       fontWeight: 300,
-      color: "#ffffff",
       fontFamily: "Epilogue",
+      color: theme.colors.text
     }
   });
 

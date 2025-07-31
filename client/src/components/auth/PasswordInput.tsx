@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTheme } from "react-native-paper";
 import { Eye, EyeSlash } from "phosphor-react-native";
 import { View, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 
@@ -13,7 +14,30 @@ type PasswordInputProps = {
 };
 
 export default function PasswordInput({ loginData, setLoginData }: PasswordInputProps) {
+
+  const theme = useTheme();
   const [showPassword, setShowPassword] = useState(false);
+
+  const styles = StyleSheet.create({
+    container: {
+      paddingLeft: 16,
+      paddingRight: 12,
+      marginBottom: 16,
+      borderRadius: 12,
+      flexDirection: "row",
+      alignItems: "center",
+      backgroundColor: theme.colors.pearl
+    },
+    input: {
+      flex: 1,
+      height: 56,
+      color: "#000000"
+    },
+    iconButton: {
+      padding: 3,
+      marginLeft: 8,
+    },
+  });
 
   return (
     <View style={styles.container}>
@@ -35,25 +59,3 @@ export default function PasswordInput({ loginData, setLoginData }: PasswordInput
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignItems: "center",
-    borderRadius: 12,
-    backgroundColor: "#d3d5cb",
-    marginBottom: 16,
-    paddingRight: 12,
-    paddingLeft: 16,
-  },
-  input: {
-    flex: 1,
-    height: 56,
-    color: "#000000",
-  },
-  iconButton: {
-    padding: 4,
-    marginLeft: 8,
-    color: "#000000",
-  },
-});
