@@ -137,6 +137,99 @@ exports.Prisma.UsersScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
+exports.Prisma.Final_considerationsScalarFieldEnum = {
+  id: 'id',
+  tid: 'tid',
+  eid: 'eid',
+  evolution: 'evolution',
+  harmony: 'harmony',
+  pairings: 'pairings',
+  notes: 'notes'
+};
+
+exports.Prisma.Olfactory_examsScalarFieldEnum = {
+  id: 'id',
+  tid: 'tid',
+  eid: 'eid',
+  intensity: 'intensity',
+  complexity: 'complexity',
+  quality: 'quality',
+  aromatic: 'aromatic',
+  vinous: 'vinous',
+  floral: 'floral',
+  fruity: 'fruity',
+  fragrant: 'fragrant',
+  herbaceous: 'herbaceous',
+  mineral: 'mineral',
+  spicy: 'spicy',
+  ethereal: 'ethereal',
+  frank: 'frank',
+  notes: 'notes'
+};
+
+exports.Prisma.Taste_olfactory_examsScalarFieldEnum = {
+  id: 'id',
+  tid: 'tid',
+  eid: 'eid',
+  sugars: 'sugars',
+  alcohols: 'alcohols',
+  polyalcohols: 'polyalcohols',
+  acids: 'acids',
+  tannins: 'tannins',
+  minerals: 'minerals',
+  balance: 'balance',
+  intensity: 'intensity',
+  persistence: 'persistence',
+  quality: 'quality',
+  structure: 'structure',
+  notes: 'notes'
+};
+
+exports.Prisma.TastingsScalarFieldEnum = {
+  id: 'id',
+  tid: 'tid',
+  uid: 'uid',
+  full_name: 'full_name',
+  wine_category_id: 'wine_category_id',
+  sample_number: 'sample_number',
+  wine_denomination: 'wine_denomination',
+  alcohol_content: 'alcohol_content',
+  vintage: 'vintage',
+  wine_temperature: 'wine_temperature',
+  ambient_temperature: 'ambient_temperature',
+  tasting_date: 'tasting_date',
+  tasting_time: 'tasting_time',
+  tasting_location: 'tasting_location',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.Visual_examsScalarFieldEnum = {
+  id: 'id',
+  tid: 'tid',
+  eid: 'eid',
+  limpidity: 'limpidity',
+  color_family: 'color_family',
+  color_shade: 'color_shade',
+  consistency: 'consistency',
+  bubble_grain: 'bubble_grain',
+  bubble_number: 'bubble_number',
+  bubble_persistence: 'bubble_persistence',
+  notes: 'notes'
+};
+
+exports.Prisma.Wine_categoriesScalarFieldEnum = {
+  id: 'id',
+  code: 'code'
+};
+
+exports.Prisma.Wine_category_translationsScalarFieldEnum = {
+  id: 'id',
+  category_id: 'category_id',
+  language_code: 'language_code',
+  name: 'name'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -154,7 +247,14 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  users: 'users'
+  users: 'users',
+  final_considerations: 'final_considerations',
+  olfactory_exams: 'olfactory_exams',
+  taste_olfactory_exams: 'taste_olfactory_exams',
+  tastings: 'tastings',
+  visual_exams: 'visual_exams',
+  wine_categories: 'wine_categories',
+  wine_category_translations: 'wine_category_translations'
 };
 
 /**

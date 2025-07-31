@@ -10,7 +10,7 @@
     "@types/node": "^22.15.19",
     "@types/pg": "^8.15.2",
     "nodemon": "^3.1.10",
-    "prisma": "^6.8.2",
+    "prisma": "^6.13.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   },
@@ -18,7 +18,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
-    "@prisma/client": "^6.8.2",
+    "@prisma/client": "^6.13.0",
     "@types/cookie-parser": "^1.4.9",
     "acorn": "^8.14.1",
     "acorn-walk": "^8.3.4",
