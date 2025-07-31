@@ -21,8 +21,11 @@ router.post("/login",
         }
         try {
             const user = await prisma.users.findUnique({ where: { username } });
+            if (!user || !user.password_hash) {
+                return res.status(401).json({ error: "Invalid username and/or password" });
+            }
             const valid = await argon2.verify(user.password_hash, password);
-            if (!user || !user.password_hash || !valid) {
+            if (!valid) {
                 return res.status(401).json({ error: "Invalid username and/or password" });
             }
 

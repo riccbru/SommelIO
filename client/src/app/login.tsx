@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
     ActivityIndicator,
     Alert,
@@ -8,58 +7,50 @@ import {
     TouchableOpacity,
     View
 } from "react-native";
+import { useState } from "react";
+import { router } from "expo-router";
 import { useAuth } from "@/src/hooks/useAuth";
+import PasswordInput from "../components/PasswordInput";
 
 export default function LoginLayout() {
-  const { login } = useAuth();
+  const { isReady, login } = useAuth();
   const [loginData, setLoginData] = useState({
     username: "",
     password: ""
   });
-  const [loading, setLoading] = useState(false);
 
-  const handleLogin = async () => {
-    setLoading(true);
+  const handleSubmit = async () => {
     try {
-      await login(loginData.username, loginData.password);
+        await login(loginData.username, loginData.password);
+        router.replace("/(tabs)");
     } catch (err: any) {
-      Alert.alert("Login fallito", err.message || "Errore sconosciuto");
-    } finally {
-      setLoading(false);
+        Alert.alert("Login fallito", err.message || "Errore sconosciuto");
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Benvenuto 👋</Text>
+      <Text style={styles.title}>Login SommelIO🍷</Text>
 
       <TextInput
         style={styles.input}
         placeholder="Username"
-        placeholderTextColor="#999"
         value={loginData.username}
+        placeholderTextColor="#808080"
         onChangeText={(text) => setLoginData(prev => ({ ...prev, username: text }))}
-        autoCapitalize="none"
       />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        placeholderTextColor="#999"
-        value={loginData.password}
-        onChangeText={(text) => setLoginData(prev => ({ ...prev, password: text }))}
-        secureTextEntry
-      />
+      <PasswordInput loginData={loginData} setLoginData={setLoginData} />
 
       <TouchableOpacity
+        disabled={!isReady}
         style={styles.button}
-        onPress={handleLogin}
-        disabled={loading}
+        onPress={handleSubmit}
       >
-        {loading ? (
-          <ActivityIndicator color="#fff" />
+        {!isReady ? (
+          <ActivityIndicator color="#ffffff" />
         ) : (
-          <Text style={styles.buttonText}>Accedi</Text>
+          <Text style={styles.buttonText}>LOGIN</Text>
         )}
       </TouchableOpacity>
     </View>
@@ -69,33 +60,33 @@ export default function LoginLayout() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0e002d",
-    justifyContent: "center",
     paddingHorizontal: 32,
+    justifyContent: "center",
+    backgroundColor: "#000000",
   },
   title: {
     fontSize: 28,
+    marginBottom: 32,
     fontWeight: "600",
     color: "#fefeff",
-    marginBottom: 32,
-    textAlign: "center",
+    textAlign: "center"
   },
   input: {
-    backgroundColor: "#0c1537",
-    color: "#fefeff",
-    padding: 16,
-    borderRadius: 12,
-    marginBottom: 16,
+      padding: 16,
+      borderRadius: 12,
+      marginBottom: 16,
+      color: "#000000",
+      backgroundColor: "#d3d5cb"
   },
   button: {
-    backgroundColor: "#b58638",
-    padding: 16,
-    borderRadius: 12,
-    alignItems: "center",
+      padding: 16,
+      borderRadius: 12,
+      alignItems: "center",
+      backgroundColor: "#b58638"
   },
   buttonText: {
-    color: "#fff",
-    fontWeight: "600",
-    fontSize: 16,
+      fontSize: 16,
+      fontWeight: "600",
+      color: "#ffffff"
   },
 });

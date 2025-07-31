@@ -1,6 +1,6 @@
 const config = {
     PORT:       3001,
-    HOSTNAME:   "192.168.1.99",
+    HOSTNAME:   "172.20.10.3",
 }
 
 export default config;

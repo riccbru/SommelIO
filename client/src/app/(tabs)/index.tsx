@@ -1,5 +1,4 @@
 import { useAuth } from "@/src/hooks/useAuth";
-import { Redirect } from "expo-router";
 import { Linking, StyleSheet, Pressable, Text, View } from "react-native";
 
 export default function Index() {

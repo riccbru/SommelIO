@@ -37,6 +37,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 setToken(accessToken);
                 const userData = await UserAPI.getCurrentUser(accessToken);
                 setUser(userData);
+                setIsLoggedIn(true);
             }
         } catch (err) {
             console.log(err);
