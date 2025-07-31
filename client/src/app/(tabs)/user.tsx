@@ -12,20 +12,18 @@ export default function User() {
   const { user, logout } = useAuth();
   const navigation = useNavigation();
 
-  const handleOnPress = () => {
-    logout();
-    router.replace("/login");
-  }
-
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <TouchableOpacity style={{ marginTop: 5, marginRight: 16 }} onPress={handleOnPress}>
+        <TouchableOpacity style={{ marginTop: 5, marginRight: 16 }} onPress={() => {
+          logout();
+          router.replace("/login");
+        }}>
           <SignOut size={25} color="#ffffff" />
         </TouchableOpacity>
       )
     });
-  }, [navigation]);
+  }, [logout, navigation, router]);
   
   const styles = StyleSheet.create({
     container: {
