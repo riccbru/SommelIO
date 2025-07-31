@@ -13,19 +13,29 @@ import { useAuth } from "@/src/hooks/useAuth";
 import PasswordInput from "../components/PasswordInput";
 
 export default function LoginLayout() {
-  const { isReady, login } = useAuth();
-  const [loginData, setLoginData] = useState({
-    username: "",
-    password: ""
-  });
+    
+  const { login } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const [loginData, setLoginData] = useState({ username: "", password: "" });
 
-  const handleSubmit = async () => {
+  const handleLogin = async () => {
     try {
         await login(loginData.username, loginData.password);
         router.replace("/(tabs)");
     } catch (err: any) {
         Alert.alert("Login fallito", err.message || "Errore sconosciuto");
     }
+  };
+
+  const handlePress = () => {
+    setLoading(true);
+    setTimeout(async () => {
+      try {
+        handleLogin();
+      } finally {
+        setLoading(false);
+      }
+    }, 650);
   };
 
   return (
@@ -43,15 +53,15 @@ export default function LoginLayout() {
       <PasswordInput loginData={loginData} setLoginData={setLoginData} />
 
       <TouchableOpacity
-        disabled={!isReady}
+        disabled={loading}
         style={styles.button}
-        onPress={handleSubmit}
+        onPress={handlePress}
       >
-        {!isReady ? (
+        {loading ? 
           <ActivityIndicator color="#ffffff" />
-        ) : (
+         : 
           <Text style={styles.buttonText}>LOGIN</Text>
-        )}
+        }
       </TouchableOpacity>
     </View>
   );

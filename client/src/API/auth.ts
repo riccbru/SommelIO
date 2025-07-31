@@ -1,25 +1,25 @@
 import axiosClient from './axiosClient';
 
-async function login(username: string, password: string): Promise<{ accessToken: string; refreshToken: string }> {
+async function login(username: string, password: string): Promise<{ newAccessToken: string; newRefreshToken: string }> {
     try {
         const response = await axiosClient.post('/auth/login', { username, password });
 
-        const accessToken = response.data.token;
-        const refreshToken = response.headers['set-cookie']?.find(
+        const newAccessToken = response.data.token;
+        const newRefreshToken = response.headers['set-cookie']?.find(
             (cookie: string) => cookie.startsWith('refreshToken=')
         )?.split(';')[0].split('=')[1];
 
-        if (!accessToken || !refreshToken) {
+        if (!newAccessToken || !newRefreshToken) {
             throw new Error(
-                !accessToken && !refreshToken
-                ? 'accessToken and refreshToken are undefined'
-                : !accessToken
-                ? 'accessToken is undefined'
-                : 'refreshToken is undefined'
+                !newAccessToken && !newRefreshToken
+                ? 'newAccessToken and newRefreshToken are undefined'
+                : !newAccessToken
+                ? 'newAccessToken is undefined'
+                : 'newRefreshToken is undefined'
             );
         }
 
-        return { accessToken, refreshToken };
+        return { newAccessToken, newRefreshToken };
     } catch (error: any) {
         console.error('Login error:', error);
         throw new Error(error.response?.data?.message || `Login failed: ${error}`);

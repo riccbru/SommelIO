@@ -1,47 +1,36 @@
 import { Tabs } from "expo-router";
-import { FilePlus, House, User, Users, Wine } from 'phosphor-react-native';
+import { TAB_CONFIG } from "@/src/constants/tabConfig";
 
-// sabbia: #d3d5cb
-// giallo: #b58638
+const focusedColor = "#b58638";
+const iconWeight = (focused: boolean) => (!focused ? "regular" : "fill");
+const iconColor = (focused: boolean) => (!focused ? "#000000" : focusedColor);
 
 export default function TabsLayout() {
-  return(
-    <Tabs
-        screenOptions={{
-            headerStyle: {
-                backgroundColor: "#000000",
-            },
-            headerTintColor: "#ffffff",
-            tabBarStyle: {
-                backgroundColor: "#ffffff",
+    return(
+        <Tabs
+            screenOptions={
+                ({ route }) => {
+                    const config = TAB_CONFIG[route.name as keyof typeof TAB_CONFIG];
+                    const Icon = config?.icon;
+                    return {
+                        headerTitle: config?.title ?? route.name,
+                        headerStyle: { backgroundColor: "#000000" },
+                        headerTintColor: "#ffffff",
+                        tabBarStyle: {
+                            paddingTop: 7,
+                            backgroundColor: "#ffffff"
+                        },
+                        tabBarLabel: "",
+                        tabBarIcon: ({ focused }) => (
+                            <Icon size={32} color={iconColor(focused)} weight={iconWeight(focused)} />
+                        )
+                    }
+                }
             }
-        }}
-    >
-        <Tabs.Screen name="index" options={{
-            headerTitle: "AIS",
-            tabBarLabel: "",
-            tabBarIcon: ({ focused }) => <House size={30} weight={!focused ? "regular" : "fill"} />
-        }} />
-        <Tabs.Screen name="friends" options={{
-            headerTitle: "Colleghi AIS",
-            tabBarLabel: "",
-            tabBarIcon: ({ focused }) => <Users size={30} weight={!focused ? "regular" : "fill"} />
-        }} />
-        <Tabs.Screen name="new" options={{
-            headerTitle: "Nuova degustazione",
-            tabBarLabel: "",
-            tabBarIcon: ({ focused }) => <FilePlus size={30} weight={!focused ? "regular" : "fill"} />
-        }} />
-        <Tabs.Screen name="tastings" options={{
-            headerTitle: "Degustazioni",
-            tabBarLabel: "",
-            tabBarIcon: ({ focused }) => <Wine size={30} weight={!focused ? "regular" : "fill"} />
-        }} />
-        <Tabs.Screen name="user" options={{
-            headerTitle: "Profilo",
-            tabBarLabel: "",
-            tabBarIcon: ({ focused }) => <User size={30} weight={!focused ? "regular" : "fill"} />
-        }} />
+        >
+      {Object.keys(TAB_CONFIG).map((name) => (
+        <Tabs.Screen key={name} name={name} />
+      ))}
     </Tabs>
-  );
+    );
 }

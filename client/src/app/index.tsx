@@ -1,7 +1,7 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import { useAuth } from '../hooks/useAuth';
+import React from 'react';
 import { Redirect } from 'expo-router';
+import { View, Text } from 'react-native'
+import { useAuth } from '../hooks/useAuth';
 
 export default function Index() {
     const { isLoggedIn, isReady } = useAuth();
