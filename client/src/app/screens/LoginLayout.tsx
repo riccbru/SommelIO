@@ -6,7 +6,8 @@ import Title from "@/src/components/auth/Title";
 import LoginButton from "@/src/components/auth/LoginButton";
 import UsernameInput from "@/src/components/auth/UsernameInput";
 import PasswordInput from "@/src/components/auth/PasswordInput";
-import { Alert, KeyboardAvoidingView, Platform, ScrollView, StyleSheet } from "react-native";
+import { BiometricButton } from "@/src/components/auth/BiometricButton";
+import { Alert, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View } from "react-native";
 
 
 
@@ -54,7 +55,16 @@ export default function LoginLayout() {
           onChangeText={(text) => setLoginData(prev => ({ ...prev, username: text }))}
         />
         <PasswordInput loginData={loginData} setLoginData={setLoginData} />
-        <LoginButton disabled={!isReady || loading} loading={loading} onPress={handlePress} />
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <View style={{ flex: 1 }}>
+            <LoginButton
+              loading={loading}
+              onPress={handlePress}
+              disabled={!isReady || loading}
+            />
+          </View>
+          <BiometricButton />
+        </View>
       </ScrollView>
     </KeyboardAvoidingView>
   );

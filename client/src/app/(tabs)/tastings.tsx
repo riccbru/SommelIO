@@ -4,7 +4,8 @@ import React, { useEffect, useState } from "react";
 import { FileTextIcon } from "phosphor-react-native";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { capitalizeFirst, formatDescription } from "@/src/utils/utils";
-import { useTheme, ActivityIndicator, Button, List, Text } from "react-native-paper";
+import { useTheme, ActivityIndicator, Button, List, Searchbar, Text } from "react-native-paper";
+import { useNavigation } from "expo-router";
 
 type Exam = Record<string, any>;
 
@@ -33,12 +34,15 @@ type Tasting = {
 export default function Tastings() {
 
   const theme = useTheme();
+  const navigation = useNavigation();
   const { accessToken, refresh } = useAuth();
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
   const [tastings, setTastings] = useState<Tasting[]>([]);
 
-  const handlePress = () => {
+  const handlePress = (tasting: Tasting) => {
     console.log(`Button pressed!`);
+    // navigation.navigate("TastingForm", { tasting });
   }
 
   useEffect(() => {
@@ -107,33 +111,44 @@ export default function Tastings() {
 
   return (
     <ScrollView style={styles.container}>
+      <Searchbar
+        value={searchQuery}
+        placeholder="Search tasting..."
+        onChangeText={setSearchQuery}
+      />
       <List.Section>
-        {tastings.map((t, index) => (
-          <View key={index} style={styles.row}>
+        {tastings
+          .filter(t =>
+            t.wine_denomination.toLowerCase().includes(searchQuery.toLowerCase())
+          )
+          .map((t, index) => (
+            <View key={index} style={styles.row}>
 
-            <View style={styles.iconContainer}>
-              <Button onPress={handlePress}>
-                <FileTextIcon size={32} />
-              </Button>
+              <View style={styles.iconContainer}>
+                <Button onPress={() => handlePress(t)}>
+                  <FileTextIcon size={32} />
+                </Button>
+              </View>
+
+              <View style={styles.accordionTrigger}>
+                <List.Accordion
+                  title={`${t.wine_denomination.toUpperCase()} - ${capitalizeFirst(t.wine_category_name)}`}
+                  description={formatDescription(t.tasting_date, t.tasting_time, t.tasting_location)}
+                >
+                  <View style={styles.accordionBody}>
+                    <Text>Sample Number: {t.sample_number}</Text>
+                    <Text>Alcohol Content: {t.alcohol_content}</Text>
+                    <Text>Vintage Year: {t.vintage}</Text>
+                    <Text>Wine Temperature: {t.wine_temperature}</Text>
+                    <Text>Ambient Temperature: {t.ambient_temperature}</Text>
+                  </View>
+                </List.Accordion>
+              </View>
+
             </View>
-
-            <View style={styles.accordionTrigger}>
-              <List.Accordion
-                title={`${t.wine_denomination.toUpperCase()} - ${capitalizeFirst(t.wine_category_name)}`}
-                description={formatDescription(t.tasting_date, t.tasting_time, t.tasting_location)}
-              >
-                <View style={styles.accordionBody}>
-                  <Text>Sample Number: {t.sample_number}</Text>
-                  <Text>Alcohol Content: {t.alcohol_content}</Text>
-                  <Text>Vintage Year: {t.vintage}</Text>
-                  <Text>Wine Temperature: {t.wine_temperature}</Text>
-                  <Text>Ambient Temperature: {t.ambient_temperature}</Text>
-                </View>
-              </List.Accordion>
-            </View>
-
-          </View>
-        ))}
+            )
+          )
+        }
       </List.Section>
     </ScrollView>
   );
