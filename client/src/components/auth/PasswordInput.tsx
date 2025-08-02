@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTheme } from "react-native-paper";
-import { Eye, EyeSlash } from "phosphor-react-native";
+import { EyeIcon, EyeSlashIcon } from "phosphor-react-native";
 import { View, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 
 type LoginData = {
@@ -17,6 +17,7 @@ export default function PasswordInput({ loginData, setLoginData }: PasswordInput
 
   const theme = useTheme();
   const [showPassword, setShowPassword] = useState(false);
+  const Icon = showPassword ? EyeIcon : EyeSlashIcon;
 
   const styles = StyleSheet.create({
     container: {
@@ -50,11 +51,7 @@ export default function PasswordInput({ loginData, setLoginData }: PasswordInput
         onChangeText={(text) => setLoginData(prev => ({ ...prev, password: text }))}
       />
       <TouchableOpacity style={styles.iconButton} onPress={() => setShowPassword(prev => !prev)}>
-        {showPassword ? (
-          <Eye size={24} />
-        ) : (
-          <EyeSlash size={24} />
-        )}
+        <Icon size={24} color={theme.colors.gray} />
       </TouchableOpacity>
     </View>
   );

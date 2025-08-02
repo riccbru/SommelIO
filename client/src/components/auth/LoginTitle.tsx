@@ -1,7 +1,7 @@
 import { useTheme } from "react-native-paper";
 import { StyleSheet, Text } from "react-native";
 
-export default function Title() {
+export default function LoginTitle() {
 
   const theme = useTheme();
 
@@ -10,11 +10,11 @@ export default function Title() {
       fontSize: 28,
       marginBottom: 32,
       fontWeight: "600",
-      color: theme.colors.text,
-      textAlign: "center"
+      textAlign: "center",
+      color: theme.colors.text
     }
   });
 
-  return <Text style={styles.title}>Login SommelIO🍷</Text>;
+  return <Text style={styles.title}>Login to SommelIO🍷</Text>;
 }
 

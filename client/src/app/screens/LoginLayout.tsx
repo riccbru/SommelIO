@@ -2,12 +2,16 @@ import { useState } from "react";
 import { router } from "expo-router";
 import { useAuth } from "@/src/hooks/useAuth";
 import { useTheme } from "react-native-paper";
-import Title from "@/src/components/auth/Title";
+import LoginTitle from "@/src/components/auth/LoginTitle";
 import LoginButton from "@/src/components/auth/LoginButton";
 import UsernameInput from "@/src/components/auth/UsernameInput";
 import PasswordInput from "@/src/components/auth/PasswordInput";
+import { GoogleButton } from "@/src/components/auth/GoogleButton";
+import { LineSeparator } from "@/src/components/auth/LineSeparator";
+import { FacebookButton } from "@/src/components/auth/FacebookButton";
 import { BiometricButton } from "@/src/components/auth/BiometricButton";
 import { Alert, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View } from "react-native";
+import { LoginFooter } from "@/src/components/auth/LoginFooter";
 
 
 
@@ -49,13 +53,13 @@ export default function LoginLayout() {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
-        <Title />
+        <LoginTitle />
         <UsernameInput
           value={loginData.username}
           onChangeText={(text) => setLoginData(prev => ({ ...prev, username: text }))}
         />
         <PasswordInput loginData={loginData} setLoginData={setLoginData} />
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <View style={{ gap: 10, flexDirection: "row", alignItems: "center" }}>
           <View style={{ flex: 1 }}>
             <LoginButton
               loading={loading}
@@ -65,6 +69,14 @@ export default function LoginLayout() {
           </View>
           <BiometricButton />
         </View>
+
+        <LineSeparator />
+
+        <GoogleButton />
+        <FacebookButton />
+
+        <LoginFooter />
+
       </ScrollView>
     </KeyboardAvoidingView>
   );

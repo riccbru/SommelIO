@@ -24,7 +24,7 @@ export default function UsernameInput({ value, onChangeText }: Props) {
     <TextInput
       style={styles.input}
       placeholder="Username"
-      placeholderTextColor="#808080"
+      placeholderTextColor={theme.colors.gray}
       value={value}
       onChangeText={onChangeText}
     />
