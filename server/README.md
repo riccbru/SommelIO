@@ -17,45 +17,89 @@ Endpoint: `POST /api/v1/auth/login`.
     }
     ```
 ### RESPONSE
-- HTTP Status: `200 OK`
+- `200 OK`
+    - Header
+        -
+        - Set-Cookie:
+            - refreshToken=<REFRESH_TOKEN>;
+            - Max-Age=604800;
+            - Path=/;
+            - Expires=<EXPIRE_TIME> GMT;
+            - HttpOnly;
+            - SameSite=Strict
+    - Body
+        -
+        ```json
+        {
+            "token": <ACCESS_TOKEN>
+        }
+        ```
+- `400 Bad Request` (at least one credential is empty)
+    - Header
+        -
+        - 
+    - Body
+        -
+        ```json
+        {
+            "error": "Username and password required"
+        }
+        ```
+- `401 Unauthorized` (credentials are incorrect)
+    - Header
+        -
+        - 
+    - Body
+        -
+        ```json
+        {
+            "error": "Invalid username and/or password"
+        }
+        ```
+
+## `SINGUP`
+Endpoint: `POST /api/v1/auth/signup`.
+
+
+### REQUEST
 - Header
     -
-    - Set-Cookie:
-        - refreshToken=<REFRESH_TOKEN>;
-        - Max-Age=604800;
-        - Path=/;
-        - Expires=<EXPIRE_TIME> GMT;
-        - HttpOnly;
-        - SameSite=Strict
+    -
 - Body
     -
     ```json
     {
-        "token": <ACCESS_TOKEN>
+        "full_name": <FULL_NAME>,
+        "username": <USERNAME>,
+        "email": <USER@HOSTNAME.DOMAIN>,
+        "birthdate": <YYYY-MM-DD>,
+        "password": <PASSWORD>
     }
     ```
-- HTTP Status: `400 Bad Request` (at least one credential is empty)
-- Header
-    -
-    - 
-- Body
-    -
-    ```json
-    {
-        "error": "Username and password required"
-    }
-    ```
-- HTTP Status: `401 Unauthorized` (credentials are incorrect)
-- Header
-    -
-    - 
-- Body
-    -
-    ```json
-    {
-        "error": "Invalid username and/or password"
-    }
-    ```
+
+### RESPONSE
+- `201 Created`
+    - Header
+        -
+        -
+    - Body
+        -
+        ```json
+        {
+            "success": "User <UUID-32> created successfully"
+        }
+        ```
+- `409 Conflict`
+    - Header
+        -
+        -
+    - Body
+        -
+        ```json
+        {
+            "error": "Username or email already taken"
+        }
+        ```
 
 ## `REFRESH`
 Endpoint: `POST /api/v1/auth/refresh`.
@@ -71,23 +115,23 @@ Endpoint: `POST /api/v1/auth/refresh`.
     ```
 
 ### RESPONSE
-- HTTP Status: `200 OK`
-- Header
-    -
-    - Set-Cookie:
-        - refreshToken=<REFRESH_TOKEN>;
-        - Max-Age=604800;
-        - Path=/;
-        - Expires=<EXPIRE_TIME> GMT;
-        - HttpOnly;
-        - SameSite=Strict
-- Body
-    -
-    ```json
-    {
-        "token": <ACCESS_TOKEN>
-    }
-    ```
+- `200 OK`
+    - Header
+        -
+        - Set-Cookie:
+            - refreshToken=<REFRESH_TOKEN>;
+            - Max-Age=604800;
+            - Path=/;
+            - Expires=<EXPIRE_TIME> GMT;
+            - HttpOnly;
+            - SameSite=Strict
+    - Body
+        -
+        ```json
+        {
+            "token": <ACCESS_TOKEN>
+        }
+        ```
 
 ## `LOGOUT`
 Endpoint: `POST /api/v1/auth/logout`.
@@ -104,15 +148,15 @@ JWT Authorization is stateful, and it is meaningless to logout, unless the secre
     {}
     ```
 ### RESPONSE
-- HTTP Status: `204 No Content`
-- Header
-    -
-    - 
-- Body
-    -
-    ```json
-    {}
-    ```
+- `204 No Content`
+    - Header
+        -
+        - 
+    - Body
+        -
+        ```json
+        {}
+        ```
 
 ## `GET USER`
 Endpoint: `GET /api/v1/users/me`.
@@ -128,20 +172,20 @@ Endpoint: `GET /api/v1/users/me`.
     ````
 
 ### RESPONSE
-- HTTP Status: `200 OK`
-- Header
-    -
-    -
-- Body
-    -
-    ```json
-    {
-        "uid": <UUID-32>,
-        "username": <USERNAME>,
-        "full_name": <FULL_NAME>,
-        "email": <EMAIL>
-    }
-    ```
+- `200 OK`
+    - Header
+        -
+        -
+    - Body
+        -
+        ```json
+        {
+            "uid": <UUID-32>,
+            "username": <USERNAME>,
+            "full_name": <FULL_NAME>,
+            "email": <EMAIL>
+        }
+        ```
 
 ## `GET TASTING BY UUID`
 Endpoint: `GET /api/v1/tastings/:tasting_uuid`.
@@ -160,35 +204,35 @@ If the URL parameter `tasting_uuid` is passed the route returns the single tasti
     ```
 
 ### RESPONSE
-- HTTP Status: `200 OK`
-- Header
-    -
-    -
-- Body
-    -
-    ```json
-    {
-        "tid": <UUID-32>,
-        "uid": <UUID-32>,
-        "full_name": <FULL_NAME>,
-        "wine_category_name": <TEXT>,
-        "sample_number": <TEXT>,
-        "wine_denomination": <TEXT>,
-        "alcohol_content": <TEXT %>,
-        "vintage": <YEAR>,
-        "wine_temperature": <TEXT°C>,
-        "ambient_temperature": <TEXT°C>,
-        "tasting_date": <YYYY-MM-DD>,
-        "tasting_time": <HH:MM>,
-        "tasting_location": <TEXT>,
-        "created_at": <DATE_ISO-8601>,
-        "updated_at": <DATE_ISO-8601>,
-        "visual_exam": { ... },
-        "olfactory_exam": { ... },
-        "taste_olfactory_exam": { ... },
-        "final_considerations": { ... }
-    }
-    ```
+- `200 OK`
+    - Header
+        -
+        -
+    - Body
+        -
+        ```json
+        {
+            "tid": <UUID-32>,
+            "uid": <UUID-32>,
+            "full_name": <FULL_NAME>,
+            "wine_category_name": <TEXT>,
+            "sample_number": <TEXT>,
+            "wine_denomination": <TEXT>,
+            "alcohol_content": <TEXT %>,
+            "vintage": <YEAR>,
+            "wine_temperature": <TEXT°C>,
+            "ambient_temperature": <TEXT°C>,
+            "tasting_date": <YYYY-MM-DD>,
+            "tasting_time": <HH:MM>,
+            "tasting_location": <TEXT>,
+            "created_at": <DATE_ISO-8601>,
+            "updated_at": <DATE_ISO-8601>,
+            "visual_exam": { ... },
+            "olfactory_exam": { ... },
+            "taste_olfactory_exam": { ... },
+            "final_considerations": { ... }
+        }
+        ```
 
 ## `GET TASTINGS`
 Endpoint: `GET /api/v1/tastings`.
@@ -208,20 +252,20 @@ Returns a list of all tastings made by the current user.
     ```
 
 ### RESPONSE
-- HTTP Status: `200 OK`
-- Header
-    -
-    -
-- Body
-    -
-    ```json
-    {
-        "tastings": [
-            { ... },
-            { ... }
-        ]
-    }
-    ```
+- `200 OK`
+    - Header
+        -
+        -
+    - Body
+        -
+        ```json
+        {
+            "tastings": [
+                { ... },
+                { ... }
+            ]
+        }
+        ```
 
 
 ## `CREATE TASTING`
@@ -245,7 +289,7 @@ All the vlaues explained:
 - Header
     -
     - Accept-Language: it
-    - Authroization: Bearer <ACCESS_TOKEN>
+    - Authorization: Bearer <ACCESS_TOKEN>
     - Content-Type: application/json
 - Body
     -
@@ -265,31 +309,31 @@ All the vlaues explained:
     ```
 
 ### RESPONSE
-- HTTP Status: `201 Created`
-- Header
-    -
-    -
-- Body
-    -
-    ```json
-    {
-        "tid": <UUID-32>,
-        "uid": <UUID-32>,
-        "full_name": <FULL_NAME>,
-        "wine_category_name": <TEXT>,
-        "sample_number": <TEXT>,
-        "wine_denomination": <TEXT>,
-        "alcohol_content": <TEXT %>,
-        "vintage": <YEAR>,
-        "wine_temperature": <TEXT°C>,
-        "ambient_temperature": <TEXT°C>,
-        "tasting_date": <YYYY-MM-DD>,
-        "tasting_time": <HH:MM>,
-        "tasting_location": <TEXT>,
-        "created_at": <DATE_ISO-8601>,
-        "updated_at": <DATE_ISO-8601>
-    }
-    ```
+- `201 Created`
+    - Header
+        -
+        -
+    - Body
+        -
+        ```json
+        {
+            "tid": <UUID-32>,
+            "uid": <UUID-32>,
+            "full_name": <FULL_NAME>,
+            "wine_category_name": <TEXT>,
+            "sample_number": <TEXT>,
+            "wine_denomination": <TEXT>,
+            "alcohol_content": <TEXT %>,
+            "vintage": <YEAR>,
+            "wine_temperature": <TEXT°C>,
+            "ambient_temperature": <TEXT°C>,
+            "tasting_date": <YYYY-MM-DD>,
+            "tasting_time": <HH:MM>,
+            "tasting_location": <TEXT>,
+            "created_at": <DATE_ISO-8601>,
+            "updated_at": <DATE_ISO-8601>
+        }
+        ```
 
 ## `GET ALL EXAMS`
 Endpoint: `GET /api/v1/exams/:tasting_uuid`.
@@ -308,7 +352,7 @@ This route returns all the exams related to URL parameter `tasting_uuid`.
     ```
 
 ### RESPONSE
-- HTTP Status: `200 OK`
+- `200 OK`
     - Header
         -
         -
@@ -325,7 +369,7 @@ This route returns all the exams related to URL parameter `tasting_uuid`.
             }
         }
         ```
-- HTTP Status: `400 Bad Request`
+- `400 Bad Request`
     - Header
         -
         -
@@ -358,7 +402,7 @@ The route returns dynamically a single exam associated to `tasting_uuid` using t
     ```
 
 ### RESPONSE
-- HTTP Status: `200 OK`
+- `200 OK`
     - Header
         -
         -
@@ -481,80 +525,80 @@ All the possible values are described below:
     ```
 
 ### RESPONSE
-- HTTP Status: `201 Created`
-- Header
-    -
-    -
-- Body
-    -
-    ```json
-    {
-        "tasting_uuid": <UUID-32>,
-        "exams": {
-          "visual_exam": {
-            "eid": <UUID-32>,
-            "limpidity": <TEXT>,
-            "color_family": <TEXT>,
-            "color_shade": <TEXT>,
-            "consistency": <TEXT>,
-            "bubble_grain": null OR <TEXT>,
-            "bubble_number": null OR <TEXT>,
-            "bubble_persistence": null OR <TEXT>,
-            "notes": <TEXT>
-        },
-          "olfactory_exam": {
-            "eid": <UUID-32>,
-            "intensity": <TEXT>,
-            "complexity": <TEXT>,
-            "quality": <TEXT>,
-            "aromatic": <BOOLEAN>,
-            "vinous": <BOOLEAN>,
-            "floral": <BOOLEAN>,
-            "fruity": <BOOLEAN>,
-            "fragrant": <BOOLEAN>,
-            "herbaceous": <BOOLEAN>,
-            "mineral": <BOOLEAN>,
-            "spicy": <BOOLEAN>,
-            "ethereal": <BOOLEAN>,
-            "frank": <BOOLEAN>,
-            "notes": <TEXT>
-          },
-          "taste_olfactory_exam": {
-            "eid": <UUID-32>,
-            "sugars": <TEXT>,
-            "alcohols": <TEXT>,
-            "polyalcohols": <TEXT>,
-            "acids": <TEXT>,
-            "tannins": <TEXT>,
-            "minerals": <TEXT>,
-            "balance": <TEXT>,
-            "intensity": <TEXT>,
-            "persistence": <TEXT>,
-            "quality": <TEXT>,
-            "structure": <TEXT>,
-            "notes": <TEXT>
-          },
-          "final_considerations": {
-            "eid": <UUID-32>,
-            "evolution": <TEXT>,
-            "harmony": <TEXT>,
-            "pairings": <TEXT>,
-            "notes": <TEXT>
-          }
+- `201 Created`
+    - Header
+        -
+        -
+    - Body
+        -
+        ```json
+        {
+            "tasting_uuid": <UUID-32>,
+            "exams": {
+              "visual_exam": {
+                "eid": <UUID-32>,
+                "limpidity": <TEXT>,
+                "color_family": <TEXT>,
+                "color_shade": <TEXT>,
+                "consistency": <TEXT>,
+                "bubble_grain": null OR <TEXT>,
+                "bubble_number": null OR <TEXT>,
+                "bubble_persistence": null OR <TEXT>,
+                "notes": <TEXT>
+            },
+              "olfactory_exam": {
+                "eid": <UUID-32>,
+                "intensity": <TEXT>,
+                "complexity": <TEXT>,
+                "quality": <TEXT>,
+                "aromatic": <BOOLEAN>,
+                "vinous": <BOOLEAN>,
+                "floral": <BOOLEAN>,
+                "fruity": <BOOLEAN>,
+                "fragrant": <BOOLEAN>,
+                "herbaceous": <BOOLEAN>,
+                "mineral": <BOOLEAN>,
+                "spicy": <BOOLEAN>,
+                "ethereal": <BOOLEAN>,
+                "frank": <BOOLEAN>,
+                "notes": <TEXT>
+              },
+              "taste_olfactory_exam": {
+                "eid": <UUID-32>,
+                "sugars": <TEXT>,
+                "alcohols": <TEXT>,
+                "polyalcohols": <TEXT>,
+                "acids": <TEXT>,
+                "tannins": <TEXT>,
+                "minerals": <TEXT>,
+                "balance": <TEXT>,
+                "intensity": <TEXT>,
+                "persistence": <TEXT>,
+                "quality": <TEXT>,
+                "structure": <TEXT>,
+                "notes": <TEXT>
+              },
+              "final_considerations": {
+                "eid": <UUID-32>,
+                "evolution": <TEXT>,
+                "harmony": <TEXT>,
+                "pairings": <TEXT>,
+                "notes": <TEXT>
+              }
+            }
         }
-    }
-    ```
-- HTTP Status: `409 Conflict`
-- Header
-    -
-    -
-- Body
-    -
-    ```json
-    {
-        "error": "Tasting <UUID-32> has already been examined"
-    }
-    ```
+        ```
+- `409 Conflict`
+    - Header
+        -
+        -
+    - Body
+        -
+        ```json
+        {
+            "error": "Tasting <UUID-32> has already been examined"
+        }
+        ```
 
 ## `CREATE SINGLE EXAM`
 Endpoint: `POST /api/v1/exams/:tasting_uuid/:exam_type`.
@@ -582,29 +626,29 @@ The URL parameter `exam_type` can assume the following values:
     ```
 
 ### RESPONSE
-- HTTP Status: `201 Created`
-- Header
-    -
-    -
-- Body
-    -
-    ```json
-    {
-      "eid": <UUID-32>,
-      ...
-    }
-    ```
-- HTTP Status: `409 Conflict`
-- Header
-    -
-    -
-- Body
-    -
-    ```json
-    {
-      "error": "Tasting <UUID-32> already has (visual/olfactory/taste/final) exam"
-    }
-    ```
+- `201 Created`
+    - Header
+        -
+        -
+    - Body
+        -
+        ```json
+        {
+          "eid": <UUID-32>,
+          ...
+        }
+        ```
+- `409 Conflict`
+    - Header
+        -
+        -
+    - Body
+        -
+        ```json
+        {
+          "error": "Tasting <UUID-32> already has (visual/olfactory/taste/final) exam"
+        }
+        ```
 
 
 
@@ -624,12 +668,12 @@ Endpoint: ``.
     ```
 
 ### RESPONSE
-- HTTP Status: ``
-- Header
-    -
-    -
-- Body
-    -
-    ```json
-    {}
-    ```
+- ``
+    - Header
+        -
+        -
+    - Body
+        -
+        ```json
+        {}
+        ```
