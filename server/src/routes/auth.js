@@ -54,6 +54,54 @@ router.post("/login",
     }
 );
 
+// POST /api/v1/auth/logout
+router.post("/logout",
+    (_req, res) => {
+        res.clearCookie('refreshToken');
+        return res.sendStatus(204);
+    }
+);
+
+// POST /api/v1/auth/signup
+router.post("/signup",
+    async (req, res) => {
+        const { full_name, username, email, birthdate, password } = req.body;
+        if (!full_name || !username || !email || !birthdate || !password) {
+            return res.status(400).json({ error: "Username, email, and password are required" });
+        }
+        try {
+            const existingUser = await prisma.users.findFirst({
+                where: {
+                    OR: [
+                        { username },
+                        { email }
+                    ]
+                }
+            });
+            if (existingUser) {
+                return res.status(409).json({ error: "Username or email already taken" });
+            }
+            const password_hash = await argon2.hash(password);
+            const user = await prisma.users.create({
+                data: {
+                    full_name: full_name,
+                    username: username,
+                    email: email,
+                    birthdate: birthdate ? new Date(birthdate) : undefined,
+                    password_hash
+                }
+            });
+
+            return res.status(201).json({ success: `User ${user.uid} created successfully` });
+            
+        } catch (err) {
+            console.error("Signup ERROR:", err);
+            res.status(500).json({ error: "Internal server error" });
+        }
+    }
+);
+
+
 // POST /api/v1/auth/refresh
 router.post("/refresh",
     async (req, res) => {
@@ -87,14 +135,6 @@ router.post("/refresh",
             console.error("Refresh token ERROR:", err);
             res.status(500).json({ error: "Internal server error" });
         }
-    }
-);
-
-// POST /api/v1/auth/logout
-router.post("/logout",
-    (_req, res) => {
-        res.clearCookie('refreshToken');
-        return res.sendStatus(204);
     }
 );
 

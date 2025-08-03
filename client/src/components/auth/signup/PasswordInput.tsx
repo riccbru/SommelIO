@@ -4,7 +4,7 @@ import { EyeIcon, EyeSlashIcon } from "phosphor-react-native";
 import { View, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 
 type SignupData = {
-    fullName: string;
+    full_name: string;
     username: string;
     email: string;
     birthdate: string;
@@ -13,10 +13,11 @@ type SignupData = {
 
 type PasswordInputProps = {
   signupData: SignupData;
+  onSubmit?: () => void;
   setSignupData: React.Dispatch<React.SetStateAction<SignupData>>;
 };
 
-export default function PasswordInput({ signupData, setSignupData }: PasswordInputProps) {
+export default function PasswordInput({ signupData, setSignupData, onSubmit }: PasswordInputProps) {
 
   const theme = useTheme();
   const [showPassword, setShowPassword] = useState(false);
@@ -46,10 +47,12 @@ export default function PasswordInput({ signupData, setSignupData }: PasswordInp
   return (
     <View style={styles.container}>
       <TextInput
+        returnKeyType="done"
         style={styles.input}
         placeholder="Password"
+        onSubmitEditing={onSubmit}
         value={signupData.password}
-        placeholderTextColor="#808080"
+        placeholderTextColor={theme.colors.gray}
         secureTextEntry={!showPassword}
         onChangeText={(text) => setSignupData(prev => ({ ...prev, password: text }))}
       />

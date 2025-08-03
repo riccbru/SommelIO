@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import { useAuth } from "@/src/hooks/useAuth";
 import TastingsAPI from "@/src/services/tastings";
 import React, { useEffect, useState } from "react";
@@ -5,7 +6,6 @@ import { FileTextIcon } from "phosphor-react-native";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { capitalizeFirst, formatDescription } from "@/src/utils/utils";
 import { useTheme, ActivityIndicator, Button, List, Searchbar, Text } from "react-native-paper";
-import { useNavigation } from "expo-router";
 
 type Exam = Record<string, any>;
 
@@ -34,15 +34,15 @@ type Tasting = {
 export default function Tastings() {
 
   const theme = useTheme();
-  const navigation = useNavigation();
+  const router = useRouter();
   const { accessToken, refresh } = useAuth();
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [tastings, setTastings] = useState<Tasting[]>([]);
 
   const handlePress = (tasting: Tasting) => {
-    console.log(`Button pressed!`);
-    // navigation.navigate("TastingForm", { tasting });
+    console.log(`Button ${tasting.tid} pressed!`);
+    router.replace("/screens/TastingForm");
   }
 
   useEffect(() => {
@@ -54,9 +54,12 @@ export default function Tastings() {
           delay,
         ]);
         setTastings(data.tastings || []);
-      } catch (error) {
-        refresh();
-        console.log(error);
+      } catch (error: any) {
+        const status = error.trim().split(' ').pop();
+        if (status === '401') {
+          refresh();
+        }
+        console.log(`Some ERR: ${error}`);
       } finally {
         setLoading(false);
       }

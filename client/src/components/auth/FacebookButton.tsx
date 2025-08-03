@@ -27,8 +27,8 @@ export function FacebookButton() {
         },
         buttonContainer: {
             gap: 10,
-            width: 232,
-            height: 46,
+            width: 231,
+            height: 45,
             marginBottom: 5,
             flexDirection: "row",
             alignItems: "center",

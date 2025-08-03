@@ -10,10 +10,11 @@ type LoginData = {
 
 type PasswordInputProps = {
   loginData: LoginData;
+  onSubmit?: () => void;
   setLoginData: React.Dispatch<React.SetStateAction<LoginData>>;
 };
 
-export default function PasswordInput({ loginData, setLoginData }: PasswordInputProps) {
+export default function PasswordInput({ loginData, setLoginData, onSubmit }: PasswordInputProps) {
 
   const theme = useTheme();
   const [showPassword, setShowPassword] = useState(false);
@@ -43,9 +44,11 @@ export default function PasswordInput({ loginData, setLoginData }: PasswordInput
   return (
     <View style={styles.container}>
       <TextInput
+        returnKeyType="done"
         style={styles.input}
         placeholder="Password"
         value={loginData.password}
+        onSubmitEditing={onSubmit}
         placeholderTextColor="#808080"
         secureTextEntry={!showPassword}
         onChangeText={(text) => setLoginData(prev => ({ ...prev, password: text }))}

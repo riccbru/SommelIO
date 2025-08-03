@@ -1,6 +1,14 @@
 import { router } from 'expo-router';
 import axiosClient from './axiosClient';
 
+export type SignupData = {
+    full_name: string;
+    username: string;
+    email: string;
+    birthdate: string;
+    password: string;
+}
+
 async function login(username: string, password: string): Promise<{ newAccessToken: string; newRefreshToken: string }> {
     try {
         const response = await axiosClient.post('/auth/login', { username, password });
@@ -31,6 +39,16 @@ async function logout(): Promise<void> {
     console.log('Logged out');
 }
 
+async function signup(data: SignupData) {
+    try {
+        const response = axiosClient.post('/auth/signup', data);
+        return response;
+    } catch (error: any) {
+        console.log('Signup error:', error);
+        throw new Error(error.response?.data?.message || `Signup failed: ${error}`)
+    }
+}
+
 async function refresh(refreshToken: string): Promise<{ newAccessToken: string }> {
     try {
         const response = await axiosClient.post('/auth/refresh', null, {
@@ -50,6 +68,7 @@ async function refresh(refreshToken: string): Promise<{ newAccessToken: string }
 const AuthAPI = {
     login,
     logout,
+    signup,
     refresh
 };
 

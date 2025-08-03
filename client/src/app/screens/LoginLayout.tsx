@@ -4,14 +4,15 @@ import { useAuth } from "@/src/hooks/useAuth";
 import { useTheme } from "react-native-paper";
 import AuthInput from "@/src/components/auth/AuthInput";
 import AuthTitle from "@/src/components/auth/AuthTitle";
-import PasswordInput from "@/src/components/auth/login/PasswordInput";
+import AuthButton from "@/src/components/auth/AuthButton";
 import { LoginFooter } from "@/src/components/auth/LoginFooter";
 import { GoogleButton } from "@/src/components/auth/GoogleButton";
 import { LineSeparator } from "@/src/components/auth/LineSeparator";
 import { FacebookButton } from "@/src/components/auth/FacebookButton";
+import PasswordInput from "@/src/components/auth/login/PasswordInput";
 import { BiometricButton } from "@/src/components/auth/login/BiometricButton";
 import { Alert, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View } from "react-native";
-import AuthButton from "@/src/components/auth/AuthButton";
+import { AppleButton } from "@/src/components/auth/AppleButton";
 
 export default function LoginLayout() {
 
@@ -52,12 +53,22 @@ export default function LoginLayout() {
     >
       <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
         <AuthTitle action={"Login"}/>
+
+        <GoogleButton />
+        <AppleButton />
+        <FacebookButton />
+        <LineSeparator />
+        
         <AuthInput
           value={loginData.username}
           holder="Username"
           onChangeText={(text) => setLoginData(prev => ({ ...prev, username: text }))}
         />
-        <PasswordInput loginData={loginData} setLoginData={setLoginData} />
+        <PasswordInput
+          loginData={loginData}
+          setLoginData={setLoginData}
+          onSubmit={handleLogin}
+        />
         <View style={{ gap: 10, flexDirection: "row", alignItems: "center" }}>
           <View style={{ flex: 1 }}>
             <AuthButton
@@ -69,11 +80,6 @@ export default function LoginLayout() {
           </View>
           <BiometricButton />
         </View>
-
-        <LineSeparator />
-
-        <GoogleButton />
-        <FacebookButton />
 
         <LoginFooter />
 

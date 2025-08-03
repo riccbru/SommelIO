@@ -1,5 +1,5 @@
 import { useTheme } from "react-native-paper";
-import { Image, Platform, Pressable, StyleSheet, TouchableOpacity, View } from "react-native"; 
+import { Image, Platform, StyleSheet, TouchableOpacity, View } from "react-native"; 
 
 export function GoogleButton() {
 

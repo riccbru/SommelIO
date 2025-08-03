@@ -22,6 +22,19 @@ Authorization: Bearer {{token}}
 GET http://localhost:3001/api/v1/users/me HTTP/1.1
 Authorization: Bearer {{token}}
 
+### POST NEW USER
+
+POST http://localhost:3001/api/v1/auth/signup
+Content-Type: application/json
+
+{
+    "username": "riccbru",
+    "email": "riccbru@sommel.io",
+    "full_name": "Riccardo Bruno",
+    "birthdate": "1999-11-25",
+    "password": "riccbru_pwd"
+}
+
 ### GET TASTINGS
 
 GET http://localhost:3001/api/v1/tastings HTTP/1.1

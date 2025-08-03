@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-import { View, TextInput, Button, ScrollView } from 'react-native';
+import React, { useState } from 'react';
 import { Text } from 'react-native-paper';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { TextInput, Button, ScrollView } from 'react-native';
 
 type TastingFormRouteParams = {
   tasting?: Tasting;

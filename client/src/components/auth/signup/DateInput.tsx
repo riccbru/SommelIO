@@ -24,7 +24,7 @@ export default function DateInput({ value, onChangeText }: Props) {
         <TextInput
             value={value}
             style={styles.input}
-            keyboardType="numeric"
+            // keyboardType="numeric"
             placeholder="YYYY-MM-DD"
             onChangeText={onChangeText}
             placeholderTextColor={theme.colors.pearl}

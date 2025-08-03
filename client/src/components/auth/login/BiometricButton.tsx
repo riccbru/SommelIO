@@ -55,7 +55,7 @@ export function BiometricButton() {
             const value = compatible && enrolled
             setBiometricSupported(value);
         })();
-  }, []);
+    }, [biometricSupported]);
 
     return (
         <TouchableOpacity

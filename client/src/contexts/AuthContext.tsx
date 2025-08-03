@@ -18,6 +18,7 @@ export type AuthContextType = {
   user: User | null;
   login: (username: string, password: string) => Promise<void>;
   logout: () => void;
+  signup: (data: any) => void;
   refresh: () => void;
 };
 
@@ -94,6 +95,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setAuthStatus({ isReady: true, isLoggedIn: false });
     }
 
+    const signup = async (data: any) => {
+        try {
+            const newUser = await AuthAPI.signup(data);
+            if (newUser.status === 201) {
+                return true;
+            }
+            return false;
+        } catch (error) {
+            console.log(error);
+            throw new Error("Signup failed");
+        }
+    }
+
     const refresh = async () => {
         try {
             if (!authData.refreshToken) {
@@ -112,7 +126,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const values = {
         ...authStatus,
         ...authData,
-        login, logout, refresh
+        login, logout, signup, refresh
     }
 
     return(

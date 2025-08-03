@@ -23,7 +23,7 @@ export function LoginFooter() {
     return(
         <View style={styles.container}>
             <View style={{ flexDirection: "row" }}>
-                <Text style={styles.text}>Don't have an account? </Text>
+                <Text style={styles.text}>Don&apos;t have an account? </Text>
                 <TouchableOpacity onPress={() => router.replace("/signup")}>
                     <Text style={styles.linkText}>Signup</Text>
                 </TouchableOpacity>
