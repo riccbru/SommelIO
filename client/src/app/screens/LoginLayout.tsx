@@ -2,18 +2,16 @@ import { useState } from "react";
 import { router } from "expo-router";
 import { useAuth } from "@/src/hooks/useAuth";
 import { useTheme } from "react-native-paper";
-import LoginTitle from "@/src/components/auth/LoginTitle";
-import LoginButton from "@/src/components/auth/LoginButton";
-import UsernameInput from "@/src/components/auth/UsernameInput";
-import PasswordInput from "@/src/components/auth/PasswordInput";
+import AuthInput from "@/src/components/auth/AuthInput";
+import AuthTitle from "@/src/components/auth/AuthTitle";
+import PasswordInput from "@/src/components/auth/login/PasswordInput";
+import { LoginFooter } from "@/src/components/auth/LoginFooter";
 import { GoogleButton } from "@/src/components/auth/GoogleButton";
 import { LineSeparator } from "@/src/components/auth/LineSeparator";
 import { FacebookButton } from "@/src/components/auth/FacebookButton";
-import { BiometricButton } from "@/src/components/auth/BiometricButton";
+import { BiometricButton } from "@/src/components/auth/login/BiometricButton";
 import { Alert, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View } from "react-native";
-import { LoginFooter } from "@/src/components/auth/LoginFooter";
-
-
+import AuthButton from "@/src/components/auth/AuthButton";
 
 export default function LoginLayout() {
 
@@ -53,15 +51,17 @@ export default function LoginLayout() {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
-        <LoginTitle />
-        <UsernameInput
+        <AuthTitle action={"Login"}/>
+        <AuthInput
           value={loginData.username}
+          holder="Username"
           onChangeText={(text) => setLoginData(prev => ({ ...prev, username: text }))}
         />
         <PasswordInput loginData={loginData} setLoginData={setLoginData} />
         <View style={{ gap: 10, flexDirection: "row", alignItems: "center" }}>
           <View style={{ flex: 1 }}>
-            <LoginButton
+            <AuthButton
+              action="LOGIN"
               loading={loading}
               onPress={handlePress}
               disabled={!isReady || loading}

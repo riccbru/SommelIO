@@ -3,10 +3,11 @@ import { StyleSheet, TextInput } from "react-native";
 
 type Props = {
   value: string;
+  holder: string;
   onChangeText: (text: string) => void;
 };
 
-export default function UsernameInput({ value, onChangeText }: Props) {
+export default function AuthInput({ value, holder, onChangeText }: Props) {
 
   const theme = useTheme();
 
@@ -22,11 +23,11 @@ export default function UsernameInput({ value, onChangeText }: Props) {
 
   return (
     <TextInput
-      style={styles.input}
-      placeholder="Username"
-      placeholderTextColor={theme.colors.gray}
       value={value}
+      style={styles.input}
+      placeholder={holder}
       onChangeText={onChangeText}
+      placeholderTextColor={theme.colors.gray}
     />
   );
 }
