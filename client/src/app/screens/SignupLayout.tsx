@@ -1,21 +1,19 @@
 import { useState } from "react";
-import { useRouter } from "expo-router";
 import { useAuth } from "@/src/hooks/useAuth";
-import { overlay, useTheme } from "react-native-paper";
+import { useTheme } from "react-native-paper";
 import { showAlert } from "@/src/utils/showAlert";
 import AuthTitle from "@/src/components/auth/AuthTitle";
 import AuthInput from "@/src/components/auth/AuthInput";
 import AuthButton from "@/src/components/auth/AuthButton";
 import DateInput from "@/src/components/auth/signup/DateInput";
+import UserModal from "@/src/components/auth/signup/UserModal";
 import { AppleButton } from "@/src/components/auth/AppleButton";
 import { GoogleButton } from "@/src/components/auth/GoogleButton";
 import { LineSeparator } from "@/src/components/auth/LineSeparator";
 import { FacebookButton } from "@/src/components/auth/FacebookButton";
 import PasswordInput from "@/src/components/auth/signup/PasswordInput";
 import { SignupFooter } from "@/src/components/auth/signup/SignupFooter";
-import { Button, InteractionManager } from "react-native";
-import { KeyboardAvoidingView, Modal, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
-import UserModal from "@/src/components/auth/signup/UserModal";
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet } from "react-native";
 
 export default function SignupLayout() {
 
@@ -28,8 +26,7 @@ export default function SignupLayout() {
     }
 
     const theme = useTheme();
-    const router = useRouter();
-    const { isReady, user, signup } = useAuth();
+    const { isReady, signup } = useAuth();
     const [modal, setModal] = useState(false);
     const [loading, setLoading] = useState(false);
     const [signupData, setSignupData] = useState(defaultSignupData);

@@ -1,6 +1,6 @@
 import { useAuth } from '@/src/hooks/useAuth';
 import { useRouter } from 'expo-router';
-import { Button, Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { useTheme } from 'react-native-paper';
 
 interface UserModalProps {

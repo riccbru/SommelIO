@@ -13,7 +13,7 @@ import { LoginFooter } from "@/src/components/auth/login/LoginFooter";
 import { FacebookButton } from "@/src/components/auth/FacebookButton";
 import PasswordInput from "@/src/components/auth/login/PasswordInput";
 import { BiometricButton } from "@/src/components/auth/login/BiometricButton";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, TextInput, View } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View } from "react-native";
 
 export default function LoginLayout() {
 
