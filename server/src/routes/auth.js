@@ -1,6 +1,8 @@
 import argon2 from "argon2";
 import { Router } from "express";
 import jsonwebtoken from "jsonwebtoken";
+import { LoginSchema } from "../validators/loginSchema.js";
+import { SignupSchema } from "../validators/signupSchema.js";
 import { PrismaClient } from "../generated/prisma/index.js";
 import { generateAccessToken, generateRefreshToken } from "../utils/auth.js";
 
@@ -15,10 +17,14 @@ const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || "JWT_refreshToken_s
 // POST /api/v1/auth/login
 router.post("/login",
     async (req, res) => {
-        const { username, password } = req.body;
-        if (!username || !password) {
-            return res.status(400).json({ error: "Username and password required" });
+
+        const parsed = LoginSchema.safeParse(req.body);
+        if (!parsed.success) {
+            const errMex = parsed.error._zod.def[0].message;
+            return res.status(400).json({ error: errMex });
         }
+        const { username, password } = parsed.data;
+
         try {
             const user = await prisma.users.findUnique({ where: { username } });
             if (!user || !user.password_hash) {
@@ -33,14 +39,14 @@ router.post("/login",
                 uid: user?.uid,
                 admin: user?.admin,
                 username: user?.username,
-                fullName: user?.full_name,
+                full_name: user?.full_name,
                 email: user?.email,
             }
             const accessToken = generateAccessToken(payload);
             const refreshToken = generateRefreshToken(payload);
             res.cookie('refreshToken', refreshToken, {
                 httpOnly: true,
-                secure: false, // true quando si è in HTTPS
+                secure: false, // true in HTTPS
                 sameSite: 'Strict',
                 maxAge: 7 * 24 * 60 * 60 * 1000
             });
@@ -65,10 +71,14 @@ router.post("/logout",
 // POST /api/v1/auth/signup
 router.post("/signup",
     async (req, res) => {
-        const { full_name, username, email, birthdate, password } = req.body;
-        if (!full_name || !username || !email || !birthdate || !password) {
-            return res.status(400).json({ error: "Username, email, and password are required" });
+
+        const parsed = SignupSchema.safeParse(req.body);
+        if (!parsed.success) {
+            const errMex = parsed.error._zod.def[0].message;
+            return res.status(400).json({ error: errMex });
         }
+        const { full_name, username, email, birthdate, password } = parsed.data;
+
         try {
             const existingUser = await prisma.users.findFirst({
                 where: {
@@ -118,11 +128,14 @@ router.post("/refresh",
                 return res.status(401).json({ error: "User not found" });
             }
 
-            const newAccessToken = generateAccessToken({
-                uid: user.uid,
-                username: user.username,
-                fullName: user.full_name,
-            });
+            const jwtPayload = {
+                uid: user?.uid,
+                admin: user?.admin,
+                username: user?.username,
+                full_name: user?.full_name,
+                email: user?.email,
+            }
+            const newAccessToken = generateAccessToken(jwtPayload);
 
             res.json({ token: newAccessToken });
         } catch (err) {

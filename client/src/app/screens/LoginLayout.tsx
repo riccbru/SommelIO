@@ -5,14 +5,15 @@ import { useTheme } from "react-native-paper";
 import AuthInput from "@/src/components/auth/AuthInput";
 import AuthTitle from "@/src/components/auth/AuthTitle";
 import AuthButton from "@/src/components/auth/AuthButton";
-import { LoginFooter } from "@/src/components/auth/LoginFooter";
+import { AppleButton } from "@/src/components/auth/AppleButton";
 import { GoogleButton } from "@/src/components/auth/GoogleButton";
 import { LineSeparator } from "@/src/components/auth/LineSeparator";
+import { LoginFooter } from "@/src/components/auth/login/LoginFooter";
 import { FacebookButton } from "@/src/components/auth/FacebookButton";
 import PasswordInput from "@/src/components/auth/login/PasswordInput";
 import { BiometricButton } from "@/src/components/auth/login/BiometricButton";
-import { Alert, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View } from "react-native";
-import { AppleButton } from "@/src/components/auth/AppleButton";
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View } from "react-native";
+import { showAlert } from "@/src/utils/showAlert";
 
 export default function LoginLayout() {
 
@@ -35,7 +36,14 @@ export default function LoginLayout() {
       await login(loginData.username, loginData.password);
       router.replace("/(tabs)");
     } catch (err: any) {
-      Alert.alert("Login fallito", err.message || "Errore sconosciuto");
+      showAlert({
+        confirmText: "OK",
+        cancelText: "Close",
+        title: "Login failed",
+        message: err.message || "Unknown login error",
+        onCancel: () => console.log("Cancelled"),
+        onConfirm: () => console.log("Confirmed"),
+      });
     }
   };
 

@@ -30,22 +30,25 @@ async function login(username: string, password: string): Promise<{ newAccessTok
 
         return { newAccessToken, newRefreshToken };
     } catch (error: any) {
-        console.error('Login error:', error);
-        throw new Error(error.response?.data?.message || `Login failed: ${error}`);
+        throw new Error(error.response?.data?.error || `[services/auth.ts] Login failed: ${error}`);
     }
 }
 
-async function logout(): Promise<void> {
-    console.log('Logged out');
+async function logout() {
+    try {
+        const response = await axiosClient.post('/auth/logout', {});
+        return response;
+    } catch (error: any) {
+        throw new Error(error.response?.data?.error || `[services/auth.ts] Signup failed: ${error}`);
+    }
 }
 
 async function signup(data: SignupData) {
     try {
-        const response = axiosClient.post('/auth/signup', data);
+        const response = await axiosClient.post('/auth/signup', data);
         return response;
     } catch (error: any) {
-        console.log('Signup error:', error);
-        throw new Error(error.response?.data?.message || `Signup failed: ${error}`)
+        throw new Error(error.response?.data?.error || `[services/auth.ts] Signup failed: ${error}`);
     }
 }
 

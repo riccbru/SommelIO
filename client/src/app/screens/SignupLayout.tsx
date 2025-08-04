@@ -1,18 +1,19 @@
 import { useState } from "react";
+import { useRouter } from "expo-router";
+import { useAuth } from "@/src/hooks/useAuth";
 import { useTheme } from "react-native-paper";
-import { Alert, KeyboardAvoidingView, Platform, ScrollView, StyleSheet } from "react-native";
+import { showAlert } from "@/src/utils/showAlert";
 import AuthTitle from "@/src/components/auth/AuthTitle";
 import AuthInput from "@/src/components/auth/AuthInput";
-import PasswordInput from "@/src/components/auth/signup/PasswordInput";
 import AuthButton from "@/src/components/auth/AuthButton";
-import { useAuth } from "@/src/hooks/useAuth";
-import { LineSeparator } from "@/src/components/auth/LineSeparator";
-import { GoogleButton } from "@/src/components/auth/GoogleButton";
-import { FacebookButton } from "@/src/components/auth/FacebookButton";
-import { SignupFooter } from "@/src/components/auth/signup/SignupFooter";
 import DateInput from "@/src/components/auth/signup/DateInput";
-import { useRouter } from "expo-router";
 import { AppleButton } from "@/src/components/auth/AppleButton";
+import { GoogleButton } from "@/src/components/auth/GoogleButton";
+import { LineSeparator } from "@/src/components/auth/LineSeparator";
+import { FacebookButton } from "@/src/components/auth/FacebookButton";
+import PasswordInput from "@/src/components/auth/signup/PasswordInput";
+import { SignupFooter } from "@/src/components/auth/signup/SignupFooter";
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet } from "react-native";
 
 export default function SignupLayout() {
 
@@ -44,10 +45,17 @@ export default function SignupLayout() {
 
     const handleSignup = async () => {
         try {
-          signup(signupData);
+          await signup(signupData);
           router.replace("/login");
         } catch (err: any) {
-          Alert.alert("Signup failed", err.message || "Errore sconosciuto");
+            showAlert({
+                confirmText: "OK",
+                cancelText: "Close",
+                title: "Signup failed",
+                message: err.message || "Unknown signup error",
+                onCancel: () => console.log("Cancelled"),
+                onConfirm: () => console.log("Confirmed"),
+            });
         }
       };
     

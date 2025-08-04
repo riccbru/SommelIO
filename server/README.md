@@ -57,7 +57,7 @@ Endpoint: `POST /api/v1/auth/login`.
         }
         ```
 
-## `SINGUP`
+## `SIGNUP`
 Endpoint: `POST /api/v1/auth/signup`.
 
 
@@ -87,6 +87,17 @@ Endpoint: `POST /api/v1/auth/signup`.
         ```json
         {
             "success": "User <UUID-32> created successfully"
+        }
+        ```
+- `400 Bad Request`
+    - Header
+        -
+        -
+    - Body
+        -
+        ```json
+        {
+            "error": "<BODY_ENTRY> is required"
         }
         ```
 - `409 Conflict`

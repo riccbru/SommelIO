@@ -79,20 +79,24 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             });
             setAuthStatus({ isReady: true, isLoggedIn: true });
         } catch (error) {
-            console.log(error);
-            throw new Error("Login failed");
+            throw error;
         }
     }
 
     const logout = async () => {
-        await SecureStore.deleteItemAsync("accessToken");
-        await SecureStore.deleteItemAsync("refreshToken");
-        setAuthData({
-            accessToken: null,
-            refreshToken: null,
-            user: null
-        });
-        setAuthStatus({ isReady: true, isLoggedIn: false });
+        try {
+            await AuthAPI.logout();
+            await SecureStore.deleteItemAsync("accessToken");
+            await SecureStore.deleteItemAsync("refreshToken");
+            setAuthData({
+                accessToken: null,
+                refreshToken: null,
+                user: null
+            });
+            setAuthStatus({ isReady: true, isLoggedIn: false });
+        } catch (error) {
+            throw error;
+        }
     }
 
     const signup = async (data: any) => {
@@ -103,8 +107,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             }
             return false;
         } catch (error) {
-            console.log(error);
-            throw new Error("Signup failed");
+            throw error;
         }
     }
 
@@ -118,15 +121,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 setAuthData((prev) => ({...prev , accessToken: response.newAccessToken}));
             }
         } catch (error) {
-            console.log(error);
-            throw new Error("Refresh failed");
+            throw error;
         }
     }
 
     const values = {
         ...authStatus,
         ...authData,
-        login, logout, signup, refresh
+        login, logout,
+        signup, refresh
     }
 
     return(
