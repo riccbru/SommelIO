@@ -12,7 +12,7 @@ type AlertOptions = {
 export function showAlert({
   title = "Alert",
   message,
-  cancelText = "Cancel",
+  cancelText = "Close",
   confirmText = "OK",
   onCancel,
   onConfirm,
@@ -26,10 +26,10 @@ export function showAlert({
         style: "cancel",
         onPress: onCancel,
       },
-      {
-        text: confirmText,
-        onPress: onConfirm,
-      },
+      // {
+      //   text: confirmText,
+      //   onPress: onConfirm,
+      // },
     ],
     { cancelable: true }
   );

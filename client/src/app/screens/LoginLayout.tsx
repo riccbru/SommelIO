@@ -41,8 +41,6 @@ export default function LoginLayout() {
         cancelText: "Close",
         title: "Login Error",
         message: err.message || "Unknown login error",
-        onCancel: () => console.log("Cancelled"),
-        onConfirm: () => console.log("Confirmed"),
       });
     }
   };

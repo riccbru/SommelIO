@@ -53,11 +53,9 @@ export default function SignupLayout() {
                 cancelText: "Close",
                 title: "Signup Error",
                 message: err.message || "Unknown signup error",
-                onCancel: () => console.log("Cancelled"),
-                onConfirm: () => console.log("Confirmed"),
             });
         }
-      };
+    };
     
     const handlePress = () => {
         setLoading(true);
@@ -118,7 +116,6 @@ export default function SignupLayout() {
 
                 <UserModal modal={modal} setModal={setModal} />
                 
-        
             </ScrollView>
         </KeyboardAvoidingView>
     )
