@@ -4,7 +4,7 @@ import jsonwebtoken from "jsonwebtoken";
 import { LoginSchema } from "../validators/loginSchema.js";
 import { SignupSchema } from "../validators/signupSchema.js";
 import { PrismaClient } from "../generated/prisma/index.js";
-import { generateAccessToken, generateRefreshToken } from "../utils/auth.js";
+import { formatUser, generateAccessToken, generateRefreshToken } from "../utils/auth.js";
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -102,7 +102,7 @@ router.post("/signup",
                 }
             });
 
-            return res.status(201).json({ success: `User ${user.uid} created successfully` });
+            return res.status(201).json(formatUser(user));
             
         } catch (err) {
             console.error("Signup ERROR:", err);

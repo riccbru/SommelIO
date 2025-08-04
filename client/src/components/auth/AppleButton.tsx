@@ -14,12 +14,12 @@ export function AppleButton() {
         },
         button: {
             borderWidth: 1,
-            borderRadius: 30,
+            borderRadius: 28,
             borderColor: theme.dark ? "#ffffff" : theme.colors.gray,
         },
         image: {
             width: 232,
-            height: 52
+            height: 51
         },
     });
 

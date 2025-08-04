@@ -2,6 +2,7 @@ import { MD3DarkTheme, MD3LightTheme } from 'react-native-paper';
 
 const customColors = {
     amber: "#b58638",
+    darkGreen: "#145214",
     gray: "#808080",
     green: "#67ce67",
     pearl: "#d3d5cb",

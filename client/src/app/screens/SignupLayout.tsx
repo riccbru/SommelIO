@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "expo-router";
 import { useAuth } from "@/src/hooks/useAuth";
-import { useTheme } from "react-native-paper";
+import { overlay, useTheme } from "react-native-paper";
 import { showAlert } from "@/src/utils/showAlert";
 import AuthTitle from "@/src/components/auth/AuthTitle";
 import AuthInput from "@/src/components/auth/AuthInput";
@@ -13,7 +13,9 @@ import { LineSeparator } from "@/src/components/auth/LineSeparator";
 import { FacebookButton } from "@/src/components/auth/FacebookButton";
 import PasswordInput from "@/src/components/auth/signup/PasswordInput";
 import { SignupFooter } from "@/src/components/auth/signup/SignupFooter";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet } from "react-native";
+import { Button, InteractionManager } from "react-native";
+import { KeyboardAvoidingView, Modal, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import UserModal from "@/src/components/auth/signup/UserModal";
 
 export default function SignupLayout() {
 
@@ -27,7 +29,8 @@ export default function SignupLayout() {
 
     const theme = useTheme();
     const router = useRouter();
-    const { isReady, signup } = useAuth();
+    const { isReady, user, signup } = useAuth();
+    const [modal, setModal] = useState(false);
     const [loading, setLoading] = useState(false);
     const [signupData, setSignupData] = useState(defaultSignupData);
 
@@ -45,13 +48,13 @@ export default function SignupLayout() {
 
     const handleSignup = async () => {
         try {
-          await signup(signupData);
-          router.replace("/login");
+            await signup(signupData);
+            setModal(true);
         } catch (err: any) {
             showAlert({
                 confirmText: "OK",
                 cancelText: "Close",
-                title: "Signup failed",
+                title: "Signup Error",
                 message: err.message || "Unknown signup error",
                 onCancel: () => console.log("Cancelled"),
                 onConfirm: () => console.log("Confirmed"),
@@ -68,7 +71,7 @@ export default function SignupLayout() {
 
     return (
         <KeyboardAvoidingView
-              style={{ flex: 1 }}
+              style={{ flex: 1, backgroundColor: theme.colors.background }}
               behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
             <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
@@ -85,12 +88,8 @@ export default function SignupLayout() {
                     onChangeText={(text) => setSignupData(prev => ({ ...prev, full_name: text }))}
                 />
                 <AuthInput
-                    holder="Username"
-                    value={signupData.username}
-                    onChangeText={(text) => setSignupData(prev => ({ ...prev, username: text }))}
-                />
-                <AuthInput
                     holder="Email"
+                    isEmail={true}
                     value={signupData.email}
                     onChangeText={(text) => setSignupData(prev => ({ ...prev, email: text }))}
                 />
@@ -99,7 +98,12 @@ export default function SignupLayout() {
                     value={signupData.birthdate}
                     onChangeText={(text) => setSignupData(prev => ({ ...prev, birthdate: text }))}
                 />
-    
+
+                <AuthInput
+                    holder="Username"
+                    value={signupData.username}
+                    onChangeText={(text) => setSignupData(prev => ({ ...prev, username: text }))}
+                />
                 <PasswordInput
                     onSubmit={handlePress}
                     signupData={signupData}
@@ -114,6 +118,9 @@ export default function SignupLayout() {
                 />
         
                 <SignupFooter />
+
+                <UserModal modal={modal} setModal={setModal} />
+                
         
             </ScrollView>
         </KeyboardAvoidingView>

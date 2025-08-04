@@ -19,7 +19,11 @@ export function GoogleButton() {
     const styles = StyleSheet.create({
         container: {
             alignItems: "center",
-            backgroundColor: theme.colors.background
+        },
+        button: {
+            borderWidth: 1,
+            borderRadius: 30,
+            borderColor: theme.dark ? "#ffffff" : theme.colors.gray,
         },
         image: {
             height: 51,
@@ -33,7 +37,7 @@ export function GoogleButton() {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={handlePress}>
+            <TouchableOpacity style={styles.button} onPress={handlePress}>
                 <Image style={styles.image} source={iconSource} />
              </TouchableOpacity>
         </View>

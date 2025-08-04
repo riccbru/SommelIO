@@ -52,8 +52,8 @@ export default function PasswordInput({ signupData, setSignupData, onSubmit }: P
         placeholder="Password"
         onSubmitEditing={onSubmit}
         value={signupData.password}
-        placeholderTextColor={theme.colors.gray}
         secureTextEntry={!showPassword}
+        placeholderTextColor={theme.colors.gray}
         onChangeText={(text) => setSignupData(prev => ({ ...prev, password: text }))}
       />
       <TouchableOpacity style={styles.iconButton} onPress={() => setShowPassword(prev => !prev)}>

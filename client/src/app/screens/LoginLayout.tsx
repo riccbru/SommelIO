@@ -2,6 +2,7 @@ import { useState } from "react";
 import { router } from "expo-router";
 import { useAuth } from "@/src/hooks/useAuth";
 import { useTheme } from "react-native-paper";
+import { showAlert } from "@/src/utils/showAlert";
 import AuthInput from "@/src/components/auth/AuthInput";
 import AuthTitle from "@/src/components/auth/AuthTitle";
 import AuthButton from "@/src/components/auth/AuthButton";
@@ -12,8 +13,7 @@ import { LoginFooter } from "@/src/components/auth/login/LoginFooter";
 import { FacebookButton } from "@/src/components/auth/FacebookButton";
 import PasswordInput from "@/src/components/auth/login/PasswordInput";
 import { BiometricButton } from "@/src/components/auth/login/BiometricButton";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View } from "react-native";
-import { showAlert } from "@/src/utils/showAlert";
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, TextInput, View } from "react-native";
 
 export default function LoginLayout() {
 
@@ -39,7 +39,7 @@ export default function LoginLayout() {
       showAlert({
         confirmText: "OK",
         cancelText: "Close",
-        title: "Login failed",
+        title: "Login Error",
         message: err.message || "Unknown login error",
         onCancel: () => console.log("Cancelled"),
         onConfirm: () => console.log("Confirmed"),
@@ -56,26 +56,25 @@ export default function LoginLayout() {
 
   return(
     <KeyboardAvoidingView
-      style={{ flex: 1 }}
+      style={{ flex: 1, backgroundColor: theme.colors.background }}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
+      <ScrollView
+        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={styles.container}
+      >
         <AuthTitle action={"Login"}/>
-
-        <GoogleButton />
-        <AppleButton />
-        <FacebookButton />
-        <LineSeparator />
         
         <AuthInput
-          value={loginData.username}
           holder="Username"
+          value={loginData.username}
+          onSubmit={handleLogin}
           onChangeText={(text) => setLoginData(prev => ({ ...prev, username: text }))}
         />
         <PasswordInput
           loginData={loginData}
-          setLoginData={setLoginData}
           onSubmit={handleLogin}
+          setLoginData={setLoginData}
         />
         <View style={{ gap: 10, flexDirection: "row", alignItems: "center" }}>
           <View style={{ flex: 1 }}>
@@ -88,6 +87,11 @@ export default function LoginLayout() {
           </View>
           <BiometricButton />
         </View>
+
+        <LineSeparator />
+        <GoogleButton></GoogleButton>
+        <AppleButton></AppleButton>
+        <FacebookButton></FacebookButton>
 
         <LoginFooter />
 

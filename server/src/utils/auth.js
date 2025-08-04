@@ -12,3 +12,16 @@ export function generateAccessToken(payload) {
 export function generateRefreshToken(payload) {
   return jsonwebtoken.sign(payload, JWT_REFRESH_SECRET, { expiresIn: JWT_REFRESH_EXPTIME });
 }
+
+export function formatUser(user) {
+  delete user?.id;
+  delete user?.password_hash;
+  delete user?.admin;
+  delete user?.premium;
+  delete user?.google_id;
+  delete user?.facebook_id;
+  delete user?.apple_id;
+  delete user?.created_at;
+  delete user?.updated_at;
+  return user;
+}

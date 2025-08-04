@@ -102,10 +102,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const signup = async (data: any) => {
         try {
             const newUser = await AuthAPI.signup(data);
-            if (newUser.status === 201) {
-                return true;
-            }
-            return false;
+            setAuthData((prev) => ({ ...prev, user: newUser }));
         } catch (error) {
             throw error;
         }

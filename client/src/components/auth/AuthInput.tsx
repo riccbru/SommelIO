@@ -4,10 +4,12 @@ import { StyleSheet, TextInput } from "react-native";
 type Props = {
   value: string;
   holder: string;
+  isEmail?: boolean;
+  onSubmit?: () => void;
   onChangeText: (text: string) => void;
 };
 
-export default function AuthInput({ value, holder, onChangeText }: Props) {
+export default function AuthInput({ value, holder, isEmail, onSubmit, onChangeText }: Props) {
 
   const theme = useTheme();
 
@@ -26,7 +28,9 @@ export default function AuthInput({ value, holder, onChangeText }: Props) {
       value={value}
       style={styles.input}
       placeholder={holder}
+      onSubmitEditing={onSubmit}
       onChangeText={onChangeText}
+      keyboardType={isEmail ? "email-address" : "default"}
       placeholderTextColor={theme.colors.gray}
     />
   );

@@ -24,10 +24,10 @@ export default function DateInput({ value, onChangeText }: Props) {
         <TextInput
             value={value}
             style={styles.input}
-            // keyboardType="numeric"
             placeholder="YYYY-MM-DD"
             onChangeText={onChangeText}
-            placeholderTextColor={theme.colors.pearl}
+            keyboardType="numbers-and-punctuation"
+            placeholderTextColor={theme.colors.gray}
         />
     );
 }

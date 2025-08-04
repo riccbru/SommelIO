@@ -46,7 +46,7 @@ async function logout() {
 async function signup(data: SignupData) {
     try {
         const response = await axiosClient.post('/auth/signup', data);
-        return response;
+        return response.data;
     } catch (error: any) {
         throw new Error(error.response?.data?.error || `[services/auth.ts] Signup failed: ${error}`);
     }
