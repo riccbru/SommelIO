@@ -1,11 +1,9 @@
-import { useRouter } from "expo-router";
 import { useAuth } from "@/src/hooks/useAuth";
 import TastingsAPI from "@/src/services/tastings";
 import React, { useEffect, useState } from "react";
-import { FileTextIcon } from "phosphor-react-native";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { capitalizeFirst, formatDescription } from "@/src/utils/utils";
-import { useTheme, ActivityIndicator, Button, List, Searchbar, Text } from "react-native-paper";
+import TastingsList from "@/src/components/tastings/TastingsList";
+import { useTheme, ActivityIndicator, Searchbar, Text } from "react-native-paper";
 
 type Exam = Record<string, any>;
 
@@ -34,16 +32,10 @@ type Tasting = {
 export default function Tastings() {
 
   const theme = useTheme();
-  const router = useRouter();
   const { accessToken, refresh } = useAuth();
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [tastings, setTastings] = useState<Tasting[]>([]);
-
-  const handlePress = (tasting: Tasting) => {
-    console.log(`Button ${tasting.tid} pressed!`);
-    router.replace("/screens/TastingForm");
-  }
 
   useEffect(() => {
     async function fetchTastings() {
@@ -68,6 +60,9 @@ export default function Tastings() {
   }, [accessToken, refresh]);
 
   const styles = StyleSheet.create({
+    searchBarContainer: {
+      backgroundColor: theme.colors.background
+    },
     container: {
       flex: 1,
       flexDirection: "column",
@@ -101,6 +96,16 @@ export default function Tastings() {
     accordionBody: {
       marginLeft: 30,
       color: theme.colors.text
+    },
+    emptyListContainer: {
+      flex: 1,
+      alignItems: "center",
+      alignContent: "center",
+      justifyContent: "center",
+      backgroundColor: theme.colors.background
+    },
+    text: {
+      fontSize: 22
     }
   });
 
@@ -113,46 +118,25 @@ export default function Tastings() {
   }
 
   return (
-    <ScrollView style={styles.container}>
-      <Searchbar
-        value={searchQuery}
-        placeholder="Search tasting..."
-        onChangeText={setSearchQuery}
-      />
-      <List.Section>
-        {tastings
-          .filter(t =>
-            t.wine_denomination.toLowerCase().includes(searchQuery.toLowerCase())
-          )
-          .map((t, index) => (
-            <View key={index} style={styles.row}>
-
-              <View style={styles.iconContainer}>
-                <Button onPress={() => handlePress(t)}>
-                  <FileTextIcon size={32} />
-                </Button>
-              </View>
-
-              <View style={styles.accordionTrigger}>
-                <List.Accordion
-                  title={`${t.wine_denomination.toUpperCase()} - ${capitalizeFirst(t.wine_category_name)}`}
-                  description={formatDescription(t.tasting_date, t.tasting_time, t.tasting_location)}
-                >
-                  <View style={styles.accordionBody}>
-                    <Text>Sample Number: {t.sample_number}</Text>
-                    <Text>Alcohol Content: {t.alcohol_content}</Text>
-                    <Text>Vintage Year: {t.vintage}</Text>
-                    <Text>Wine Temperature: {t.wine_temperature}</Text>
-                    <Text>Ambient Temperature: {t.ambient_temperature}</Text>
-                  </View>
-                </List.Accordion>
-              </View>
-
-            </View>
-            )
-          )
-        }
-      </List.Section>
-    </ScrollView>
+    <>
+      {tastings.length === 0 ? (
+        <View style={styles.emptyListContainer}>
+          <Text style={styles.text}>No tasting yet added</Text>
+        </View>
+      ) : (
+        <>
+          <View style={styles.searchBarContainer}>
+            <Searchbar
+              value={searchQuery}
+              placeholder="Search wine denomination..."
+              onChangeText={setSearchQuery}
+            />
+          </View>
+          <ScrollView style={styles.container}>
+            <TastingsList searchQuery={searchQuery} tastings={tastings} />
+          </ScrollView>
+        </>
+      )}
+    </>
   );
 }

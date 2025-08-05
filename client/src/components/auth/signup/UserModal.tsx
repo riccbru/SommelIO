@@ -45,6 +45,7 @@ export default function UserModal({ modal, setModal }: UserModalProps) {
             color: theme.colors.text
         },
         buttonContainer: {
+            marginTop: 15,
             flexDirection: "row",
             justifyContent: "flex-end",
         },
@@ -77,13 +78,13 @@ export default function UserModal({ modal, setModal }: UserModalProps) {
                         Welcome, <Text style={styles.userTitleData}>{user?.username}</Text>
                     </Text>
                     <Text style={styles.userEntries}>
-                        UID: <Text style={styles.userData}>{user?.uid}</Text>
-                    </Text>
-                    <Text style={styles.userEntries}>
                         NAME: <Text style={styles.userData}>{user?.full_name}</Text>
                     </Text>
                     <Text style={styles.userEntries}>
                         EMAIL: <Text style={styles.userData}>{user?.email}</Text>
+                    </Text>
+                    <Text style={styles.userEntries}>
+                        UID: <Text style={styles.userData}>{user?.uid}</Text>
                     </Text>
                     <View style={styles.buttonContainer}>
                         <TouchableOpacity style={styles.button} onPress={handlePress}>

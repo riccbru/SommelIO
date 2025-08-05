@@ -1,6 +1,6 @@
 import { useLayoutEffect } from "react";
 import { useAuth } from "@/src/hooks/useAuth";
-import { SignOut } from "phosphor-react-native";
+import { SignOutIcon } from "phosphor-react-native";
 import { useNavigation, useRouter } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useTheme } from "react-native-paper";
@@ -19,7 +19,7 @@ export default function User() {
           logout();
           router.replace("/login");
         }}>
-          <SignOut size={25} color={theme.dark ? "#ffffff" : "#000000"} />
+          <SignOutIcon size={25} color={theme.dark ? "#ffffff" : "#000000"} />
         </TouchableOpacity>
       )
     });

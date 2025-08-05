@@ -28,12 +28,7 @@ router.get("/",
                 },
                 orderBy: { id: 'desc' },
             });
-
-            if (!result || result.length === 0) {
-                res.status(404).json({ error: `No tastings found for user ${uid}` });
-                return;
-            }
-
+            
             const tastingsWithNames = await injectWineCategoryName(result, language, prisma);
             const tastings = tastingsWithNames.map(t => formatTasting(t, language));
 
