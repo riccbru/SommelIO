@@ -1,8 +1,8 @@
 import { useAuth } from "@/src/hooks/useAuth";
 import TastingsAPI from "@/src/services/tastings";
-import React, { useEffect, useState } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { useCallback, useEffect, useState } from "react";
 import TastingsList from "@/src/components/tastings/TastingsList";
+import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
 import { useTheme, ActivityIndicator, Searchbar, Text } from "react-native-paper";
 
 type Exam = Record<string, any>;
@@ -32,35 +32,32 @@ type Tasting = {
 export default function Tastings() {
 
   const theme = useTheme();
-  const { accessToken, refresh } = useAuth();
+  const { accessToken } = useAuth();
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [tastings, setTastings] = useState<Tasting[]>([]);
 
-  useEffect(() => {
-    async function fetchTastings() {
-      const delay = new Promise((resolve) => setTimeout(resolve, 650));
-      try {
-        const [data] = await Promise.all([
-          TastingsAPI.fetchTastings(accessToken),
-          delay,
-        ]);
-        setTastings(data.tastings || []);
-      } catch (error: any) {
-        const status = error.trim().split(' ').pop();
-        if (status === '401') {
-          refresh();
-        }
-        console.log(`Some ERR: ${error}`);
-      } finally {
-        setLoading(false);
-      }
+  const fetchTastings = useCallback(async () => {
+    const delay = new Promise((resolve) => setTimeout(resolve, 650));
+    try {
+      const [data] = await Promise.all([
+        TastingsAPI.fetchTastings(accessToken),
+        delay,
+      ]);
+      setTastings(data.tastings || []);
+    } catch (error: any) {
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
+  }, [accessToken]);
+
+  useEffect(() => {
     fetchTastings();
-  }, [accessToken, refresh]);
+  }, [fetchTastings]);
 
   const styles = StyleSheet.create({
-    emptyListContainer: {
+    centeredContainer: {
       flex: 1,
       alignItems: "center",
       alignContent: "center",
@@ -82,8 +79,10 @@ export default function Tastings() {
 
   if (loading) {
     return(
-      <View style={styles.spinnerContainer}>
+      <View style={styles.centeredContainer}>
         <ActivityIndicator size={"large"} color="#ffffff" />
+        <View style={{ marginTop: 8 }} />
+        <Text style={styles.text}>Fetching wines...</Text>
       </View>
     );
   }
@@ -91,19 +90,28 @@ export default function Tastings() {
   return (
     <>
       {!tastings.length ? (
-        <View style={styles.emptyListContainer}>
-          <Text style={styles.text}>No tasting yet added</Text>
+        <View style={styles.centeredContainer}>
+          <Text style={styles.text}>No tasting found</Text>
         </View>
       ) : (
         <>
           <View style={styles.searchBarContainer}>
             <Searchbar
               value={searchQuery}
-              placeholder="Search wine denomination..."
               onChangeText={setSearchQuery}
+              placeholder="Search wine denomination..."
             />
           </View>
-          <ScrollView style={styles.tastingsContainer}>
+          <ScrollView
+            style={styles.tastingsContainer}
+            keyboardShouldPersistTaps="handled"
+            refreshControl={
+              <RefreshControl
+                refreshing={loading}
+                onRefresh={fetchTastings}
+              />
+            }
+          >
             <TastingsList searchQuery={searchQuery} tastings={tastings} />
           </ScrollView>
         </>

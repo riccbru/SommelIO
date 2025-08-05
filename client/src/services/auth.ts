@@ -54,9 +54,7 @@ async function signup(data: SignupData) {
 
 async function refresh(refreshToken: string): Promise<{ newAccessToken: string }> {
     try {
-        const response = await axiosClient.post('/auth/refresh', null, {
-            headers: { Authorization: `Bearer ${refreshToken}` }
-        })
+        const response = await axiosClient.post('/auth/refresh', null);
         return { newAccessToken: response.data.token };
     } catch (error: any) {
         if (error.status === 401) {
