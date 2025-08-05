@@ -22,7 +22,7 @@ export default function New() {
 
   return (
     <View style={styles.container}>
-        <Text style={styles.text}>aggiungi</Text>
+        <Text style={styles.text}>new</Text>
     </View>
   );
 }

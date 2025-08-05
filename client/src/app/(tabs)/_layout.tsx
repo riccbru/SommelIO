@@ -16,7 +16,9 @@ export default function TabsLayout() {
                     const Icon = config?.icon;
                     return {
                         headerTitle: config?.title ?? route.name,
-                        headerStyle: { backgroundColor: theme.colors.background },
+                        headerStyle: {
+                            backgroundColor: theme.colors.background
+                        },
                         headerTintColor: theme.colors.text,
                         tabBarStyle: {
                             paddingTop: 7,

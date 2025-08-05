@@ -1,8 +1,10 @@
+import { useNavigation } from "expo-router";
 import TastingsAPI from "@/src/services/tastings";
-import { useCallback, useEffect, useState } from "react";
+import { ListPlusIcon } from "phosphor-react-native";
 import TastingsList from "@/src/components/tastings/TastingsList";
-import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { useTheme, ActivityIndicator, Searchbar, Text } from "react-native-paper";
+import { RefreshControl, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 
 type Exam = Record<string, any>;
 
@@ -31,9 +33,22 @@ type Tasting = {
 export default function Tastings() {
 
   const theme = useTheme();
+  const navigation = useNavigation();
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [tastings, setTastings] = useState<Tasting[]>([]);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <TouchableOpacity style={{ marginTop: 10, marginBottom: 10, marginLeft: 20 }} onPress={() => {
+          console.log("add wine to drink")
+        }}>
+          <ListPlusIcon size={32} color={theme.dark ? "#ffffff" : "#000000"} />
+        </TouchableOpacity>
+      )
+    });
+  }, []);
 
   const fetchTastings = useCallback(async () => {
     const delay = new Promise((resolve) => setTimeout(resolve, 650));
@@ -55,6 +70,9 @@ export default function Tastings() {
   }, [fetchTastings]);
 
   const styles = StyleSheet.create({
+    container: {
+      backgroundColor: theme.colors.background
+    },
     centeredContainer: {
       flex: 1,
       alignItems: "center",
@@ -63,6 +81,8 @@ export default function Tastings() {
       backgroundColor: theme.colors.background
     },
     searchBarContainer: {
+      marginLeft: 5,
+      marginRight: 5,
       backgroundColor: theme.colors.background
     },
     tastingsContainer: {
@@ -93,12 +113,15 @@ export default function Tastings() {
         </View>
       ) : (
         <>
-          <View style={styles.searchBarContainer}>
-            <Searchbar
-              value={searchQuery}
-              onChangeText={setSearchQuery}
-              placeholder="Search wine denomination..."
-            />
+        <View style={styles.container}>
+            <View style={styles.searchBarContainer}>
+              <Searchbar
+                style={{ marginTop: 5 }}
+                value={searchQuery}
+                onChangeText={setSearchQuery}
+                placeholder="Search wine..."
+                />
+            </View>
           </View>
           <ScrollView
             style={styles.tastingsContainer}

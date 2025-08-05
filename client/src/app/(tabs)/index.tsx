@@ -1,5 +1,5 @@
 import { useTheme } from "react-native-paper";
-import { Linking, StyleSheet, Pressable, Text, View } from "react-native";
+import { Linking, StyleSheet, Pressable, Text, View, TouchableOpacity } from "react-native";
 
 export default function Index() {
   

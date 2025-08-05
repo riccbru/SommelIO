@@ -1,8 +1,8 @@
-import { Button, List, useTheme } from "react-native-paper";
+import { useRouter } from "expo-router";
 import { FileTextIcon } from "phosphor-react-native";
 import { StyleSheet, Text, View } from "react-native";
+import { Button, List, useTheme } from "react-native-paper";
 import { capitalizeFirst, formatDescription } from "@/src/utils/utils";
-import { useRouter } from "expo-router";
 
 type Props = {
     searchQuery: string;
@@ -32,10 +32,14 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
         accordionTrigger: {
           flex: 1,
           marginLeft: 5,
+          marginRight: 5,
           color: theme.colors.text
         },
         accordionBody: {
           marginLeft: 30,
+          backgroundColor: theme.colors.background
+        },
+        text: {
           color: theme.colors.text
         }
     });
@@ -67,11 +71,11 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
                                 description={formatDescription(t.tasting_date, t.tasting_time, t.tasting_location)}
                             >
                                 <View style={styles.accordionBody}>
-                                    <Text>Sample Number: {t.sample_number}</Text>
-                                    <Text>Alcohol Content: {t.alcohol_content}</Text>
-                                    <Text>Vintage Year: {t.vintage}</Text>
-                                    <Text>Wine Temperature: {t.wine_temperature}</Text>
-                                    <Text>Ambient Temperature: {t.ambient_temperature}</Text>
+                                    <Text style={styles.text}>Sample Number: {t.sample_number}</Text>
+                                    <Text style={styles.text}>Alcohol Content: {t.alcohol_content}</Text>
+                                    <Text style={styles.text}>Vintage Year: {t.vintage}</Text>
+                                    <Text style={styles.text}>Wine Temperature: {t.wine_temperature}</Text>
+                                    <Text style={styles.text}>Ambient Temperature: {t.ambient_temperature}</Text>
                                 </View>
                             </List.Accordion>
                         </View>

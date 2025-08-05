@@ -1,9 +1,9 @@
 import { useLayoutEffect } from "react";
 import { useAuth } from "@/src/hooks/useAuth";
-import { SignOutIcon } from "phosphor-react-native";
-import { useNavigation, useRouter } from "expo-router";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useTheme } from "react-native-paper";
+import { useNavigation, useRouter } from "expo-router";
+import { SignOutIcon, GearIcon } from "phosphor-react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function User() {
 
@@ -14,12 +14,19 @@ export default function User() {
 
   useLayoutEffect(() => {
     navigation.setOptions({
+      headerLeft: () => (
+        <TouchableOpacity style={{ marginTop: 10, marginBottom: 10, marginLeft: 20 }} onPress={() => {
+          console.log("profile settings")
+        }}>
+          <GearIcon size={32} color={theme.dark ? "#ffffff" : "#000000"} />
+        </TouchableOpacity>
+      ),
       headerRight: () => (
-        <TouchableOpacity style={{ marginTop: 5, marginRight: 16 }} onPress={() => {
+        <TouchableOpacity style={{ marginTop: 10, marginBottom: 10, marginRight: 20 }} onPress={() => {
           logout();
           router.replace("/login");
         }}>
-          <SignOutIcon size={25} color={theme.dark ? "#ffffff" : "#000000"} />
+          <SignOutIcon size={30} color={theme.dark ? "#ffffff" : "#000000"} />
         </TouchableOpacity>
       )
     });
