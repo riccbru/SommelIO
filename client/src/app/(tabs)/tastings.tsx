@@ -60,48 +60,19 @@ export default function Tastings() {
   }, [accessToken, refresh]);
 
   const styles = StyleSheet.create({
-    searchBarContainer: {
-      backgroundColor: theme.colors.background
-    },
-    container: {
-      flex: 1,
-      flexDirection: "column",
-      backgroundColor: theme.colors.background
-    },
-    spinnerContainer: {
-      flex: 1,
-      alignItems: "center",
-      justifyContent: "center",
-      backgroundColor: theme.colors.background
-    },
-    row: {
-      marginBottom: 8,
-      flexDirection: "row",
-      alignItems: "center"
-    },
-    iconContainer: {
-      width: 50, 
-      height: 50,
-      marginLeft: 5,
-      borderRadius: 5,
-      alignItems: "center",
-      justifyContent: "center",
-      backgroundColor: theme.colors.pearl
-    },
-    accordionTrigger: {
-      flex: 1,
-      marginLeft: 5,
-      color: theme.colors.text
-    },
-    accordionBody: {
-      marginLeft: 30,
-      color: theme.colors.text
-    },
     emptyListContainer: {
       flex: 1,
       alignItems: "center",
       alignContent: "center",
       justifyContent: "center",
+      backgroundColor: theme.colors.background
+    },
+    searchBarContainer: {
+      backgroundColor: theme.colors.background
+    },
+    tastingsContainer: {
+      flex: 1,
+      flexDirection: "column",
       backgroundColor: theme.colors.background
     },
     text: {
@@ -119,7 +90,7 @@ export default function Tastings() {
 
   return (
     <>
-      {tastings.length === 0 ? (
+      {!tastings.length ? (
         <View style={styles.emptyListContainer}>
           <Text style={styles.text}>No tasting yet added</Text>
         </View>
@@ -132,7 +103,7 @@ export default function Tastings() {
               onChangeText={setSearchQuery}
             />
           </View>
-          <ScrollView style={styles.container}>
+          <ScrollView style={styles.tastingsContainer}>
             <TastingsList searchQuery={searchQuery} tastings={tastings} />
           </ScrollView>
         </>

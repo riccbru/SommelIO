@@ -2,23 +2,23 @@ import { FilePlusIcon, HouseIcon, UserIcon, UsersIcon, WineIcon } from 'phosphor
 
 export const TAB_CONFIG = {
   index: {
-    title: "News AIS",
+    title: "News",
     icon: HouseIcon,
   },
   friends: {
-    title: "Colleghi AIS",
+    title: "Colleagues",
     icon: UsersIcon,
   },
   new: {
-    title: "Nuova degustazione",
+    title: "New tasting",
     icon: FilePlusIcon,
   },
   tastings: {
-    title: "Degustazioni",
+    title: "Tastings",
     icon: WineIcon,
   },
   user: {
-    title: "Profilo",
+    title: "Profile",
     icon: UserIcon,
   },
 } as const;
