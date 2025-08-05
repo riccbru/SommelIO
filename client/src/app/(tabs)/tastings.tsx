@@ -1,4 +1,3 @@
-import { useAuth } from "@/src/hooks/useAuth";
 import TastingsAPI from "@/src/services/tastings";
 import { useCallback, useEffect, useState } from "react";
 import TastingsList from "@/src/components/tastings/TastingsList";
@@ -32,7 +31,6 @@ type Tasting = {
 export default function Tastings() {
 
   const theme = useTheme();
-  const { accessToken } = useAuth();
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [tastings, setTastings] = useState<Tasting[]>([]);
@@ -41,7 +39,7 @@ export default function Tastings() {
     const delay = new Promise((resolve) => setTimeout(resolve, 650));
     try {
       const [data] = await Promise.all([
-        TastingsAPI.fetchTastings(accessToken),
+        TastingsAPI.fetchTastings(),
         delay,
       ]);
       setTastings(data.tastings || []);
@@ -50,7 +48,7 @@ export default function Tastings() {
     } finally {
       setLoading(false);
     }
-  }, [accessToken]);
+  }, []);
 
   useEffect(() => {
     fetchTastings();

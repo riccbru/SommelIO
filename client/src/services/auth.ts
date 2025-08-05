@@ -1,4 +1,3 @@
-import { router } from 'expo-router';
 import axiosClient from './axiosClient';
 
 export type SignupData = {
@@ -52,25 +51,10 @@ async function signup(data: SignupData) {
     }
 }
 
-async function refresh(refreshToken: string): Promise<{ newAccessToken: string }> {
-    try {
-        const response = await axiosClient.post('/auth/refresh', null);
-        return { newAccessToken: response.data.token };
-    } catch (error: any) {
-        if (error.status === 401) {
-            logout();
-            router.replace("/login");
-        }
-        console.log('Refresh error:', error);
-        throw new Error(error.response?.data?.message || `Refresh failed: ${error}`);
-    }
-}
-
 const AuthAPI = {
     login,
     logout,
-    signup,
-    refresh
+    signup
 };
 
 export default AuthAPI;

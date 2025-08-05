@@ -96,7 +96,7 @@ axiosClient.interceptors.response.use(
           throw new Error('No refresh token available');
         }
 
-        const response = await axios.post(`http://${config.HOSTNAME}:${config.PORT}/api/v1/auth/refresh`, null);
+        const response = await axios.post(`/auth/refresh`, null);
 
         const newAccessToken = response.data.token;
         

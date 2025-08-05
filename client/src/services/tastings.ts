@@ -1,12 +1,8 @@
 import axiosClient from './axiosClient';
 
-async function fetchTastings(token: string | null) {
+async function fetchTastings() {
     try {
-        const response = await axiosClient.get('/tastings', {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
+        const response = await axiosClient.get('/tastings');
         return response.data;
     } catch (error: any) {
         console.error(error);
@@ -14,13 +10,9 @@ async function fetchTastings(token: string | null) {
     }
 }
 
-async function createTasting(token: string, data: any) {
+async function createTasting(data: any) {
     try {
-        const response = axiosClient.post('/tastings', data, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
+        const response = axiosClient.post('/tastings', data);
         return response;
     } catch (error: any) {
         console.error(error);
@@ -28,13 +20,9 @@ async function createTasting(token: string, data: any) {
     }
 }
 
-async function updateTasting(tid: string, token: string, data: any) {
+async function updateTasting(tid: string, data: any) {
     try {
-        const response = axiosClient.put('/tastings', data, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
+        const response = axiosClient.put('/tastings', data);
         return response;
     } catch (error: any) {
         console.error(error);
@@ -42,13 +30,9 @@ async function updateTasting(tid: string, token: string, data: any) {
     }
 }
 
-async function deleteTasting(tid: string, token: string) {
+async function deleteTasting(tid: string) {
     try {
-        const response = axiosClient.delete('/tastings', {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
+        const response = axiosClient.delete('/tastings');
         return response;
     } catch (error: any) {
         console.error(error);

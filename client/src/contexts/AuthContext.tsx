@@ -44,11 +44,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     useEffect(() => {
         setCallback(
             (newToken: string) => {
-                console.log(`AuthContext received token update from interceptor:\n${newToken}`);
                 setAuthData(prev => ({ ...prev, accessToken: newToken }));
             },
             () => {
-                console.log('AuthContext received force logout from interceptor');
                 setAuthData({
                   accessToken: null,
                   refreshToken: null,
