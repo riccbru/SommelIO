@@ -10,6 +10,16 @@ async function fetchTastings() {
     }
 }
 
+async function fetchTastingById(tid: string) {
+    try {
+        const response = await axiosClient.get(`/tastings/${tid}`);
+        return response;
+    } catch (error: any) {
+        console.error(error)
+        throw new Error(error.response?.data?.message || `Unable to fetch tasting ${tid}: ${error}`);
+    }
+}
+
 async function createTasting(data: any) {
     try {
         const response = axiosClient.post('/tastings', data);
@@ -40,5 +50,10 @@ async function deleteTasting(tid: string) {
     }
 }
 
-const TastingsAPI = { fetchTastings, updateTasting, createTasting, deleteTasting }
+const TastingsAPI = {
+    fetchTastings, fetchTastingById,
+    updateTasting,
+    createTasting,
+    deleteTasting
+}
 export default TastingsAPI;

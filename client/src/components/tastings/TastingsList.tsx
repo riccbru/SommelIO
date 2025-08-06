@@ -45,8 +45,7 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
     });
 
     const handlePress = (tasting: Tasting) => {
-        console.log(`Button ${tasting.tid} pressed!`);
-        router.replace("/screens/TastingForm");
+        router.push(`/tastings/${tasting.tid}`);
     }
 
     return (

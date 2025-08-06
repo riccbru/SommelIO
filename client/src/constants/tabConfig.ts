@@ -5,7 +5,7 @@ export const TAB_CONFIG = {
     title: "News",
     icon: HouseIcon,
   },
-  friends: {
+  colleagues: {
     title: "Colleagues",
     icon: UsersIcon,
   },

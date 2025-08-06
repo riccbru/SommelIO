@@ -48,7 +48,7 @@ export default function Tastings() {
         </TouchableOpacity>
       )
     });
-  }, []);
+  }, [navigation, theme.dark]);
 
   const fetchTastings = useCallback(async () => {
     const delay = new Promise((resolve) => setTimeout(resolve, 650));
