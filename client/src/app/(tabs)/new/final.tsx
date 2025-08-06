@@ -80,8 +80,9 @@ export default function Final() {
   return (
       <>
         <KeyboardAvoidingView
-          style={{ flex: 1, backgroundColor: theme.colors.background }}
+          keyboardVerticalOffset={90}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={{ flex: 1, backgroundColor: theme.colors.background }}
         >
             <ScrollView style={styles.container} keyboardShouldPersistTaps="handled">
     

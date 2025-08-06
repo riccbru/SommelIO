@@ -119,8 +119,9 @@ export default function Visual() {
     return (
         <>
             <KeyboardAvoidingView
-              style={{ flex: 1, backgroundColor: theme.colors.background }}
-              behavior={Platform.OS === "ios" ? "padding" : "height"}
+                keyboardVerticalOffset={90}
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+                style={{ flex: 1, backgroundColor: theme.colors.background }}
             >
                 <ScrollView style={styles.container} keyboardShouldPersistTaps="handled">
 
