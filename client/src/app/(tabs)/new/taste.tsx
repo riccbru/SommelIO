@@ -144,7 +144,7 @@ export default function Taste() {
   return (
       <>
         <KeyboardAvoidingView
-          keyboardVerticalOffset={90}
+          keyboardVerticalOffset={140}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={{ flex: 1, backgroundColor: theme.colors.background }}
         >

@@ -125,6 +125,7 @@ export default function Olfactory() {
   return (
       <>
         <KeyboardAvoidingView
+          keyboardVerticalOffset={140}
           style={{ flex: 1, backgroundColor: theme.colors.background }}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
         >

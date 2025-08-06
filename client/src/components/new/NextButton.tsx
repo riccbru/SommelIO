@@ -22,7 +22,6 @@ export default function NextButton({ path, text, validation, formData, action, r
         const isValid = validation();
         if (isValid) {
             try {
-                console.log(formData);
                 if (!requiresTid) {
                     const response = await action(formData);
                     const newTid = response?.data?.tid;
