@@ -20,12 +20,22 @@ async function fetchTastingById(tid: string) {
     }
 }
 
+async function toggleFavorite(tid: string) {
+    try {
+        const response = await axiosClient.patch(`/tastings/${tid}`);
+        return response;
+    } catch (error: any) {
+        console.error(error);
+        throw new Error(error.response?.data?.message || `Unable to toggle favorite ${tid}: ${error}`);
+    }
+}
+
 async function createTasting(data: any) {
     try {
         const response = axiosClient.post('/tastings', data);
         return response;
     } catch (error: any) {
-        console.error(error);
+        console.log(error);
         throw new Error(error.response?.data?.message || `Unable to create tasting: ${error}`);
     }
 }
@@ -52,6 +62,7 @@ async function deleteTasting(tid: string) {
 
 const TastingsAPI = {
     fetchTastings, fetchTastingById,
+    toggleFavorite,
     updateTasting,
     createTasting,
     deleteTasting

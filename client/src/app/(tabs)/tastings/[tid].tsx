@@ -1,5 +1,5 @@
 import { useLocalSearchParams, useNavigation } from 'expo-router';
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import { View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, Card, useTheme, ActivityIndicator } from 'react-native-paper';
 import TastingsAPI from '@/src/services/tastings';
@@ -12,6 +12,7 @@ type Tasting = {
     wine_category_name: string;
     sample_number: string;
     wine_denomination: string;
+    favorite: boolean;
     alcohol_content: string;
     vintage: string;
     wine_temperature: string;
@@ -31,49 +32,69 @@ export default function TastingDetail() {
     
     const theme = useTheme();
     const navigation = useNavigation();
-    const [fav, setFav] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [editMode, setEditMode] = useState(false);
+    const [favorite, setFavorite] = useState(false);
     const { tid } = useLocalSearchParams<{ tid: string }>();
     const [tasting, setTasting] = useState<Tasting | null>(null);
+
+    const downloadTasting = useCallback(async () => {
+        console.log(`downloading tasting ${tid}`);
+    }, [tid]);
+
+    const toggleFavorite = useCallback(async () => {
+        try {
+            const response = await TastingsAPI.toggleFavorite(tid);
+            setFavorite(response.data.favorite);
+        } catch (error) {
+            console.log(error);
+        }
+    }, [tid]);
+
+    const editTasting = useCallback(async () => {
+        setEditMode(!editMode);
+        console.log(`editing tasting ${tid}`);
+    }, [tid, editMode]);
 
     useLayoutEffect(() => {
       navigation.setOptions({
           title: '',
           headerRight: () => (
               <>
-                  <TouchableOpacity style={{ marginTop: 10, marginBottom: 10, marginRight: 5 }} onPress={() => {console.log("downloaded tasting")}}>
+                  <TouchableOpacity style={{ marginTop: 10, marginBottom: 10, marginRight: 5 }} onPress={downloadTasting}>
                       <FileArrowDownIcon size={32} color={theme.dark ? "#ffffff" : "#000000"} />
                   </TouchableOpacity>
-                  <TouchableOpacity style={{ marginTop: 10, marginBottom: 10, marginRight: 5 }} onPress={() => {console.log("edited tasting")}}>
+                  <TouchableOpacity style={{ marginTop: 10, marginBottom: 10, marginRight: 5 }} onPress={editTasting}>
                       <NotePencilIcon size={32} color={theme.dark ? "#ffffff" : "#000000"} />
                   </TouchableOpacity>
-                  <TouchableOpacity style={{ marginTop: 10, marginBottom: 10, marginRight: 0 }} onPress={() => {
-                      console.log(`fav = ${fav}`);
-                      setFav(!fav);
-                        }}>
-                        <StarIcon size={32} weight={fav ? "fill" : "regular"} color={fav ? theme.colors.amber : (theme.dark ? "#ffffff" : "#000000") } />
+                  <TouchableOpacity style={{ marginTop: 10, marginBottom: 10, marginRight: 0 }} onPress={toggleFavorite}>
+                        <StarIcon size={32} weight={favorite ? "fill" : "regular"} color={favorite ? theme.colors.amber : (theme.dark ? "#ffffff" : "#000000") } />
                     </TouchableOpacity>
                 </>
             )
         });
-    }, [navigation, theme, fav]);
+    }, [navigation, theme, favorite, downloadTasting, editTasting, toggleFavorite]);
 
     useEffect(() => {
-      const fetchTasting = async () => {
-        try {
-          const response = await TastingsAPI.fetchTastingById(tid);
-          setTasting(response.data);
-        } catch (error) {
-          console.error('Error fetching tasting:', error);
-        } finally {
-          setLoading(false);
+        const fetchTasting = async () => {
+            try {
+                const delay = new Promise((resolve) => setTimeout(resolve, 500));
+                const [response] = await Promise.all([
+                    TastingsAPI.fetchTastingById(tid),
+                    delay
+                ]);
+                setTasting(response.data);
+                setFavorite(response.data.favorite);
+            } catch (error) {
+                console.error('Error fetching tasting:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        if (tid) {
+            fetchTasting();
         }
-      };
-
-      if (tid) {
-        fetchTasting();
-      }
-    }, [tid]);
+    }, [tid, favorite]);
 
     const styles = StyleSheet.create({
         container: {
@@ -110,21 +131,22 @@ export default function TastingDetail() {
     });
 
     if (loading) {
-      return (
-          <View style={styles.loadingContainer}>
-              <ActivityIndicator size="large" />
-              <Text style={{ marginTop: 8 }}>Loading tasting details...</Text>
-          </View>
-      );
+        return (
+            <View style={styles.loadingContainer}>
+                <ActivityIndicator size="large" />
+                <Text style={{ marginTop: 8 }}>Loading tasting details...</Text>
+            </View>
+        );
     }
 
     if (!tasting) {
-      return (
-          <View style={styles.loadingContainer}>
-              <Text>Tasting not found</Text>
-          </View>
-      );
+        return (
+            <View style={styles.loadingContainer}>
+                <Text>Tasting not found</Text>
+            </View>
+        );
     }
+
     return (
         <ScrollView style={styles.container}>
             <Card style={styles.card}>

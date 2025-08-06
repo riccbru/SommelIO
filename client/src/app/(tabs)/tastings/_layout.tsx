@@ -19,7 +19,7 @@ export default function TastingsLayout() {
                 options={{ 
                     headerShown: true,
                     presentation: 'card',
-                    headerBackTitle: 'Back', // Custom back button text
+                    headerBackTitle: 'Back',
                     title: '',
                     headerStyle: {
                         backgroundColor: theme.colors.background

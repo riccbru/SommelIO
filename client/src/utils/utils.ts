@@ -8,5 +8,10 @@ export function capitalizeFirst(input: string): string {
 }
 
 export function formatDescription(date: string, time: string, location: string): string {
-    return `${date.split('T')[0]} (${time.split('T')[1].slice(0, 5)}) @ ${location}`;
+    const formattedDate = new Date(date.split('T')[0]).toLocaleDateString(undefined, {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric'
+    });
+    return `${formattedDate} (${time.split('T')[1].slice(0, 5)})\n@ ${location}`;
 }

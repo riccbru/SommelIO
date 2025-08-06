@@ -28,6 +28,7 @@ const formatTasting = (tasting) => {
     uid: tasting.uid,
     full_name: tasting.full_name,
     wine_category_name: tasting.wine_category_name || null,
+    favorite: tasting.favorite,
     sample_number: tasting.sample_number || null,
     wine_denomination: tasting.wine_denomination,
     alcohol_content: `${tasting.alcohol_content}%`,

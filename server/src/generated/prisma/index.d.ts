@@ -70,7 +70,7 @@ export type final_considerations = $Result.DefaultSelection<Prisma.$final_consid
  */
 export class PrismaClient<
   ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-  U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
+  const U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
   ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
 > {
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
@@ -316,8 +316,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.12.0
-   * Query Engine version: 8047c96bbd92db98a2abc7c9323ce77c02c89dbc
+   * Prisma Client JS version: 6.13.0
+   * Query Engine version: 361e86d0ea4987e9f53a565309b3eed797a6bcbd
    */
   export type PrismaVersion = {
     client: string
@@ -1363,16 +1363,24 @@ export namespace Prisma {
     /**
      * @example
      * ```
-     * // Defaults to stdout
+     * // Shorthand for `emit: 'stdout'`
      * log: ['query', 'info', 'warn', 'error']
      * 
-     * // Emit as events
+     * // Emit as events only
      * log: [
-     *   { emit: 'stdout', level: 'query' },
-     *   { emit: 'stdout', level: 'info' },
-     *   { emit: 'stdout', level: 'warn' }
-     *   { emit: 'stdout', level: 'error' }
+     *   { emit: 'event', level: 'query' },
+     *   { emit: 'event', level: 'info' },
+     *   { emit: 'event', level: 'warn' }
+     *   { emit: 'event', level: 'error' }
      * ]
+     * 
+     * / Emit as events and log to stdout
+     * og: [
+     *  { emit: 'stdout', level: 'query' },
+     *  { emit: 'stdout', level: 'info' },
+     *  { emit: 'stdout', level: 'warn' }
+     *  { emit: 'stdout', level: 'error' }
+     * 
      * ```
      * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
      */
@@ -1421,10 +1429,15 @@ export namespace Prisma {
     emit: 'stdout' | 'event'
   }
 
-  export type GetLogType<T extends LogLevel | LogDefinition> = T extends LogDefinition ? T['emit'] extends 'event' ? T['level'] : never : never
-  export type GetEvents<T extends any> = T extends Array<LogLevel | LogDefinition> ?
-    GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
-    : never
+  export type CheckIsLogLevel<T> = T extends LogLevel ? T : never;
+
+  export type GetLogType<T> = CheckIsLogLevel<
+    T extends LogDefinition ? T['level'] : T
+  >;
+
+  export type GetEvents<T extends any[]> = T extends Array<LogLevel | LogDefinition>
+    ? GetLogType<T[number]>
+    : never;
 
   export type QueryEvent = {
     timestamp: Date
@@ -5028,6 +5041,7 @@ export namespace Prisma {
     uid: string | null
     full_name: string | null
     wine_category_id: number | null
+    favorite: boolean | null
     sample_number: string | null
     wine_denomination: string | null
     alcohol_content: Decimal | null
@@ -5047,6 +5061,7 @@ export namespace Prisma {
     uid: string | null
     full_name: string | null
     wine_category_id: number | null
+    favorite: boolean | null
     sample_number: string | null
     wine_denomination: string | null
     alcohol_content: Decimal | null
@@ -5066,6 +5081,7 @@ export namespace Prisma {
     uid: number
     full_name: number
     wine_category_id: number
+    favorite: number
     sample_number: number
     wine_denomination: number
     alcohol_content: number
@@ -5105,6 +5121,7 @@ export namespace Prisma {
     uid?: true
     full_name?: true
     wine_category_id?: true
+    favorite?: true
     sample_number?: true
     wine_denomination?: true
     alcohol_content?: true
@@ -5124,6 +5141,7 @@ export namespace Prisma {
     uid?: true
     full_name?: true
     wine_category_id?: true
+    favorite?: true
     sample_number?: true
     wine_denomination?: true
     alcohol_content?: true
@@ -5143,6 +5161,7 @@ export namespace Prisma {
     uid?: true
     full_name?: true
     wine_category_id?: true
+    favorite?: true
     sample_number?: true
     wine_denomination?: true
     alcohol_content?: true
@@ -5249,6 +5268,7 @@ export namespace Prisma {
     uid: string
     full_name: string | null
     wine_category_id: number
+    favorite: boolean
     sample_number: string | null
     wine_denomination: string
     alcohol_content: Decimal
@@ -5287,6 +5307,7 @@ export namespace Prisma {
     uid?: boolean
     full_name?: boolean
     wine_category_id?: boolean
+    favorite?: boolean
     sample_number?: boolean
     wine_denomination?: boolean
     alcohol_content?: boolean
@@ -5312,6 +5333,7 @@ export namespace Prisma {
     uid?: boolean
     full_name?: boolean
     wine_category_id?: boolean
+    favorite?: boolean
     sample_number?: boolean
     wine_denomination?: boolean
     alcohol_content?: boolean
@@ -5333,6 +5355,7 @@ export namespace Prisma {
     uid?: boolean
     full_name?: boolean
     wine_category_id?: boolean
+    favorite?: boolean
     sample_number?: boolean
     wine_denomination?: boolean
     alcohol_content?: boolean
@@ -5354,6 +5377,7 @@ export namespace Prisma {
     uid?: boolean
     full_name?: boolean
     wine_category_id?: boolean
+    favorite?: boolean
     sample_number?: boolean
     wine_denomination?: boolean
     alcohol_content?: boolean
@@ -5367,7 +5391,7 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
-  export type tastingsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "uid" | "full_name" | "wine_category_id" | "sample_number" | "wine_denomination" | "alcohol_content" | "vintage" | "wine_temperature" | "ambient_temperature" | "tasting_date" | "tasting_time" | "tasting_location" | "created_at" | "updated_at", ExtArgs["result"]["tastings"]>
+  export type tastingsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "uid" | "full_name" | "wine_category_id" | "favorite" | "sample_number" | "wine_denomination" | "alcohol_content" | "vintage" | "wine_temperature" | "ambient_temperature" | "tasting_date" | "tasting_time" | "tasting_location" | "created_at" | "updated_at", ExtArgs["result"]["tastings"]>
   export type tastingsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     final_considerations?: boolean | tastings$final_considerationsArgs<ExtArgs>
     olfactory_exams?: boolean | tastings$olfactory_examsArgs<ExtArgs>
@@ -5401,6 +5425,7 @@ export namespace Prisma {
       uid: string
       full_name: string | null
       wine_category_id: number
+      favorite: boolean
       sample_number: string | null
       wine_denomination: string
       alcohol_content: Prisma.Decimal
@@ -5846,6 +5871,7 @@ export namespace Prisma {
     readonly uid: FieldRef<"tastings", 'String'>
     readonly full_name: FieldRef<"tastings", 'String'>
     readonly wine_category_id: FieldRef<"tastings", 'Int'>
+    readonly favorite: FieldRef<"tastings", 'Boolean'>
     readonly sample_number: FieldRef<"tastings", 'String'>
     readonly wine_denomination: FieldRef<"tastings", 'String'>
     readonly alcohol_content: FieldRef<"tastings", 'Decimal'>
@@ -11163,6 +11189,7 @@ export namespace Prisma {
     uid: 'uid',
     full_name: 'full_name',
     wine_category_id: 'wine_category_id',
+    favorite: 'favorite',
     sample_number: 'sample_number',
     wine_denomination: 'wine_denomination',
     alcohol_content: 'alcohol_content',
@@ -11571,6 +11598,7 @@ export namespace Prisma {
     uid?: UuidFilter<"tastings"> | string
     full_name?: StringNullableFilter<"tastings"> | string | null
     wine_category_id?: IntFilter<"tastings"> | number
+    favorite?: BoolFilter<"tastings"> | boolean
     sample_number?: StringNullableFilter<"tastings"> | string | null
     wine_denomination?: StringFilter<"tastings"> | string
     alcohol_content?: DecimalFilter<"tastings"> | Decimal | DecimalJsLike | number | string
@@ -11596,6 +11624,7 @@ export namespace Prisma {
     uid?: SortOrder
     full_name?: SortOrderInput | SortOrder
     wine_category_id?: SortOrder
+    favorite?: SortOrder
     sample_number?: SortOrderInput | SortOrder
     wine_denomination?: SortOrder
     alcohol_content?: SortOrder
@@ -11624,6 +11653,7 @@ export namespace Prisma {
     uid?: UuidFilter<"tastings"> | string
     full_name?: StringNullableFilter<"tastings"> | string | null
     wine_category_id?: IntFilter<"tastings"> | number
+    favorite?: BoolFilter<"tastings"> | boolean
     sample_number?: StringNullableFilter<"tastings"> | string | null
     wine_denomination?: StringFilter<"tastings"> | string
     alcohol_content?: DecimalFilter<"tastings"> | Decimal | DecimalJsLike | number | string
@@ -11649,6 +11679,7 @@ export namespace Prisma {
     uid?: SortOrder
     full_name?: SortOrderInput | SortOrder
     wine_category_id?: SortOrder
+    favorite?: SortOrder
     sample_number?: SortOrderInput | SortOrder
     wine_denomination?: SortOrder
     alcohol_content?: SortOrder
@@ -11676,6 +11707,7 @@ export namespace Prisma {
     uid?: UuidWithAggregatesFilter<"tastings"> | string
     full_name?: StringNullableWithAggregatesFilter<"tastings"> | string | null
     wine_category_id?: IntWithAggregatesFilter<"tastings"> | number
+    favorite?: BoolWithAggregatesFilter<"tastings"> | boolean
     sample_number?: StringNullableWithAggregatesFilter<"tastings"> | string | null
     wine_denomination?: StringWithAggregatesFilter<"tastings"> | string
     alcohol_content?: DecimalWithAggregatesFilter<"tastings"> | Decimal | DecimalJsLike | number | string
@@ -12275,6 +12307,7 @@ export namespace Prisma {
   export type tastingsCreateInput = {
     tid?: string
     full_name?: string | null
+    favorite?: boolean
     sample_number?: string | null
     wine_denomination: string
     alcohol_content: Decimal | DecimalJsLike | number | string
@@ -12300,6 +12333,7 @@ export namespace Prisma {
     uid: string
     full_name?: string | null
     wine_category_id: number
+    favorite?: boolean
     sample_number?: string | null
     wine_denomination: string
     alcohol_content: Decimal | DecimalJsLike | number | string
@@ -12320,6 +12354,7 @@ export namespace Prisma {
   export type tastingsUpdateInput = {
     tid?: StringFieldUpdateOperationsInput | string
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
+    favorite?: BoolFieldUpdateOperationsInput | boolean
     sample_number?: NullableStringFieldUpdateOperationsInput | string | null
     wine_denomination?: StringFieldUpdateOperationsInput | string
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -12345,6 +12380,7 @@ export namespace Prisma {
     uid?: StringFieldUpdateOperationsInput | string
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
     wine_category_id?: IntFieldUpdateOperationsInput | number
+    favorite?: BoolFieldUpdateOperationsInput | boolean
     sample_number?: NullableStringFieldUpdateOperationsInput | string | null
     wine_denomination?: StringFieldUpdateOperationsInput | string
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -12368,6 +12404,7 @@ export namespace Prisma {
     uid: string
     full_name?: string | null
     wine_category_id: number
+    favorite?: boolean
     sample_number?: string | null
     wine_denomination: string
     alcohol_content: Decimal | DecimalJsLike | number | string
@@ -12384,6 +12421,7 @@ export namespace Prisma {
   export type tastingsUpdateManyMutationInput = {
     tid?: StringFieldUpdateOperationsInput | string
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
+    favorite?: BoolFieldUpdateOperationsInput | boolean
     sample_number?: NullableStringFieldUpdateOperationsInput | string | null
     wine_denomination?: StringFieldUpdateOperationsInput | string
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -12403,6 +12441,7 @@ export namespace Prisma {
     uid?: StringFieldUpdateOperationsInput | string
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
     wine_category_id?: IntFieldUpdateOperationsInput | number
+    favorite?: BoolFieldUpdateOperationsInput | boolean
     sample_number?: NullableStringFieldUpdateOperationsInput | string | null
     wine_denomination?: StringFieldUpdateOperationsInput | string
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -13167,6 +13206,11 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type DecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -13236,6 +13280,7 @@ export namespace Prisma {
     uid?: SortOrder
     full_name?: SortOrder
     wine_category_id?: SortOrder
+    favorite?: SortOrder
     sample_number?: SortOrder
     wine_denomination?: SortOrder
     alcohol_content?: SortOrder
@@ -13264,6 +13309,7 @@ export namespace Prisma {
     uid?: SortOrder
     full_name?: SortOrder
     wine_category_id?: SortOrder
+    favorite?: SortOrder
     sample_number?: SortOrder
     wine_denomination?: SortOrder
     alcohol_content?: SortOrder
@@ -13283,6 +13329,7 @@ export namespace Prisma {
     uid?: SortOrder
     full_name?: SortOrder
     wine_category_id?: SortOrder
+    favorite?: SortOrder
     sample_number?: SortOrder
     wine_denomination?: SortOrder
     alcohol_content?: SortOrder
@@ -13303,6 +13350,14 @@ export namespace Prisma {
     vintage?: SortOrder
     wine_temperature?: SortOrder
     ambient_temperature?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -13808,6 +13863,10 @@ export namespace Prisma {
     connect?: visual_examsWhereUniqueInput
   }
 
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type DecimalFieldUpdateOperationsInput = {
     set?: Decimal | DecimalJsLike | number | string
     increment?: Decimal | DecimalJsLike | number | string
@@ -14181,6 +14240,11 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedDecimalFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
@@ -14212,6 +14276,14 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
@@ -14263,6 +14335,7 @@ export namespace Prisma {
   export type tastingsCreateWithoutUsersInput = {
     tid?: string
     full_name?: string | null
+    favorite?: boolean
     sample_number?: string | null
     wine_denomination: string
     alcohol_content: Decimal | DecimalJsLike | number | string
@@ -14286,6 +14359,7 @@ export namespace Prisma {
     tid?: string
     full_name?: string | null
     wine_category_id: number
+    favorite?: boolean
     sample_number?: string | null
     wine_denomination: string
     alcohol_content: Decimal | DecimalJsLike | number | string
@@ -14338,6 +14412,7 @@ export namespace Prisma {
     uid?: UuidFilter<"tastings"> | string
     full_name?: StringNullableFilter<"tastings"> | string | null
     wine_category_id?: IntFilter<"tastings"> | number
+    favorite?: BoolFilter<"tastings"> | boolean
     sample_number?: StringNullableFilter<"tastings"> | string | null
     wine_denomination?: StringFilter<"tastings"> | string
     alcohol_content?: DecimalFilter<"tastings"> | Decimal | DecimalJsLike | number | string
@@ -14354,6 +14429,7 @@ export namespace Prisma {
   export type tastingsCreateWithoutWine_categoriesInput = {
     tid?: string
     full_name?: string | null
+    favorite?: boolean
     sample_number?: string | null
     wine_denomination: string
     alcohol_content: Decimal | DecimalJsLike | number | string
@@ -14377,6 +14453,7 @@ export namespace Prisma {
     tid?: string
     uid: string
     full_name?: string | null
+    favorite?: boolean
     sample_number?: string | null
     wine_denomination: string
     alcohol_content: Decimal | DecimalJsLike | number | string
@@ -14916,6 +14993,7 @@ export namespace Prisma {
   export type tastingsCreateWithoutOlfactory_examsInput = {
     tid?: string
     full_name?: string | null
+    favorite?: boolean
     sample_number?: string | null
     wine_denomination: string
     alcohol_content: Decimal | DecimalJsLike | number | string
@@ -14940,6 +15018,7 @@ export namespace Prisma {
     uid: string
     full_name?: string | null
     wine_category_id: number
+    favorite?: boolean
     sample_number?: string | null
     wine_denomination: string
     alcohol_content: Decimal | DecimalJsLike | number | string
@@ -14975,6 +15054,7 @@ export namespace Prisma {
   export type tastingsUpdateWithoutOlfactory_examsInput = {
     tid?: StringFieldUpdateOperationsInput | string
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
+    favorite?: BoolFieldUpdateOperationsInput | boolean
     sample_number?: NullableStringFieldUpdateOperationsInput | string | null
     wine_denomination?: StringFieldUpdateOperationsInput | string
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -14999,6 +15079,7 @@ export namespace Prisma {
     uid?: StringFieldUpdateOperationsInput | string
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
     wine_category_id?: IntFieldUpdateOperationsInput | number
+    favorite?: BoolFieldUpdateOperationsInput | boolean
     sample_number?: NullableStringFieldUpdateOperationsInput | string | null
     wine_denomination?: StringFieldUpdateOperationsInput | string
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -15018,6 +15099,7 @@ export namespace Prisma {
   export type tastingsCreateWithoutTaste_olfactory_examsInput = {
     tid?: string
     full_name?: string | null
+    favorite?: boolean
     sample_number?: string | null
     wine_denomination: string
     alcohol_content: Decimal | DecimalJsLike | number | string
@@ -15042,6 +15124,7 @@ export namespace Prisma {
     uid: string
     full_name?: string | null
     wine_category_id: number
+    favorite?: boolean
     sample_number?: string | null
     wine_denomination: string
     alcohol_content: Decimal | DecimalJsLike | number | string
@@ -15077,6 +15160,7 @@ export namespace Prisma {
   export type tastingsUpdateWithoutTaste_olfactory_examsInput = {
     tid?: StringFieldUpdateOperationsInput | string
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
+    favorite?: BoolFieldUpdateOperationsInput | boolean
     sample_number?: NullableStringFieldUpdateOperationsInput | string | null
     wine_denomination?: StringFieldUpdateOperationsInput | string
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -15101,6 +15185,7 @@ export namespace Prisma {
     uid?: StringFieldUpdateOperationsInput | string
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
     wine_category_id?: IntFieldUpdateOperationsInput | number
+    favorite?: BoolFieldUpdateOperationsInput | boolean
     sample_number?: NullableStringFieldUpdateOperationsInput | string | null
     wine_denomination?: StringFieldUpdateOperationsInput | string
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -15120,6 +15205,7 @@ export namespace Prisma {
   export type tastingsCreateWithoutVisual_examsInput = {
     tid?: string
     full_name?: string | null
+    favorite?: boolean
     sample_number?: string | null
     wine_denomination: string
     alcohol_content: Decimal | DecimalJsLike | number | string
@@ -15144,6 +15230,7 @@ export namespace Prisma {
     uid: string
     full_name?: string | null
     wine_category_id: number
+    favorite?: boolean
     sample_number?: string | null
     wine_denomination: string
     alcohol_content: Decimal | DecimalJsLike | number | string
@@ -15179,6 +15266,7 @@ export namespace Prisma {
   export type tastingsUpdateWithoutVisual_examsInput = {
     tid?: StringFieldUpdateOperationsInput | string
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
+    favorite?: BoolFieldUpdateOperationsInput | boolean
     sample_number?: NullableStringFieldUpdateOperationsInput | string | null
     wine_denomination?: StringFieldUpdateOperationsInput | string
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -15203,6 +15291,7 @@ export namespace Prisma {
     uid?: StringFieldUpdateOperationsInput | string
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
     wine_category_id?: IntFieldUpdateOperationsInput | number
+    favorite?: BoolFieldUpdateOperationsInput | boolean
     sample_number?: NullableStringFieldUpdateOperationsInput | string | null
     wine_denomination?: StringFieldUpdateOperationsInput | string
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -15222,6 +15311,7 @@ export namespace Prisma {
   export type tastingsCreateWithoutFinal_considerationsInput = {
     tid?: string
     full_name?: string | null
+    favorite?: boolean
     sample_number?: string | null
     wine_denomination: string
     alcohol_content: Decimal | DecimalJsLike | number | string
@@ -15246,6 +15336,7 @@ export namespace Prisma {
     uid: string
     full_name?: string | null
     wine_category_id: number
+    favorite?: boolean
     sample_number?: string | null
     wine_denomination: string
     alcohol_content: Decimal | DecimalJsLike | number | string
@@ -15281,6 +15372,7 @@ export namespace Prisma {
   export type tastingsUpdateWithoutFinal_considerationsInput = {
     tid?: StringFieldUpdateOperationsInput | string
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
+    favorite?: BoolFieldUpdateOperationsInput | boolean
     sample_number?: NullableStringFieldUpdateOperationsInput | string | null
     wine_denomination?: StringFieldUpdateOperationsInput | string
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -15305,6 +15397,7 @@ export namespace Prisma {
     uid?: StringFieldUpdateOperationsInput | string
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
     wine_category_id?: IntFieldUpdateOperationsInput | number
+    favorite?: BoolFieldUpdateOperationsInput | boolean
     sample_number?: NullableStringFieldUpdateOperationsInput | string | null
     wine_denomination?: StringFieldUpdateOperationsInput | string
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -15326,6 +15419,7 @@ export namespace Prisma {
     tid?: string
     full_name?: string | null
     wine_category_id: number
+    favorite?: boolean
     sample_number?: string | null
     wine_denomination: string
     alcohol_content: Decimal | DecimalJsLike | number | string
@@ -15342,6 +15436,7 @@ export namespace Prisma {
   export type tastingsUpdateWithoutUsersInput = {
     tid?: StringFieldUpdateOperationsInput | string
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
+    favorite?: BoolFieldUpdateOperationsInput | boolean
     sample_number?: NullableStringFieldUpdateOperationsInput | string | null
     wine_denomination?: StringFieldUpdateOperationsInput | string
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -15365,6 +15460,7 @@ export namespace Prisma {
     tid?: StringFieldUpdateOperationsInput | string
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
     wine_category_id?: IntFieldUpdateOperationsInput | number
+    favorite?: BoolFieldUpdateOperationsInput | boolean
     sample_number?: NullableStringFieldUpdateOperationsInput | string | null
     wine_denomination?: StringFieldUpdateOperationsInput | string
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -15387,6 +15483,7 @@ export namespace Prisma {
     tid?: StringFieldUpdateOperationsInput | string
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
     wine_category_id?: IntFieldUpdateOperationsInput | number
+    favorite?: BoolFieldUpdateOperationsInput | boolean
     sample_number?: NullableStringFieldUpdateOperationsInput | string | null
     wine_denomination?: StringFieldUpdateOperationsInput | string
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -15405,6 +15502,7 @@ export namespace Prisma {
     tid?: string
     uid: string
     full_name?: string | null
+    favorite?: boolean
     sample_number?: string | null
     wine_denomination: string
     alcohol_content: Decimal | DecimalJsLike | number | string
@@ -15427,6 +15525,7 @@ export namespace Prisma {
   export type tastingsUpdateWithoutWine_categoriesInput = {
     tid?: StringFieldUpdateOperationsInput | string
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
+    favorite?: BoolFieldUpdateOperationsInput | boolean
     sample_number?: NullableStringFieldUpdateOperationsInput | string | null
     wine_denomination?: StringFieldUpdateOperationsInput | string
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -15450,6 +15549,7 @@ export namespace Prisma {
     tid?: StringFieldUpdateOperationsInput | string
     uid?: StringFieldUpdateOperationsInput | string
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
+    favorite?: BoolFieldUpdateOperationsInput | boolean
     sample_number?: NullableStringFieldUpdateOperationsInput | string | null
     wine_denomination?: StringFieldUpdateOperationsInput | string
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -15472,6 +15572,7 @@ export namespace Prisma {
     tid?: StringFieldUpdateOperationsInput | string
     uid?: StringFieldUpdateOperationsInput | string
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
+    favorite?: BoolFieldUpdateOperationsInput | boolean
     sample_number?: NullableStringFieldUpdateOperationsInput | string | null
     wine_denomination?: StringFieldUpdateOperationsInput | string
     alcohol_content?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string

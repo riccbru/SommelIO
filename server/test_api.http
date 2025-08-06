@@ -47,15 +47,20 @@ GET http://localhost:3001/api/v1/tastings/{{tid}} HTTP/1.1
 Accept-Language: it
 Authorization: Bearer {{token}}
 
+### TOGGLE FAVORITE
+
+PATCH http://localhost:3001/api/v1/tastings/{{tid}} HTTP/1.1
+Accept-Language: it
+Authorization: Bearer {{token}}
+
 ### POST NEW TASTING
 
 POST http://localhost:3001/api/v1/tastings HTTP/1.1
-Accept-Language: it
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "wine_category_name": "rosato",
+    "wine_category_name": "rosé",
     "sample_number": "2025-99",
     "wine_denomination": "Cerasuolo d'Abruzzo DOC, Illuminati",
     "alcohol_content": "13.0",

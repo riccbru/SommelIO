@@ -169,7 +169,7 @@ router.post('/:tid/:exam',
       delete newExam.tid;
       res.status(201).json(newExam);
     } catch (err) {
-      if (err.code === 'P2014' || err instanceof prisma.PrismaClientKnownRequestError) {
+      if (err.code === 'P2014') {
         return res.status(409).json({ error: `Tasting ${tid} already has ${exam} exam` });
       }
       console.error(err);

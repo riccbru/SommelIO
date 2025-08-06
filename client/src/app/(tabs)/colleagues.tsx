@@ -1,7 +1,7 @@
 import { useLayoutEffect } from "react";
 import { useNavigation } from "expo-router";
 import { useTheme } from "react-native-paper";
-import { MagnifyingGlassIcon, UserPlusIcon } from "phosphor-react-native";
+import { UserPlusIcon } from "phosphor-react-native";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Colleagues() {
