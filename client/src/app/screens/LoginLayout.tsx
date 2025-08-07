@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { router } from "expo-router";
+import Title from "@/src/components/Title";
 import { useAuth } from "@/src/hooks/useAuth";
 import { useTheme } from "react-native-paper";
 import { showAlert } from "@/src/utils/showAlert";
 import AuthInput from "@/src/components/auth/AuthInput";
-import AuthTitle from "@/src/components/auth/AuthTitle";
 import AuthButton from "@/src/components/auth/AuthButton";
 import { AppleButton } from "@/src/components/auth/AppleButton";
 import { GoogleButton } from "@/src/components/auth/GoogleButton";
@@ -14,8 +14,6 @@ import { FacebookButton } from "@/src/components/auth/FacebookButton";
 import PasswordInput from "@/src/components/auth/login/PasswordInput";
 import { BiometricButton } from "@/src/components/auth/login/BiometricButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View } from "react-native";
-import Title from "@/src/components/Title";
-import FormInput from "@/src/components/new/FormInput";
 
 export default function LoginLayout() {
 

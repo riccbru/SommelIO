@@ -1,6 +1,6 @@
-import { View, Text } from "react-native";
-import { Button, useTheme } from "react-native-paper";
+import { View } from "react-native";
 import { XCircleIcon } from "phosphor-react-native";
+import { Button, useTheme } from "react-native-paper";
 
 type Props<T> = {
   setFormData: React.Dispatch<React.SetStateAction<T>>;

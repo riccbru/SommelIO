@@ -1,8 +1,8 @@
 import { useState } from "react";
+import Title from "@/src/components/Title";
 import { useAuth } from "@/src/hooks/useAuth";
 import { useTheme } from "react-native-paper";
 import { showAlert } from "@/src/utils/showAlert";
-import AuthTitle from "@/src/components/auth/AuthTitle";
 import AuthInput from "@/src/components/auth/AuthInput";
 import AuthButton from "@/src/components/auth/AuthButton";
 import DateInput from "@/src/components/auth/signup/DateInput";
@@ -14,7 +14,6 @@ import { FacebookButton } from "@/src/components/auth/FacebookButton";
 import PasswordInput from "@/src/components/auth/signup/PasswordInput";
 import { SignupFooter } from "@/src/components/auth/signup/SignupFooter";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet } from "react-native";
-import Title from "@/src/components/Title";
 
 export default function SignupLayout() {
 
