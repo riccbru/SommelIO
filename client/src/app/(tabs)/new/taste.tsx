@@ -6,6 +6,7 @@ import NextButton from "@/src/components/new/NextButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import CancelButton from "@/src/components/new/CancelButton";
 import FormSelect from "@/src/components/new/FormSelect";
+import ExitButton from "@/src/components/new/ExitButton";
 
 type TasteExam = {
   sugars: string;
@@ -146,133 +147,139 @@ export default function Taste() {
   };
 
   return (
-      <>
-        <KeyboardAvoidingView
-          keyboardVerticalOffset={140}
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-          style={{ flex: 1, backgroundColor: theme.colors.background }}
-        >
-            <ScrollView style={styles.container} keyboardShouldPersistTaps="handled">
-    
-                <Card>
-                  <Card.Content>
-                    <View style={{ flex: 1, flexDirection: "row", alignItems: "center", alignContent: "center", justifyContent: "space-between" }}>
-                      <Text style={styles.sectionTitle}>Taste-Olfactory Exam</Text>
-                      <CancelButton setFormData={setFormData} defaultFormData={defaultFormData} />
-                    </View>
+    <>
+      <KeyboardAvoidingView
+        keyboardVerticalOffset={140}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={{ flex: 1, backgroundColor: theme.colors.background }}
+      >
+        <ScrollView style={styles.container} keyboardShouldPersistTaps="handled">
 
-                    <FormSelect
-                      label="Sugars"
-                      field="sugars"
-                      value={formData.sugars}
-                      error={errors.sugars}
-                      onChange={updateFormData}
-                      options={["secco", "amabile", "abboccato", "dolce", "stucchevole"]}
-                    />
+          <Card>
+            <Card.Content>
+              <View style={{ flex: 1, flexDirection: "row", alignItems: "center", alignContent: "center", justifyContent: "space-between" }}>
+                <Text style={styles.sectionTitle}>Taste-Olfactory Exam</Text>
+                <CancelButton
+                  setErrors={setErrors}
+                  setFormData={setFormData}
+                  defaultFormData={defaultFormData}
+                />
+              </View>
 
-                    <FormSelect
-                      label="Alcohols"
-                      field="alcohols"
-                      value={formData.alcohols}
-                      error={errors.alcohols}
-                      onChange={updateFormData}
-                      options={["leggero", "poco_caldo", "abbastanza_caldo", "caldo", "alcolico"]}
-                    />
+              <FormSelect
+                label="Sugars"
+                field="sugars"
+                value={formData.sugars}
+                error={errors.sugars}
+                onChange={updateFormData}
+                options={["secco", "amabile", "abboccato", "dolce", "stucchevole"]}
+              />
 
-                    <FormSelect
-                      label="Polyalcohols"
-                      field="polyalcohols"
-                      value={formData.polyalcohols}
-                      error={errors.polyalcohols}
-                      onChange={updateFormData}
-                      options={["spigoloso", "poco_morbido", "abbastanza_morbido", "morbido", "pastoso"]}
-                    />
+              <FormSelect
+                label="Alcohols"
+                field="alcohols"
+                value={formData.alcohols}
+                error={errors.alcohols}
+                onChange={updateFormData}
+                options={["leggero", "poco_caldo", "abbastanza_caldo", "caldo", "alcolico"]}
+              />
 
-                    <FormSelect
-                      label="Acids"
-                      field="acids"
-                      value={formData.acids}
-                      error={errors.acids}
-                      onChange={updateFormData}
-                      options={["piatto", "poco_fresco", "abbastanza_fresco", "fresco", "acidulo"]}
-                    />
+              <FormSelect
+                label="Polyalcohols"
+                field="polyalcohols"
+                value={formData.polyalcohols}
+                error={errors.polyalcohols}
+                onChange={updateFormData}
+                options={["spigoloso", "poco_morbido", "abbastanza_morbido", "morbido", "pastoso"]}
+              />
 
-                    <FormSelect
-                      label="Tannins"
-                      field="tannins"
-                      value={formData.tannins}
-                      error={errors.tannins}
-                      onChange={updateFormData}
-                      options={["molle", "poco_tannico", "abbastanza_tannico", "tannico", "astringente"]}
-                    />
+              <FormSelect
+                label="Acids"
+                field="acids"
+                value={formData.acids}
+                error={errors.acids}
+                onChange={updateFormData}
+                options={["piatto", "poco_fresco", "abbastanza_fresco", "fresco", "acidulo"]}
+              />
 
-                    <FormSelect
-                      label="Minerals"
-                      field="minerals"
-                      value={formData.minerals}
-                      error={errors.minerals}
-                      onChange={updateFormData}
-                      options={["scipito", "poco_sapido", "abbastanza_sapido", "sapido", "salato"]}
-                    />
+              <FormSelect
+                label="Tannins"
+                field="tannins"
+                value={formData.tannins}
+                error={errors.tannins}
+                onChange={updateFormData}
+                options={["molle", "poco_tannico", "abbastanza_tannico", "tannico", "astringente"]}
+              />
 
-                    <FormSelect
-                      label="Balance"
-                      field="balance"
-                      value={formData.balance}
-                      error={errors.balance}
-                      onChange={updateFormData}
-                      options={["poco_equilibrato", "abbastanza_equilibrato", "equilibrato"]}
-                    />
+              <FormSelect
+                label="Minerals"
+                field="minerals"
+                value={formData.minerals}
+                error={errors.minerals}
+                onChange={updateFormData}
+                options={["scipito", "poco_sapido", "abbastanza_sapido", "sapido", "salato"]}
+              />
 
-                    <FormSelect
-                      label="Intensity"
-                      field="intensity"
-                      value={formData.intensity}
-                      error={errors.intensity}
-                      onChange={updateFormData}
-                      options={["carente", "poco_intenso", "abbastanza_intenso", "intenso", "molto_intenso"]}
-                    />
+              <FormSelect
+                label="Balance"
+                field="balance"
+                value={formData.balance}
+                error={errors.balance}
+                onChange={updateFormData}
+                options={["poco_equilibrato", "abbastanza_equilibrato", "equilibrato"]}
+              />
 
-                    <FormSelect
-                      label="Persistence"
-                      field="persistence"
-                      value={formData.persistence}
-                      error={errors.persistence}
-                      onChange={updateFormData}
-                      options={["corto", "poco_persistente", "abbastanza_persistente", "persistente", "molto_persistente"]}
-                    />
+              <FormSelect
+                label="Intensity"
+                field="intensity"
+                value={formData.intensity}
+                error={errors.intensity}
+                onChange={updateFormData}
+                options={["carente", "poco_intenso", "abbastanza_intenso", "intenso", "molto_intenso"]}
+              />
 
-                    <FormSelect
-                      label="Quality"
-                      field="quality"
-                      value={formData.quality}
-                      error={errors.quality}
-                      onChange={updateFormData}
-                      options={["comune", "poco_fine", "abbastanza_fine", "fine", "eccellente"]}
-                    />
+              <FormSelect
+                label="Persistence"
+                field="persistence"
+                value={formData.persistence}
+                error={errors.persistence}
+                onChange={updateFormData}
+                options={["corto", "poco_persistente", "abbastanza_persistente", "persistente", "molto_persistente"]}
+              />
 
-                    <FormSelect
-                      label="Structure"
-                      field="structure"
-                      value={formData.structure}
-                      error={errors.structure}
-                      onChange={updateFormData}
-                      options={["magro", "debole", "di_corpo", "robusto", "pesante"]}
-                    />
+              <FormSelect
+                label="Quality"
+                field="quality"
+                value={formData.quality}
+                error={errors.quality}
+                onChange={updateFormData}
+                options={["comune", "poco_fine", "abbastanza_fine", "fine", "eccellente"]}
+              />
 
-                    <FormInput
-                      label="Notes"
-                      field="notes"
-                      value={formData.notes}
-                      error={errors.notes}
-                      onChange={updateFormData}
-                    />
-    
-                  </Card.Content>
-                </Card>
-    
-            </ScrollView>
-        </KeyboardAvoidingView>
+              <FormSelect
+                label="Structure"
+                field="structure"
+                value={formData.structure}
+                error={errors.structure}
+                onChange={updateFormData}
+                options={["magro", "debole", "di_corpo", "robusto", "pesante"]}
+              />
+
+              <FormInput
+                label="Notes"
+                field="notes"
+                value={formData.notes}
+                error={errors.notes}
+                onChange={updateFormData}
+              />
+
+            </Card.Content>
+          </Card>
+
+        </ScrollView>
+      </KeyboardAvoidingView>
+      <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginLeft: 15, marginRight: 15 }}>
+        <ExitButton />
         <NextButton
           path="/new/final"
           text="FINAL EXAM"
@@ -281,6 +288,7 @@ export default function Taste() {
           action={ExamsAPI.createTaste}
           requiresTid
         />
-      </>
-    );
+      </View>
+    </>
+  );
 }

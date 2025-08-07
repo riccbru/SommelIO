@@ -49,7 +49,7 @@ export default function NextButton({ path, text, validation, formData, action, r
             <Button
                 mode='text'
                 onPress={handlePress}
-                style={{ width: 200, marginTop: 20, marginBottom: 20, backgroundColor: theme.colors.green }}
+                style={{ width: 150, marginTop: 20, marginBottom: 20, backgroundColor: theme.colors.green }}
                 >
                 <View style={{ flex: 1, flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
                     <Text style={{ fontWeight: "bold", color: "#000000" }}>{text}</Text>

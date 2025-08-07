@@ -1,17 +1,19 @@
 import { View } from "react-native";
-import { XCircleIcon } from "phosphor-react-native";
+import { TrashIcon } from "phosphor-react-native";
 import { Button, useTheme } from "react-native-paper";
 
 type Props<T> = {
-  setFormData: React.Dispatch<React.SetStateAction<T>>;
-  defaultFormData: T;
+    defaultFormData: T;
+    setFormData: React.Dispatch<React.SetStateAction<T>>;
+    setErrors: React.Dispatch<React.SetStateAction<Record<string, string>>>;
 };
 
-export default function CancelButton({ setFormData, defaultFormData }: Props<T>) {
+export default function CancelButton({ defaultFormData, setFormData, setErrors }: Props<T>) {
 
     const theme = useTheme();
 
     const handlePress = () => {
+        setErrors({});
         setFormData(defaultFormData);
     }
 
@@ -36,7 +38,7 @@ export default function CancelButton({ setFormData, defaultFormData }: Props<T>)
                     justifyContent: "center",
                     marginRight: 5
                 }}>
-                    <XCircleIcon size={24} color={"#000000"} />
+                    <TrashIcon size={24} color={"#000000"} />
                 </View>
             </Button>
         </View>

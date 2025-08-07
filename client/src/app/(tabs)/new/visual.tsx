@@ -6,6 +6,7 @@ import NextButton from "@/src/components/new/NextButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import CancelButton from "@/src/components/new/CancelButton";
 import FormSelect from "@/src/components/new/FormSelect";
+import ExitButton from "@/src/components/new/ExitButton";
 
 type VisualExam = {
     limpidity: string;
@@ -134,7 +135,11 @@ export default function Visual() {
                         <Card.Content>
                             <View style={{ flex: 1, flexDirection: "row", alignItems: "center", alignContent: "center", justifyContent: "space-between" }}>
                                 <Text style={styles.sectionTitle}>Visual Exam</Text>
-                                <CancelButton setFormData={setFormData} defaultFormData={defaultFormData} />
+                                <CancelButton
+                                    setErrors={setErrors}
+                                    setFormData={setFormData}
+                                    defaultFormData={defaultFormData}
+                                />
                             </View>
 
                             <FormSelect
@@ -218,14 +223,18 @@ export default function Visual() {
 
                 </ScrollView>
             </KeyboardAvoidingView>
-            <NextButton
-                path="/new/olfactory"
-                text="OLFACTORY EXAM"
-                formData={formData}
-                validation={validateForm}
-                action={ExamsAPI.createVisual}
-                requiresTid
-            />
+            <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginLeft: 15, marginRight: 15 }}>
+                <ExitButton />
+                <NextButton
+                    path="/new/olfactory"
+                    text="OLFACTORY EXAM"
+                    formData={formData}
+                    validation={validateForm}
+                    action={ExamsAPI.createVisual}
+                    requiresTid
+                />
+            </View>
+
         </>
       );
 }

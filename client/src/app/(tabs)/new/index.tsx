@@ -1,12 +1,13 @@
 import { useState } from "react";
 import TastingsAPI from "@/src/services/tastings";
+import { Card, useTheme } from "react-native-paper";
 import FormInput from "@/src/components/new/FormInput";
 import NextButton from "@/src/components/new/NextButton";
 import FormSelect from "@/src/components/new/FormSelect";
+import ExitButton from "@/src/components/new/ExitButton";
 import CancelButton from "@/src/components/new/CancelButton";
-import { Card, useTheme } from "react-native-paper";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import FormCheckbox from "@/src/components/new/FormCheckbox";
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 
 type Tasting = {
   wine_denomination: string;
@@ -152,7 +153,11 @@ export default function New() {
             <Card.Content>
               <View style={{ flex: 1, flexDirection: "row", alignItems: "center", alignContent: "center", justifyContent: "space-between" }}>
                 <Text style={styles.sectionTitle}>Wine description</Text>
-                <CancelButton setFormData={setFormData} defaultFormData={defaultFormData} />
+                <CancelButton
+                  setErrors={setErrors}
+                  setFormData={setFormData}
+                  defaultFormData={defaultFormData}
+                />
               </View>
 
               <FormInput
@@ -251,13 +256,18 @@ export default function New() {
 
             </Card.Content>
           </Card>
-          <NextButton
-            path="/new/visual"
-            text="VISUAL EXAM"
-            validation={validateForm}
-            formData={{ ...formData, vintage: Number(formData.vintage) }}
-            action={TastingsAPI.createTasting}
-          />
+
+          <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginLeft: 15, marginRight: 15 }}>
+            <ExitButton />
+            <NextButton
+              path="/new/visual"
+              text="VISUAL EXAM"
+              validation={validateForm}
+              formData={{ ...formData, vintage: Number(formData.vintage) }}
+              action={TastingsAPI.createTasting}
+            />
+          </View>
+
         </ScrollView>
       </KeyboardAvoidingView>
     </>

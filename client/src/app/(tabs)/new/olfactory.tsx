@@ -7,22 +7,23 @@ import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } fr
 import CancelButton from "@/src/components/new/CancelButton";
 import FormSelect from "@/src/components/new/FormSelect";
 import FormCheckbox from "@/src/components/new/FormCheckbox";
+import ExitButton from "@/src/components/new/ExitButton";
 
 type OlfactoryExam = {
-    intensity: string;
-    complexity: string;
-    quality: string;
-    aromatic: boolean;
-    vinous: boolean;
-    floral: boolean;
-    fruity: boolean;
-    fragrant: boolean;
-    herbaceous: boolean;
-    mineral: boolean;
-    spicy: boolean;
-    ethereal: boolean;
-    frank: boolean;
-    notes: string;
+  intensity: string;
+  complexity: string;
+  quality: string;
+  aromatic: boolean;
+  vinous: boolean;
+  floral: boolean;
+  fruity: boolean;
+  fragrant: boolean;
+  herbaceous: boolean;
+  mineral: boolean;
+  spicy: boolean;
+  ethereal: boolean;
+  frank: boolean;
+  notes: string;
 };
 
 const defaultFormData = {
@@ -75,15 +76,15 @@ export default function Olfactory() {
   });
 
   const updateFormData = (field: keyof OlfactoryExam, value: string) => {
-        setFormData(prev => ({ ...prev, [field]: value }));
-        if (errors[field]) {
-            setErrors(prev => {
-                const newErrors = { ...prev };
-                delete newErrors[field];
-                return newErrors;
-            });
-        }
-    };
+    setFormData(prev => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[field];
+        return newErrors;
+      });
+    }
+  };
 
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
@@ -121,122 +122,128 @@ export default function Olfactory() {
   };
 
   return (
-      <>
-        <KeyboardAvoidingView
-          keyboardVerticalOffset={140}
-          style={{ flex: 1, backgroundColor: theme.colors.background }}
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-        >
-            <ScrollView style={styles.container} keyboardShouldPersistTaps="handled">
-    
-                <Card>
-                  <Card.Content>
-                    <View style={{ flex: 1, flexDirection: "row", alignItems: "center", alignContent: "center", justifyContent: "space-between" }}>
-                      <Text style={styles.sectionTitle}>Olfactory Exam</Text>
-                      <CancelButton setFormData={setFormData} defaultFormData={defaultFormData} />
-                    </View>
+    <>
+      <KeyboardAvoidingView
+        keyboardVerticalOffset={140}
+        style={{ flex: 1, backgroundColor: theme.colors.background }}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
+        <ScrollView style={styles.container} keyboardShouldPersistTaps="handled">
 
-                    <FormSelect
-                      label="Intensity"
-                      field="intensity"
-                      value={formData.intensity}
-                      error={errors.intensity}
-                      onChange={updateFormData}
-                      options={["carente", "poco_intenso", "abbastanza_intenso", "intenso", "molto_intenso"]}
-                    />
+          <Card>
+            <Card.Content>
+              <View style={{ flex: 1, flexDirection: "row", alignItems: "center", alignContent: "center", justifyContent: "space-between" }}>
+                <Text style={styles.sectionTitle}>Olfactory Exam</Text>
+                <CancelButton
+                  setErrors={setErrors}
+                  setFormData={setFormData}
+                  defaultFormData={defaultFormData}
+                />
+              </View>
 
-                    <FormSelect
-                      label="Complexity"
-                      field="complexity"
-                      value={formData.complexity}
-                      error={errors.complexity}
-                      onChange={updateFormData}
-                      options={["carente", "poco_complesso", "abbastanza_complesso", "complesso", "ampio"]}
-                    />
+              <FormSelect
+                label="Intensity"
+                field="intensity"
+                value={formData.intensity}
+                error={errors.intensity}
+                onChange={updateFormData}
+                options={["carente", "poco_intenso", "abbastanza_intenso", "intenso", "molto_intenso"]}
+              />
 
-                    <FormSelect
-                      label="Quality"
-                      field="quality"
-                      value={formData.quality}
-                      error={errors.quality}
-                      onChange={updateFormData}
-                      options={["comune", "poco_fine", "abbastanza_fine", "fine", "eccellente"]}
-                    />
+              <FormSelect
+                label="Complexity"
+                field="complexity"
+                value={formData.complexity}
+                error={errors.complexity}
+                onChange={updateFormData}
+                options={["carente", "poco_complesso", "abbastanza_complesso", "complesso", "ampio"]}
+              />
 
-                    <FormCheckbox
-                      label="Aromatic"
-                      name="aromatic"
-                      formData={formData}
-                      setFormData={setFormData}
-                    />
-                    <FormCheckbox
-                      label="Vinous"
-                      name="vinous"
-                      formData={formData}
-                      setFormData={setFormData}
-                    />
-                    <FormCheckbox
-                      label="Floral"
-                      name="floral"
-                      formData={formData}
-                      setFormData={setFormData}
-                    />
-                    <FormCheckbox
-                      label="Fruity"
-                      name="fruity"
-                      formData={formData}
-                      setFormData={setFormData}
-                    />
-                    <FormCheckbox
-                      label="Fragrant"
-                      name="fragrant"
-                      formData={formData}
-                      setFormData={setFormData}
-                    />
-                    <FormCheckbox
-                      label="Herbaceous"
-                      name="herbaceous"
-                      formData={formData}
-                      setFormData={setFormData}
-                    />
-                    <FormCheckbox
-                      label="Mineral"
-                      name="mineral"
-                      formData={formData}
-                      setFormData={setFormData}
-                    />
-                    <FormCheckbox
-                      label="Spicy"
-                      name="spicy"
-                      formData={formData}
-                      setFormData={setFormData}
-                    />
-                    <FormCheckbox
-                      label="Ethereal"
-                      name="ethereal"
-                      formData={formData}
-                      setFormData={setFormData}
-                    />
-                    <FormCheckbox
-                      label="Frank"
-                      name="frank"
-                      formData={formData}
-                      setFormData={setFormData}
-                    />
+              <FormSelect
+                label="Quality"
+                field="quality"
+                value={formData.quality}
+                error={errors.quality}
+                onChange={updateFormData}
+                options={["comune", "poco_fine", "abbastanza_fine", "fine", "eccellente"]}
+              />
 
-                    <FormInput
-                      label="Notes"
-                      field="notes"
-                      value={formData.notes}
-                      error={errors.notes}
-                      onChange={updateFormData}
-                    />
-    
-                  </Card.Content>
-                </Card>
-    
-            </ScrollView>
-        </KeyboardAvoidingView>
+              <FormCheckbox
+                label="Aromatic"
+                name="aromatic"
+                formData={formData}
+                setFormData={setFormData}
+              />
+              <FormCheckbox
+                label="Vinous"
+                name="vinous"
+                formData={formData}
+                setFormData={setFormData}
+              />
+              <FormCheckbox
+                label="Floral"
+                name="floral"
+                formData={formData}
+                setFormData={setFormData}
+              />
+              <FormCheckbox
+                label="Fruity"
+                name="fruity"
+                formData={formData}
+                setFormData={setFormData}
+              />
+              <FormCheckbox
+                label="Fragrant"
+                name="fragrant"
+                formData={formData}
+                setFormData={setFormData}
+              />
+              <FormCheckbox
+                label="Herbaceous"
+                name="herbaceous"
+                formData={formData}
+                setFormData={setFormData}
+              />
+              <FormCheckbox
+                label="Mineral"
+                name="mineral"
+                formData={formData}
+                setFormData={setFormData}
+              />
+              <FormCheckbox
+                label="Spicy"
+                name="spicy"
+                formData={formData}
+                setFormData={setFormData}
+              />
+              <FormCheckbox
+                label="Ethereal"
+                name="ethereal"
+                formData={formData}
+                setFormData={setFormData}
+              />
+              <FormCheckbox
+                label="Frank"
+                name="frank"
+                formData={formData}
+                setFormData={setFormData}
+              />
+
+              <FormInput
+                label="Notes"
+                field="notes"
+                value={formData.notes}
+                error={errors.notes}
+                onChange={updateFormData}
+              />
+
+            </Card.Content>
+          </Card>
+
+        </ScrollView>
+      </KeyboardAvoidingView>
+      <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginLeft: 15, marginRight: 15 }}>
+        <ExitButton />
         <NextButton
           path="/new/taste"
           text="TASTE EXAM"
@@ -245,6 +252,7 @@ export default function Olfactory() {
           action={ExamsAPI.createOlfactory}
           requiresTid
         />
-      </>
-    );
+      </View>
+    </>
+  );
 }
