@@ -14,6 +14,8 @@ import { FacebookButton } from "@/src/components/auth/FacebookButton";
 import PasswordInput from "@/src/components/auth/login/PasswordInput";
 import { BiometricButton } from "@/src/components/auth/login/BiometricButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View } from "react-native";
+import Title from "@/src/components/Title";
+import FormInput from "@/src/components/new/FormInput";
 
 export default function LoginLayout() {
 
@@ -54,7 +56,6 @@ export default function LoginLayout() {
 
   return(
     <KeyboardAvoidingView
-      keyboardVerticalOffset={90}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={{ flex: 1, backgroundColor: theme.colors.background }}
     >
@@ -62,7 +63,8 @@ export default function LoginLayout() {
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={styles.container}
       >
-        <AuthTitle action={"Login"}/>
+        
+        <Title />
         
         <AuthInput
           holder="Username"
@@ -70,11 +72,13 @@ export default function LoginLayout() {
           onSubmit={handleLogin}
           onChangeText={(text) => setLoginData(prev => ({ ...prev, username: text }))}
         />
+        
         <PasswordInput
           loginData={loginData}
           onSubmit={handleLogin}
           setLoginData={setLoginData}
         />
+
         <View style={{ gap: 10, flexDirection: "row", alignItems: "center" }}>
           <View style={{ flex: 1 }}>
             <AuthButton

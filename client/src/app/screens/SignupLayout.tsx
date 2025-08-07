@@ -14,6 +14,7 @@ import { FacebookButton } from "@/src/components/auth/FacebookButton";
 import PasswordInput from "@/src/components/auth/signup/PasswordInput";
 import { SignupFooter } from "@/src/components/auth/signup/SignupFooter";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet } from "react-native";
+import Title from "@/src/components/Title";
 
 export default function SignupLayout() {
 
@@ -66,17 +67,12 @@ export default function SignupLayout() {
 
     return (
         <KeyboardAvoidingView
-            keyboardVerticalOffset={90}
             behavior={Platform.OS === "ios" ? "padding" : "height"}
             style={{ flex: 1, backgroundColor: theme.colors.background }}
         >
             <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
-                <AuthTitle action={"Signup"}/>
-
-                <GoogleButton />
-                <AppleButton />
-                <FacebookButton />
-                <LineSeparator />
+                
+                <Title />
                 
                 <AuthInput
                     holder="Full name"
@@ -112,6 +108,12 @@ export default function SignupLayout() {
                     onPress={handlePress}
                     disabled={!isReady || loading}
                 />
+
+                <LineSeparator />
+                
+                <GoogleButton />
+                <AppleButton />
+                <FacebookButton />
         
                 <SignupFooter />
 

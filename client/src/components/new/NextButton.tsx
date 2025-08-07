@@ -36,12 +36,14 @@ export default function NextButton({ path, text, validation, formData, action, r
                 } else {
                     router.replace("/(tabs)/new");
                     router.replace("/(tabs)/tastings");
+                    await AsyncStorage.removeItem('newTid');
                 }
             } catch (error) {
                 console.log(`NextButton: ${error}`);
             }
         }
     }
+    
     return (
         <View style={{ alignItems: "center", backgroundColor: theme.colors.background }}>
             <Button

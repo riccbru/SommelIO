@@ -1,5 +1,6 @@
 import { useTheme } from "react-native-paper";
 import { Linking, StyleSheet, Pressable, Text, View } from "react-native";
+import Title from "@/src/components/Title";
 
 export default function Index() {
   
@@ -39,7 +40,10 @@ export default function Index() {
     <View
       style={styles.container}
     >
-      <Text style={styles.text}>Welcome to SommelIO 🍷</Text>
+      <View style={{ flexDirection: "column", alignItems: "center" }}>
+        <Text style={styles.text}>Welcome to </Text>
+        <View style={{ marginLeft: 30 }}><Title /></View>
+      </View>
       <Pressable onPress={handlePress}>
         <Text style={styles.link}>https://aisitalia.it</Text>
       </Pressable>

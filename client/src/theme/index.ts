@@ -6,7 +6,8 @@ const customColors = {
     gray: "#808080",
     green: "#67ce67",
     pearl: "#d3d5cb",
-    facebook: "#2c64f6"
+    facebook: "#2c64f6",
+    red: "#cc4b4b"
 }
 
 export const LightTheme = {

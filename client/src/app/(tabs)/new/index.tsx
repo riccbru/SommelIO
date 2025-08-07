@@ -3,7 +3,9 @@ import TastingsAPI from "@/src/services/tastings";
 import FormInput from "@/src/components/new/FormInput";
 import NextButton from "@/src/components/new/NextButton";
 import { Card, Checkbox, useTheme } from "react-native-paper";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import CancelButton from "@/src/components/new/CancelButton";
+import FormSelect from "@/src/components/new/FormSelect";
 
 type Tasting = {
   wine_denomination: string;
@@ -19,23 +21,25 @@ type Tasting = {
   tasting_location: string;
 };
 
+const defaultFormData = {
+  wine_denomination: '',
+  favorite: false,
+  wine_category_name: '',
+  sample_number: '',
+  alcohol_content: '',
+  vintage: '',
+  wine_temperature: '',
+  ambient_temperature: '',
+  tasting_date: new Date().toISOString().split('T')[0],
+  tasting_time: new Date().toLocaleTimeString('it-IT', { hour12: false, hour: '2-digit', minute: '2-digit' }),
+  tasting_location: ''
+}
+
 export default function New() {
 
   const theme = useTheme();
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [formData, setFormData] = useState<Tasting>({
-    wine_denomination: '',
-    favorite: false,
-    wine_category_name: '',
-    sample_number: '',
-    alcohol_content: '',
-    vintage: '',
-    wine_temperature: '',
-    ambient_temperature: '',
-    tasting_date: new Date().toISOString().split('T')[0],
-    tasting_time: new Date().toLocaleTimeString('it-IT', { hour12: false, hour: '2-digit', minute: '2-digit' }),
-    tasting_location: ''
-  });
+  const [formData, setFormData] = useState<Tasting>(defaultFormData);
 
   const styles = StyleSheet.create({
     container: {
@@ -145,7 +149,10 @@ export default function New() {
 
           <Card>
             <Card.Content>
-              <Text style={styles.sectionTitle}>Wine description</Text>
+              <View style={{ flex: 1, flexDirection: "row", alignItems: "center", alignContent: "center", justifyContent: "space-between" }}>
+                <Text style={styles.sectionTitle}>Wine description</Text>
+                <CancelButton setFormData={setFormData} defaultFormData={defaultFormData} />
+              </View>
 
               <FormInput
                 label="Denomination"
@@ -155,12 +162,13 @@ export default function New() {
                 onChange={updateFormData}
               />
 
-              <FormInput
+              <FormSelect
                 label="Category"
                 field="wine_category_name"
                 value={formData.wine_category_name}
                 error={errors.wine_category_name}
                 onChange={updateFormData}
+                options={["white", "red", "rosé"]}
               />
 
               <Checkbox.Item

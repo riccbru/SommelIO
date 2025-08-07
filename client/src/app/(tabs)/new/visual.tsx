@@ -3,7 +3,9 @@ import ExamsAPI from "@/src/services/exams";
 import { Card, useTheme } from "react-native-paper";
 import FormInput from "@/src/components/new/FormInput";
 import NextButton from "@/src/components/new/NextButton";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import CancelButton from "@/src/components/new/CancelButton";
+import FormSelect from "@/src/components/new/FormSelect";
 
 type VisualExam = {
     limpidity: string;
@@ -16,20 +18,22 @@ type VisualExam = {
     notes: string;
 };
 
+const defaultFormData = {
+    limpidity: '',
+    color_family: '',
+    color_shade: '',
+    consistency: '',
+    bubble_grain: null,
+    bubble_number: null,
+    bubble_persistence: null,
+    notes: ''
+}
+
 export default function Visual() {
 
     const theme = useTheme();
     const [errors, setErrors] = useState<Record<string, string>>({});
-    const [formData, setFormData] = useState<VisualExam>({
-        limpidity: '',
-        color_family: '',
-        color_shade: '',
-        consistency: '',
-        bubble_grain: null,
-        bubble_number: null,
-        bubble_persistence: null,
-        notes: ''
-    });
+    const [formData, setFormData] = useState<VisualExam>(defaultFormData);
 
     const styles = StyleSheet.create({
         container: {
@@ -127,22 +131,27 @@ export default function Visual() {
 
                     <Card>
                         <Card.Content>
-                            <Text style={styles.sectionTitle}>Visual Exam</Text>
+                            <View style={{ flex: 1, flexDirection: "row", alignItems: "center", alignContent: "center", justifyContent: "space-between" }}>
+                                <Text style={styles.sectionTitle}>Visual Exam</Text>
+                                <CancelButton setFormData={setFormData} defaultFormData={defaultFormData} />
+                            </View>
 
-                            <FormInput
+                            <FormSelect
                                 label="Limpidity"
                                 field="limpidity"
                                 value={formData.limpidity}
                                 error={errors.limpidity}
                                 onChange={updateFormData}
+                                options={["velato", "abbastanza_limpido", "limpido", "cristallino", "brillante"]}
                             />
 
-                            <FormInput
+                            <FormSelect
                                 label="Color family"
                                 field="color_family"
                                 value={formData.color_family}
                                 error={errors.color_family}
                                 onChange={updateFormData}
+                                options={["giallo", "rosa", "rosso"]}
                             />
 
                             <FormInput
@@ -153,37 +162,41 @@ export default function Visual() {
                                 onChange={updateFormData}
                             />
 
-                            <FormInput
+                            <FormSelect
                                 label="Consistency"
                                 field="consistency"
                                 value={formData.consistency}
                                 error={errors.consistency}
                                 onChange={updateFormData}
+                                options={["fluido", "poco_consistente", "abbastanza_consistente", "consistente", "viscoso"]}
                             />
 
-                            <FormInput
+                            {/* <FormSelect
                                 label="Bubble grain"
                                 field="bubble_grain"
                                 value={formData.bubble_grain}
                                 error={errors.bubble_grain}
                                 onChange={updateFormData}
+                                options={["grossolane", "abbastanza_fini", "fini"]}
                             />
 
-                            <FormInput
+                            <FormSelect
                                 label="Bubble number"
                                 field="bubble_number"
                                 value={formData.bubble_number}
                                 error={errors.bubble_number}
                                 onChange={updateFormData}
+                                options={["scarse", "abbastanza_numerose", "numerose"]}
                             />
 
-                            <FormInput
+                            <FormSelect
                                 label="Bubble persistence"
                                 field="bubble_persistence"
                                 value={formData.bubble_persistence}
                                 error={errors.bubble_persistence}
                                 onChange={updateFormData}
-                            />
+                                options={["evanescenti", "abbastanza_persistenti", "persistenti"]}
+                            /> */}
 
                             <FormInput
                                 label="Notes"

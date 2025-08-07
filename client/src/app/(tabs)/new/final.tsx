@@ -3,7 +3,9 @@ import ExamsAPI from "@/src/services/exams";
 import { Card, useTheme } from "react-native-paper";
 import FormInput from "@/src/components/new/FormInput";
 import NextButton from "@/src/components/new/NextButton";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import CancelButton from "@/src/components/new/CancelButton";
+import FormSelect from "@/src/components/new/FormSelect";
 
 type FinalExam = {
     evolution: string;
@@ -12,16 +14,18 @@ type FinalExam = {
     notes: string;
 }
 
+const defaultFormData = {
+    evolution: '',
+    harmony: '',
+    pairings: '',
+    notes: '',
+}
+
 export default function Final() {
 
   const theme = useTheme();
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [formData, setFormData] = useState<FinalExam>({
-      evolution: '',
-      harmony: '',
-      pairings: '',
-      notes: '',
-  });
+  const [formData, setFormData] = useState<FinalExam>(defaultFormData);
 
   const styles = StyleSheet.create({
     container: {
@@ -88,22 +92,27 @@ export default function Final() {
     
                 <Card>
                   <Card.Content>
-                    <Text style={styles.sectionTitle}>Final Exam</Text>
+                    <View style={{ flex: 1, flexDirection: "row", alignItems: "center", alignContent: "center", justifyContent: "space-between" }}>
+                      <Text style={styles.sectionTitle}>Final</Text>
+                      <CancelButton setFormData={setFormData} defaultFormData={defaultFormData} />
+                    </View>
 
-                    <FormInput
+                    <FormSelect
                       label="Evolution"
                       field="evolution"
                       value={formData.evolution}
                       error={errors.evolution}
                       onChange={updateFormData}
+                      options={["immaturo", "giovane", "pronto", "maturo", "vecchio"]}
                     />
 
-                    <FormInput
+                    <FormSelect
                       label="Harmony"
                       field="harmony"
                       value={formData.harmony}
                       error={errors.harmony}
                       onChange={updateFormData}
+                      options={["poco_armonico", "abbastanza_armonico", "armonico"]}
                     />
 
                     <FormInput

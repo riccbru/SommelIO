@@ -3,7 +3,9 @@ import ExamsAPI from "@/src/services/exams";
 import FormInput from "@/src/components/new/FormInput";
 import NextButton from "@/src/components/new/NextButton";
 import { Card, Checkbox, useTheme } from "react-native-paper";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import CancelButton from "@/src/components/new/CancelButton";
+import FormSelect from "@/src/components/new/FormSelect";
 
 type OlfactoryExam = {
     intensity: string;
@@ -22,26 +24,28 @@ type OlfactoryExam = {
     notes: string;
 };
 
+const defaultFormData = {
+  intensity: '',
+  complexity: '',
+  quality: '',
+  aromatic: false,
+  vinous: false,
+  floral: false,
+  fruity: false,
+  fragrant: false,
+  herbaceous: false,
+  mineral: false,
+  spicy: false,
+  ethereal: false,
+  frank: false,
+  notes: '',
+}
+
 export default function Olfactory() {
 
   const theme = useTheme();
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [formData, setFormData] = useState<OlfactoryExam>({
-    intensity: '',
-    complexity: '',
-    quality: '',
-    aromatic: false,
-    vinous: false,
-    floral: false,
-    fruity: false,
-    fragrant: false,
-    herbaceous: false,
-    mineral: false,
-    spicy: false,
-    ethereal: false,
-    frank: false,
-    notes: '',
-  });
+  const [formData, setFormData] = useState<OlfactoryExam>(defaultFormData);
 
   const styles = StyleSheet.create({
     container: {
@@ -82,16 +86,9 @@ export default function Olfactory() {
 
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
-
-    const intensityOptions = [
-      "carente", "poco_intenso", "abbastanza_intenso", "intenso", "molto_intenso"
-    ];
-    const complexityOptions = [
-      "carente", "poco_complesso", "abbastanza_complesso", "complesso", "ampio"
-    ];
-    const qualityOptions = [
-      "comune", "poco_fine", "abbastanza_fine", "fine", "eccellente"
-    ];
+    const intensityOptions = ["carente", "poco_intenso", "abbastanza_intenso", "intenso", "molto_intenso"];
+    const complexityOptions = ["carente", "poco_complesso", "abbastanza_complesso", "complesso", "ampio"];
+    const qualityOptions = ["comune", "poco_fine", "abbastanza_fine", "fine", "eccellente"];
 
     if (!intensityOptions.includes(formData.intensity)) {
       newErrors.intensity = "Invalid intensity value";
@@ -133,30 +130,36 @@ export default function Olfactory() {
     
                 <Card>
                   <Card.Content>
-                    <Text style={styles.sectionTitle}>Olfactory Exam</Text>
+                    <View style={{ flex: 1, flexDirection: "row", alignItems: "center", alignContent: "center", justifyContent: "space-between" }}>
+                      <Text style={styles.sectionTitle}>Olfactory Exam</Text>
+                      <CancelButton setFormData={setFormData} defaultFormData={defaultFormData} />
+                    </View>
 
-                    <FormInput
+                    <FormSelect
                       label="Intensity"
                       field="intensity"
                       value={formData.intensity}
                       error={errors.intensity}
                       onChange={updateFormData}
+                      options={["carente", "poco_intenso", "abbastanza_intenso", "intenso", "molto_intenso"]}
                     />
 
-                    <FormInput
+                    <FormSelect
                       label="Complexity"
                       field="complexity"
                       value={formData.complexity}
                       error={errors.complexity}
                       onChange={updateFormData}
+                      options={["carente", "poco_complesso", "abbastanza_complesso", "complesso", "ampio"]}
                     />
 
-                    <FormInput
+                    <FormSelect
                       label="Quality"
                       field="quality"
                       value={formData.quality}
                       error={errors.quality}
                       onChange={updateFormData}
+                      options={["comune", "poco_fine", "abbastanza_fine", "fine", "eccellente"]}
                     />
 
                     {/* CHECKBOXES */}

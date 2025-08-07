@@ -15,3 +15,9 @@ export function formatDescription(date: string, time: string, location: string):
     });
     return `${formattedDate} (${time.split('T')[1].slice(0, 5)})\n@ ${location}`;
 }
+
+export function formatOption(value: string): string {
+  const withSpaces = value.replace(/_/g, ' ');
+  if (withSpaces.length === 0) return '';
+  return withSpaces.charAt(0).toUpperCase() + withSpaces.slice(1).toLowerCase();
+}
