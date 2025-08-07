@@ -54,11 +54,7 @@ export default function FormSelect<T>({
                     style={[
                         styles.label,
                         {
-                            color: error
-                                ? theme.colors.red
-                                : (isFocused || isOpen)
-                                    ? theme.colors.primary
-                                    : theme.colors.gray,
+                            color: error ? theme.colors.red : "#c9c4cf",
                             top: shouldFloatLabel ? -8 : 16,
                             fontSize: shouldFloatLabel ? 12 : 16,
                             backgroundColor: shouldFloatLabel ? theme.colors.surface : 'transparent',
@@ -157,51 +153,51 @@ const styles = StyleSheet.create({
     container: {
         height: 56,
         borderRadius: 4,
+        position: 'relative',
         paddingHorizontal: 14,
         justifyContent: 'center',
-        position: 'relative',
     },
     label: {
-        position: 'absolute',
         left: 14,
         fontWeight: '400',
+        position: 'absolute'
     },
     selectedText: {
         fontSize: 16,
-        paddingTop: 8,
+        paddingTop: 8
     },
     arrow: {
-        position: 'absolute',
         right: 14,
         fontSize: 12,
         fontWeight: 'bold',
+        position: 'absolute'
     },
     modalOverlay: {
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.5)',
-        justifyContent: 'center',
         alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(0,0,0,0.3)'
     },
     modalContent: {
         width: '80%',
-        maxWidth: 300,
+        maxWidth: 300
     },
     dropdownCard: {
-        maxHeight: 250,
         elevation: 8,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.25,
+        maxHeight: 250,
         shadowRadius: 8,
+        shadowColor: '#000',
+        shadowOpacity: 0.25,
+        shadowOffset: { width: 0, height: 2 },
     },
     option: {
         padding: 16,
-        borderBottomWidth: 1,
+        borderBottomWidth: 1
     },
     lastOption: {
-        borderBottomWidth: 0,
+        borderBottomWidth: 0
     },
     optionText: {
-        fontSize: 16,
+        fontSize: 16
     },
 });

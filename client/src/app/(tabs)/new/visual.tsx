@@ -72,16 +72,17 @@ export default function Visual() {
         }
     };
 
+    const colorFamilyOptions = ["giallo", "rosa", "rosso"];
+    const colorShades: Record<string, string[]> = {
+      giallo: ["verdolino", "paglierino", "dorato", "ambrato"],
+      rosa: ["tenue", "cerasuolo", "chiaretto"],
+      rosso: ["porpora", "rubino", "granato", "aranciato"],
+    };
+
     const validateForm = (): boolean => {
         const newErrors: Record<string, string> = {};
 
         const limpidityOptions = ["velato", "abbastanza_limpido", "limpido", "cristallino", "brillante"];
-        const colorFamilyOptions = ["giallo", "rosa", "rosso"];
-        const colorShades: Record<string, string[]> = {
-          giallo: ["verdolino", "paglierino", "dorato", "ambrato"],
-          rosa: ["tenue", "cerasuolo", "chiaretto"],
-          rosso: ["porpora", "rubino", "granato", "aranciato"],
-        };
         const consistencyOptions = ["fluido", "poco_consistente", "abbastanza_consistente", "consistente", "viscoso"];
         const bubbleGrainOptions = ["grossolane", "abbastanza_fini", "fini"];
         const bubbleNumberOptions = ["scarse", "abbastanza_numerose", "numerose"];
@@ -150,16 +151,22 @@ export default function Visual() {
                                 field="color_family"
                                 value={formData.color_family}
                                 error={errors.color_family}
-                                onChange={updateFormData}
+                                onChange={
+                                    (field, value) => {
+                                        updateFormData(field, value);
+                                        updateFormData("color_shade", "");
+                                    }
+                                }
                                 options={["giallo", "rosa", "rosso"]}
                             />
 
-                            <FormInput
+                            <FormSelect
                                 label="Color shade"
                                 field="color_shade"
                                 value={formData.color_shade}
                                 error={errors.color_shade}
                                 onChange={updateFormData}
+                                options={colorShades[formData.color_family]}
                             />
 
                             <FormSelect

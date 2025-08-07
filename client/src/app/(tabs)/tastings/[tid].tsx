@@ -94,7 +94,7 @@ export default function TastingDetail() {
         if (tid) {
             fetchTasting();
         }
-    }, [tid, favorite]);
+    }, [tid]);
 
     const styles = StyleSheet.create({
         container: {

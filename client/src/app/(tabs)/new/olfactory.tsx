@@ -2,10 +2,11 @@ import { useState } from "react";
 import ExamsAPI from "@/src/services/exams";
 import FormInput from "@/src/components/new/FormInput";
 import NextButton from "@/src/components/new/NextButton";
-import { Card, Checkbox, useTheme } from "react-native-paper";
+import { Card, useTheme } from "react-native-paper";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import CancelButton from "@/src/components/new/CancelButton";
 import FormSelect from "@/src/components/new/FormSelect";
+import FormCheckbox from "@/src/components/new/FormCheckbox";
 
 type OlfactoryExam = {
     intensity: string;
@@ -162,86 +163,65 @@ export default function Olfactory() {
                       options={["comune", "poco_fine", "abbastanza_fine", "fine", "eccellente"]}
                     />
 
-                    {/* CHECKBOXES */}
-                    <Checkbox.Item
+                    <FormCheckbox
                       label="Aromatic"
-                      color={theme.colors.text}
-                      status={formData.aromatic ? "checked" : "unchecked"}
-                      onPress={() =>
-                        setFormData((prev) => ({ ...prev, aromatic: !prev.aromatic }))
-                      }
+                      name="aromatic"
+                      formData={formData}
+                      setFormData={setFormData}
                     />
-                    <Checkbox.Item
+                    <FormCheckbox
                       label="Vinous"
-                      color={theme.colors.text}
-                      status={formData.vinous ? "checked" : "unchecked"}
-                      onPress={() =>
-                        setFormData((prev) => ({ ...prev, vinous: !prev.vinous }))
-                      }
+                      name="vinous"
+                      formData={formData}
+                      setFormData={setFormData}
                     />
-                    <Checkbox.Item
+                    <FormCheckbox
                       label="Floral"
-                      color={theme.colors.text}
-                      status={formData.floral ? "checked" : "unchecked"}
-                      onPress={() =>
-                        setFormData((prev) => ({ ...prev, floral: !prev.floral }))
-                      }
+                      name="floral"
+                      formData={formData}
+                      setFormData={setFormData}
                     />
-                    <Checkbox.Item
+                    <FormCheckbox
                       label="Fruity"
-                      color={theme.colors.text}
-                      status={formData.fruity ? "checked" : "unchecked"}
-                      onPress={() =>
-                        setFormData((prev) => ({ ...prev, fruity: !prev.fruity }))
-                      }
+                      name="fruity"
+                      formData={formData}
+                      setFormData={setFormData}
                     />
-                    <Checkbox.Item
+                    <FormCheckbox
                       label="Fragrant"
-                      color={theme.colors.text}
-                      status={formData.fragrant ? "checked" : "unchecked"}
-                      onPress={() =>
-                        setFormData((prev) => ({ ...prev, fragrant: !prev.fragrant }))
-                      }
+                      name="fragrant"
+                      formData={formData}
+                      setFormData={setFormData}
                     />
-                    <Checkbox.Item
+                    <FormCheckbox
                       label="Herbaceous"
-                      color={theme.colors.text}
-                      status={formData.herbaceous ? "checked" : "unchecked"}
-                      onPress={() =>
-                        setFormData((prev) => ({ ...prev, herbaceous: !prev.herbaceous }))
-                      }
+                      name="herbaceous"
+                      formData={formData}
+                      setFormData={setFormData}
                     />
-                    <Checkbox.Item
+                    <FormCheckbox
                       label="Mineral"
-                      color={theme.colors.text}
-                      status={formData.mineral ? "checked" : "unchecked"}
-                      onPress={() =>
-                        setFormData((prev) => ({ ...prev, mineral: !prev.mineral }))
-                      }
+                      name="mineral"
+                      formData={formData}
+                      setFormData={setFormData}
                     />
-                    <Checkbox.Item
+                    <FormCheckbox
                       label="Spicy"
-                      color={theme.colors.text}
-                      status={formData.spicy ? "checked" : "unchecked"}
-                      onPress={() =>
-                        setFormData((prev) => ({ ...prev, spicy: !prev.spicy }))
-                      }
+                      name="spicy"
+                      formData={formData}
+                      setFormData={setFormData}
                     />
-                    <Checkbox.Item
+                    <FormCheckbox
                       label="Ethereal"
-                      color={theme.colors.text}
-                      status={formData.ethereal ? "checked" : "unchecked"}
-                      onPress={() =>
-                        setFormData((prev) => ({ ...prev, ethereal: !prev.ethereal }))
-                      }
+                      name="ethereal"
+                      formData={formData}
+                      setFormData={setFormData}
                     />
-                    <Checkbox.Item
+                    <FormCheckbox
                       label="Frank"
-                      color={theme.colors.text}
-                      status={formData.frank ? "checked" : "unchecked"}
-                      onPress={() =>
-                        setFormData((prev) => ({ ...prev, frank: !prev.frank }))
-                      }
+                      name="frank"
+                      formData={formData}
+                      setFormData={setFormData}
                     />
 
                     <FormInput

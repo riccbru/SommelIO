@@ -2,10 +2,11 @@ import { useState } from "react";
 import TastingsAPI from "@/src/services/tastings";
 import FormInput from "@/src/components/new/FormInput";
 import NextButton from "@/src/components/new/NextButton";
-import { Card, Checkbox, useTheme } from "react-native-paper";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
-import CancelButton from "@/src/components/new/CancelButton";
 import FormSelect from "@/src/components/new/FormSelect";
+import CancelButton from "@/src/components/new/CancelButton";
+import { Card, useTheme } from "react-native-paper";
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import FormCheckbox from "@/src/components/new/FormCheckbox";
 
 type Tasting = {
   wine_denomination: string;
@@ -171,13 +172,11 @@ export default function New() {
                 options={["white", "red", "rosé"]}
               />
 
-              <Checkbox.Item
-                label="Favorite wine:"
-                color={theme.colors.text}
-                status={formData.favorite ? "checked" : "unchecked"}
-                onPress={() =>
-                  setFormData((prev) => ({ ...prev, favorite: !prev.favorite }))
-                }
+              <FormCheckbox
+                label="Favorite"
+                name="favorite"
+                formData={formData}
+                setFormData={setFormData}
               />
 
               <FormInput
