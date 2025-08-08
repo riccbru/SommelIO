@@ -1,6 +1,5 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NjdhNjIzNi00YjJlLTQ0N2UtOGYyMC0zOTdkNDUyZDE0MTIiLCJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJiYW5raWNoIiwiZnVsbF9uYW1lIjoiQmFua2ljaCBBZG1pbiIsImVtYWlsIjoiYmFua2ljaEBzb21tZWwuaW8iLCJpYXQiOjE3NTQ2NTUyODMsImV4cCI6MTc1NDY1NjE4M30.JFpgflYwzKfBSG_OS5gWMesT5VznCJm-PRwx2aK_5n4
-@refresh = 
-@tid = 6a2bace4-122e-45a2-b6ff-c8cbd6671a05
+@token = 
+@tid = 
 
 ### LOGIN + TOKEN
 
@@ -12,10 +11,9 @@ Content-Type: application/json
     "password": "bankich_pwd"
 }
 
-### WELCOME
+### REFRESH TOKEN
 
-GET http://localhost:3001/api/v1/welcome HTTP/1.1
-Authorization: Bearer {{token}}
+POST http://localhost:3001/api/v1/auth/refresh HTTP/1.1
 
 ### GET USER BY ID
 
@@ -38,19 +36,16 @@ Content-Type: application/json
 ### GET TASTINGS
 
 GET http://localhost:3001/api/v1/tastings HTTP/1.1
-Accept-Language: en
 Authorization: Bearer {{token}}
 
 ### GET TASTING BY ID
 
 GET http://localhost:3001/api/v1/tastings/{{tid}} HTTP/1.1
-Accept-Language: it
 Authorization: Bearer {{token}}
 
 ### TOGGLE FAVORITE
 
 PATCH http://localhost:3001/api/v1/tastings/{{tid}} HTTP/1.1
-Accept-Language: it
 Authorization: Bearer {{token}}
 
 ### POST NEW TASTING
@@ -87,50 +82,50 @@ Authorization: Bearer {{token}}
 
 {
     "visual_exam": {
-        "limpidity": "abbastanza_limpido",
-        "color_family": "rosa",
-        "color_shade": "cerasuolo",
-        "consistency": "fluido",
-        "bubble_grain": null,
+        "limpidity": "quite_limpid",
+        "color_family": "rosé",
+        "color_shade": "cherry_red",
+        "consistency": "flowing",
+        "bubble_size": null,
         "bubble_number": null,
         "bubble_persistence": null,
-        "notes": "qualche annotazione visuale"
+        "notes": "some visual examination note"
     },
     "olfactory_exam": {
-        "intensity": "intenso",
-        "complexity": "complesso",
-        "quality": "abbastanza_fine",
+        "intensity": "intense",
+        "complexity": "complex",
+        "quality": "quite_fine",
         "aromatic": false,
         "vinous": false,
         "floral": true,
         "fruity": true,
-        "fragrant": true,
-        "herbaceous": false,
+        "grassy": false,
         "mineral": true,
+        "fragrant": true,
         "spicy": false,
+        "toasted": false,
         "ethereal": false,
-        "frank": false,
-        "notes": "qualche annotazione olfattiva"
+        "notes": "some olfactory examination note"
     },
     "taste_olfactory_exam": {
-        "sugars": "secco",
-        "alcohols": "poco_caldo",
-        "polyalcohols": "morbido",
-        "acids": "abbastanza_fresco",
-        "tannins": "poco_tannico",
-        "minerals": "abbastanza_sapido",
-        "balance": "abbastanza_equilibrato",
-        "intensity": "intenso",
-        "persistence": "persistente",
-        "quality": "abbastanza_fine",
-        "structure": "di_corpo",
-        "notes": "qualche annotazione gustativa"
+        "sweetness": "dry",
+        "alcohols": "light",
+        "softness": "sharp",
+        "acidity": "flat",
+        "tannicity": "flabby",
+        "saltiness": "tasteless",
+        "intensity": "intense",
+        "persistence": "persistent",
+        "quality": "quite_fine",
+        "structure": "full",
+        "balance": "quite_balanced",
+        "notes": "some taste-olfactory examination note"
     },
     "final_considerations": {
-        "evolution": "pronto",
-        "harmony": "abbastanza_armonico",
-        "pairings": "pesce, carni rosse, formaggi",
-        "notes": ""
+        "evolutionary_state": "ready",
+        "harmony": "quite_harmonious",
+        "pairings": "red meat, fish, cheese",
+        "notes": "some final consideration note"
     }
 }
 
@@ -141,14 +136,14 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "limpidity": "limpido",
-    "color_family": "rosa",
-    "color_shade": "cerasuolo",
-    "consistency": "fluido",
-    "bubble_grain": null,
+    "limpidity": "quite_limpid",
+    "color_family": "rosé",
+    "color_shade": "cherry_red",
+    "consistency": "flowing",
+    "bubble_size": null,
     "bubble_number": null,
     "bubble_persistence": null,
-    "notes": "qualche annotazione visuale"
+    "notes": "some visual examination note"
 }
 
 ### POST OLFACTORY EXAM
@@ -158,20 +153,20 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "intensity": "intenso",
-    "complexity": "complesso",
-    "quality": "abbastanza_fine",
+    "intensity": "intense",
+    "complexity": "complex",
+    "quality": "quite_fine",
     "aromatic": false,
     "vinous": false,
     "floral": true,
     "fruity": true,
-    "fragrant": true,
-    "herbaceous": false,
+    "grassy": false,
     "mineral": true,
+    "fragrant": true,
     "spicy": false,
+    "toasted": false,
     "ethereal": false,
-    "frank": false,
-    "notes": "qualche annotazione olfattiva"
+    "notes": "some olfactory examination note"
 }
 
 ### POST TASTE-OLFACTORY EXAM
@@ -181,18 +176,18 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "sugars": "secco",
-    "alcohols": "poco_caldo",
-    "polyalcohols": "morbido",
-    "acids": "abbastanza_fresco",
-    "tannins": "poco_tannico",
-    "minerals": "abbastanza_sapido",
-    "balance": "abbastanza_equilibrato",
-    "intensity": "intenso",
-    "persistence": "persistente",
-    "quality": "abbastanza_fine",
-    "structure": "di_corpo",
-    "notes": "qualche annotazione gustativa"
+    "sweetness": "dry",
+    "alcohols": "light",
+    "softness": "sharp",
+    "acidity": "flat",
+    "tannicity": "flabby",
+    "saltiness": "tasteless",
+    "intensity": "intense",
+    "persistence": "persistent",
+    "quality": "quite_fine",
+    "structure": "full",
+    "balance": "quite_balanced",
+    "notes": "some taste-olfactory examination note"
 }
 
 ### POST FINAL-CONSIDERATIONS EXAM
@@ -202,20 +197,14 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "evolution": "pronto",
-    "harmony": "abbastanza_armonico",
-    "pairings": "pesce, carni rosse, formaggi",
-    "notes": ""
+    "evolutionary_state": "ready",
+    "harmony": "quite_harmonious",
+    "pairings": "red meat, fish, cheese",
+    "notes": "some final consideration note"
 }
-
-### REFRESH TOKEN
-
-POST http://localhost:3001/api/v1/auth/refresh HTTP/1.1
-Cookie: refreshToken {{refresh}}
 
 ### LOGOUT (UNSET REFRESH TOKEN COOKIE)
 
 POST http://localhost:3001/api/v1/auth/logout HTTP/1.1
-Cookie: refreshToken {{refresh}}
 
 ###

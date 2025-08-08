@@ -86,7 +86,11 @@ Endpoint: `POST /api/v1/auth/signup`.
         -
         ```json
         {
-            "success": "User <UUID-32> created successfully"
+          "uid": <UUID-32>,
+          "username": <USERNAME>,
+          "full_name": <FULL_NAME>,
+          "birthdate": <YYYY-MM-DD>,
+          "email": <USER@HOSTNAME.DOMAIN>
         }
         ```
 - `400 Bad Request`
@@ -230,6 +234,7 @@ If the URL parameter `tasting_uuid` is passed the route returns the single tasti
             "sample_number": <TEXT>,
             "wine_denomination": <TEXT>,
             "winemaker": <TEXT>,
+            "favorite": <BOOLEAN>,
             "alcohol_content": <TEXT %>,
             "vintage": <YEAR>,
             "wine_temperature": <TEXT°C>,
@@ -312,6 +317,7 @@ Accepted values and formats:
         "sample_number": <TEXT>,
         "wine_denomination": <TEXT>,
         "winemaker": <TEXT>,
+        "boolean": <BOOLEAN>,
         "alcohol_content": <TEXT>,
         "vintage": <YEAR>,
         "wine_temperature": <TEXT>,
@@ -338,6 +344,7 @@ Accepted values and formats:
             "sample_number": <TEXT>,
             "wine_denomination": <TEXT>,
             "winemaker": <TEXT>,
+            "boolean": <BOOLEAN>,
             "alcohol_content": <TEXT %>,
             "vintage": <YEAR>,
             "wine_temperature": <TEXT°C>,
@@ -438,46 +445,46 @@ All the possible values are described below:
 - ### VISUAL Exam
     | **Attribute**           | **Allowed Values**                                                                        |
     |-------------------------|-------------------------------------------------------------------------------------------|
-    | **Limpidity**           | `velato`, `abbastanza_limpido`, `limpido`, `cristallino`, `brillante`                     |
-    | **Color Family**        | `giallo`, `rosa`, `rosso`                                                                 |
-    | **Color Shade**         | **GIALLO**: `verdolino`, `paglierino`, `dorato`, `ambrato` <br> **ROSA**: `tenue`, `cerasuolo`, `chiaretto` <br> **ROSSO**: `porpora`, `rubino`, `granato`, `aranciato`                                                                                      |
-    | **Consistency**         | `fluido`, `poco_consistente`, `abbastanza_consistente`, `consistente`, `viscoso`          |
-    | **Bubble Grain**        | `grossolane`, `abbastanza_fini`, `fini`                                                   |
-    | **Bubble Number**       | `scarse`, `abbastanza_numerose`, `numerose`                                               |
-    | **Bubble Persistence**  | `evanescenti`, `abbastanza_persistenti`, `persistenti`                                    |
+    | **Limpidity**           | `veiled`/`quite_limpid`/`limpid`/`crystal_clear`/`brilliant`                              |
+    | **Color Family**        | `yellow`, `red`, `rosé`                                                                   |
+    | **Color Shade**         | **YELLOW**: `greenish_yellow`/`straw_yellow`/`golden_yellow`/`amber` <br> **RED**: `purple_red`/`ruby_red`/`garnet`/`orange_red` <br> **ROSÉ**: `soft_rosé`/`cherry_red`/`dark_rosé`, `aranciato`                                                                                                           |
+    | **Consistency**         | `flowing`/`scarcely_consistent`/`quite_consistent`/`consistent`/`oily`                    |
+    | **Bubble Grain**        | `large`/`quite fine`/`fine`                                                               |
+    | **Bubble Number**       | `very few`/`quite_numerous`/`numerous`                                                    |
+    | **Bubble Persistence**  | `fading`/`quite_persistent`/`persistent`                                                  |
     | **notes**               | Free text                                                                                 |
 
 
 - ### OLFACTORY Exam
     | **Attribute**           | **Allowed Values**                                                                        |
     |-------------------------|-------------------------------------------------------------------------------------------|
-    | **Intensity**           | `carente`, `poco_intenso`, `abbastanza_intenso`, `intenso`, `molto_intenso`               |
-    | **Complexity**          | `carente`, `poco_complesso`, `abbastanza_complesso`, `complesso`, `ampio`                 |
-    | **Quality**             | `comune`, `poco_fine`, `abbastanza_fine`, `fine`, `eccellente`                            |
-    | **Descriptors**         | `aromatic` <br> `vinous` <br> `floral` <br> `fruity` <br> `fragrant` <br> `herbaceous` <br> `mineral` <br> `spicy` <br> `ethereal` <br> `frank`                                                                                                               |
+    | **Intensity**           | `lacking`/`scarcely_intense`/`quite_intense`/`intense`/`very_intense`                     |
+    | **Complexity**          | `lacking`/`scarcely_complex`/`quite_complex`/`complex`/`ample`                            |
+    | **Quality**             | `coarse`/`scarcely_fine`/`quite fine`/`fine`/`excellent`                                  |
+    | **Description**         | `aromatic`/`vinous`/`floral`/`fruity`/`grassy`/`mineral`/`fragrant`/`spicy`/`toasted`/`ethereal` `frank`                                                                                                               |
     | **Notes**               | Free text                                                                                 |
 
 - ### TASTE-OLFACTORY Exam
     | **Attribute**           | **Allowed Values**                                                                        |
     |-------------------------|-------------------------------------------------------------------------------------------|
-    | **Sugars**              | `secco`, `amabile`, `abboccato`, `dolce`, `stucchevole`                                   |
-    | **Alcohols**            | `leggero`, `poco_caldo`, `abbastanza_caldo`, `caldo`, `alcolico`                          |
-    | **Polyalcohols**        | `spigoloso`, `poco_morbido`, `abbastanza_morbido`, `morbido`, `pastoso`                   |
-    | **Acids**               | `piatto`, `poco_fresco`, `abbastanza_fresco`, `fresco`, `acidulo`                         |
-    | **Tannins**             | `molle`, `poco_tannico`, `abbastanza_tannico`, `tannico`, `astringente`                   |
-    | **Minerals**            | `scipito`, `poco_sapido`, `abbastanza_sapido`, `sapido`, `salato`                         |
-    | **Balance**             | `poco_equilibrato`, `abbastanza_equilibrato`, `equilibrato`                               |
-    | **Intensity**           | `carente`, `poco_intenso`, `abbastanza_intenso`, `intenso`, `molto_intenso`               |
-    | **Persistence**         | `corto`, `poco_persistente`, `abbastanza_persistente`, `persistente`, `molto_persistente` |
-    | **Quality**             | `comune`, `poco_fine`, `abbastanza_fine`, `fine`, `eccellente`                            |
-    | **Structure**           | `magro`, `debole`, `di_corpo`, `robusto`, `pesante`                                       |
+    | **Sweetness**           | `dry`/`medium_dry`/`medium-sweet`/`sweet`/`excessively_sweet`                             |
+    | **Alcohols**            | `light`/`lightly_warm`/`medium_warm`/`warm`/`alcoholic`                                   |
+    | **Softness**            | `sharp`/`scarcely_soft`/`quite_soft`/`soft`/`velvety`                                     |
+    | **Acidity**             | `flat`/`scarcely_fresh`/`quite_fresh`/`fresh`/`acidulous`                                 |
+    | **Tannicity**           | `flabby`/`scarcely_tannic`/`quite_tannic`/`tannic`/`astringent`                           |
+    | **Saltiness**           | `tasteless`/`scarcely_tasty`/`quite_tasty`/`tasty`/`salty`                                |
+    | **Balance**             | `unbalanced`/`quite balanced`/`balanced`                                                  |
+    | **Intensity**           | `lacking`/`scarcely_intense`/`quite_intense`/`intense`/`very_intense`                     |
+    | **Persistence**         | `short`/`scarcely_persistent`/`quite_persistent`/`persistent`/`very_persistent`           |
+    | **Quality**             | `coarse`/`scarcely_fine`/`quite_fine`/`fine`/`excellent`                                  |
+    | **Structure**           | `thin`/`weak`/`full`/`vigorous`/`heavy`                                                   |
     | **Notes**               | Free text                                                                                 |
 
 - ### FINAL-CONSIDERATIONS Exam
     | **Attribute**           | **Allowed Values**                                                                        |
     |-------------------------|-------------------------------------------------------------------------------------------|
-    | **Evolution**           | `immaturo`, `giovane`, `pronto`, `maturo`, `vecchio`                                      |
-    | **Harmony**             | `poco_armonico`, `abbastanza_armonico`, `armonico`                                        |
+    | **Evolutionary State**  | `immature`/`young`/`ready`/`mature`/`old`                                                 |
+    | **Harmony**             | `disharmonious`/`quite harmonious`/`harmonious`                                           |
     | **Pairings**            | Free text                                                                                 |
     | **Notes**               | Free text                                                                                 |
 
@@ -495,7 +502,7 @@ All the possible values are described below:
             "color_family": <TEXT>,
             "color_shade": <TEXT>,
             "consistency": <TEXT>,
-            "bubble_grain": null OR <TEXT>,
+            "bubble_size": null OR <TEXT>,
             "bubble_number": null OR <TEXT>,
             "bubble_persistence": null OR <TEXT>,
             "notes": <TEXT>
@@ -504,36 +511,34 @@ All the possible values are described below:
             "intensity": <TEXT>,
             "complexity": <TEXT>,
             "quality": <TEXT>,
-            "descriptors": {
-                "aromatic": <BOOLEAN>,
-                "vinous": <BOOLEAN>,
-                "floral": <BOOLEAN>,
-                "fruity": <BOOLEAN>,
-                "fragrant": <BOOLEAN>,
-                "herbaceous": <BOOLEAN>,
-                "mineral": <BOOLEAN>,
-                "spicy": <BOOLEAN>,
-                "ethereal": <BOOLEAN>,
-                "frank": <BOOLEAN>
-            },
+            "aromatic": <BOOLEAN>,
+            "vinous": <BOOLEAN>,
+            "floral": <BOOLEAN>,
+            "fruity": <BOOLEAN>,
+            "grassy": <BOOLEAN>,
+            "mineral": <BOOLEAN>,
+            "fragrant": <BOOLEAN>,
+            "spicy": <BOOLEAN>,
+            "toasted": <BOOLEAN>,
+            "ethereal": <BOOLEAN>,
             "notes": <TEXT>
         },
         "taste_olfactory_exam": {
-            "sugars": <TEXT>,
+            "sweetness": <TEXT>,
             "alcohols": <TEXT>,
-            "polyalcohols": <TEXT>,
-            "acids": <TEXT>,
-            "tannins": <TEXT>,
-            "minerals": <TEXT>,
-            "balance": <TEXT>,
+            "softness": <TEXT>,
+            "acidity": <TEXT>,
+            "tannicity": <TEXT>,
+            "saltiness": <TEXT>,
             "intensity": <TEXT>,
             "persistence": <TEXT>,
             "quality": <TEXT>,
             "structure": <TEXT>,
+            "balance": <TEXT>,
             "notes": <TEXT>
         },
         "final_considerations": {
-            "evolution": <TEXT>,
+            "evolutionary_state": <TEXT>,
             "harmony": <TEXT>,
             "pairings": <TEXT>,
             "notes": <TEXT>
@@ -558,7 +563,7 @@ All the possible values are described below:
                 "color_family": <TEXT>,
                 "color_shade": <TEXT>,
                 "consistency": <TEXT>,
-                "bubble_grain": null OR <TEXT>,
+                "bubble_size": null OR <TEXT>,
                 "bubble_number": null OR <TEXT>,
                 "bubble_persistence": null OR <TEXT>,
                 "notes": <TEXT>
@@ -572,32 +577,32 @@ All the possible values are described below:
                 "vinous": <BOOLEAN>,
                 "floral": <BOOLEAN>,
                 "fruity": <BOOLEAN>,
-                "fragrant": <BOOLEAN>,
-                "herbaceous": <BOOLEAN>,
+                "grassy": <BOOLEAN>,
                 "mineral": <BOOLEAN>,
+                "fragrant": <BOOLEAN>,
                 "spicy": <BOOLEAN>,
+                "toasted": <BOOLEAN>,
                 "ethereal": <BOOLEAN>,
-                "frank": <BOOLEAN>,
                 "notes": <TEXT>
               },
               "taste_olfactory_exam": {
                 "eid": <UUID-32>,
-                "sugars": <TEXT>,
+                "sweetness": <TEXT>,
                 "alcohols": <TEXT>,
-                "polyalcohols": <TEXT>,
-                "acids": <TEXT>,
-                "tannins": <TEXT>,
-                "minerals": <TEXT>,
-                "balance": <TEXT>,
+                "softness": <TEXT>,
+                "acidity": <TEXT>,
+                "tannicity": <TEXT>,
+                "saltiness": <TEXT>,
                 "intensity": <TEXT>,
                 "persistence": <TEXT>,
                 "quality": <TEXT>,
                 "structure": <TEXT>,
+                "balance": <TEXT>,
                 "notes": <TEXT>
               },
               "final_considerations": {
                 "eid": <UUID-32>,
-                "evolution": <TEXT>,
+                "evolutionary_state": <TEXT>,
                 "harmony": <TEXT>,
                 "pairings": <TEXT>,
                 "notes": <TEXT>

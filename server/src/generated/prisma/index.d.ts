@@ -24,11 +24,6 @@ export type users = $Result.DefaultSelection<Prisma.$usersPayload>
  */
 export type wine_categories = $Result.DefaultSelection<Prisma.$wine_categoriesPayload>
 /**
- * Model wine_category_translations
- * 
- */
-export type wine_category_translations = $Result.DefaultSelection<Prisma.$wine_category_translationsPayload>
-/**
  * Model tastings
  * 
  */
@@ -198,16 +193,6 @@ export class PrismaClient<
     * ```
     */
   get wine_categories(): Prisma.wine_categoriesDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.wine_category_translations`: Exposes CRUD operations for the **wine_category_translations** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Wine_category_translations
-    * const wine_category_translations = await prisma.wine_category_translations.findMany()
-    * ```
-    */
-  get wine_category_translations(): Prisma.wine_category_translationsDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.tastings`: Exposes CRUD operations for the **tastings** model.
@@ -700,7 +685,6 @@ export namespace Prisma {
   export const ModelName: {
     users: 'users',
     wine_categories: 'wine_categories',
-    wine_category_translations: 'wine_category_translations',
     tastings: 'tastings',
     olfactory_exams: 'olfactory_exams',
     taste_olfactory_exams: 'taste_olfactory_exams',
@@ -724,7 +708,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "users" | "wine_categories" | "wine_category_translations" | "tastings" | "olfactory_exams" | "taste_olfactory_exams" | "visual_exams" | "final_considerations"
+      modelProps: "users" | "wine_categories" | "tastings" | "olfactory_exams" | "taste_olfactory_exams" | "visual_exams" | "final_considerations"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -873,80 +857,6 @@ export namespace Prisma {
           count: {
             args: Prisma.wine_categoriesCountArgs<ExtArgs>
             result: $Utils.Optional<Wine_categoriesCountAggregateOutputType> | number
-          }
-        }
-      }
-      wine_category_translations: {
-        payload: Prisma.$wine_category_translationsPayload<ExtArgs>
-        fields: Prisma.wine_category_translationsFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.wine_category_translationsFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$wine_category_translationsPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.wine_category_translationsFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$wine_category_translationsPayload>
-          }
-          findFirst: {
-            args: Prisma.wine_category_translationsFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$wine_category_translationsPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.wine_category_translationsFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$wine_category_translationsPayload>
-          }
-          findMany: {
-            args: Prisma.wine_category_translationsFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$wine_category_translationsPayload>[]
-          }
-          create: {
-            args: Prisma.wine_category_translationsCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$wine_category_translationsPayload>
-          }
-          createMany: {
-            args: Prisma.wine_category_translationsCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.wine_category_translationsCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$wine_category_translationsPayload>[]
-          }
-          delete: {
-            args: Prisma.wine_category_translationsDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$wine_category_translationsPayload>
-          }
-          update: {
-            args: Prisma.wine_category_translationsUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$wine_category_translationsPayload>
-          }
-          deleteMany: {
-            args: Prisma.wine_category_translationsDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.wine_category_translationsUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.wine_category_translationsUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$wine_category_translationsPayload>[]
-          }
-          upsert: {
-            args: Prisma.wine_category_translationsUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$wine_category_translationsPayload>
-          }
-          aggregate: {
-            args: Prisma.Wine_category_translationsAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateWine_category_translations>
-          }
-          groupBy: {
-            args: Prisma.wine_category_translationsGroupByArgs<ExtArgs>
-            result: $Utils.Optional<Wine_category_translationsGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.wine_category_translationsCountArgs<ExtArgs>
-            result: $Utils.Optional<Wine_category_translationsCountAggregateOutputType> | number
           }
         }
       }
@@ -1414,7 +1324,6 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     users?: usersOmit
     wine_categories?: wine_categoriesOmit
-    wine_category_translations?: wine_category_translationsOmit
     tastings?: tastingsOmit
     olfactory_exams?: olfactory_examsOmit
     taste_olfactory_exams?: taste_olfactory_examsOmit
@@ -1551,12 +1460,10 @@ export namespace Prisma {
 
   export type Wine_categoriesCountOutputType = {
     tastings: number
-    wine_category_translations: number
   }
 
   export type Wine_categoriesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tastings?: boolean | Wine_categoriesCountOutputTypeCountTastingsArgs
-    wine_category_translations?: boolean | Wine_categoriesCountOutputTypeCountWine_category_translationsArgs
   }
 
   // Custom InputTypes
@@ -1575,13 +1482,6 @@ export namespace Prisma {
    */
   export type Wine_categoriesCountOutputTypeCountTastingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: tastingsWhereInput
-  }
-
-  /**
-   * Wine_categoriesCountOutputType without action
-   */
-  export type Wine_categoriesCountOutputTypeCountWine_category_translationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: wine_category_translationsWhereInput
   }
 
 
@@ -2985,7 +2885,6 @@ export namespace Prisma {
     id?: boolean
     code?: boolean
     tastings?: boolean | wine_categories$tastingsArgs<ExtArgs>
-    wine_category_translations?: boolean | wine_categories$wine_category_translationsArgs<ExtArgs>
     _count?: boolean | Wine_categoriesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["wine_categories"]>
 
@@ -3007,7 +2906,6 @@ export namespace Prisma {
   export type wine_categoriesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code", ExtArgs["result"]["wine_categories"]>
   export type wine_categoriesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tastings?: boolean | wine_categories$tastingsArgs<ExtArgs>
-    wine_category_translations?: boolean | wine_categories$wine_category_translationsArgs<ExtArgs>
     _count?: boolean | Wine_categoriesCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type wine_categoriesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -3017,7 +2915,6 @@ export namespace Prisma {
     name: "wine_categories"
     objects: {
       tastings: Prisma.$tastingsPayload<ExtArgs>[]
-      wine_category_translations: Prisma.$wine_category_translationsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -3417,7 +3314,6 @@ export namespace Prisma {
   export interface Prisma__wine_categoriesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     tastings<T extends wine_categories$tastingsArgs<ExtArgs> = {}>(args?: Subset<T, wine_categories$tastingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$tastingsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    wine_category_translations<T extends wine_categories$wine_category_translationsArgs<ExtArgs> = {}>(args?: Subset<T, wine_categories$wine_category_translationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$wine_category_translationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3861,30 +3757,6 @@ export namespace Prisma {
   }
 
   /**
-   * wine_categories.wine_category_translations
-   */
-  export type wine_categories$wine_category_translationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the wine_category_translations
-     */
-    select?: wine_category_translationsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the wine_category_translations
-     */
-    omit?: wine_category_translationsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: wine_category_translationsInclude<ExtArgs> | null
-    where?: wine_category_translationsWhereInput
-    orderBy?: wine_category_translationsOrderByWithRelationInput | wine_category_translationsOrderByWithRelationInput[]
-    cursor?: wine_category_translationsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: Wine_category_translationsScalarFieldEnum | Wine_category_translationsScalarFieldEnum[]
-  }
-
-  /**
    * wine_categories without action
    */
   export type wine_categoriesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3900,1108 +3772,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: wine_categoriesInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model wine_category_translations
-   */
-
-  export type AggregateWine_category_translations = {
-    _count: Wine_category_translationsCountAggregateOutputType | null
-    _avg: Wine_category_translationsAvgAggregateOutputType | null
-    _sum: Wine_category_translationsSumAggregateOutputType | null
-    _min: Wine_category_translationsMinAggregateOutputType | null
-    _max: Wine_category_translationsMaxAggregateOutputType | null
-  }
-
-  export type Wine_category_translationsAvgAggregateOutputType = {
-    id: number | null
-    category_id: number | null
-  }
-
-  export type Wine_category_translationsSumAggregateOutputType = {
-    id: number | null
-    category_id: number | null
-  }
-
-  export type Wine_category_translationsMinAggregateOutputType = {
-    id: number | null
-    category_id: number | null
-    language_code: string | null
-    name: string | null
-  }
-
-  export type Wine_category_translationsMaxAggregateOutputType = {
-    id: number | null
-    category_id: number | null
-    language_code: string | null
-    name: string | null
-  }
-
-  export type Wine_category_translationsCountAggregateOutputType = {
-    id: number
-    category_id: number
-    language_code: number
-    name: number
-    _all: number
-  }
-
-
-  export type Wine_category_translationsAvgAggregateInputType = {
-    id?: true
-    category_id?: true
-  }
-
-  export type Wine_category_translationsSumAggregateInputType = {
-    id?: true
-    category_id?: true
-  }
-
-  export type Wine_category_translationsMinAggregateInputType = {
-    id?: true
-    category_id?: true
-    language_code?: true
-    name?: true
-  }
-
-  export type Wine_category_translationsMaxAggregateInputType = {
-    id?: true
-    category_id?: true
-    language_code?: true
-    name?: true
-  }
-
-  export type Wine_category_translationsCountAggregateInputType = {
-    id?: true
-    category_id?: true
-    language_code?: true
-    name?: true
-    _all?: true
-  }
-
-  export type Wine_category_translationsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which wine_category_translations to aggregate.
-     */
-    where?: wine_category_translationsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of wine_category_translations to fetch.
-     */
-    orderBy?: wine_category_translationsOrderByWithRelationInput | wine_category_translationsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: wine_category_translationsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` wine_category_translations from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` wine_category_translations.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned wine_category_translations
-    **/
-    _count?: true | Wine_category_translationsCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: Wine_category_translationsAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: Wine_category_translationsSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: Wine_category_translationsMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: Wine_category_translationsMaxAggregateInputType
-  }
-
-  export type GetWine_category_translationsAggregateType<T extends Wine_category_translationsAggregateArgs> = {
-        [P in keyof T & keyof AggregateWine_category_translations]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateWine_category_translations[P]>
-      : GetScalarType<T[P], AggregateWine_category_translations[P]>
-  }
-
-
-
-
-  export type wine_category_translationsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: wine_category_translationsWhereInput
-    orderBy?: wine_category_translationsOrderByWithAggregationInput | wine_category_translationsOrderByWithAggregationInput[]
-    by: Wine_category_translationsScalarFieldEnum[] | Wine_category_translationsScalarFieldEnum
-    having?: wine_category_translationsScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: Wine_category_translationsCountAggregateInputType | true
-    _avg?: Wine_category_translationsAvgAggregateInputType
-    _sum?: Wine_category_translationsSumAggregateInputType
-    _min?: Wine_category_translationsMinAggregateInputType
-    _max?: Wine_category_translationsMaxAggregateInputType
-  }
-
-  export type Wine_category_translationsGroupByOutputType = {
-    id: number
-    category_id: number | null
-    language_code: string
-    name: string
-    _count: Wine_category_translationsCountAggregateOutputType | null
-    _avg: Wine_category_translationsAvgAggregateOutputType | null
-    _sum: Wine_category_translationsSumAggregateOutputType | null
-    _min: Wine_category_translationsMinAggregateOutputType | null
-    _max: Wine_category_translationsMaxAggregateOutputType | null
-  }
-
-  type GetWine_category_translationsGroupByPayload<T extends wine_category_translationsGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<Wine_category_translationsGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof Wine_category_translationsGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], Wine_category_translationsGroupByOutputType[P]>
-            : GetScalarType<T[P], Wine_category_translationsGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type wine_category_translationsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    category_id?: boolean
-    language_code?: boolean
-    name?: boolean
-    wine_categories?: boolean | wine_category_translations$wine_categoriesArgs<ExtArgs>
-  }, ExtArgs["result"]["wine_category_translations"]>
-
-  export type wine_category_translationsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    category_id?: boolean
-    language_code?: boolean
-    name?: boolean
-    wine_categories?: boolean | wine_category_translations$wine_categoriesArgs<ExtArgs>
-  }, ExtArgs["result"]["wine_category_translations"]>
-
-  export type wine_category_translationsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    category_id?: boolean
-    language_code?: boolean
-    name?: boolean
-    wine_categories?: boolean | wine_category_translations$wine_categoriesArgs<ExtArgs>
-  }, ExtArgs["result"]["wine_category_translations"]>
-
-  export type wine_category_translationsSelectScalar = {
-    id?: boolean
-    category_id?: boolean
-    language_code?: boolean
-    name?: boolean
-  }
-
-  export type wine_category_translationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "category_id" | "language_code" | "name", ExtArgs["result"]["wine_category_translations"]>
-  export type wine_category_translationsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    wine_categories?: boolean | wine_category_translations$wine_categoriesArgs<ExtArgs>
-  }
-  export type wine_category_translationsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    wine_categories?: boolean | wine_category_translations$wine_categoriesArgs<ExtArgs>
-  }
-  export type wine_category_translationsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    wine_categories?: boolean | wine_category_translations$wine_categoriesArgs<ExtArgs>
-  }
-
-  export type $wine_category_translationsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "wine_category_translations"
-    objects: {
-      wine_categories: Prisma.$wine_categoriesPayload<ExtArgs> | null
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      category_id: number | null
-      language_code: string
-      name: string
-    }, ExtArgs["result"]["wine_category_translations"]>
-    composites: {}
-  }
-
-  type wine_category_translationsGetPayload<S extends boolean | null | undefined | wine_category_translationsDefaultArgs> = $Result.GetResult<Prisma.$wine_category_translationsPayload, S>
-
-  type wine_category_translationsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<wine_category_translationsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: Wine_category_translationsCountAggregateInputType | true
-    }
-
-  export interface wine_category_translationsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['wine_category_translations'], meta: { name: 'wine_category_translations' } }
-    /**
-     * Find zero or one Wine_category_translations that matches the filter.
-     * @param {wine_category_translationsFindUniqueArgs} args - Arguments to find a Wine_category_translations
-     * @example
-     * // Get one Wine_category_translations
-     * const wine_category_translations = await prisma.wine_category_translations.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends wine_category_translationsFindUniqueArgs>(args: SelectSubset<T, wine_category_translationsFindUniqueArgs<ExtArgs>>): Prisma__wine_category_translationsClient<$Result.GetResult<Prisma.$wine_category_translationsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Wine_category_translations that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {wine_category_translationsFindUniqueOrThrowArgs} args - Arguments to find a Wine_category_translations
-     * @example
-     * // Get one Wine_category_translations
-     * const wine_category_translations = await prisma.wine_category_translations.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends wine_category_translationsFindUniqueOrThrowArgs>(args: SelectSubset<T, wine_category_translationsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__wine_category_translationsClient<$Result.GetResult<Prisma.$wine_category_translationsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Wine_category_translations that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {wine_category_translationsFindFirstArgs} args - Arguments to find a Wine_category_translations
-     * @example
-     * // Get one Wine_category_translations
-     * const wine_category_translations = await prisma.wine_category_translations.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends wine_category_translationsFindFirstArgs>(args?: SelectSubset<T, wine_category_translationsFindFirstArgs<ExtArgs>>): Prisma__wine_category_translationsClient<$Result.GetResult<Prisma.$wine_category_translationsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Wine_category_translations that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {wine_category_translationsFindFirstOrThrowArgs} args - Arguments to find a Wine_category_translations
-     * @example
-     * // Get one Wine_category_translations
-     * const wine_category_translations = await prisma.wine_category_translations.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends wine_category_translationsFindFirstOrThrowArgs>(args?: SelectSubset<T, wine_category_translationsFindFirstOrThrowArgs<ExtArgs>>): Prisma__wine_category_translationsClient<$Result.GetResult<Prisma.$wine_category_translationsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Wine_category_translations that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {wine_category_translationsFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Wine_category_translations
-     * const wine_category_translations = await prisma.wine_category_translations.findMany()
-     * 
-     * // Get first 10 Wine_category_translations
-     * const wine_category_translations = await prisma.wine_category_translations.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const wine_category_translationsWithIdOnly = await prisma.wine_category_translations.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends wine_category_translationsFindManyArgs>(args?: SelectSubset<T, wine_category_translationsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$wine_category_translationsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Wine_category_translations.
-     * @param {wine_category_translationsCreateArgs} args - Arguments to create a Wine_category_translations.
-     * @example
-     * // Create one Wine_category_translations
-     * const Wine_category_translations = await prisma.wine_category_translations.create({
-     *   data: {
-     *     // ... data to create a Wine_category_translations
-     *   }
-     * })
-     * 
-     */
-    create<T extends wine_category_translationsCreateArgs>(args: SelectSubset<T, wine_category_translationsCreateArgs<ExtArgs>>): Prisma__wine_category_translationsClient<$Result.GetResult<Prisma.$wine_category_translationsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Wine_category_translations.
-     * @param {wine_category_translationsCreateManyArgs} args - Arguments to create many Wine_category_translations.
-     * @example
-     * // Create many Wine_category_translations
-     * const wine_category_translations = await prisma.wine_category_translations.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends wine_category_translationsCreateManyArgs>(args?: SelectSubset<T, wine_category_translationsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Wine_category_translations and returns the data saved in the database.
-     * @param {wine_category_translationsCreateManyAndReturnArgs} args - Arguments to create many Wine_category_translations.
-     * @example
-     * // Create many Wine_category_translations
-     * const wine_category_translations = await prisma.wine_category_translations.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Wine_category_translations and only return the `id`
-     * const wine_category_translationsWithIdOnly = await prisma.wine_category_translations.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends wine_category_translationsCreateManyAndReturnArgs>(args?: SelectSubset<T, wine_category_translationsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$wine_category_translationsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Wine_category_translations.
-     * @param {wine_category_translationsDeleteArgs} args - Arguments to delete one Wine_category_translations.
-     * @example
-     * // Delete one Wine_category_translations
-     * const Wine_category_translations = await prisma.wine_category_translations.delete({
-     *   where: {
-     *     // ... filter to delete one Wine_category_translations
-     *   }
-     * })
-     * 
-     */
-    delete<T extends wine_category_translationsDeleteArgs>(args: SelectSubset<T, wine_category_translationsDeleteArgs<ExtArgs>>): Prisma__wine_category_translationsClient<$Result.GetResult<Prisma.$wine_category_translationsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Wine_category_translations.
-     * @param {wine_category_translationsUpdateArgs} args - Arguments to update one Wine_category_translations.
-     * @example
-     * // Update one Wine_category_translations
-     * const wine_category_translations = await prisma.wine_category_translations.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends wine_category_translationsUpdateArgs>(args: SelectSubset<T, wine_category_translationsUpdateArgs<ExtArgs>>): Prisma__wine_category_translationsClient<$Result.GetResult<Prisma.$wine_category_translationsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Wine_category_translations.
-     * @param {wine_category_translationsDeleteManyArgs} args - Arguments to filter Wine_category_translations to delete.
-     * @example
-     * // Delete a few Wine_category_translations
-     * const { count } = await prisma.wine_category_translations.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends wine_category_translationsDeleteManyArgs>(args?: SelectSubset<T, wine_category_translationsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Wine_category_translations.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {wine_category_translationsUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Wine_category_translations
-     * const wine_category_translations = await prisma.wine_category_translations.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends wine_category_translationsUpdateManyArgs>(args: SelectSubset<T, wine_category_translationsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Wine_category_translations and returns the data updated in the database.
-     * @param {wine_category_translationsUpdateManyAndReturnArgs} args - Arguments to update many Wine_category_translations.
-     * @example
-     * // Update many Wine_category_translations
-     * const wine_category_translations = await prisma.wine_category_translations.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Wine_category_translations and only return the `id`
-     * const wine_category_translationsWithIdOnly = await prisma.wine_category_translations.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends wine_category_translationsUpdateManyAndReturnArgs>(args: SelectSubset<T, wine_category_translationsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$wine_category_translationsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Wine_category_translations.
-     * @param {wine_category_translationsUpsertArgs} args - Arguments to update or create a Wine_category_translations.
-     * @example
-     * // Update or create a Wine_category_translations
-     * const wine_category_translations = await prisma.wine_category_translations.upsert({
-     *   create: {
-     *     // ... data to create a Wine_category_translations
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Wine_category_translations we want to update
-     *   }
-     * })
-     */
-    upsert<T extends wine_category_translationsUpsertArgs>(args: SelectSubset<T, wine_category_translationsUpsertArgs<ExtArgs>>): Prisma__wine_category_translationsClient<$Result.GetResult<Prisma.$wine_category_translationsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Wine_category_translations.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {wine_category_translationsCountArgs} args - Arguments to filter Wine_category_translations to count.
-     * @example
-     * // Count the number of Wine_category_translations
-     * const count = await prisma.wine_category_translations.count({
-     *   where: {
-     *     // ... the filter for the Wine_category_translations we want to count
-     *   }
-     * })
-    **/
-    count<T extends wine_category_translationsCountArgs>(
-      args?: Subset<T, wine_category_translationsCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], Wine_category_translationsCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Wine_category_translations.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {Wine_category_translationsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends Wine_category_translationsAggregateArgs>(args: Subset<T, Wine_category_translationsAggregateArgs>): Prisma.PrismaPromise<GetWine_category_translationsAggregateType<T>>
-
-    /**
-     * Group by Wine_category_translations.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {wine_category_translationsGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends wine_category_translationsGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: wine_category_translationsGroupByArgs['orderBy'] }
-        : { orderBy?: wine_category_translationsGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, wine_category_translationsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetWine_category_translationsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the wine_category_translations model
-   */
-  readonly fields: wine_category_translationsFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for wine_category_translations.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__wine_category_translationsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    wine_categories<T extends wine_category_translations$wine_categoriesArgs<ExtArgs> = {}>(args?: Subset<T, wine_category_translations$wine_categoriesArgs<ExtArgs>>): Prisma__wine_categoriesClient<$Result.GetResult<Prisma.$wine_categoriesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the wine_category_translations model
-   */
-  interface wine_category_translationsFieldRefs {
-    readonly id: FieldRef<"wine_category_translations", 'Int'>
-    readonly category_id: FieldRef<"wine_category_translations", 'Int'>
-    readonly language_code: FieldRef<"wine_category_translations", 'String'>
-    readonly name: FieldRef<"wine_category_translations", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * wine_category_translations findUnique
-   */
-  export type wine_category_translationsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the wine_category_translations
-     */
-    select?: wine_category_translationsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the wine_category_translations
-     */
-    omit?: wine_category_translationsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: wine_category_translationsInclude<ExtArgs> | null
-    /**
-     * Filter, which wine_category_translations to fetch.
-     */
-    where: wine_category_translationsWhereUniqueInput
-  }
-
-  /**
-   * wine_category_translations findUniqueOrThrow
-   */
-  export type wine_category_translationsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the wine_category_translations
-     */
-    select?: wine_category_translationsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the wine_category_translations
-     */
-    omit?: wine_category_translationsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: wine_category_translationsInclude<ExtArgs> | null
-    /**
-     * Filter, which wine_category_translations to fetch.
-     */
-    where: wine_category_translationsWhereUniqueInput
-  }
-
-  /**
-   * wine_category_translations findFirst
-   */
-  export type wine_category_translationsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the wine_category_translations
-     */
-    select?: wine_category_translationsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the wine_category_translations
-     */
-    omit?: wine_category_translationsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: wine_category_translationsInclude<ExtArgs> | null
-    /**
-     * Filter, which wine_category_translations to fetch.
-     */
-    where?: wine_category_translationsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of wine_category_translations to fetch.
-     */
-    orderBy?: wine_category_translationsOrderByWithRelationInput | wine_category_translationsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for wine_category_translations.
-     */
-    cursor?: wine_category_translationsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` wine_category_translations from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` wine_category_translations.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of wine_category_translations.
-     */
-    distinct?: Wine_category_translationsScalarFieldEnum | Wine_category_translationsScalarFieldEnum[]
-  }
-
-  /**
-   * wine_category_translations findFirstOrThrow
-   */
-  export type wine_category_translationsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the wine_category_translations
-     */
-    select?: wine_category_translationsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the wine_category_translations
-     */
-    omit?: wine_category_translationsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: wine_category_translationsInclude<ExtArgs> | null
-    /**
-     * Filter, which wine_category_translations to fetch.
-     */
-    where?: wine_category_translationsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of wine_category_translations to fetch.
-     */
-    orderBy?: wine_category_translationsOrderByWithRelationInput | wine_category_translationsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for wine_category_translations.
-     */
-    cursor?: wine_category_translationsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` wine_category_translations from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` wine_category_translations.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of wine_category_translations.
-     */
-    distinct?: Wine_category_translationsScalarFieldEnum | Wine_category_translationsScalarFieldEnum[]
-  }
-
-  /**
-   * wine_category_translations findMany
-   */
-  export type wine_category_translationsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the wine_category_translations
-     */
-    select?: wine_category_translationsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the wine_category_translations
-     */
-    omit?: wine_category_translationsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: wine_category_translationsInclude<ExtArgs> | null
-    /**
-     * Filter, which wine_category_translations to fetch.
-     */
-    where?: wine_category_translationsWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of wine_category_translations to fetch.
-     */
-    orderBy?: wine_category_translationsOrderByWithRelationInput | wine_category_translationsOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing wine_category_translations.
-     */
-    cursor?: wine_category_translationsWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` wine_category_translations from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` wine_category_translations.
-     */
-    skip?: number
-    distinct?: Wine_category_translationsScalarFieldEnum | Wine_category_translationsScalarFieldEnum[]
-  }
-
-  /**
-   * wine_category_translations create
-   */
-  export type wine_category_translationsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the wine_category_translations
-     */
-    select?: wine_category_translationsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the wine_category_translations
-     */
-    omit?: wine_category_translationsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: wine_category_translationsInclude<ExtArgs> | null
-    /**
-     * The data needed to create a wine_category_translations.
-     */
-    data: XOR<wine_category_translationsCreateInput, wine_category_translationsUncheckedCreateInput>
-  }
-
-  /**
-   * wine_category_translations createMany
-   */
-  export type wine_category_translationsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many wine_category_translations.
-     */
-    data: wine_category_translationsCreateManyInput | wine_category_translationsCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * wine_category_translations createManyAndReturn
-   */
-  export type wine_category_translationsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the wine_category_translations
-     */
-    select?: wine_category_translationsSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the wine_category_translations
-     */
-    omit?: wine_category_translationsOmit<ExtArgs> | null
-    /**
-     * The data used to create many wine_category_translations.
-     */
-    data: wine_category_translationsCreateManyInput | wine_category_translationsCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: wine_category_translationsIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * wine_category_translations update
-   */
-  export type wine_category_translationsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the wine_category_translations
-     */
-    select?: wine_category_translationsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the wine_category_translations
-     */
-    omit?: wine_category_translationsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: wine_category_translationsInclude<ExtArgs> | null
-    /**
-     * The data needed to update a wine_category_translations.
-     */
-    data: XOR<wine_category_translationsUpdateInput, wine_category_translationsUncheckedUpdateInput>
-    /**
-     * Choose, which wine_category_translations to update.
-     */
-    where: wine_category_translationsWhereUniqueInput
-  }
-
-  /**
-   * wine_category_translations updateMany
-   */
-  export type wine_category_translationsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update wine_category_translations.
-     */
-    data: XOR<wine_category_translationsUpdateManyMutationInput, wine_category_translationsUncheckedUpdateManyInput>
-    /**
-     * Filter which wine_category_translations to update
-     */
-    where?: wine_category_translationsWhereInput
-    /**
-     * Limit how many wine_category_translations to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * wine_category_translations updateManyAndReturn
-   */
-  export type wine_category_translationsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the wine_category_translations
-     */
-    select?: wine_category_translationsSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the wine_category_translations
-     */
-    omit?: wine_category_translationsOmit<ExtArgs> | null
-    /**
-     * The data used to update wine_category_translations.
-     */
-    data: XOR<wine_category_translationsUpdateManyMutationInput, wine_category_translationsUncheckedUpdateManyInput>
-    /**
-     * Filter which wine_category_translations to update
-     */
-    where?: wine_category_translationsWhereInput
-    /**
-     * Limit how many wine_category_translations to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: wine_category_translationsIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * wine_category_translations upsert
-   */
-  export type wine_category_translationsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the wine_category_translations
-     */
-    select?: wine_category_translationsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the wine_category_translations
-     */
-    omit?: wine_category_translationsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: wine_category_translationsInclude<ExtArgs> | null
-    /**
-     * The filter to search for the wine_category_translations to update in case it exists.
-     */
-    where: wine_category_translationsWhereUniqueInput
-    /**
-     * In case the wine_category_translations found by the `where` argument doesn't exist, create a new wine_category_translations with this data.
-     */
-    create: XOR<wine_category_translationsCreateInput, wine_category_translationsUncheckedCreateInput>
-    /**
-     * In case the wine_category_translations was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<wine_category_translationsUpdateInput, wine_category_translationsUncheckedUpdateInput>
-  }
-
-  /**
-   * wine_category_translations delete
-   */
-  export type wine_category_translationsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the wine_category_translations
-     */
-    select?: wine_category_translationsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the wine_category_translations
-     */
-    omit?: wine_category_translationsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: wine_category_translationsInclude<ExtArgs> | null
-    /**
-     * Filter which wine_category_translations to delete.
-     */
-    where: wine_category_translationsWhereUniqueInput
-  }
-
-  /**
-   * wine_category_translations deleteMany
-   */
-  export type wine_category_translationsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which wine_category_translations to delete
-     */
-    where?: wine_category_translationsWhereInput
-    /**
-     * Limit how many wine_category_translations to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * wine_category_translations.wine_categories
-   */
-  export type wine_category_translations$wine_categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the wine_categories
-     */
-    select?: wine_categoriesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the wine_categories
-     */
-    omit?: wine_categoriesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: wine_categoriesInclude<ExtArgs> | null
-    where?: wine_categoriesWhereInput
-  }
-
-  /**
-   * wine_category_translations without action
-   */
-  export type wine_category_translationsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the wine_category_translations
-     */
-    select?: wine_category_translationsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the wine_category_translations
-     */
-    omit?: wine_category_translationsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: wine_category_translationsInclude<ExtArgs> | null
   }
 
 
@@ -6417,12 +5187,12 @@ export namespace Prisma {
     vinous: boolean | null
     floral: boolean | null
     fruity: boolean | null
-    fragrant: boolean | null
-    herbaceous: boolean | null
+    grassy: boolean | null
     mineral: boolean | null
+    fragrant: boolean | null
     spicy: boolean | null
+    toasted: boolean | null
     ethereal: boolean | null
-    frank: boolean | null
     notes: string | null
   }
 
@@ -6437,12 +5207,12 @@ export namespace Prisma {
     vinous: boolean | null
     floral: boolean | null
     fruity: boolean | null
-    fragrant: boolean | null
-    herbaceous: boolean | null
+    grassy: boolean | null
     mineral: boolean | null
+    fragrant: boolean | null
     spicy: boolean | null
+    toasted: boolean | null
     ethereal: boolean | null
-    frank: boolean | null
     notes: string | null
   }
 
@@ -6457,12 +5227,12 @@ export namespace Prisma {
     vinous: number
     floral: number
     fruity: number
-    fragrant: number
-    herbaceous: number
+    grassy: number
     mineral: number
+    fragrant: number
     spicy: number
+    toasted: number
     ethereal: number
-    frank: number
     notes: number
     _all: number
   }
@@ -6487,12 +5257,12 @@ export namespace Prisma {
     vinous?: true
     floral?: true
     fruity?: true
-    fragrant?: true
-    herbaceous?: true
+    grassy?: true
     mineral?: true
+    fragrant?: true
     spicy?: true
+    toasted?: true
     ethereal?: true
-    frank?: true
     notes?: true
   }
 
@@ -6507,12 +5277,12 @@ export namespace Prisma {
     vinous?: true
     floral?: true
     fruity?: true
-    fragrant?: true
-    herbaceous?: true
+    grassy?: true
     mineral?: true
+    fragrant?: true
     spicy?: true
+    toasted?: true
     ethereal?: true
-    frank?: true
     notes?: true
   }
 
@@ -6527,12 +5297,12 @@ export namespace Prisma {
     vinous?: true
     floral?: true
     fruity?: true
-    fragrant?: true
-    herbaceous?: true
+    grassy?: true
     mineral?: true
+    fragrant?: true
     spicy?: true
+    toasted?: true
     ethereal?: true
-    frank?: true
     notes?: true
     _all?: true
   }
@@ -6634,12 +5404,12 @@ export namespace Prisma {
     vinous: boolean | null
     floral: boolean | null
     fruity: boolean | null
-    fragrant: boolean | null
-    herbaceous: boolean | null
+    grassy: boolean | null
     mineral: boolean | null
+    fragrant: boolean | null
     spicy: boolean | null
+    toasted: boolean | null
     ethereal: boolean | null
-    frank: boolean | null
     notes: string | null
     _count: Olfactory_examsCountAggregateOutputType | null
     _avg: Olfactory_examsAvgAggregateOutputType | null
@@ -6673,12 +5443,12 @@ export namespace Prisma {
     vinous?: boolean
     floral?: boolean
     fruity?: boolean
-    fragrant?: boolean
-    herbaceous?: boolean
+    grassy?: boolean
     mineral?: boolean
+    fragrant?: boolean
     spicy?: boolean
+    toasted?: boolean
     ethereal?: boolean
-    frank?: boolean
     notes?: boolean
     tastings?: boolean | tastingsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["olfactory_exams"]>
@@ -6694,12 +5464,12 @@ export namespace Prisma {
     vinous?: boolean
     floral?: boolean
     fruity?: boolean
-    fragrant?: boolean
-    herbaceous?: boolean
+    grassy?: boolean
     mineral?: boolean
+    fragrant?: boolean
     spicy?: boolean
+    toasted?: boolean
     ethereal?: boolean
-    frank?: boolean
     notes?: boolean
     tastings?: boolean | tastingsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["olfactory_exams"]>
@@ -6715,12 +5485,12 @@ export namespace Prisma {
     vinous?: boolean
     floral?: boolean
     fruity?: boolean
-    fragrant?: boolean
-    herbaceous?: boolean
+    grassy?: boolean
     mineral?: boolean
+    fragrant?: boolean
     spicy?: boolean
+    toasted?: boolean
     ethereal?: boolean
-    frank?: boolean
     notes?: boolean
     tastings?: boolean | tastingsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["olfactory_exams"]>
@@ -6736,16 +5506,16 @@ export namespace Prisma {
     vinous?: boolean
     floral?: boolean
     fruity?: boolean
-    fragrant?: boolean
-    herbaceous?: boolean
+    grassy?: boolean
     mineral?: boolean
+    fragrant?: boolean
     spicy?: boolean
+    toasted?: boolean
     ethereal?: boolean
-    frank?: boolean
     notes?: boolean
   }
 
-  export type olfactory_examsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "eid" | "intensity" | "complexity" | "quality" | "aromatic" | "vinous" | "floral" | "fruity" | "fragrant" | "herbaceous" | "mineral" | "spicy" | "ethereal" | "frank" | "notes", ExtArgs["result"]["olfactory_exams"]>
+  export type olfactory_examsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "eid" | "intensity" | "complexity" | "quality" | "aromatic" | "vinous" | "floral" | "fruity" | "grassy" | "mineral" | "fragrant" | "spicy" | "toasted" | "ethereal" | "notes", ExtArgs["result"]["olfactory_exams"]>
   export type olfactory_examsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tastings?: boolean | tastingsDefaultArgs<ExtArgs>
   }
@@ -6772,12 +5542,12 @@ export namespace Prisma {
       vinous: boolean | null
       floral: boolean | null
       fruity: boolean | null
-      fragrant: boolean | null
-      herbaceous: boolean | null
+      grassy: boolean | null
       mineral: boolean | null
+      fragrant: boolean | null
       spicy: boolean | null
+      toasted: boolean | null
       ethereal: boolean | null
-      frank: boolean | null
       notes: string | null
     }, ExtArgs["result"]["olfactory_exams"]>
     composites: {}
@@ -7213,12 +5983,12 @@ export namespace Prisma {
     readonly vinous: FieldRef<"olfactory_exams", 'Boolean'>
     readonly floral: FieldRef<"olfactory_exams", 'Boolean'>
     readonly fruity: FieldRef<"olfactory_exams", 'Boolean'>
-    readonly fragrant: FieldRef<"olfactory_exams", 'Boolean'>
-    readonly herbaceous: FieldRef<"olfactory_exams", 'Boolean'>
+    readonly grassy: FieldRef<"olfactory_exams", 'Boolean'>
     readonly mineral: FieldRef<"olfactory_exams", 'Boolean'>
+    readonly fragrant: FieldRef<"olfactory_exams", 'Boolean'>
     readonly spicy: FieldRef<"olfactory_exams", 'Boolean'>
+    readonly toasted: FieldRef<"olfactory_exams", 'Boolean'>
     readonly ethereal: FieldRef<"olfactory_exams", 'Boolean'>
-    readonly frank: FieldRef<"olfactory_exams", 'Boolean'>
     readonly notes: FieldRef<"olfactory_exams", 'String'>
   }
     
@@ -7658,17 +6428,17 @@ export namespace Prisma {
     id: number | null
     tid: string | null
     eid: string | null
-    sugars: string | null
+    sweetness: string | null
     alcohols: string | null
-    polyalcohols: string | null
-    acids: string | null
-    tannins: string | null
-    minerals: string | null
-    balance: string | null
+    softness: string | null
+    acidity: string | null
+    tannicity: string | null
+    saltiness: string | null
     intensity: string | null
     persistence: string | null
     quality: string | null
     structure: string | null
+    balance: string | null
     notes: string | null
   }
 
@@ -7676,17 +6446,17 @@ export namespace Prisma {
     id: number | null
     tid: string | null
     eid: string | null
-    sugars: string | null
+    sweetness: string | null
     alcohols: string | null
-    polyalcohols: string | null
-    acids: string | null
-    tannins: string | null
-    minerals: string | null
-    balance: string | null
+    softness: string | null
+    acidity: string | null
+    tannicity: string | null
+    saltiness: string | null
     intensity: string | null
     persistence: string | null
     quality: string | null
     structure: string | null
+    balance: string | null
     notes: string | null
   }
 
@@ -7694,17 +6464,17 @@ export namespace Prisma {
     id: number
     tid: number
     eid: number
-    sugars: number
+    sweetness: number
     alcohols: number
-    polyalcohols: number
-    acids: number
-    tannins: number
-    minerals: number
-    balance: number
+    softness: number
+    acidity: number
+    tannicity: number
+    saltiness: number
     intensity: number
     persistence: number
     quality: number
     structure: number
+    balance: number
     notes: number
     _all: number
   }
@@ -7722,17 +6492,17 @@ export namespace Prisma {
     id?: true
     tid?: true
     eid?: true
-    sugars?: true
+    sweetness?: true
     alcohols?: true
-    polyalcohols?: true
-    acids?: true
-    tannins?: true
-    minerals?: true
-    balance?: true
+    softness?: true
+    acidity?: true
+    tannicity?: true
+    saltiness?: true
     intensity?: true
     persistence?: true
     quality?: true
     structure?: true
+    balance?: true
     notes?: true
   }
 
@@ -7740,17 +6510,17 @@ export namespace Prisma {
     id?: true
     tid?: true
     eid?: true
-    sugars?: true
+    sweetness?: true
     alcohols?: true
-    polyalcohols?: true
-    acids?: true
-    tannins?: true
-    minerals?: true
-    balance?: true
+    softness?: true
+    acidity?: true
+    tannicity?: true
+    saltiness?: true
     intensity?: true
     persistence?: true
     quality?: true
     structure?: true
+    balance?: true
     notes?: true
   }
 
@@ -7758,17 +6528,17 @@ export namespace Prisma {
     id?: true
     tid?: true
     eid?: true
-    sugars?: true
+    sweetness?: true
     alcohols?: true
-    polyalcohols?: true
-    acids?: true
-    tannins?: true
-    minerals?: true
-    balance?: true
+    softness?: true
+    acidity?: true
+    tannicity?: true
+    saltiness?: true
     intensity?: true
     persistence?: true
     quality?: true
     structure?: true
+    balance?: true
     notes?: true
     _all?: true
   }
@@ -7863,17 +6633,17 @@ export namespace Prisma {
     id: number
     tid: string
     eid: string
-    sugars: string
+    sweetness: string
     alcohols: string
-    polyalcohols: string
-    acids: string
-    tannins: string
-    minerals: string
-    balance: string
+    softness: string
+    acidity: string
+    tannicity: string
+    saltiness: string
     intensity: string
     persistence: string
     quality: string
     structure: string
+    balance: string
     notes: string | null
     _count: Taste_olfactory_examsCountAggregateOutputType | null
     _avg: Taste_olfactory_examsAvgAggregateOutputType | null
@@ -7900,17 +6670,17 @@ export namespace Prisma {
     id?: boolean
     tid?: boolean
     eid?: boolean
-    sugars?: boolean
+    sweetness?: boolean
     alcohols?: boolean
-    polyalcohols?: boolean
-    acids?: boolean
-    tannins?: boolean
-    minerals?: boolean
-    balance?: boolean
+    softness?: boolean
+    acidity?: boolean
+    tannicity?: boolean
+    saltiness?: boolean
     intensity?: boolean
     persistence?: boolean
     quality?: boolean
     structure?: boolean
+    balance?: boolean
     notes?: boolean
     tastings?: boolean | tastingsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["taste_olfactory_exams"]>
@@ -7919,17 +6689,17 @@ export namespace Prisma {
     id?: boolean
     tid?: boolean
     eid?: boolean
-    sugars?: boolean
+    sweetness?: boolean
     alcohols?: boolean
-    polyalcohols?: boolean
-    acids?: boolean
-    tannins?: boolean
-    minerals?: boolean
-    balance?: boolean
+    softness?: boolean
+    acidity?: boolean
+    tannicity?: boolean
+    saltiness?: boolean
     intensity?: boolean
     persistence?: boolean
     quality?: boolean
     structure?: boolean
+    balance?: boolean
     notes?: boolean
     tastings?: boolean | tastingsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["taste_olfactory_exams"]>
@@ -7938,17 +6708,17 @@ export namespace Prisma {
     id?: boolean
     tid?: boolean
     eid?: boolean
-    sugars?: boolean
+    sweetness?: boolean
     alcohols?: boolean
-    polyalcohols?: boolean
-    acids?: boolean
-    tannins?: boolean
-    minerals?: boolean
-    balance?: boolean
+    softness?: boolean
+    acidity?: boolean
+    tannicity?: boolean
+    saltiness?: boolean
     intensity?: boolean
     persistence?: boolean
     quality?: boolean
     structure?: boolean
+    balance?: boolean
     notes?: boolean
     tastings?: boolean | tastingsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["taste_olfactory_exams"]>
@@ -7957,21 +6727,21 @@ export namespace Prisma {
     id?: boolean
     tid?: boolean
     eid?: boolean
-    sugars?: boolean
+    sweetness?: boolean
     alcohols?: boolean
-    polyalcohols?: boolean
-    acids?: boolean
-    tannins?: boolean
-    minerals?: boolean
-    balance?: boolean
+    softness?: boolean
+    acidity?: boolean
+    tannicity?: boolean
+    saltiness?: boolean
     intensity?: boolean
     persistence?: boolean
     quality?: boolean
     structure?: boolean
+    balance?: boolean
     notes?: boolean
   }
 
-  export type taste_olfactory_examsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "eid" | "sugars" | "alcohols" | "polyalcohols" | "acids" | "tannins" | "minerals" | "balance" | "intensity" | "persistence" | "quality" | "structure" | "notes", ExtArgs["result"]["taste_olfactory_exams"]>
+  export type taste_olfactory_examsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "eid" | "sweetness" | "alcohols" | "softness" | "acidity" | "tannicity" | "saltiness" | "intensity" | "persistence" | "quality" | "structure" | "balance" | "notes", ExtArgs["result"]["taste_olfactory_exams"]>
   export type taste_olfactory_examsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tastings?: boolean | tastingsDefaultArgs<ExtArgs>
   }
@@ -7991,17 +6761,17 @@ export namespace Prisma {
       id: number
       tid: string
       eid: string
-      sugars: string
+      sweetness: string
       alcohols: string
-      polyalcohols: string
-      acids: string
-      tannins: string
-      minerals: string
-      balance: string
+      softness: string
+      acidity: string
+      tannicity: string
+      saltiness: string
       intensity: string
       persistence: string
       quality: string
       structure: string
+      balance: string
       notes: string | null
     }, ExtArgs["result"]["taste_olfactory_exams"]>
     composites: {}
@@ -8430,17 +7200,17 @@ export namespace Prisma {
     readonly id: FieldRef<"taste_olfactory_exams", 'Int'>
     readonly tid: FieldRef<"taste_olfactory_exams", 'String'>
     readonly eid: FieldRef<"taste_olfactory_exams", 'String'>
-    readonly sugars: FieldRef<"taste_olfactory_exams", 'String'>
+    readonly sweetness: FieldRef<"taste_olfactory_exams", 'String'>
     readonly alcohols: FieldRef<"taste_olfactory_exams", 'String'>
-    readonly polyalcohols: FieldRef<"taste_olfactory_exams", 'String'>
-    readonly acids: FieldRef<"taste_olfactory_exams", 'String'>
-    readonly tannins: FieldRef<"taste_olfactory_exams", 'String'>
-    readonly minerals: FieldRef<"taste_olfactory_exams", 'String'>
-    readonly balance: FieldRef<"taste_olfactory_exams", 'String'>
+    readonly softness: FieldRef<"taste_olfactory_exams", 'String'>
+    readonly acidity: FieldRef<"taste_olfactory_exams", 'String'>
+    readonly tannicity: FieldRef<"taste_olfactory_exams", 'String'>
+    readonly saltiness: FieldRef<"taste_olfactory_exams", 'String'>
     readonly intensity: FieldRef<"taste_olfactory_exams", 'String'>
     readonly persistence: FieldRef<"taste_olfactory_exams", 'String'>
     readonly quality: FieldRef<"taste_olfactory_exams", 'String'>
     readonly structure: FieldRef<"taste_olfactory_exams", 'String'>
+    readonly balance: FieldRef<"taste_olfactory_exams", 'String'>
     readonly notes: FieldRef<"taste_olfactory_exams", 'String'>
   }
     
@@ -8884,7 +7654,7 @@ export namespace Prisma {
     color_family: string | null
     color_shade: string | null
     consistency: string | null
-    bubble_grain: string | null
+    bubble_size: string | null
     bubble_number: string | null
     bubble_persistence: string | null
     notes: string | null
@@ -8898,7 +7668,7 @@ export namespace Prisma {
     color_family: string | null
     color_shade: string | null
     consistency: string | null
-    bubble_grain: string | null
+    bubble_size: string | null
     bubble_number: string | null
     bubble_persistence: string | null
     notes: string | null
@@ -8912,7 +7682,7 @@ export namespace Prisma {
     color_family: number
     color_shade: number
     consistency: number
-    bubble_grain: number
+    bubble_size: number
     bubble_number: number
     bubble_persistence: number
     notes: number
@@ -8936,7 +7706,7 @@ export namespace Prisma {
     color_family?: true
     color_shade?: true
     consistency?: true
-    bubble_grain?: true
+    bubble_size?: true
     bubble_number?: true
     bubble_persistence?: true
     notes?: true
@@ -8950,7 +7720,7 @@ export namespace Prisma {
     color_family?: true
     color_shade?: true
     consistency?: true
-    bubble_grain?: true
+    bubble_size?: true
     bubble_number?: true
     bubble_persistence?: true
     notes?: true
@@ -8964,7 +7734,7 @@ export namespace Prisma {
     color_family?: true
     color_shade?: true
     consistency?: true
-    bubble_grain?: true
+    bubble_size?: true
     bubble_number?: true
     bubble_persistence?: true
     notes?: true
@@ -9065,7 +7835,7 @@ export namespace Prisma {
     color_family: string
     color_shade: string
     consistency: string
-    bubble_grain: string | null
+    bubble_size: string | null
     bubble_number: string | null
     bubble_persistence: string | null
     notes: string | null
@@ -9098,7 +7868,7 @@ export namespace Prisma {
     color_family?: boolean
     color_shade?: boolean
     consistency?: boolean
-    bubble_grain?: boolean
+    bubble_size?: boolean
     bubble_number?: boolean
     bubble_persistence?: boolean
     notes?: boolean
@@ -9113,7 +7883,7 @@ export namespace Prisma {
     color_family?: boolean
     color_shade?: boolean
     consistency?: boolean
-    bubble_grain?: boolean
+    bubble_size?: boolean
     bubble_number?: boolean
     bubble_persistence?: boolean
     notes?: boolean
@@ -9128,7 +7898,7 @@ export namespace Prisma {
     color_family?: boolean
     color_shade?: boolean
     consistency?: boolean
-    bubble_grain?: boolean
+    bubble_size?: boolean
     bubble_number?: boolean
     bubble_persistence?: boolean
     notes?: boolean
@@ -9143,13 +7913,13 @@ export namespace Prisma {
     color_family?: boolean
     color_shade?: boolean
     consistency?: boolean
-    bubble_grain?: boolean
+    bubble_size?: boolean
     bubble_number?: boolean
     bubble_persistence?: boolean
     notes?: boolean
   }
 
-  export type visual_examsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "eid" | "limpidity" | "color_family" | "color_shade" | "consistency" | "bubble_grain" | "bubble_number" | "bubble_persistence" | "notes", ExtArgs["result"]["visual_exams"]>
+  export type visual_examsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "eid" | "limpidity" | "color_family" | "color_shade" | "consistency" | "bubble_size" | "bubble_number" | "bubble_persistence" | "notes", ExtArgs["result"]["visual_exams"]>
   export type visual_examsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tastings?: boolean | tastingsDefaultArgs<ExtArgs>
   }
@@ -9173,7 +7943,7 @@ export namespace Prisma {
       color_family: string
       color_shade: string
       consistency: string
-      bubble_grain: string | null
+      bubble_size: string | null
       bubble_number: string | null
       bubble_persistence: string | null
       notes: string | null
@@ -9608,7 +8378,7 @@ export namespace Prisma {
     readonly color_family: FieldRef<"visual_exams", 'String'>
     readonly color_shade: FieldRef<"visual_exams", 'String'>
     readonly consistency: FieldRef<"visual_exams", 'String'>
-    readonly bubble_grain: FieldRef<"visual_exams", 'String'>
+    readonly bubble_size: FieldRef<"visual_exams", 'String'>
     readonly bubble_number: FieldRef<"visual_exams", 'String'>
     readonly bubble_persistence: FieldRef<"visual_exams", 'String'>
     readonly notes: FieldRef<"visual_exams", 'String'>
@@ -10050,7 +8820,7 @@ export namespace Prisma {
     id: number | null
     tid: string | null
     eid: string | null
-    evolution: string | null
+    evolutionary_state: string | null
     harmony: string | null
     pairings: string | null
     notes: string | null
@@ -10060,7 +8830,7 @@ export namespace Prisma {
     id: number | null
     tid: string | null
     eid: string | null
-    evolution: string | null
+    evolutionary_state: string | null
     harmony: string | null
     pairings: string | null
     notes: string | null
@@ -10070,7 +8840,7 @@ export namespace Prisma {
     id: number
     tid: number
     eid: number
-    evolution: number
+    evolutionary_state: number
     harmony: number
     pairings: number
     notes: number
@@ -10090,7 +8860,7 @@ export namespace Prisma {
     id?: true
     tid?: true
     eid?: true
-    evolution?: true
+    evolutionary_state?: true
     harmony?: true
     pairings?: true
     notes?: true
@@ -10100,7 +8870,7 @@ export namespace Prisma {
     id?: true
     tid?: true
     eid?: true
-    evolution?: true
+    evolutionary_state?: true
     harmony?: true
     pairings?: true
     notes?: true
@@ -10110,7 +8880,7 @@ export namespace Prisma {
     id?: true
     tid?: true
     eid?: true
-    evolution?: true
+    evolutionary_state?: true
     harmony?: true
     pairings?: true
     notes?: true
@@ -10207,7 +8977,7 @@ export namespace Prisma {
     id: number
     tid: string
     eid: string
-    evolution: string
+    evolutionary_state: string
     harmony: string
     pairings: string
     notes: string | null
@@ -10236,7 +9006,7 @@ export namespace Prisma {
     id?: boolean
     tid?: boolean
     eid?: boolean
-    evolution?: boolean
+    evolutionary_state?: boolean
     harmony?: boolean
     pairings?: boolean
     notes?: boolean
@@ -10247,7 +9017,7 @@ export namespace Prisma {
     id?: boolean
     tid?: boolean
     eid?: boolean
-    evolution?: boolean
+    evolutionary_state?: boolean
     harmony?: boolean
     pairings?: boolean
     notes?: boolean
@@ -10258,7 +9028,7 @@ export namespace Prisma {
     id?: boolean
     tid?: boolean
     eid?: boolean
-    evolution?: boolean
+    evolutionary_state?: boolean
     harmony?: boolean
     pairings?: boolean
     notes?: boolean
@@ -10269,13 +9039,13 @@ export namespace Prisma {
     id?: boolean
     tid?: boolean
     eid?: boolean
-    evolution?: boolean
+    evolutionary_state?: boolean
     harmony?: boolean
     pairings?: boolean
     notes?: boolean
   }
 
-  export type final_considerationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "eid" | "evolution" | "harmony" | "pairings" | "notes", ExtArgs["result"]["final_considerations"]>
+  export type final_considerationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "tid" | "eid" | "evolutionary_state" | "harmony" | "pairings" | "notes", ExtArgs["result"]["final_considerations"]>
   export type final_considerationsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tastings?: boolean | tastingsDefaultArgs<ExtArgs>
   }
@@ -10295,7 +9065,7 @@ export namespace Prisma {
       id: number
       tid: string
       eid: string
-      evolution: string
+      evolutionary_state: string
       harmony: string
       pairings: string
       notes: string | null
@@ -10726,7 +9496,7 @@ export namespace Prisma {
     readonly id: FieldRef<"final_considerations", 'Int'>
     readonly tid: FieldRef<"final_considerations", 'String'>
     readonly eid: FieldRef<"final_considerations", 'String'>
-    readonly evolution: FieldRef<"final_considerations", 'String'>
+    readonly evolutionary_state: FieldRef<"final_considerations", 'String'>
     readonly harmony: FieldRef<"final_considerations", 'String'>
     readonly pairings: FieldRef<"final_considerations", 'String'>
     readonly notes: FieldRef<"final_considerations", 'String'>
@@ -11186,16 +9956,6 @@ export namespace Prisma {
   export type Wine_categoriesScalarFieldEnum = (typeof Wine_categoriesScalarFieldEnum)[keyof typeof Wine_categoriesScalarFieldEnum]
 
 
-  export const Wine_category_translationsScalarFieldEnum: {
-    id: 'id',
-    category_id: 'category_id',
-    language_code: 'language_code',
-    name: 'name'
-  };
-
-  export type Wine_category_translationsScalarFieldEnum = (typeof Wine_category_translationsScalarFieldEnum)[keyof typeof Wine_category_translationsScalarFieldEnum]
-
-
   export const TastingsScalarFieldEnum: {
     id: 'id',
     tid: 'tid',
@@ -11231,12 +9991,12 @@ export namespace Prisma {
     vinous: 'vinous',
     floral: 'floral',
     fruity: 'fruity',
-    fragrant: 'fragrant',
-    herbaceous: 'herbaceous',
+    grassy: 'grassy',
     mineral: 'mineral',
+    fragrant: 'fragrant',
     spicy: 'spicy',
+    toasted: 'toasted',
     ethereal: 'ethereal',
-    frank: 'frank',
     notes: 'notes'
   };
 
@@ -11247,17 +10007,17 @@ export namespace Prisma {
     id: 'id',
     tid: 'tid',
     eid: 'eid',
-    sugars: 'sugars',
+    sweetness: 'sweetness',
     alcohols: 'alcohols',
-    polyalcohols: 'polyalcohols',
-    acids: 'acids',
-    tannins: 'tannins',
-    minerals: 'minerals',
-    balance: 'balance',
+    softness: 'softness',
+    acidity: 'acidity',
+    tannicity: 'tannicity',
+    saltiness: 'saltiness',
     intensity: 'intensity',
     persistence: 'persistence',
     quality: 'quality',
     structure: 'structure',
+    balance: 'balance',
     notes: 'notes'
   };
 
@@ -11272,7 +10032,7 @@ export namespace Prisma {
     color_family: 'color_family',
     color_shade: 'color_shade',
     consistency: 'consistency',
-    bubble_grain: 'bubble_grain',
+    bubble_size: 'bubble_size',
     bubble_number: 'bubble_number',
     bubble_persistence: 'bubble_persistence',
     notes: 'notes'
@@ -11285,7 +10045,7 @@ export namespace Prisma {
     id: 'id',
     tid: 'tid',
     eid: 'eid',
-    evolution: 'evolution',
+    evolutionary_state: 'evolutionary_state',
     harmony: 'harmony',
     pairings: 'pairings',
     notes: 'notes'
@@ -11512,14 +10272,12 @@ export namespace Prisma {
     id?: IntFilter<"wine_categories"> | number
     code?: StringFilter<"wine_categories"> | string
     tastings?: TastingsListRelationFilter
-    wine_category_translations?: Wine_category_translationsListRelationFilter
   }
 
   export type wine_categoriesOrderByWithRelationInput = {
     id?: SortOrder
     code?: SortOrder
     tastings?: tastingsOrderByRelationAggregateInput
-    wine_category_translations?: wine_category_translationsOrderByRelationAggregateInput
   }
 
   export type wine_categoriesWhereUniqueInput = Prisma.AtLeast<{
@@ -11529,7 +10287,6 @@ export namespace Prisma {
     OR?: wine_categoriesWhereInput[]
     NOT?: wine_categoriesWhereInput | wine_categoriesWhereInput[]
     tastings?: TastingsListRelationFilter
-    wine_category_translations?: Wine_category_translationsListRelationFilter
   }, "id" | "code">
 
   export type wine_categoriesOrderByWithAggregationInput = {
@@ -11548,59 +10305,6 @@ export namespace Prisma {
     NOT?: wine_categoriesScalarWhereWithAggregatesInput | wine_categoriesScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"wine_categories"> | number
     code?: StringWithAggregatesFilter<"wine_categories"> | string
-  }
-
-  export type wine_category_translationsWhereInput = {
-    AND?: wine_category_translationsWhereInput | wine_category_translationsWhereInput[]
-    OR?: wine_category_translationsWhereInput[]
-    NOT?: wine_category_translationsWhereInput | wine_category_translationsWhereInput[]
-    id?: IntFilter<"wine_category_translations"> | number
-    category_id?: IntNullableFilter<"wine_category_translations"> | number | null
-    language_code?: StringFilter<"wine_category_translations"> | string
-    name?: StringFilter<"wine_category_translations"> | string
-    wine_categories?: XOR<Wine_categoriesNullableScalarRelationFilter, wine_categoriesWhereInput> | null
-  }
-
-  export type wine_category_translationsOrderByWithRelationInput = {
-    id?: SortOrder
-    category_id?: SortOrderInput | SortOrder
-    language_code?: SortOrder
-    name?: SortOrder
-    wine_categories?: wine_categoriesOrderByWithRelationInput
-  }
-
-  export type wine_category_translationsWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    category_id_language_code?: wine_category_translationsCategory_idLanguage_codeCompoundUniqueInput
-    AND?: wine_category_translationsWhereInput | wine_category_translationsWhereInput[]
-    OR?: wine_category_translationsWhereInput[]
-    NOT?: wine_category_translationsWhereInput | wine_category_translationsWhereInput[]
-    category_id?: IntNullableFilter<"wine_category_translations"> | number | null
-    language_code?: StringFilter<"wine_category_translations"> | string
-    name?: StringFilter<"wine_category_translations"> | string
-    wine_categories?: XOR<Wine_categoriesNullableScalarRelationFilter, wine_categoriesWhereInput> | null
-  }, "id" | "category_id_language_code">
-
-  export type wine_category_translationsOrderByWithAggregationInput = {
-    id?: SortOrder
-    category_id?: SortOrderInput | SortOrder
-    language_code?: SortOrder
-    name?: SortOrder
-    _count?: wine_category_translationsCountOrderByAggregateInput
-    _avg?: wine_category_translationsAvgOrderByAggregateInput
-    _max?: wine_category_translationsMaxOrderByAggregateInput
-    _min?: wine_category_translationsMinOrderByAggregateInput
-    _sum?: wine_category_translationsSumOrderByAggregateInput
-  }
-
-  export type wine_category_translationsScalarWhereWithAggregatesInput = {
-    AND?: wine_category_translationsScalarWhereWithAggregatesInput | wine_category_translationsScalarWhereWithAggregatesInput[]
-    OR?: wine_category_translationsScalarWhereWithAggregatesInput[]
-    NOT?: wine_category_translationsScalarWhereWithAggregatesInput | wine_category_translationsScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"wine_category_translations"> | number
-    category_id?: IntNullableWithAggregatesFilter<"wine_category_translations"> | number | null
-    language_code?: StringWithAggregatesFilter<"wine_category_translations"> | string
-    name?: StringWithAggregatesFilter<"wine_category_translations"> | string
   }
 
   export type tastingsWhereInput = {
@@ -11754,12 +10458,12 @@ export namespace Prisma {
     vinous?: BoolNullableFilter<"olfactory_exams"> | boolean | null
     floral?: BoolNullableFilter<"olfactory_exams"> | boolean | null
     fruity?: BoolNullableFilter<"olfactory_exams"> | boolean | null
-    fragrant?: BoolNullableFilter<"olfactory_exams"> | boolean | null
-    herbaceous?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    grassy?: BoolNullableFilter<"olfactory_exams"> | boolean | null
     mineral?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    fragrant?: BoolNullableFilter<"olfactory_exams"> | boolean | null
     spicy?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    toasted?: BoolNullableFilter<"olfactory_exams"> | boolean | null
     ethereal?: BoolNullableFilter<"olfactory_exams"> | boolean | null
-    frank?: BoolNullableFilter<"olfactory_exams"> | boolean | null
     notes?: StringNullableFilter<"olfactory_exams"> | string | null
     tastings?: XOR<TastingsScalarRelationFilter, tastingsWhereInput>
   }
@@ -11775,12 +10479,12 @@ export namespace Prisma {
     vinous?: SortOrderInput | SortOrder
     floral?: SortOrderInput | SortOrder
     fruity?: SortOrderInput | SortOrder
-    fragrant?: SortOrderInput | SortOrder
-    herbaceous?: SortOrderInput | SortOrder
+    grassy?: SortOrderInput | SortOrder
     mineral?: SortOrderInput | SortOrder
+    fragrant?: SortOrderInput | SortOrder
     spicy?: SortOrderInput | SortOrder
+    toasted?: SortOrderInput | SortOrder
     ethereal?: SortOrderInput | SortOrder
-    frank?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
     tastings?: tastingsOrderByWithRelationInput
   }
@@ -11799,12 +10503,12 @@ export namespace Prisma {
     vinous?: BoolNullableFilter<"olfactory_exams"> | boolean | null
     floral?: BoolNullableFilter<"olfactory_exams"> | boolean | null
     fruity?: BoolNullableFilter<"olfactory_exams"> | boolean | null
-    fragrant?: BoolNullableFilter<"olfactory_exams"> | boolean | null
-    herbaceous?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    grassy?: BoolNullableFilter<"olfactory_exams"> | boolean | null
     mineral?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    fragrant?: BoolNullableFilter<"olfactory_exams"> | boolean | null
     spicy?: BoolNullableFilter<"olfactory_exams"> | boolean | null
+    toasted?: BoolNullableFilter<"olfactory_exams"> | boolean | null
     ethereal?: BoolNullableFilter<"olfactory_exams"> | boolean | null
-    frank?: BoolNullableFilter<"olfactory_exams"> | boolean | null
     notes?: StringNullableFilter<"olfactory_exams"> | string | null
     tastings?: XOR<TastingsScalarRelationFilter, tastingsWhereInput>
   }, "id" | "tid" | "eid">
@@ -11820,12 +10524,12 @@ export namespace Prisma {
     vinous?: SortOrderInput | SortOrder
     floral?: SortOrderInput | SortOrder
     fruity?: SortOrderInput | SortOrder
-    fragrant?: SortOrderInput | SortOrder
-    herbaceous?: SortOrderInput | SortOrder
+    grassy?: SortOrderInput | SortOrder
     mineral?: SortOrderInput | SortOrder
+    fragrant?: SortOrderInput | SortOrder
     spicy?: SortOrderInput | SortOrder
+    toasted?: SortOrderInput | SortOrder
     ethereal?: SortOrderInput | SortOrder
-    frank?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
     _count?: olfactory_examsCountOrderByAggregateInput
     _avg?: olfactory_examsAvgOrderByAggregateInput
@@ -11848,12 +10552,12 @@ export namespace Prisma {
     vinous?: BoolNullableWithAggregatesFilter<"olfactory_exams"> | boolean | null
     floral?: BoolNullableWithAggregatesFilter<"olfactory_exams"> | boolean | null
     fruity?: BoolNullableWithAggregatesFilter<"olfactory_exams"> | boolean | null
-    fragrant?: BoolNullableWithAggregatesFilter<"olfactory_exams"> | boolean | null
-    herbaceous?: BoolNullableWithAggregatesFilter<"olfactory_exams"> | boolean | null
+    grassy?: BoolNullableWithAggregatesFilter<"olfactory_exams"> | boolean | null
     mineral?: BoolNullableWithAggregatesFilter<"olfactory_exams"> | boolean | null
+    fragrant?: BoolNullableWithAggregatesFilter<"olfactory_exams"> | boolean | null
     spicy?: BoolNullableWithAggregatesFilter<"olfactory_exams"> | boolean | null
+    toasted?: BoolNullableWithAggregatesFilter<"olfactory_exams"> | boolean | null
     ethereal?: BoolNullableWithAggregatesFilter<"olfactory_exams"> | boolean | null
-    frank?: BoolNullableWithAggregatesFilter<"olfactory_exams"> | boolean | null
     notes?: StringNullableWithAggregatesFilter<"olfactory_exams"> | string | null
   }
 
@@ -11864,17 +10568,17 @@ export namespace Prisma {
     id?: IntFilter<"taste_olfactory_exams"> | number
     tid?: UuidFilter<"taste_olfactory_exams"> | string
     eid?: UuidFilter<"taste_olfactory_exams"> | string
-    sugars?: StringFilter<"taste_olfactory_exams"> | string
+    sweetness?: StringFilter<"taste_olfactory_exams"> | string
     alcohols?: StringFilter<"taste_olfactory_exams"> | string
-    polyalcohols?: StringFilter<"taste_olfactory_exams"> | string
-    acids?: StringFilter<"taste_olfactory_exams"> | string
-    tannins?: StringFilter<"taste_olfactory_exams"> | string
-    minerals?: StringFilter<"taste_olfactory_exams"> | string
-    balance?: StringFilter<"taste_olfactory_exams"> | string
+    softness?: StringFilter<"taste_olfactory_exams"> | string
+    acidity?: StringFilter<"taste_olfactory_exams"> | string
+    tannicity?: StringFilter<"taste_olfactory_exams"> | string
+    saltiness?: StringFilter<"taste_olfactory_exams"> | string
     intensity?: StringFilter<"taste_olfactory_exams"> | string
     persistence?: StringFilter<"taste_olfactory_exams"> | string
     quality?: StringFilter<"taste_olfactory_exams"> | string
     structure?: StringFilter<"taste_olfactory_exams"> | string
+    balance?: StringFilter<"taste_olfactory_exams"> | string
     notes?: StringNullableFilter<"taste_olfactory_exams"> | string | null
     tastings?: XOR<TastingsScalarRelationFilter, tastingsWhereInput>
   }
@@ -11883,17 +10587,17 @@ export namespace Prisma {
     id?: SortOrder
     tid?: SortOrder
     eid?: SortOrder
-    sugars?: SortOrder
+    sweetness?: SortOrder
     alcohols?: SortOrder
-    polyalcohols?: SortOrder
-    acids?: SortOrder
-    tannins?: SortOrder
-    minerals?: SortOrder
-    balance?: SortOrder
+    softness?: SortOrder
+    acidity?: SortOrder
+    tannicity?: SortOrder
+    saltiness?: SortOrder
     intensity?: SortOrder
     persistence?: SortOrder
     quality?: SortOrder
     structure?: SortOrder
+    balance?: SortOrder
     notes?: SortOrderInput | SortOrder
     tastings?: tastingsOrderByWithRelationInput
   }
@@ -11905,17 +10609,17 @@ export namespace Prisma {
     AND?: taste_olfactory_examsWhereInput | taste_olfactory_examsWhereInput[]
     OR?: taste_olfactory_examsWhereInput[]
     NOT?: taste_olfactory_examsWhereInput | taste_olfactory_examsWhereInput[]
-    sugars?: StringFilter<"taste_olfactory_exams"> | string
+    sweetness?: StringFilter<"taste_olfactory_exams"> | string
     alcohols?: StringFilter<"taste_olfactory_exams"> | string
-    polyalcohols?: StringFilter<"taste_olfactory_exams"> | string
-    acids?: StringFilter<"taste_olfactory_exams"> | string
-    tannins?: StringFilter<"taste_olfactory_exams"> | string
-    minerals?: StringFilter<"taste_olfactory_exams"> | string
-    balance?: StringFilter<"taste_olfactory_exams"> | string
+    softness?: StringFilter<"taste_olfactory_exams"> | string
+    acidity?: StringFilter<"taste_olfactory_exams"> | string
+    tannicity?: StringFilter<"taste_olfactory_exams"> | string
+    saltiness?: StringFilter<"taste_olfactory_exams"> | string
     intensity?: StringFilter<"taste_olfactory_exams"> | string
     persistence?: StringFilter<"taste_olfactory_exams"> | string
     quality?: StringFilter<"taste_olfactory_exams"> | string
     structure?: StringFilter<"taste_olfactory_exams"> | string
+    balance?: StringFilter<"taste_olfactory_exams"> | string
     notes?: StringNullableFilter<"taste_olfactory_exams"> | string | null
     tastings?: XOR<TastingsScalarRelationFilter, tastingsWhereInput>
   }, "id" | "tid" | "eid">
@@ -11924,17 +10628,17 @@ export namespace Prisma {
     id?: SortOrder
     tid?: SortOrder
     eid?: SortOrder
-    sugars?: SortOrder
+    sweetness?: SortOrder
     alcohols?: SortOrder
-    polyalcohols?: SortOrder
-    acids?: SortOrder
-    tannins?: SortOrder
-    minerals?: SortOrder
-    balance?: SortOrder
+    softness?: SortOrder
+    acidity?: SortOrder
+    tannicity?: SortOrder
+    saltiness?: SortOrder
     intensity?: SortOrder
     persistence?: SortOrder
     quality?: SortOrder
     structure?: SortOrder
+    balance?: SortOrder
     notes?: SortOrderInput | SortOrder
     _count?: taste_olfactory_examsCountOrderByAggregateInput
     _avg?: taste_olfactory_examsAvgOrderByAggregateInput
@@ -11950,17 +10654,17 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"taste_olfactory_exams"> | number
     tid?: UuidWithAggregatesFilter<"taste_olfactory_exams"> | string
     eid?: UuidWithAggregatesFilter<"taste_olfactory_exams"> | string
-    sugars?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
+    sweetness?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
     alcohols?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
-    polyalcohols?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
-    acids?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
-    tannins?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
-    minerals?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
-    balance?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
+    softness?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
+    acidity?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
+    tannicity?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
+    saltiness?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
     intensity?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
     persistence?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
     quality?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
     structure?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
+    balance?: StringWithAggregatesFilter<"taste_olfactory_exams"> | string
     notes?: StringNullableWithAggregatesFilter<"taste_olfactory_exams"> | string | null
   }
 
@@ -11975,7 +10679,7 @@ export namespace Prisma {
     color_family?: StringFilter<"visual_exams"> | string
     color_shade?: StringFilter<"visual_exams"> | string
     consistency?: StringFilter<"visual_exams"> | string
-    bubble_grain?: StringNullableFilter<"visual_exams"> | string | null
+    bubble_size?: StringNullableFilter<"visual_exams"> | string | null
     bubble_number?: StringNullableFilter<"visual_exams"> | string | null
     bubble_persistence?: StringNullableFilter<"visual_exams"> | string | null
     notes?: StringNullableFilter<"visual_exams"> | string | null
@@ -11990,7 +10694,7 @@ export namespace Prisma {
     color_family?: SortOrder
     color_shade?: SortOrder
     consistency?: SortOrder
-    bubble_grain?: SortOrderInput | SortOrder
+    bubble_size?: SortOrderInput | SortOrder
     bubble_number?: SortOrderInput | SortOrder
     bubble_persistence?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
@@ -12008,7 +10712,7 @@ export namespace Prisma {
     color_family?: StringFilter<"visual_exams"> | string
     color_shade?: StringFilter<"visual_exams"> | string
     consistency?: StringFilter<"visual_exams"> | string
-    bubble_grain?: StringNullableFilter<"visual_exams"> | string | null
+    bubble_size?: StringNullableFilter<"visual_exams"> | string | null
     bubble_number?: StringNullableFilter<"visual_exams"> | string | null
     bubble_persistence?: StringNullableFilter<"visual_exams"> | string | null
     notes?: StringNullableFilter<"visual_exams"> | string | null
@@ -12023,7 +10727,7 @@ export namespace Prisma {
     color_family?: SortOrder
     color_shade?: SortOrder
     consistency?: SortOrder
-    bubble_grain?: SortOrderInput | SortOrder
+    bubble_size?: SortOrderInput | SortOrder
     bubble_number?: SortOrderInput | SortOrder
     bubble_persistence?: SortOrderInput | SortOrder
     notes?: SortOrderInput | SortOrder
@@ -12045,7 +10749,7 @@ export namespace Prisma {
     color_family?: StringWithAggregatesFilter<"visual_exams"> | string
     color_shade?: StringWithAggregatesFilter<"visual_exams"> | string
     consistency?: StringWithAggregatesFilter<"visual_exams"> | string
-    bubble_grain?: StringNullableWithAggregatesFilter<"visual_exams"> | string | null
+    bubble_size?: StringNullableWithAggregatesFilter<"visual_exams"> | string | null
     bubble_number?: StringNullableWithAggregatesFilter<"visual_exams"> | string | null
     bubble_persistence?: StringNullableWithAggregatesFilter<"visual_exams"> | string | null
     notes?: StringNullableWithAggregatesFilter<"visual_exams"> | string | null
@@ -12058,7 +10762,7 @@ export namespace Prisma {
     id?: IntFilter<"final_considerations"> | number
     tid?: UuidFilter<"final_considerations"> | string
     eid?: UuidFilter<"final_considerations"> | string
-    evolution?: StringFilter<"final_considerations"> | string
+    evolutionary_state?: StringFilter<"final_considerations"> | string
     harmony?: StringFilter<"final_considerations"> | string
     pairings?: StringFilter<"final_considerations"> | string
     notes?: StringNullableFilter<"final_considerations"> | string | null
@@ -12069,7 +10773,7 @@ export namespace Prisma {
     id?: SortOrder
     tid?: SortOrder
     eid?: SortOrder
-    evolution?: SortOrder
+    evolutionary_state?: SortOrder
     harmony?: SortOrder
     pairings?: SortOrder
     notes?: SortOrderInput | SortOrder
@@ -12083,7 +10787,7 @@ export namespace Prisma {
     AND?: final_considerationsWhereInput | final_considerationsWhereInput[]
     OR?: final_considerationsWhereInput[]
     NOT?: final_considerationsWhereInput | final_considerationsWhereInput[]
-    evolution?: StringFilter<"final_considerations"> | string
+    evolutionary_state?: StringFilter<"final_considerations"> | string
     harmony?: StringFilter<"final_considerations"> | string
     pairings?: StringFilter<"final_considerations"> | string
     notes?: StringNullableFilter<"final_considerations"> | string | null
@@ -12094,7 +10798,7 @@ export namespace Prisma {
     id?: SortOrder
     tid?: SortOrder
     eid?: SortOrder
-    evolution?: SortOrder
+    evolutionary_state?: SortOrder
     harmony?: SortOrder
     pairings?: SortOrder
     notes?: SortOrderInput | SortOrder
@@ -12112,7 +10816,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"final_considerations"> | number
     tid?: UuidWithAggregatesFilter<"final_considerations"> | string
     eid?: UuidWithAggregatesFilter<"final_considerations"> | string
-    evolution?: StringWithAggregatesFilter<"final_considerations"> | string
+    evolutionary_state?: StringWithAggregatesFilter<"final_considerations"> | string
     harmony?: StringWithAggregatesFilter<"final_considerations"> | string
     pairings?: StringWithAggregatesFilter<"final_considerations"> | string
     notes?: StringNullableWithAggregatesFilter<"final_considerations"> | string | null
@@ -12241,27 +10945,23 @@ export namespace Prisma {
   export type wine_categoriesCreateInput = {
     code: string
     tastings?: tastingsCreateNestedManyWithoutWine_categoriesInput
-    wine_category_translations?: wine_category_translationsCreateNestedManyWithoutWine_categoriesInput
   }
 
   export type wine_categoriesUncheckedCreateInput = {
     id?: number
     code: string
     tastings?: tastingsUncheckedCreateNestedManyWithoutWine_categoriesInput
-    wine_category_translations?: wine_category_translationsUncheckedCreateNestedManyWithoutWine_categoriesInput
   }
 
   export type wine_categoriesUpdateInput = {
     code?: StringFieldUpdateOperationsInput | string
     tastings?: tastingsUpdateManyWithoutWine_categoriesNestedInput
-    wine_category_translations?: wine_category_translationsUpdateManyWithoutWine_categoriesNestedInput
   }
 
   export type wine_categoriesUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     code?: StringFieldUpdateOperationsInput | string
     tastings?: tastingsUncheckedUpdateManyWithoutWine_categoriesNestedInput
-    wine_category_translations?: wine_category_translationsUncheckedUpdateManyWithoutWine_categoriesNestedInput
   }
 
   export type wine_categoriesCreateManyInput = {
@@ -12276,51 +10976,6 @@ export namespace Prisma {
   export type wine_categoriesUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     code?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type wine_category_translationsCreateInput = {
-    language_code: string
-    name: string
-    wine_categories?: wine_categoriesCreateNestedOneWithoutWine_category_translationsInput
-  }
-
-  export type wine_category_translationsUncheckedCreateInput = {
-    id?: number
-    category_id?: number | null
-    language_code: string
-    name: string
-  }
-
-  export type wine_category_translationsUpdateInput = {
-    language_code?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    wine_categories?: wine_categoriesUpdateOneWithoutWine_category_translationsNestedInput
-  }
-
-  export type wine_category_translationsUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    category_id?: NullableIntFieldUpdateOperationsInput | number | null
-    language_code?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type wine_category_translationsCreateManyInput = {
-    id?: number
-    category_id?: number | null
-    language_code: string
-    name: string
-  }
-
-  export type wine_category_translationsUpdateManyMutationInput = {
-    language_code?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type wine_category_translationsUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    category_id?: NullableIntFieldUpdateOperationsInput | number | null
-    language_code?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type tastingsCreateInput = {
@@ -12490,12 +11145,12 @@ export namespace Prisma {
     vinous?: boolean | null
     floral?: boolean | null
     fruity?: boolean | null
-    fragrant?: boolean | null
-    herbaceous?: boolean | null
+    grassy?: boolean | null
     mineral?: boolean | null
+    fragrant?: boolean | null
     spicy?: boolean | null
+    toasted?: boolean | null
     ethereal?: boolean | null
-    frank?: boolean | null
     notes?: string | null
     tastings: tastingsCreateNestedOneWithoutOlfactory_examsInput
   }
@@ -12511,12 +11166,12 @@ export namespace Prisma {
     vinous?: boolean | null
     floral?: boolean | null
     fruity?: boolean | null
-    fragrant?: boolean | null
-    herbaceous?: boolean | null
+    grassy?: boolean | null
     mineral?: boolean | null
+    fragrant?: boolean | null
     spicy?: boolean | null
+    toasted?: boolean | null
     ethereal?: boolean | null
-    frank?: boolean | null
     notes?: string | null
   }
 
@@ -12529,12 +11184,12 @@ export namespace Prisma {
     vinous?: NullableBoolFieldUpdateOperationsInput | boolean | null
     floral?: NullableBoolFieldUpdateOperationsInput | boolean | null
     fruity?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    fragrant?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    herbaceous?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    grassy?: NullableBoolFieldUpdateOperationsInput | boolean | null
     mineral?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fragrant?: NullableBoolFieldUpdateOperationsInput | boolean | null
     spicy?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    toasted?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ethereal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    frank?: NullableBoolFieldUpdateOperationsInput | boolean | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     tastings?: tastingsUpdateOneRequiredWithoutOlfactory_examsNestedInput
   }
@@ -12550,12 +11205,12 @@ export namespace Prisma {
     vinous?: NullableBoolFieldUpdateOperationsInput | boolean | null
     floral?: NullableBoolFieldUpdateOperationsInput | boolean | null
     fruity?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    fragrant?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    herbaceous?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    grassy?: NullableBoolFieldUpdateOperationsInput | boolean | null
     mineral?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fragrant?: NullableBoolFieldUpdateOperationsInput | boolean | null
     spicy?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    toasted?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ethereal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    frank?: NullableBoolFieldUpdateOperationsInput | boolean | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -12570,12 +11225,12 @@ export namespace Prisma {
     vinous?: boolean | null
     floral?: boolean | null
     fruity?: boolean | null
-    fragrant?: boolean | null
-    herbaceous?: boolean | null
+    grassy?: boolean | null
     mineral?: boolean | null
+    fragrant?: boolean | null
     spicy?: boolean | null
+    toasted?: boolean | null
     ethereal?: boolean | null
-    frank?: boolean | null
     notes?: string | null
   }
 
@@ -12588,12 +11243,12 @@ export namespace Prisma {
     vinous?: NullableBoolFieldUpdateOperationsInput | boolean | null
     floral?: NullableBoolFieldUpdateOperationsInput | boolean | null
     fruity?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    fragrant?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    herbaceous?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    grassy?: NullableBoolFieldUpdateOperationsInput | boolean | null
     mineral?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fragrant?: NullableBoolFieldUpdateOperationsInput | boolean | null
     spicy?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    toasted?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ethereal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    frank?: NullableBoolFieldUpdateOperationsInput | boolean | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -12608,28 +11263,28 @@ export namespace Prisma {
     vinous?: NullableBoolFieldUpdateOperationsInput | boolean | null
     floral?: NullableBoolFieldUpdateOperationsInput | boolean | null
     fruity?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    fragrant?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    herbaceous?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    grassy?: NullableBoolFieldUpdateOperationsInput | boolean | null
     mineral?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fragrant?: NullableBoolFieldUpdateOperationsInput | boolean | null
     spicy?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    toasted?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ethereal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    frank?: NullableBoolFieldUpdateOperationsInput | boolean | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type taste_olfactory_examsCreateInput = {
     eid?: string
-    sugars: string
+    sweetness: string
     alcohols: string
-    polyalcohols: string
-    acids: string
-    tannins: string
-    minerals: string
-    balance: string
+    softness: string
+    acidity: string
+    tannicity: string
+    saltiness: string
     intensity: string
     persistence: string
     quality: string
     structure: string
+    balance: string
     notes?: string | null
     tastings: tastingsCreateNestedOneWithoutTaste_olfactory_examsInput
   }
@@ -12638,33 +11293,33 @@ export namespace Prisma {
     id?: number
     tid: string
     eid?: string
-    sugars: string
+    sweetness: string
     alcohols: string
-    polyalcohols: string
-    acids: string
-    tannins: string
-    minerals: string
-    balance: string
+    softness: string
+    acidity: string
+    tannicity: string
+    saltiness: string
     intensity: string
     persistence: string
     quality: string
     structure: string
+    balance: string
     notes?: string | null
   }
 
   export type taste_olfactory_examsUpdateInput = {
     eid?: StringFieldUpdateOperationsInput | string
-    sugars?: StringFieldUpdateOperationsInput | string
+    sweetness?: StringFieldUpdateOperationsInput | string
     alcohols?: StringFieldUpdateOperationsInput | string
-    polyalcohols?: StringFieldUpdateOperationsInput | string
-    acids?: StringFieldUpdateOperationsInput | string
-    tannins?: StringFieldUpdateOperationsInput | string
-    minerals?: StringFieldUpdateOperationsInput | string
-    balance?: StringFieldUpdateOperationsInput | string
+    softness?: StringFieldUpdateOperationsInput | string
+    acidity?: StringFieldUpdateOperationsInput | string
+    tannicity?: StringFieldUpdateOperationsInput | string
+    saltiness?: StringFieldUpdateOperationsInput | string
     intensity?: StringFieldUpdateOperationsInput | string
     persistence?: StringFieldUpdateOperationsInput | string
     quality?: StringFieldUpdateOperationsInput | string
     structure?: StringFieldUpdateOperationsInput | string
+    balance?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     tastings?: tastingsUpdateOneRequiredWithoutTaste_olfactory_examsNestedInput
   }
@@ -12673,17 +11328,17 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     tid?: StringFieldUpdateOperationsInput | string
     eid?: StringFieldUpdateOperationsInput | string
-    sugars?: StringFieldUpdateOperationsInput | string
+    sweetness?: StringFieldUpdateOperationsInput | string
     alcohols?: StringFieldUpdateOperationsInput | string
-    polyalcohols?: StringFieldUpdateOperationsInput | string
-    acids?: StringFieldUpdateOperationsInput | string
-    tannins?: StringFieldUpdateOperationsInput | string
-    minerals?: StringFieldUpdateOperationsInput | string
-    balance?: StringFieldUpdateOperationsInput | string
+    softness?: StringFieldUpdateOperationsInput | string
+    acidity?: StringFieldUpdateOperationsInput | string
+    tannicity?: StringFieldUpdateOperationsInput | string
+    saltiness?: StringFieldUpdateOperationsInput | string
     intensity?: StringFieldUpdateOperationsInput | string
     persistence?: StringFieldUpdateOperationsInput | string
     quality?: StringFieldUpdateOperationsInput | string
     structure?: StringFieldUpdateOperationsInput | string
+    balance?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -12691,33 +11346,33 @@ export namespace Prisma {
     id?: number
     tid: string
     eid?: string
-    sugars: string
+    sweetness: string
     alcohols: string
-    polyalcohols: string
-    acids: string
-    tannins: string
-    minerals: string
-    balance: string
+    softness: string
+    acidity: string
+    tannicity: string
+    saltiness: string
     intensity: string
     persistence: string
     quality: string
     structure: string
+    balance: string
     notes?: string | null
   }
 
   export type taste_olfactory_examsUpdateManyMutationInput = {
     eid?: StringFieldUpdateOperationsInput | string
-    sugars?: StringFieldUpdateOperationsInput | string
+    sweetness?: StringFieldUpdateOperationsInput | string
     alcohols?: StringFieldUpdateOperationsInput | string
-    polyalcohols?: StringFieldUpdateOperationsInput | string
-    acids?: StringFieldUpdateOperationsInput | string
-    tannins?: StringFieldUpdateOperationsInput | string
-    minerals?: StringFieldUpdateOperationsInput | string
-    balance?: StringFieldUpdateOperationsInput | string
+    softness?: StringFieldUpdateOperationsInput | string
+    acidity?: StringFieldUpdateOperationsInput | string
+    tannicity?: StringFieldUpdateOperationsInput | string
+    saltiness?: StringFieldUpdateOperationsInput | string
     intensity?: StringFieldUpdateOperationsInput | string
     persistence?: StringFieldUpdateOperationsInput | string
     quality?: StringFieldUpdateOperationsInput | string
     structure?: StringFieldUpdateOperationsInput | string
+    balance?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -12725,17 +11380,17 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     tid?: StringFieldUpdateOperationsInput | string
     eid?: StringFieldUpdateOperationsInput | string
-    sugars?: StringFieldUpdateOperationsInput | string
+    sweetness?: StringFieldUpdateOperationsInput | string
     alcohols?: StringFieldUpdateOperationsInput | string
-    polyalcohols?: StringFieldUpdateOperationsInput | string
-    acids?: StringFieldUpdateOperationsInput | string
-    tannins?: StringFieldUpdateOperationsInput | string
-    minerals?: StringFieldUpdateOperationsInput | string
-    balance?: StringFieldUpdateOperationsInput | string
+    softness?: StringFieldUpdateOperationsInput | string
+    acidity?: StringFieldUpdateOperationsInput | string
+    tannicity?: StringFieldUpdateOperationsInput | string
+    saltiness?: StringFieldUpdateOperationsInput | string
     intensity?: StringFieldUpdateOperationsInput | string
     persistence?: StringFieldUpdateOperationsInput | string
     quality?: StringFieldUpdateOperationsInput | string
     structure?: StringFieldUpdateOperationsInput | string
+    balance?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -12745,7 +11400,7 @@ export namespace Prisma {
     color_family: string
     color_shade: string
     consistency: string
-    bubble_grain?: string | null
+    bubble_size?: string | null
     bubble_number?: string | null
     bubble_persistence?: string | null
     notes?: string | null
@@ -12760,7 +11415,7 @@ export namespace Prisma {
     color_family: string
     color_shade: string
     consistency: string
-    bubble_grain?: string | null
+    bubble_size?: string | null
     bubble_number?: string | null
     bubble_persistence?: string | null
     notes?: string | null
@@ -12772,7 +11427,7 @@ export namespace Prisma {
     color_family?: StringFieldUpdateOperationsInput | string
     color_shade?: StringFieldUpdateOperationsInput | string
     consistency?: StringFieldUpdateOperationsInput | string
-    bubble_grain?: NullableStringFieldUpdateOperationsInput | string | null
+    bubble_size?: NullableStringFieldUpdateOperationsInput | string | null
     bubble_number?: NullableStringFieldUpdateOperationsInput | string | null
     bubble_persistence?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12787,7 +11442,7 @@ export namespace Prisma {
     color_family?: StringFieldUpdateOperationsInput | string
     color_shade?: StringFieldUpdateOperationsInput | string
     consistency?: StringFieldUpdateOperationsInput | string
-    bubble_grain?: NullableStringFieldUpdateOperationsInput | string | null
+    bubble_size?: NullableStringFieldUpdateOperationsInput | string | null
     bubble_number?: NullableStringFieldUpdateOperationsInput | string | null
     bubble_persistence?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12801,7 +11456,7 @@ export namespace Prisma {
     color_family: string
     color_shade: string
     consistency: string
-    bubble_grain?: string | null
+    bubble_size?: string | null
     bubble_number?: string | null
     bubble_persistence?: string | null
     notes?: string | null
@@ -12813,7 +11468,7 @@ export namespace Prisma {
     color_family?: StringFieldUpdateOperationsInput | string
     color_shade?: StringFieldUpdateOperationsInput | string
     consistency?: StringFieldUpdateOperationsInput | string
-    bubble_grain?: NullableStringFieldUpdateOperationsInput | string | null
+    bubble_size?: NullableStringFieldUpdateOperationsInput | string | null
     bubble_number?: NullableStringFieldUpdateOperationsInput | string | null
     bubble_persistence?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12827,7 +11482,7 @@ export namespace Prisma {
     color_family?: StringFieldUpdateOperationsInput | string
     color_shade?: StringFieldUpdateOperationsInput | string
     consistency?: StringFieldUpdateOperationsInput | string
-    bubble_grain?: NullableStringFieldUpdateOperationsInput | string | null
+    bubble_size?: NullableStringFieldUpdateOperationsInput | string | null
     bubble_number?: NullableStringFieldUpdateOperationsInput | string | null
     bubble_persistence?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12835,7 +11490,7 @@ export namespace Prisma {
 
   export type final_considerationsCreateInput = {
     eid?: string
-    evolution: string
+    evolutionary_state: string
     harmony: string
     pairings: string
     notes?: string | null
@@ -12846,7 +11501,7 @@ export namespace Prisma {
     id?: number
     tid: string
     eid?: string
-    evolution: string
+    evolutionary_state: string
     harmony: string
     pairings: string
     notes?: string | null
@@ -12854,7 +11509,7 @@ export namespace Prisma {
 
   export type final_considerationsUpdateInput = {
     eid?: StringFieldUpdateOperationsInput | string
-    evolution?: StringFieldUpdateOperationsInput | string
+    evolutionary_state?: StringFieldUpdateOperationsInput | string
     harmony?: StringFieldUpdateOperationsInput | string
     pairings?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12865,7 +11520,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     tid?: StringFieldUpdateOperationsInput | string
     eid?: StringFieldUpdateOperationsInput | string
-    evolution?: StringFieldUpdateOperationsInput | string
+    evolutionary_state?: StringFieldUpdateOperationsInput | string
     harmony?: StringFieldUpdateOperationsInput | string
     pairings?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12875,7 +11530,7 @@ export namespace Prisma {
     id?: number
     tid: string
     eid?: string
-    evolution: string
+    evolutionary_state: string
     harmony: string
     pairings: string
     notes?: string | null
@@ -12883,7 +11538,7 @@ export namespace Prisma {
 
   export type final_considerationsUpdateManyMutationInput = {
     eid?: StringFieldUpdateOperationsInput | string
-    evolution?: StringFieldUpdateOperationsInput | string
+    evolutionary_state?: StringFieldUpdateOperationsInput | string
     harmony?: StringFieldUpdateOperationsInput | string
     pairings?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12893,7 +11548,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     tid?: StringFieldUpdateOperationsInput | string
     eid?: StringFieldUpdateOperationsInput | string
-    evolution?: StringFieldUpdateOperationsInput | string
+    evolutionary_state?: StringFieldUpdateOperationsInput | string
     harmony?: StringFieldUpdateOperationsInput | string
     pairings?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13113,16 +11768,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type Wine_category_translationsListRelationFilter = {
-    every?: wine_category_translationsWhereInput
-    some?: wine_category_translationsWhereInput
-    none?: wine_category_translationsWhereInput
-  }
-
-  export type wine_category_translationsOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type wine_categoriesCountOrderByAggregateInput = {
     id?: SortOrder
     code?: SortOrder
@@ -13162,74 +11807,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type Wine_categoriesNullableScalarRelationFilter = {
-    is?: wine_categoriesWhereInput | null
-    isNot?: wine_categoriesWhereInput | null
-  }
-
-  export type wine_category_translationsCategory_idLanguage_codeCompoundUniqueInput = {
-    category_id: number
-    language_code: string
-  }
-
-  export type wine_category_translationsCountOrderByAggregateInput = {
-    id?: SortOrder
-    category_id?: SortOrder
-    language_code?: SortOrder
-    name?: SortOrder
-  }
-
-  export type wine_category_translationsAvgOrderByAggregateInput = {
-    id?: SortOrder
-    category_id?: SortOrder
-  }
-
-  export type wine_category_translationsMaxOrderByAggregateInput = {
-    id?: SortOrder
-    category_id?: SortOrder
-    language_code?: SortOrder
-    name?: SortOrder
-  }
-
-  export type wine_category_translationsMinOrderByAggregateInput = {
-    id?: SortOrder
-    category_id?: SortOrder
-    language_code?: SortOrder
-    name?: SortOrder
-  }
-
-  export type wine_category_translationsSumOrderByAggregateInput = {
-    id?: SortOrder
-    category_id?: SortOrder
-  }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -13451,12 +12028,12 @@ export namespace Prisma {
     vinous?: SortOrder
     floral?: SortOrder
     fruity?: SortOrder
-    fragrant?: SortOrder
-    herbaceous?: SortOrder
+    grassy?: SortOrder
     mineral?: SortOrder
+    fragrant?: SortOrder
     spicy?: SortOrder
+    toasted?: SortOrder
     ethereal?: SortOrder
-    frank?: SortOrder
     notes?: SortOrder
   }
 
@@ -13475,12 +12052,12 @@ export namespace Prisma {
     vinous?: SortOrder
     floral?: SortOrder
     fruity?: SortOrder
-    fragrant?: SortOrder
-    herbaceous?: SortOrder
+    grassy?: SortOrder
     mineral?: SortOrder
+    fragrant?: SortOrder
     spicy?: SortOrder
+    toasted?: SortOrder
     ethereal?: SortOrder
-    frank?: SortOrder
     notes?: SortOrder
   }
 
@@ -13495,12 +12072,12 @@ export namespace Prisma {
     vinous?: SortOrder
     floral?: SortOrder
     fruity?: SortOrder
-    fragrant?: SortOrder
-    herbaceous?: SortOrder
+    grassy?: SortOrder
     mineral?: SortOrder
+    fragrant?: SortOrder
     spicy?: SortOrder
+    toasted?: SortOrder
     ethereal?: SortOrder
-    frank?: SortOrder
     notes?: SortOrder
   }
 
@@ -13512,17 +12089,17 @@ export namespace Prisma {
     id?: SortOrder
     tid?: SortOrder
     eid?: SortOrder
-    sugars?: SortOrder
+    sweetness?: SortOrder
     alcohols?: SortOrder
-    polyalcohols?: SortOrder
-    acids?: SortOrder
-    tannins?: SortOrder
-    minerals?: SortOrder
-    balance?: SortOrder
+    softness?: SortOrder
+    acidity?: SortOrder
+    tannicity?: SortOrder
+    saltiness?: SortOrder
     intensity?: SortOrder
     persistence?: SortOrder
     quality?: SortOrder
     structure?: SortOrder
+    balance?: SortOrder
     notes?: SortOrder
   }
 
@@ -13534,17 +12111,17 @@ export namespace Prisma {
     id?: SortOrder
     tid?: SortOrder
     eid?: SortOrder
-    sugars?: SortOrder
+    sweetness?: SortOrder
     alcohols?: SortOrder
-    polyalcohols?: SortOrder
-    acids?: SortOrder
-    tannins?: SortOrder
-    minerals?: SortOrder
-    balance?: SortOrder
+    softness?: SortOrder
+    acidity?: SortOrder
+    tannicity?: SortOrder
+    saltiness?: SortOrder
     intensity?: SortOrder
     persistence?: SortOrder
     quality?: SortOrder
     structure?: SortOrder
+    balance?: SortOrder
     notes?: SortOrder
   }
 
@@ -13552,17 +12129,17 @@ export namespace Prisma {
     id?: SortOrder
     tid?: SortOrder
     eid?: SortOrder
-    sugars?: SortOrder
+    sweetness?: SortOrder
     alcohols?: SortOrder
-    polyalcohols?: SortOrder
-    acids?: SortOrder
-    tannins?: SortOrder
-    minerals?: SortOrder
-    balance?: SortOrder
+    softness?: SortOrder
+    acidity?: SortOrder
+    tannicity?: SortOrder
+    saltiness?: SortOrder
     intensity?: SortOrder
     persistence?: SortOrder
     quality?: SortOrder
     structure?: SortOrder
+    balance?: SortOrder
     notes?: SortOrder
   }
 
@@ -13578,7 +12155,7 @@ export namespace Prisma {
     color_family?: SortOrder
     color_shade?: SortOrder
     consistency?: SortOrder
-    bubble_grain?: SortOrder
+    bubble_size?: SortOrder
     bubble_number?: SortOrder
     bubble_persistence?: SortOrder
     notes?: SortOrder
@@ -13596,7 +12173,7 @@ export namespace Prisma {
     color_family?: SortOrder
     color_shade?: SortOrder
     consistency?: SortOrder
-    bubble_grain?: SortOrder
+    bubble_size?: SortOrder
     bubble_number?: SortOrder
     bubble_persistence?: SortOrder
     notes?: SortOrder
@@ -13610,7 +12187,7 @@ export namespace Prisma {
     color_family?: SortOrder
     color_shade?: SortOrder
     consistency?: SortOrder
-    bubble_grain?: SortOrder
+    bubble_size?: SortOrder
     bubble_number?: SortOrder
     bubble_persistence?: SortOrder
     notes?: SortOrder
@@ -13624,7 +12201,7 @@ export namespace Prisma {
     id?: SortOrder
     tid?: SortOrder
     eid?: SortOrder
-    evolution?: SortOrder
+    evolutionary_state?: SortOrder
     harmony?: SortOrder
     pairings?: SortOrder
     notes?: SortOrder
@@ -13638,7 +12215,7 @@ export namespace Prisma {
     id?: SortOrder
     tid?: SortOrder
     eid?: SortOrder
-    evolution?: SortOrder
+    evolutionary_state?: SortOrder
     harmony?: SortOrder
     pairings?: SortOrder
     notes?: SortOrder
@@ -13648,7 +12225,7 @@ export namespace Prisma {
     id?: SortOrder
     tid?: SortOrder
     eid?: SortOrder
-    evolution?: SortOrder
+    evolutionary_state?: SortOrder
     harmony?: SortOrder
     pairings?: SortOrder
     notes?: SortOrder
@@ -13731,25 +12308,11 @@ export namespace Prisma {
     connect?: tastingsWhereUniqueInput | tastingsWhereUniqueInput[]
   }
 
-  export type wine_category_translationsCreateNestedManyWithoutWine_categoriesInput = {
-    create?: XOR<wine_category_translationsCreateWithoutWine_categoriesInput, wine_category_translationsUncheckedCreateWithoutWine_categoriesInput> | wine_category_translationsCreateWithoutWine_categoriesInput[] | wine_category_translationsUncheckedCreateWithoutWine_categoriesInput[]
-    connectOrCreate?: wine_category_translationsCreateOrConnectWithoutWine_categoriesInput | wine_category_translationsCreateOrConnectWithoutWine_categoriesInput[]
-    createMany?: wine_category_translationsCreateManyWine_categoriesInputEnvelope
-    connect?: wine_category_translationsWhereUniqueInput | wine_category_translationsWhereUniqueInput[]
-  }
-
   export type tastingsUncheckedCreateNestedManyWithoutWine_categoriesInput = {
     create?: XOR<tastingsCreateWithoutWine_categoriesInput, tastingsUncheckedCreateWithoutWine_categoriesInput> | tastingsCreateWithoutWine_categoriesInput[] | tastingsUncheckedCreateWithoutWine_categoriesInput[]
     connectOrCreate?: tastingsCreateOrConnectWithoutWine_categoriesInput | tastingsCreateOrConnectWithoutWine_categoriesInput[]
     createMany?: tastingsCreateManyWine_categoriesInputEnvelope
     connect?: tastingsWhereUniqueInput | tastingsWhereUniqueInput[]
-  }
-
-  export type wine_category_translationsUncheckedCreateNestedManyWithoutWine_categoriesInput = {
-    create?: XOR<wine_category_translationsCreateWithoutWine_categoriesInput, wine_category_translationsUncheckedCreateWithoutWine_categoriesInput> | wine_category_translationsCreateWithoutWine_categoriesInput[] | wine_category_translationsUncheckedCreateWithoutWine_categoriesInput[]
-    connectOrCreate?: wine_category_translationsCreateOrConnectWithoutWine_categoriesInput | wine_category_translationsCreateOrConnectWithoutWine_categoriesInput[]
-    createMany?: wine_category_translationsCreateManyWine_categoriesInputEnvelope
-    connect?: wine_category_translationsWhereUniqueInput | wine_category_translationsWhereUniqueInput[]
   }
 
   export type tastingsUpdateManyWithoutWine_categoriesNestedInput = {
@@ -13766,20 +12329,6 @@ export namespace Prisma {
     deleteMany?: tastingsScalarWhereInput | tastingsScalarWhereInput[]
   }
 
-  export type wine_category_translationsUpdateManyWithoutWine_categoriesNestedInput = {
-    create?: XOR<wine_category_translationsCreateWithoutWine_categoriesInput, wine_category_translationsUncheckedCreateWithoutWine_categoriesInput> | wine_category_translationsCreateWithoutWine_categoriesInput[] | wine_category_translationsUncheckedCreateWithoutWine_categoriesInput[]
-    connectOrCreate?: wine_category_translationsCreateOrConnectWithoutWine_categoriesInput | wine_category_translationsCreateOrConnectWithoutWine_categoriesInput[]
-    upsert?: wine_category_translationsUpsertWithWhereUniqueWithoutWine_categoriesInput | wine_category_translationsUpsertWithWhereUniqueWithoutWine_categoriesInput[]
-    createMany?: wine_category_translationsCreateManyWine_categoriesInputEnvelope
-    set?: wine_category_translationsWhereUniqueInput | wine_category_translationsWhereUniqueInput[]
-    disconnect?: wine_category_translationsWhereUniqueInput | wine_category_translationsWhereUniqueInput[]
-    delete?: wine_category_translationsWhereUniqueInput | wine_category_translationsWhereUniqueInput[]
-    connect?: wine_category_translationsWhereUniqueInput | wine_category_translationsWhereUniqueInput[]
-    update?: wine_category_translationsUpdateWithWhereUniqueWithoutWine_categoriesInput | wine_category_translationsUpdateWithWhereUniqueWithoutWine_categoriesInput[]
-    updateMany?: wine_category_translationsUpdateManyWithWhereWithoutWine_categoriesInput | wine_category_translationsUpdateManyWithWhereWithoutWine_categoriesInput[]
-    deleteMany?: wine_category_translationsScalarWhereInput | wine_category_translationsScalarWhereInput[]
-  }
-
   export type tastingsUncheckedUpdateManyWithoutWine_categoriesNestedInput = {
     create?: XOR<tastingsCreateWithoutWine_categoriesInput, tastingsUncheckedCreateWithoutWine_categoriesInput> | tastingsCreateWithoutWine_categoriesInput[] | tastingsUncheckedCreateWithoutWine_categoriesInput[]
     connectOrCreate?: tastingsCreateOrConnectWithoutWine_categoriesInput | tastingsCreateOrConnectWithoutWine_categoriesInput[]
@@ -13792,44 +12341,6 @@ export namespace Prisma {
     update?: tastingsUpdateWithWhereUniqueWithoutWine_categoriesInput | tastingsUpdateWithWhereUniqueWithoutWine_categoriesInput[]
     updateMany?: tastingsUpdateManyWithWhereWithoutWine_categoriesInput | tastingsUpdateManyWithWhereWithoutWine_categoriesInput[]
     deleteMany?: tastingsScalarWhereInput | tastingsScalarWhereInput[]
-  }
-
-  export type wine_category_translationsUncheckedUpdateManyWithoutWine_categoriesNestedInput = {
-    create?: XOR<wine_category_translationsCreateWithoutWine_categoriesInput, wine_category_translationsUncheckedCreateWithoutWine_categoriesInput> | wine_category_translationsCreateWithoutWine_categoriesInput[] | wine_category_translationsUncheckedCreateWithoutWine_categoriesInput[]
-    connectOrCreate?: wine_category_translationsCreateOrConnectWithoutWine_categoriesInput | wine_category_translationsCreateOrConnectWithoutWine_categoriesInput[]
-    upsert?: wine_category_translationsUpsertWithWhereUniqueWithoutWine_categoriesInput | wine_category_translationsUpsertWithWhereUniqueWithoutWine_categoriesInput[]
-    createMany?: wine_category_translationsCreateManyWine_categoriesInputEnvelope
-    set?: wine_category_translationsWhereUniqueInput | wine_category_translationsWhereUniqueInput[]
-    disconnect?: wine_category_translationsWhereUniqueInput | wine_category_translationsWhereUniqueInput[]
-    delete?: wine_category_translationsWhereUniqueInput | wine_category_translationsWhereUniqueInput[]
-    connect?: wine_category_translationsWhereUniqueInput | wine_category_translationsWhereUniqueInput[]
-    update?: wine_category_translationsUpdateWithWhereUniqueWithoutWine_categoriesInput | wine_category_translationsUpdateWithWhereUniqueWithoutWine_categoriesInput[]
-    updateMany?: wine_category_translationsUpdateManyWithWhereWithoutWine_categoriesInput | wine_category_translationsUpdateManyWithWhereWithoutWine_categoriesInput[]
-    deleteMany?: wine_category_translationsScalarWhereInput | wine_category_translationsScalarWhereInput[]
-  }
-
-  export type wine_categoriesCreateNestedOneWithoutWine_category_translationsInput = {
-    create?: XOR<wine_categoriesCreateWithoutWine_category_translationsInput, wine_categoriesUncheckedCreateWithoutWine_category_translationsInput>
-    connectOrCreate?: wine_categoriesCreateOrConnectWithoutWine_category_translationsInput
-    connect?: wine_categoriesWhereUniqueInput
-  }
-
-  export type wine_categoriesUpdateOneWithoutWine_category_translationsNestedInput = {
-    create?: XOR<wine_categoriesCreateWithoutWine_category_translationsInput, wine_categoriesUncheckedCreateWithoutWine_category_translationsInput>
-    connectOrCreate?: wine_categoriesCreateOrConnectWithoutWine_category_translationsInput
-    upsert?: wine_categoriesUpsertWithoutWine_category_translationsInput
-    disconnect?: wine_categoriesWhereInput | boolean
-    delete?: wine_categoriesWhereInput | boolean
-    connect?: wine_categoriesWhereUniqueInput
-    update?: XOR<XOR<wine_categoriesUpdateToOneWithWhereWithoutWine_category_translationsInput, wine_categoriesUpdateWithoutWine_category_translationsInput>, wine_categoriesUncheckedUpdateWithoutWine_category_translationsInput>
-  }
-
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type final_considerationsCreateNestedOneWithoutTastingsInput = {
@@ -14242,33 +12753,6 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
@@ -14515,27 +12999,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type wine_category_translationsCreateWithoutWine_categoriesInput = {
-    language_code: string
-    name: string
-  }
-
-  export type wine_category_translationsUncheckedCreateWithoutWine_categoriesInput = {
-    id?: number
-    language_code: string
-    name: string
-  }
-
-  export type wine_category_translationsCreateOrConnectWithoutWine_categoriesInput = {
-    where: wine_category_translationsWhereUniqueInput
-    create: XOR<wine_category_translationsCreateWithoutWine_categoriesInput, wine_category_translationsUncheckedCreateWithoutWine_categoriesInput>
-  }
-
-  export type wine_category_translationsCreateManyWine_categoriesInputEnvelope = {
-    data: wine_category_translationsCreateManyWine_categoriesInput | wine_category_translationsCreateManyWine_categoriesInput[]
-    skipDuplicates?: boolean
-  }
-
   export type tastingsUpsertWithWhereUniqueWithoutWine_categoriesInput = {
     where: tastingsWhereUniqueInput
     update: XOR<tastingsUpdateWithoutWine_categoriesInput, tastingsUncheckedUpdateWithoutWine_categoriesInput>
@@ -14552,73 +13015,9 @@ export namespace Prisma {
     data: XOR<tastingsUpdateManyMutationInput, tastingsUncheckedUpdateManyWithoutWine_categoriesInput>
   }
 
-  export type wine_category_translationsUpsertWithWhereUniqueWithoutWine_categoriesInput = {
-    where: wine_category_translationsWhereUniqueInput
-    update: XOR<wine_category_translationsUpdateWithoutWine_categoriesInput, wine_category_translationsUncheckedUpdateWithoutWine_categoriesInput>
-    create: XOR<wine_category_translationsCreateWithoutWine_categoriesInput, wine_category_translationsUncheckedCreateWithoutWine_categoriesInput>
-  }
-
-  export type wine_category_translationsUpdateWithWhereUniqueWithoutWine_categoriesInput = {
-    where: wine_category_translationsWhereUniqueInput
-    data: XOR<wine_category_translationsUpdateWithoutWine_categoriesInput, wine_category_translationsUncheckedUpdateWithoutWine_categoriesInput>
-  }
-
-  export type wine_category_translationsUpdateManyWithWhereWithoutWine_categoriesInput = {
-    where: wine_category_translationsScalarWhereInput
-    data: XOR<wine_category_translationsUpdateManyMutationInput, wine_category_translationsUncheckedUpdateManyWithoutWine_categoriesInput>
-  }
-
-  export type wine_category_translationsScalarWhereInput = {
-    AND?: wine_category_translationsScalarWhereInput | wine_category_translationsScalarWhereInput[]
-    OR?: wine_category_translationsScalarWhereInput[]
-    NOT?: wine_category_translationsScalarWhereInput | wine_category_translationsScalarWhereInput[]
-    id?: IntFilter<"wine_category_translations"> | number
-    category_id?: IntNullableFilter<"wine_category_translations"> | number | null
-    language_code?: StringFilter<"wine_category_translations"> | string
-    name?: StringFilter<"wine_category_translations"> | string
-  }
-
-  export type wine_categoriesCreateWithoutWine_category_translationsInput = {
-    code: string
-    tastings?: tastingsCreateNestedManyWithoutWine_categoriesInput
-  }
-
-  export type wine_categoriesUncheckedCreateWithoutWine_category_translationsInput = {
-    id?: number
-    code: string
-    tastings?: tastingsUncheckedCreateNestedManyWithoutWine_categoriesInput
-  }
-
-  export type wine_categoriesCreateOrConnectWithoutWine_category_translationsInput = {
-    where: wine_categoriesWhereUniqueInput
-    create: XOR<wine_categoriesCreateWithoutWine_category_translationsInput, wine_categoriesUncheckedCreateWithoutWine_category_translationsInput>
-  }
-
-  export type wine_categoriesUpsertWithoutWine_category_translationsInput = {
-    update: XOR<wine_categoriesUpdateWithoutWine_category_translationsInput, wine_categoriesUncheckedUpdateWithoutWine_category_translationsInput>
-    create: XOR<wine_categoriesCreateWithoutWine_category_translationsInput, wine_categoriesUncheckedCreateWithoutWine_category_translationsInput>
-    where?: wine_categoriesWhereInput
-  }
-
-  export type wine_categoriesUpdateToOneWithWhereWithoutWine_category_translationsInput = {
-    where?: wine_categoriesWhereInput
-    data: XOR<wine_categoriesUpdateWithoutWine_category_translationsInput, wine_categoriesUncheckedUpdateWithoutWine_category_translationsInput>
-  }
-
-  export type wine_categoriesUpdateWithoutWine_category_translationsInput = {
-    code?: StringFieldUpdateOperationsInput | string
-    tastings?: tastingsUpdateManyWithoutWine_categoriesNestedInput
-  }
-
-  export type wine_categoriesUncheckedUpdateWithoutWine_category_translationsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    code?: StringFieldUpdateOperationsInput | string
-    tastings?: tastingsUncheckedUpdateManyWithoutWine_categoriesNestedInput
-  }
-
   export type final_considerationsCreateWithoutTastingsInput = {
     eid?: string
-    evolution: string
+    evolutionary_state: string
     harmony: string
     pairings: string
     notes?: string | null
@@ -14627,7 +13026,7 @@ export namespace Prisma {
   export type final_considerationsUncheckedCreateWithoutTastingsInput = {
     id?: number
     eid?: string
-    evolution: string
+    evolutionary_state: string
     harmony: string
     pairings: string
     notes?: string | null
@@ -14647,12 +13046,12 @@ export namespace Prisma {
     vinous?: boolean | null
     floral?: boolean | null
     fruity?: boolean | null
-    fragrant?: boolean | null
-    herbaceous?: boolean | null
+    grassy?: boolean | null
     mineral?: boolean | null
+    fragrant?: boolean | null
     spicy?: boolean | null
+    toasted?: boolean | null
     ethereal?: boolean | null
-    frank?: boolean | null
     notes?: string | null
   }
 
@@ -14666,12 +13065,12 @@ export namespace Prisma {
     vinous?: boolean | null
     floral?: boolean | null
     fruity?: boolean | null
-    fragrant?: boolean | null
-    herbaceous?: boolean | null
+    grassy?: boolean | null
     mineral?: boolean | null
+    fragrant?: boolean | null
     spicy?: boolean | null
+    toasted?: boolean | null
     ethereal?: boolean | null
-    frank?: boolean | null
     notes?: string | null
   }
 
@@ -14682,34 +13081,34 @@ export namespace Prisma {
 
   export type taste_olfactory_examsCreateWithoutTastingsInput = {
     eid?: string
-    sugars: string
+    sweetness: string
     alcohols: string
-    polyalcohols: string
-    acids: string
-    tannins: string
-    minerals: string
-    balance: string
+    softness: string
+    acidity: string
+    tannicity: string
+    saltiness: string
     intensity: string
     persistence: string
     quality: string
     structure: string
+    balance: string
     notes?: string | null
   }
 
   export type taste_olfactory_examsUncheckedCreateWithoutTastingsInput = {
     id?: number
     eid?: string
-    sugars: string
+    sweetness: string
     alcohols: string
-    polyalcohols: string
-    acids: string
-    tannins: string
-    minerals: string
-    balance: string
+    softness: string
+    acidity: string
+    tannicity: string
+    saltiness: string
     intensity: string
     persistence: string
     quality: string
     structure: string
+    balance: string
     notes?: string | null
   }
 
@@ -14758,13 +13157,11 @@ export namespace Prisma {
 
   export type wine_categoriesCreateWithoutTastingsInput = {
     code: string
-    wine_category_translations?: wine_category_translationsCreateNestedManyWithoutWine_categoriesInput
   }
 
   export type wine_categoriesUncheckedCreateWithoutTastingsInput = {
     id?: number
     code: string
-    wine_category_translations?: wine_category_translationsUncheckedCreateNestedManyWithoutWine_categoriesInput
   }
 
   export type wine_categoriesCreateOrConnectWithoutTastingsInput = {
@@ -14778,7 +13175,7 @@ export namespace Prisma {
     color_family: string
     color_shade: string
     consistency: string
-    bubble_grain?: string | null
+    bubble_size?: string | null
     bubble_number?: string | null
     bubble_persistence?: string | null
     notes?: string | null
@@ -14791,7 +13188,7 @@ export namespace Prisma {
     color_family: string
     color_shade: string
     consistency: string
-    bubble_grain?: string | null
+    bubble_size?: string | null
     bubble_number?: string | null
     bubble_persistence?: string | null
     notes?: string | null
@@ -14815,7 +13212,7 @@ export namespace Prisma {
 
   export type final_considerationsUpdateWithoutTastingsInput = {
     eid?: StringFieldUpdateOperationsInput | string
-    evolution?: StringFieldUpdateOperationsInput | string
+    evolutionary_state?: StringFieldUpdateOperationsInput | string
     harmony?: StringFieldUpdateOperationsInput | string
     pairings?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14824,7 +13221,7 @@ export namespace Prisma {
   export type final_considerationsUncheckedUpdateWithoutTastingsInput = {
     id?: IntFieldUpdateOperationsInput | number
     eid?: StringFieldUpdateOperationsInput | string
-    evolution?: StringFieldUpdateOperationsInput | string
+    evolutionary_state?: StringFieldUpdateOperationsInput | string
     harmony?: StringFieldUpdateOperationsInput | string
     pairings?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14850,12 +13247,12 @@ export namespace Prisma {
     vinous?: NullableBoolFieldUpdateOperationsInput | boolean | null
     floral?: NullableBoolFieldUpdateOperationsInput | boolean | null
     fruity?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    fragrant?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    herbaceous?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    grassy?: NullableBoolFieldUpdateOperationsInput | boolean | null
     mineral?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fragrant?: NullableBoolFieldUpdateOperationsInput | boolean | null
     spicy?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    toasted?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ethereal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    frank?: NullableBoolFieldUpdateOperationsInput | boolean | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -14869,12 +13266,12 @@ export namespace Prisma {
     vinous?: NullableBoolFieldUpdateOperationsInput | boolean | null
     floral?: NullableBoolFieldUpdateOperationsInput | boolean | null
     fruity?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    fragrant?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    herbaceous?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    grassy?: NullableBoolFieldUpdateOperationsInput | boolean | null
     mineral?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    fragrant?: NullableBoolFieldUpdateOperationsInput | boolean | null
     spicy?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    toasted?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ethereal?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    frank?: NullableBoolFieldUpdateOperationsInput | boolean | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -14891,34 +13288,34 @@ export namespace Prisma {
 
   export type taste_olfactory_examsUpdateWithoutTastingsInput = {
     eid?: StringFieldUpdateOperationsInput | string
-    sugars?: StringFieldUpdateOperationsInput | string
+    sweetness?: StringFieldUpdateOperationsInput | string
     alcohols?: StringFieldUpdateOperationsInput | string
-    polyalcohols?: StringFieldUpdateOperationsInput | string
-    acids?: StringFieldUpdateOperationsInput | string
-    tannins?: StringFieldUpdateOperationsInput | string
-    minerals?: StringFieldUpdateOperationsInput | string
-    balance?: StringFieldUpdateOperationsInput | string
+    softness?: StringFieldUpdateOperationsInput | string
+    acidity?: StringFieldUpdateOperationsInput | string
+    tannicity?: StringFieldUpdateOperationsInput | string
+    saltiness?: StringFieldUpdateOperationsInput | string
     intensity?: StringFieldUpdateOperationsInput | string
     persistence?: StringFieldUpdateOperationsInput | string
     quality?: StringFieldUpdateOperationsInput | string
     structure?: StringFieldUpdateOperationsInput | string
+    balance?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type taste_olfactory_examsUncheckedUpdateWithoutTastingsInput = {
     id?: IntFieldUpdateOperationsInput | number
     eid?: StringFieldUpdateOperationsInput | string
-    sugars?: StringFieldUpdateOperationsInput | string
+    sweetness?: StringFieldUpdateOperationsInput | string
     alcohols?: StringFieldUpdateOperationsInput | string
-    polyalcohols?: StringFieldUpdateOperationsInput | string
-    acids?: StringFieldUpdateOperationsInput | string
-    tannins?: StringFieldUpdateOperationsInput | string
-    minerals?: StringFieldUpdateOperationsInput | string
-    balance?: StringFieldUpdateOperationsInput | string
+    softness?: StringFieldUpdateOperationsInput | string
+    acidity?: StringFieldUpdateOperationsInput | string
+    tannicity?: StringFieldUpdateOperationsInput | string
+    saltiness?: StringFieldUpdateOperationsInput | string
     intensity?: StringFieldUpdateOperationsInput | string
     persistence?: StringFieldUpdateOperationsInput | string
     quality?: StringFieldUpdateOperationsInput | string
     structure?: StringFieldUpdateOperationsInput | string
+    balance?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -14979,13 +13376,11 @@ export namespace Prisma {
 
   export type wine_categoriesUpdateWithoutTastingsInput = {
     code?: StringFieldUpdateOperationsInput | string
-    wine_category_translations?: wine_category_translationsUpdateManyWithoutWine_categoriesNestedInput
   }
 
   export type wine_categoriesUncheckedUpdateWithoutTastingsInput = {
     id?: IntFieldUpdateOperationsInput | number
     code?: StringFieldUpdateOperationsInput | string
-    wine_category_translations?: wine_category_translationsUncheckedUpdateManyWithoutWine_categoriesNestedInput
   }
 
   export type visual_examsUpsertWithoutTastingsInput = {
@@ -15005,7 +13400,7 @@ export namespace Prisma {
     color_family?: StringFieldUpdateOperationsInput | string
     color_shade?: StringFieldUpdateOperationsInput | string
     consistency?: StringFieldUpdateOperationsInput | string
-    bubble_grain?: NullableStringFieldUpdateOperationsInput | string | null
+    bubble_size?: NullableStringFieldUpdateOperationsInput | string | null
     bubble_number?: NullableStringFieldUpdateOperationsInput | string | null
     bubble_persistence?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15018,7 +13413,7 @@ export namespace Prisma {
     color_family?: StringFieldUpdateOperationsInput | string
     color_shade?: StringFieldUpdateOperationsInput | string
     consistency?: StringFieldUpdateOperationsInput | string
-    bubble_grain?: NullableStringFieldUpdateOperationsInput | string | null
+    bubble_size?: NullableStringFieldUpdateOperationsInput | string | null
     bubble_number?: NullableStringFieldUpdateOperationsInput | string | null
     bubble_persistence?: NullableStringFieldUpdateOperationsInput | string | null
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15571,12 +13966,6 @@ export namespace Prisma {
     updated_at?: Date | string | null
   }
 
-  export type wine_category_translationsCreateManyWine_categoriesInput = {
-    id?: number
-    language_code: string
-    name: string
-  }
-
   export type tastingsUpdateWithoutWine_categoriesInput = {
     tid?: StringFieldUpdateOperationsInput | string
     full_name?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15642,23 +14031,6 @@ export namespace Prisma {
     tasting_location?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type wine_category_translationsUpdateWithoutWine_categoriesInput = {
-    language_code?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type wine_category_translationsUncheckedUpdateWithoutWine_categoriesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    language_code?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type wine_category_translationsUncheckedUpdateManyWithoutWine_categoriesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    language_code?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
   }
 
 

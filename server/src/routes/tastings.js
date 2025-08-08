@@ -15,7 +15,6 @@ const prisma = new PrismaClient();
 router.get("/",
     async (req, res) => {
         const uid = req.user.uid;
-        const language = getPreferredLanguage(req);
 
         try {
             const result = await prisma.tastings.findMany({
@@ -28,9 +27,8 @@ router.get("/",
                 },
                 orderBy: { id: 'desc' },
             });
-            
-            const tastingsWithNames = await injectWineCategoryName(result, language, prisma);
-            const tastings = tastingsWithNames.map(t => formatTasting(t, language));
+            console.log(result);
+            const tastings = result.map(t => formatTasting(t));
 
             res.json({ tastings: tastings });
 
@@ -46,7 +44,6 @@ router.get("/:tid",
     async (req, res) => {
         const uid = req.user.uid;
         const tid = req.params.tid;
-        const language = getPreferredLanguage(req);
         try {
             
             const result = await prisma.tastings.findUnique({
@@ -67,8 +64,7 @@ router.get("/:tid",
                 return;
             }
 
-            const [tastingWithName] = await injectWineCategoryName([result], language, prisma);
-            const tasting = formatTasting(tastingWithName, language);
+            const tasting = formatTasting(result);
             res.json(tasting);
 
         } catch (err) {
@@ -100,10 +96,10 @@ router.post('/', async (req, res) => {
       tasting_location,
     } = req.body;
 
-    const wine_category_id = await findWineCategoryId(wine_category_name, language);
+    const wine_category_id = await findWineCategoryId(wine_category_name);
     if (!wine_category_id) {
       return res.status(400).json({
-        error: `No wine category found for name '${wine_category_name}' in '${language}' or 'en'.`,
+        error: `No wine category found for name '${wine_category_name}'`,
       });
     }
 
@@ -137,6 +133,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+// PATCH /api/v1/tastings/:tid
 router.patch('/:tid',
   async (req, res) => {
     const uid = req.user.uid;
@@ -153,7 +150,7 @@ router.patch('/:tid',
         where: { tid },
         data: { favorite: !tasting.favorite },
       });
-      res.json(updated);
+      res.json(formatTasting(updated));
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: 'Internal Server Error' });

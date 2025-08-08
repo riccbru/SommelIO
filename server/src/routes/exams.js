@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { formatOlfactoryExam } from "../utils/tastings.js";
 import { PrismaClient } from "../generated/prisma/index.js";
 
 const router = Router();
@@ -15,28 +16,6 @@ function omitIdTid(exam) {
   if (!exam) return null;
   const { id, tid, ...rest } = exam;
   return rest;
-}
-
-function formatOlfactoryExam(data) {
-  const exam = {
-    "intensity": data.intensity,
-    "complexity": data.complexity,
-    "quality": data.quality,
-    "descriptors": {
-      "aromatic": data.aromatic,
-      "vinous": data.vinous,
-      "floral": data.floral,
-      "fruity": data.fruity,
-      "fragrant": data.fragrant,
-      "herbaceous": data.herbaceous,
-      "mineral": data.mineral,
-      "spicy": data.spicy,
-      "ethereal": data.ethereal,
-      "frank": data.frank,
-    },
-    "notes": data.notes
-  }
-  return exam;
 }
 
 async function validateTastingOwnership(tid, uid, res) {
@@ -86,7 +65,7 @@ router.get('/:tid', async (req, res) => {
       tasting_uuid: tid,
       exams: {
         visual_exam: visualExam[0] ?? {},
-        olfactory_exam: formatOlfactoryExam(olfactoryExam[0]) ?? {},
+        olfactory_exam: olfactoryExam[0] ? formatOlfactoryExam(olfactoryExam[0]) : {},
         taste_olfactory_exam: tasteOlfactoryExam[0] ?? {},
         final_considerations: finalConsiderations[0] ?? {}
       }
@@ -114,10 +93,11 @@ router.get('/:tid/:exam', async (req, res) => {
       orderBy: { id: 'desc' },
     });
 
-    let formattedData = examData[0];
+    
+    delete examData[0]?.id;
+    delete examData[0]?.tid;
 
-    delete formattedData[0]?.id;
-    delete formattedData[0]?.tid;
+    let formattedData = examData[0];
 
     if (exam === 'olfactory') {
       formattedData = formatOlfactoryExam(formattedData);
@@ -167,7 +147,7 @@ router.post('/:tid',
         }
       });
     } catch (err) {
-      if (err.code === 'P2014' || err instanceof prisma.PrismaClientKnownRequestError) {
+      if (err.code === 'P2014') {
         return res.status(409).json({ error: `Tasting ${tid} has already been examined` });
       }
       console.error(err);
@@ -194,11 +174,12 @@ router.post('/:tid/:exam',
           tastings: { connect: { tid: tid } },
           ...req.body },
       });
-      delete newExam.id;
-      delete newExam.tid;
+
+      delete newExam?.id;
+      delete newExam?.tid;
 
       let formattedData;
-      if (exam !== 'olfactory') {
+      if (exam === 'olfactory' && newExam) {
         newExam = formatOlfactoryExam(formattedData);
       }
       res.status(201).json(newExam);

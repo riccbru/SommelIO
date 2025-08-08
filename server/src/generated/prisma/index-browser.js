@@ -142,13 +142,6 @@ exports.Prisma.Wine_categoriesScalarFieldEnum = {
   code: 'code'
 };
 
-exports.Prisma.Wine_category_translationsScalarFieldEnum = {
-  id: 'id',
-  category_id: 'category_id',
-  language_code: 'language_code',
-  name: 'name'
-};
-
 exports.Prisma.TastingsScalarFieldEnum = {
   id: 'id',
   tid: 'tid',
@@ -181,12 +174,12 @@ exports.Prisma.Olfactory_examsScalarFieldEnum = {
   vinous: 'vinous',
   floral: 'floral',
   fruity: 'fruity',
-  fragrant: 'fragrant',
-  herbaceous: 'herbaceous',
+  grassy: 'grassy',
   mineral: 'mineral',
+  fragrant: 'fragrant',
   spicy: 'spicy',
+  toasted: 'toasted',
   ethereal: 'ethereal',
-  frank: 'frank',
   notes: 'notes'
 };
 
@@ -194,17 +187,17 @@ exports.Prisma.Taste_olfactory_examsScalarFieldEnum = {
   id: 'id',
   tid: 'tid',
   eid: 'eid',
-  sugars: 'sugars',
+  sweetness: 'sweetness',
   alcohols: 'alcohols',
-  polyalcohols: 'polyalcohols',
-  acids: 'acids',
-  tannins: 'tannins',
-  minerals: 'minerals',
-  balance: 'balance',
+  softness: 'softness',
+  acidity: 'acidity',
+  tannicity: 'tannicity',
+  saltiness: 'saltiness',
   intensity: 'intensity',
   persistence: 'persistence',
   quality: 'quality',
   structure: 'structure',
+  balance: 'balance',
   notes: 'notes'
 };
 
@@ -216,7 +209,7 @@ exports.Prisma.Visual_examsScalarFieldEnum = {
   color_family: 'color_family',
   color_shade: 'color_shade',
   consistency: 'consistency',
-  bubble_grain: 'bubble_grain',
+  bubble_size: 'bubble_size',
   bubble_number: 'bubble_number',
   bubble_persistence: 'bubble_persistence',
   notes: 'notes'
@@ -226,7 +219,7 @@ exports.Prisma.Final_considerationsScalarFieldEnum = {
   id: 'id',
   tid: 'tid',
   eid: 'eid',
-  evolution: 'evolution',
+  evolutionary_state: 'evolutionary_state',
   harmony: 'harmony',
   pairings: 'pairings',
   notes: 'notes'
@@ -251,7 +244,6 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.ModelName = {
   users: 'users',
   wine_categories: 'wine_categories',
-  wine_category_translations: 'wine_category_translations',
   tastings: 'tastings',
   olfactory_exams: 'olfactory_exams',
   taste_olfactory_exams: 'taste_olfactory_exams',
