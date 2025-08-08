@@ -18,11 +18,11 @@ export default function FormCheckbox<T extends Record<string, any>>({ label, nam
     return (
         <View
             style={{
+                marginBottom: 20,
                 flexDirection: "row",
                 alignItems: "center",
-                justifyContent: "space-between",
-                marginVertical: 8,
                 paddingHorizontal: 16,
+                justifyContent: "space-between",
             }}
         >
             <Text style={{ fontSize: 18, color: "#c9c4cf" }}>{label}</Text>

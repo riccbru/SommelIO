@@ -9,14 +9,14 @@ import FormSelect from "@/src/components/new/FormSelect";
 import ExitButton from "@/src/components/new/ExitButton";
 
 type FinalExam = {
-  evolution: string;
+  evolutionary_state: string;
   harmony: string;
   pairings: string;
   notes: string;
 }
 
 const defaultFormData = {
-  evolution: '',
+  evolutionary_state: '',
   harmony: '',
   pairings: '',
   notes: '',
@@ -64,14 +64,15 @@ export default function Final() {
       });
     }
   };
+  
+  const evolutionaryStateOptions = ["immature", "young", "ready", "mature", "old"];
+  const harmonyOptions = ["disharmonious", "quite_harmonious", "harmonious"];
 
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
 
-    const evolutionOptions = ["immaturo", "giovane", "pronto", "maturo", "vecchio"];
-    const harmonyOptions = ["poco_armonico", "abbastanza_armonico", "armonico"];
-    if (!evolutionOptions.includes(formData.evolution)) {
-      newErrors.evolution = "Invalid evolution value";
+    if (!evolutionaryStateOptions.includes(formData.evolutionary_state)) {
+      newErrors.evolutionary_state = "Invalid evolution state value";
     }
 
     if (!harmonyOptions.includes(formData.harmony)) {
@@ -103,12 +104,12 @@ export default function Final() {
               </View>
 
               <FormSelect
-                label="Evolution"
-                field="evolution"
-                value={formData.evolution}
-                error={errors.evolution}
+                label="Evolutionary State"
+                field="evolutionary_state"
+                value={formData.evolutionary_state}
+                error={errors.evolutionary_state}
                 onChange={updateFormData}
-                options={["immaturo", "giovane", "pronto", "maturo", "vecchio"]}
+                options={evolutionaryStateOptions}
               />
 
               <FormSelect
@@ -117,7 +118,7 @@ export default function Final() {
                 value={formData.harmony}
                 error={errors.harmony}
                 onChange={updateFormData}
-                options={["poco_armonico", "abbastanza_armonico", "armonico"]}
+                options={harmonyOptions}
               />
 
               <FormInput
@@ -139,19 +140,23 @@ export default function Final() {
             </Card.Content>
           </Card>
 
+          <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginLeft: 15, marginRight: 15 }}>
+            <ExitButton
+              setErrors={setErrors}
+              setFormData={setFormData}
+              defaultFormData={defaultFormData}
+            />
+            <NextButton
+              requiresTid
+              path="/new/final"
+              text="SAVE"
+              formData={formData}
+              validation={validateForm}
+              action={ExamsAPI.createFinal}
+            />
+          </View>
         </ScrollView>
       </KeyboardAvoidingView>
-      <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginLeft: 15, marginRight: 15 }}>
-        <ExitButton />
-        <NextButton
-          path="/new/final"
-          text="SAVE"
-          formData={formData}
-          validation={validateForm}
-          action={ExamsAPI.createFinal}
-          requiresTid
-        />
-      </View>
     </>
   );
 }

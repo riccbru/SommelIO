@@ -11,6 +11,7 @@ import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } fr
 
 type Tasting = {
   wine_denomination: string;
+  winemaker: string;
   favorite: boolean;
   wine_category_name: string;
   sample_number: string;
@@ -25,6 +26,7 @@ type Tasting = {
 
 const defaultFormData = {
   wine_denomination: '',
+  winemaker: '',
   favorite: false,
   wine_category_name: '',
   sample_number: '',
@@ -80,6 +82,8 @@ export default function New() {
     }
   };
 
+  const allowedCategories = ['white', 'red', 'rosé', 'sparkling', 'fortified'];
+
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
 
@@ -87,15 +91,14 @@ export default function New() {
       newErrors.wine_denomination = 'Wine denomination is required';
     }
 
-    const allowedCategories = ['white', 'red', 'rosé'];
+    if (!formData.winemaker.trim()) {
+      newErrors.winemaker = 'Winemaker is required';
+    }
+
     if (!formData.wine_category_name.trim()) {
       newErrors.wine_category_name = 'Wine category is required';
     } else if (!allowedCategories.includes(formData.wine_category_name.toLowerCase())) {
       newErrors.wine_category_name = 'Wine category must be white/red/rosé';
-    }
-
-    if (!formData.sample_number.trim()) {
-      newErrors.sample_number = 'Sample number is required';
     }
 
     if (!formData.vintage.trim()) {
@@ -168,13 +171,21 @@ export default function New() {
                 onChange={updateFormData}
               />
 
+              <FormInput
+                label="Winemaker"
+                field="winemaker"
+                value={formData.winemaker}
+                error={errors.winemaker}
+                onChange={updateFormData}
+              />
+
               <FormSelect
                 label="Category"
                 field="wine_category_name"
                 value={formData.wine_category_name}
                 error={errors.wine_category_name}
                 onChange={updateFormData}
-                options={["white", "red", "rosé"]}
+                options={allowedCategories}
               />
 
               <FormCheckbox
@@ -258,10 +269,14 @@ export default function New() {
           </Card>
 
           <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginLeft: 15, marginRight: 15 }}>
-            <ExitButton />
+            <ExitButton
+              setErrors={setErrors}
+              setFormData={setFormData}
+              defaultFormData={defaultFormData}
+            />
             <NextButton
               path="/new/visual"
-              text="VISUAL EXAM"
+              text="VISUAL"
               validation={validateForm}
               formData={{ ...formData, vintage: Number(formData.vintage) }}
               action={TastingsAPI.createTasting}

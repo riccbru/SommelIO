@@ -8,7 +8,7 @@ const getPreferredLanguage = (req) => {
 
 const formatOlfactoryExam = (data) => {
   const exam = {
-    "eid": data.eid,
+    "eid": data?.eid,
     "intensity": data.intensity,
     "complexity": data.complexity,
     "quality": data.quality,
@@ -49,7 +49,7 @@ const formatTasting = (tasting) => {
   const tastingFormatted = {
     tid: tasting.tid,
     full_name: tasting.full_name,
-    wine_category_name: tasting.wine_category_name || null,
+    wine_category_name: tasting.wine_categories.code || null,
     favorite: tasting.favorite,
     sample_number: tasting.sample_number || null,
     wine_denomination: tasting.wine_denomination,
@@ -71,43 +71,6 @@ const formatTasting = (tasting) => {
   return tastingFormatted;
 }
 
-const fetchWineCategoryNames = async (categoryIds, language, prisma) => {
-  const translations = await prisma.wine_category_translations.findMany({
-    where: {
-      category_id: { in: categoryIds },
-      language_code: { in: [language, "en"] },
-    },
-    select: {
-      category_id: true,
-      language_code: true,
-      name: true,
-    },
-  });
-
-  const translationMap = {};
-  for (const t of translations) {
-    if (!translationMap[t.category_id]) {
-      translationMap[t.category_id] = {};
-    }
-    translationMap[t.category_id][t.language_code] = t.name;
-  }
-
-  return (categoryId) =>
-    translationMap[categoryId]?.[language] ||
-    translationMap[categoryId]?.["en"] ||
-    null;
-};
-
-const injectWineCategoryName = async (tastings, language, prisma) => {
-  const categoryIds = [...new Set(tastings.map(t => t.wine_category_id))];
-  const getName = await fetchWineCategoryNames(categoryIds, language, prisma);
-
-  return tastings.map(({ id, wine_category_id, ...rest }) => ({
-    ...rest,
-    wine_category_name: getName(wine_category_id)
-  }));
-};
-
 const findWineCategoryId = async (code) => {
   const category = await prisma.wine_categories.findUnique({
     where: { code },
@@ -115,6 +78,7 @@ const findWineCategoryId = async (code) => {
   });
   return category?.id || null;
 };
+
 
 const parseTastingTime = (tasting_time) => {
   const [hour, minute] = tasting_time.split(':').map(Number);
@@ -127,7 +91,6 @@ export {
   getPreferredLanguage,
   formatTasting,
   formatOlfactoryExam,
-  injectWineCategoryName,
   findWineCategoryId,
   parseTastingTime
 }

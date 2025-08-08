@@ -8,6 +8,7 @@ import CancelButton from "@/src/components/new/CancelButton";
 import FormSelect from "@/src/components/new/FormSelect";
 import FormCheckbox from "@/src/components/new/FormCheckbox";
 import ExitButton from "@/src/components/new/ExitButton";
+import { capitalizeFirst } from "@/src/utils/utils";
 
 type OlfactoryExam = {
   intensity: string;
@@ -17,12 +18,12 @@ type OlfactoryExam = {
   vinous: boolean;
   floral: boolean;
   fruity: boolean;
-  fragrant: boolean;
-  herbaceous: boolean;
+  grassy: boolean;
   mineral: boolean;
+  fragrant: boolean;
   spicy: boolean;
+  toasted: boolean;
   ethereal: boolean;
-  frank: boolean;
   notes: string;
 };
 
@@ -34,12 +35,12 @@ const defaultFormData = {
   vinous: false,
   floral: false,
   fruity: false,
-  fragrant: false,
-  herbaceous: false,
+  grassy: false,
   mineral: false,
+  fragrant: false,
   spicy: false,
+  toasted: false,
   ethereal: false,
-  frank: false,
   notes: '',
 }
 
@@ -86,11 +87,13 @@ export default function Olfactory() {
     }
   };
 
+  const intensityOptions = ["lacking", "scarcely_intense", "quite_intense", "intense", "very_intense"];
+  const complexityOptions = ["lacking", "scarcely_complex", "quite_complex", "complex", "ample"];
+  const qualityOptions = ["coarse", "scarcely_fine", "quite_fine", "fine", "excellent"];
+  const descriptors = ["aromatic", "vinous", "floral", "fruity", "grassy", "mineral", "fragrant", "spicy", "toasted", "ethereal"];
+
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
-    const intensityOptions = ["carente", "poco_intenso", "abbastanza_intenso", "intenso", "molto_intenso"];
-    const complexityOptions = ["carente", "poco_complesso", "abbastanza_complesso", "complesso", "ampio"];
-    const qualityOptions = ["comune", "poco_fine", "abbastanza_fine", "fine", "eccellente"];
 
     if (!intensityOptions.includes(formData.intensity)) {
       newErrors.intensity = "Invalid intensity value";
@@ -103,11 +106,6 @@ export default function Olfactory() {
     if (!qualityOptions.includes(formData.quality)) {
       newErrors.quality = "Invalid quality value";
     }
-
-    const descriptors = [
-      "aromatic", "vinous", "floral", "fruity", "fragrant",
-      "herbaceous", "mineral", "spicy", "ethereal", "frank"
-    ];
 
     const hasAtLeastOneDescriptor = descriptors.some(
       (key) => formData[key as keyof OlfactoryExam] === true
@@ -147,7 +145,7 @@ export default function Olfactory() {
                 value={formData.intensity}
                 error={errors.intensity}
                 onChange={updateFormData}
-                options={["carente", "poco_intenso", "abbastanza_intenso", "intenso", "molto_intenso"]}
+                options={intensityOptions}
               />
 
               <FormSelect
@@ -156,7 +154,7 @@ export default function Olfactory() {
                 value={formData.complexity}
                 error={errors.complexity}
                 onChange={updateFormData}
-                options={["carente", "poco_complesso", "abbastanza_complesso", "complesso", "ampio"]}
+                options={complexityOptions}
               />
 
               <FormSelect
@@ -165,69 +163,17 @@ export default function Olfactory() {
                 value={formData.quality}
                 error={errors.quality}
                 onChange={updateFormData}
-                options={["comune", "poco_fine", "abbastanza_fine", "fine", "eccellente"]}
+                options={qualityOptions}
               />
 
-              <FormCheckbox
-                label="Aromatic"
-                name="aromatic"
-                formData={formData}
-                setFormData={setFormData}
-              />
-              <FormCheckbox
-                label="Vinous"
-                name="vinous"
-                formData={formData}
-                setFormData={setFormData}
-              />
-              <FormCheckbox
-                label="Floral"
-                name="floral"
-                formData={formData}
-                setFormData={setFormData}
-              />
-              <FormCheckbox
-                label="Fruity"
-                name="fruity"
-                formData={formData}
-                setFormData={setFormData}
-              />
-              <FormCheckbox
-                label="Fragrant"
-                name="fragrant"
-                formData={formData}
-                setFormData={setFormData}
-              />
-              <FormCheckbox
-                label="Herbaceous"
-                name="herbaceous"
-                formData={formData}
-                setFormData={setFormData}
-              />
-              <FormCheckbox
-                label="Mineral"
-                name="mineral"
-                formData={formData}
-                setFormData={setFormData}
-              />
-              <FormCheckbox
-                label="Spicy"
-                name="spicy"
-                formData={formData}
-                setFormData={setFormData}
-              />
-              <FormCheckbox
-                label="Ethereal"
-                name="ethereal"
-                formData={formData}
-                setFormData={setFormData}
-              />
-              <FormCheckbox
-                label="Frank"
-                name="frank"
-                formData={formData}
-                setFormData={setFormData}
-              />
+              {descriptors.map((el, index) => (
+                <FormCheckbox key={index}
+                  label={capitalizeFirst(el)}
+                  name={el}
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+              ))}
 
               <FormInput
                 label="Notes"
@@ -240,19 +186,23 @@ export default function Olfactory() {
             </Card.Content>
           </Card>
 
+          <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginLeft: 15, marginRight: 15 }}>
+            <ExitButton
+              setErrors={setErrors}
+              setFormData={setFormData}
+              defaultFormData={defaultFormData}
+            />
+            <NextButton
+              requiresTid
+              path="/new/taste"
+              text="TASTE"
+              formData={formData}
+              validation={validateForm}
+              action={ExamsAPI.createOlfactory}
+            />
+          </View>
         </ScrollView>
       </KeyboardAvoidingView>
-      <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginLeft: 15, marginRight: 15 }}>
-        <ExitButton />
-        <NextButton
-          path="/new/taste"
-          text="TASTE EXAM"
-          formData={formData}
-          validation={validateForm}
-          action={ExamsAPI.createOlfactory}
-          requiresTid
-        />
-      </View>
     </>
   );
 }

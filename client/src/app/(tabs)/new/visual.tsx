@@ -13,9 +13,9 @@ type VisualExam = {
     color_family: string;
     color_shade: string;
     consistency: string;
-    bubble_grain: string | null;
-    bubble_number: string | null;
-    bubble_persistence: string | null;
+    bubble_size: string;
+    bubble_number: string;
+    bubble_persistence: string;
     notes: string;
 };
 
@@ -24,9 +24,9 @@ const defaultFormData = {
     color_family: '',
     color_shade: '',
     consistency: '',
-    bubble_grain: null,
-    bubble_number: null,
-    bubble_persistence: null,
+    bubble_size: '',
+    bubble_number: '',
+    bubble_persistence: '',
     notes: ''
 }
 
@@ -73,51 +73,52 @@ export default function Visual() {
         }
     };
 
-    const colorFamilyOptions = ["giallo", "rosa", "rosso"];
-    const colorShades: Record<string, string[]> = {
-      giallo: ["verdolino", "paglierino", "dorato", "ambrato"],
-      rosa: ["tenue", "cerasuolo", "chiaretto"],
-      rosso: ["porpora", "rubino", "granato", "aranciato"],
+    const colorFamilyOptions = ["yellow", "red", "rosé"];
+    const colorShadesOptions: Record<string, string[]> = {
+        yellow: ["greenish_yellow", "straw_yellow", "golden_yellow", "amber"],
+        red: ["purple_red", "ruby_red", "garnet", "orange_red"],
+        rosé: ["soft_rosé", "cherry_red", "dark_rosé"]
     };
+
+    const limpidityOptions = ["veiled", "quite_limpid", "limpid", "crystal_clear", "brilliant"];
+    const consistencyOptions = ["flowing", "scarcely_consistent", "quite_consistent", "consistent", "oily"];
+    const bubblesizeOptions = ["", "large", "quite_fine", "fine"];
+    const bubbleNumberOptions = ["", "very_few", "quite_numerous", "numerous"];
+    const bubblePersistenceOptions = ["", "fading", "quite_persistent", "persistent"];
 
     const validateForm = (): boolean => {
         const newErrors: Record<string, string> = {};
 
-        const limpidityOptions = ["velato", "abbastanza_limpido", "limpido", "cristallino", "brillante"];
-        const consistencyOptions = ["fluido", "poco_consistente", "abbastanza_consistente", "consistente", "viscoso"];
-        const bubbleGrainOptions = ["grossolane", "abbastanza_fini", "fini"];
-        const bubbleNumberOptions = ["scarse", "abbastanza_numerose", "numerose"];
-        const bubblePersistenceOptions = ["evanescenti", "abbastanza_persistenti", "persistenti"];
-    
+
         if (!limpidityOptions.includes(formData.limpidity)) {
-          newErrors.limpidity = "Invalid limpidity value";
+            newErrors.limpidity = "Invalid limpidity value";
         }
-    
+
         if (!colorFamilyOptions.includes(formData.color_family)) {
-          newErrors.color_family = "Invalid color family";
+            newErrors.color_family = "Invalid color family";
         }
-    
-        const validShades = colorShades[formData.color_family] || [];
+
+        const validShades = colorShadesOptions[formData.color_family] || [];
         if (!validShades.includes(formData.color_shade)) {
-          newErrors.color_shade = `Invalid shade for color family ${formData.color_family}`;
+            newErrors.color_shade = `Invalid shade for color family ${formData.color_family}`;
         }
-    
+
         if (!consistencyOptions.includes(formData.consistency)) {
-          newErrors.consistency = "Invalid consistency value";
+            newErrors.consistency = "Invalid consistency value";
         }
-    
-        // if (!bubbleGrainOptions.includes(formData.bubble_grain)) {
-        //   newErrors.bubble_grain = "Invalid bubble grain value";
-        // }
-    
-        // if (!bubbleNumberOptions.includes(formData.bubble_number)) {
-        //   newErrors.bubble_number = "Invalid bubble number value";
-        // }
-    
-        // if (!bubblePersistenceOptions.includes(formData.bubble_persistence)) {
-        //   newErrors.bubble_persistence = "Invalid bubble persistence value";
-        // }
-    
+
+        if (!bubblesizeOptions.includes(formData.bubble_size)) {
+            newErrors.bubble_size = "Invalid bubble size value";
+        }
+
+        if (!bubbleNumberOptions.includes(formData.bubble_number)) {
+            newErrors.bubble_number = "Invalid bubble number value";
+        }
+
+        if (!bubblePersistenceOptions.includes(formData.bubble_persistence)) {
+            newErrors.bubble_persistence = "Invalid bubble persistence value";
+        }
+
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     }
@@ -148,7 +149,7 @@ export default function Visual() {
                                 value={formData.limpidity}
                                 error={errors.limpidity}
                                 onChange={updateFormData}
-                                options={["velato", "abbastanza_limpido", "limpido", "cristallino", "brillante"]}
+                                options={limpidityOptions}
                             />
 
                             <FormSelect
@@ -162,7 +163,7 @@ export default function Visual() {
                                         updateFormData("color_shade", "");
                                     }
                                 }
-                                options={["giallo", "rosa", "rosso"]}
+                                options={colorFamilyOptions}
                             />
 
                             <FormSelect
@@ -171,7 +172,7 @@ export default function Visual() {
                                 value={formData.color_shade}
                                 error={errors.color_shade}
                                 onChange={updateFormData}
-                                options={colorShades[formData.color_family]}
+                                options={colorShadesOptions[formData.color_family]}
                             />
 
                             <FormSelect
@@ -180,16 +181,16 @@ export default function Visual() {
                                 value={formData.consistency}
                                 error={errors.consistency}
                                 onChange={updateFormData}
-                                options={["fluido", "poco_consistente", "abbastanza_consistente", "consistente", "viscoso"]}
+                                options={consistencyOptions}
                             />
 
-                            {/* <FormSelect
-                                label="Bubble grain"
-                                field="bubble_grain"
-                                value={formData.bubble_grain}
-                                error={errors.bubble_grain}
+                            <FormSelect
+                                label="Bubble size"
+                                field="bubble_size"
+                                value={formData.bubble_size}
+                                error={errors.bubble_size}
                                 onChange={updateFormData}
-                                options={["grossolane", "abbastanza_fini", "fini"]}
+                                options={bubblesizeOptions}
                             />
 
                             <FormSelect
@@ -198,7 +199,7 @@ export default function Visual() {
                                 value={formData.bubble_number}
                                 error={errors.bubble_number}
                                 onChange={updateFormData}
-                                options={["scarse", "abbastanza_numerose", "numerose"]}
+                                options={bubbleNumberOptions}
                             />
 
                             <FormSelect
@@ -207,8 +208,8 @@ export default function Visual() {
                                 value={formData.bubble_persistence}
                                 error={errors.bubble_persistence}
                                 onChange={updateFormData}
-                                options={["evanescenti", "abbastanza_persistenti", "persistenti"]}
-                            /> */}
+                                options={bubblePersistenceOptions}
+                            />
 
                             <FormInput
                                 label="Notes"
@@ -221,20 +222,24 @@ export default function Visual() {
                         </Card.Content>
                     </Card>
 
+                    <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginLeft: 15, marginRight: 15 }}>
+                        <ExitButton
+                            setErrors={setErrors}
+                            setFormData={setFormData}
+                            defaultFormData={defaultFormData}
+                        />
+                        <NextButton
+                            requiresTid
+                            path="/new/olfactory"
+                            text="OLFACTORY"
+                            formData={formData}
+                            validation={validateForm}
+                            action={ExamsAPI.createVisual}
+                        />
+                    </View>
                 </ScrollView>
             </KeyboardAvoidingView>
-            <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginLeft: 15, marginRight: 15 }}>
-                <ExitButton />
-                <NextButton
-                    path="/new/olfactory"
-                    text="OLFACTORY EXAM"
-                    formData={formData}
-                    validation={validateForm}
-                    action={ExamsAPI.createVisual}
-                    requiresTid
-                />
-            </View>
 
         </>
-      );
+    );
 }

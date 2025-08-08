@@ -1,8 +1,6 @@
 import { Router } from "express";
 import {
-    getPreferredLanguage,
     formatTasting,
-    injectWineCategoryName,
     findWineCategoryId,
     parseTastingTime
 } from "../utils/tastings.js";
@@ -20,6 +18,7 @@ router.get("/",
             const result = await prisma.tastings.findMany({
                 where: { uid: uid },
                 include: {
+                  wine_categories: true,
                   visual_exams: true,
                   olfactory_exams: true,
                   taste_olfactory_exams: true,
@@ -27,7 +26,7 @@ router.get("/",
                 },
                 orderBy: { id: 'desc' },
             });
-            console.log(result);
+            
             const tastings = result.map(t => formatTasting(t));
 
             res.json({ tastings: tastings });
@@ -52,6 +51,7 @@ router.get("/:tid",
                     uid: uid
                 },
               include: {
+                wine_categories: true,
                 visual_exams: true,
                 olfactory_exams: true,
                 taste_olfactory_exams: true,
@@ -77,7 +77,6 @@ router.get("/:tid",
 // POST /api/v1/tastings
 router.post('/', async (req, res) => {
   const uid = req.user.uid;
-  const language = req.headers['accept-language']?.split(',')[0]?.toLowerCase() || 'en';
 
   try {
     const {
@@ -122,6 +121,9 @@ router.post('/', async (req, res) => {
         tasting_time: timeDate,
         tasting_location,
       },
+      include: {
+        wine_categories: true
+      }
     });
 
     const tasting = formatTasting(newTasting);

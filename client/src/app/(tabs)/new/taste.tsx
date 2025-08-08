@@ -9,12 +9,12 @@ import FormSelect from "@/src/components/new/FormSelect";
 import ExitButton from "@/src/components/new/ExitButton";
 
 type TasteExam = {
-  sugars: string;
+  sweetness: string;
   alcohols: string;
-  polyalcohols: string;
-  acids: string;
-  tannins: string;
-  minerals: string;
+  softness: string;
+  acidity: string;
+  tannicity: string;
+  saltiness: string;
   balance: string;
   intensity: string;
   persistence: string;
@@ -24,12 +24,12 @@ type TasteExam = {
 }
 
 const defaultFormData = {
-  sugars: '',
+  sweetness: '',
   alcohols: '',
-  polyalcohols: '',
-  acids: '',
-  tannins: '',
-  minerals: '',
+  softness: '',
+  acidity: '',
+  tannicity: '',
+  saltiness: '',
   balance: '',
   intensity: '',
   persistence: '',
@@ -81,43 +81,43 @@ export default function Taste() {
     }
   };
 
+  const sweetnessOptions = ["dry", "medium_dry", "medium_sweet", "sweet", "excessively_sweet"];
+  const alcoholsOptions = ["light", "lightly_warm", "medium_warm", "warm", "alcoholic"];
+  const softnessOptions = ["sharp", "scarcely_soft", "quite_soft", "soft", "velvety"];
+  const acidityOptions = ["flat", "scarcely_fresh", "quite_fresh", "fresh", "acidulous"];
+  const tannicityOptions = ["flabby", "scarcely_tannic", "quite_tannic", "tannic", "astringent"];
+  const saltinessOptions = ["tasteless", "scarcely_tasty", "quite_tasty", "tasty", "salty"];
+  const balanceOptions = ["unbalanced", "quite_balanced", "balanced"];
+  const intensityOptions = ["lacking", "scarcely_intense", "quite_intense", "intense", "very_intense"];
+  const persistenceOptions = ["short", "scarcely_persistent", "quite_persistent", "persistent", "very_persistent"];
+  const qualityOptions = ["coarse", "scarcely_fine", "quite_fine", "fine", "excellent"];
+  const structureOptions = ["thin", "weak", "full", "vigorous", "heavy"];
+
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
 
-    const sugarsOptions = ["secco", "amabile", "abboccato", "dolce", "stucchevole"];
-    const alcoholsOptions = ["leggero", "poco_caldo", "abbastanza_caldo", "caldo", "alcolico"];
-    const polyalcoholsOptions = ["spigoloso", "poco_morbido", "abbastanza_morbido", "morbido", "pastoso"];
-    const acidsOptions = ["piatto", "poco_fresco", "abbastanza_fresco", "fresco", "acidulo"];
-    const tanninsOptions = ["molle", "poco_tannico", "abbastanza_tannico", "tannico", "astringente"];
-    const mineralsOptions = ["scipito", "poco_sapido", "abbastanza_sapido", "sapido", "salato"];
-    const balanceOptions = ["poco_equilibrato", "abbastanza_equilibrato", "equilibrato"];
-    const intensityOptions = ["carente", "poco_intenso", "abbastanza_intenso", "intenso", "molto_intenso"];
-    const persistenceOptions = ["corto", "poco_persistente", "abbastanza_persistente", "persistente", "molto_persistente"];
-    const qualityOptions = ["comune", "poco_fine", "abbastanza_fine", "fine", "eccellente"];
-    const structureOptions = ["magro", "debole", "di_corpo", "robusto", "pesante"];
-
-    if (!sugarsOptions.includes(formData.sugars)) {
-      newErrors.sugars = "Invalid sugars value";
+    if (!sweetnessOptions.includes(formData.sweetness)) {
+      newErrors.sweetness = "Invalid sweetness value";
     }
 
     if (!alcoholsOptions.includes(formData.alcohols)) {
       newErrors.alcohols = "Invalid alcohols value";
     }
 
-    if (!polyalcoholsOptions.includes(formData.polyalcohols)) {
-      newErrors.polyalcohols = "Invalid polyalcohols value";
+    if (!softnessOptions.includes(formData.softness)) {
+      newErrors.softness = "Invalid softness value";
     }
 
-    if (!acidsOptions.includes(formData.acids)) {
-      newErrors.acids = "Invalid acids value";
+    if (!acidityOptions.includes(formData.acidity)) {
+      newErrors.acidity = "Invalid acidity value";
     }
 
-    if (!tanninsOptions.includes(formData.tannins)) {
-      newErrors.tannins = "Invalid tannins value";
+    if (!tannicityOptions.includes(formData.tannicity)) {
+      newErrors.tannicity = "Invalid tannicity value";
     }
 
-    if (!mineralsOptions.includes(formData.minerals)) {
-      newErrors.minerals = "Invalid minerals value";
+    if (!saltinessOptions.includes(formData.saltiness)) {
+      newErrors.saltiness = "Invalid saltiness value";
     }
 
     if (!balanceOptions.includes(formData.balance)) {
@@ -167,12 +167,12 @@ export default function Taste() {
               </View>
 
               <FormSelect
-                label="Sugars"
-                field="sugars"
-                value={formData.sugars}
-                error={errors.sugars}
+                label="Sweetness"
+                field="sweetness"
+                value={formData.sweetness}
+                error={errors.sweetness}
                 onChange={updateFormData}
-                options={["secco", "amabile", "abboccato", "dolce", "stucchevole"]}
+                options={sweetnessOptions}
               />
 
               <FormSelect
@@ -181,43 +181,43 @@ export default function Taste() {
                 value={formData.alcohols}
                 error={errors.alcohols}
                 onChange={updateFormData}
-                options={["leggero", "poco_caldo", "abbastanza_caldo", "caldo", "alcolico"]}
+                options={alcoholsOptions}
               />
 
               <FormSelect
-                label="Polyalcohols"
-                field="polyalcohols"
-                value={formData.polyalcohols}
-                error={errors.polyalcohols}
+                label="Softness"
+                field="softness"
+                value={formData.softness}
+                error={errors.softness}
                 onChange={updateFormData}
-                options={["spigoloso", "poco_morbido", "abbastanza_morbido", "morbido", "pastoso"]}
+                options={softnessOptions}
               />
 
               <FormSelect
-                label="Acids"
-                field="acids"
-                value={formData.acids}
-                error={errors.acids}
+                label="Acidity"
+                field="acidity"
+                value={formData.acidity}
+                error={errors.acidity}
                 onChange={updateFormData}
-                options={["piatto", "poco_fresco", "abbastanza_fresco", "fresco", "acidulo"]}
+                options={acidityOptions}
               />
 
               <FormSelect
-                label="Tannins"
-                field="tannins"
-                value={formData.tannins}
-                error={errors.tannins}
+                label="Tannicity"
+                field="tannicity"
+                value={formData.tannicity}
+                error={errors.tannicity}
                 onChange={updateFormData}
-                options={["molle", "poco_tannico", "abbastanza_tannico", "tannico", "astringente"]}
+                options={tannicityOptions}
               />
 
               <FormSelect
-                label="Minerals"
-                field="minerals"
-                value={formData.minerals}
-                error={errors.minerals}
+                label="Saltiness"
+                field="saltiness"
+                value={formData.saltiness}
+                error={errors.saltiness}
                 onChange={updateFormData}
-                options={["scipito", "poco_sapido", "abbastanza_sapido", "sapido", "salato"]}
+                options={saltinessOptions}
               />
 
               <FormSelect
@@ -226,7 +226,7 @@ export default function Taste() {
                 value={formData.balance}
                 error={errors.balance}
                 onChange={updateFormData}
-                options={["poco_equilibrato", "abbastanza_equilibrato", "equilibrato"]}
+                options={balanceOptions}
               />
 
               <FormSelect
@@ -235,7 +235,7 @@ export default function Taste() {
                 value={formData.intensity}
                 error={errors.intensity}
                 onChange={updateFormData}
-                options={["carente", "poco_intenso", "abbastanza_intenso", "intenso", "molto_intenso"]}
+                options={intensityOptions}
               />
 
               <FormSelect
@@ -244,7 +244,7 @@ export default function Taste() {
                 value={formData.persistence}
                 error={errors.persistence}
                 onChange={updateFormData}
-                options={["corto", "poco_persistente", "abbastanza_persistente", "persistente", "molto_persistente"]}
+                options={persistenceOptions}
               />
 
               <FormSelect
@@ -253,7 +253,7 @@ export default function Taste() {
                 value={formData.quality}
                 error={errors.quality}
                 onChange={updateFormData}
-                options={["comune", "poco_fine", "abbastanza_fine", "fine", "eccellente"]}
+                options={qualityOptions}
               />
 
               <FormSelect
@@ -262,7 +262,7 @@ export default function Taste() {
                 value={formData.structure}
                 error={errors.structure}
                 onChange={updateFormData}
-                options={["magro", "debole", "di_corpo", "robusto", "pesante"]}
+                options={structureOptions}
               />
 
               <FormInput
@@ -276,19 +276,23 @@ export default function Taste() {
             </Card.Content>
           </Card>
 
+          <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginLeft: 15, marginRight: 15 }}>
+            <ExitButton
+              setErrors={setErrors}
+              setFormData={setFormData}
+              defaultFormData={defaultFormData}
+            />
+            <NextButton
+              requiresTid
+              path="/new/final"
+              text="FINAL"
+              formData={formData}
+              validation={validateForm}
+              action={ExamsAPI.createTaste}
+            />
+          </View>
         </ScrollView>
       </KeyboardAvoidingView>
-      <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginLeft: 15, marginRight: 15 }}>
-        <ExitButton />
-        <NextButton
-          path="/new/final"
-          text="FINAL EXAM"
-          formData={formData}
-          validation={validateForm}
-          action={ExamsAPI.createTaste}
-          requiresTid
-        />
-      </View>
     </>
   );
 }

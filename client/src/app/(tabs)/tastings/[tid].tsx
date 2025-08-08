@@ -13,6 +13,7 @@ type Tasting = {
     sample_number: string;
     wine_denomination: string;
     favorite: boolean;
+    winemaker: string;
     alcohol_content: string;
     vintage: string;
     wine_temperature: string;
@@ -153,6 +154,7 @@ export default function TastingDetail() {
                 <Card.Content>
                     <Text style={styles.title}>{tasting.wine_denomination.toUpperCase()}</Text>
                     <Text style={styles.subtitle}>Description</Text>
+                    <Text style={styles.text}>Winemaker: {tasting.winemaker}</Text>
                     <Text style={styles.text}>Category: {tasting.wine_category_name}</Text>
                     <Text style={styles.text}>Sample: {tasting.sample_number}</Text>
                     <Text style={styles.text}>Alcohol: {tasting.alcohol_content}</Text>

@@ -450,7 +450,7 @@ All the possible values are described below:
     | **Color Shade**         | **YELLOW**: `greenish_yellow`/`straw_yellow`/`golden_yellow`/`amber` <br> **RED**: `purple_red`/`ruby_red`/`garnet`/`orange_red` <br> **ROSÉ**: `soft_rosé`/`cherry_red`/`dark_rosé`, `aranciato`                                                                                                           |
     | **Consistency**         | `flowing`/`scarcely_consistent`/`quite_consistent`/`consistent`/`oily`                    |
     | **Bubble Grain**        | `large`/`quite fine`/`fine`                                                               |
-    | **Bubble Number**       | `very few`/`quite_numerous`/`numerous`                                                    |
+    | **Bubble Number**       | `very_few`/`quite_numerous`/`numerous`                                                    |
     | **Bubble Persistence**  | `fading`/`quite_persistent`/`persistent`                                                  |
     | **notes**               | Free text                                                                                 |
 
@@ -460,8 +460,8 @@ All the possible values are described below:
     |-------------------------|-------------------------------------------------------------------------------------------|
     | **Intensity**           | `lacking`/`scarcely_intense`/`quite_intense`/`intense`/`very_intense`                     |
     | **Complexity**          | `lacking`/`scarcely_complex`/`quite_complex`/`complex`/`ample`                            |
-    | **Quality**             | `coarse`/`scarcely_fine`/`quite fine`/`fine`/`excellent`                                  |
-    | **Description**         | `aromatic`/`vinous`/`floral`/`fruity`/`grassy`/`mineral`/`fragrant`/`spicy`/`toasted`/`ethereal` `frank`                                                                                                               |
+    | **Quality**             | `coarse`/`scarcely_fine`/`quite_fine`/`fine`/`excellent`                                  |
+    | **Description**         | `aromatic`/`vinous`/`floral`/`fruity`/`grassy`/`mineral`/`fragrant`/`spicy`/`toasted`/`ethereal`                                                                                                            |
     | **Notes**               | Free text                                                                                 |
 
 - ### TASTE-OLFACTORY Exam
@@ -473,7 +473,7 @@ All the possible values are described below:
     | **Acidity**             | `flat`/`scarcely_fresh`/`quite_fresh`/`fresh`/`acidulous`                                 |
     | **Tannicity**           | `flabby`/`scarcely_tannic`/`quite_tannic`/`tannic`/`astringent`                           |
     | **Saltiness**           | `tasteless`/`scarcely_tasty`/`quite_tasty`/`tasty`/`salty`                                |
-    | **Balance**             | `unbalanced`/`quite balanced`/`balanced`                                                  |
+    | **Balance**             | `unbalanced`/`quite_balanced`/`balanced`                                                  |
     | **Intensity**           | `lacking`/`scarcely_intense`/`quite_intense`/`intense`/`very_intense`                     |
     | **Persistence**         | `short`/`scarcely_persistent`/`quite_persistent`/`persistent`/`very_persistent`           |
     | **Quality**             | `coarse`/`scarcely_fine`/`quite_fine`/`fine`/`excellent`                                  |
@@ -484,7 +484,7 @@ All the possible values are described below:
     | **Attribute**           | **Allowed Values**                                                                        |
     |-------------------------|-------------------------------------------------------------------------------------------|
     | **Evolutionary State**  | `immature`/`young`/`ready`/`mature`/`old`                                                 |
-    | **Harmony**             | `disharmonious`/`quite harmonious`/`harmonious`                                           |
+    | **Harmony**             | `disharmonious`/`quite_harmonious`/`harmonious`                                           |
     | **Pairings**            | Free text                                                                                 |
     | **Notes**               | Free text                                                                                 |
 

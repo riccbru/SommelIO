@@ -66,7 +66,7 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
                     
                         <View style={styles.accordionTrigger}>
                             <List.Accordion
-                                title={`${t.wine_denomination.toUpperCase()} - ${capitalizeFirst(t.wine_category_name)}`}
+                                title={`${capitalizeFirst(t.winemaker)} - ${t.wine_denomination.toUpperCase()}`}
                                 description={formatDescription(t.tasting_date, t.tasting_time, t.tasting_location)}
                             >
                                 <View style={styles.accordionBody}>

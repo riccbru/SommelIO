@@ -169,20 +169,22 @@ router.post('/:tid/:exam',
     if (!tasting) return;
 
     try {
-      let newExam = await examTypes[exam].create({
+      const newExam = await examTypes[exam].create({
         data: {
           tastings: { connect: { tid: tid } },
           ...req.body },
       });
 
+      
       delete newExam?.id;
       delete newExam?.tid;
 
-      let formattedData;
+      
+      let formattedData = newExam;
       if (exam === 'olfactory' && newExam) {
-        newExam = formatOlfactoryExam(formattedData);
+        formattedData = formatOlfactoryExam(newExam);
       }
-      res.status(201).json(newExam);
+      res.status(201).json(formattedData);
     } catch (err) {
       if (err.code === 'P2014') {
         return res.status(409).json({ error: `Tasting ${tid} already has ${exam} exam` });

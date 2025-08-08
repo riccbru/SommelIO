@@ -13,7 +13,7 @@ export function formatDescription(date: string, time: string, location: string):
         day: 'numeric',
         year: 'numeric'
     });
-    return `${formattedDate} (${time.split('T')[1].slice(0, 5)})\n@ ${location}`;
+    return `${location}\n${formattedDate}, ${time.split('T')[1].slice(0, 5)}`;
 }
 
 export function formatOption(value: string): string {
