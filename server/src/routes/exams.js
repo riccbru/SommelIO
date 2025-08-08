@@ -17,6 +17,28 @@ function omitIdTid(exam) {
   return rest;
 }
 
+function formatOlfactoryExam(data) {
+  const exam = {
+    "intensity": data.intensity,
+    "complexity": data.complexity,
+    "quality": data.quality,
+    "descriptors": {
+      "aromatic": data.aromatic,
+      "vinous": data.vinous,
+      "floral": data.floral,
+      "fruity": data.fruity,
+      "fragrant": data.fragrant,
+      "herbaceous": data.herbaceous,
+      "mineral": data.mineral,
+      "spicy": data.spicy,
+      "ethereal": data.ethereal,
+      "frank": data.frank,
+    },
+    "notes": data.notes
+  }
+  return exam;
+}
+
 async function validateTastingOwnership(tid, uid, res) {
   if (!tid || tid.length !== 36) {
     res.status(400).json({ error: `URL parameter 'tasting_uuid' is an invalid UUID-32` });
@@ -64,7 +86,7 @@ router.get('/:tid', async (req, res) => {
       tasting_uuid: tid,
       exams: {
         visual_exam: visualExam[0] ?? {},
-        olfactory_exam: olfactoryExam[0] ?? {},
+        olfactory_exam: formatOlfactoryExam(olfactoryExam[0]) ?? {},
         taste_olfactory_exam: tasteOlfactoryExam[0] ?? {},
         final_considerations: finalConsiderations[0] ?? {}
       }
@@ -92,13 +114,20 @@ router.get('/:tid/:exam', async (req, res) => {
       orderBy: { id: 'desc' },
     });
 
-    delete examData[0]?.id;
-    delete examData[0]?.tid;
+    let formattedData = examData[0];
+
+    delete formattedData[0]?.id;
+    delete formattedData[0]?.tid;
+
+    if (exam === 'olfactory') {
+      formattedData = formatOlfactoryExam(formattedData);
+    }
 
     res.json({
       tasting_uuid: tid,
-      [`${exam.replace('-', '_')}_exam`]: examData[0] ?? {},
+      [`${exam.replace('-', '_')}_exam`]: formattedData ?? {},
     });
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -132,7 +161,7 @@ router.post('/:tid',
         tasting_uuid: tid,
         exams: {
           visual_exam: omitIdTid(results[0]),
-          olfactory_exam: omitIdTid(results[1]),
+          olfactory_exam: formatOlfactoryExam(omitIdTid(results[1])),
           taste_olfactory_exam: omitIdTid(results[2]),
           final_considerations: omitIdTid(results[3]),
         }
@@ -160,13 +189,18 @@ router.post('/:tid/:exam',
     if (!tasting) return;
 
     try {
-      const newExam = await examTypes[exam].create({
+      let newExam = await examTypes[exam].create({
         data: {
           tastings: { connect: { tid: tid } },
           ...req.body },
       });
       delete newExam.id;
       delete newExam.tid;
+
+      let formattedData;
+      if (exam !== 'olfactory') {
+        newExam = formatOlfactoryExam(formattedData);
+      }
       res.status(201).json(newExam);
     } catch (err) {
       if (err.code === 'P2014') {

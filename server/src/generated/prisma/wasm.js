@@ -158,6 +158,7 @@ exports.Prisma.TastingsScalarFieldEnum = {
   favorite: 'favorite',
   sample_number: 'sample_number',
   wine_denomination: 'wine_denomination',
+  winemaker: 'winemaker',
   alcohol_content: 'alcohol_content',
   vintage: 'vintage',
   wine_temperature: 'wine_temperature',

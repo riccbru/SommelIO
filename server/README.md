@@ -229,6 +229,7 @@ If the URL parameter `tasting_uuid` is passed the route returns the single tasti
             "wine_category_name": <TEXT>,
             "sample_number": <TEXT>,
             "wine_denomination": <TEXT>,
+            "winemaker": <TEXT>,
             "alcohol_content": <TEXT %>,
             "vintage": <YEAR>,
             "wine_temperature": <TEXT°C>,
@@ -282,19 +283,20 @@ Returns a list of all tastings made by the current user.
 ## `CREATE TASTING`
 Endpoint: `POST /api/v1/tastings`.
 
-All the vlaues explained:
-| **Field Name**           | **Type**   | **Expected Format**         | **Example**                |
-|--------------------------|------------|-----------------------------|----------------------------|
-| `wine_category_name`     | TEXT       | Free text                   | `"Vino rosso fermo"`       |
-| `sample_number`          | TEXT       | Alphanumeric / numeric ID   | `"12A"`, `"001"`, `"B3"`   |
-| `wine_denomination`      | TEXT       | Free text                   | `"Chianti Classico DOCG"`  |
-| `alcohol_content`        | TEXT       | Number + `%` as string      | `"13.5%"`, `"14%"`         |
-| `vintage`                | YEAR       | 4-digit year                | `2020`, `2018`             |
-| `wine_temperature`       | TEXT       | Temperature + unit          | `"18°C"`, `"16-18°C"`      |
-| `ambient_temperature`    | TEXT       | Temperature + unit          | `"20°C"`                   |
-| `tasting_date`           | DATE       | `YYYY-MM-DD`                | `"2025-07-28"`             |
-| `tasting_time`           | TIME       | `HH:MM` (24h format)        | `"14:30"`                  |
-| `tasting_location`       | TEXT       | Free text                   | `"Torino"`                 |
+Accepted values and formats:
+| **Field Name**           | **Type**   | **Expected Format**         | **Example**                                  |
+|--------------------------|------------|-----------------------------|----------------------------------------------|
+| `wine_category_name`     | TEXT       | `white`/`red`/`rosé`/`sparkling`/`fortified` | "`red`" |
+| `sample_number`          | TEXT       | Alphanumeric / numeric ID                           | `"12A"`, `"001"`, `"B3"`                     |
+| `wine_denomination`      | TEXT       | Free text                                           | `"Chianti Classico DOCG"`                    |
+| `winemaker`              | TEXT       | Free text                                           | `"Antinori"`                                 |
+| `alcohol_content`        | TEXT       | Number                               | `"13.5"`, `"14"`                           |
+| `vintage`                | YEAR       | 4-digit year                                        | `2020`, `2018`                               |
+| `wine_temperature`       | TEXT       | Temperature                                  | `"16"`, `"18"`                        |
+| `ambient_temperature`    | TEXT       | Temperature                                 | `"20"`                                     |
+| `tasting_date`           | DATE       | `YYYY-MM-DD`                                        | `"2025-07-28"`                               |
+| `tasting_time`           | TIME       | `HH:MM` (24h format)                                | `"14:30"`                                    |
+| `tasting_location`       | TEXT       | Free text                                           | `"Torino"`                                   |
 
 ### REQUEST
 - Header
@@ -309,6 +311,7 @@ All the vlaues explained:
         "wine_category_name": <TEXT>,
         "sample_number": <TEXT>,
         "wine_denomination": <TEXT>,
+        "winemaker": <TEXT>,
         "alcohol_content": <TEXT>,
         "vintage": <YEAR>,
         "wine_temperature": <TEXT>,
@@ -334,6 +337,7 @@ All the vlaues explained:
             "wine_category_name": <TEXT>,
             "sample_number": <TEXT>,
             "wine_denomination": <TEXT>,
+            "winemaker": <TEXT>,
             "alcohol_content": <TEXT %>,
             "vintage": <YEAR>,
             "wine_temperature": <TEXT°C>,
@@ -500,16 +504,18 @@ All the possible values are described below:
             "intensity": <TEXT>,
             "complexity": <TEXT>,
             "quality": <TEXT>,
-            "aromatic": <BOOLEAN>,
-            "vinous": <BOOLEAN>,
-            "floral": <BOOLEAN>,
-            "fruity": <BOOLEAN>,
-            "fragrant": <BOOLEAN>,
-            "herbaceous": <BOOLEAN>,
-            "mineral": <BOOLEAN>,
-            "spicy": <BOOLEAN>,
-            "ethereal": <BOOLEAN>,
-            "frank": <BOOLEAN>,
+            "descriptors": {
+                "aromatic": <BOOLEAN>,
+                "vinous": <BOOLEAN>,
+                "floral": <BOOLEAN>,
+                "fruity": <BOOLEAN>,
+                "fragrant": <BOOLEAN>,
+                "herbaceous": <BOOLEAN>,
+                "mineral": <BOOLEAN>,
+                "spicy": <BOOLEAN>,
+                "ethereal": <BOOLEAN>,
+                "frank": <BOOLEAN>
+            },
             "notes": <TEXT>
         },
         "taste_olfactory_exam": {

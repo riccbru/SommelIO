@@ -6,6 +6,28 @@ const getPreferredLanguage = (req) => {
   return req.headers["accept-language"]?.split(",")[0]?.split("-")[0] || "en";
 };
 
+function formatOlfactoryExam(data) {
+  const exam = {
+    "intensity": data.intensity,
+    "complexity": data.complexity,
+    "quality": data.quality,
+    "descriptors": {
+      "aromatic": data.aromatic,
+      "vinous": data.vinous,
+      "floral": data.floral,
+      "fruity": data.fruity,
+      "fragrant": data.fragrant,
+      "herbaceous": data.herbaceous,
+      "mineral": data.mineral,
+      "spicy": data.spicy,
+      "ethereal": data.ethereal,
+      "frank": data.frank,
+    },
+    "notes": data.notes
+  }
+  return exam;
+}
+
 const formatTasting = (tasting) => {
   if (tasting.visual_exams) {
     delete tasting.visual_exams?.id;
@@ -25,12 +47,12 @@ const formatTasting = (tasting) => {
   }
   const tastingFormatted = {
     tid: tasting.tid,
-    uid: tasting.uid,
     full_name: tasting.full_name,
     wine_category_name: tasting.wine_category_name || null,
     favorite: tasting.favorite,
     sample_number: tasting.sample_number || null,
     wine_denomination: tasting.wine_denomination,
+    winemaker: tasting.winemaker,
     alcohol_content: `${tasting.alcohol_content}%`,
     vintage: tasting.vintage,
     wine_temperature: `${tasting.wine_temperature}°C`,
@@ -41,7 +63,7 @@ const formatTasting = (tasting) => {
     created_at: tasting.created_at,
     updated_at: tasting.updated_at,
     visual_exam: tasting.visual_exams || {},
-    olfactory_exam: tasting.olfactory_exams || {},
+    olfactory_exam: formatOlfactoryExam(tasting.olfactory_exams) || {},
     taste_olfactory_exam: tasting.taste_olfactory_exams || {},
     final_considerations: tasting.final_considerations || {}
   }

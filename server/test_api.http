@@ -1,6 +1,6 @@
-@token =
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NjdhNjIzNi00YjJlLTQ0N2UtOGYyMC0zOTdkNDUyZDE0MTIiLCJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJiYW5raWNoIiwiZnVsbF9uYW1lIjoiQmFua2ljaCBBZG1pbiIsImVtYWlsIjoiYmFua2ljaEBzb21tZWwuaW8iLCJpYXQiOjE3NTQ2NTUyODMsImV4cCI6MTc1NDY1NjE4M30.JFpgflYwzKfBSG_OS5gWMesT5VznCJm-PRwx2aK_5n4
 @refresh = 
-@tid =
+@tid = 6a2bace4-122e-45a2-b6ff-c8cbd6671a05
 
 ### LOGIN + TOKEN
 
@@ -38,7 +38,7 @@ Content-Type: application/json
 ### GET TASTINGS
 
 GET http://localhost:3001/api/v1/tastings HTTP/1.1
-Accept-Language: it
+Accept-Language: en
 Authorization: Bearer {{token}}
 
 ### GET TASTING BY ID
@@ -62,7 +62,9 @@ Authorization: Bearer {{token}}
 {
     "wine_category_name": "rosé",
     "sample_number": "2025-99",
-    "wine_denomination": "Cerasuolo d'Abruzzo DOC, Illuminati",
+    "wine_denomination": "Cerasuolo d'Abruzzo DOC",
+    "winemaker": "Illuminati",
+    "favorite": true,
     "alcohol_content": "13.0",
     "vintage": 2023,
     "wine_temperature": "16",
