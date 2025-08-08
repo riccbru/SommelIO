@@ -5,6 +5,7 @@ import {
     parseTastingTime
 } from "../utils/tastings.js";
 import { PrismaClient } from "../generated/prisma/index.js";
+import { TastingSchema } from "../validators/tastingSchema.js";
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -78,23 +79,31 @@ router.get("/:tid",
 router.post('/', async (req, res) => {
   const uid = req.user.uid;
 
-  try {
-    const {
-      full_name,
-      wine_category_name,
-      favorite,
-      sample_number,
-      wine_denomination,
-      winemaker,
-      alcohol_content,
-      vintage,
-      wine_temperature,
-      ambient_temperature,
-      tasting_date,
-      tasting_time,
-      tasting_location,
-    } = req.body;
+  const parsed = TastingSchema.safeParse(req.body);
+  
+  if (!parsed.success) {
+    console.log(parsed.error);
+    const errMex = parsed.error._zod.def[0].message;;
+    return res.status(400).json({ error: errMex });
+  }
 
+  const {
+    full_name,
+    wine_category_name,
+    favorite,
+    sample_number,
+    wine_denomination,
+    winemaker,
+    alcohol_content,
+    vintage,
+    wine_temperature,
+    ambient_temperature,
+    tasting_date,
+    tasting_time,
+    tasting_location
+  } = parsed.data;
+
+  try {
     const wine_category_id = await findWineCategoryId(wine_category_name);
     if (!wine_category_id) {
       return res.status(400).json({

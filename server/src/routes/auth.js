@@ -60,14 +60,6 @@ router.post("/login",
     }
 );
 
-// POST /api/v1/auth/logout
-router.post("/logout",
-    (_req, res) => {
-        res.clearCookie('refreshToken');
-        return res.sendStatus(204);
-    }
-);
-
 // POST /api/v1/auth/signup
 router.post("/signup",
     async (req, res) => {
@@ -148,6 +140,14 @@ router.post("/refresh",
             console.error("Refresh token ERROR:", err);
             res.status(500).json({ error: "Internal server error" });
         }
+    }
+);
+
+// POST /api/v1/auth/logout
+router.post("/logout",
+    (_req, res) => {
+        res.clearCookie('refreshToken');
+        return res.sendStatus(204);
     }
 );
 

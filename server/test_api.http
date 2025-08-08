@@ -1,5 +1,5 @@
-@token = 
-@tid = 
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NjdhNjIzNi00YjJlLTQ0N2UtOGYyMC0zOTdkNDUyZDE0MTIiLCJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJiYW5raWNoIiwiZnVsbF9uYW1lIjoiQmFua2ljaCBBZG1pbiIsImVtYWlsIjoiYmFua2ljaEBzb21tZWwuaW8iLCJpYXQiOjE3NTQ2NzQ2NTgsImV4cCI6MTc1NDY3NTU1OH0.MPNBxzJWXyIX5Z27XRwd-CqHb8KRYGFH-DXRKp9siro
+@tid = dcf5e504-97cd-4775-a544-e86a053d76bc
 
 ### LOGIN + TOKEN
 
@@ -60,8 +60,8 @@ Authorization: Bearer {{token}}
     "wine_denomination": "Cerasuolo d'Abruzzo DOC",
     "winemaker": "Illuminati",
     "favorite": true,
-    "alcohol_content": "13.0",
-    "vintage": 2023,
+    "alcohol_content": "13",
+    "vintage": 2024,
     "wine_temperature": "16",
     "ambient_temperature": "25",
     "tasting_date": "2024-07-25",
@@ -86,9 +86,9 @@ Authorization: Bearer {{token}}
         "color_family": "rosé",
         "color_shade": "cherry_red",
         "consistency": "flowing",
-        "bubble_size": null,
-        "bubble_number": null,
-        "bubble_persistence": null,
+        "bubble_size": "",
+        "bubble_number": "",
+        "bubble_persistence": "",
         "notes": "some visual examination note"
     },
     "olfactory_exam": {
@@ -140,9 +140,9 @@ Authorization: Bearer {{token}}
     "color_family": "rosé",
     "color_shade": "cherry_red",
     "consistency": "flowing",
-    "bubble_size": null,
-    "bubble_number": null,
-    "bubble_persistence": null,
+    "bubble_size": "",
+    "bubble_number": "",
+    "bubble_persistence": "", 
     "notes": "some visual examination note"
 }
 
