@@ -1,9 +1,22 @@
+import { FileArrowDownIcon, StarIcon, TrashIcon } from 'phosphor-react-native';
+import { formatOption } from '@/src/utils/utils';
+import TastingsAPI from '@/src/services/tastings';
+import TastingCard from '@/src/components/tastings/TastingCard';
+import ExamDetails from '@/src/components/tastings/ExamDetails';
 import { useLocalSearchParams, useNavigation } from 'expo-router';
 import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
-import { View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text, Card, useTheme, ActivityIndicator } from 'react-native-paper';
-import TastingsAPI from '@/src/services/tastings';
-import { FileArrowDownIcon, NotePencilIcon, StarIcon } from 'phosphor-react-native';
+import { View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import TastingDetails from '@/src/components/tastings/TastingDetails';
+import OlfactoryDetails from '@/src/components/tastings/OlfactoryDetails';
+
+type EditModeShape = {
+  tasting: boolean;
+  visual: boolean;
+  olfactory: boolean;
+  taste: boolean;
+  final: boolean;
+};
 
 type Tasting = {
     tid: string;
@@ -34,14 +47,16 @@ export default function TastingDetail() {
     const theme = useTheme();
     const navigation = useNavigation();
     const [loading, setLoading] = useState(true);
-    const [editMode, setEditMode] = useState(false);
     const [favorite, setFavorite] = useState(false);
     const { tid } = useLocalSearchParams<{ tid: string }>();
     const [tasting, setTasting] = useState<Tasting | null>(null);
-
-    const downloadTasting = useCallback(async () => {
-        console.log(`downloading tasting ${tid}`);
-    }, [tid]);
+    const [editMode, setEditMode] = useState<EditModeShape>({
+        tasting: false,
+        visual: false,
+        olfactory: false,
+        taste: false,
+        final: false,
+    });
 
     const toggleFavorite = useCallback(async () => {
         try {
@@ -52,29 +67,19 @@ export default function TastingDetail() {
         }
     }, [tid]);
 
-    const editTasting = useCallback(async () => {
-        setEditMode(!editMode);
-        console.log(`editing tasting ${tid}`);
-    }, [tid, editMode]);
-
     useLayoutEffect(() => {
-      navigation.setOptions({
-          title: '',
-          headerRight: () => (
-              <>
-                  <TouchableOpacity style={{ marginTop: 10, marginBottom: 10, marginRight: 5 }} onPress={downloadTasting}>
-                      <FileArrowDownIcon size={32} color={theme.dark ? "#ffffff" : "#000000"} />
-                  </TouchableOpacity>
-                  <TouchableOpacity style={{ marginTop: 10, marginBottom: 10, marginRight: 5 }} onPress={editTasting}>
-                      <NotePencilIcon size={32} color={theme.dark ? "#ffffff" : "#000000"} />
-                  </TouchableOpacity>
-                  <TouchableOpacity style={{ marginTop: 10, marginBottom: 10, marginRight: 0 }} onPress={toggleFavorite}>
-                        <StarIcon size={32} weight={favorite ? "fill" : "regular"} color={favorite ? theme.colors.amber : (theme.dark ? "#ffffff" : "#000000") } />
-                    </TouchableOpacity>
-                </>
+        navigation.setOptions({
+            title: `${tasting?.wine_denomination} - ${tasting?.winemaker}`,
+            headerTitleStyle: {
+                color: theme.dark ? "#ffffff" : "#000000"
+            },
+            headerRight: () => (
+                <TouchableOpacity style={{ justifyContent: "center", marginTop: 10, marginBottom: 10 }} onPress={toggleFavorite}>
+                    <StarIcon size={32} weight={favorite ? "fill" : "regular"} color={favorite ? theme.colors.amber : (theme.dark ? "#ffffff" : "#000000") } />
+                </TouchableOpacity>
             )
         });
-    }, [navigation, theme, favorite, downloadTasting, editTasting, toggleFavorite]);
+    }, [navigation, theme, favorite, toggleFavorite]);
 
     useEffect(() => {
         const fetchTasting = async () => {
@@ -119,12 +124,16 @@ export default function TastingDetail() {
             fontWeight: 'bold',
             marginBottom: 8,
         },
+        cardSubtitle: {
+            marginBottom: 10,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between"
+        },
         subtitle: {
-            color: "#000000",
             fontSize: 18,
             fontWeight: '600',
-            marginTop: 16,
-            marginBottom: 8,
+            color: "#000000",
         },
         text: {
             color: "#000000"
@@ -135,7 +144,7 @@ export default function TastingDetail() {
         return (
             <View style={styles.loadingContainer}>
                 <ActivityIndicator size="large" />
-                <Text style={{ marginTop: 8 }}>Loading tasting details...</Text>
+                <Text style={{ marginTop: 10 }}>Loading tasting details...</Text>
             </View>
         );
     }
@@ -150,49 +159,87 @@ export default function TastingDetail() {
 
     return (
         <ScrollView style={styles.container}>
+
+            <View style={{ flexDirection: "column", justifyContent: "flex-start" }}>
+                <TouchableOpacity onPress={() => console.log(`download tasting ${tasting.tid}`)}>
+                    <View style={{ marginLeft: 10, flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
+                        <FileArrowDownIcon size={32} weight='bold' style={{ marginRight: 10, marginBottom: 20 }} color={theme.dark ? "#ffffff" : "#000000"} />
+                        <Text style={{ fontSize: 20, fontWeight: "500", marginBottom: 20 }}>Download tasting</Text>
+                    </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => console.log(`delete tasting ${tasting.tid}`)}>
+                    <View style={{ marginLeft: 10, flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
+                        <TrashIcon size={32} weight='bold' style={{ marginRight: 10, marginBottom: 20 }} color={theme.dark ? "#ffffff" : "#000000"} />
+                        <Text style={{ fontSize: 20, fontWeight: "500", marginBottom: 20 }}>Delete tasting</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
+
             <Card style={styles.card}>
                 <Card.Content>
-                    <Text style={styles.title}>{tasting.wine_denomination.toUpperCase()}</Text>
-                    <Text style={styles.subtitle}>Description</Text>
-                    <Text style={styles.text}>Winemaker: {tasting.winemaker}</Text>
-                    <Text style={styles.text}>Category: {tasting.wine_category_name}</Text>
-                    <Text style={styles.text}>Sample: {tasting.sample_number}</Text>
-                    <Text style={styles.text}>Alcohol: {tasting.alcohol_content}</Text>
-                    <Text style={styles.text}>Vintage: {tasting.vintage}</Text>
-                    <Text style={styles.text}>Wine Temperature: {tasting.wine_temperature}</Text>
-                    <Text style={styles.text}>Ambient Temperature: {tasting.ambient_temperature}</Text>
-                    <Text style={styles.text}>Date & Time: {tasting.tasting_date.split('T')[0]} @ {tasting.tasting_time.split('T')[1].slice(0, 5)}</Text>
-                    <Text style={styles.text}>Location: {tasting.tasting_location}</Text>
+                    <TastingCard
+                        name={"tasting"}
+                        uuid={tasting.tid}
+                        editMode={editMode}
+                        setEditMode={setEditMode}
+                        subtitle="Wine description"
+                    />
+                    <TastingDetails tasting={tasting} />
                 </Card.Content>
             </Card>
 
             <Card style={styles.card}>
                 <Card.Content>
-                    <Text style={styles.subtitle}>Visual Examination</Text>
-                    <Text style={styles.text}>{JSON.stringify(tasting.visual_exam, null, 2)}</Text>
+                    <TastingCard
+                        name={"visual"}
+                        uuid={tasting.visual_exam.eid}
+                        editMode={editMode}
+                        setEditMode={setEditMode}
+                        subtitle="Visual Examination"
+                    />
+                    <ExamDetails exam={tasting.visual_exam} />
                 </Card.Content>
             </Card>
 
             <Card style={styles.card}>
                 <Card.Content>
-                    <Text style={styles.subtitle}>Olfactory Examination</Text>
-                    <Text style={styles.text}>{JSON.stringify(tasting.olfactory_exam, null, 2)}</Text>
+                    <TastingCard
+                        name={"olfactory"}
+                        uuid={tasting.olfactory_exam.eid}
+                        editMode={editMode}
+                        setEditMode={setEditMode}
+                        subtitle="Olfactory Examination"
+                    />
+                    <OlfactoryDetails exam={tasting.olfactory_exam} />
                 </Card.Content>
             </Card>
 
             <Card style={styles.card}>
                 <Card.Content>
-                    <Text style={styles.subtitle}>Taste-Olfactory Examination</Text>
-                    <Text style={styles.text}>{JSON.stringify(tasting.taste_olfactory_exam, null, 2)}</Text>
+                    <TastingCard
+                        name={"taste"}
+                        uuid={tasting.taste_olfactory_exam.eid}
+                        editMode={editMode}
+                        setEditMode={setEditMode}
+                        subtitle="Taste-Olfactory Examination"
+                    />
+                    <ExamDetails exam={tasting.taste_olfactory_exam} />
                 </Card.Content>
             </Card>
 
             <Card style={styles.card}>
                 <Card.Content>
-                    <Text style={styles.subtitle}>Final Considerations</Text>
-                    <Text style={styles.text}>{JSON.stringify(tasting.final_considerations, null, 2)}</Text>
+                    <TastingCard
+                        name={"final"}
+                        uuid={tasting.final_considerations.eid}
+                        editMode={editMode}
+                        setEditMode={setEditMode}
+                        subtitle="Final Considerations"
+                    />
+                    <ExamDetails exam={tasting.final_considerations} />
                 </Card.Content>
             </Card>
+
         </ScrollView>
     );
 }

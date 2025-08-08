@@ -99,7 +99,7 @@ export default function Tastings() {
     return(
       <View style={styles.centeredContainer}>
         <ActivityIndicator size={"large"} color={theme.dark ? "#ffffff" : "#000000"} />
-        <View style={{ marginTop: 8 }} />
+        <View style={{ marginTop: 10 }} />
         <Text style={styles.text}>Fetching wines...</Text>
       </View>
     );

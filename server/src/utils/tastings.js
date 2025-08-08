@@ -49,7 +49,7 @@ const formatTasting = (tasting) => {
   const tastingFormatted = {
     tid: tasting.tid,
     full_name: tasting.full_name,
-    wine_category_name: tasting.wine_categories.code || null,
+    wine_category_name: tasting.wine_categories?.code || null,
     favorite: tasting.favorite,
     sample_number: tasting.sample_number || null,
     wine_denomination: tasting.wine_denomination,
