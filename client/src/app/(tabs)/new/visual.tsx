@@ -7,6 +7,7 @@ import ExitButton from "@/src/components/new/ExitButton";
 import FormSelect from "@/src/components/new/FormSelect";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useLocalSearchParams } from "expo-router";
 
 type VisualExam = {
     limpidity: string;
@@ -35,6 +36,8 @@ export default function Visual() {
     const theme = useTheme();
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [formData, setFormData] = useState<VisualExam>(defaultFormData);
+    const { wine_category_name } = useLocalSearchParams();
+    const category = (wine_category_name || "").toString().toLowerCase();
 
     const styles = StyleSheet.create({
         container: {
@@ -91,41 +94,57 @@ export default function Visual() {
 
     const limpidityOptions = ["veiled", "quite_limpid", "limpid", "crystal_clear", "brilliant"];
     const consistencyOptions = ["flowing", "scarcely_consistent", "quite_consistent", "consistent", "oily"];
-    const bubblesizeOptions = ["", "large", "quite_fine", "fine"];
-    const bubbleNumberOptions = ["", "very_few", "quite_numerous", "numerous"];
-    const bubblePersistenceOptions = ["", "fading", "quite_persistent", "persistent"];
+    const bubblesizeOptions = ["large", "quite_fine", "fine"];
+    const bubbleNumberOptions = ["very_few", "quite_numerous", "numerous"];
+    const bubblePersistenceOptions = ["fading", "quite_persistent", "persistent"];
 
     const validateForm = (): boolean => {
         const newErrors: Record<string, string> = {};
 
-
-        if (!limpidityOptions.includes(formData.limpidity)) {
+        if (!formData.limpidity.trim()) {
+            newErrors.limpidity = "Limpidity is required";
+        } else if (!limpidityOptions.includes(formData.limpidity)) {
             newErrors.limpidity = "Invalid limpidity value";
         }
 
-        if (!colorFamilyOptions.includes(formData.color_family)) {
+        if (!formData.color_family.trim()) {
+            newErrors.color_family = "Color family is required";
+        } else if (!colorFamilyOptions.includes(formData.color_family)) {
             newErrors.color_family = "Invalid color family";
         }
 
+        if (!formData.color_shade.trim()) {
+            newErrors.color_shade = "Color shade is required";
+        }
         const validShades = colorShadesOptions[formData.color_family] || [];
         if (!validShades.includes(formData.color_shade)) {
             newErrors.color_shade = `Invalid shade for color family ${formData.color_family}`;
         }
 
-        if (!consistencyOptions.includes(formData.consistency)) {
+        if (!formData.consistency.trim()) {
+            newErrors.consistency = "Consistency is required";
+        } else if (!consistencyOptions.includes(formData.consistency)) {
             newErrors.consistency = "Invalid consistency value";
         }
 
-        if (!bubblesizeOptions.includes(formData.bubble_size)) {
-            newErrors.bubble_size = "Invalid bubble size value";
-        }
-
-        if (!bubbleNumberOptions.includes(formData.bubble_number)) {
-            newErrors.bubble_number = "Invalid bubble number value";
-        }
-
-        if (!bubblePersistenceOptions.includes(formData.bubble_persistence)) {
-            newErrors.bubble_persistence = "Invalid bubble persistence value";
+        if (category === 'sparkling') {
+            if (!formData.bubble_size.trim()) {
+                newErrors.bubble_size = "Bubble size is required";
+            } else if (!bubblesizeOptions.includes(formData.bubble_size)) {
+                newErrors.bubble_size = "Invalid bubble size value";
+            }
+    
+            if (!formData.bubble_number.trim()) {
+                newErrors.bubble_number = "Bubble number is required";
+            } else if (!bubbleNumberOptions.includes(formData.bubble_number)) {
+                newErrors.bubble_number = "Invalid bubble number value";
+            }
+    
+            if (!formData.bubble_persistence.trim()) {
+                newErrors.bubble_persistence = "Bubble persistence is required";
+            } else if (!bubblePersistenceOptions.includes(formData.bubble_persistence)) {
+                newErrors.bubble_persistence = "Invalid bubble persistence value";
+            }
         }
 
         setErrors(newErrors);
@@ -193,32 +212,32 @@ export default function Visual() {
                                 options={consistencyOptions}
                             />
 
-                            <FormSelect
+                            {category === 'sparkling' ? (<FormSelect
                                 label="Bubble size"
                                 field="bubble_size"
                                 value={formData.bubble_size}
                                 error={errors.bubble_size}
                                 onChange={updateFormData}
                                 options={bubblesizeOptions}
-                            />
+                            />) : (<></>)}
 
-                            <FormSelect
+                            {category === 'sparkling' ? (<FormSelect
                                 label="Bubble number"
                                 field="bubble_number"
                                 value={formData.bubble_number}
                                 error={errors.bubble_number}
                                 onChange={updateFormData}
                                 options={bubbleNumberOptions}
-                            />
+                            />) : (<></>)}
 
-                            <FormSelect
+                            {category === 'sparkling' ? (<FormSelect
                                 label="Bubble persistence"
                                 field="bubble_persistence"
                                 value={formData.bubble_persistence}
                                 error={errors.bubble_persistence}
                                 onChange={updateFormData}
                                 options={bubblePersistenceOptions}
-                            />
+                            />) : (<></>)}
 
                             <FormInput
                                 label="Notes"

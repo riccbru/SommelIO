@@ -288,7 +288,8 @@ export default function New() {
               defaultFormData={defaultFormData}
             />
             <NextButton
-              path="/new/visual"
+              // path="/new/visual"
+              path={`/new/visual?wine_category_name=${encodeURIComponent(formData.wine_category_name)}`}
               text="VISUAL"
               validation={validateForm}
               formData={{ ...formData, vintage: Number(formData.vintage) }}

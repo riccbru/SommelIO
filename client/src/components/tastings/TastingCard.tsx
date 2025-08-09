@@ -35,9 +35,13 @@ export default function TastingCard({ uuid, name, subtitle, editMode, setEditMod
             fontSize: 18,
             fontWeight: '600',
             color: "#000000",
+            marginBottom: 13
         },
         text: {
             color: "#000000"
+        },
+        leftIcon: {
+            marginRight: 10
         }
     });
 
@@ -52,14 +56,16 @@ export default function TastingCard({ uuid, name, subtitle, editMode, setEditMod
     return (
         <View style={styles.subtitleRow}>
             <Text style={styles.subtitle}>{subtitle}</Text>
-            {editMode[name] && 
-            <TouchableOpacity onPress={handlePress}>
-                <XCircleIcon size={28} weight={"regular"} color={theme.colors.red} />
-            </TouchableOpacity>
-            }
-            <TouchableOpacity onPress={handlePress}>
-                <Icon size={28} weight={"regular"} color={!editMode[name] ? "#000000" : theme.colors.green} />
-            </TouchableOpacity>
+            <View style={styles.subtitleRow}>
+                {editMode[name] && 
+                <TouchableOpacity style={styles.leftIcon} onPress={handlePress}>
+                    <XCircleIcon size={32} weight={"regular"} color={theme.colors.red} />
+                </TouchableOpacity>
+                }
+                <TouchableOpacity onPress={handlePress}>
+                    <Icon size={32} weight={"regular"} color={!editMode[name] ? "#000000" : theme.colors.green} />
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }

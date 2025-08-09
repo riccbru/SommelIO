@@ -23,7 +23,7 @@ export default function TastingDetails({ tasting }: Props) {
   return (
     <View>
         <Text style={{ marginBottom: 5 }}><Text style={{ fontWeight: 'bold' }}>Category: </Text>{tasting.wine_category_name.toUpperCase()}</Text>
-        <Text style={{ marginBottom: 5 }}><Text style={{ fontWeight: 'bold' }}>Sample: </Text>{tasting.sample_number}</Text>
+        <Text style={{ marginBottom: 5 }}><Text style={{ fontWeight: 'bold' }}>Sample: </Text>{tasting.sample_number ?? '-'}</Text>
         <Text style={{ marginBottom: 5 }}><Text style={{ fontWeight: 'bold' }}>Alcohol: </Text>{tasting.alcohol_content}</Text>
         <Text style={{ marginBottom: 5 }}><Text style={{ fontWeight: 'bold' }}>Vintage: </Text>{tasting.vintage}</Text>
         <Text style={{ marginBottom: 5 }}><Text style={{ fontWeight: 'bold' }}>Wine Temperature: </Text>{tasting.wine_temperature}</Text>
