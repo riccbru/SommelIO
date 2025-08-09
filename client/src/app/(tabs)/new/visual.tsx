@@ -3,10 +3,10 @@ import ExamsAPI from "@/src/services/exams";
 import { Card, useTheme } from "react-native-paper";
 import FormInput from "@/src/components/new/FormInput";
 import NextButton from "@/src/components/new/NextButton";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
-import CancelButton from "@/src/components/new/CancelButton";
-import FormSelect from "@/src/components/new/FormSelect";
 import ExitButton from "@/src/components/new/ExitButton";
+import FormSelect from "@/src/components/new/FormSelect";
+import CancelButton from "@/src/components/new/CancelButton";
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 
 type VisualExam = {
     limpidity: string;
@@ -60,6 +60,15 @@ export default function Visual() {
             alignItems: 'center',
             backgroundColor: theme.colors.background,
         },
+        buttonContainer: {
+            marginTop: 20,
+            marginLeft: 15,
+            marginRight: 15,
+            marginBottom: 20,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between"
+        }
     });
 
     const updateFormData = (field: keyof VisualExam, value: string) => {
@@ -222,7 +231,7 @@ export default function Visual() {
                         </Card.Content>
                     </Card>
 
-                    <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginLeft: 15, marginTop: 20, marginRight: 15 }}>
+                    <View style={styles.buttonContainer}>
                         <ExitButton
                             setErrors={setErrors}
                             setFormData={setFormData}

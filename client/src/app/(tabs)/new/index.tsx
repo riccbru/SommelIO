@@ -69,6 +69,15 @@ export default function New() {
       alignItems: 'center',
       backgroundColor: theme.colors.background,
     },
+    buttonContainer: {
+      marginTop: 20,
+      marginLeft: 15,
+      marginRight: 15,
+      marginBottom: 20,
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between"
+    }
   });
 
   const updateFormData = (field: keyof Tasting, value: string) => {
@@ -272,7 +281,7 @@ export default function New() {
             </Card.Content>
           </Card>
 
-          <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginLeft: 15, marginTop: 20, marginRight: 15 }}>
+          <View style={styles.buttonContainer}>
             <ExitButton
               setErrors={setErrors}
               setFormData={setFormData}
