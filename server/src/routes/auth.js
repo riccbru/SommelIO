@@ -9,9 +9,6 @@ import { formatUser, generateAccessToken, generateRefreshToken } from "../utils/
 const router = Router();
 const prisma = new PrismaClient();
 
-const JWT_ACCESS_EXPTIME = process.env.JWT_ACCESS_EXPTIME || "15m";
-const JWT_REFRESH_EXPTIME = process.env.JWT_REFRESH_EXPTIME || "7d";
-const JWT_ACCESS_SECRET = process.env.JWT_ACCESS_SECRET || "JWT_accessToken_secret";
 const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || "JWT_refreshToken_secret";
 
 // POST /api/v1/auth/login

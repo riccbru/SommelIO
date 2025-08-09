@@ -182,7 +182,7 @@ router.delete('/:tid',
         return res.status(404).json({ error: 'Tasting not found or unauthorized.' });
       }
 
-      const deletedTasting = await prisma.tastings.delete({
+      await prisma.tastings.delete({
         where: { tid },
       });
 

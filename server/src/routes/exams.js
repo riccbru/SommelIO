@@ -30,8 +30,9 @@ const examTypes = {
 
 function omitIdTid(exam) {
   if (!exam) return null;
-  const { id, tid, ...rest } = exam;
-  return rest;
+  delete exam.id;
+  delete exam.tid;
+  return exam;
 }
 
 async function validateTastingOwnership(tid, uid, res) {

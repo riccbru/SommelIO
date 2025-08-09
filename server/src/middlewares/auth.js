@@ -11,6 +11,6 @@ export function isAuthZ(req, res, next) {
         req.user = payload;
         next();
     } catch (err) {
-        return res.status(401).json({ error: 'Invalid or expired token' });
+        return res.status(401).json({ error: err || 'Invalid or expired token' });
     }
 }
