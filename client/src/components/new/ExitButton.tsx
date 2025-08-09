@@ -18,6 +18,7 @@ export default function ExitButton({ defaultFormData, setFormData, setErrors }: 
     const handlePress = () => {
         setErrors({});
         setFormData(defaultFormData);
+        router.dismissAll();
         router.replace("/(tabs)/tastings");
     }
     
@@ -26,7 +27,7 @@ export default function ExitButton({ defaultFormData, setFormData, setErrors }: 
             <Button
                 mode='text'
                 onPress={handlePress}
-                style={{ width: 150, marginTop: 20, marginBottom: 20, backgroundColor: theme.colors.red }}
+                style={{ width: 150, backgroundColor: theme.colors.red }}
                 >
                 <View style={{ flex: 1, flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
                     <XCircleIcon size={24} style={{ marginRight: 5 }} color={"#000000"} />

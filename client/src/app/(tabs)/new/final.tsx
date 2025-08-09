@@ -140,7 +140,7 @@ export default function Final() {
             </Card.Content>
           </Card>
 
-          <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginLeft: 15, marginRight: 15 }}>
+          <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginLeft: 15, marginTop: 20, marginRight: 15 }}>
             <ExitButton
               setErrors={setErrors}
               setFormData={setFormData}
