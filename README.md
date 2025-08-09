@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="client/assets/images/title-nobg.png" alt="SommelIO Title" />
+  <img src="client/assets/images/title/title-nobg.png" alt="SommelIO Title" />
 </p>
 
 <p align="center"><em>Elevate Your Wine Experience with Seamless Precision</em></p>
