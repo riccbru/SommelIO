@@ -103,6 +103,10 @@ export default function New() {
 
     if (!formData.vintage.trim()) {
       newErrors.vintage = 'Vintage is required';
+    } else if (!/^\d{4}$/.test(formData.vintage.trim())) {
+      newErrors.vintage = 'Vintage year must be 4 digits (YYYY)';
+    } else if (parseInt(formData.vintage, 10) < 1000 || parseInt(formData.vintage, 10) > 2025) {
+      newErrors.vintage = 'Vintage year must be in a reasonable range';
     }
 
     if (!formData.alcohol_content.trim()) {
