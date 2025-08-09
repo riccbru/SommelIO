@@ -357,6 +357,33 @@ Accepted values and formats:
         }
         ```
 
+## `DELETE TASTING`
+Endpoint: `DELETE /api/v1/tastings/:tasting_uuid`.
+
+
+### REQUEST
+- Header
+    -
+    -
+- Body
+    -
+    ```json
+    {}
+    ```
+
+### RESPONSE
+- `200 OK`
+    - Header
+        -
+        -
+    - Body
+        -
+        ```json
+        {
+            "success": "Tasting <UUID-32> successfully deleted"
+        }
+        ```
+
 ## `GET ALL EXAMS`
 Endpoint: `GET /api/v1/exams/:tasting_uuid`.
 

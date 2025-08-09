@@ -52,19 +52,17 @@ async function updateTasting(tid: string, data: any) {
 
 async function deleteTasting(tid: string) {
     try {
-        const response = axiosClient.delete('/tastings');
+        const response = axiosClient.delete(`/tastings/${tid}`);
         return response;
     } catch (error: any) {
         console.error(error);
-        throw new Error(error.response?.data?.message || `Unable to create tasting: ${error}`);
+        throw new Error(error.response?.data?.message || `Unable to delete tasting: ${error}`);
     }
 }
 
 const TastingsAPI = {
     fetchTastings, fetchTastingById,
-    toggleFavorite,
-    updateTasting,
-    createTasting,
-    deleteTasting
+    toggleFavorite, updateTasting,
+    createTasting, deleteTasting
 }
 export default TastingsAPI;

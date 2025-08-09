@@ -1,5 +1,5 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NjdhNjIzNi00YjJlLTQ0N2UtOGYyMC0zOTdkNDUyZDE0MTIiLCJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJiYW5raWNoIiwiZnVsbF9uYW1lIjoiQmFua2ljaCBBZG1pbiIsImVtYWlsIjoiYmFua2ljaEBzb21tZWwuaW8iLCJpYXQiOjE3NTQ2NzQ2NTgsImV4cCI6MTc1NDY3NTU1OH0.MPNBxzJWXyIX5Z27XRwd-CqHb8KRYGFH-DXRKp9siro
-@tid = dcf5e504-97cd-4775-a544-e86a053d76bc
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NjdhNjIzNi00YjJlLTQ0N2UtOGYyMC0zOTdkNDUyZDE0MTIiLCJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJiYW5raWNoIiwiZnVsbF9uYW1lIjoiQmFua2ljaCBBZG1pbiIsImVtYWlsIjoiYmFua2ljaEBzb21tZWwuaW8iLCJpYXQiOjE3NTQ2OTY5ODksImV4cCI6MTc1NDY5Nzg4OX0.ZAni1-r6DFgmVhaKHc4kLZQ_rL8k-EFcO0tG8yqt4A0
+@tid = 
 
 ### LOGIN + TOKEN
 
@@ -68,6 +68,11 @@ Authorization: Bearer {{token}}
     "tasting_time": "21:00",
     "tasting_location": "Art Cafè"
 }
+
+### DELETE TASTING BY ID
+
+DELETE http://localhost:3001/api/v1/tastings/{{tid}} HTTP/1.1
+Authorization: Bearer {{token}}
 
 ### GET EXAMS
 

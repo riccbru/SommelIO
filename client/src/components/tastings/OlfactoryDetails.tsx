@@ -1,7 +1,35 @@
-import { formatOption } from "@/src/utils/utils";
 import { Text, View } from "react-native";
+import { formatOption } from "@/src/utils/utils";
 
-export default function OlfactoryDetails({ exam }) {
+type OlfactoryExam = {
+  intensity: string;
+  complexity: string;
+  quality: string;
+  aromatic: boolean;
+  vinous: boolean;
+  floral: boolean;
+  fruity: boolean;
+  grassy: boolean;
+  mineral: boolean;
+  fragrant: boolean;
+  spicy: boolean;
+  toasted: boolean;
+  ethereal: boolean;
+  notes: string;
+};
+
+type Props = {
+  exam: OlfactoryExam;
+}
+
+export default function OlfactoryDetails({ exam }: Props) {
+  
+  if (!exam || Object.keys(exam).length === 0) {
+    return(
+      <Text>{}</Text>
+    );
+  }
+
   return (
     <View>
         <Text style={{ marginBottom: 5 }}><Text style={{ fontWeight: 'bold' }}>Intensity: </Text>{formatOption(exam.intensity).toUpperCase()}</Text>

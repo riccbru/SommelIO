@@ -204,7 +204,7 @@ export default function New() {
               />
 
               <FormInput
-                label="Vintage year"
+                label="Vintage year (YYYY)"
                 field="vintage"
                 value={formData.vintage}
                 error={errors.vintage}

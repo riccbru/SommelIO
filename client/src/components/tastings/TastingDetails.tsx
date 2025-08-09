@@ -1,6 +1,25 @@
 import { Text, View } from "react-native";
 
-export default function TastingDetails({ tasting }) {
+type Tasting = {
+  wine_denomination: string;
+  winemaker: string;
+  favorite: boolean;
+  wine_category_name: string;
+  sample_number: string;
+  alcohol_content: string;
+  vintage: string;
+  wine_temperature: string;
+  ambient_temperature: string;
+  tasting_date: string;
+  tasting_time: string;
+  tasting_location: string;
+};
+
+type Props = {
+  tasting: Tasting;
+}
+
+export default function TastingDetails({ tasting }: Props) {
   return (
     <View>
         <Text style={{ marginBottom: 5 }}><Text style={{ fontWeight: 'bold' }}>Category: </Text>{tasting.wine_category_name.toUpperCase()}</Text>

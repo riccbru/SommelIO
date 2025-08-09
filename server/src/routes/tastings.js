@@ -169,4 +169,30 @@ router.patch('/:tid',
   }
 );
 
+router.delete('/:tid',
+  async (req, res) => {
+    const uid = req.user.uid;
+    const tid = req.params.tid;
+    if (!tid) return res.status(400).json({ error: 'Missing tasting ID' });
+    try {
+      const tasting = await prisma.tastings.findUnique({
+        where: { tid },
+      });
+      if (!tasting || tasting.uid !== uid) {
+        return res.status(404).json({ error: 'Tasting not found or unauthorized.' });
+      }
+
+      const deletedTasting = await prisma.tastings.delete({
+        where: { tid },
+      });
+
+      res.json({ success: `Tasting ${tid} successfully deleted` })
+
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  }
+);
+
 export default router;

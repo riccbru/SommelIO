@@ -17,7 +17,8 @@ export function formatDescription(date: string, time: string, location: string):
 }
 
 export function formatOption(value: string): string {
-  const withSpaces = value.replace('_', ' ');
-  if (withSpaces.length === 0) return '';
-  return withSpaces.charAt(0).toUpperCase() + withSpaces.slice(1).toLowerCase();
+    if (!value || value === null || value === undefined) null
+    const withSpaces = value.replace('_', ' ');
+    if (withSpaces.length === 0) return '';
+    return withSpaces.charAt(0).toUpperCase() + withSpaces.slice(1).toLowerCase();
 }

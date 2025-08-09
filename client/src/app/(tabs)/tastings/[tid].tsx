@@ -1,14 +1,16 @@
-import { FileArrowDownIcon, StarIcon, TrashIcon } from 'phosphor-react-native';
-import { formatOption } from '@/src/utils/utils';
-import TastingsAPI from '@/src/services/tastings';
-import TastingCard from '@/src/components/tastings/TastingCard';
-import ExamDetails from '@/src/components/tastings/ExamDetails';
-import { useLocalSearchParams, useNavigation } from 'expo-router';
-import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
-import { Text, Card, useTheme, ActivityIndicator } from 'react-native-paper';
-import { View, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
-import TastingDetails from '@/src/components/tastings/TastingDetails';
-import OlfactoryDetails from '@/src/components/tastings/OlfactoryDetails';
+import { StarIcon } from "phosphor-react-native";
+import TastingsAPI from "@/src/services/tastings";
+import TastingCard from "@/src/components/tastings/TastingCard";
+import { useLocalSearchParams, useNavigation } from "expo-router";
+import ActionButton from "@/src/components/tastings/ActionButton";
+import FinalDetails from "@/src/components/tastings/FinalDetails";
+import TasteDetails from "@/src/components/tastings/TasteDetails";
+import VisualDetails from "@/src/components/tastings/VisualDetails";
+import TastingDetails from "@/src/components/tastings/TastingDetails";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
+import OlfactoryDetails from "@/src/components/tastings/OlfactoryDetails";
+import { Text, Card, useTheme, ActivityIndicator } from "react-native-paper";
+import { View, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 
 type EditModeShape = {
   tasting: boolean;
@@ -68,6 +70,7 @@ export default function TastingDetail() {
     }, [tid]);
 
     useLayoutEffect(() => {
+        if (!tasting) return;
         navigation.setOptions({
             title: `${tasting?.wine_denomination} - ${tasting?.winemaker}`,
             headerTitleStyle: {
@@ -79,7 +82,7 @@ export default function TastingDetail() {
                 </TouchableOpacity>
             )
         });
-    }, [navigation, theme, favorite, toggleFavorite]);
+    }, [navigation, theme, favorite, tasting, toggleFavorite]);
 
     useEffect(() => {
         const fetchTasting = async () => {
@@ -161,18 +164,8 @@ export default function TastingDetail() {
         <ScrollView style={styles.container}>
 
             <View style={{ flexDirection: "column", justifyContent: "flex-start" }}>
-                <TouchableOpacity onPress={() => console.log(`download tasting ${tasting.tid}`)}>
-                    <View style={{ marginLeft: 10, flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
-                        <FileArrowDownIcon size={32} weight='bold' style={{ marginRight: 10, marginBottom: 20 }} color={theme.dark ? "#ffffff" : "#000000"} />
-                        <Text style={{ fontSize: 20, fontWeight: "500", marginBottom: 20 }}>Download tasting</Text>
-                    </View>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => console.log(`delete tasting ${tasting.tid}`)}>
-                    <View style={{ marginLeft: 10, flexDirection: "row", justifyContent: "flex-start", alignItems: "center" }}>
-                        <TrashIcon size={32} weight='bold' style={{ marginRight: 10, marginBottom: 20 }} color={theme.dark ? "#ffffff" : "#000000"} />
-                        <Text style={{ fontSize: 20, fontWeight: "500", marginBottom: 20 }}>Delete tasting</Text>
-                    </View>
-                </TouchableOpacity>
+                <ActionButton action="download" tid={tasting.tid} />
+                <ActionButton action="delete" tid={tasting.tid} name={tasting.wine_denomination} winemaker={tasting.winemaker} />
             </View>
 
             <Card style={styles.card}>
@@ -197,7 +190,7 @@ export default function TastingDetail() {
                         setEditMode={setEditMode}
                         subtitle="Visual Examination"
                     />
-                    <ExamDetails exam={tasting.visual_exam} />
+                    <VisualDetails exam={tasting.visual_exam} />
                 </Card.Content>
             </Card>
 
@@ -223,7 +216,7 @@ export default function TastingDetail() {
                         setEditMode={setEditMode}
                         subtitle="Taste-Olfactory Examination"
                     />
-                    <ExamDetails exam={tasting.taste_olfactory_exam} />
+                    <TasteDetails exam={tasting.taste_olfactory_exam} />
                 </Card.Content>
             </Card>
 
@@ -236,7 +229,7 @@ export default function TastingDetail() {
                         setEditMode={setEditMode}
                         subtitle="Final Considerations"
                     />
-                    <ExamDetails exam={tasting.final_considerations} />
+                    <FinalDetails exam={tasting.final_considerations} />
                 </Card.Content>
             </Card>
 
