@@ -33,7 +33,7 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 			padding: 15,
 			borderWidth: 3,
 			borderRadius: 15,
-			borderColor: theme.colors.amber,
+			borderColor: theme.colors.red,
 			backgroundColor: theme.colors.background,
 		},
 	});

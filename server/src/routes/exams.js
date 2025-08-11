@@ -1,11 +1,10 @@
 import { Router } from "express";
 import { formatOlfactoryExam } from "../utils/tastings.js";
 import { PrismaClient } from "../generated/prisma/index.js";
-import { VisualExamSchema } from "../validators/visualExamSchema.js";
-import { OlfactoryExamSchema } from "../validators/olfactoryExamSchema.js";
 import { TasteExamSchema } from "../validators/tasteExamSchema.js";
 import { FinalExamSchema } from "../validators/finalExamSchema.js";
-import { success } from "zod";
+import { VisualExamSchema } from "../validators/visualExamSchema.js";
+import { OlfactoryExamSchema } from "../validators/olfactoryExamSchema.js";
 
 const router = Router();
 const prisma = new PrismaClient();

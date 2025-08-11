@@ -175,8 +175,9 @@ router.put("/:tid", async (req, res) => {
 			};
 		}
 		if ("tasting_date" in req.body && "tasting_time" in req.body) {
-			dataToUpdate.tasting_timestamp = new Date(`${req.body.tasting_date}T${req.body.tasting_time}`).toISOString();
-
+			dataToUpdate.tasting_timestamp = new Date(
+				`${req.body.tasting_date}T${req.body.tasting_time}`,
+			).toISOString();
 		}
 		if ("vintage" in req.body) {
 			const vintage = Number(req.body.vintage);
@@ -190,7 +191,7 @@ router.put("/:tid", async (req, res) => {
 		if (Object.keys(dataToUpdate).length === 0) {
 			return res.status(400).json({ error: "Body is empty or no valid fields for update" });
 		}
-		
+
 		const updatedTasting = await prisma.tastings.update({
 			where: { tid },
 			data: dataToUpdate,

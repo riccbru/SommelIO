@@ -888,9 +888,6 @@ The URL parameter `exam_type` can assume the following values:
       }
       ```
 
-
-
-
 ## ``
 
 Endpoint: ``.

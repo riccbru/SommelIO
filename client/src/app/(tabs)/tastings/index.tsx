@@ -37,6 +37,32 @@ export default function Tastings() {
 	const [searchQuery, setSearchQuery] = useState("");
 	const [tastings, setTastings] = useState<Tasting[]>([]);
 
+	const styles = StyleSheet.create({
+		container: {
+			backgroundColor: theme.colors.background,
+		},
+		centeredContainer: {
+			flex: 1,
+			alignItems: "center",
+			alignContent: "center",
+			justifyContent: "center",
+			backgroundColor: theme.colors.background,
+		},
+		searchBarContainer: {
+			marginLeft: 5,
+			marginRight: 5,
+			backgroundColor: theme.colors.background,
+		},
+		tastingsContainer: {
+			flex: 1,
+			flexDirection: "column",
+			backgroundColor: theme.colors.background,
+		},
+		text: {
+			fontSize: 22,
+		},
+	});
+
 	useLayoutEffect(() => {
 		navigation.setOptions({
 			headerLeft: () => (
@@ -67,32 +93,6 @@ export default function Tastings() {
 	useEffect(() => {
 		fetchTastings();
 	}, [fetchTastings]);
-
-	const styles = StyleSheet.create({
-		container: {
-			backgroundColor: theme.colors.background,
-		},
-		centeredContainer: {
-			flex: 1,
-			alignItems: "center",
-			alignContent: "center",
-			justifyContent: "center",
-			backgroundColor: theme.colors.background,
-		},
-		searchBarContainer: {
-			marginLeft: 5,
-			marginRight: 5,
-			backgroundColor: theme.colors.background,
-		},
-		tastingsContainer: {
-			flex: 1,
-			flexDirection: "column",
-			backgroundColor: theme.colors.background,
-		},
-		text: {
-			fontSize: 22,
-		},
-	});
 
 	if (loading) {
 		return (

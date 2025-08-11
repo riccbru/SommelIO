@@ -10,7 +10,7 @@ import TastingDetails from "@/src/components/tastings/TastingDetails";
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import OlfactoryDetails from "@/src/components/tastings/OlfactoryDetails";
 import { Text, Card, useTheme, ActivityIndicator } from "react-native-paper";
-import { View, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import { View, ScrollView, StyleSheet, TouchableOpacity, RefreshControl } from "react-native";
 
 type EditModeShape = {
 	tasting: boolean;
@@ -48,6 +48,7 @@ export default function TastingDetail() {
 	const theme = useTheme();
 	const navigation = useNavigation();
 	const [loading, setLoading] = useState(true);
+	const [refresh, setRefresh] = useState(false);
 	const [favorite, setFavorite] = useState(false);
 	const { tid } = useLocalSearchParams<{ tid: string }>();
 	const [tasting, setTasting] = useState<Tasting | null>(null);
@@ -57,6 +58,44 @@ export default function TastingDetail() {
 		olfactory: false,
 		taste: false,
 		final: false,
+	});
+
+	const styles = StyleSheet.create({
+		container: {
+			flex: 1,
+			backgroundColor: theme.colors.background,
+			padding: 16,
+		},
+		loadingContainer: {
+			flex: 1,
+			justifyContent: "center",
+			alignItems: "center",
+			backgroundColor: theme.colors.background,
+		},
+		card: {
+			marginBottom: 16,
+			backgroundColor: theme.colors.pearl,
+		},
+		title: {
+			color: "#000000",
+			fontSize: 24,
+			fontWeight: "bold",
+			marginBottom: 8,
+		},
+		cardSubtitle: {
+			marginBottom: 10,
+			flexDirection: "row",
+			alignItems: "center",
+			justifyContent: "space-between",
+		},
+		subtitle: {
+			fontSize: 18,
+			fontWeight: "600",
+			color: "#000000",
+		},
+		text: {
+			color: "#000000",
+		},
 	});
 
 	const toggleFavorite = useCallback(async () => {
@@ -106,45 +145,7 @@ export default function TastingDetail() {
 		if (tid) {
 			fetchTasting();
 		}
-	}, [tid]);
-
-	const styles = StyleSheet.create({
-		container: {
-			flex: 1,
-			backgroundColor: theme.colors.background,
-			padding: 16,
-		},
-		loadingContainer: {
-			flex: 1,
-			justifyContent: "center",
-			alignItems: "center",
-			backgroundColor: theme.colors.background,
-		},
-		card: {
-			marginBottom: 16,
-			backgroundColor: theme.colors.pearl,
-		},
-		title: {
-			color: "#000000",
-			fontSize: 24,
-			fontWeight: "bold",
-			marginBottom: 8,
-		},
-		cardSubtitle: {
-			marginBottom: 10,
-			flexDirection: "row",
-			alignItems: "center",
-			justifyContent: "space-between",
-		},
-		subtitle: {
-			fontSize: 18,
-			fontWeight: "600",
-			color: "#000000",
-		},
-		text: {
-			color: "#000000",
-		},
-	});
+	}, [tid, refresh]);
 
 	if (loading) {
 		return (
@@ -164,7 +165,12 @@ export default function TastingDetail() {
 	}
 
 	return (
-		<ScrollView style={styles.container}>
+		<ScrollView
+			style={styles.container}
+			refreshControl={
+				<RefreshControl refreshing={loading} onRefresh={() => setRefresh(!refresh)} />
+			}
+		>
 			<View style={{ flexDirection: "column", justifyContent: "flex-start" }}>
 				<ActionButton action='download' tid={tasting.tid} />
 				<ActionButton
