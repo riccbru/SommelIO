@@ -1,6 +1,6 @@
 import React from "react";
-import { Platform, Text, View } from "react-native";
-import { Checkbox, useTheme } from "react-native-paper";
+import { Switch, Text, View } from "react-native";
+import { useTheme } from "react-native-paper";
 
 type Props<T> = {
 	label: string;
@@ -9,7 +9,7 @@ type Props<T> = {
 	setFormData: React.Dispatch<React.SetStateAction<T>>;
 };
 
-export default function FormCheckbox<T extends Record<string, any>>({
+export default function FormSwitch<T extends Record<string, any>>({
 	label,
 	name,
 	formData,
@@ -18,7 +18,6 @@ export default function FormCheckbox<T extends Record<string, any>>({
 	const theme = useTheme();
 	const isChecked = !!formData[name];
 	const toggle = () => setFormData(prev => ({ ...prev, [name]: !prev[name] }));
-	const CheckboxComponent = Platform.OS === "ios" ? Checkbox.IOS : Checkbox.Android;
 
 	return (
 		<View
@@ -31,11 +30,7 @@ export default function FormCheckbox<T extends Record<string, any>>({
 			}}
 		>
 			<Text style={{ fontSize: 18, color: "#c9c4cf" }}>{label}</Text>
-			<CheckboxComponent
-				color={theme.colors.text}
-				status={isChecked ? "checked" : "unchecked"}
-				onPress={toggle}
-			/>
+			<Switch value={isChecked} onChange={toggle} />
 		</View>
 	);
 }

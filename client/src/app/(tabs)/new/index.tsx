@@ -5,8 +5,8 @@ import FormInput from "@/src/components/new/FormInput";
 import NextButton from "@/src/components/new/NextButton";
 import FormSelect from "@/src/components/new/FormSelect";
 import ExitButton from "@/src/components/new/ExitButton";
+import FormSwitch from "@/src/components/new/FormSwitch";
 import CancelButton from "@/src/components/new/CancelButton";
-import FormCheckbox from "@/src/components/new/FormCheckbox";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 
 type Tasting = {
@@ -211,7 +211,7 @@ export default function New() {
 								options={allowedCategories}
 							/>
 
-							<FormCheckbox
+							<FormSwitch
 								label='Favorite'
 								name='favorite'
 								formData={formData}

@@ -85,7 +85,7 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 					</Text>
 				</View>
 			</TouchableOpacity>
-			<Modal transparent={true} visible={modal} animationType='slide' onDismiss={hideModal}>
+			<Modal transparent={true} visible={modal} animationType='fade' onDismiss={hideModal}>
 				<View style={styles.modalContainer}>
 					<View style={styles.modalCard}>
 						<Text style={{ fontSize: 18, marginBottom: 20, color: theme.colors.text }}>

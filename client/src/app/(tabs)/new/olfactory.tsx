@@ -6,8 +6,8 @@ import FormInput from "@/src/components/new/FormInput";
 import ExitButton from "@/src/components/new/ExitButton";
 import FormSelect from "@/src/components/new/FormSelect";
 import NextButton from "@/src/components/new/NextButton";
+import FormSwitch from "@/src/components/new/FormSwitch";
 import CancelButton from "@/src/components/new/CancelButton";
-import FormCheckbox from "@/src/components/new/FormCheckbox";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 
 type OlfactoryExam = {
@@ -199,7 +199,7 @@ export default function Olfactory() {
 							/>
 
 							{descriptors.map((el, index) => (
-								<FormCheckbox
+								<FormSwitch
 									key={index}
 									label={capitalizeFirst(el)}
 									name={el}
