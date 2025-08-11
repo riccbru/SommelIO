@@ -14,6 +14,7 @@ module.exports = defineConfig([
 		},
 		rules: {
 			...securityPlugin.configs.recommended.rules,
+			"security/detect-object-injection": "off",
 		},
 	},
 ]);

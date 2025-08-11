@@ -3,7 +3,7 @@ import { useAuth } from "@/src/hooks/useAuth";
 import { useNavigation, useRouter } from "expo-router";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { Avatar, Card, Divider, useTheme } from "react-native-paper";
-import { GearIcon, SignOutIcon, StarIcon, TrophyIcon, WineIcon } from "phosphor-react-native";
+import { GavelIcon, GearIcon, SignOutIcon, StarIcon, WineIcon } from "phosphor-react-native";
 import {
 	Animated,
 	RefreshControl,
@@ -17,7 +17,7 @@ import {
 export default function User() {
 	const theme = useTheme();
 	const router = useRouter();
-	const { user, logout } = useAuth();
+	const { accessToken, user, logout } = useAuth();
 	const navigation = useNavigation();
 	const [refresh, setRefresh] = useState(false);
 	const [loading, setLoading] = useState(false);
@@ -69,7 +69,7 @@ export default function User() {
 		},
 		profileCard: {
 			marginBottom: 20,
-			backgroundColor: theme.colors.surface,
+			backgroundColor: theme.colors.pearl,
 			borderRadius: 16,
 			elevation: 4,
 			shadowColor: theme.colors.primary,
@@ -91,11 +91,11 @@ export default function User() {
 		},
 		userName: {
 			fontSize: 28,
-			fontWeight: "700",
-			fontFamily: "Epilogue",
-			color: theme.colors.text,
 			marginBottom: 8,
+			fontWeight: "700",
+			color: "#000000",
 			textAlign: "center",
+			fontFamily: "Epilogue",
 		},
 		userEmail: {
 			fontSize: 16,
@@ -182,7 +182,7 @@ export default function User() {
 		const fetchStats = async () => {
 			setLoading(true);
 			try {
-				const response = await UserAPI.getStats();
+				const response = await UserAPI.getStats(accessToken);
 				setStats(response.stats);
 			} catch (err) {
 				console.log(err);
@@ -191,7 +191,7 @@ export default function User() {
 			}
 		};
 		fetchStats();
-	}, [refresh]);
+	}, [accessToken, refresh]);
 
 	const StatItem = ({ icon, number, label, color = theme.colors.primary }: any) => (
 		<View style={styles.statItem}>
@@ -234,17 +234,18 @@ export default function User() {
 						<Text style={styles.userEmail}>{user?.email}</Text>
 						<Text style={styles.userEmail}>{user?.uid}</Text>
 
-						<Divider style={{ width: "80%", marginBottom: 16 }} />
+						<Divider style={{ width: "90%", marginBottom: 16 }} />
 
 						{/* Stats Section */}
 						<View style={styles.statsContainer}>
 							<StatItem
 								label='Total Tastings'
+								color={"#000000"}
 								number={stats.totalTastings}
-								icon={<WineIcon size={24} color={theme.colors.primary} />}
+								icon={<WineIcon size={24} color={"#000000"} />}
 							/>
 							<StatItem
-								label='Favorites'
+								label='Favorite Tastings'
 								color={theme.colors.amber}
 								number={stats.favoriteTastings}
 								icon={<StarIcon size={24} color={theme.colors.amber} />}
@@ -253,7 +254,7 @@ export default function User() {
 								label='Average Rating'
 								color={theme.colors.green}
 								number={stats.averageRating}
-								icon={<TrophyIcon size={24} color={theme.colors.green} />}
+								icon={<GavelIcon size={24} color={theme.colors.green} />}
 							/>
 						</View>
 					</View>

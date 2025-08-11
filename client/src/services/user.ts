@@ -1,8 +1,12 @@
 import axiosClient from "./axiosClient";
 
-async function getCurrentUser() {
+async function getCurrentUser(accessToken: string | null) {
 	try {
-		const response = await axiosClient.get("/users/me");
+		const response = await axiosClient.get("/users/me", {
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+			},
+		});
 		return response.data;
 	} catch (error: any) {
 		console.error(error);
@@ -10,9 +14,13 @@ async function getCurrentUser() {
 	}
 }
 
-async function getStats() {
+async function getStats(accessToken: string | null) {
 	try {
-		const response = await axiosClient.get("/users/me/stats");
+		const response = await axiosClient.get("/users/me/stats", {
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+			},
+		});
 		return response.data;
 	} catch (error: any) {
 		console.error(error);

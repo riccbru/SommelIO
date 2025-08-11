@@ -11,6 +11,11 @@ import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import OlfactoryDetails from "@/src/components/tastings/OlfactoryDetails";
 import { Text, Card, useTheme, ActivityIndicator } from "react-native-paper";
 import { View, ScrollView, StyleSheet, TouchableOpacity, RefreshControl } from "react-native";
+import TastingUpdate from "@/src/components/tastings/update/TastingUpdate";
+import VisualUpdate from "@/src/components/tastings/update/VisualUpdate";
+import OlfactoryUpdate from "@/src/components/tastings/update/OlfactoryUpdate";
+import TasteUpdate from "@/src/components/tastings/update/TasteUpdate";
+import FinalUpdate from "@/src/components/tastings/update/FinalUpdate";
 
 type EditModeShape = {
 	tasting: boolean;
@@ -190,7 +195,7 @@ export default function TastingDetail() {
 						setEditMode={setEditMode}
 						subtitle='Wine description'
 					/>
-					<TastingDetails tasting={tasting} />
+					{!editMode["tasting"] ? <TastingDetails tasting={tasting} /> : <TastingUpdate />}
 				</Card.Content>
 			</Card>
 
@@ -203,7 +208,11 @@ export default function TastingDetail() {
 						setEditMode={setEditMode}
 						subtitle='Visual Examination'
 					/>
-					<VisualDetails exam={tasting.visual_exam} />
+					{!editMode["visual"] ? (
+						<VisualDetails exam={tasting.visual_exam} />
+					) : (
+						<VisualUpdate />
+					)}
 				</Card.Content>
 			</Card>
 
@@ -216,7 +225,11 @@ export default function TastingDetail() {
 						setEditMode={setEditMode}
 						subtitle='Olfactory Examination'
 					/>
-					<OlfactoryDetails exam={tasting.olfactory_exam} />
+					{!editMode["olfactory"] ? (
+						<OlfactoryDetails exam={tasting.olfactory_exam} />
+					) : (
+						<OlfactoryUpdate />
+					)}
 				</Card.Content>
 			</Card>
 
@@ -229,7 +242,11 @@ export default function TastingDetail() {
 						setEditMode={setEditMode}
 						subtitle='Taste-Olfactory Examination'
 					/>
-					<TasteDetails exam={tasting.taste_olfactory_exam} />
+					{!editMode["taste"] ? (
+						<TasteDetails exam={tasting.taste_olfactory_exam} />
+					) : (
+						<TasteUpdate />
+					)}
 				</Card.Content>
 			</Card>
 
@@ -242,7 +259,11 @@ export default function TastingDetail() {
 						setEditMode={setEditMode}
 						subtitle='Final Considerations'
 					/>
-					<FinalDetails exam={tasting.final_considerations} />
+					{!editMode["final"] ? (
+						<FinalDetails exam={tasting.final_considerations} />
+					) : (
+						<FinalUpdate />
+					)}
 				</Card.Content>
 			</Card>
 		</ScrollView>

@@ -44,7 +44,7 @@ async function createTasting(data: any) {
 
 async function updateTasting(tid: string, data: any) {
 	try {
-		const response = axiosClient.put("/tastings", data);
+		const response = axiosClient.put(`/tastings/${tid}`, data);
 		return response;
 	} catch (error: any) {
 		console.error(error);
