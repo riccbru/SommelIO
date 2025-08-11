@@ -46,8 +46,7 @@ model tastings {
   vintage               Int
   wine_temperature      Decimal                @db.Decimal(4, 1)
   ambient_temperature   Decimal?               @db.Decimal(4, 1)
-  tasting_date          DateTime               @db.Date
-  tasting_time          DateTime               @db.Time(6)
+  tasting_timestamp     DateTime               @db.Timestamptz(6)
   tasting_location      String
   created_at            DateTime?              @default(now()) @db.Timestamptz(6)
   updated_at            DateTime?              @default(now()) @db.Timestamptz(6)

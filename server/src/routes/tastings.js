@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { formatTasting, findWineCategoryId, parseTastingTime } from "../utils/tastings.js";
+import { formatTasting, findWineCategoryId } from "../utils/tastings.js";
 import { PrismaClient } from "../generated/prisma/index.js";
 import { TastingSchema } from "../validators/tastingSchema.js";
 
@@ -100,8 +100,6 @@ router.post("/", async (req, res) => {
 			});
 		}
 
-		const timeDate = parseTastingTime(tasting_time);
-
 		const newTasting = await prisma.tastings.create({
 			data: {
 				uid,
@@ -115,8 +113,7 @@ router.post("/", async (req, res) => {
 				vintage,
 				wine_temperature: parseFloat(wine_temperature),
 				ambient_temperature: parseFloat(ambient_temperature),
-				tasting_date: new Date(tasting_date),
-				tasting_time: timeDate,
+				tasting_timestamp: new Date(`${tasting_date}T${tasting_time}`).toISOString(),
 				tasting_location,
 			},
 			include: {
@@ -154,8 +151,6 @@ router.put("/:tid", async (req, res) => {
 			"vintage",
 			"wine_temperature",
 			"ambient_temperature",
-			"tasting_date",
-			"tasting_time",
 			"tasting_location",
 		];
 
@@ -179,11 +174,9 @@ router.put("/:tid", async (req, res) => {
 				connect: { id: category.id },
 			};
 		}
-		if ("tasting_date" in req.body) {
-			dataToUpdate.tasting_date = new Date(req.body.tasting_date).toISOString();
-		}
-		if ("tasting_time" in req.body) {
-			dataToUpdate.tasting_time = new Date("1970-01-01T" + req.body.tasting_time).toISOString();
+		if ("tasting_date" in req.body && "tasting_time" in req.body) {
+			dataToUpdate.tasting_timestamp = new Date(`${req.body.tasting_date}T${req.body.tasting_time}`).toISOString();
+
 		}
 		if ("vintage" in req.body) {
 			const vintage = Number(req.body.vintage);
@@ -197,7 +190,7 @@ router.put("/:tid", async (req, res) => {
 		if (Object.keys(dataToUpdate).length === 0) {
 			return res.status(400).json({ error: "Body is empty or no valid fields for update" });
 		}
-
+		
 		const updatedTasting = await prisma.tastings.update({
 			where: { tid },
 			data: dataToUpdate,

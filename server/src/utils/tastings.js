@@ -58,8 +58,8 @@ const formatTasting = tasting => {
 		vintage: tasting.vintage,
 		wine_temperature: `${tasting.wine_temperature}°C`,
 		ambient_temperature: `${tasting.ambient_temperature}°C`,
-		tasting_date: tasting.tasting_date,
-		tasting_time: tasting.tasting_time,
+		tasting_date: tasting.tasting_timestamp.toISOString().split('T')[0],
+		tasting_time: tasting.tasting_timestamp.toISOString().split('T')[1].substring(0, 5),
 		tasting_location: tasting.tasting_location,
 		created_at: tasting.created_at,
 		updated_at: tasting.updated_at,
@@ -79,17 +79,10 @@ const findWineCategoryId = async code => {
 	return category?.id || null;
 };
 
-const parseTastingTime = tasting_time => {
-	const [hour, minute] = tasting_time.split(":").map(Number);
-	const date = new Date();
-	date.setHours(hour, minute, 0, 0);
-	return date;
-};
 
 export {
 	getPreferredLanguage,
 	formatTasting,
 	formatOlfactoryExam,
 	findWineCategoryId,
-	parseTastingTime,
 };

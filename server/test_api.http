@@ -1,5 +1,5 @@
-@token = 
-@tid = 
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NjdhNjIzNi00YjJlLTQ0N2UtOGYyMC0zOTdkNDUyZDE0MTIiLCJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJiYW5raWNoIiwiZnVsbF9uYW1lIjoiQmFua2ljaCBBZG1pbiIsImVtYWlsIjoiYmFua2ljaEBzb21tZWwuaW8iLCJpYXQiOjE3NTQ5MTUxMzksImV4cCI6MTc1NDkxNjAzOX0.w9ycZ9mHHqLpUdwPcJ5MaZyMhjHxc8Dp6PSJ-8ZrlXc
+@tid = 4a7d4495-fdc3-4f01-8973-ebf765eb5f6d
 
 ### LOGIN + TOKEN
 
@@ -68,6 +68,7 @@ Authorization: Bearer {{token}}
     "tasting_time": "21:00",
     "tasting_location": "Art Cafè"
 }
+
 ### PUT UPDATE TASTING
 
 PUT http://localhost:3001/api/v1/tastings/{{tid}} HTTP/1.1
@@ -83,7 +84,7 @@ Authorization: Bearer {{token}}
     "vintage": 2025,
     "wine_temperature": "13",
     "ambient_temperature": "25",
-    "tasting_date": "2025-07-25",
+    "tasting_date": "2025-07-26",
     "tasting_time": "23:00",
     "tasting_location": "Art Cafè"
 }
