@@ -1,15 +1,32 @@
-import { useLayoutEffect } from "react";
+import UserAPI from "@/src/services/user";
 import { useAuth } from "@/src/hooks/useAuth";
-import { useTheme } from "react-native-paper";
 import { useNavigation, useRouter } from "expo-router";
-import { SignOutIcon, GearIcon } from "phosphor-react-native";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useEffect, useLayoutEffect, useState } from "react";
+import { Avatar, Card, Divider, useTheme } from "react-native-paper";
+import { GearIcon, SignOutIcon, StarIcon, TrophyIcon, WineIcon } from "phosphor-react-native";
+import {
+	Animated,
+	RefreshControl,
+	ScrollView,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from "react-native";
 
 export default function User() {
 	const theme = useTheme();
 	const router = useRouter();
 	const { user, logout } = useAuth();
 	const navigation = useNavigation();
+	const [refresh, setRefresh] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const [fadeAnim] = useState(new Animated.Value(0));
+	const [stats, setStats] = useState({
+		totalTastings: 0,
+		favoriteTastings: 0,
+		averageRating: 0.0,
+	});
 
 	useLayoutEffect(() => {
 		navigation.setOptions({
@@ -20,7 +37,7 @@ export default function User() {
 						console.log("profile settings");
 					}}
 				>
-					<GearIcon size={32} color={theme.dark ? "#ffffff" : "#000000"} />
+					<GearIcon size={32} color={theme.colors.primary} />
 				</TouchableOpacity>
 			),
 			headerRight: () => (
@@ -31,47 +48,217 @@ export default function User() {
 						router.replace("/login");
 					}}
 				>
-					<SignOutIcon size={30} color={theme.dark ? "#ffffff" : "#000000"} />
+					<SignOutIcon size={30} color={theme.colors.primary} />
 				</TouchableOpacity>
 			),
 		});
-	}, [logout, navigation, router, theme]);
+
+		// Fade in animation
+		Animated.timing(fadeAnim, {
+			toValue: 1,
+			duration: 800,
+			useNativeDriver: true,
+		}).start();
+	}, [logout, navigation, router, theme, fadeAnim]);
 
 	const styles = StyleSheet.create({
 		container: {
 			flex: 1,
-			alignItems: "flex-start",
-			justifyContent: "space-evenly",
 			backgroundColor: theme.colors.background,
+			padding: 16,
 		},
-		text: {
-			fontSize: 20,
-			fontWeight: 300,
+		profileCard: {
+			marginBottom: 20,
+			backgroundColor: theme.colors.surface,
+			borderRadius: 16,
+			elevation: 4,
+			shadowColor: theme.colors.primary,
+			shadowOffset: { width: 0, height: 4 },
+			shadowOpacity: 0.1,
+			shadowRadius: 8,
+		},
+		profileHeader: {
+			alignItems: "center",
+			paddingVertical: 24,
+		},
+		avatarContainer: {
+			marginBottom: 16,
+			elevation: 8,
+			shadowColor: theme.colors.primary,
+			shadowOffset: { width: 0, height: 4 },
+			shadowOpacity: 0.3,
+			shadowRadius: 8,
+		},
+		userName: {
+			fontSize: 28,
+			fontWeight: "700",
 			fontFamily: "Epilogue",
 			color: theme.colors.text,
+			marginBottom: 8,
+			textAlign: "center",
 		},
-		boldText: {
-			fontSize: 20,
-			fontWeight: 700,
+		userEmail: {
+			fontSize: 16,
+			fontFamily: "Epilogue",
+			color: theme.colors.gray,
+			textAlign: "center",
+			marginBottom: 16,
+		},
+		statsContainer: {
+			flexDirection: "row",
+			justifyContent: "space-around",
+			paddingVertical: 16,
+		},
+		statItem: {
+			alignItems: "center",
+			flex: 1,
+		},
+		statNumber: {
+			fontSize: 24,
+			fontWeight: "700",
+			fontFamily: "Epilogue",
+			color: theme.colors.primary,
+			marginBottom: 4,
+		},
+		statLabel: {
+			fontSize: 12,
+			fontFamily: "Epilogue",
+			color: theme.colors.gray,
+			textAlign: "center",
+		},
+		infoCard: {
+			marginBottom: 16,
+			backgroundColor: theme.colors.surface,
+			borderRadius: 12,
+		},
+		infoRow: {
+			flexDirection: "row",
+			alignItems: "center",
+			paddingVertical: 16,
+			paddingHorizontal: 20,
+		},
+		infoIcon: {
+			marginRight: 16,
+			width: 24,
+			alignItems: "center",
+		},
+		infoLabel: {
+			fontSize: 14,
+			fontWeight: "600",
+			fontFamily: "Epilogue",
+			color: theme.colors.gray,
+			marginBottom: 2,
+			flex: 1,
+		},
+		infoValue: {
+			fontSize: 16,
 			fontFamily: "Epilogue",
 			color: theme.colors.text,
+			flex: 2,
+		},
+		actionButtons: {
+			marginTop: 20,
+			gap: 12,
+		},
+		actionButton: {
+			borderRadius: 12,
+			paddingVertical: 4,
+		},
+		wineIcon: {
+			marginBottom: 8,
 		},
 	});
 
-	return (
-		<View style={styles.container}>
-			<Text style={styles.boldText}>
-				USERNAME: <Text style={styles.text}>{user?.username}</Text>
-			</Text>
-			<Text style={styles.boldText}>
-				FULL NAME: <Text style={styles.text}>{user?.full_name}</Text>
-			</Text>
-			<Text style={styles.boldText}>
-				EMAIL: <Text style={styles.text}>{user?.email}</Text>
-			</Text>
-			<Text style={styles.boldText}>
-				UID: <Text style={styles.text}>{user?.uid}</Text>
-			</Text>
+	const getInitials = (name: string) => {
+		return name
+			.split(" ")
+			.map(word => word[0])
+			.join("")
+			.toUpperCase()
+			.slice(0, 2);
+	};
+
+	useEffect(() => {
+		const fetchStats = async () => {
+			setLoading(true);
+			try {
+				const response = await UserAPI.getStats();
+				setStats(response.stats);
+			} catch (err) {
+				console.log(err);
+			} finally {
+				setLoading(false);
+			}
+		};
+		fetchStats();
+	}, [refresh]);
+
+	const StatItem = ({ icon, number, label, color = theme.colors.primary }: any) => (
+		<View style={styles.statItem}>
+			<View style={styles.wineIcon}>{icon}</View>
+			<Text style={[styles.statNumber, { color }]}>{number}</Text>
+			<Text style={styles.statLabel}>{label}</Text>
 		</View>
+	);
+
+	return (
+		<ScrollView
+			style={styles.container}
+			showsVerticalScrollIndicator={false}
+			refreshControl={
+				<RefreshControl refreshing={loading} onRefresh={() => setRefresh(!refresh)} />
+			}
+		>
+			<Animated.View style={{ opacity: fadeAnim }}>
+				{/* Profile Header Card */}
+				<Card style={styles.profileCard}>
+					<View style={styles.profileHeader}>
+						<View style={styles.avatarContainer}>
+							<Avatar.Text
+								size={80}
+								label={getInitials(user?.full_name || user?.username || "U")}
+								style={{
+									backgroundColor: theme.colors.primary,
+								}}
+								labelStyle={{
+									color: theme.colors.surface,
+									fontSize: 28,
+									fontWeight: "700",
+								}}
+							/>
+						</View>
+
+						<Text style={styles.userName}>{user?.username}</Text>
+						<Text style={styles.userName}>{user?.full_name}</Text>
+
+						<Text style={styles.userEmail}>{user?.email}</Text>
+						<Text style={styles.userEmail}>{user?.uid}</Text>
+
+						<Divider style={{ width: "80%", marginBottom: 16 }} />
+
+						{/* Stats Section */}
+						<View style={styles.statsContainer}>
+							<StatItem
+								label='Total Tastings'
+								number={stats.totalTastings}
+								icon={<WineIcon size={24} color={theme.colors.primary} />}
+							/>
+							<StatItem
+								label='Favorites'
+								color={theme.colors.amber}
+								number={stats.favoriteTastings}
+								icon={<StarIcon size={24} color={theme.colors.amber} />}
+							/>
+							<StatItem
+								label='Average Rating'
+								color={theme.colors.green}
+								number={stats.averageRating}
+								icon={<TrophyIcon size={24} color={theme.colors.green} />}
+							/>
+						</View>
+					</View>
+				</Card>
+			</Animated.View>
+		</ScrollView>
 	);
 }

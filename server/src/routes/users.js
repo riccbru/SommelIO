@@ -23,11 +23,59 @@ router.get("/me", async (req, res) => {
 			return;
 		}
 
+		const totalTastings = await prisma.tastings.count({
+			where: { uid: req.user.uid },
+		});
+
+		const favoriteTastings = await prisma.tastings.count({
+			where: {
+				uid: req.user.uid,
+				favorite: true,
+			},
+		});
+
 		const payload = {
 			uid: user?.uid,
 			username: user?.username,
 			full_name: user?.full_name,
 			email: user?.email,
+		};
+
+		res.json(payload);
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({ error: error?.meta?.message || "Internal server error" });
+	}
+});
+
+// GET /api/v1/users/me/stats
+router.get("/me/stats", async (req, res) => {
+	try {
+		const user = await prisma.users.findUnique({ where: { uid: req.user.uid } });
+		if (!user) {
+			res.status(404).json({ error: `User ${req.user.uid} not found` });
+			return;
+		}
+
+		const totalTastings = await prisma.tastings.count({
+			where: { uid: req.user.uid },
+		});
+
+		const favoriteTastings = await prisma.tastings.count({
+			where: {
+				uid: req.user.uid,
+				favorite: true,
+			},
+		});
+
+		const averageRating = 0.1;
+
+		const payload = {
+			stats: {
+				totalTastings: totalTastings,
+				averageRating: averageRating,
+				favoriteTastings: favoriteTastings,
+			}
 		};
 
 		res.json(payload);

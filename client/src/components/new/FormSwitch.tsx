@@ -1,6 +1,5 @@
 import React from "react";
 import { Switch, Text, View } from "react-native";
-import { useTheme } from "react-native-paper";
 
 type Props<T> = {
 	label: string;
@@ -15,7 +14,6 @@ export default function FormSwitch<T extends Record<string, any>>({
 	formData,
 	setFormData,
 }: Props<T>) {
-	const theme = useTheme();
 	const isChecked = !!formData[name];
 	const toggle = () => setFormData(prev => ({ ...prev, [name]: !prev[name] }));
 

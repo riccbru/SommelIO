@@ -9,6 +9,11 @@ export type User = {
 	username: string;
 	full_name: string;
 	email: string;
+	stats: {
+		totalTastings: number;
+		favoriteTastings: number;
+		averageRating: number;
+	};
 };
 
 export type AuthContextType = {

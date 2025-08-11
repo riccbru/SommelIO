@@ -1,5 +1,5 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NjdhNjIzNi00YjJlLTQ0N2UtOGYyMC0zOTdkNDUyZDE0MTIiLCJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJiYW5raWNoIiwiZnVsbF9uYW1lIjoiQmFua2ljaCBBZG1pbiIsImVtYWlsIjoiYmFua2ljaEBzb21tZWwuaW8iLCJpYXQiOjE3NTQ5MTUxMzksImV4cCI6MTc1NDkxNjAzOX0.w9ycZ9mHHqLpUdwPcJ5MaZyMhjHxc8Dp6PSJ-8ZrlXc
-@tid = 4a7d4495-fdc3-4f01-8973-ebf765eb5f6d
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NjdhNjIzNi00YjJlLTQ0N2UtOGYyMC0zOTdkNDUyZDE0MTIiLCJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJiYW5raWNoIiwiZnVsbF9uYW1lIjoiQmFua2ljaCBBZG1pbiIsImVtYWlsIjoiYmFua2ljaEBzb21tZWwuaW8iLCJpYXQiOjE3NTQ5MTk3MTQsImV4cCI6MTc1NDkyMDYxNH0.SVQXJS2OsC9q1Zp5WkuPJA3OTqqIHSD4tPCGOCVGZ6k
+@tid = 
 
 ### LOGIN + TOKEN
 
@@ -17,7 +17,7 @@ POST http://localhost:3001/api/v1/auth/refresh HTTP/1.1
 
 ### GET USER BY ID
 
-GET http://localhost:3001/api/v1/users/me HTTP/1.1
+GET http://localhost:3001/api/v1/users/me/stats HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### POST NEW USER
