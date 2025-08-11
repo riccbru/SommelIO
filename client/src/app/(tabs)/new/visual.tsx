@@ -10,264 +10,284 @@ import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } fr
 import { useLocalSearchParams } from "expo-router";
 
 type VisualExam = {
-    limpidity: string;
-    color_family: string;
-    color_shade: string;
-    consistency: string;
-    bubble_size: string;
-    bubble_number: string;
-    bubble_persistence: string;
-    notes: string;
+	limpidity: string;
+	color_family: string;
+	color_shade: string;
+	consistency: string;
+	bubble_size: string;
+	bubble_number: string;
+	bubble_persistence: string;
+	notes: string;
 };
 
 const defaultFormData = {
-    limpidity: '',
-    color_family: '',
-    color_shade: '',
-    consistency: '',
-    bubble_size: '',
-    bubble_number: '',
-    bubble_persistence: '',
-    notes: ''
-}
+	limpidity: "",
+	color_family: "",
+	color_shade: "",
+	consistency: "",
+	bubble_size: "",
+	bubble_number: "",
+	bubble_persistence: "",
+	notes: "",
+};
 
 export default function Visual() {
+	const theme = useTheme();
+	const [errors, setErrors] = useState<Record<string, string>>({});
+	const [formData, setFormData] = useState<VisualExam>(defaultFormData);
+	const { wine_category_name } = useLocalSearchParams();
+	const category = (wine_category_name || "").toString().toLowerCase();
 
-    const theme = useTheme();
-    const [errors, setErrors] = useState<Record<string, string>>({});
-    const [formData, setFormData] = useState<VisualExam>(defaultFormData);
-    const { wine_category_name } = useLocalSearchParams();
-    const category = (wine_category_name || "").toString().toLowerCase();
+	const styles = StyleSheet.create({
+		container: {
+			flex: 1,
+			flexDirection: "column",
+			backgroundColor: theme.colors.background,
+		},
+		sectionTitle: {
+			fontSize: 18,
+			fontWeight: "bold",
+			marginBottom: 15,
+			color: theme.colors.text,
+		},
+		text: {
+			fontSize: 30,
+			fontWeight: 300,
+			fontFamily: "Epilogue",
+			color: theme.colors.text,
+		},
+		loadingContainer: {
+			flex: 1,
+			justifyContent: "center",
+			alignItems: "center",
+			backgroundColor: theme.colors.background,
+		},
+		buttonContainer: {
+			marginTop: 20,
+			marginLeft: 15,
+			marginRight: 15,
+			marginBottom: 20,
+			flexDirection: "row",
+			alignItems: "center",
+			justifyContent: "space-between",
+		},
+	});
 
-    const styles = StyleSheet.create({
-        container: {
-            flex: 1,
-            flexDirection: "column",
-            backgroundColor: theme.colors.background
-        },
-        sectionTitle: {
-            fontSize: 18,
-            fontWeight: "bold",
-            marginBottom: 15,
-            color: theme.colors.text
-        },
-        text: {
-            fontSize: 30,
-            fontWeight: 300,
-            fontFamily: "Epilogue",
-            color: theme.colors.text
-        },
-        loadingContainer: {
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: theme.colors.background,
-        },
-        buttonContainer: {
-            marginTop: 20,
-            marginLeft: 15,
-            marginRight: 15,
-            marginBottom: 20,
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between"
-        }
-    });
+	const updateFormData = (field: keyof VisualExam, value: string) => {
+		setFormData(prev => ({ ...prev, [field]: value }));
+		if (errors[field]) {
+			setErrors(prev => {
+				const newErrors = { ...prev };
+				delete newErrors[field];
+				return newErrors;
+			});
+		}
+	};
 
-    const updateFormData = (field: keyof VisualExam, value: string) => {
-        setFormData(prev => ({ ...prev, [field]: value }));
-        if (errors[field]) {
-            setErrors(prev => {
-                const newErrors = { ...prev };
-                delete newErrors[field];
-                return newErrors;
-            });
-        }
-    };
+	const colorFamilyOptions = ["yellow", "red", "rosé"];
+	const colorShadesOptions: Record<string, string[]> = {
+		yellow: ["greenish_yellow", "straw_yellow", "golden_yellow", "amber"],
+		red: ["purple_red", "ruby_red", "garnet", "orange_red"],
+		rosé: ["soft_rosé", "cherry_red", "dark_rosé"],
+	};
 
-    const colorFamilyOptions = ["yellow", "red", "rosé"];
-    const colorShadesOptions: Record<string, string[]> = {
-        yellow: ["greenish_yellow", "straw_yellow", "golden_yellow", "amber"],
-        red: ["purple_red", "ruby_red", "garnet", "orange_red"],
-        rosé: ["soft_rosé", "cherry_red", "dark_rosé"]
-    };
+	const limpidityOptions = ["veiled", "quite_limpid", "limpid", "crystal_clear", "brilliant"];
+	const consistencyOptions = [
+		"flowing",
+		"scarcely_consistent",
+		"quite_consistent",
+		"consistent",
+		"oily",
+	];
+	const bubblesizeOptions = ["large", "quite_fine", "fine"];
+	const bubbleNumberOptions = ["very_few", "quite_numerous", "numerous"];
+	const bubblePersistenceOptions = ["fading", "quite_persistent", "persistent"];
 
-    const limpidityOptions = ["veiled", "quite_limpid", "limpid", "crystal_clear", "brilliant"];
-    const consistencyOptions = ["flowing", "scarcely_consistent", "quite_consistent", "consistent", "oily"];
-    const bubblesizeOptions = ["large", "quite_fine", "fine"];
-    const bubbleNumberOptions = ["very_few", "quite_numerous", "numerous"];
-    const bubblePersistenceOptions = ["fading", "quite_persistent", "persistent"];
+	const validateForm = (): boolean => {
+		const newErrors: Record<string, string> = {};
 
-    const validateForm = (): boolean => {
-        const newErrors: Record<string, string> = {};
+		if (!formData.limpidity.trim()) {
+			newErrors.limpidity = "Limpidity is required";
+		} else if (!limpidityOptions.includes(formData.limpidity)) {
+			newErrors.limpidity = "Invalid limpidity value";
+		}
 
-        if (!formData.limpidity.trim()) {
-            newErrors.limpidity = "Limpidity is required";
-        } else if (!limpidityOptions.includes(formData.limpidity)) {
-            newErrors.limpidity = "Invalid limpidity value";
-        }
+		if (!formData.color_family.trim()) {
+			newErrors.color_family = "Color family is required";
+		} else if (!colorFamilyOptions.includes(formData.color_family)) {
+			newErrors.color_family = "Invalid color family";
+		}
 
-        if (!formData.color_family.trim()) {
-            newErrors.color_family = "Color family is required";
-        } else if (!colorFamilyOptions.includes(formData.color_family)) {
-            newErrors.color_family = "Invalid color family";
-        }
+		if (!formData.color_shade.trim()) {
+			newErrors.color_shade = "Color shade is required";
+		}
+		const validShades = colorShadesOptions[formData.color_family] || [];
+		if (!validShades.includes(formData.color_shade)) {
+			newErrors.color_shade = `Invalid shade for color family ${formData.color_family}`;
+		}
 
-        if (!formData.color_shade.trim()) {
-            newErrors.color_shade = "Color shade is required";
-        }
-        const validShades = colorShadesOptions[formData.color_family] || [];
-        if (!validShades.includes(formData.color_shade)) {
-            newErrors.color_shade = `Invalid shade for color family ${formData.color_family}`;
-        }
+		if (!formData.consistency.trim()) {
+			newErrors.consistency = "Consistency is required";
+		} else if (!consistencyOptions.includes(formData.consistency)) {
+			newErrors.consistency = "Invalid consistency value";
+		}
 
-        if (!formData.consistency.trim()) {
-            newErrors.consistency = "Consistency is required";
-        } else if (!consistencyOptions.includes(formData.consistency)) {
-            newErrors.consistency = "Invalid consistency value";
-        }
+		if (category === "sparkling") {
+			if (!formData.bubble_size.trim()) {
+				newErrors.bubble_size = "Bubble size is required";
+			} else if (!bubblesizeOptions.includes(formData.bubble_size)) {
+				newErrors.bubble_size = "Invalid bubble size value";
+			}
 
-        if (category === 'sparkling') {
-            if (!formData.bubble_size.trim()) {
-                newErrors.bubble_size = "Bubble size is required";
-            } else if (!bubblesizeOptions.includes(formData.bubble_size)) {
-                newErrors.bubble_size = "Invalid bubble size value";
-            }
-    
-            if (!formData.bubble_number.trim()) {
-                newErrors.bubble_number = "Bubble number is required";
-            } else if (!bubbleNumberOptions.includes(formData.bubble_number)) {
-                newErrors.bubble_number = "Invalid bubble number value";
-            }
-    
-            if (!formData.bubble_persistence.trim()) {
-                newErrors.bubble_persistence = "Bubble persistence is required";
-            } else if (!bubblePersistenceOptions.includes(formData.bubble_persistence)) {
-                newErrors.bubble_persistence = "Invalid bubble persistence value";
-            }
-        }
+			if (!formData.bubble_number.trim()) {
+				newErrors.bubble_number = "Bubble number is required";
+			} else if (!bubbleNumberOptions.includes(formData.bubble_number)) {
+				newErrors.bubble_number = "Invalid bubble number value";
+			}
 
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
-    }
+			if (!formData.bubble_persistence.trim()) {
+				newErrors.bubble_persistence = "Bubble persistence is required";
+			} else if (!bubblePersistenceOptions.includes(formData.bubble_persistence)) {
+				newErrors.bubble_persistence = "Invalid bubble persistence value";
+			}
+		}
 
-    return (
-        <>
-            <KeyboardAvoidingView
-                keyboardVerticalOffset={140}
-                behavior={Platform.OS === "ios" ? "padding" : "height"}
-                style={{ flex: 1, backgroundColor: theme.colors.background }}
-            >
-                <ScrollView style={styles.container} keyboardShouldPersistTaps="handled">
+		setErrors(newErrors);
+		return Object.keys(newErrors).length === 0;
+	};
 
-                    <Card>
-                        <Card.Content>
-                            <View style={{ flex: 1, flexDirection: "row", alignItems: "center", alignContent: "center", justifyContent: "space-between" }}>
-                                <Text style={styles.sectionTitle}>Visual Exam</Text>
-                                <CancelButton
-                                    setErrors={setErrors}
-                                    setFormData={setFormData}
-                                    defaultFormData={defaultFormData}
-                                />
-                            </View>
+	return (
+		<>
+			<KeyboardAvoidingView
+				keyboardVerticalOffset={140}
+				behavior={Platform.OS === "ios" ? "padding" : "height"}
+				style={{ flex: 1, backgroundColor: theme.colors.background }}
+			>
+				<ScrollView style={styles.container} keyboardShouldPersistTaps='handled'>
+					<Card>
+						<Card.Content>
+							<View
+								style={{
+									flex: 1,
+									flexDirection: "row",
+									alignItems: "center",
+									alignContent: "center",
+									justifyContent: "space-between",
+								}}
+							>
+								<Text style={styles.sectionTitle}>Visual Exam</Text>
+								<CancelButton
+									setErrors={setErrors}
+									setFormData={setFormData}
+									defaultFormData={defaultFormData}
+								/>
+							</View>
 
-                            <FormSelect
-                                label="Limpidity"
-                                field="limpidity"
-                                value={formData.limpidity}
-                                error={errors.limpidity}
-                                onChange={updateFormData}
-                                options={limpidityOptions}
-                            />
+							<FormSelect
+								label='Limpidity'
+								field='limpidity'
+								value={formData.limpidity}
+								error={errors.limpidity}
+								onChange={updateFormData}
+								options={limpidityOptions}
+							/>
 
-                            <FormSelect
-                                label="Color family"
-                                field="color_family"
-                                value={formData.color_family}
-                                error={errors.color_family}
-                                onChange={
-                                    (field, value) => {
-                                        updateFormData(field, value);
-                                        updateFormData("color_shade", "");
-                                    }
-                                }
-                                options={colorFamilyOptions}
-                            />
+							<FormSelect
+								label='Color family'
+								field='color_family'
+								value={formData.color_family}
+								error={errors.color_family}
+								onChange={(field, value) => {
+									updateFormData(field, value);
+									updateFormData("color_shade", "");
+								}}
+								options={colorFamilyOptions}
+							/>
 
-                            <FormSelect
-                                label="Color shade"
-                                field="color_shade"
-                                value={formData.color_shade}
-                                error={errors.color_shade}
-                                onChange={updateFormData}
-                                options={colorShadesOptions[formData.color_family]}
-                            />
+							<FormSelect
+								label='Color shade'
+								field='color_shade'
+								value={formData.color_shade}
+								error={errors.color_shade}
+								onChange={updateFormData}
+								options={colorShadesOptions[formData.color_family]}
+							/>
 
-                            <FormSelect
-                                label="Consistency"
-                                field="consistency"
-                                value={formData.consistency}
-                                error={errors.consistency}
-                                onChange={updateFormData}
-                                options={consistencyOptions}
-                            />
+							<FormSelect
+								label='Consistency'
+								field='consistency'
+								value={formData.consistency}
+								error={errors.consistency}
+								onChange={updateFormData}
+								options={consistencyOptions}
+							/>
 
-                            {category === 'sparkling' ? (<FormSelect
-                                label="Bubble size"
-                                field="bubble_size"
-                                value={formData.bubble_size}
-                                error={errors.bubble_size}
-                                onChange={updateFormData}
-                                options={bubblesizeOptions}
-                            />) : (<></>)}
+							{category === "sparkling" ? (
+								<FormSelect
+									label='Bubble size'
+									field='bubble_size'
+									value={formData.bubble_size}
+									error={errors.bubble_size}
+									onChange={updateFormData}
+									options={bubblesizeOptions}
+								/>
+							) : (
+								<></>
+							)}
 
-                            {category === 'sparkling' ? (<FormSelect
-                                label="Bubble number"
-                                field="bubble_number"
-                                value={formData.bubble_number}
-                                error={errors.bubble_number}
-                                onChange={updateFormData}
-                                options={bubbleNumberOptions}
-                            />) : (<></>)}
+							{category === "sparkling" ? (
+								<FormSelect
+									label='Bubble number'
+									field='bubble_number'
+									value={formData.bubble_number}
+									error={errors.bubble_number}
+									onChange={updateFormData}
+									options={bubbleNumberOptions}
+								/>
+							) : (
+								<></>
+							)}
 
-                            {category === 'sparkling' ? (<FormSelect
-                                label="Bubble persistence"
-                                field="bubble_persistence"
-                                value={formData.bubble_persistence}
-                                error={errors.bubble_persistence}
-                                onChange={updateFormData}
-                                options={bubblePersistenceOptions}
-                            />) : (<></>)}
+							{category === "sparkling" ? (
+								<FormSelect
+									label='Bubble persistence'
+									field='bubble_persistence'
+									value={formData.bubble_persistence}
+									error={errors.bubble_persistence}
+									onChange={updateFormData}
+									options={bubblePersistenceOptions}
+								/>
+							) : (
+								<></>
+							)}
 
-                            <FormInput
-                                label="Notes"
-                                field="notes"
-                                value={formData.notes}
-                                error={errors.notes}
-                                onChange={updateFormData}
-                            />
+							<FormInput
+								label='Notes'
+								field='notes'
+								value={formData.notes}
+								error={errors.notes}
+								onChange={updateFormData}
+							/>
+						</Card.Content>
+					</Card>
 
-                        </Card.Content>
-                    </Card>
-
-                    <View style={styles.buttonContainer}>
-                        <ExitButton
-                            setErrors={setErrors}
-                            setFormData={setFormData}
-                            defaultFormData={defaultFormData}
-                        />
-                        <NextButton
-                            requiresTid
-                            path="/new/olfactory"
-                            text="OLFACTORY"
-                            formData={formData}
-                            validation={validateForm}
-                            action={ExamsAPI.createVisual}
-                        />
-                    </View>
-                </ScrollView>
-            </KeyboardAvoidingView>
-
-        </>
-    );
+					<View style={styles.buttonContainer}>
+						<ExitButton
+							setErrors={setErrors}
+							setFormData={setFormData}
+							defaultFormData={defaultFormData}
+						/>
+						<NextButton
+							requiresTid
+							path='/new/olfactory'
+							text='OLFACTORY'
+							formData={formData}
+							validation={validateForm}
+							action={ExamsAPI.createVisual}
+						/>
+					</View>
+				</ScrollView>
+			</KeyboardAvoidingView>
+		</>
+	);
 }

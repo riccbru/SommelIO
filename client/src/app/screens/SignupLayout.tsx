@@ -16,109 +16,106 @@ import { SignupFooter } from "@/src/components/auth/signup/SignupFooter";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet } from "react-native";
 
 export default function SignupLayout() {
+	const defaultSignupData = {
+		full_name: "",
+		username: "",
+		email: "",
+		birthdate: "",
+		password: "",
+	};
 
-    const defaultSignupData = {
-        full_name: "",
-        username: "",
-        email: "",
-        birthdate: "",
-        password: "",
-    }
+	const theme = useTheme();
+	const { isReady, signup } = useAuth();
+	const [modal, setModal] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const [signupData, setSignupData] = useState(defaultSignupData);
 
-    const theme = useTheme();
-    const { isReady, signup } = useAuth();
-    const [modal, setModal] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const [signupData, setSignupData] = useState(defaultSignupData);
+	const styles = StyleSheet.create({
+		container: {
+			flex: 1,
+			paddingHorizontal: 32,
+			justifyContent: "center",
+			backgroundColor: theme.colors.background,
+		},
+		text: {
+			color: "#ffffff",
+		},
+	});
 
-    const styles = StyleSheet.create({
-        container: {
-            flex: 1,
-            paddingHorizontal: 32,
-            justifyContent: "center",
-            backgroundColor: theme.colors.background
-        }, 
-        text: {
-            color: "#ffffff"
-        }
-    });
+	const handleSignup = async () => {
+		try {
+			await signup(signupData);
+			setModal(true);
+		} catch (err: any) {
+			showAlert({
+				confirmText: "OK",
+				cancelText: "Close",
+				title: "Signup Error",
+				message: err.message || "Unknown signup error",
+			});
+		}
+	};
 
-    const handleSignup = async () => {
-        try {
-            await signup(signupData);
-            setModal(true);
-        } catch (err: any) {
-            showAlert({
-                confirmText: "OK",
-                cancelText: "Close",
-                title: "Signup Error",
-                message: err.message || "Unknown signup error",
-            });
-        }
-    };
-    
-    const handlePress = () => {
-        setLoading(true);
-        setTimeout(() => {
-          handleSignup().finally(() => setLoading(false));
-        }, 550);
-    };
+	const handlePress = () => {
+		setLoading(true);
+		setTimeout(() => {
+			handleSignup().finally(() => setLoading(false));
+		}, 550);
+	};
 
-    return (
-        <KeyboardAvoidingView
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
-            style={{ flex: 1, backgroundColor: theme.colors.background }}
-        >
-            <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
-                
-                <Title />
-                
-                <AuthInput
-                    holder="Full name"
-                    value={signupData.full_name}
-                    onChangeText={(text) => setSignupData(prev => ({ ...prev, full_name: text }))}
-                />
-                <AuthInput
-                    holder="Email"
-                    isEmail={true}
-                    value={signupData.email}
-                    onChangeText={(text) => setSignupData(prev => ({ ...prev, email: text }))}
-                />
-    
-                <DateInput
-                    value={signupData.birthdate}
-                    onChangeText={(text) => setSignupData(prev => ({ ...prev, birthdate: text }))}
-                />
+	return (
+		<KeyboardAvoidingView
+			behavior={Platform.OS === "ios" ? "padding" : "height"}
+			style={{ flex: 1, backgroundColor: theme.colors.background }}
+		>
+			<ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps='handled'>
+				<Title />
 
-                <AuthInput
-                    holder="Username"
-                    value={signupData.username}
-                    onChangeText={(text) => setSignupData(prev => ({ ...prev, username: text }))}
-                />
-                <PasswordInput
-                    onSubmit={handlePress}
-                    signupData={signupData}
-                    setSignupData={setSignupData}
-                />
-    
-                <AuthButton 
-                    action="SIGNUP"
-                    loading={loading}
-                    onPress={handlePress}
-                    disabled={!isReady || loading}
-                />
+				<AuthInput
+					holder='Full name'
+					value={signupData.full_name}
+					onChangeText={text => setSignupData(prev => ({ ...prev, full_name: text }))}
+				/>
+				<AuthInput
+					holder='Email'
+					isEmail={true}
+					value={signupData.email}
+					onChangeText={text => setSignupData(prev => ({ ...prev, email: text }))}
+				/>
 
-                <LineSeparator />
-                
-                <GoogleButton />
-                <AppleButton />
-                <FacebookButton />
-        
-                <SignupFooter />
+				<DateInput
+					value={signupData.birthdate}
+					onChangeText={text => setSignupData(prev => ({ ...prev, birthdate: text }))}
+				/>
 
-                <UserModal modal={modal} setModal={setModal} />
-                
-            </ScrollView>
-        </KeyboardAvoidingView>
-    )
+				<AuthInput
+					holder='Username'
+					value={signupData.username}
+					onChangeText={text => setSignupData(prev => ({ ...prev, username: text }))}
+				/>
+				<PasswordInput
+					onSubmit={handlePress}
+					signupData={signupData}
+					setSignupData={setSignupData}
+				/>
+
+				<AuthButton
+					action='SIGNUP'
+					loading={loading}
+					onPress={handlePress}
+					disabled={!isReady || loading}
+				/>
+
+				<LineSeparator />
+
+				<GoogleButton />
+				<AppleButton />
+				<FacebookButton />
+
+				<SignupFooter />
+
+				<UserModal modal={modal} setModal={setModal} />
+			</ScrollView>
+		</KeyboardAvoidingView>
+	);
 }

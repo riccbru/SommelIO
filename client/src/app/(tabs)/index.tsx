@@ -3,51 +3,49 @@ import { Linking, StyleSheet, Pressable, Text, View } from "react-native";
 import Title from "@/src/components/Title";
 
 export default function Index() {
-  
-  const theme = useTheme();
+	const theme = useTheme();
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: "center",
-      justifyContent: "center",
-      backgroundColor: theme.colors.background,
-    },
-    text: {
-      fontSize: 30,
-      fontWeight: 300,
-      fontFamily: "Epilogue",
-      color: theme.colors.text,
-    },
-    link: {
-      fontSize: 20,
-      color: theme.colors.amber,
-      textDecorationLine: "underline",
-    },
-    tokenText: {
-      fontSize: 15,
-      fontWeight: 300,
-      fontFamily: "Epilogue",
-      color: theme.colors.text,
-    }
-  });
+	const styles = StyleSheet.create({
+		container: {
+			flex: 1,
+			alignItems: "center",
+			justifyContent: "center",
+			backgroundColor: theme.colors.background,
+		},
+		text: {
+			fontSize: 30,
+			fontWeight: 300,
+			fontFamily: "Epilogue",
+			color: theme.colors.text,
+		},
+		link: {
+			fontSize: 20,
+			color: theme.colors.amber,
+			textDecorationLine: "underline",
+		},
+		tokenText: {
+			fontSize: 15,
+			fontWeight: 300,
+			fontFamily: "Epilogue",
+			color: theme.colors.text,
+		},
+	});
 
-  const handlePress = () => {
-    Linking.openURL("https://aisitalia.it/");
-  }
+	const handlePress = () => {
+		Linking.openURL("https://aisitalia.it/");
+	};
 
-  return (
-    <View
-      style={styles.container}
-    >
-      <View style={{ flexDirection: "column", alignItems: "center" }}>
-        <Text style={styles.text}>Welcome to </Text>
-        <View style={{ marginLeft: 30 }}><Title /></View>
-      </View>
-      <Pressable onPress={handlePress}>
-        <Text style={styles.link}>https://aisitalia.it</Text>
-      </Pressable>
-    </View>
-  );
+	return (
+		<View style={styles.container}>
+			<View style={{ flexDirection: "column", alignItems: "center" }}>
+				<Text style={styles.text}>Welcome to </Text>
+				<View style={{ marginLeft: 30 }}>
+					<Title />
+				</View>
+			</View>
+			<Pressable onPress={handlePress}>
+				<Text style={styles.link}>https://aisitalia.it</Text>
+			</Pressable>
+		</View>
+	);
 }
-
