@@ -48,7 +48,7 @@ export default function TastingDetails({ tasting }: Props) {
 			</Text>
 			<Text style={{ marginBottom: 5 }}>
 				<Text style={{ fontWeight: "bold" }}>Date & Time: </Text>
-				{tasting.tasting_date.split("T")[0]}, {tasting.tasting_time.split("T")[1].slice(0, 5)}
+				{tasting.tasting_date}, {tasting.tasting_time}
 			</Text>
 			<Text style={{ marginBottom: 5 }}>
 				<Text style={{ fontWeight: "bold" }}>Location: </Text>
