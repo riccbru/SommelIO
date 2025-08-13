@@ -33,6 +33,13 @@ export default function Final() {
 			flexDirection: "column",
 			backgroundColor: theme.colors.background,
 		},
+		cardHeader: {
+			flex: 1,
+			flexDirection: "row",
+			alignItems: "center",
+			alignContent: "center",
+			justifyContent: "space-between",
+		},
 		sectionTitle: {
 			fontSize: 18,
 			fontWeight: "bold",
@@ -100,15 +107,7 @@ export default function Final() {
 				<ScrollView style={styles.container} keyboardShouldPersistTaps='handled'>
 					<Card>
 						<Card.Content>
-							<View
-								style={{
-									flex: 1,
-									flexDirection: "row",
-									alignItems: "center",
-									alignContent: "center",
-									justifyContent: "space-between",
-								}}
-							>
+							<View style={styles.cardHeader}>
 								<Text style={styles.sectionTitle}>Final</Text>
 								<CancelButton
 									setErrors={setErrors}

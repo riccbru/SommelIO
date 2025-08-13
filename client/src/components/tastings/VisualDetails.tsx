@@ -48,22 +48,17 @@ export default function VisualDetails({ exam }: Props) {
 
 	const visualFields = [
 		{ label: "Limpidity", value: formatOption(exam?.limpidity).toUpperCase() },
-		{ label: "Color family", value: formatOption(exam?.color_family).toUpperCase() },
-		{ label: "Color shade", value: formatOption(exam?.color_shade).toUpperCase() },
-		{ label: "Consistency", value: formatOption(exam?.consistency).toUpperCase() }, // Fixed typo
+		{ label: "Color Family", value: formatOption(exam?.color_family).toUpperCase() },
+		{ label: "Color Shade", value: formatOption(exam?.color_shade).toUpperCase() },
+		{ label: "Consistency", value: formatOption(exam?.consistency).toUpperCase() },
 		...(exam.bubble_size
-			? [{ label: "Bubble size", value: formatOption(exam?.bubble_size).toUpperCase() }]
+			? [{ label: "Bubble Size", value: formatOption(exam?.bubble_size).toUpperCase() }]
 			: []),
 		...(exam.bubble_number
-			? [{ label: "Bubble number", value: formatOption(exam?.bubble_number).toUpperCase() }]
+			? [{ label: "Bubble Number", value: formatOption(exam?.bubble_number).toUpperCase() }]
 			: []),
 		...(exam.bubble_persistence
-			? [
-					{
-						label: "Bubble persistence",
-						value: formatOption(exam?.bubble_persistence).toUpperCase(),
-					},
-				]
+			? [{ label: "Bubble Persistence", value: formatOption(exam?.bubble_persistence).toUpperCase() }]
 			: []),
 	];
 

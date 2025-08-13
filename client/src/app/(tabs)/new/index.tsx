@@ -54,6 +54,13 @@ export default function New() {
 			flexDirection: "column",
 			backgroundColor: theme.colors.background,
 		},
+		cardHeader: {
+			flex: 1,
+			flexDirection: "row",
+			alignItems: "center",
+			alignContent: "center",
+			justifyContent: "space-between",
+		},
 		sectionTitle: {
 			fontSize: 18,
 			fontWeight: "bold",
@@ -169,15 +176,7 @@ export default function New() {
 				<ScrollView style={styles.container} keyboardShouldPersistTaps='handled'>
 					<Card>
 						<Card.Content>
-							<View
-								style={{
-									flex: 1,
-									flexDirection: "row",
-									alignItems: "center",
-									alignContent: "center",
-									justifyContent: "space-between",
-								}}
-							>
+							<View style={styles.cardHeader}>
 								<Text style={styles.sectionTitle}>Wine description</Text>
 								<CancelButton
 									setErrors={setErrors}

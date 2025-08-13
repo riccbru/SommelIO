@@ -1,13 +1,13 @@
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View, Text } from "react-native";
-import { Card, useTheme } from "react-native-paper";
-import ExitButton from "@/src/components/new/ExitButton";
-import NextButton from "@/src/components/new/NextButton";
 import { useState } from "react";
-import ScoringsAPI from "@/src/services/scorings";
 import { isRightRange } from "@/src/utils/utils";
+import ScoringsAPI from "@/src/services/scorings";
+import { Card, useTheme } from "react-native-paper";
 import FormInput from "@/src/components/new/FormInput";
 import FormScore from "@/src/components/new/FormScore";
+import ExitButton from "@/src/components/new/ExitButton";
+import NextButton from "@/src/components/new/NextButton";
 import CancelButton from "@/src/components/new/CancelButton";
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View, Text } from "react-native";
 
 type ScoringEvaluation = {
 	visual_appearance: number;

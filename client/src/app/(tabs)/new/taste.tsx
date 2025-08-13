@@ -49,6 +49,13 @@ export default function Taste() {
 			flexDirection: "column",
 			backgroundColor: theme.colors.background,
 		},
+		cardHeader: {
+			flex: 1,
+			flexDirection: "row",
+			alignItems: "center",
+			alignContent: "center",
+			justifyContent: "space-between",
+		},
 		sectionTitle: {
 			fontSize: 18,
 			fontWeight: "bold",
@@ -176,15 +183,7 @@ export default function Taste() {
 				<ScrollView style={styles.container} keyboardShouldPersistTaps='handled'>
 					<Card>
 						<Card.Content>
-							<View
-								style={{
-									flex: 1,
-									flexDirection: "row",
-									alignItems: "center",
-									alignContent: "center",
-									justifyContent: "space-between",
-								}}
-							>
+							<View style={styles.cardHeader}>
 								<Text style={styles.sectionTitle}>Taste-Olfactory Exam</Text>
 								<CancelButton
 									setErrors={setErrors}

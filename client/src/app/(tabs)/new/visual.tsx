@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ExamsAPI from "@/src/services/exams";
+import { useLocalSearchParams } from "expo-router";
 import { Card, useTheme } from "react-native-paper";
 import FormInput from "@/src/components/new/FormInput";
 import NextButton from "@/src/components/new/NextButton";
@@ -7,7 +8,6 @@ import ExitButton from "@/src/components/new/ExitButton";
 import FormSelect from "@/src/components/new/FormSelect";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
-import { useLocalSearchParams } from "expo-router";
 
 type VisualExam = {
 	limpidity: string;
@@ -43,6 +43,13 @@ export default function Visual() {
 			flex: 1,
 			flexDirection: "column",
 			backgroundColor: theme.colors.background,
+		},
+		cardHeader: {
+			flex: 1,
+			flexDirection: "row",
+			alignItems: "center",
+			alignContent: "center",
+			justifyContent: "space-between",
 		},
 		sectionTitle: {
 			fontSize: 18,
@@ -166,15 +173,7 @@ export default function Visual() {
 				<ScrollView style={styles.container} keyboardShouldPersistTaps='handled'>
 					<Card>
 						<Card.Content>
-							<View
-								style={{
-									flex: 1,
-									flexDirection: "row",
-									alignItems: "center",
-									alignContent: "center",
-									justifyContent: "space-between",
-								}}
-							>
+							<View style={styles.cardHeader}>
 								<Text style={styles.sectionTitle}>Visual Exam</Text>
 								<CancelButton
 									setErrors={setErrors}
@@ -193,7 +192,7 @@ export default function Visual() {
 							/>
 
 							<FormSelect
-								label='Color family'
+								label='Color Family'
 								field='color_family'
 								value={formData.color_family}
 								error={errors.color_family}
@@ -205,7 +204,7 @@ export default function Visual() {
 							/>
 
 							<FormSelect
-								label='Color shade'
+								label='Color Shade'
 								field='color_shade'
 								value={formData.color_shade}
 								error={errors.color_shade}
@@ -224,7 +223,7 @@ export default function Visual() {
 
 							{category === "sparkling" ? (
 								<FormSelect
-									label='Bubble size'
+									label='Bubble Size'
 									field='bubble_size'
 									value={formData.bubble_size}
 									error={errors.bubble_size}
@@ -237,7 +236,7 @@ export default function Visual() {
 
 							{category === "sparkling" ? (
 								<FormSelect
-									label='Bubble number'
+									label='Bubble Number'
 									field='bubble_number'
 									value={formData.bubble_number}
 									error={errors.bubble_number}
@@ -250,7 +249,7 @@ export default function Visual() {
 
 							{category === "sparkling" ? (
 								<FormSelect
-									label='Bubble persistence'
+									label='Bubble Persistence'
 									field='bubble_persistence'
 									value={formData.bubble_persistence}
 									error={errors.bubble_persistence}
