@@ -13,21 +13,21 @@
 <p align="center"><em>Built with the tools and technologies:</em></p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white" />
-  <img src="https://img.shields.io/badge/PostgreSQL-316192?style=flat&logo=postgresql&logoColor=white" />
-  <img src="https://img.shields.io/badge/Prisma-2D3748?style=flat&logo=prisma" />
-  <img src="https://img.shields.io/badge/npm-CB3837?style=flat&logo=npm&logoColor=white" />
-  <img src="https://img.shields.io/badge/Nodemon-76D04B?style=flat&logo=nodemon" />
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black" />
-  <img src="https://img.shields.io/badge/Express-black?style=flat&logo=express" />
-  <img src="https://img.shields.io/badge/Zod-2D3748?style=flat" />
-  <img src="https://img.shields.io/badge/.ENV-ECD53F?style=flat&logo=dotenv&logoColor=black" />
-  <img src="https://img.shields.io/badge/ts-node-3178C6?style=flat&logo=ts-node&logoColor=white" />
-  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white" />
-  <img src="https://img.shields.io/badge/Expo-000020?style=flat&logo=expo&logoColor=white" />
-  <img src="https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB" />
-  <img src="https://img.shields.io/badge/Axios-5A29E4?style=flat&logo=axios&logoColor=white" />
-  <img src="https://img.shields.io/badge/ESLint-4B32C3?style=flat&logo=eslint&logoColor=white" />
+  <a href="https://www.docker.com/"><img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white" /></a>
+  <a href="https://www.postgresql.org/"><img src="https://img.shields.io/badge/PostgreSQL-316192?style=flat&logo=postgresql&logoColor=white" /></a>
+  <a href="https://www.prisma.io/"><img src="https://img.shields.io/badge/Prisma-2D3748?style=flat&logo=prisma" /></a>
+  <a href="https://www.npmjs.com/"><img src="https://img.shields.io/badge/npm-CB3837?style=flat&logo=npm&logoColor=white" /></a>
+  <a href="https://nodemon.io/"><img src="https://img.shields.io/badge/Nodemon-76D04B?style=flat&logo=nodemon" /></a>
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black" /></a>
+  <a href="https://expressjs.com/"><img src="https://img.shields.io/badge/Express-black?style=flat&logo=express" /></a>
+  <a href="https://zod.dev/"><img src="https://img.shields.io/badge/Zod-2D3748?style=flat" /></a>
+  <a href="https://www.dotenv.org/docs/"><img src="https://img.shields.io/badge/.ENV-ECD53F?style=flat&logo=dotenv&logoColor=black" /></a>
+  <a href="https://typestrong.org/ts-node/docs/"><img src="https://img.shields.io/badge/ts-node-3178C6?style=flat&logo=ts-node&logoColor=white" /></a>
+  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white" /></a>
+  <a href="https://expo.dev/"><img src="https://img.shields.io/badge/Expo-000020?style=flat&logo=expo&logoColor=white" /></a>
+  <a href="https://reactnative.dev/"><img src="https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB" /></a>
+  <a href="https://axios-http.com/docs/intro"><img src="https://img.shields.io/badge/Axios-5A29E4?style=flat&logo=axios&logoColor=white" /></a>
+  <a href="https://eslint.org/"><img src="https://img.shields.io/badge/ESLint-4B32C3?style=flat&logo=eslint&logoColor=white" /></a>
   <img src="https://img.shields.io/badge/JSON-000000?style=flat&logo=json" />
   <img src="https://img.shields.io/badge/Markdown-000000?style=flat&logo=markdown" />
 </p>
@@ -50,7 +50,7 @@ React Native project for tracking all wines and beers I tasted, in accordance wi
 First, install `node_modules` via `npm install` in `SommelIO/server` and `SommelIO/client`.
 
 #### DEVELOPMENT
-- `Postgres DB` (in **SommelIO/**)
+- Start `Postgres DB` (in **SommelIO/**)
     - Start
         ```bash
         docker compose up
@@ -59,12 +59,12 @@ First, install `node_modules` via `npm install` in `SommelIO/server` and `Sommel
         ```bash
         docker compose down -v
         ```
-- `Backend server` (in **SommelIO/server**)
+- Start `Backend server` (in **SommelIO/server**)
 ```bash
 nodemon .
 ```
 
-- `Expo client` (in **SommelIO/client**)
+- Start `Expo client` (in **SommelIO/client**)
 ```bash
 npx expo start --clear
 ```
