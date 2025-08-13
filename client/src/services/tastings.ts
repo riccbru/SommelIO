@@ -13,6 +13,7 @@ async function fetchTastings() {
 async function fetchTastingById(tid: string) {
 	try {
 		const response = await axiosClient.get(`/tastings/${tid}`);
+		console.log(response.data.scoring_evaluation);
 		return response;
 	} catch (error: any) {
 		console.error(error);

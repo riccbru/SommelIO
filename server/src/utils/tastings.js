@@ -32,6 +32,17 @@ const formatOlfactoryExam = data => {
 const formatScoringEvaluation = data => {
 	const scoring = {
 		sid: data?.sid,
+		visual_appearance: data.visual_appearance,
+		visual_color: data.visual_color,
+		olfactory_intensity: data.olfactory_intensity,
+		olfactory_complexity: data.olfactory_complexity,
+		olfactory_quality: data.olfactory_quality,
+		taste_structure: data.taste_structure,
+		taste_balance: data.taste_balance,
+		taste_intensity: data.taste_intensity,
+		taste_persistence: data.taste_persistence,
+		taste_quality: data.taste_quality,
+		harmony: data.harmony,
 		total_score: data.total_score,
 		notes: data.notes,
 	};
@@ -76,9 +87,7 @@ const formatTasting = tasting => {
 		olfactory_exam: tasting.olfactory_exams ? formatOlfactoryExam(tasting.olfactory_exams) : {},
 		taste_olfactory_exam: tasting.taste_olfactory_exams || {},
 		final_considerations: tasting.final_considerations || {},
-		scoring_evaluation: tasting.scoring_evaluation
-			? formatScoringEvaluation(tasting.scoring_evaluation)
-			: {},
+		scoring_evaluation: formatScoringEvaluation(tasting.scoring_evaluation) ?? {},
 	};
 	return tastingFormatted;
 };

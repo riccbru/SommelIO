@@ -7,15 +7,17 @@ import FinalDetails from "@/src/components/tastings/FinalDetails";
 import TasteDetails from "@/src/components/tastings/TasteDetails";
 import VisualDetails from "@/src/components/tastings/VisualDetails";
 import TastingDetails from "@/src/components/tastings/TastingDetails";
+import ScoringDetails from "@/src/components/tastings/ScoringDetails";
+import FinalUpdate from "@/src/components/tastings/update/FinalUpdate";
+import TasteUpdate from "@/src/components/tastings/update/TasteUpdate";
+import VisualUpdate from "@/src/components/tastings/update/VisualUpdate";
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import OlfactoryDetails from "@/src/components/tastings/OlfactoryDetails";
-import { Text, Card, useTheme, ActivityIndicator } from "react-native-paper";
-import { View, ScrollView, StyleSheet, TouchableOpacity, RefreshControl } from "react-native";
+import ScoringUpdate from "@/src/components/tastings/update/ScoringUpdate";
 import TastingUpdate from "@/src/components/tastings/update/TastingUpdate";
-import VisualUpdate from "@/src/components/tastings/update/VisualUpdate";
+import { Text, Card, useTheme, ActivityIndicator } from "react-native-paper";
 import OlfactoryUpdate from "@/src/components/tastings/update/OlfactoryUpdate";
-import TasteUpdate from "@/src/components/tastings/update/TasteUpdate";
-import FinalUpdate from "@/src/components/tastings/update/FinalUpdate";
+import { View, ScrollView, StyleSheet, TouchableOpacity, RefreshControl } from "react-native";
 
 type EditModeShape = {
 	tasting: boolean;
@@ -23,6 +25,7 @@ type EditModeShape = {
 	olfactory: boolean;
 	taste: boolean;
 	final: boolean;
+	scoring: boolean;
 };
 
 type Tasting = {
@@ -47,6 +50,7 @@ type Tasting = {
 	olfactory_exam: Record<string, any>;
 	taste_olfactory_exam: Record<string, any>;
 	final_considerations: Record<string, any>;
+	scoring_evaluation: Record<string, any>;
 };
 
 export default function TastingDetail() {
@@ -63,6 +67,7 @@ export default function TastingDetail() {
 		olfactory: false,
 		taste: false,
 		final: false,
+		scoring: false,
 	});
 
 	const styles = StyleSheet.create({
@@ -263,6 +268,23 @@ export default function TastingDetail() {
 						<FinalDetails exam={tasting.final_considerations} />
 					) : (
 						<FinalUpdate />
+					)}
+				</Card.Content>
+			</Card>
+
+			<Card style={styles.card}>
+				<Card.Content>
+					<TastingCard
+						name={"scoring"}
+						uuid={tasting.scoring_evaluation.sid}
+						editMode={editMode}
+						setEditMode={setEditMode}
+						subtitle='Scoring Evaluation'
+					/>
+					{!editMode["scoring"] ? (
+						<ScoringDetails scoring={tasting.scoring_evaluation} />
+					) : (
+						<ScoringUpdate />
 					)}
 				</Card.Content>
 			</Card>

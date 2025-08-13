@@ -1,5 +1,5 @@
 import { formatOption } from "@/src/utils/utils";
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 type TasteExam = {
 	sweetness: string;
@@ -25,57 +25,59 @@ export default function TasteDetails({ exam }: Props) {
 		return <Text>{}</Text>;
 	}
 
+	const styles = StyleSheet.create({
+		row: {
+			marginBottom: 5,
+			flexDirection: "row",
+			alignItems: "center",
+		},
+		label: {
+			flex: 1,
+			fontWeight: "bold",
+		},
+		value: {
+			flex: 1,
+			textAlign: "center",
+		},
+		notes: {
+			marginTop: 10,
+		},
+		notesRow: {
+			marginTop: 8,
+			paddingTop: 5,
+			borderTopWidth: 1,
+			borderTopColor: "#000000",
+		},
+	});
+
+	const tasteFields = [
+		{ label: "Sweetness", value: formatOption(exam.sweetness).toUpperCase() },
+		{ label: "Alcohols", value: formatOption(exam.alcohols).toUpperCase() },
+		{ label: "Softness", value: formatOption(exam.softness).toUpperCase() },
+		{ label: "Acidity", value: formatOption(exam.acidity).toUpperCase() },
+		{ label: "Tannicity", value: formatOption(exam.tannicity).toUpperCase() },
+		{ label: "Saltiness", value: formatOption(exam.saltiness).toUpperCase() },
+		{ label: "Intensity", value: formatOption(exam.intensity).toUpperCase() },
+		{ label: "Persistence", value: formatOption(exam.persistence).toUpperCase() },
+		{ label: "Quality", value: formatOption(exam.quality).toUpperCase() },
+		{ label: "Structure", value: formatOption(exam.structure).toUpperCase() },
+		{ label: "Balance", value: formatOption(exam.balance).toUpperCase() },
+	];
+
 	return (
 		<View>
-			<Text style={{ marginBottom: 5 }}>
-				<Text style={{ fontWeight: "bold" }}>Sweetness: </Text>
-				{formatOption(exam.sweetness).toUpperCase()}
-			</Text>
-			<Text style={{ marginBottom: 5 }}>
-				<Text style={{ fontWeight: "bold" }}>Alcohols: </Text>
-				{formatOption(exam.alcohols).toUpperCase()}
-			</Text>
-			<Text style={{ marginBottom: 5 }}>
-				<Text style={{ fontWeight: "bold" }}>Softness: </Text>
-				{formatOption(exam.softness).toUpperCase()}
-			</Text>
-			<Text style={{ marginBottom: 5 }}>
-				<Text style={{ fontWeight: "bold" }}>Acidity: </Text>
-				{formatOption(exam.acidity).toUpperCase()}
-			</Text>
-			<Text style={{ marginBottom: 5 }}>
-				<Text style={{ fontWeight: "bold" }}>Tannicity: </Text>
-				{formatOption(exam.tannicity).toUpperCase()}
-			</Text>
-			<Text style={{ marginBottom: 5 }}>
-				<Text style={{ fontWeight: "bold" }}>Saltiness: </Text>
-				{formatOption(exam.saltiness).toUpperCase()}
-			</Text>
-			<Text style={{ marginBottom: 5 }}>
-				<Text style={{ fontWeight: "bold" }}>Intensity: </Text>
-				{formatOption(exam.intensity).toUpperCase()}
-			</Text>
-			<Text style={{ marginBottom: 5 }}>
-				<Text style={{ fontWeight: "bold" }}>Persistence: </Text>
-				{formatOption(exam.persistence).toUpperCase()}
-			</Text>
-			<Text style={{ marginBottom: 5 }}>
-				<Text style={{ fontWeight: "bold" }}>Quality: </Text>
-				{formatOption(exam.quality).toUpperCase()}
-			</Text>
-			<Text style={{ marginBottom: 5 }}>
-				<Text style={{ fontWeight: "bold" }}>Structure: </Text>
-				{formatOption(exam.structure).toUpperCase()}
-			</Text>
-			<Text style={{ marginBottom: 5 }}>
-				<Text style={{ fontWeight: "bold" }}>Balance: </Text>
-				{formatOption(exam.balance).toUpperCase()}
-			</Text>
+			{tasteFields.map(({ label, value }) => (
+				<View key={label} style={styles.row}>
+					<Text style={styles.label}>{label}</Text>
+					<Text style={styles.value}>{value}</Text>
+				</View>
+			))}
+
 			{exam.notes && (
-				<Text style={{ marginBottom: 5 }}>
-					<Text style={{ fontWeight: "bold" }}>Notes: </Text>
-					{exam.notes}
-				</Text>
+				<View style={styles.notesRow}>
+					<Text style={{ fontWeight: "bold", marginBottom: 4 }}>Notes</Text>
+					<Text style={{ lineHeight: 20 }}>{exam.notes}</Text>
+				</View>
 			)}
 		</View>
 	);

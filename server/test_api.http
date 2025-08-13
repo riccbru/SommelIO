@@ -1,7 +1,7 @@
 @PORT = 3001
 @HOSTNAME = localhost
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI5YmRhMDRlNS1hZmZlLTQyZWMtYWQxNy1kMWIwMjY3ODhkNTciLCJhZG1pbiI6ZmFsc2UsInVzZXJuYW1lIjoicmljY2JydSIsImZ1bGxfbmFtZSI6IlJpY2NhcmRvIEJydW5vIiwiZW1haWwiOiJyaWNjYnJ1QHNvbW1lbC5pbyIsImlhdCI6MTc1NTA5MjE3MCwiZXhwIjoxNzU1MDkzMDcwfQ.4t5JyOwNqUwgLfTL-jD7nqEnH86v9L2Gw6YMHetT1c8
-@tid = e499c106-9b88-4a77-8ff2-eac0ac8b737e
+@token = 
+@tid = 
 
 ### LOGIN + TOKEN
 

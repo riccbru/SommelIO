@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 type Tasting = {
 	wine_denomination: string;
@@ -20,40 +20,42 @@ type Props = {
 };
 
 export default function TastingDetails({ tasting }: Props) {
+	const styles = StyleSheet.create({
+		row: {
+			marginBottom: 5,
+			flexDirection: "row",
+			alignItems: "center",
+		},
+		label: {
+			flex: 1,
+			fontWeight: "bold",
+		},
+		value: {
+			flex: 1,
+			textAlign: "center",
+		},
+	});
+
+	const tastingFields = [
+		{ label: "Category", value: tasting.wine_category_name.toUpperCase() },
+		{ label: "Sample", value: tasting.sample_number ?? "-" },
+		{ label: "Alcohol", value: tasting.alcohol_content },
+		{ label: "Vintage", value: tasting.vintage },
+		{ label: "Wine Temperature", value: tasting.wine_temperature },
+		{ label: "Ambient Temperature", value: tasting.ambient_temperature },
+		{ label: "Date", value: tasting.tasting_date },
+		{ label: "Time", value: tasting.tasting_time },
+		{ label: "Location", value: tasting.tasting_location.toUpperCase() },
+	];
+
 	return (
 		<View>
-			<Text style={{ marginBottom: 5 }}>
-				<Text style={{ fontWeight: "bold" }}>Category: </Text>
-				{tasting.wine_category_name.toUpperCase()}
-			</Text>
-			<Text style={{ marginBottom: 5 }}>
-				<Text style={{ fontWeight: "bold" }}>Sample: </Text>
-				{tasting.sample_number ?? "-"}
-			</Text>
-			<Text style={{ marginBottom: 5 }}>
-				<Text style={{ fontWeight: "bold" }}>Alcohol: </Text>
-				{tasting.alcohol_content}
-			</Text>
-			<Text style={{ marginBottom: 5 }}>
-				<Text style={{ fontWeight: "bold" }}>Vintage: </Text>
-				{tasting.vintage}
-			</Text>
-			<Text style={{ marginBottom: 5 }}>
-				<Text style={{ fontWeight: "bold" }}>Wine Temperature: </Text>
-				{tasting.wine_temperature}
-			</Text>
-			<Text style={{ marginBottom: 5 }}>
-				<Text style={{ fontWeight: "bold" }}>Ambient Temperature: </Text>
-				{tasting.ambient_temperature}
-			</Text>
-			<Text style={{ marginBottom: 5 }}>
-				<Text style={{ fontWeight: "bold" }}>Date & Time: </Text>
-				{tasting.tasting_date}, {tasting.tasting_time}
-			</Text>
-			<Text style={{ marginBottom: 5 }}>
-				<Text style={{ fontWeight: "bold" }}>Location: </Text>
-				{tasting.tasting_location.toUpperCase()}
-			</Text>
+			{tastingFields.map(({ label, value }) => (
+				<View key={label} style={styles.row}>
+					<Text style={styles.label}>{label}</Text>
+					<Text style={styles.value}>{value}</Text>
+				</View>
+			))}
 		</View>
 	);
 }

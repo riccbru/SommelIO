@@ -1,6 +1,6 @@
 import { useTheme } from "react-native-paper";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { CheckCircleIcon, NotePencilIcon, XCircleIcon } from "phosphor-react-native";
+import { NotePencilIcon, XCircleIcon } from "phosphor-react-native";
 
 type EditModeShape = {
 	tasting: boolean;
@@ -21,7 +21,7 @@ type Props = {
 export default function TastingCard({ uuid, name, subtitle, editMode, setEditMode }: Props) {
 	const theme = useTheme();
 
-	const Icon = editMode[name] ? CheckCircleIcon : NotePencilIcon;
+	const Icon = editMode[name] ? XCircleIcon : NotePencilIcon;
 
 	const styles = StyleSheet.create({
 		subtitleRow: {
@@ -56,16 +56,11 @@ export default function TastingCard({ uuid, name, subtitle, editMode, setEditMod
 		<View style={styles.subtitleRow}>
 			<Text style={styles.subtitle}>{subtitle}</Text>
 			<View style={styles.subtitleRow}>
-				{editMode[name] && (
-					<TouchableOpacity style={styles.leftIcon} onPress={handlePress}>
-						<XCircleIcon size={32} weight={"regular"} color={theme.colors.red} />
-					</TouchableOpacity>
-				)}
 				<TouchableOpacity onPress={handlePress}>
 					<Icon
 						size={32}
 						weight={"regular"}
-						color={!editMode[name] ? "#000000" : theme.colors.green}
+						color={!editMode[name] ? "#000000" : theme.colors.red}
 					/>
 				</TouchableOpacity>
 			</View>
