@@ -9,6 +9,7 @@ import examsRoutes from "./src/routes/exams.js";
 import usersRoutes from "./src/routes/users.js";
 import welcomeRoute from "./src/routes/welcome.js";
 import { isAuthZ } from "./src/middlewares/auth.js";
+import scoringRoutes from "./src/routes/scorings.js";
 import tastingsRoutes from "./src/routes/tastings.js";
 
 const app = express();
@@ -33,3 +34,4 @@ app.use("/api/v1/users", isAuthZ, usersRoutes);
 app.use("/api/v1/welcome", isAuthZ, welcomeRoute);
 app.use("/api/v1/tastings", isAuthZ, tastingsRoutes);
 app.use("/api/v1/exams", isAuthZ, examsRoutes);
+app.use("/api/v1/scoring", isAuthZ, scoringRoutes);

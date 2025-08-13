@@ -1,6 +1,6 @@
 # SommelIO - Server
 
-## `LOGIN & JWT`
+## LOGIN & JWT
 
 Endpoint: `POST /api/v1/auth/login`.
 
@@ -61,7 +61,7 @@ Endpoint: `POST /api/v1/auth/login`.
       }
       ```
 
-## `SIGNUP`
+## SIGNUP
 
 Endpoint: `POST /api/v1/auth/signup`.
 
@@ -122,7 +122,7 @@ Endpoint: `POST /api/v1/auth/signup`.
       }
       ```
 
-## `REFRESH`
+## REFRESH
 
 Endpoint: `POST /api/v1/auth/refresh`.
 
@@ -157,7 +157,7 @@ Endpoint: `POST /api/v1/auth/refresh`.
       }
       ```
 
-## `LOGOUT`
+## LOGOUT
 
 Endpoint: `POST /api/v1/auth/logout`.
 
@@ -186,7 +186,7 @@ JWT Authorization is stateful, and it is meaningless to logout, unless the secre
       {}
       ```
 
-## `GET USER`
+## GET USER
 
 Endpoint: `GET /api/v1/users/me`.
 
@@ -218,7 +218,7 @@ Endpoint: `GET /api/v1/users/me`.
       }
       ```
 
-## `GET TASTING BY UUID`
+## GET TASTING BY UUID
 
 Endpoint: `GET /api/v1/tastings/:tasting_uuid`.
 
@@ -270,7 +270,7 @@ If the URL parameter `tasting_uuid` is passed the route returns the single tasti
       }
       ```
 
-## `GET TASTINGS`
+## GET TASTINGS
 
 Endpoint: `GET /api/v1/tastings`.
 
@@ -305,7 +305,7 @@ Returns a list of all tastings made by the current user.
       }
       ```
 
-## `CREATE TASTING`
+## CREATE TASTING
 
 Endpoint: `POST /api/v1/tastings`.
 
@@ -380,7 +380,7 @@ Accepted values and formats:
       }
       ```
 
-## `UPDATE TASTING`
+## UPDATE TASTING
 
 Endpoint: `PUT /api/v1/tastings/:tasting_uuid`.
 
@@ -440,7 +440,7 @@ Endpoint: `PUT /api/v1/tastings/:tasting_uuid`.
       }
       ```
 
-## `UPDATE FAVORITE`
+## UPDATE FAVORITE
 
 Endpoint: `PATCH /api/v1/tastings/:tasting_uuid`.
 
@@ -488,7 +488,7 @@ Endpoint: `PATCH /api/v1/tastings/:tasting_uuid`.
       }
       ```
 
-## `DELETE TASTING`
+## DELETE TASTING
 
 Endpoint: `DELETE /api/v1/tastings/:tasting_uuid`.
 
@@ -517,7 +517,7 @@ Endpoint: `DELETE /api/v1/tastings/:tasting_uuid`.
       }
       ```
 
-## `GET ALL EXAMS`
+## GET ALL EXAMS
 
 Endpoint: `GET /api/v1/exams/:tasting_uuid`.
 
@@ -566,7 +566,7 @@ This route returns all the exams related to URL parameter `tasting_uuid`.
       }
       ```
 
-## `GET SINGLE EXAM`
+## GET SINGLE EXAM
 
 Endpoint: `GET /api/v1/exams/:tasting_uuid/:exam_type`.
 
@@ -603,7 +603,7 @@ The route returns dynamically a single exam associated to `tasting_uuid` using t
       }
       ```
 
-## `CREATE EXAMS`
+## CREATE EXAMS
 
 Endpoint: `POST /api/v1/exams/:tasting_uuid`.
 
@@ -793,7 +793,7 @@ All the possible values are described below:
       }
       ```
 
-## `CREATE SINGLE EXAM`
+## CREATE SINGLE EXAM
 
 Endpoint: `POST /api/v1/exams/:tasting_uuid/:exam_type`.
 
@@ -846,7 +846,7 @@ The URL parameter `exam_type` can assume the following values:
       }
       ```
 
-## `UPDATE SINGLE EXAM`
+## UPDATE SINGLE EXAM
 
 Endpoint: `PUT /api/v1/exams/:tasting_uuid/:exam_type`.
 
@@ -888,7 +888,203 @@ The URL parameter `exam_type` can assume the following values:
       }
       ```
 
-## ``
+## GET SCORING EVALUATION
+
+Endpoint: `GET /api/v1/scoring/:tasting_uuid`.
+
+### REQUEST
+
+- Header
+   -
+   -
+- Body
+   -
+   ```json
+   {}
+   ```
+
+### RESPONSE
+
+- `200 OK`
+   - Header
+      -
+      -
+   - Body
+      -
+      ```json
+      {
+         "sid": <UUID-32>,
+         "visual_appearance": <INT-[1,5]>,
+         "visual_color": <INT-[1,5]>,
+         "olfactory_intensity": <INT-[1,5]>,
+         "olfactory_complexity": <INT-[1,5]>,
+         "olfactory_quality": <INT-[1,5]>,
+         "taste_structure": <INT-[1,5]>,
+         "taste_balance": <INT-[1,5]>,
+         "taste_intensity": <INT-[1,5]>,
+         "taste_persistence": <INT-[1,5]>,
+         "taste_quality": <INT-[1,5]>,
+         "harmony": <INT-[1,5]>,
+         "total_score": <INT-[20, 100]>,
+         "notes": <TEXT>
+      }
+      ```
+- `404 Not Found`
+   - Header
+      -
+      -
+   - Body
+      -
+      ```json
+      {
+      	"error": "Tasting <UUID-32> not found for user <UUID-32>"
+      }
+      ```
+
+## CREATE SCORING
+
+Endpoint: `POST /api/v1/:tasting_uuid`.
+
+### REQUEST
+
+- Header
+   -
+   -
+- Body
+   -
+   ```json
+   {
+         "visual_appearance": <INT-[1,5]>,
+         "visual_color": <INT-[1,5]>,
+         "olfactory_intensity": <INT-[1,5]>,
+         "olfactory_complexity": <INT-[1,5]>,
+         "olfactory_quality": <INT-[1,5]>,
+         "taste_structure": <INT-[1,5]>,
+         "taste_balance": <INT-[1,5]>,
+         "taste_intensity": <INT-[1,5]>,
+         "taste_persistence": <INT-[1,5]>,
+         "taste_quality": <INT-[1,5]>,
+         "harmony": <INT-[1,5]>,
+         "notes": <TEXT>
+      }
+   ```
+
+### RESPONSE
+
+- `201 Created`
+   - Header
+      -
+      -
+   - Body
+      -
+      ```json
+      {
+         "sid": <UUID-32>,
+         "visual_appearance": <INT-[1,5]>,
+         "visual_color": <INT-[1,5]>,
+         "olfactory_intensity": <INT-[1,5]>,
+         "olfactory_complexity": <INT-[1,5]>,
+         "olfactory_quality": <INT-[1,5]>,
+         "taste_structure": <INT-[1,5]>,
+         "taste_balance": <INT-[1,5]>,
+         "taste_intensity": <INT-[1,5]>,
+         "taste_persistence": <INT-[1,5]>,
+         "taste_quality": <INT-[1,5]>,
+         "harmony": <INT-[1,5]>,
+         "total_score": <INT-[20, 100]>,
+         "notes": <TEXT>
+      }
+      ```
+- `404 Not Found`
+   - Header
+      -
+      -
+   - Body
+      -
+      ```json
+      {
+      	"error": "Tasting <UUID-32> not found for user <UUID-32>"
+      }
+      ```
+- `409 Conflict`
+   - Header
+      -
+      -
+   - Body
+      -
+      ```json
+      {
+      	"error": "Tasting <UUID-32> already has a scoring evaluation"
+      }
+      ```
+
+## UPDATE SCORING
+
+Endpoint: `PUT /api/v1/scoring/:tasting_uuid`.
+
+### REQUEST
+
+- Header
+   -
+   -
+- Body
+   -
+   ```json
+   {
+         "visual_appearance": <INT-[1,5]>,
+         "visual_color": <INT-[1,5]>,
+         "olfactory_intensity": <INT-[1,5]>,
+         "olfactory_complexity": <INT-[1,5]>,
+         "olfactory_quality": <INT-[1,5]>,
+         "taste_structure": <INT-[1,5]>,
+         "taste_balance": <INT-[1,5]>,
+         "taste_intensity": <INT-[1,5]>,
+         "taste_persistence": <INT-[1,5]>,
+         "taste_quality": <INT-[1,5]>,
+         "harmony": <INT-[1,5]>,
+         "notes": <TEXT>
+      }
+   ```
+
+### RESPONSE
+
+- `200 OK`
+   - Header
+      -
+      -
+   - Body
+      -
+      ```json
+      {
+         "sid": <UUID-32>,
+         "visual_appearance": <INT-[1,5]>,
+         "visual_color": <INT-[1,5]>,
+         "olfactory_intensity": <INT-[1,5]>,
+         "olfactory_complexity": <INT-[1,5]>,
+         "olfactory_quality": <INT-[1,5]>,
+         "taste_structure": <INT-[1,5]>,
+         "taste_balance": <INT-[1,5]>,
+         "taste_intensity": <INT-[1,5]>,
+         "taste_persistence": <INT-[1,5]>,
+         "taste_quality": <INT-[1,5]>,
+         "harmony": <INT-[1,5]>,
+         "total_score": <INT-[20, 100]>,
+         "notes": <TEXT>
+      }
+      ```
+- `404 Not Found`
+   - Header
+      -
+      -
+   - Body
+      -
+      ```json
+      {
+      	"error": "Tasting <UUID-32> not found for user <UUID-32>"
+      }
+      ```
+
+##
 
 Endpoint: ``.
 

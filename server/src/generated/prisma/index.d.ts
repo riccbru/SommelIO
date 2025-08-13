@@ -46,6 +46,17 @@ export type visual_exams = $Result.DefaultSelection<Prisma.$visual_examsPayload>
  * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
  */
 export type final_considerations = $Result.DefaultSelection<Prisma.$final_considerationsPayload>;
+/**
+ * Model corrective_coefficients
+ * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+ */
+export type corrective_coefficients =
+	$Result.DefaultSelection<Prisma.$corrective_coefficientsPayload>;
+/**
+ * Model scoring_evaluation
+ * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+ */
+export type scoring_evaluation = $Result.DefaultSelection<Prisma.$scoring_evaluationPayload>;
 
 /**
  * ##  Prisma Client ʲˢ
@@ -102,13 +113,6 @@ export class PrismaClient<
 	 * Disconnect from the database
 	 */
 	$disconnect(): $Utils.JsPromise<void>;
-
-	/**
-	 * Add a middleware
-	 * @deprecated since 4.16.0. For new code, prefer client extensions instead.
-	 * @see https://pris.ly/d/extensions
-	 */
-	$use(cb: Prisma.Middleware): void;
 
 	/**
 	 * Executes a prepared raw query and returns the number of affected rows.
@@ -270,6 +274,26 @@ export class PrismaClient<
 	 * ```
 	 */
 	get final_considerations(): Prisma.final_considerationsDelegate<ExtArgs, ClientOptions>;
+
+	/**
+	 * `prisma.corrective_coefficients`: Exposes CRUD operations for the **corrective_coefficients** model.
+	 * Example usage:
+	 * ```ts
+	 * // Fetch zero or more Corrective_coefficients
+	 * const corrective_coefficients = await prisma.corrective_coefficients.findMany()
+	 * ```
+	 */
+	get corrective_coefficients(): Prisma.corrective_coefficientsDelegate<ExtArgs, ClientOptions>;
+
+	/**
+	 * `prisma.scoring_evaluation`: Exposes CRUD operations for the **scoring_evaluation** model.
+	 * Example usage:
+	 * ```ts
+	 * // Fetch zero or more Scoring_evaluations
+	 * const scoring_evaluations = await prisma.scoring_evaluation.findMany()
+	 * ```
+	 */
+	get scoring_evaluation(): Prisma.scoring_evaluationDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -326,8 +350,8 @@ export namespace Prisma {
 	export import Exact = $Public.Exact;
 
 	/**
-	 * Prisma Client JS version: 6.13.0
-	 * Query Engine version: 361e86d0ea4987e9f53a565309b3eed797a6bcbd
+	 * Prisma Client JS version: 6.14.0
+	 * Query Engine version: 717184b7b35ea05dfa71a3236b7af656013e1e49
 	 */
 	export type PrismaVersion = {
 		client: string;
@@ -711,6 +735,8 @@ export namespace Prisma {
 		taste_olfactory_exams: "taste_olfactory_exams";
 		visual_exams: "visual_exams";
 		final_considerations: "final_considerations";
+		corrective_coefficients: "corrective_coefficients";
+		scoring_evaluation: "scoring_evaluation";
 	};
 
 	export type ModelName = (typeof ModelName)[keyof typeof ModelName];
@@ -742,7 +768,9 @@ export namespace Prisma {
 				| "olfactory_exams"
 				| "taste_olfactory_exams"
 				| "visual_exams"
-				| "final_considerations";
+				| "final_considerations"
+				| "corrective_coefficients"
+				| "scoring_evaluation";
 			txIsolationLevel: Prisma.TransactionIsolationLevel;
 		};
 		model: {
@@ -1264,6 +1292,154 @@ export namespace Prisma {
 					};
 				};
 			};
+			corrective_coefficients: {
+				payload: Prisma.$corrective_coefficientsPayload<ExtArgs>;
+				fields: Prisma.corrective_coefficientsFieldRefs;
+				operations: {
+					findUnique: {
+						args: Prisma.corrective_coefficientsFindUniqueArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$corrective_coefficientsPayload> | null;
+					};
+					findUniqueOrThrow: {
+						args: Prisma.corrective_coefficientsFindUniqueOrThrowArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$corrective_coefficientsPayload>;
+					};
+					findFirst: {
+						args: Prisma.corrective_coefficientsFindFirstArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$corrective_coefficientsPayload> | null;
+					};
+					findFirstOrThrow: {
+						args: Prisma.corrective_coefficientsFindFirstOrThrowArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$corrective_coefficientsPayload>;
+					};
+					findMany: {
+						args: Prisma.corrective_coefficientsFindManyArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$corrective_coefficientsPayload>[];
+					};
+					create: {
+						args: Prisma.corrective_coefficientsCreateArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$corrective_coefficientsPayload>;
+					};
+					createMany: {
+						args: Prisma.corrective_coefficientsCreateManyArgs<ExtArgs>;
+						result: BatchPayload;
+					};
+					createManyAndReturn: {
+						args: Prisma.corrective_coefficientsCreateManyAndReturnArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$corrective_coefficientsPayload>[];
+					};
+					delete: {
+						args: Prisma.corrective_coefficientsDeleteArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$corrective_coefficientsPayload>;
+					};
+					update: {
+						args: Prisma.corrective_coefficientsUpdateArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$corrective_coefficientsPayload>;
+					};
+					deleteMany: {
+						args: Prisma.corrective_coefficientsDeleteManyArgs<ExtArgs>;
+						result: BatchPayload;
+					};
+					updateMany: {
+						args: Prisma.corrective_coefficientsUpdateManyArgs<ExtArgs>;
+						result: BatchPayload;
+					};
+					updateManyAndReturn: {
+						args: Prisma.corrective_coefficientsUpdateManyAndReturnArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$corrective_coefficientsPayload>[];
+					};
+					upsert: {
+						args: Prisma.corrective_coefficientsUpsertArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$corrective_coefficientsPayload>;
+					};
+					aggregate: {
+						args: Prisma.Corrective_coefficientsAggregateArgs<ExtArgs>;
+						result: $Utils.Optional<AggregateCorrective_coefficients>;
+					};
+					groupBy: {
+						args: Prisma.corrective_coefficientsGroupByArgs<ExtArgs>;
+						result: $Utils.Optional<Corrective_coefficientsGroupByOutputType>[];
+					};
+					count: {
+						args: Prisma.corrective_coefficientsCountArgs<ExtArgs>;
+						result: $Utils.Optional<Corrective_coefficientsCountAggregateOutputType> | number;
+					};
+				};
+			};
+			scoring_evaluation: {
+				payload: Prisma.$scoring_evaluationPayload<ExtArgs>;
+				fields: Prisma.scoring_evaluationFieldRefs;
+				operations: {
+					findUnique: {
+						args: Prisma.scoring_evaluationFindUniqueArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$scoring_evaluationPayload> | null;
+					};
+					findUniqueOrThrow: {
+						args: Prisma.scoring_evaluationFindUniqueOrThrowArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$scoring_evaluationPayload>;
+					};
+					findFirst: {
+						args: Prisma.scoring_evaluationFindFirstArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$scoring_evaluationPayload> | null;
+					};
+					findFirstOrThrow: {
+						args: Prisma.scoring_evaluationFindFirstOrThrowArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$scoring_evaluationPayload>;
+					};
+					findMany: {
+						args: Prisma.scoring_evaluationFindManyArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$scoring_evaluationPayload>[];
+					};
+					create: {
+						args: Prisma.scoring_evaluationCreateArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$scoring_evaluationPayload>;
+					};
+					createMany: {
+						args: Prisma.scoring_evaluationCreateManyArgs<ExtArgs>;
+						result: BatchPayload;
+					};
+					createManyAndReturn: {
+						args: Prisma.scoring_evaluationCreateManyAndReturnArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$scoring_evaluationPayload>[];
+					};
+					delete: {
+						args: Prisma.scoring_evaluationDeleteArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$scoring_evaluationPayload>;
+					};
+					update: {
+						args: Prisma.scoring_evaluationUpdateArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$scoring_evaluationPayload>;
+					};
+					deleteMany: {
+						args: Prisma.scoring_evaluationDeleteManyArgs<ExtArgs>;
+						result: BatchPayload;
+					};
+					updateMany: {
+						args: Prisma.scoring_evaluationUpdateManyArgs<ExtArgs>;
+						result: BatchPayload;
+					};
+					updateManyAndReturn: {
+						args: Prisma.scoring_evaluationUpdateManyAndReturnArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$scoring_evaluationPayload>[];
+					};
+					upsert: {
+						args: Prisma.scoring_evaluationUpsertArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$scoring_evaluationPayload>;
+					};
+					aggregate: {
+						args: Prisma.Scoring_evaluationAggregateArgs<ExtArgs>;
+						result: $Utils.Optional<AggregateScoring_evaluation>;
+					};
+					groupBy: {
+						args: Prisma.scoring_evaluationGroupByArgs<ExtArgs>;
+						result: $Utils.Optional<Scoring_evaluationGroupByOutputType>[];
+					};
+					count: {
+						args: Prisma.scoring_evaluationCountArgs<ExtArgs>;
+						result: $Utils.Optional<Scoring_evaluationCountAggregateOutputType> | number;
+					};
+				};
+			};
 		};
 	} & {
 		other: {
@@ -1367,6 +1543,8 @@ export namespace Prisma {
 		taste_olfactory_exams?: taste_olfactory_examsOmit;
 		visual_exams?: visual_examsOmit;
 		final_considerations?: final_considerationsOmit;
+		corrective_coefficients?: corrective_coefficientsOmit;
+		scoring_evaluation?: scoring_evaluationOmit;
 	};
 
 	/* Types for Logging */
@@ -1420,25 +1598,6 @@ export namespace Prisma {
 		| "runCommandRaw"
 		| "findRaw"
 		| "groupBy";
-
-	/**
-	 * These options are being passed into the middleware as "params"
-	 */
-	export type MiddlewareParams = {
-		model?: ModelName;
-		action: PrismaAction;
-		args: any;
-		dataPath: string[];
-		runInTransaction: boolean;
-	};
-
-	/**
-	 * The `T` type makes sure, that the `return proceed` is not forgotten in the middleware implementation
-	 */
-	export type Middleware<T = any> = (
-		params: MiddlewareParams,
-		next: (params: MiddlewareParams) => $Utils.JsPromise<T>,
-	) => $Utils.JsPromise<T>;
 
 	// tested in getLogLevel.test.ts
 	export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
@@ -4489,6 +4648,7 @@ export namespace Prisma {
 				updated_at?: boolean;
 				final_considerations?: boolean | tastings$final_considerationsArgs<ExtArgs>;
 				olfactory_exams?: boolean | tastings$olfactory_examsArgs<ExtArgs>;
+				scoring_evaluation?: boolean | tastings$scoring_evaluationArgs<ExtArgs>;
 				taste_olfactory_exams?: boolean | tastings$taste_olfactory_examsArgs<ExtArgs>;
 				users?: boolean | usersDefaultArgs<ExtArgs>;
 				wine_categories?: boolean | wine_categoriesDefaultArgs<ExtArgs>;
@@ -4596,6 +4756,7 @@ export namespace Prisma {
 		{
 			final_considerations?: boolean | tastings$final_considerationsArgs<ExtArgs>;
 			olfactory_exams?: boolean | tastings$olfactory_examsArgs<ExtArgs>;
+			scoring_evaluation?: boolean | tastings$scoring_evaluationArgs<ExtArgs>;
 			taste_olfactory_exams?: boolean | tastings$taste_olfactory_examsArgs<ExtArgs>;
 			users?: boolean | usersDefaultArgs<ExtArgs>;
 			wine_categories?: boolean | wine_categoriesDefaultArgs<ExtArgs>;
@@ -4621,6 +4782,7 @@ export namespace Prisma {
 		objects: {
 			final_considerations: Prisma.$final_considerationsPayload<ExtArgs> | null;
 			olfactory_exams: Prisma.$olfactory_examsPayload<ExtArgs> | null;
+			scoring_evaluation: Prisma.$scoring_evaluationPayload<ExtArgs> | null;
 			taste_olfactory_exams: Prisma.$taste_olfactory_examsPayload<ExtArgs> | null;
 			users: Prisma.$usersPayload<ExtArgs>;
 			wine_categories: Prisma.$wine_categoriesPayload<ExtArgs>;
@@ -5170,6 +5332,19 @@ export namespace Prisma {
 		): Prisma__olfactory_examsClient<
 			$Result.GetResult<
 				Prisma.$olfactory_examsPayload<ExtArgs>,
+				T,
+				"findUniqueOrThrow",
+				GlobalOmitOptions
+			> | null,
+			null,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+		scoring_evaluation<T extends tastings$scoring_evaluationArgs<ExtArgs> = {}>(
+			args?: Subset<T, tastings$scoring_evaluationArgs<ExtArgs>>,
+		): Prisma__scoring_evaluationClient<
+			$Result.GetResult<
+				Prisma.$scoring_evaluationPayload<ExtArgs>,
 				T,
 				"findUniqueOrThrow",
 				GlobalOmitOptions
@@ -5742,6 +5917,27 @@ export namespace Prisma {
 		 */
 		include?: olfactory_examsInclude<ExtArgs> | null;
 		where?: olfactory_examsWhereInput;
+	};
+
+	/**
+	 * tastings.scoring_evaluation
+	 */
+	export type tastings$scoring_evaluationArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the scoring_evaluation
+		 */
+		select?: scoring_evaluationSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the scoring_evaluation
+		 */
+		omit?: scoring_evaluationOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: scoring_evaluationInclude<ExtArgs> | null;
+		where?: scoring_evaluationWhereInput;
 	};
 
 	/**
@@ -11444,6 +11640,2752 @@ export namespace Prisma {
 	};
 
 	/**
+	 * Model corrective_coefficients
+	 */
+
+	export type AggregateCorrective_coefficients = {
+		_count: Corrective_coefficientsCountAggregateOutputType | null;
+		_avg: Corrective_coefficientsAvgAggregateOutputType | null;
+		_sum: Corrective_coefficientsSumAggregateOutputType | null;
+		_min: Corrective_coefficientsMinAggregateOutputType | null;
+		_max: Corrective_coefficientsMaxAggregateOutputType | null;
+	};
+
+	export type Corrective_coefficientsAvgAggregateOutputType = {
+		id: number | null;
+		coefficient: number | null;
+	};
+
+	export type Corrective_coefficientsSumAggregateOutputType = {
+		id: number | null;
+		coefficient: number | null;
+	};
+
+	export type Corrective_coefficientsMinAggregateOutputType = {
+		id: number | null;
+		attribute: string | null;
+		coefficient: number | null;
+	};
+
+	export type Corrective_coefficientsMaxAggregateOutputType = {
+		id: number | null;
+		attribute: string | null;
+		coefficient: number | null;
+	};
+
+	export type Corrective_coefficientsCountAggregateOutputType = {
+		id: number;
+		attribute: number;
+		coefficient: number;
+		_all: number;
+	};
+
+	export type Corrective_coefficientsAvgAggregateInputType = {
+		id?: true;
+		coefficient?: true;
+	};
+
+	export type Corrective_coefficientsSumAggregateInputType = {
+		id?: true;
+		coefficient?: true;
+	};
+
+	export type Corrective_coefficientsMinAggregateInputType = {
+		id?: true;
+		attribute?: true;
+		coefficient?: true;
+	};
+
+	export type Corrective_coefficientsMaxAggregateInputType = {
+		id?: true;
+		attribute?: true;
+		coefficient?: true;
+	};
+
+	export type Corrective_coefficientsCountAggregateInputType = {
+		id?: true;
+		attribute?: true;
+		coefficient?: true;
+		_all?: true;
+	};
+
+	export type Corrective_coefficientsAggregateArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Filter which corrective_coefficients to aggregate.
+		 */
+		where?: corrective_coefficientsWhereInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+		 *
+		 * Determine the order of corrective_coefficients to fetch.
+		 */
+		orderBy?:
+			| corrective_coefficientsOrderByWithRelationInput
+			| corrective_coefficientsOrderByWithRelationInput[];
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+		 *
+		 * Sets the start position
+		 */
+		cursor?: corrective_coefficientsWhereUniqueInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Take `±n` corrective_coefficients from the position of the cursor.
+		 */
+		take?: number;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Skip the first `n` corrective_coefficients.
+		 */
+		skip?: number;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+		 *
+		 * Count returned corrective_coefficients
+		 **/
+		_count?: true | Corrective_coefficientsCountAggregateInputType;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+		 *
+		 * Select which fields to average
+		 **/
+		_avg?: Corrective_coefficientsAvgAggregateInputType;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+		 *
+		 * Select which fields to sum
+		 **/
+		_sum?: Corrective_coefficientsSumAggregateInputType;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+		 *
+		 * Select which fields to find the minimum value
+		 **/
+		_min?: Corrective_coefficientsMinAggregateInputType;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+		 *
+		 * Select which fields to find the maximum value
+		 **/
+		_max?: Corrective_coefficientsMaxAggregateInputType;
+	};
+
+	export type GetCorrective_coefficientsAggregateType<
+		T extends Corrective_coefficientsAggregateArgs,
+	> = {
+		[P in keyof T & keyof AggregateCorrective_coefficients]: P extends "_count" | "count"
+			? T[P] extends true
+				? number
+				: GetScalarType<T[P], AggregateCorrective_coefficients[P]>
+			: GetScalarType<T[P], AggregateCorrective_coefficients[P]>;
+	};
+
+	export type corrective_coefficientsGroupByArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		where?: corrective_coefficientsWhereInput;
+		orderBy?:
+			| corrective_coefficientsOrderByWithAggregationInput
+			| corrective_coefficientsOrderByWithAggregationInput[];
+		by: Corrective_coefficientsScalarFieldEnum[] | Corrective_coefficientsScalarFieldEnum;
+		having?: corrective_coefficientsScalarWhereWithAggregatesInput;
+		take?: number;
+		skip?: number;
+		_count?: Corrective_coefficientsCountAggregateInputType | true;
+		_avg?: Corrective_coefficientsAvgAggregateInputType;
+		_sum?: Corrective_coefficientsSumAggregateInputType;
+		_min?: Corrective_coefficientsMinAggregateInputType;
+		_max?: Corrective_coefficientsMaxAggregateInputType;
+	};
+
+	export type Corrective_coefficientsGroupByOutputType = {
+		id: number;
+		attribute: string;
+		coefficient: number;
+		_count: Corrective_coefficientsCountAggregateOutputType | null;
+		_avg: Corrective_coefficientsAvgAggregateOutputType | null;
+		_sum: Corrective_coefficientsSumAggregateOutputType | null;
+		_min: Corrective_coefficientsMinAggregateOutputType | null;
+		_max: Corrective_coefficientsMaxAggregateOutputType | null;
+	};
+
+	type GetCorrective_coefficientsGroupByPayload<T extends corrective_coefficientsGroupByArgs> =
+		Prisma.PrismaPromise<
+			Array<
+				PickEnumerable<Corrective_coefficientsGroupByOutputType, T["by"]> & {
+					[P in keyof T & keyof Corrective_coefficientsGroupByOutputType]: P extends "_count"
+						? T[P] extends boolean
+							? number
+							: GetScalarType<T[P], Corrective_coefficientsGroupByOutputType[P]>
+						: GetScalarType<T[P], Corrective_coefficientsGroupByOutputType[P]>;
+				}
+			>
+		>;
+
+	export type corrective_coefficientsSelect<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = $Extensions.GetSelect<
+		{
+			id?: boolean;
+			attribute?: boolean;
+			coefficient?: boolean;
+		},
+		ExtArgs["result"]["corrective_coefficients"]
+	>;
+
+	export type corrective_coefficientsSelectCreateManyAndReturn<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = $Extensions.GetSelect<
+		{
+			id?: boolean;
+			attribute?: boolean;
+			coefficient?: boolean;
+		},
+		ExtArgs["result"]["corrective_coefficients"]
+	>;
+
+	export type corrective_coefficientsSelectUpdateManyAndReturn<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = $Extensions.GetSelect<
+		{
+			id?: boolean;
+			attribute?: boolean;
+			coefficient?: boolean;
+		},
+		ExtArgs["result"]["corrective_coefficients"]
+	>;
+
+	export type corrective_coefficientsSelectScalar = {
+		id?: boolean;
+		attribute?: boolean;
+		coefficient?: boolean;
+	};
+
+	export type corrective_coefficientsOmit<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = $Extensions.GetOmit<
+		"id" | "attribute" | "coefficient",
+		ExtArgs["result"]["corrective_coefficients"]
+	>;
+
+	export type $corrective_coefficientsPayload<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		name: "corrective_coefficients";
+		objects: {};
+		scalars: $Extensions.GetPayloadResult<
+			{
+				id: number;
+				attribute: string;
+				coefficient: number;
+			},
+			ExtArgs["result"]["corrective_coefficients"]
+		>;
+		composites: {};
+	};
+
+	type corrective_coefficientsGetPayload<
+		S extends boolean | null | undefined | corrective_coefficientsDefaultArgs,
+	> = $Result.GetResult<Prisma.$corrective_coefficientsPayload, S>;
+
+	type corrective_coefficientsCountArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = Omit<corrective_coefficientsFindManyArgs, "select" | "include" | "distinct" | "omit"> & {
+		select?: Corrective_coefficientsCountAggregateInputType | true;
+	};
+
+	export interface corrective_coefficientsDelegate<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+		GlobalOmitOptions = {},
+	> {
+		[K: symbol]: {
+			types: Prisma.TypeMap<ExtArgs>["model"]["corrective_coefficients"];
+			meta: { name: "corrective_coefficients" };
+		};
+		/**
+		 * Find zero or one Corrective_coefficients that matches the filter.
+		 * @param {corrective_coefficientsFindUniqueArgs} args - Arguments to find a Corrective_coefficients
+		 * @example
+		 * // Get one Corrective_coefficients
+		 * const corrective_coefficients = await prisma.corrective_coefficients.findUnique({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   }
+		 * })
+		 */
+		findUnique<T extends corrective_coefficientsFindUniqueArgs>(
+			args: SelectSubset<T, corrective_coefficientsFindUniqueArgs<ExtArgs>>,
+		): Prisma__corrective_coefficientsClient<
+			$Result.GetResult<
+				Prisma.$corrective_coefficientsPayload<ExtArgs>,
+				T,
+				"findUnique",
+				GlobalOmitOptions
+			> | null,
+			null,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Find one Corrective_coefficients that matches the filter or throw an error with `error.code='P2025'`
+		 * if no matches were found.
+		 * @param {corrective_coefficientsFindUniqueOrThrowArgs} args - Arguments to find a Corrective_coefficients
+		 * @example
+		 * // Get one Corrective_coefficients
+		 * const corrective_coefficients = await prisma.corrective_coefficients.findUniqueOrThrow({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   }
+		 * })
+		 */
+		findUniqueOrThrow<T extends corrective_coefficientsFindUniqueOrThrowArgs>(
+			args: SelectSubset<T, corrective_coefficientsFindUniqueOrThrowArgs<ExtArgs>>,
+		): Prisma__corrective_coefficientsClient<
+			$Result.GetResult<
+				Prisma.$corrective_coefficientsPayload<ExtArgs>,
+				T,
+				"findUniqueOrThrow",
+				GlobalOmitOptions
+			>,
+			never,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Find the first Corrective_coefficients that matches the filter.
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 * @param {corrective_coefficientsFindFirstArgs} args - Arguments to find a Corrective_coefficients
+		 * @example
+		 * // Get one Corrective_coefficients
+		 * const corrective_coefficients = await prisma.corrective_coefficients.findFirst({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   }
+		 * })
+		 */
+		findFirst<T extends corrective_coefficientsFindFirstArgs>(
+			args?: SelectSubset<T, corrective_coefficientsFindFirstArgs<ExtArgs>>,
+		): Prisma__corrective_coefficientsClient<
+			$Result.GetResult<
+				Prisma.$corrective_coefficientsPayload<ExtArgs>,
+				T,
+				"findFirst",
+				GlobalOmitOptions
+			> | null,
+			null,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Find the first Corrective_coefficients that matches the filter or
+		 * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 * @param {corrective_coefficientsFindFirstOrThrowArgs} args - Arguments to find a Corrective_coefficients
+		 * @example
+		 * // Get one Corrective_coefficients
+		 * const corrective_coefficients = await prisma.corrective_coefficients.findFirstOrThrow({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   }
+		 * })
+		 */
+		findFirstOrThrow<T extends corrective_coefficientsFindFirstOrThrowArgs>(
+			args?: SelectSubset<T, corrective_coefficientsFindFirstOrThrowArgs<ExtArgs>>,
+		): Prisma__corrective_coefficientsClient<
+			$Result.GetResult<
+				Prisma.$corrective_coefficientsPayload<ExtArgs>,
+				T,
+				"findFirstOrThrow",
+				GlobalOmitOptions
+			>,
+			never,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Find zero or more Corrective_coefficients that matches the filter.
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 * @param {corrective_coefficientsFindManyArgs} args - Arguments to filter and select certain fields only.
+		 * @example
+		 * // Get all Corrective_coefficients
+		 * const corrective_coefficients = await prisma.corrective_coefficients.findMany()
+		 *
+		 * // Get first 10 Corrective_coefficients
+		 * const corrective_coefficients = await prisma.corrective_coefficients.findMany({ take: 10 })
+		 *
+		 * // Only select the `id`
+		 * const corrective_coefficientsWithIdOnly = await prisma.corrective_coefficients.findMany({ select: { id: true } })
+		 *
+		 */
+		findMany<T extends corrective_coefficientsFindManyArgs>(
+			args?: SelectSubset<T, corrective_coefficientsFindManyArgs<ExtArgs>>,
+		): Prisma.PrismaPromise<
+			$Result.GetResult<
+				Prisma.$corrective_coefficientsPayload<ExtArgs>,
+				T,
+				"findMany",
+				GlobalOmitOptions
+			>
+		>;
+
+		/**
+		 * Create a Corrective_coefficients.
+		 * @param {corrective_coefficientsCreateArgs} args - Arguments to create a Corrective_coefficients.
+		 * @example
+		 * // Create one Corrective_coefficients
+		 * const Corrective_coefficients = await prisma.corrective_coefficients.create({
+		 *   data: {
+		 *     // ... data to create a Corrective_coefficients
+		 *   }
+		 * })
+		 *
+		 */
+		create<T extends corrective_coefficientsCreateArgs>(
+			args: SelectSubset<T, corrective_coefficientsCreateArgs<ExtArgs>>,
+		): Prisma__corrective_coefficientsClient<
+			$Result.GetResult<
+				Prisma.$corrective_coefficientsPayload<ExtArgs>,
+				T,
+				"create",
+				GlobalOmitOptions
+			>,
+			never,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Create many Corrective_coefficients.
+		 * @param {corrective_coefficientsCreateManyArgs} args - Arguments to create many Corrective_coefficients.
+		 * @example
+		 * // Create many Corrective_coefficients
+		 * const corrective_coefficients = await prisma.corrective_coefficients.createMany({
+		 *   data: [
+		 *     // ... provide data here
+		 *   ]
+		 * })
+		 *
+		 */
+		createMany<T extends corrective_coefficientsCreateManyArgs>(
+			args?: SelectSubset<T, corrective_coefficientsCreateManyArgs<ExtArgs>>,
+		): Prisma.PrismaPromise<BatchPayload>;
+
+		/**
+		 * Create many Corrective_coefficients and returns the data saved in the database.
+		 * @param {corrective_coefficientsCreateManyAndReturnArgs} args - Arguments to create many Corrective_coefficients.
+		 * @example
+		 * // Create many Corrective_coefficients
+		 * const corrective_coefficients = await prisma.corrective_coefficients.createManyAndReturn({
+		 *   data: [
+		 *     // ... provide data here
+		 *   ]
+		 * })
+		 *
+		 * // Create many Corrective_coefficients and only return the `id`
+		 * const corrective_coefficientsWithIdOnly = await prisma.corrective_coefficients.createManyAndReturn({
+		 *   select: { id: true },
+		 *   data: [
+		 *     // ... provide data here
+		 *   ]
+		 * })
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 *
+		 */
+		createManyAndReturn<T extends corrective_coefficientsCreateManyAndReturnArgs>(
+			args?: SelectSubset<T, corrective_coefficientsCreateManyAndReturnArgs<ExtArgs>>,
+		): Prisma.PrismaPromise<
+			$Result.GetResult<
+				Prisma.$corrective_coefficientsPayload<ExtArgs>,
+				T,
+				"createManyAndReturn",
+				GlobalOmitOptions
+			>
+		>;
+
+		/**
+		 * Delete a Corrective_coefficients.
+		 * @param {corrective_coefficientsDeleteArgs} args - Arguments to delete one Corrective_coefficients.
+		 * @example
+		 * // Delete one Corrective_coefficients
+		 * const Corrective_coefficients = await prisma.corrective_coefficients.delete({
+		 *   where: {
+		 *     // ... filter to delete one Corrective_coefficients
+		 *   }
+		 * })
+		 *
+		 */
+		delete<T extends corrective_coefficientsDeleteArgs>(
+			args: SelectSubset<T, corrective_coefficientsDeleteArgs<ExtArgs>>,
+		): Prisma__corrective_coefficientsClient<
+			$Result.GetResult<
+				Prisma.$corrective_coefficientsPayload<ExtArgs>,
+				T,
+				"delete",
+				GlobalOmitOptions
+			>,
+			never,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Update one Corrective_coefficients.
+		 * @param {corrective_coefficientsUpdateArgs} args - Arguments to update one Corrective_coefficients.
+		 * @example
+		 * // Update one Corrective_coefficients
+		 * const corrective_coefficients = await prisma.corrective_coefficients.update({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   },
+		 *   data: {
+		 *     // ... provide data here
+		 *   }
+		 * })
+		 *
+		 */
+		update<T extends corrective_coefficientsUpdateArgs>(
+			args: SelectSubset<T, corrective_coefficientsUpdateArgs<ExtArgs>>,
+		): Prisma__corrective_coefficientsClient<
+			$Result.GetResult<
+				Prisma.$corrective_coefficientsPayload<ExtArgs>,
+				T,
+				"update",
+				GlobalOmitOptions
+			>,
+			never,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Delete zero or more Corrective_coefficients.
+		 * @param {corrective_coefficientsDeleteManyArgs} args - Arguments to filter Corrective_coefficients to delete.
+		 * @example
+		 * // Delete a few Corrective_coefficients
+		 * const { count } = await prisma.corrective_coefficients.deleteMany({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   }
+		 * })
+		 *
+		 */
+		deleteMany<T extends corrective_coefficientsDeleteManyArgs>(
+			args?: SelectSubset<T, corrective_coefficientsDeleteManyArgs<ExtArgs>>,
+		): Prisma.PrismaPromise<BatchPayload>;
+
+		/**
+		 * Update zero or more Corrective_coefficients.
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 * @param {corrective_coefficientsUpdateManyArgs} args - Arguments to update one or more rows.
+		 * @example
+		 * // Update many Corrective_coefficients
+		 * const corrective_coefficients = await prisma.corrective_coefficients.updateMany({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   },
+		 *   data: {
+		 *     // ... provide data here
+		 *   }
+		 * })
+		 *
+		 */
+		updateMany<T extends corrective_coefficientsUpdateManyArgs>(
+			args: SelectSubset<T, corrective_coefficientsUpdateManyArgs<ExtArgs>>,
+		): Prisma.PrismaPromise<BatchPayload>;
+
+		/**
+		 * Update zero or more Corrective_coefficients and returns the data updated in the database.
+		 * @param {corrective_coefficientsUpdateManyAndReturnArgs} args - Arguments to update many Corrective_coefficients.
+		 * @example
+		 * // Update many Corrective_coefficients
+		 * const corrective_coefficients = await prisma.corrective_coefficients.updateManyAndReturn({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   },
+		 *   data: [
+		 *     // ... provide data here
+		 *   ]
+		 * })
+		 *
+		 * // Update zero or more Corrective_coefficients and only return the `id`
+		 * const corrective_coefficientsWithIdOnly = await prisma.corrective_coefficients.updateManyAndReturn({
+		 *   select: { id: true },
+		 *   where: {
+		 *     // ... provide filter here
+		 *   },
+		 *   data: [
+		 *     // ... provide data here
+		 *   ]
+		 * })
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 *
+		 */
+		updateManyAndReturn<T extends corrective_coefficientsUpdateManyAndReturnArgs>(
+			args: SelectSubset<T, corrective_coefficientsUpdateManyAndReturnArgs<ExtArgs>>,
+		): Prisma.PrismaPromise<
+			$Result.GetResult<
+				Prisma.$corrective_coefficientsPayload<ExtArgs>,
+				T,
+				"updateManyAndReturn",
+				GlobalOmitOptions
+			>
+		>;
+
+		/**
+		 * Create or update one Corrective_coefficients.
+		 * @param {corrective_coefficientsUpsertArgs} args - Arguments to update or create a Corrective_coefficients.
+		 * @example
+		 * // Update or create a Corrective_coefficients
+		 * const corrective_coefficients = await prisma.corrective_coefficients.upsert({
+		 *   create: {
+		 *     // ... data to create a Corrective_coefficients
+		 *   },
+		 *   update: {
+		 *     // ... in case it already exists, update
+		 *   },
+		 *   where: {
+		 *     // ... the filter for the Corrective_coefficients we want to update
+		 *   }
+		 * })
+		 */
+		upsert<T extends corrective_coefficientsUpsertArgs>(
+			args: SelectSubset<T, corrective_coefficientsUpsertArgs<ExtArgs>>,
+		): Prisma__corrective_coefficientsClient<
+			$Result.GetResult<
+				Prisma.$corrective_coefficientsPayload<ExtArgs>,
+				T,
+				"upsert",
+				GlobalOmitOptions
+			>,
+			never,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Count the number of Corrective_coefficients.
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 * @param {corrective_coefficientsCountArgs} args - Arguments to filter Corrective_coefficients to count.
+		 * @example
+		 * // Count the number of Corrective_coefficients
+		 * const count = await prisma.corrective_coefficients.count({
+		 *   where: {
+		 *     // ... the filter for the Corrective_coefficients we want to count
+		 *   }
+		 * })
+		 **/
+		count<T extends corrective_coefficientsCountArgs>(
+			args?: Subset<T, corrective_coefficientsCountArgs>,
+		): Prisma.PrismaPromise<
+			T extends $Utils.Record<"select", any>
+				? T["select"] extends true
+					? number
+					: GetScalarType<T["select"], Corrective_coefficientsCountAggregateOutputType>
+				: number
+		>;
+
+		/**
+		 * Allows you to perform aggregations operations on a Corrective_coefficients.
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 * @param {Corrective_coefficientsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+		 * @example
+		 * // Ordered by age ascending
+		 * // Where email contains prisma.io
+		 * // Limited to the 10 users
+		 * const aggregations = await prisma.user.aggregate({
+		 *   _avg: {
+		 *     age: true,
+		 *   },
+		 *   where: {
+		 *     email: {
+		 *       contains: "prisma.io",
+		 *     },
+		 *   },
+		 *   orderBy: {
+		 *     age: "asc",
+		 *   },
+		 *   take: 10,
+		 * })
+		 **/
+		aggregate<T extends Corrective_coefficientsAggregateArgs>(
+			args: Subset<T, Corrective_coefficientsAggregateArgs>,
+		): Prisma.PrismaPromise<GetCorrective_coefficientsAggregateType<T>>;
+
+		/**
+		 * Group by Corrective_coefficients.
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 * @param {corrective_coefficientsGroupByArgs} args - Group by arguments.
+		 * @example
+		 * // Group by city, order by createdAt, get count
+		 * const result = await prisma.user.groupBy({
+		 *   by: ['city', 'createdAt'],
+		 *   orderBy: {
+		 *     createdAt: true
+		 *   },
+		 *   _count: {
+		 *     _all: true
+		 *   },
+		 * })
+		 *
+		 **/
+		groupBy<
+			T extends corrective_coefficientsGroupByArgs,
+			HasSelectOrTake extends Or<Extends<"skip", Keys<T>>, Extends<"take", Keys<T>>>,
+			OrderByArg extends True extends HasSelectOrTake
+				? { orderBy: corrective_coefficientsGroupByArgs["orderBy"] }
+				: { orderBy?: corrective_coefficientsGroupByArgs["orderBy"] },
+			OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T["orderBy"]>>>,
+			ByFields extends MaybeTupleToUnion<T["by"]>,
+			ByValid extends Has<ByFields, OrderFields>,
+			HavingFields extends GetHavingFields<T["having"]>,
+			HavingValid extends Has<ByFields, HavingFields>,
+			ByEmpty extends T["by"] extends never[] ? True : False,
+			InputErrors extends ByEmpty extends True
+				? `Error: "by" must not be empty.`
+				: HavingValid extends False
+					? {
+							[P in HavingFields]: P extends ByFields
+								? never
+								: P extends string
+									? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+									: [Error, "Field ", P, ` in "having" needs to be provided in "by"`];
+						}[HavingFields]
+					: "take" extends Keys<T>
+						? "orderBy" extends Keys<T>
+							? ByValid extends True
+								? {}
+								: {
+										[P in OrderFields]: P extends ByFields
+											? never
+											: `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+									}[OrderFields]
+							: 'Error: If you provide "take", you also need to provide "orderBy"'
+						: "skip" extends Keys<T>
+							? "orderBy" extends Keys<T>
+								? ByValid extends True
+									? {}
+									: {
+											[P in OrderFields]: P extends ByFields
+												? never
+												: `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+										}[OrderFields]
+								: 'Error: If you provide "skip", you also need to provide "orderBy"'
+							: ByValid extends True
+								? {}
+								: {
+										[P in OrderFields]: P extends ByFields
+											? never
+											: `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+									}[OrderFields],
+		>(
+			args: SubsetIntersection<T, corrective_coefficientsGroupByArgs, OrderByArg> & InputErrors,
+		): {} extends InputErrors
+			? GetCorrective_coefficientsGroupByPayload<T>
+			: Prisma.PrismaPromise<InputErrors>;
+		/**
+		 * Fields of the corrective_coefficients model
+		 */
+		readonly fields: corrective_coefficientsFieldRefs;
+	}
+
+	/**
+	 * The delegate class that acts as a "Promise-like" for corrective_coefficients.
+	 * Why is this prefixed with `Prisma__`?
+	 * Because we want to prevent naming conflicts as mentioned in
+	 * https://github.com/prisma/prisma-client-js/issues/707
+	 */
+	export interface Prisma__corrective_coefficientsClient<
+		T,
+		Null = never,
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+		GlobalOmitOptions = {},
+	> extends Prisma.PrismaPromise<T> {
+		readonly [Symbol.toStringTag]: "PrismaPromise";
+		/**
+		 * Attaches callbacks for the resolution and/or rejection of the Promise.
+		 * @param onfulfilled The callback to execute when the Promise is resolved.
+		 * @param onrejected The callback to execute when the Promise is rejected.
+		 * @returns A Promise for the completion of which ever callback is executed.
+		 */
+		then<TResult1 = T, TResult2 = never>(
+			onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
+			onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
+		): $Utils.JsPromise<TResult1 | TResult2>;
+		/**
+		 * Attaches a callback for only the rejection of the Promise.
+		 * @param onrejected The callback to execute when the Promise is rejected.
+		 * @returns A Promise for the completion of the callback.
+		 */
+		catch<TResult = never>(
+			onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
+		): $Utils.JsPromise<T | TResult>;
+		/**
+		 * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+		 * resolved value cannot be modified from the callback.
+		 * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+		 * @returns A Promise for the completion of the callback.
+		 */
+		finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+	}
+
+	/**
+	 * Fields of the corrective_coefficients model
+	 */
+	interface corrective_coefficientsFieldRefs {
+		readonly id: FieldRef<"corrective_coefficients", "Int">;
+		readonly attribute: FieldRef<"corrective_coefficients", "String">;
+		readonly coefficient: FieldRef<"corrective_coefficients", "Int">;
+	}
+
+	// Custom InputTypes
+	/**
+	 * corrective_coefficients findUnique
+	 */
+	export type corrective_coefficientsFindUniqueArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the corrective_coefficients
+		 */
+		select?: corrective_coefficientsSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the corrective_coefficients
+		 */
+		omit?: corrective_coefficientsOmit<ExtArgs> | null;
+		/**
+		 * Filter, which corrective_coefficients to fetch.
+		 */
+		where: corrective_coefficientsWhereUniqueInput;
+	};
+
+	/**
+	 * corrective_coefficients findUniqueOrThrow
+	 */
+	export type corrective_coefficientsFindUniqueOrThrowArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the corrective_coefficients
+		 */
+		select?: corrective_coefficientsSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the corrective_coefficients
+		 */
+		omit?: corrective_coefficientsOmit<ExtArgs> | null;
+		/**
+		 * Filter, which corrective_coefficients to fetch.
+		 */
+		where: corrective_coefficientsWhereUniqueInput;
+	};
+
+	/**
+	 * corrective_coefficients findFirst
+	 */
+	export type corrective_coefficientsFindFirstArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the corrective_coefficients
+		 */
+		select?: corrective_coefficientsSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the corrective_coefficients
+		 */
+		omit?: corrective_coefficientsOmit<ExtArgs> | null;
+		/**
+		 * Filter, which corrective_coefficients to fetch.
+		 */
+		where?: corrective_coefficientsWhereInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+		 *
+		 * Determine the order of corrective_coefficients to fetch.
+		 */
+		orderBy?:
+			| corrective_coefficientsOrderByWithRelationInput
+			| corrective_coefficientsOrderByWithRelationInput[];
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+		 *
+		 * Sets the position for searching for corrective_coefficients.
+		 */
+		cursor?: corrective_coefficientsWhereUniqueInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Take `±n` corrective_coefficients from the position of the cursor.
+		 */
+		take?: number;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Skip the first `n` corrective_coefficients.
+		 */
+		skip?: number;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+		 *
+		 * Filter by unique combinations of corrective_coefficients.
+		 */
+		distinct?: Corrective_coefficientsScalarFieldEnum | Corrective_coefficientsScalarFieldEnum[];
+	};
+
+	/**
+	 * corrective_coefficients findFirstOrThrow
+	 */
+	export type corrective_coefficientsFindFirstOrThrowArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the corrective_coefficients
+		 */
+		select?: corrective_coefficientsSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the corrective_coefficients
+		 */
+		omit?: corrective_coefficientsOmit<ExtArgs> | null;
+		/**
+		 * Filter, which corrective_coefficients to fetch.
+		 */
+		where?: corrective_coefficientsWhereInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+		 *
+		 * Determine the order of corrective_coefficients to fetch.
+		 */
+		orderBy?:
+			| corrective_coefficientsOrderByWithRelationInput
+			| corrective_coefficientsOrderByWithRelationInput[];
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+		 *
+		 * Sets the position for searching for corrective_coefficients.
+		 */
+		cursor?: corrective_coefficientsWhereUniqueInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Take `±n` corrective_coefficients from the position of the cursor.
+		 */
+		take?: number;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Skip the first `n` corrective_coefficients.
+		 */
+		skip?: number;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+		 *
+		 * Filter by unique combinations of corrective_coefficients.
+		 */
+		distinct?: Corrective_coefficientsScalarFieldEnum | Corrective_coefficientsScalarFieldEnum[];
+	};
+
+	/**
+	 * corrective_coefficients findMany
+	 */
+	export type corrective_coefficientsFindManyArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the corrective_coefficients
+		 */
+		select?: corrective_coefficientsSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the corrective_coefficients
+		 */
+		omit?: corrective_coefficientsOmit<ExtArgs> | null;
+		/**
+		 * Filter, which corrective_coefficients to fetch.
+		 */
+		where?: corrective_coefficientsWhereInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+		 *
+		 * Determine the order of corrective_coefficients to fetch.
+		 */
+		orderBy?:
+			| corrective_coefficientsOrderByWithRelationInput
+			| corrective_coefficientsOrderByWithRelationInput[];
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+		 *
+		 * Sets the position for listing corrective_coefficients.
+		 */
+		cursor?: corrective_coefficientsWhereUniqueInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Take `±n` corrective_coefficients from the position of the cursor.
+		 */
+		take?: number;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Skip the first `n` corrective_coefficients.
+		 */
+		skip?: number;
+		distinct?: Corrective_coefficientsScalarFieldEnum | Corrective_coefficientsScalarFieldEnum[];
+	};
+
+	/**
+	 * corrective_coefficients create
+	 */
+	export type corrective_coefficientsCreateArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the corrective_coefficients
+		 */
+		select?: corrective_coefficientsSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the corrective_coefficients
+		 */
+		omit?: corrective_coefficientsOmit<ExtArgs> | null;
+		/**
+		 * The data needed to create a corrective_coefficients.
+		 */
+		data: XOR<corrective_coefficientsCreateInput, corrective_coefficientsUncheckedCreateInput>;
+	};
+
+	/**
+	 * corrective_coefficients createMany
+	 */
+	export type corrective_coefficientsCreateManyArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * The data used to create many corrective_coefficients.
+		 */
+		data: corrective_coefficientsCreateManyInput | corrective_coefficientsCreateManyInput[];
+		skipDuplicates?: boolean;
+	};
+
+	/**
+	 * corrective_coefficients createManyAndReturn
+	 */
+	export type corrective_coefficientsCreateManyAndReturnArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the corrective_coefficients
+		 */
+		select?: corrective_coefficientsSelectCreateManyAndReturn<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the corrective_coefficients
+		 */
+		omit?: corrective_coefficientsOmit<ExtArgs> | null;
+		/**
+		 * The data used to create many corrective_coefficients.
+		 */
+		data: corrective_coefficientsCreateManyInput | corrective_coefficientsCreateManyInput[];
+		skipDuplicates?: boolean;
+	};
+
+	/**
+	 * corrective_coefficients update
+	 */
+	export type corrective_coefficientsUpdateArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the corrective_coefficients
+		 */
+		select?: corrective_coefficientsSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the corrective_coefficients
+		 */
+		omit?: corrective_coefficientsOmit<ExtArgs> | null;
+		/**
+		 * The data needed to update a corrective_coefficients.
+		 */
+		data: XOR<corrective_coefficientsUpdateInput, corrective_coefficientsUncheckedUpdateInput>;
+		/**
+		 * Choose, which corrective_coefficients to update.
+		 */
+		where: corrective_coefficientsWhereUniqueInput;
+	};
+
+	/**
+	 * corrective_coefficients updateMany
+	 */
+	export type corrective_coefficientsUpdateManyArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * The data used to update corrective_coefficients.
+		 */
+		data: XOR<
+			corrective_coefficientsUpdateManyMutationInput,
+			corrective_coefficientsUncheckedUpdateManyInput
+		>;
+		/**
+		 * Filter which corrective_coefficients to update
+		 */
+		where?: corrective_coefficientsWhereInput;
+		/**
+		 * Limit how many corrective_coefficients to update.
+		 */
+		limit?: number;
+	};
+
+	/**
+	 * corrective_coefficients updateManyAndReturn
+	 */
+	export type corrective_coefficientsUpdateManyAndReturnArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the corrective_coefficients
+		 */
+		select?: corrective_coefficientsSelectUpdateManyAndReturn<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the corrective_coefficients
+		 */
+		omit?: corrective_coefficientsOmit<ExtArgs> | null;
+		/**
+		 * The data used to update corrective_coefficients.
+		 */
+		data: XOR<
+			corrective_coefficientsUpdateManyMutationInput,
+			corrective_coefficientsUncheckedUpdateManyInput
+		>;
+		/**
+		 * Filter which corrective_coefficients to update
+		 */
+		where?: corrective_coefficientsWhereInput;
+		/**
+		 * Limit how many corrective_coefficients to update.
+		 */
+		limit?: number;
+	};
+
+	/**
+	 * corrective_coefficients upsert
+	 */
+	export type corrective_coefficientsUpsertArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the corrective_coefficients
+		 */
+		select?: corrective_coefficientsSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the corrective_coefficients
+		 */
+		omit?: corrective_coefficientsOmit<ExtArgs> | null;
+		/**
+		 * The filter to search for the corrective_coefficients to update in case it exists.
+		 */
+		where: corrective_coefficientsWhereUniqueInput;
+		/**
+		 * In case the corrective_coefficients found by the `where` argument doesn't exist, create a new corrective_coefficients with this data.
+		 */
+		create: XOR<corrective_coefficientsCreateInput, corrective_coefficientsUncheckedCreateInput>;
+		/**
+		 * In case the corrective_coefficients was found with the provided `where` argument, update it with this data.
+		 */
+		update: XOR<corrective_coefficientsUpdateInput, corrective_coefficientsUncheckedUpdateInput>;
+	};
+
+	/**
+	 * corrective_coefficients delete
+	 */
+	export type corrective_coefficientsDeleteArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the corrective_coefficients
+		 */
+		select?: corrective_coefficientsSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the corrective_coefficients
+		 */
+		omit?: corrective_coefficientsOmit<ExtArgs> | null;
+		/**
+		 * Filter which corrective_coefficients to delete.
+		 */
+		where: corrective_coefficientsWhereUniqueInput;
+	};
+
+	/**
+	 * corrective_coefficients deleteMany
+	 */
+	export type corrective_coefficientsDeleteManyArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Filter which corrective_coefficients to delete
+		 */
+		where?: corrective_coefficientsWhereInput;
+		/**
+		 * Limit how many corrective_coefficients to delete.
+		 */
+		limit?: number;
+	};
+
+	/**
+	 * corrective_coefficients without action
+	 */
+	export type corrective_coefficientsDefaultArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the corrective_coefficients
+		 */
+		select?: corrective_coefficientsSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the corrective_coefficients
+		 */
+		omit?: corrective_coefficientsOmit<ExtArgs> | null;
+	};
+
+	/**
+	 * Model scoring_evaluation
+	 */
+
+	export type AggregateScoring_evaluation = {
+		_count: Scoring_evaluationCountAggregateOutputType | null;
+		_avg: Scoring_evaluationAvgAggregateOutputType | null;
+		_sum: Scoring_evaluationSumAggregateOutputType | null;
+		_min: Scoring_evaluationMinAggregateOutputType | null;
+		_max: Scoring_evaluationMaxAggregateOutputType | null;
+	};
+
+	export type Scoring_evaluationAvgAggregateOutputType = {
+		id: number | null;
+		visual_appearance: number | null;
+		visual_color: number | null;
+		olfactory_intensity: number | null;
+		olfactory_complexity: number | null;
+		olfactory_quality: number | null;
+		taste_structure: number | null;
+		taste_balance: number | null;
+		taste_intensity: number | null;
+		taste_persistence: number | null;
+		taste_quality: number | null;
+		harmony: number | null;
+		total_score: number | null;
+	};
+
+	export type Scoring_evaluationSumAggregateOutputType = {
+		id: number | null;
+		visual_appearance: number | null;
+		visual_color: number | null;
+		olfactory_intensity: number | null;
+		olfactory_complexity: number | null;
+		olfactory_quality: number | null;
+		taste_structure: number | null;
+		taste_balance: number | null;
+		taste_intensity: number | null;
+		taste_persistence: number | null;
+		taste_quality: number | null;
+		harmony: number | null;
+		total_score: number | null;
+	};
+
+	export type Scoring_evaluationMinAggregateOutputType = {
+		id: number | null;
+		tid: string | null;
+		sid: string | null;
+		visual_appearance: number | null;
+		visual_color: number | null;
+		olfactory_intensity: number | null;
+		olfactory_complexity: number | null;
+		olfactory_quality: number | null;
+		taste_structure: number | null;
+		taste_balance: number | null;
+		taste_intensity: number | null;
+		taste_persistence: number | null;
+		taste_quality: number | null;
+		harmony: number | null;
+		total_score: number | null;
+		notes: string | null;
+	};
+
+	export type Scoring_evaluationMaxAggregateOutputType = {
+		id: number | null;
+		tid: string | null;
+		sid: string | null;
+		visual_appearance: number | null;
+		visual_color: number | null;
+		olfactory_intensity: number | null;
+		olfactory_complexity: number | null;
+		olfactory_quality: number | null;
+		taste_structure: number | null;
+		taste_balance: number | null;
+		taste_intensity: number | null;
+		taste_persistence: number | null;
+		taste_quality: number | null;
+		harmony: number | null;
+		total_score: number | null;
+		notes: string | null;
+	};
+
+	export type Scoring_evaluationCountAggregateOutputType = {
+		id: number;
+		tid: number;
+		sid: number;
+		visual_appearance: number;
+		visual_color: number;
+		olfactory_intensity: number;
+		olfactory_complexity: number;
+		olfactory_quality: number;
+		taste_structure: number;
+		taste_balance: number;
+		taste_intensity: number;
+		taste_persistence: number;
+		taste_quality: number;
+		harmony: number;
+		total_score: number;
+		notes: number;
+		_all: number;
+	};
+
+	export type Scoring_evaluationAvgAggregateInputType = {
+		id?: true;
+		visual_appearance?: true;
+		visual_color?: true;
+		olfactory_intensity?: true;
+		olfactory_complexity?: true;
+		olfactory_quality?: true;
+		taste_structure?: true;
+		taste_balance?: true;
+		taste_intensity?: true;
+		taste_persistence?: true;
+		taste_quality?: true;
+		harmony?: true;
+		total_score?: true;
+	};
+
+	export type Scoring_evaluationSumAggregateInputType = {
+		id?: true;
+		visual_appearance?: true;
+		visual_color?: true;
+		olfactory_intensity?: true;
+		olfactory_complexity?: true;
+		olfactory_quality?: true;
+		taste_structure?: true;
+		taste_balance?: true;
+		taste_intensity?: true;
+		taste_persistence?: true;
+		taste_quality?: true;
+		harmony?: true;
+		total_score?: true;
+	};
+
+	export type Scoring_evaluationMinAggregateInputType = {
+		id?: true;
+		tid?: true;
+		sid?: true;
+		visual_appearance?: true;
+		visual_color?: true;
+		olfactory_intensity?: true;
+		olfactory_complexity?: true;
+		olfactory_quality?: true;
+		taste_structure?: true;
+		taste_balance?: true;
+		taste_intensity?: true;
+		taste_persistence?: true;
+		taste_quality?: true;
+		harmony?: true;
+		total_score?: true;
+		notes?: true;
+	};
+
+	export type Scoring_evaluationMaxAggregateInputType = {
+		id?: true;
+		tid?: true;
+		sid?: true;
+		visual_appearance?: true;
+		visual_color?: true;
+		olfactory_intensity?: true;
+		olfactory_complexity?: true;
+		olfactory_quality?: true;
+		taste_structure?: true;
+		taste_balance?: true;
+		taste_intensity?: true;
+		taste_persistence?: true;
+		taste_quality?: true;
+		harmony?: true;
+		total_score?: true;
+		notes?: true;
+	};
+
+	export type Scoring_evaluationCountAggregateInputType = {
+		id?: true;
+		tid?: true;
+		sid?: true;
+		visual_appearance?: true;
+		visual_color?: true;
+		olfactory_intensity?: true;
+		olfactory_complexity?: true;
+		olfactory_quality?: true;
+		taste_structure?: true;
+		taste_balance?: true;
+		taste_intensity?: true;
+		taste_persistence?: true;
+		taste_quality?: true;
+		harmony?: true;
+		total_score?: true;
+		notes?: true;
+		_all?: true;
+	};
+
+	export type Scoring_evaluationAggregateArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Filter which scoring_evaluation to aggregate.
+		 */
+		where?: scoring_evaluationWhereInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+		 *
+		 * Determine the order of scoring_evaluations to fetch.
+		 */
+		orderBy?:
+			| scoring_evaluationOrderByWithRelationInput
+			| scoring_evaluationOrderByWithRelationInput[];
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+		 *
+		 * Sets the start position
+		 */
+		cursor?: scoring_evaluationWhereUniqueInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Take `±n` scoring_evaluations from the position of the cursor.
+		 */
+		take?: number;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Skip the first `n` scoring_evaluations.
+		 */
+		skip?: number;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+		 *
+		 * Count returned scoring_evaluations
+		 **/
+		_count?: true | Scoring_evaluationCountAggregateInputType;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+		 *
+		 * Select which fields to average
+		 **/
+		_avg?: Scoring_evaluationAvgAggregateInputType;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+		 *
+		 * Select which fields to sum
+		 **/
+		_sum?: Scoring_evaluationSumAggregateInputType;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+		 *
+		 * Select which fields to find the minimum value
+		 **/
+		_min?: Scoring_evaluationMinAggregateInputType;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+		 *
+		 * Select which fields to find the maximum value
+		 **/
+		_max?: Scoring_evaluationMaxAggregateInputType;
+	};
+
+	export type GetScoring_evaluationAggregateType<T extends Scoring_evaluationAggregateArgs> = {
+		[P in keyof T & keyof AggregateScoring_evaluation]: P extends "_count" | "count"
+			? T[P] extends true
+				? number
+				: GetScalarType<T[P], AggregateScoring_evaluation[P]>
+			: GetScalarType<T[P], AggregateScoring_evaluation[P]>;
+	};
+
+	export type scoring_evaluationGroupByArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		where?: scoring_evaluationWhereInput;
+		orderBy?:
+			| scoring_evaluationOrderByWithAggregationInput
+			| scoring_evaluationOrderByWithAggregationInput[];
+		by: Scoring_evaluationScalarFieldEnum[] | Scoring_evaluationScalarFieldEnum;
+		having?: scoring_evaluationScalarWhereWithAggregatesInput;
+		take?: number;
+		skip?: number;
+		_count?: Scoring_evaluationCountAggregateInputType | true;
+		_avg?: Scoring_evaluationAvgAggregateInputType;
+		_sum?: Scoring_evaluationSumAggregateInputType;
+		_min?: Scoring_evaluationMinAggregateInputType;
+		_max?: Scoring_evaluationMaxAggregateInputType;
+	};
+
+	export type Scoring_evaluationGroupByOutputType = {
+		id: number;
+		tid: string;
+		sid: string;
+		visual_appearance: number;
+		visual_color: number;
+		olfactory_intensity: number;
+		olfactory_complexity: number;
+		olfactory_quality: number;
+		taste_structure: number;
+		taste_balance: number;
+		taste_intensity: number;
+		taste_persistence: number;
+		taste_quality: number;
+		harmony: number;
+		total_score: number | null;
+		notes: string | null;
+		_count: Scoring_evaluationCountAggregateOutputType | null;
+		_avg: Scoring_evaluationAvgAggregateOutputType | null;
+		_sum: Scoring_evaluationSumAggregateOutputType | null;
+		_min: Scoring_evaluationMinAggregateOutputType | null;
+		_max: Scoring_evaluationMaxAggregateOutputType | null;
+	};
+
+	type GetScoring_evaluationGroupByPayload<T extends scoring_evaluationGroupByArgs> =
+		Prisma.PrismaPromise<
+			Array<
+				PickEnumerable<Scoring_evaluationGroupByOutputType, T["by"]> & {
+					[P in keyof T & keyof Scoring_evaluationGroupByOutputType]: P extends "_count"
+						? T[P] extends boolean
+							? number
+							: GetScalarType<T[P], Scoring_evaluationGroupByOutputType[P]>
+						: GetScalarType<T[P], Scoring_evaluationGroupByOutputType[P]>;
+				}
+			>
+		>;
+
+	export type scoring_evaluationSelect<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = $Extensions.GetSelect<
+		{
+			id?: boolean;
+			tid?: boolean;
+			sid?: boolean;
+			visual_appearance?: boolean;
+			visual_color?: boolean;
+			olfactory_intensity?: boolean;
+			olfactory_complexity?: boolean;
+			olfactory_quality?: boolean;
+			taste_structure?: boolean;
+			taste_balance?: boolean;
+			taste_intensity?: boolean;
+			taste_persistence?: boolean;
+			taste_quality?: boolean;
+			harmony?: boolean;
+			total_score?: boolean;
+			notes?: boolean;
+			tastings?: boolean | tastingsDefaultArgs<ExtArgs>;
+		},
+		ExtArgs["result"]["scoring_evaluation"]
+	>;
+
+	export type scoring_evaluationSelectCreateManyAndReturn<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = $Extensions.GetSelect<
+		{
+			id?: boolean;
+			tid?: boolean;
+			sid?: boolean;
+			visual_appearance?: boolean;
+			visual_color?: boolean;
+			olfactory_intensity?: boolean;
+			olfactory_complexity?: boolean;
+			olfactory_quality?: boolean;
+			taste_structure?: boolean;
+			taste_balance?: boolean;
+			taste_intensity?: boolean;
+			taste_persistence?: boolean;
+			taste_quality?: boolean;
+			harmony?: boolean;
+			total_score?: boolean;
+			notes?: boolean;
+			tastings?: boolean | tastingsDefaultArgs<ExtArgs>;
+		},
+		ExtArgs["result"]["scoring_evaluation"]
+	>;
+
+	export type scoring_evaluationSelectUpdateManyAndReturn<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = $Extensions.GetSelect<
+		{
+			id?: boolean;
+			tid?: boolean;
+			sid?: boolean;
+			visual_appearance?: boolean;
+			visual_color?: boolean;
+			olfactory_intensity?: boolean;
+			olfactory_complexity?: boolean;
+			olfactory_quality?: boolean;
+			taste_structure?: boolean;
+			taste_balance?: boolean;
+			taste_intensity?: boolean;
+			taste_persistence?: boolean;
+			taste_quality?: boolean;
+			harmony?: boolean;
+			total_score?: boolean;
+			notes?: boolean;
+			tastings?: boolean | tastingsDefaultArgs<ExtArgs>;
+		},
+		ExtArgs["result"]["scoring_evaluation"]
+	>;
+
+	export type scoring_evaluationSelectScalar = {
+		id?: boolean;
+		tid?: boolean;
+		sid?: boolean;
+		visual_appearance?: boolean;
+		visual_color?: boolean;
+		olfactory_intensity?: boolean;
+		olfactory_complexity?: boolean;
+		olfactory_quality?: boolean;
+		taste_structure?: boolean;
+		taste_balance?: boolean;
+		taste_intensity?: boolean;
+		taste_persistence?: boolean;
+		taste_quality?: boolean;
+		harmony?: boolean;
+		total_score?: boolean;
+		notes?: boolean;
+	};
+
+	export type scoring_evaluationOmit<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = $Extensions.GetOmit<
+		| "id"
+		| "tid"
+		| "sid"
+		| "visual_appearance"
+		| "visual_color"
+		| "olfactory_intensity"
+		| "olfactory_complexity"
+		| "olfactory_quality"
+		| "taste_structure"
+		| "taste_balance"
+		| "taste_intensity"
+		| "taste_persistence"
+		| "taste_quality"
+		| "harmony"
+		| "total_score"
+		| "notes",
+		ExtArgs["result"]["scoring_evaluation"]
+	>;
+	export type scoring_evaluationInclude<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		tastings?: boolean | tastingsDefaultArgs<ExtArgs>;
+	};
+	export type scoring_evaluationIncludeCreateManyAndReturn<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		tastings?: boolean | tastingsDefaultArgs<ExtArgs>;
+	};
+	export type scoring_evaluationIncludeUpdateManyAndReturn<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		tastings?: boolean | tastingsDefaultArgs<ExtArgs>;
+	};
+
+	export type $scoring_evaluationPayload<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		name: "scoring_evaluation";
+		objects: {
+			tastings: Prisma.$tastingsPayload<ExtArgs>;
+		};
+		scalars: $Extensions.GetPayloadResult<
+			{
+				id: number;
+				tid: string;
+				sid: string;
+				visual_appearance: number;
+				visual_color: number;
+				olfactory_intensity: number;
+				olfactory_complexity: number;
+				olfactory_quality: number;
+				taste_structure: number;
+				taste_balance: number;
+				taste_intensity: number;
+				taste_persistence: number;
+				taste_quality: number;
+				harmony: number;
+				total_score: number | null;
+				notes: string | null;
+			},
+			ExtArgs["result"]["scoring_evaluation"]
+		>;
+		composites: {};
+	};
+
+	type scoring_evaluationGetPayload<
+		S extends boolean | null | undefined | scoring_evaluationDefaultArgs,
+	> = $Result.GetResult<Prisma.$scoring_evaluationPayload, S>;
+
+	type scoring_evaluationCountArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = Omit<scoring_evaluationFindManyArgs, "select" | "include" | "distinct" | "omit"> & {
+		select?: Scoring_evaluationCountAggregateInputType | true;
+	};
+
+	export interface scoring_evaluationDelegate<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+		GlobalOmitOptions = {},
+	> {
+		[K: symbol]: {
+			types: Prisma.TypeMap<ExtArgs>["model"]["scoring_evaluation"];
+			meta: { name: "scoring_evaluation" };
+		};
+		/**
+		 * Find zero or one Scoring_evaluation that matches the filter.
+		 * @param {scoring_evaluationFindUniqueArgs} args - Arguments to find a Scoring_evaluation
+		 * @example
+		 * // Get one Scoring_evaluation
+		 * const scoring_evaluation = await prisma.scoring_evaluation.findUnique({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   }
+		 * })
+		 */
+		findUnique<T extends scoring_evaluationFindUniqueArgs>(
+			args: SelectSubset<T, scoring_evaluationFindUniqueArgs<ExtArgs>>,
+		): Prisma__scoring_evaluationClient<
+			$Result.GetResult<
+				Prisma.$scoring_evaluationPayload<ExtArgs>,
+				T,
+				"findUnique",
+				GlobalOmitOptions
+			> | null,
+			null,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Find one Scoring_evaluation that matches the filter or throw an error with `error.code='P2025'`
+		 * if no matches were found.
+		 * @param {scoring_evaluationFindUniqueOrThrowArgs} args - Arguments to find a Scoring_evaluation
+		 * @example
+		 * // Get one Scoring_evaluation
+		 * const scoring_evaluation = await prisma.scoring_evaluation.findUniqueOrThrow({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   }
+		 * })
+		 */
+		findUniqueOrThrow<T extends scoring_evaluationFindUniqueOrThrowArgs>(
+			args: SelectSubset<T, scoring_evaluationFindUniqueOrThrowArgs<ExtArgs>>,
+		): Prisma__scoring_evaluationClient<
+			$Result.GetResult<
+				Prisma.$scoring_evaluationPayload<ExtArgs>,
+				T,
+				"findUniqueOrThrow",
+				GlobalOmitOptions
+			>,
+			never,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Find the first Scoring_evaluation that matches the filter.
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 * @param {scoring_evaluationFindFirstArgs} args - Arguments to find a Scoring_evaluation
+		 * @example
+		 * // Get one Scoring_evaluation
+		 * const scoring_evaluation = await prisma.scoring_evaluation.findFirst({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   }
+		 * })
+		 */
+		findFirst<T extends scoring_evaluationFindFirstArgs>(
+			args?: SelectSubset<T, scoring_evaluationFindFirstArgs<ExtArgs>>,
+		): Prisma__scoring_evaluationClient<
+			$Result.GetResult<
+				Prisma.$scoring_evaluationPayload<ExtArgs>,
+				T,
+				"findFirst",
+				GlobalOmitOptions
+			> | null,
+			null,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Find the first Scoring_evaluation that matches the filter or
+		 * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 * @param {scoring_evaluationFindFirstOrThrowArgs} args - Arguments to find a Scoring_evaluation
+		 * @example
+		 * // Get one Scoring_evaluation
+		 * const scoring_evaluation = await prisma.scoring_evaluation.findFirstOrThrow({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   }
+		 * })
+		 */
+		findFirstOrThrow<T extends scoring_evaluationFindFirstOrThrowArgs>(
+			args?: SelectSubset<T, scoring_evaluationFindFirstOrThrowArgs<ExtArgs>>,
+		): Prisma__scoring_evaluationClient<
+			$Result.GetResult<
+				Prisma.$scoring_evaluationPayload<ExtArgs>,
+				T,
+				"findFirstOrThrow",
+				GlobalOmitOptions
+			>,
+			never,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Find zero or more Scoring_evaluations that matches the filter.
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 * @param {scoring_evaluationFindManyArgs} args - Arguments to filter and select certain fields only.
+		 * @example
+		 * // Get all Scoring_evaluations
+		 * const scoring_evaluations = await prisma.scoring_evaluation.findMany()
+		 *
+		 * // Get first 10 Scoring_evaluations
+		 * const scoring_evaluations = await prisma.scoring_evaluation.findMany({ take: 10 })
+		 *
+		 * // Only select the `id`
+		 * const scoring_evaluationWithIdOnly = await prisma.scoring_evaluation.findMany({ select: { id: true } })
+		 *
+		 */
+		findMany<T extends scoring_evaluationFindManyArgs>(
+			args?: SelectSubset<T, scoring_evaluationFindManyArgs<ExtArgs>>,
+		): Prisma.PrismaPromise<
+			$Result.GetResult<
+				Prisma.$scoring_evaluationPayload<ExtArgs>,
+				T,
+				"findMany",
+				GlobalOmitOptions
+			>
+		>;
+
+		/**
+		 * Create a Scoring_evaluation.
+		 * @param {scoring_evaluationCreateArgs} args - Arguments to create a Scoring_evaluation.
+		 * @example
+		 * // Create one Scoring_evaluation
+		 * const Scoring_evaluation = await prisma.scoring_evaluation.create({
+		 *   data: {
+		 *     // ... data to create a Scoring_evaluation
+		 *   }
+		 * })
+		 *
+		 */
+		create<T extends scoring_evaluationCreateArgs>(
+			args: SelectSubset<T, scoring_evaluationCreateArgs<ExtArgs>>,
+		): Prisma__scoring_evaluationClient<
+			$Result.GetResult<
+				Prisma.$scoring_evaluationPayload<ExtArgs>,
+				T,
+				"create",
+				GlobalOmitOptions
+			>,
+			never,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Create many Scoring_evaluations.
+		 * @param {scoring_evaluationCreateManyArgs} args - Arguments to create many Scoring_evaluations.
+		 * @example
+		 * // Create many Scoring_evaluations
+		 * const scoring_evaluation = await prisma.scoring_evaluation.createMany({
+		 *   data: [
+		 *     // ... provide data here
+		 *   ]
+		 * })
+		 *
+		 */
+		createMany<T extends scoring_evaluationCreateManyArgs>(
+			args?: SelectSubset<T, scoring_evaluationCreateManyArgs<ExtArgs>>,
+		): Prisma.PrismaPromise<BatchPayload>;
+
+		/**
+		 * Create many Scoring_evaluations and returns the data saved in the database.
+		 * @param {scoring_evaluationCreateManyAndReturnArgs} args - Arguments to create many Scoring_evaluations.
+		 * @example
+		 * // Create many Scoring_evaluations
+		 * const scoring_evaluation = await prisma.scoring_evaluation.createManyAndReturn({
+		 *   data: [
+		 *     // ... provide data here
+		 *   ]
+		 * })
+		 *
+		 * // Create many Scoring_evaluations and only return the `id`
+		 * const scoring_evaluationWithIdOnly = await prisma.scoring_evaluation.createManyAndReturn({
+		 *   select: { id: true },
+		 *   data: [
+		 *     // ... provide data here
+		 *   ]
+		 * })
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 *
+		 */
+		createManyAndReturn<T extends scoring_evaluationCreateManyAndReturnArgs>(
+			args?: SelectSubset<T, scoring_evaluationCreateManyAndReturnArgs<ExtArgs>>,
+		): Prisma.PrismaPromise<
+			$Result.GetResult<
+				Prisma.$scoring_evaluationPayload<ExtArgs>,
+				T,
+				"createManyAndReturn",
+				GlobalOmitOptions
+			>
+		>;
+
+		/**
+		 * Delete a Scoring_evaluation.
+		 * @param {scoring_evaluationDeleteArgs} args - Arguments to delete one Scoring_evaluation.
+		 * @example
+		 * // Delete one Scoring_evaluation
+		 * const Scoring_evaluation = await prisma.scoring_evaluation.delete({
+		 *   where: {
+		 *     // ... filter to delete one Scoring_evaluation
+		 *   }
+		 * })
+		 *
+		 */
+		delete<T extends scoring_evaluationDeleteArgs>(
+			args: SelectSubset<T, scoring_evaluationDeleteArgs<ExtArgs>>,
+		): Prisma__scoring_evaluationClient<
+			$Result.GetResult<
+				Prisma.$scoring_evaluationPayload<ExtArgs>,
+				T,
+				"delete",
+				GlobalOmitOptions
+			>,
+			never,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Update one Scoring_evaluation.
+		 * @param {scoring_evaluationUpdateArgs} args - Arguments to update one Scoring_evaluation.
+		 * @example
+		 * // Update one Scoring_evaluation
+		 * const scoring_evaluation = await prisma.scoring_evaluation.update({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   },
+		 *   data: {
+		 *     // ... provide data here
+		 *   }
+		 * })
+		 *
+		 */
+		update<T extends scoring_evaluationUpdateArgs>(
+			args: SelectSubset<T, scoring_evaluationUpdateArgs<ExtArgs>>,
+		): Prisma__scoring_evaluationClient<
+			$Result.GetResult<
+				Prisma.$scoring_evaluationPayload<ExtArgs>,
+				T,
+				"update",
+				GlobalOmitOptions
+			>,
+			never,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Delete zero or more Scoring_evaluations.
+		 * @param {scoring_evaluationDeleteManyArgs} args - Arguments to filter Scoring_evaluations to delete.
+		 * @example
+		 * // Delete a few Scoring_evaluations
+		 * const { count } = await prisma.scoring_evaluation.deleteMany({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   }
+		 * })
+		 *
+		 */
+		deleteMany<T extends scoring_evaluationDeleteManyArgs>(
+			args?: SelectSubset<T, scoring_evaluationDeleteManyArgs<ExtArgs>>,
+		): Prisma.PrismaPromise<BatchPayload>;
+
+		/**
+		 * Update zero or more Scoring_evaluations.
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 * @param {scoring_evaluationUpdateManyArgs} args - Arguments to update one or more rows.
+		 * @example
+		 * // Update many Scoring_evaluations
+		 * const scoring_evaluation = await prisma.scoring_evaluation.updateMany({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   },
+		 *   data: {
+		 *     // ... provide data here
+		 *   }
+		 * })
+		 *
+		 */
+		updateMany<T extends scoring_evaluationUpdateManyArgs>(
+			args: SelectSubset<T, scoring_evaluationUpdateManyArgs<ExtArgs>>,
+		): Prisma.PrismaPromise<BatchPayload>;
+
+		/**
+		 * Update zero or more Scoring_evaluations and returns the data updated in the database.
+		 * @param {scoring_evaluationUpdateManyAndReturnArgs} args - Arguments to update many Scoring_evaluations.
+		 * @example
+		 * // Update many Scoring_evaluations
+		 * const scoring_evaluation = await prisma.scoring_evaluation.updateManyAndReturn({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   },
+		 *   data: [
+		 *     // ... provide data here
+		 *   ]
+		 * })
+		 *
+		 * // Update zero or more Scoring_evaluations and only return the `id`
+		 * const scoring_evaluationWithIdOnly = await prisma.scoring_evaluation.updateManyAndReturn({
+		 *   select: { id: true },
+		 *   where: {
+		 *     // ... provide filter here
+		 *   },
+		 *   data: [
+		 *     // ... provide data here
+		 *   ]
+		 * })
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 *
+		 */
+		updateManyAndReturn<T extends scoring_evaluationUpdateManyAndReturnArgs>(
+			args: SelectSubset<T, scoring_evaluationUpdateManyAndReturnArgs<ExtArgs>>,
+		): Prisma.PrismaPromise<
+			$Result.GetResult<
+				Prisma.$scoring_evaluationPayload<ExtArgs>,
+				T,
+				"updateManyAndReturn",
+				GlobalOmitOptions
+			>
+		>;
+
+		/**
+		 * Create or update one Scoring_evaluation.
+		 * @param {scoring_evaluationUpsertArgs} args - Arguments to update or create a Scoring_evaluation.
+		 * @example
+		 * // Update or create a Scoring_evaluation
+		 * const scoring_evaluation = await prisma.scoring_evaluation.upsert({
+		 *   create: {
+		 *     // ... data to create a Scoring_evaluation
+		 *   },
+		 *   update: {
+		 *     // ... in case it already exists, update
+		 *   },
+		 *   where: {
+		 *     // ... the filter for the Scoring_evaluation we want to update
+		 *   }
+		 * })
+		 */
+		upsert<T extends scoring_evaluationUpsertArgs>(
+			args: SelectSubset<T, scoring_evaluationUpsertArgs<ExtArgs>>,
+		): Prisma__scoring_evaluationClient<
+			$Result.GetResult<
+				Prisma.$scoring_evaluationPayload<ExtArgs>,
+				T,
+				"upsert",
+				GlobalOmitOptions
+			>,
+			never,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Count the number of Scoring_evaluations.
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 * @param {scoring_evaluationCountArgs} args - Arguments to filter Scoring_evaluations to count.
+		 * @example
+		 * // Count the number of Scoring_evaluations
+		 * const count = await prisma.scoring_evaluation.count({
+		 *   where: {
+		 *     // ... the filter for the Scoring_evaluations we want to count
+		 *   }
+		 * })
+		 **/
+		count<T extends scoring_evaluationCountArgs>(
+			args?: Subset<T, scoring_evaluationCountArgs>,
+		): Prisma.PrismaPromise<
+			T extends $Utils.Record<"select", any>
+				? T["select"] extends true
+					? number
+					: GetScalarType<T["select"], Scoring_evaluationCountAggregateOutputType>
+				: number
+		>;
+
+		/**
+		 * Allows you to perform aggregations operations on a Scoring_evaluation.
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 * @param {Scoring_evaluationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+		 * @example
+		 * // Ordered by age ascending
+		 * // Where email contains prisma.io
+		 * // Limited to the 10 users
+		 * const aggregations = await prisma.user.aggregate({
+		 *   _avg: {
+		 *     age: true,
+		 *   },
+		 *   where: {
+		 *     email: {
+		 *       contains: "prisma.io",
+		 *     },
+		 *   },
+		 *   orderBy: {
+		 *     age: "asc",
+		 *   },
+		 *   take: 10,
+		 * })
+		 **/
+		aggregate<T extends Scoring_evaluationAggregateArgs>(
+			args: Subset<T, Scoring_evaluationAggregateArgs>,
+		): Prisma.PrismaPromise<GetScoring_evaluationAggregateType<T>>;
+
+		/**
+		 * Group by Scoring_evaluation.
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 * @param {scoring_evaluationGroupByArgs} args - Group by arguments.
+		 * @example
+		 * // Group by city, order by createdAt, get count
+		 * const result = await prisma.user.groupBy({
+		 *   by: ['city', 'createdAt'],
+		 *   orderBy: {
+		 *     createdAt: true
+		 *   },
+		 *   _count: {
+		 *     _all: true
+		 *   },
+		 * })
+		 *
+		 **/
+		groupBy<
+			T extends scoring_evaluationGroupByArgs,
+			HasSelectOrTake extends Or<Extends<"skip", Keys<T>>, Extends<"take", Keys<T>>>,
+			OrderByArg extends True extends HasSelectOrTake
+				? { orderBy: scoring_evaluationGroupByArgs["orderBy"] }
+				: { orderBy?: scoring_evaluationGroupByArgs["orderBy"] },
+			OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T["orderBy"]>>>,
+			ByFields extends MaybeTupleToUnion<T["by"]>,
+			ByValid extends Has<ByFields, OrderFields>,
+			HavingFields extends GetHavingFields<T["having"]>,
+			HavingValid extends Has<ByFields, HavingFields>,
+			ByEmpty extends T["by"] extends never[] ? True : False,
+			InputErrors extends ByEmpty extends True
+				? `Error: "by" must not be empty.`
+				: HavingValid extends False
+					? {
+							[P in HavingFields]: P extends ByFields
+								? never
+								: P extends string
+									? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+									: [Error, "Field ", P, ` in "having" needs to be provided in "by"`];
+						}[HavingFields]
+					: "take" extends Keys<T>
+						? "orderBy" extends Keys<T>
+							? ByValid extends True
+								? {}
+								: {
+										[P in OrderFields]: P extends ByFields
+											? never
+											: `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+									}[OrderFields]
+							: 'Error: If you provide "take", you also need to provide "orderBy"'
+						: "skip" extends Keys<T>
+							? "orderBy" extends Keys<T>
+								? ByValid extends True
+									? {}
+									: {
+											[P in OrderFields]: P extends ByFields
+												? never
+												: `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+										}[OrderFields]
+								: 'Error: If you provide "skip", you also need to provide "orderBy"'
+							: ByValid extends True
+								? {}
+								: {
+										[P in OrderFields]: P extends ByFields
+											? never
+											: `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+									}[OrderFields],
+		>(
+			args: SubsetIntersection<T, scoring_evaluationGroupByArgs, OrderByArg> & InputErrors,
+		): {} extends InputErrors
+			? GetScoring_evaluationGroupByPayload<T>
+			: Prisma.PrismaPromise<InputErrors>;
+		/**
+		 * Fields of the scoring_evaluation model
+		 */
+		readonly fields: scoring_evaluationFieldRefs;
+	}
+
+	/**
+	 * The delegate class that acts as a "Promise-like" for scoring_evaluation.
+	 * Why is this prefixed with `Prisma__`?
+	 * Because we want to prevent naming conflicts as mentioned in
+	 * https://github.com/prisma/prisma-client-js/issues/707
+	 */
+	export interface Prisma__scoring_evaluationClient<
+		T,
+		Null = never,
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+		GlobalOmitOptions = {},
+	> extends Prisma.PrismaPromise<T> {
+		readonly [Symbol.toStringTag]: "PrismaPromise";
+		tastings<T extends tastingsDefaultArgs<ExtArgs> = {}>(
+			args?: Subset<T, tastingsDefaultArgs<ExtArgs>>,
+		): Prisma__tastingsClient<
+			| $Result.GetResult<
+					Prisma.$tastingsPayload<ExtArgs>,
+					T,
+					"findUniqueOrThrow",
+					GlobalOmitOptions
+			  >
+			| Null,
+			Null,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+		/**
+		 * Attaches callbacks for the resolution and/or rejection of the Promise.
+		 * @param onfulfilled The callback to execute when the Promise is resolved.
+		 * @param onrejected The callback to execute when the Promise is rejected.
+		 * @returns A Promise for the completion of which ever callback is executed.
+		 */
+		then<TResult1 = T, TResult2 = never>(
+			onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
+			onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
+		): $Utils.JsPromise<TResult1 | TResult2>;
+		/**
+		 * Attaches a callback for only the rejection of the Promise.
+		 * @param onrejected The callback to execute when the Promise is rejected.
+		 * @returns A Promise for the completion of the callback.
+		 */
+		catch<TResult = never>(
+			onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
+		): $Utils.JsPromise<T | TResult>;
+		/**
+		 * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+		 * resolved value cannot be modified from the callback.
+		 * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+		 * @returns A Promise for the completion of the callback.
+		 */
+		finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+	}
+
+	/**
+	 * Fields of the scoring_evaluation model
+	 */
+	interface scoring_evaluationFieldRefs {
+		readonly id: FieldRef<"scoring_evaluation", "Int">;
+		readonly tid: FieldRef<"scoring_evaluation", "String">;
+		readonly sid: FieldRef<"scoring_evaluation", "String">;
+		readonly visual_appearance: FieldRef<"scoring_evaluation", "Int">;
+		readonly visual_color: FieldRef<"scoring_evaluation", "Int">;
+		readonly olfactory_intensity: FieldRef<"scoring_evaluation", "Int">;
+		readonly olfactory_complexity: FieldRef<"scoring_evaluation", "Int">;
+		readonly olfactory_quality: FieldRef<"scoring_evaluation", "Int">;
+		readonly taste_structure: FieldRef<"scoring_evaluation", "Int">;
+		readonly taste_balance: FieldRef<"scoring_evaluation", "Int">;
+		readonly taste_intensity: FieldRef<"scoring_evaluation", "Int">;
+		readonly taste_persistence: FieldRef<"scoring_evaluation", "Int">;
+		readonly taste_quality: FieldRef<"scoring_evaluation", "Int">;
+		readonly harmony: FieldRef<"scoring_evaluation", "Int">;
+		readonly total_score: FieldRef<"scoring_evaluation", "Int">;
+		readonly notes: FieldRef<"scoring_evaluation", "String">;
+	}
+
+	// Custom InputTypes
+	/**
+	 * scoring_evaluation findUnique
+	 */
+	export type scoring_evaluationFindUniqueArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the scoring_evaluation
+		 */
+		select?: scoring_evaluationSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the scoring_evaluation
+		 */
+		omit?: scoring_evaluationOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: scoring_evaluationInclude<ExtArgs> | null;
+		/**
+		 * Filter, which scoring_evaluation to fetch.
+		 */
+		where: scoring_evaluationWhereUniqueInput;
+	};
+
+	/**
+	 * scoring_evaluation findUniqueOrThrow
+	 */
+	export type scoring_evaluationFindUniqueOrThrowArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the scoring_evaluation
+		 */
+		select?: scoring_evaluationSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the scoring_evaluation
+		 */
+		omit?: scoring_evaluationOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: scoring_evaluationInclude<ExtArgs> | null;
+		/**
+		 * Filter, which scoring_evaluation to fetch.
+		 */
+		where: scoring_evaluationWhereUniqueInput;
+	};
+
+	/**
+	 * scoring_evaluation findFirst
+	 */
+	export type scoring_evaluationFindFirstArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the scoring_evaluation
+		 */
+		select?: scoring_evaluationSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the scoring_evaluation
+		 */
+		omit?: scoring_evaluationOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: scoring_evaluationInclude<ExtArgs> | null;
+		/**
+		 * Filter, which scoring_evaluation to fetch.
+		 */
+		where?: scoring_evaluationWhereInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+		 *
+		 * Determine the order of scoring_evaluations to fetch.
+		 */
+		orderBy?:
+			| scoring_evaluationOrderByWithRelationInput
+			| scoring_evaluationOrderByWithRelationInput[];
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+		 *
+		 * Sets the position for searching for scoring_evaluations.
+		 */
+		cursor?: scoring_evaluationWhereUniqueInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Take `±n` scoring_evaluations from the position of the cursor.
+		 */
+		take?: number;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Skip the first `n` scoring_evaluations.
+		 */
+		skip?: number;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+		 *
+		 * Filter by unique combinations of scoring_evaluations.
+		 */
+		distinct?: Scoring_evaluationScalarFieldEnum | Scoring_evaluationScalarFieldEnum[];
+	};
+
+	/**
+	 * scoring_evaluation findFirstOrThrow
+	 */
+	export type scoring_evaluationFindFirstOrThrowArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the scoring_evaluation
+		 */
+		select?: scoring_evaluationSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the scoring_evaluation
+		 */
+		omit?: scoring_evaluationOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: scoring_evaluationInclude<ExtArgs> | null;
+		/**
+		 * Filter, which scoring_evaluation to fetch.
+		 */
+		where?: scoring_evaluationWhereInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+		 *
+		 * Determine the order of scoring_evaluations to fetch.
+		 */
+		orderBy?:
+			| scoring_evaluationOrderByWithRelationInput
+			| scoring_evaluationOrderByWithRelationInput[];
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+		 *
+		 * Sets the position for searching for scoring_evaluations.
+		 */
+		cursor?: scoring_evaluationWhereUniqueInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Take `±n` scoring_evaluations from the position of the cursor.
+		 */
+		take?: number;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Skip the first `n` scoring_evaluations.
+		 */
+		skip?: number;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+		 *
+		 * Filter by unique combinations of scoring_evaluations.
+		 */
+		distinct?: Scoring_evaluationScalarFieldEnum | Scoring_evaluationScalarFieldEnum[];
+	};
+
+	/**
+	 * scoring_evaluation findMany
+	 */
+	export type scoring_evaluationFindManyArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the scoring_evaluation
+		 */
+		select?: scoring_evaluationSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the scoring_evaluation
+		 */
+		omit?: scoring_evaluationOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: scoring_evaluationInclude<ExtArgs> | null;
+		/**
+		 * Filter, which scoring_evaluations to fetch.
+		 */
+		where?: scoring_evaluationWhereInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+		 *
+		 * Determine the order of scoring_evaluations to fetch.
+		 */
+		orderBy?:
+			| scoring_evaluationOrderByWithRelationInput
+			| scoring_evaluationOrderByWithRelationInput[];
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+		 *
+		 * Sets the position for listing scoring_evaluations.
+		 */
+		cursor?: scoring_evaluationWhereUniqueInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Take `±n` scoring_evaluations from the position of the cursor.
+		 */
+		take?: number;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Skip the first `n` scoring_evaluations.
+		 */
+		skip?: number;
+		distinct?: Scoring_evaluationScalarFieldEnum | Scoring_evaluationScalarFieldEnum[];
+	};
+
+	/**
+	 * scoring_evaluation create
+	 */
+	export type scoring_evaluationCreateArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the scoring_evaluation
+		 */
+		select?: scoring_evaluationSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the scoring_evaluation
+		 */
+		omit?: scoring_evaluationOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: scoring_evaluationInclude<ExtArgs> | null;
+		/**
+		 * The data needed to create a scoring_evaluation.
+		 */
+		data: XOR<scoring_evaluationCreateInput, scoring_evaluationUncheckedCreateInput>;
+	};
+
+	/**
+	 * scoring_evaluation createMany
+	 */
+	export type scoring_evaluationCreateManyArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * The data used to create many scoring_evaluations.
+		 */
+		data: scoring_evaluationCreateManyInput | scoring_evaluationCreateManyInput[];
+		skipDuplicates?: boolean;
+	};
+
+	/**
+	 * scoring_evaluation createManyAndReturn
+	 */
+	export type scoring_evaluationCreateManyAndReturnArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the scoring_evaluation
+		 */
+		select?: scoring_evaluationSelectCreateManyAndReturn<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the scoring_evaluation
+		 */
+		omit?: scoring_evaluationOmit<ExtArgs> | null;
+		/**
+		 * The data used to create many scoring_evaluations.
+		 */
+		data: scoring_evaluationCreateManyInput | scoring_evaluationCreateManyInput[];
+		skipDuplicates?: boolean;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: scoring_evaluationIncludeCreateManyAndReturn<ExtArgs> | null;
+	};
+
+	/**
+	 * scoring_evaluation update
+	 */
+	export type scoring_evaluationUpdateArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the scoring_evaluation
+		 */
+		select?: scoring_evaluationSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the scoring_evaluation
+		 */
+		omit?: scoring_evaluationOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: scoring_evaluationInclude<ExtArgs> | null;
+		/**
+		 * The data needed to update a scoring_evaluation.
+		 */
+		data: XOR<scoring_evaluationUpdateInput, scoring_evaluationUncheckedUpdateInput>;
+		/**
+		 * Choose, which scoring_evaluation to update.
+		 */
+		where: scoring_evaluationWhereUniqueInput;
+	};
+
+	/**
+	 * scoring_evaluation updateMany
+	 */
+	export type scoring_evaluationUpdateManyArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * The data used to update scoring_evaluations.
+		 */
+		data: XOR<
+			scoring_evaluationUpdateManyMutationInput,
+			scoring_evaluationUncheckedUpdateManyInput
+		>;
+		/**
+		 * Filter which scoring_evaluations to update
+		 */
+		where?: scoring_evaluationWhereInput;
+		/**
+		 * Limit how many scoring_evaluations to update.
+		 */
+		limit?: number;
+	};
+
+	/**
+	 * scoring_evaluation updateManyAndReturn
+	 */
+	export type scoring_evaluationUpdateManyAndReturnArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the scoring_evaluation
+		 */
+		select?: scoring_evaluationSelectUpdateManyAndReturn<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the scoring_evaluation
+		 */
+		omit?: scoring_evaluationOmit<ExtArgs> | null;
+		/**
+		 * The data used to update scoring_evaluations.
+		 */
+		data: XOR<
+			scoring_evaluationUpdateManyMutationInput,
+			scoring_evaluationUncheckedUpdateManyInput
+		>;
+		/**
+		 * Filter which scoring_evaluations to update
+		 */
+		where?: scoring_evaluationWhereInput;
+		/**
+		 * Limit how many scoring_evaluations to update.
+		 */
+		limit?: number;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: scoring_evaluationIncludeUpdateManyAndReturn<ExtArgs> | null;
+	};
+
+	/**
+	 * scoring_evaluation upsert
+	 */
+	export type scoring_evaluationUpsertArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the scoring_evaluation
+		 */
+		select?: scoring_evaluationSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the scoring_evaluation
+		 */
+		omit?: scoring_evaluationOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: scoring_evaluationInclude<ExtArgs> | null;
+		/**
+		 * The filter to search for the scoring_evaluation to update in case it exists.
+		 */
+		where: scoring_evaluationWhereUniqueInput;
+		/**
+		 * In case the scoring_evaluation found by the `where` argument doesn't exist, create a new scoring_evaluation with this data.
+		 */
+		create: XOR<scoring_evaluationCreateInput, scoring_evaluationUncheckedCreateInput>;
+		/**
+		 * In case the scoring_evaluation was found with the provided `where` argument, update it with this data.
+		 */
+		update: XOR<scoring_evaluationUpdateInput, scoring_evaluationUncheckedUpdateInput>;
+	};
+
+	/**
+	 * scoring_evaluation delete
+	 */
+	export type scoring_evaluationDeleteArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the scoring_evaluation
+		 */
+		select?: scoring_evaluationSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the scoring_evaluation
+		 */
+		omit?: scoring_evaluationOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: scoring_evaluationInclude<ExtArgs> | null;
+		/**
+		 * Filter which scoring_evaluation to delete.
+		 */
+		where: scoring_evaluationWhereUniqueInput;
+	};
+
+	/**
+	 * scoring_evaluation deleteMany
+	 */
+	export type scoring_evaluationDeleteManyArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Filter which scoring_evaluations to delete
+		 */
+		where?: scoring_evaluationWhereInput;
+		/**
+		 * Limit how many scoring_evaluations to delete.
+		 */
+		limit?: number;
+	};
+
+	/**
+	 * scoring_evaluation without action
+	 */
+	export type scoring_evaluationDefaultArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the scoring_evaluation
+		 */
+		select?: scoring_evaluationSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the scoring_evaluation
+		 */
+		omit?: scoring_evaluationOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: scoring_evaluationInclude<ExtArgs> | null;
+	};
+
+	/**
 	 * Enums
 	 */
 
@@ -11581,6 +14523,37 @@ export namespace Prisma {
 
 	export type Final_considerationsScalarFieldEnum =
 		(typeof Final_considerationsScalarFieldEnum)[keyof typeof Final_considerationsScalarFieldEnum];
+
+	export const Corrective_coefficientsScalarFieldEnum: {
+		id: "id";
+		attribute: "attribute";
+		coefficient: "coefficient";
+	};
+
+	export type Corrective_coefficientsScalarFieldEnum =
+		(typeof Corrective_coefficientsScalarFieldEnum)[keyof typeof Corrective_coefficientsScalarFieldEnum];
+
+	export const Scoring_evaluationScalarFieldEnum: {
+		id: "id";
+		tid: "tid";
+		sid: "sid";
+		visual_appearance: "visual_appearance";
+		visual_color: "visual_color";
+		olfactory_intensity: "olfactory_intensity";
+		olfactory_complexity: "olfactory_complexity";
+		olfactory_quality: "olfactory_quality";
+		taste_structure: "taste_structure";
+		taste_balance: "taste_balance";
+		taste_intensity: "taste_intensity";
+		taste_persistence: "taste_persistence";
+		taste_quality: "taste_quality";
+		harmony: "harmony";
+		total_score: "total_score";
+		notes: "notes";
+	};
+
+	export type Scoring_evaluationScalarFieldEnum =
+		(typeof Scoring_evaluationScalarFieldEnum)[keyof typeof Scoring_evaluationScalarFieldEnum];
 
 	export const SortOrder: {
 		asc: "asc";
@@ -11861,6 +14834,10 @@ export namespace Prisma {
 			Olfactory_examsNullableScalarRelationFilter,
 			olfactory_examsWhereInput
 		> | null;
+		scoring_evaluation?: XOR<
+			Scoring_evaluationNullableScalarRelationFilter,
+			scoring_evaluationWhereInput
+		> | null;
 		taste_olfactory_exams?: XOR<
 			Taste_olfactory_examsNullableScalarRelationFilter,
 			taste_olfactory_examsWhereInput
@@ -11890,6 +14867,7 @@ export namespace Prisma {
 		updated_at?: SortOrderInput | SortOrder;
 		final_considerations?: final_considerationsOrderByWithRelationInput;
 		olfactory_exams?: olfactory_examsOrderByWithRelationInput;
+		scoring_evaluation?: scoring_evaluationOrderByWithRelationInput;
 		taste_olfactory_exams?: taste_olfactory_examsOrderByWithRelationInput;
 		users?: usersOrderByWithRelationInput;
 		wine_categories?: wine_categoriesOrderByWithRelationInput;
@@ -11931,6 +14909,10 @@ export namespace Prisma {
 			olfactory_exams?: XOR<
 				Olfactory_examsNullableScalarRelationFilter,
 				olfactory_examsWhereInput
+			> | null;
+			scoring_evaluation?: XOR<
+				Scoring_evaluationNullableScalarRelationFilter,
+				scoring_evaluationWhereInput
 			> | null;
 			taste_olfactory_exams?: XOR<
 				Taste_olfactory_examsNullableScalarRelationFilter,
@@ -12416,6 +15398,176 @@ export namespace Prisma {
 		notes?: StringNullableWithAggregatesFilter<"final_considerations"> | string | null;
 	};
 
+	export type corrective_coefficientsWhereInput = {
+		AND?: corrective_coefficientsWhereInput | corrective_coefficientsWhereInput[];
+		OR?: corrective_coefficientsWhereInput[];
+		NOT?: corrective_coefficientsWhereInput | corrective_coefficientsWhereInput[];
+		id?: IntFilter<"corrective_coefficients"> | number;
+		attribute?: StringFilter<"corrective_coefficients"> | string;
+		coefficient?: IntFilter<"corrective_coefficients"> | number;
+	};
+
+	export type corrective_coefficientsOrderByWithRelationInput = {
+		id?: SortOrder;
+		attribute?: SortOrder;
+		coefficient?: SortOrder;
+	};
+
+	export type corrective_coefficientsWhereUniqueInput = Prisma.AtLeast<
+		{
+			id?: number;
+			attribute?: string;
+			AND?: corrective_coefficientsWhereInput | corrective_coefficientsWhereInput[];
+			OR?: corrective_coefficientsWhereInput[];
+			NOT?: corrective_coefficientsWhereInput | corrective_coefficientsWhereInput[];
+			coefficient?: IntFilter<"corrective_coefficients"> | number;
+		},
+		"id" | "attribute"
+	>;
+
+	export type corrective_coefficientsOrderByWithAggregationInput = {
+		id?: SortOrder;
+		attribute?: SortOrder;
+		coefficient?: SortOrder;
+		_count?: corrective_coefficientsCountOrderByAggregateInput;
+		_avg?: corrective_coefficientsAvgOrderByAggregateInput;
+		_max?: corrective_coefficientsMaxOrderByAggregateInput;
+		_min?: corrective_coefficientsMinOrderByAggregateInput;
+		_sum?: corrective_coefficientsSumOrderByAggregateInput;
+	};
+
+	export type corrective_coefficientsScalarWhereWithAggregatesInput = {
+		AND?:
+			| corrective_coefficientsScalarWhereWithAggregatesInput
+			| corrective_coefficientsScalarWhereWithAggregatesInput[];
+		OR?: corrective_coefficientsScalarWhereWithAggregatesInput[];
+		NOT?:
+			| corrective_coefficientsScalarWhereWithAggregatesInput
+			| corrective_coefficientsScalarWhereWithAggregatesInput[];
+		id?: IntWithAggregatesFilter<"corrective_coefficients"> | number;
+		attribute?: StringWithAggregatesFilter<"corrective_coefficients"> | string;
+		coefficient?: IntWithAggregatesFilter<"corrective_coefficients"> | number;
+	};
+
+	export type scoring_evaluationWhereInput = {
+		AND?: scoring_evaluationWhereInput | scoring_evaluationWhereInput[];
+		OR?: scoring_evaluationWhereInput[];
+		NOT?: scoring_evaluationWhereInput | scoring_evaluationWhereInput[];
+		id?: IntFilter<"scoring_evaluation"> | number;
+		tid?: UuidFilter<"scoring_evaluation"> | string;
+		sid?: UuidFilter<"scoring_evaluation"> | string;
+		visual_appearance?: IntFilter<"scoring_evaluation"> | number;
+		visual_color?: IntFilter<"scoring_evaluation"> | number;
+		olfactory_intensity?: IntFilter<"scoring_evaluation"> | number;
+		olfactory_complexity?: IntFilter<"scoring_evaluation"> | number;
+		olfactory_quality?: IntFilter<"scoring_evaluation"> | number;
+		taste_structure?: IntFilter<"scoring_evaluation"> | number;
+		taste_balance?: IntFilter<"scoring_evaluation"> | number;
+		taste_intensity?: IntFilter<"scoring_evaluation"> | number;
+		taste_persistence?: IntFilter<"scoring_evaluation"> | number;
+		taste_quality?: IntFilter<"scoring_evaluation"> | number;
+		harmony?: IntFilter<"scoring_evaluation"> | number;
+		total_score?: IntNullableFilter<"scoring_evaluation"> | number | null;
+		notes?: StringNullableFilter<"scoring_evaluation"> | string | null;
+		tastings?: XOR<TastingsScalarRelationFilter, tastingsWhereInput>;
+	};
+
+	export type scoring_evaluationOrderByWithRelationInput = {
+		id?: SortOrder;
+		tid?: SortOrder;
+		sid?: SortOrder;
+		visual_appearance?: SortOrder;
+		visual_color?: SortOrder;
+		olfactory_intensity?: SortOrder;
+		olfactory_complexity?: SortOrder;
+		olfactory_quality?: SortOrder;
+		taste_structure?: SortOrder;
+		taste_balance?: SortOrder;
+		taste_intensity?: SortOrder;
+		taste_persistence?: SortOrder;
+		taste_quality?: SortOrder;
+		harmony?: SortOrder;
+		total_score?: SortOrderInput | SortOrder;
+		notes?: SortOrderInput | SortOrder;
+		tastings?: tastingsOrderByWithRelationInput;
+	};
+
+	export type scoring_evaluationWhereUniqueInput = Prisma.AtLeast<
+		{
+			id?: number;
+			tid?: string;
+			sid?: string;
+			AND?: scoring_evaluationWhereInput | scoring_evaluationWhereInput[];
+			OR?: scoring_evaluationWhereInput[];
+			NOT?: scoring_evaluationWhereInput | scoring_evaluationWhereInput[];
+			visual_appearance?: IntFilter<"scoring_evaluation"> | number;
+			visual_color?: IntFilter<"scoring_evaluation"> | number;
+			olfactory_intensity?: IntFilter<"scoring_evaluation"> | number;
+			olfactory_complexity?: IntFilter<"scoring_evaluation"> | number;
+			olfactory_quality?: IntFilter<"scoring_evaluation"> | number;
+			taste_structure?: IntFilter<"scoring_evaluation"> | number;
+			taste_balance?: IntFilter<"scoring_evaluation"> | number;
+			taste_intensity?: IntFilter<"scoring_evaluation"> | number;
+			taste_persistence?: IntFilter<"scoring_evaluation"> | number;
+			taste_quality?: IntFilter<"scoring_evaluation"> | number;
+			harmony?: IntFilter<"scoring_evaluation"> | number;
+			total_score?: IntNullableFilter<"scoring_evaluation"> | number | null;
+			notes?: StringNullableFilter<"scoring_evaluation"> | string | null;
+			tastings?: XOR<TastingsScalarRelationFilter, tastingsWhereInput>;
+		},
+		"id" | "tid" | "sid"
+	>;
+
+	export type scoring_evaluationOrderByWithAggregationInput = {
+		id?: SortOrder;
+		tid?: SortOrder;
+		sid?: SortOrder;
+		visual_appearance?: SortOrder;
+		visual_color?: SortOrder;
+		olfactory_intensity?: SortOrder;
+		olfactory_complexity?: SortOrder;
+		olfactory_quality?: SortOrder;
+		taste_structure?: SortOrder;
+		taste_balance?: SortOrder;
+		taste_intensity?: SortOrder;
+		taste_persistence?: SortOrder;
+		taste_quality?: SortOrder;
+		harmony?: SortOrder;
+		total_score?: SortOrderInput | SortOrder;
+		notes?: SortOrderInput | SortOrder;
+		_count?: scoring_evaluationCountOrderByAggregateInput;
+		_avg?: scoring_evaluationAvgOrderByAggregateInput;
+		_max?: scoring_evaluationMaxOrderByAggregateInput;
+		_min?: scoring_evaluationMinOrderByAggregateInput;
+		_sum?: scoring_evaluationSumOrderByAggregateInput;
+	};
+
+	export type scoring_evaluationScalarWhereWithAggregatesInput = {
+		AND?:
+			| scoring_evaluationScalarWhereWithAggregatesInput
+			| scoring_evaluationScalarWhereWithAggregatesInput[];
+		OR?: scoring_evaluationScalarWhereWithAggregatesInput[];
+		NOT?:
+			| scoring_evaluationScalarWhereWithAggregatesInput
+			| scoring_evaluationScalarWhereWithAggregatesInput[];
+		id?: IntWithAggregatesFilter<"scoring_evaluation"> | number;
+		tid?: UuidWithAggregatesFilter<"scoring_evaluation"> | string;
+		sid?: UuidWithAggregatesFilter<"scoring_evaluation"> | string;
+		visual_appearance?: IntWithAggregatesFilter<"scoring_evaluation"> | number;
+		visual_color?: IntWithAggregatesFilter<"scoring_evaluation"> | number;
+		olfactory_intensity?: IntWithAggregatesFilter<"scoring_evaluation"> | number;
+		olfactory_complexity?: IntWithAggregatesFilter<"scoring_evaluation"> | number;
+		olfactory_quality?: IntWithAggregatesFilter<"scoring_evaluation"> | number;
+		taste_structure?: IntWithAggregatesFilter<"scoring_evaluation"> | number;
+		taste_balance?: IntWithAggregatesFilter<"scoring_evaluation"> | number;
+		taste_intensity?: IntWithAggregatesFilter<"scoring_evaluation"> | number;
+		taste_persistence?: IntWithAggregatesFilter<"scoring_evaluation"> | number;
+		taste_quality?: IntWithAggregatesFilter<"scoring_evaluation"> | number;
+		harmony?: IntWithAggregatesFilter<"scoring_evaluation"> | number;
+		total_score?: IntNullableWithAggregatesFilter<"scoring_evaluation"> | number | null;
+		notes?: StringNullableWithAggregatesFilter<"scoring_evaluation"> | string | null;
+	};
+
 	export type usersCreateInput = {
 		uid?: string;
 		username?: string | null;
@@ -12589,6 +15741,7 @@ export namespace Prisma {
 		updated_at?: Date | string | null;
 		final_considerations?: final_considerationsCreateNestedOneWithoutTastingsInput;
 		olfactory_exams?: olfactory_examsCreateNestedOneWithoutTastingsInput;
+		scoring_evaluation?: scoring_evaluationCreateNestedOneWithoutTastingsInput;
 		taste_olfactory_exams?: taste_olfactory_examsCreateNestedOneWithoutTastingsInput;
 		users: usersCreateNestedOneWithoutTastingsInput;
 		wine_categories: wine_categoriesCreateNestedOneWithoutTastingsInput;
@@ -12615,6 +15768,7 @@ export namespace Prisma {
 		updated_at?: Date | string | null;
 		final_considerations?: final_considerationsUncheckedCreateNestedOneWithoutTastingsInput;
 		olfactory_exams?: olfactory_examsUncheckedCreateNestedOneWithoutTastingsInput;
+		scoring_evaluation?: scoring_evaluationUncheckedCreateNestedOneWithoutTastingsInput;
 		taste_olfactory_exams?: taste_olfactory_examsUncheckedCreateNestedOneWithoutTastingsInput;
 		visual_exams?: visual_examsUncheckedCreateNestedOneWithoutTastingsInput;
 	};
@@ -12652,6 +15806,7 @@ export namespace Prisma {
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		final_considerations?: final_considerationsUpdateOneWithoutTastingsNestedInput;
 		olfactory_exams?: olfactory_examsUpdateOneWithoutTastingsNestedInput;
+		scoring_evaluation?: scoring_evaluationUpdateOneWithoutTastingsNestedInput;
 		taste_olfactory_exams?: taste_olfactory_examsUpdateOneWithoutTastingsNestedInput;
 		users?: usersUpdateOneRequiredWithoutTastingsNestedInput;
 		wine_categories?: wine_categoriesUpdateOneRequiredWithoutTastingsNestedInput;
@@ -12694,6 +15849,7 @@ export namespace Prisma {
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		final_considerations?: final_considerationsUncheckedUpdateOneWithoutTastingsNestedInput;
 		olfactory_exams?: olfactory_examsUncheckedUpdateOneWithoutTastingsNestedInput;
+		scoring_evaluation?: scoring_evaluationUncheckedUpdateOneWithoutTastingsNestedInput;
 		taste_olfactory_exams?: taste_olfactory_examsUncheckedUpdateOneWithoutTastingsNestedInput;
 		visual_exams?: visual_examsUncheckedUpdateOneWithoutTastingsNestedInput;
 	};
@@ -13205,6 +16361,174 @@ export namespace Prisma {
 		notes?: NullableStringFieldUpdateOperationsInput | string | null;
 	};
 
+	export type corrective_coefficientsCreateInput = {
+		attribute: string;
+		coefficient: number;
+	};
+
+	export type corrective_coefficientsUncheckedCreateInput = {
+		id?: number;
+		attribute: string;
+		coefficient: number;
+	};
+
+	export type corrective_coefficientsUpdateInput = {
+		attribute?: StringFieldUpdateOperationsInput | string;
+		coefficient?: IntFieldUpdateOperationsInput | number;
+	};
+
+	export type corrective_coefficientsUncheckedUpdateInput = {
+		id?: IntFieldUpdateOperationsInput | number;
+		attribute?: StringFieldUpdateOperationsInput | string;
+		coefficient?: IntFieldUpdateOperationsInput | number;
+	};
+
+	export type corrective_coefficientsCreateManyInput = {
+		id?: number;
+		attribute: string;
+		coefficient: number;
+	};
+
+	export type corrective_coefficientsUpdateManyMutationInput = {
+		attribute?: StringFieldUpdateOperationsInput | string;
+		coefficient?: IntFieldUpdateOperationsInput | number;
+	};
+
+	export type corrective_coefficientsUncheckedUpdateManyInput = {
+		id?: IntFieldUpdateOperationsInput | number;
+		attribute?: StringFieldUpdateOperationsInput | string;
+		coefficient?: IntFieldUpdateOperationsInput | number;
+	};
+
+	export type scoring_evaluationCreateInput = {
+		sid?: string;
+		visual_appearance: number;
+		visual_color: number;
+		olfactory_intensity: number;
+		olfactory_complexity: number;
+		olfactory_quality: number;
+		taste_structure: number;
+		taste_balance: number;
+		taste_intensity: number;
+		taste_persistence: number;
+		taste_quality: number;
+		harmony: number;
+		total_score?: number | null;
+		notes?: string | null;
+		tastings: tastingsCreateNestedOneWithoutScoring_evaluationInput;
+	};
+
+	export type scoring_evaluationUncheckedCreateInput = {
+		id?: number;
+		tid: string;
+		sid?: string;
+		visual_appearance: number;
+		visual_color: number;
+		olfactory_intensity: number;
+		olfactory_complexity: number;
+		olfactory_quality: number;
+		taste_structure: number;
+		taste_balance: number;
+		taste_intensity: number;
+		taste_persistence: number;
+		taste_quality: number;
+		harmony: number;
+		total_score?: number | null;
+		notes?: string | null;
+	};
+
+	export type scoring_evaluationUpdateInput = {
+		sid?: StringFieldUpdateOperationsInput | string;
+		visual_appearance?: IntFieldUpdateOperationsInput | number;
+		visual_color?: IntFieldUpdateOperationsInput | number;
+		olfactory_intensity?: IntFieldUpdateOperationsInput | number;
+		olfactory_complexity?: IntFieldUpdateOperationsInput | number;
+		olfactory_quality?: IntFieldUpdateOperationsInput | number;
+		taste_structure?: IntFieldUpdateOperationsInput | number;
+		taste_balance?: IntFieldUpdateOperationsInput | number;
+		taste_intensity?: IntFieldUpdateOperationsInput | number;
+		taste_persistence?: IntFieldUpdateOperationsInput | number;
+		taste_quality?: IntFieldUpdateOperationsInput | number;
+		harmony?: IntFieldUpdateOperationsInput | number;
+		total_score?: NullableIntFieldUpdateOperationsInput | number | null;
+		notes?: NullableStringFieldUpdateOperationsInput | string | null;
+		tastings?: tastingsUpdateOneRequiredWithoutScoring_evaluationNestedInput;
+	};
+
+	export type scoring_evaluationUncheckedUpdateInput = {
+		id?: IntFieldUpdateOperationsInput | number;
+		tid?: StringFieldUpdateOperationsInput | string;
+		sid?: StringFieldUpdateOperationsInput | string;
+		visual_appearance?: IntFieldUpdateOperationsInput | number;
+		visual_color?: IntFieldUpdateOperationsInput | number;
+		olfactory_intensity?: IntFieldUpdateOperationsInput | number;
+		olfactory_complexity?: IntFieldUpdateOperationsInput | number;
+		olfactory_quality?: IntFieldUpdateOperationsInput | number;
+		taste_structure?: IntFieldUpdateOperationsInput | number;
+		taste_balance?: IntFieldUpdateOperationsInput | number;
+		taste_intensity?: IntFieldUpdateOperationsInput | number;
+		taste_persistence?: IntFieldUpdateOperationsInput | number;
+		taste_quality?: IntFieldUpdateOperationsInput | number;
+		harmony?: IntFieldUpdateOperationsInput | number;
+		total_score?: NullableIntFieldUpdateOperationsInput | number | null;
+		notes?: NullableStringFieldUpdateOperationsInput | string | null;
+	};
+
+	export type scoring_evaluationCreateManyInput = {
+		id?: number;
+		tid: string;
+		sid?: string;
+		visual_appearance: number;
+		visual_color: number;
+		olfactory_intensity: number;
+		olfactory_complexity: number;
+		olfactory_quality: number;
+		taste_structure: number;
+		taste_balance: number;
+		taste_intensity: number;
+		taste_persistence: number;
+		taste_quality: number;
+		harmony: number;
+		total_score?: number | null;
+		notes?: string | null;
+	};
+
+	export type scoring_evaluationUpdateManyMutationInput = {
+		sid?: StringFieldUpdateOperationsInput | string;
+		visual_appearance?: IntFieldUpdateOperationsInput | number;
+		visual_color?: IntFieldUpdateOperationsInput | number;
+		olfactory_intensity?: IntFieldUpdateOperationsInput | number;
+		olfactory_complexity?: IntFieldUpdateOperationsInput | number;
+		olfactory_quality?: IntFieldUpdateOperationsInput | number;
+		taste_structure?: IntFieldUpdateOperationsInput | number;
+		taste_balance?: IntFieldUpdateOperationsInput | number;
+		taste_intensity?: IntFieldUpdateOperationsInput | number;
+		taste_persistence?: IntFieldUpdateOperationsInput | number;
+		taste_quality?: IntFieldUpdateOperationsInput | number;
+		harmony?: IntFieldUpdateOperationsInput | number;
+		total_score?: NullableIntFieldUpdateOperationsInput | number | null;
+		notes?: NullableStringFieldUpdateOperationsInput | string | null;
+	};
+
+	export type scoring_evaluationUncheckedUpdateManyInput = {
+		id?: IntFieldUpdateOperationsInput | number;
+		tid?: StringFieldUpdateOperationsInput | string;
+		sid?: StringFieldUpdateOperationsInput | string;
+		visual_appearance?: IntFieldUpdateOperationsInput | number;
+		visual_color?: IntFieldUpdateOperationsInput | number;
+		olfactory_intensity?: IntFieldUpdateOperationsInput | number;
+		olfactory_complexity?: IntFieldUpdateOperationsInput | number;
+		olfactory_quality?: IntFieldUpdateOperationsInput | number;
+		taste_structure?: IntFieldUpdateOperationsInput | number;
+		taste_balance?: IntFieldUpdateOperationsInput | number;
+		taste_intensity?: IntFieldUpdateOperationsInput | number;
+		taste_persistence?: IntFieldUpdateOperationsInput | number;
+		taste_quality?: IntFieldUpdateOperationsInput | number;
+		harmony?: IntFieldUpdateOperationsInput | number;
+		total_score?: NullableIntFieldUpdateOperationsInput | number | null;
+		notes?: NullableStringFieldUpdateOperationsInput | string | null;
+	};
+
 	export type IntFilter<$PrismaModel = never> = {
 		equals?: number | IntFieldRefInput<$PrismaModel>;
 		in?: number[] | ListIntFieldRefInput<$PrismaModel>;
@@ -13540,6 +16864,11 @@ export namespace Prisma {
 	export type Olfactory_examsNullableScalarRelationFilter = {
 		is?: olfactory_examsWhereInput | null;
 		isNot?: olfactory_examsWhereInput | null;
+	};
+
+	export type Scoring_evaluationNullableScalarRelationFilter = {
+		is?: scoring_evaluationWhereInput | null;
+		isNot?: scoring_evaluationWhereInput | null;
 	};
 
 	export type Taste_olfactory_examsNullableScalarRelationFilter = {
@@ -13956,6 +17285,150 @@ export namespace Prisma {
 		id?: SortOrder;
 	};
 
+	export type corrective_coefficientsCountOrderByAggregateInput = {
+		id?: SortOrder;
+		attribute?: SortOrder;
+		coefficient?: SortOrder;
+	};
+
+	export type corrective_coefficientsAvgOrderByAggregateInput = {
+		id?: SortOrder;
+		coefficient?: SortOrder;
+	};
+
+	export type corrective_coefficientsMaxOrderByAggregateInput = {
+		id?: SortOrder;
+		attribute?: SortOrder;
+		coefficient?: SortOrder;
+	};
+
+	export type corrective_coefficientsMinOrderByAggregateInput = {
+		id?: SortOrder;
+		attribute?: SortOrder;
+		coefficient?: SortOrder;
+	};
+
+	export type corrective_coefficientsSumOrderByAggregateInput = {
+		id?: SortOrder;
+		coefficient?: SortOrder;
+	};
+
+	export type IntNullableFilter<$PrismaModel = never> = {
+		equals?: number | IntFieldRefInput<$PrismaModel> | null;
+		in?: number[] | ListIntFieldRefInput<$PrismaModel> | null;
+		notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null;
+		lt?: number | IntFieldRefInput<$PrismaModel>;
+		lte?: number | IntFieldRefInput<$PrismaModel>;
+		gt?: number | IntFieldRefInput<$PrismaModel>;
+		gte?: number | IntFieldRefInput<$PrismaModel>;
+		not?: NestedIntNullableFilter<$PrismaModel> | number | null;
+	};
+
+	export type scoring_evaluationCountOrderByAggregateInput = {
+		id?: SortOrder;
+		tid?: SortOrder;
+		sid?: SortOrder;
+		visual_appearance?: SortOrder;
+		visual_color?: SortOrder;
+		olfactory_intensity?: SortOrder;
+		olfactory_complexity?: SortOrder;
+		olfactory_quality?: SortOrder;
+		taste_structure?: SortOrder;
+		taste_balance?: SortOrder;
+		taste_intensity?: SortOrder;
+		taste_persistence?: SortOrder;
+		taste_quality?: SortOrder;
+		harmony?: SortOrder;
+		total_score?: SortOrder;
+		notes?: SortOrder;
+	};
+
+	export type scoring_evaluationAvgOrderByAggregateInput = {
+		id?: SortOrder;
+		visual_appearance?: SortOrder;
+		visual_color?: SortOrder;
+		olfactory_intensity?: SortOrder;
+		olfactory_complexity?: SortOrder;
+		olfactory_quality?: SortOrder;
+		taste_structure?: SortOrder;
+		taste_balance?: SortOrder;
+		taste_intensity?: SortOrder;
+		taste_persistence?: SortOrder;
+		taste_quality?: SortOrder;
+		harmony?: SortOrder;
+		total_score?: SortOrder;
+	};
+
+	export type scoring_evaluationMaxOrderByAggregateInput = {
+		id?: SortOrder;
+		tid?: SortOrder;
+		sid?: SortOrder;
+		visual_appearance?: SortOrder;
+		visual_color?: SortOrder;
+		olfactory_intensity?: SortOrder;
+		olfactory_complexity?: SortOrder;
+		olfactory_quality?: SortOrder;
+		taste_structure?: SortOrder;
+		taste_balance?: SortOrder;
+		taste_intensity?: SortOrder;
+		taste_persistence?: SortOrder;
+		taste_quality?: SortOrder;
+		harmony?: SortOrder;
+		total_score?: SortOrder;
+		notes?: SortOrder;
+	};
+
+	export type scoring_evaluationMinOrderByAggregateInput = {
+		id?: SortOrder;
+		tid?: SortOrder;
+		sid?: SortOrder;
+		visual_appearance?: SortOrder;
+		visual_color?: SortOrder;
+		olfactory_intensity?: SortOrder;
+		olfactory_complexity?: SortOrder;
+		olfactory_quality?: SortOrder;
+		taste_structure?: SortOrder;
+		taste_balance?: SortOrder;
+		taste_intensity?: SortOrder;
+		taste_persistence?: SortOrder;
+		taste_quality?: SortOrder;
+		harmony?: SortOrder;
+		total_score?: SortOrder;
+		notes?: SortOrder;
+	};
+
+	export type scoring_evaluationSumOrderByAggregateInput = {
+		id?: SortOrder;
+		visual_appearance?: SortOrder;
+		visual_color?: SortOrder;
+		olfactory_intensity?: SortOrder;
+		olfactory_complexity?: SortOrder;
+		olfactory_quality?: SortOrder;
+		taste_structure?: SortOrder;
+		taste_balance?: SortOrder;
+		taste_intensity?: SortOrder;
+		taste_persistence?: SortOrder;
+		taste_quality?: SortOrder;
+		harmony?: SortOrder;
+		total_score?: SortOrder;
+	};
+
+	export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+		equals?: number | IntFieldRefInput<$PrismaModel> | null;
+		in?: number[] | ListIntFieldRefInput<$PrismaModel> | null;
+		notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null;
+		lt?: number | IntFieldRefInput<$PrismaModel>;
+		lte?: number | IntFieldRefInput<$PrismaModel>;
+		gt?: number | IntFieldRefInput<$PrismaModel>;
+		gte?: number | IntFieldRefInput<$PrismaModel>;
+		not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null;
+		_count?: NestedIntNullableFilter<$PrismaModel>;
+		_avg?: NestedFloatNullableFilter<$PrismaModel>;
+		_sum?: NestedIntNullableFilter<$PrismaModel>;
+		_min?: NestedIntNullableFilter<$PrismaModel>;
+		_max?: NestedIntNullableFilter<$PrismaModel>;
+	};
+
 	export type tastingsCreateNestedManyWithoutUsersInput = {
 		create?:
 			| XOR<tastingsCreateWithoutUsersInput, tastingsUncheckedCreateWithoutUsersInput>
@@ -14158,6 +17631,15 @@ export namespace Prisma {
 		connect?: olfactory_examsWhereUniqueInput;
 	};
 
+	export type scoring_evaluationCreateNestedOneWithoutTastingsInput = {
+		create?: XOR<
+			scoring_evaluationCreateWithoutTastingsInput,
+			scoring_evaluationUncheckedCreateWithoutTastingsInput
+		>;
+		connectOrCreate?: scoring_evaluationCreateOrConnectWithoutTastingsInput;
+		connect?: scoring_evaluationWhereUniqueInput;
+	};
+
 	export type taste_olfactory_examsCreateNestedOneWithoutTastingsInput = {
 		create?: XOR<
 			taste_olfactory_examsCreateWithoutTastingsInput,
@@ -14207,6 +17689,15 @@ export namespace Prisma {
 		>;
 		connectOrCreate?: olfactory_examsCreateOrConnectWithoutTastingsInput;
 		connect?: olfactory_examsWhereUniqueInput;
+	};
+
+	export type scoring_evaluationUncheckedCreateNestedOneWithoutTastingsInput = {
+		create?: XOR<
+			scoring_evaluationCreateWithoutTastingsInput,
+			scoring_evaluationUncheckedCreateWithoutTastingsInput
+		>;
+		connectOrCreate?: scoring_evaluationCreateOrConnectWithoutTastingsInput;
+		connect?: scoring_evaluationWhereUniqueInput;
 	};
 
 	export type taste_olfactory_examsUncheckedCreateNestedOneWithoutTastingsInput = {
@@ -14286,6 +17777,25 @@ export namespace Prisma {
 				olfactory_examsUpdateWithoutTastingsInput
 			>,
 			olfactory_examsUncheckedUpdateWithoutTastingsInput
+		>;
+	};
+
+	export type scoring_evaluationUpdateOneWithoutTastingsNestedInput = {
+		create?: XOR<
+			scoring_evaluationCreateWithoutTastingsInput,
+			scoring_evaluationUncheckedCreateWithoutTastingsInput
+		>;
+		connectOrCreate?: scoring_evaluationCreateOrConnectWithoutTastingsInput;
+		upsert?: scoring_evaluationUpsertWithoutTastingsInput;
+		disconnect?: scoring_evaluationWhereInput | boolean;
+		delete?: scoring_evaluationWhereInput | boolean;
+		connect?: scoring_evaluationWhereUniqueInput;
+		update?: XOR<
+			XOR<
+				scoring_evaluationUpdateToOneWithWhereWithoutTastingsInput,
+				scoring_evaluationUpdateWithoutTastingsInput
+			>,
+			scoring_evaluationUncheckedUpdateWithoutTastingsInput
 		>;
 	};
 
@@ -14390,6 +17900,25 @@ export namespace Prisma {
 				olfactory_examsUpdateWithoutTastingsInput
 			>,
 			olfactory_examsUncheckedUpdateWithoutTastingsInput
+		>;
+	};
+
+	export type scoring_evaluationUncheckedUpdateOneWithoutTastingsNestedInput = {
+		create?: XOR<
+			scoring_evaluationCreateWithoutTastingsInput,
+			scoring_evaluationUncheckedCreateWithoutTastingsInput
+		>;
+		connectOrCreate?: scoring_evaluationCreateOrConnectWithoutTastingsInput;
+		upsert?: scoring_evaluationUpsertWithoutTastingsInput;
+		disconnect?: scoring_evaluationWhereInput | boolean;
+		delete?: scoring_evaluationWhereInput | boolean;
+		connect?: scoring_evaluationWhereUniqueInput;
+		update?: XOR<
+			XOR<
+				scoring_evaluationUpdateToOneWithWhereWithoutTastingsInput,
+				scoring_evaluationUpdateWithoutTastingsInput
+			>,
+			scoring_evaluationUncheckedUpdateWithoutTastingsInput
 		>;
 	};
 
@@ -14532,6 +18061,40 @@ export namespace Prisma {
 				tastingsUpdateWithoutFinal_considerationsInput
 			>,
 			tastingsUncheckedUpdateWithoutFinal_considerationsInput
+		>;
+	};
+
+	export type tastingsCreateNestedOneWithoutScoring_evaluationInput = {
+		create?: XOR<
+			tastingsCreateWithoutScoring_evaluationInput,
+			tastingsUncheckedCreateWithoutScoring_evaluationInput
+		>;
+		connectOrCreate?: tastingsCreateOrConnectWithoutScoring_evaluationInput;
+		connect?: tastingsWhereUniqueInput;
+	};
+
+	export type NullableIntFieldUpdateOperationsInput = {
+		set?: number | null;
+		increment?: number;
+		decrement?: number;
+		multiply?: number;
+		divide?: number;
+	};
+
+	export type tastingsUpdateOneRequiredWithoutScoring_evaluationNestedInput = {
+		create?: XOR<
+			tastingsCreateWithoutScoring_evaluationInput,
+			tastingsUncheckedCreateWithoutScoring_evaluationInput
+		>;
+		connectOrCreate?: tastingsCreateOrConnectWithoutScoring_evaluationInput;
+		upsert?: tastingsUpsertWithoutScoring_evaluationInput;
+		connect?: tastingsWhereUniqueInput;
+		update?: XOR<
+			XOR<
+				tastingsUpdateToOneWithWhereWithoutScoring_evaluationInput,
+				tastingsUpdateWithoutScoring_evaluationInput
+			>,
+			tastingsUncheckedUpdateWithoutScoring_evaluationInput
 		>;
 	};
 
@@ -14874,6 +18437,33 @@ export namespace Prisma {
 		_max?: NestedDateTimeFilter<$PrismaModel>;
 	};
 
+	export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+		equals?: number | IntFieldRefInput<$PrismaModel> | null;
+		in?: number[] | ListIntFieldRefInput<$PrismaModel> | null;
+		notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null;
+		lt?: number | IntFieldRefInput<$PrismaModel>;
+		lte?: number | IntFieldRefInput<$PrismaModel>;
+		gt?: number | IntFieldRefInput<$PrismaModel>;
+		gte?: number | IntFieldRefInput<$PrismaModel>;
+		not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null;
+		_count?: NestedIntNullableFilter<$PrismaModel>;
+		_avg?: NestedFloatNullableFilter<$PrismaModel>;
+		_sum?: NestedIntNullableFilter<$PrismaModel>;
+		_min?: NestedIntNullableFilter<$PrismaModel>;
+		_max?: NestedIntNullableFilter<$PrismaModel>;
+	};
+
+	export type NestedFloatNullableFilter<$PrismaModel = never> = {
+		equals?: number | FloatFieldRefInput<$PrismaModel> | null;
+		in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null;
+		notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null;
+		lt?: number | FloatFieldRefInput<$PrismaModel>;
+		lte?: number | FloatFieldRefInput<$PrismaModel>;
+		gt?: number | FloatFieldRefInput<$PrismaModel>;
+		gte?: number | FloatFieldRefInput<$PrismaModel>;
+		not?: NestedFloatNullableFilter<$PrismaModel> | number | null;
+	};
+
 	export type tastingsCreateWithoutUsersInput = {
 		tid?: string;
 		full_name?: string | null;
@@ -14891,6 +18481,7 @@ export namespace Prisma {
 		updated_at?: Date | string | null;
 		final_considerations?: final_considerationsCreateNestedOneWithoutTastingsInput;
 		olfactory_exams?: olfactory_examsCreateNestedOneWithoutTastingsInput;
+		scoring_evaluation?: scoring_evaluationCreateNestedOneWithoutTastingsInput;
 		taste_olfactory_exams?: taste_olfactory_examsCreateNestedOneWithoutTastingsInput;
 		wine_categories: wine_categoriesCreateNestedOneWithoutTastingsInput;
 		visual_exams?: visual_examsCreateNestedOneWithoutTastingsInput;
@@ -14915,6 +18506,7 @@ export namespace Prisma {
 		updated_at?: Date | string | null;
 		final_considerations?: final_considerationsUncheckedCreateNestedOneWithoutTastingsInput;
 		olfactory_exams?: olfactory_examsUncheckedCreateNestedOneWithoutTastingsInput;
+		scoring_evaluation?: scoring_evaluationUncheckedCreateNestedOneWithoutTastingsInput;
 		taste_olfactory_exams?: taste_olfactory_examsUncheckedCreateNestedOneWithoutTastingsInput;
 		visual_exams?: visual_examsUncheckedCreateNestedOneWithoutTastingsInput;
 	};
@@ -14991,6 +18583,7 @@ export namespace Prisma {
 		updated_at?: Date | string | null;
 		final_considerations?: final_considerationsCreateNestedOneWithoutTastingsInput;
 		olfactory_exams?: olfactory_examsCreateNestedOneWithoutTastingsInput;
+		scoring_evaluation?: scoring_evaluationCreateNestedOneWithoutTastingsInput;
 		taste_olfactory_exams?: taste_olfactory_examsCreateNestedOneWithoutTastingsInput;
 		users: usersCreateNestedOneWithoutTastingsInput;
 		visual_exams?: visual_examsCreateNestedOneWithoutTastingsInput;
@@ -15015,6 +18608,7 @@ export namespace Prisma {
 		updated_at?: Date | string | null;
 		final_considerations?: final_considerationsUncheckedCreateNestedOneWithoutTastingsInput;
 		olfactory_exams?: olfactory_examsUncheckedCreateNestedOneWithoutTastingsInput;
+		scoring_evaluation?: scoring_evaluationUncheckedCreateNestedOneWithoutTastingsInput;
 		taste_olfactory_exams?: taste_olfactory_examsUncheckedCreateNestedOneWithoutTastingsInput;
 		visual_exams?: visual_examsUncheckedCreateNestedOneWithoutTastingsInput;
 	};
@@ -15127,6 +18721,49 @@ export namespace Prisma {
 		create: XOR<
 			olfactory_examsCreateWithoutTastingsInput,
 			olfactory_examsUncheckedCreateWithoutTastingsInput
+		>;
+	};
+
+	export type scoring_evaluationCreateWithoutTastingsInput = {
+		sid?: string;
+		visual_appearance: number;
+		visual_color: number;
+		olfactory_intensity: number;
+		olfactory_complexity: number;
+		olfactory_quality: number;
+		taste_structure: number;
+		taste_balance: number;
+		taste_intensity: number;
+		taste_persistence: number;
+		taste_quality: number;
+		harmony: number;
+		total_score?: number | null;
+		notes?: string | null;
+	};
+
+	export type scoring_evaluationUncheckedCreateWithoutTastingsInput = {
+		id?: number;
+		sid?: string;
+		visual_appearance: number;
+		visual_color: number;
+		olfactory_intensity: number;
+		olfactory_complexity: number;
+		olfactory_quality: number;
+		taste_structure: number;
+		taste_balance: number;
+		taste_intensity: number;
+		taste_persistence: number;
+		taste_quality: number;
+		harmony: number;
+		total_score?: number | null;
+		notes?: string | null;
+	};
+
+	export type scoring_evaluationCreateOrConnectWithoutTastingsInput = {
+		where: scoring_evaluationWhereUniqueInput;
+		create: XOR<
+			scoring_evaluationCreateWithoutTastingsInput,
+			scoring_evaluationUncheckedCreateWithoutTastingsInput
 		>;
 	};
 
@@ -15353,6 +18990,61 @@ export namespace Prisma {
 		notes?: NullableStringFieldUpdateOperationsInput | string | null;
 	};
 
+	export type scoring_evaluationUpsertWithoutTastingsInput = {
+		update: XOR<
+			scoring_evaluationUpdateWithoutTastingsInput,
+			scoring_evaluationUncheckedUpdateWithoutTastingsInput
+		>;
+		create: XOR<
+			scoring_evaluationCreateWithoutTastingsInput,
+			scoring_evaluationUncheckedCreateWithoutTastingsInput
+		>;
+		where?: scoring_evaluationWhereInput;
+	};
+
+	export type scoring_evaluationUpdateToOneWithWhereWithoutTastingsInput = {
+		where?: scoring_evaluationWhereInput;
+		data: XOR<
+			scoring_evaluationUpdateWithoutTastingsInput,
+			scoring_evaluationUncheckedUpdateWithoutTastingsInput
+		>;
+	};
+
+	export type scoring_evaluationUpdateWithoutTastingsInput = {
+		sid?: StringFieldUpdateOperationsInput | string;
+		visual_appearance?: IntFieldUpdateOperationsInput | number;
+		visual_color?: IntFieldUpdateOperationsInput | number;
+		olfactory_intensity?: IntFieldUpdateOperationsInput | number;
+		olfactory_complexity?: IntFieldUpdateOperationsInput | number;
+		olfactory_quality?: IntFieldUpdateOperationsInput | number;
+		taste_structure?: IntFieldUpdateOperationsInput | number;
+		taste_balance?: IntFieldUpdateOperationsInput | number;
+		taste_intensity?: IntFieldUpdateOperationsInput | number;
+		taste_persistence?: IntFieldUpdateOperationsInput | number;
+		taste_quality?: IntFieldUpdateOperationsInput | number;
+		harmony?: IntFieldUpdateOperationsInput | number;
+		total_score?: NullableIntFieldUpdateOperationsInput | number | null;
+		notes?: NullableStringFieldUpdateOperationsInput | string | null;
+	};
+
+	export type scoring_evaluationUncheckedUpdateWithoutTastingsInput = {
+		id?: IntFieldUpdateOperationsInput | number;
+		sid?: StringFieldUpdateOperationsInput | string;
+		visual_appearance?: IntFieldUpdateOperationsInput | number;
+		visual_color?: IntFieldUpdateOperationsInput | number;
+		olfactory_intensity?: IntFieldUpdateOperationsInput | number;
+		olfactory_complexity?: IntFieldUpdateOperationsInput | number;
+		olfactory_quality?: IntFieldUpdateOperationsInput | number;
+		taste_structure?: IntFieldUpdateOperationsInput | number;
+		taste_balance?: IntFieldUpdateOperationsInput | number;
+		taste_intensity?: IntFieldUpdateOperationsInput | number;
+		taste_persistence?: IntFieldUpdateOperationsInput | number;
+		taste_quality?: IntFieldUpdateOperationsInput | number;
+		harmony?: IntFieldUpdateOperationsInput | number;
+		total_score?: NullableIntFieldUpdateOperationsInput | number | null;
+		notes?: NullableStringFieldUpdateOperationsInput | string | null;
+	};
+
 	export type taste_olfactory_examsUpsertWithoutTastingsInput = {
 		update: XOR<
 			taste_olfactory_examsUpdateWithoutTastingsInput,
@@ -15540,6 +19232,7 @@ export namespace Prisma {
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
 		final_considerations?: final_considerationsCreateNestedOneWithoutTastingsInput;
+		scoring_evaluation?: scoring_evaluationCreateNestedOneWithoutTastingsInput;
 		taste_olfactory_exams?: taste_olfactory_examsCreateNestedOneWithoutTastingsInput;
 		users: usersCreateNestedOneWithoutTastingsInput;
 		wine_categories: wine_categoriesCreateNestedOneWithoutTastingsInput;
@@ -15565,6 +19258,7 @@ export namespace Prisma {
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
 		final_considerations?: final_considerationsUncheckedCreateNestedOneWithoutTastingsInput;
+		scoring_evaluation?: scoring_evaluationUncheckedCreateNestedOneWithoutTastingsInput;
 		taste_olfactory_exams?: taste_olfactory_examsUncheckedCreateNestedOneWithoutTastingsInput;
 		visual_exams?: visual_examsUncheckedCreateNestedOneWithoutTastingsInput;
 	};
@@ -15629,6 +19323,7 @@ export namespace Prisma {
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		final_considerations?: final_considerationsUpdateOneWithoutTastingsNestedInput;
+		scoring_evaluation?: scoring_evaluationUpdateOneWithoutTastingsNestedInput;
 		taste_olfactory_exams?: taste_olfactory_examsUpdateOneWithoutTastingsNestedInput;
 		users?: usersUpdateOneRequiredWithoutTastingsNestedInput;
 		wine_categories?: wine_categoriesUpdateOneRequiredWithoutTastingsNestedInput;
@@ -15670,6 +19365,7 @@ export namespace Prisma {
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		final_considerations?: final_considerationsUncheckedUpdateOneWithoutTastingsNestedInput;
+		scoring_evaluation?: scoring_evaluationUncheckedUpdateOneWithoutTastingsNestedInput;
 		taste_olfactory_exams?: taste_olfactory_examsUncheckedUpdateOneWithoutTastingsNestedInput;
 		visual_exams?: visual_examsUncheckedUpdateOneWithoutTastingsNestedInput;
 	};
@@ -15691,6 +19387,7 @@ export namespace Prisma {
 		updated_at?: Date | string | null;
 		final_considerations?: final_considerationsCreateNestedOneWithoutTastingsInput;
 		olfactory_exams?: olfactory_examsCreateNestedOneWithoutTastingsInput;
+		scoring_evaluation?: scoring_evaluationCreateNestedOneWithoutTastingsInput;
 		users: usersCreateNestedOneWithoutTastingsInput;
 		wine_categories: wine_categoriesCreateNestedOneWithoutTastingsInput;
 		visual_exams?: visual_examsCreateNestedOneWithoutTastingsInput;
@@ -15716,6 +19413,7 @@ export namespace Prisma {
 		updated_at?: Date | string | null;
 		final_considerations?: final_considerationsUncheckedCreateNestedOneWithoutTastingsInput;
 		olfactory_exams?: olfactory_examsUncheckedCreateNestedOneWithoutTastingsInput;
+		scoring_evaluation?: scoring_evaluationUncheckedCreateNestedOneWithoutTastingsInput;
 		visual_exams?: visual_examsUncheckedCreateNestedOneWithoutTastingsInput;
 	};
 
@@ -15780,6 +19478,7 @@ export namespace Prisma {
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		final_considerations?: final_considerationsUpdateOneWithoutTastingsNestedInput;
 		olfactory_exams?: olfactory_examsUpdateOneWithoutTastingsNestedInput;
+		scoring_evaluation?: scoring_evaluationUpdateOneWithoutTastingsNestedInput;
 		users?: usersUpdateOneRequiredWithoutTastingsNestedInput;
 		wine_categories?: wine_categoriesUpdateOneRequiredWithoutTastingsNestedInput;
 		visual_exams?: visual_examsUpdateOneWithoutTastingsNestedInput;
@@ -15821,6 +19520,7 @@ export namespace Prisma {
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		final_considerations?: final_considerationsUncheckedUpdateOneWithoutTastingsNestedInput;
 		olfactory_exams?: olfactory_examsUncheckedUpdateOneWithoutTastingsNestedInput;
+		scoring_evaluation?: scoring_evaluationUncheckedUpdateOneWithoutTastingsNestedInput;
 		visual_exams?: visual_examsUncheckedUpdateOneWithoutTastingsNestedInput;
 	};
 
@@ -15841,6 +19541,7 @@ export namespace Prisma {
 		updated_at?: Date | string | null;
 		final_considerations?: final_considerationsCreateNestedOneWithoutTastingsInput;
 		olfactory_exams?: olfactory_examsCreateNestedOneWithoutTastingsInput;
+		scoring_evaluation?: scoring_evaluationCreateNestedOneWithoutTastingsInput;
 		taste_olfactory_exams?: taste_olfactory_examsCreateNestedOneWithoutTastingsInput;
 		users: usersCreateNestedOneWithoutTastingsInput;
 		wine_categories: wine_categoriesCreateNestedOneWithoutTastingsInput;
@@ -15866,6 +19567,7 @@ export namespace Prisma {
 		updated_at?: Date | string | null;
 		final_considerations?: final_considerationsUncheckedCreateNestedOneWithoutTastingsInput;
 		olfactory_exams?: olfactory_examsUncheckedCreateNestedOneWithoutTastingsInput;
+		scoring_evaluation?: scoring_evaluationUncheckedCreateNestedOneWithoutTastingsInput;
 		taste_olfactory_exams?: taste_olfactory_examsUncheckedCreateNestedOneWithoutTastingsInput;
 	};
 
@@ -15930,6 +19632,7 @@ export namespace Prisma {
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		final_considerations?: final_considerationsUpdateOneWithoutTastingsNestedInput;
 		olfactory_exams?: olfactory_examsUpdateOneWithoutTastingsNestedInput;
+		scoring_evaluation?: scoring_evaluationUpdateOneWithoutTastingsNestedInput;
 		taste_olfactory_exams?: taste_olfactory_examsUpdateOneWithoutTastingsNestedInput;
 		users?: usersUpdateOneRequiredWithoutTastingsNestedInput;
 		wine_categories?: wine_categoriesUpdateOneRequiredWithoutTastingsNestedInput;
@@ -15971,6 +19674,7 @@ export namespace Prisma {
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		final_considerations?: final_considerationsUncheckedUpdateOneWithoutTastingsNestedInput;
 		olfactory_exams?: olfactory_examsUncheckedUpdateOneWithoutTastingsNestedInput;
+		scoring_evaluation?: scoring_evaluationUncheckedUpdateOneWithoutTastingsNestedInput;
 		taste_olfactory_exams?: taste_olfactory_examsUncheckedUpdateOneWithoutTastingsNestedInput;
 	};
 
@@ -15990,6 +19694,7 @@ export namespace Prisma {
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
 		olfactory_exams?: olfactory_examsCreateNestedOneWithoutTastingsInput;
+		scoring_evaluation?: scoring_evaluationCreateNestedOneWithoutTastingsInput;
 		taste_olfactory_exams?: taste_olfactory_examsCreateNestedOneWithoutTastingsInput;
 		users: usersCreateNestedOneWithoutTastingsInput;
 		wine_categories: wine_categoriesCreateNestedOneWithoutTastingsInput;
@@ -16015,6 +19720,7 @@ export namespace Prisma {
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
 		olfactory_exams?: olfactory_examsUncheckedCreateNestedOneWithoutTastingsInput;
+		scoring_evaluation?: scoring_evaluationUncheckedCreateNestedOneWithoutTastingsInput;
 		taste_olfactory_exams?: taste_olfactory_examsUncheckedCreateNestedOneWithoutTastingsInput;
 		visual_exams?: visual_examsUncheckedCreateNestedOneWithoutTastingsInput;
 	};
@@ -16079,6 +19785,7 @@ export namespace Prisma {
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		olfactory_exams?: olfactory_examsUpdateOneWithoutTastingsNestedInput;
+		scoring_evaluation?: scoring_evaluationUpdateOneWithoutTastingsNestedInput;
 		taste_olfactory_exams?: taste_olfactory_examsUpdateOneWithoutTastingsNestedInput;
 		users?: usersUpdateOneRequiredWithoutTastingsNestedInput;
 		wine_categories?: wine_categoriesUpdateOneRequiredWithoutTastingsNestedInput;
@@ -16119,6 +19826,161 @@ export namespace Prisma {
 		tasting_location?: StringFieldUpdateOperationsInput | string;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		olfactory_exams?: olfactory_examsUncheckedUpdateOneWithoutTastingsNestedInput;
+		scoring_evaluation?: scoring_evaluationUncheckedUpdateOneWithoutTastingsNestedInput;
+		taste_olfactory_exams?: taste_olfactory_examsUncheckedUpdateOneWithoutTastingsNestedInput;
+		visual_exams?: visual_examsUncheckedUpdateOneWithoutTastingsNestedInput;
+	};
+
+	export type tastingsCreateWithoutScoring_evaluationInput = {
+		tid?: string;
+		full_name?: string | null;
+		favorite?: boolean;
+		sample_number?: string | null;
+		wine_denomination: string;
+		winemaker: string;
+		alcohol_content: Decimal | DecimalJsLike | number | string;
+		vintage: number;
+		wine_temperature: Decimal | DecimalJsLike | number | string;
+		ambient_temperature?: Decimal | DecimalJsLike | number | string | null;
+		tasting_timestamp: Date | string;
+		tasting_location: string;
+		created_at?: Date | string | null;
+		updated_at?: Date | string | null;
+		final_considerations?: final_considerationsCreateNestedOneWithoutTastingsInput;
+		olfactory_exams?: olfactory_examsCreateNestedOneWithoutTastingsInput;
+		taste_olfactory_exams?: taste_olfactory_examsCreateNestedOneWithoutTastingsInput;
+		users: usersCreateNestedOneWithoutTastingsInput;
+		wine_categories: wine_categoriesCreateNestedOneWithoutTastingsInput;
+		visual_exams?: visual_examsCreateNestedOneWithoutTastingsInput;
+	};
+
+	export type tastingsUncheckedCreateWithoutScoring_evaluationInput = {
+		id?: number;
+		tid?: string;
+		uid: string;
+		full_name?: string | null;
+		wine_category_id: number;
+		favorite?: boolean;
+		sample_number?: string | null;
+		wine_denomination: string;
+		winemaker: string;
+		alcohol_content: Decimal | DecimalJsLike | number | string;
+		vintage: number;
+		wine_temperature: Decimal | DecimalJsLike | number | string;
+		ambient_temperature?: Decimal | DecimalJsLike | number | string | null;
+		tasting_timestamp: Date | string;
+		tasting_location: string;
+		created_at?: Date | string | null;
+		updated_at?: Date | string | null;
+		final_considerations?: final_considerationsUncheckedCreateNestedOneWithoutTastingsInput;
+		olfactory_exams?: olfactory_examsUncheckedCreateNestedOneWithoutTastingsInput;
+		taste_olfactory_exams?: taste_olfactory_examsUncheckedCreateNestedOneWithoutTastingsInput;
+		visual_exams?: visual_examsUncheckedCreateNestedOneWithoutTastingsInput;
+	};
+
+	export type tastingsCreateOrConnectWithoutScoring_evaluationInput = {
+		where: tastingsWhereUniqueInput;
+		create: XOR<
+			tastingsCreateWithoutScoring_evaluationInput,
+			tastingsUncheckedCreateWithoutScoring_evaluationInput
+		>;
+	};
+
+	export type tastingsUpsertWithoutScoring_evaluationInput = {
+		update: XOR<
+			tastingsUpdateWithoutScoring_evaluationInput,
+			tastingsUncheckedUpdateWithoutScoring_evaluationInput
+		>;
+		create: XOR<
+			tastingsCreateWithoutScoring_evaluationInput,
+			tastingsUncheckedCreateWithoutScoring_evaluationInput
+		>;
+		where?: tastingsWhereInput;
+	};
+
+	export type tastingsUpdateToOneWithWhereWithoutScoring_evaluationInput = {
+		where?: tastingsWhereInput;
+		data: XOR<
+			tastingsUpdateWithoutScoring_evaluationInput,
+			tastingsUncheckedUpdateWithoutScoring_evaluationInput
+		>;
+	};
+
+	export type tastingsUpdateWithoutScoring_evaluationInput = {
+		tid?: StringFieldUpdateOperationsInput | string;
+		full_name?: NullableStringFieldUpdateOperationsInput | string | null;
+		favorite?: BoolFieldUpdateOperationsInput | boolean;
+		sample_number?: NullableStringFieldUpdateOperationsInput | string | null;
+		wine_denomination?: StringFieldUpdateOperationsInput | string;
+		winemaker?: StringFieldUpdateOperationsInput | string;
+		alcohol_content?:
+			| DecimalFieldUpdateOperationsInput
+			| Decimal
+			| DecimalJsLike
+			| number
+			| string;
+		vintage?: IntFieldUpdateOperationsInput | number;
+		wine_temperature?:
+			| DecimalFieldUpdateOperationsInput
+			| Decimal
+			| DecimalJsLike
+			| number
+			| string;
+		ambient_temperature?:
+			| NullableDecimalFieldUpdateOperationsInput
+			| Decimal
+			| DecimalJsLike
+			| number
+			| string
+			| null;
+		tasting_timestamp?: DateTimeFieldUpdateOperationsInput | Date | string;
+		tasting_location?: StringFieldUpdateOperationsInput | string;
+		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		final_considerations?: final_considerationsUpdateOneWithoutTastingsNestedInput;
+		olfactory_exams?: olfactory_examsUpdateOneWithoutTastingsNestedInput;
+		taste_olfactory_exams?: taste_olfactory_examsUpdateOneWithoutTastingsNestedInput;
+		users?: usersUpdateOneRequiredWithoutTastingsNestedInput;
+		wine_categories?: wine_categoriesUpdateOneRequiredWithoutTastingsNestedInput;
+		visual_exams?: visual_examsUpdateOneWithoutTastingsNestedInput;
+	};
+
+	export type tastingsUncheckedUpdateWithoutScoring_evaluationInput = {
+		id?: IntFieldUpdateOperationsInput | number;
+		tid?: StringFieldUpdateOperationsInput | string;
+		uid?: StringFieldUpdateOperationsInput | string;
+		full_name?: NullableStringFieldUpdateOperationsInput | string | null;
+		wine_category_id?: IntFieldUpdateOperationsInput | number;
+		favorite?: BoolFieldUpdateOperationsInput | boolean;
+		sample_number?: NullableStringFieldUpdateOperationsInput | string | null;
+		wine_denomination?: StringFieldUpdateOperationsInput | string;
+		winemaker?: StringFieldUpdateOperationsInput | string;
+		alcohol_content?:
+			| DecimalFieldUpdateOperationsInput
+			| Decimal
+			| DecimalJsLike
+			| number
+			| string;
+		vintage?: IntFieldUpdateOperationsInput | number;
+		wine_temperature?:
+			| DecimalFieldUpdateOperationsInput
+			| Decimal
+			| DecimalJsLike
+			| number
+			| string;
+		ambient_temperature?:
+			| NullableDecimalFieldUpdateOperationsInput
+			| Decimal
+			| DecimalJsLike
+			| number
+			| string
+			| null;
+		tasting_timestamp?: DateTimeFieldUpdateOperationsInput | Date | string;
+		tasting_location?: StringFieldUpdateOperationsInput | string;
+		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		final_considerations?: final_considerationsUncheckedUpdateOneWithoutTastingsNestedInput;
 		olfactory_exams?: olfactory_examsUncheckedUpdateOneWithoutTastingsNestedInput;
 		taste_olfactory_exams?: taste_olfactory_examsUncheckedUpdateOneWithoutTastingsNestedInput;
 		visual_exams?: visual_examsUncheckedUpdateOneWithoutTastingsNestedInput;
@@ -16176,6 +20038,7 @@ export namespace Prisma {
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		final_considerations?: final_considerationsUpdateOneWithoutTastingsNestedInput;
 		olfactory_exams?: olfactory_examsUpdateOneWithoutTastingsNestedInput;
+		scoring_evaluation?: scoring_evaluationUpdateOneWithoutTastingsNestedInput;
 		taste_olfactory_exams?: taste_olfactory_examsUpdateOneWithoutTastingsNestedInput;
 		wine_categories?: wine_categoriesUpdateOneRequiredWithoutTastingsNestedInput;
 		visual_exams?: visual_examsUpdateOneWithoutTastingsNestedInput;
@@ -16216,6 +20079,7 @@ export namespace Prisma {
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		final_considerations?: final_considerationsUncheckedUpdateOneWithoutTastingsNestedInput;
 		olfactory_exams?: olfactory_examsUncheckedUpdateOneWithoutTastingsNestedInput;
+		scoring_evaluation?: scoring_evaluationUncheckedUpdateOneWithoutTastingsNestedInput;
 		taste_olfactory_exams?: taste_olfactory_examsUncheckedUpdateOneWithoutTastingsNestedInput;
 		visual_exams?: visual_examsUncheckedUpdateOneWithoutTastingsNestedInput;
 	};
@@ -16307,6 +20171,7 @@ export namespace Prisma {
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		final_considerations?: final_considerationsUpdateOneWithoutTastingsNestedInput;
 		olfactory_exams?: olfactory_examsUpdateOneWithoutTastingsNestedInput;
+		scoring_evaluation?: scoring_evaluationUpdateOneWithoutTastingsNestedInput;
 		taste_olfactory_exams?: taste_olfactory_examsUpdateOneWithoutTastingsNestedInput;
 		users?: usersUpdateOneRequiredWithoutTastingsNestedInput;
 		visual_exams?: visual_examsUpdateOneWithoutTastingsNestedInput;
@@ -16347,6 +20212,7 @@ export namespace Prisma {
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		final_considerations?: final_considerationsUncheckedUpdateOneWithoutTastingsNestedInput;
 		olfactory_exams?: olfactory_examsUncheckedUpdateOneWithoutTastingsNestedInput;
+		scoring_evaluation?: scoring_evaluationUncheckedUpdateOneWithoutTastingsNestedInput;
 		taste_olfactory_exams?: taste_olfactory_examsUncheckedUpdateOneWithoutTastingsNestedInput;
 		visual_exams?: visual_examsUncheckedUpdateOneWithoutTastingsNestedInput;
 	};

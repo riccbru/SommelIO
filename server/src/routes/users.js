@@ -23,17 +23,6 @@ router.get("/me", async (req, res) => {
 			return;
 		}
 
-		const totalTastings = await prisma.tastings.count({
-			where: { uid: req.user.uid },
-		});
-
-		const favoriteTastings = await prisma.tastings.count({
-			where: {
-				uid: req.user.uid,
-				favorite: true,
-			},
-		});
-
 		const payload = {
 			uid: user?.uid,
 			username: user?.username,
@@ -68,6 +57,13 @@ router.get("/me/stats", async (req, res) => {
 			},
 		});
 
+		// const ratedTastings = await prisma.tastings.count({
+		// 	where: {
+		// 		uid: req.user.uid,
+		// 		rated: true
+		// 	}
+		// });
+
 		const averageRating = 0.1;
 
 		const payload = {
@@ -75,7 +71,7 @@ router.get("/me/stats", async (req, res) => {
 				totalTastings: totalTastings,
 				averageRating: averageRating,
 				favoriteTastings: favoriteTastings,
-			}
+			},
 		};
 
 		res.json(payload);

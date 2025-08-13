@@ -29,6 +29,15 @@ const formatOlfactoryExam = data => {
 	return exam;
 };
 
+const formatScoringEvaluation = data => {
+	const scoring = {
+		sid: data?.sid,
+		total_score: data.total_score,
+		notes: data.notes,
+	};
+	return scoring;
+};
+
 const formatTasting = tasting => {
 	if (tasting.visual_exams) {
 		delete tasting.visual_exams?.id;
@@ -67,6 +76,9 @@ const formatTasting = tasting => {
 		olfactory_exam: tasting.olfactory_exams ? formatOlfactoryExam(tasting.olfactory_exams) : {},
 		taste_olfactory_exam: tasting.taste_olfactory_exams || {},
 		final_considerations: tasting.final_considerations || {},
+		scoring_evaluation: tasting.scoring_evaluation
+			? formatScoringEvaluation(tasting.scoring_evaluation)
+			: {},
 	};
 	return tastingFormatted;
 };
@@ -79,4 +91,10 @@ const findWineCategoryId = async code => {
 	return category?.id || null;
 };
 
-export { getPreferredLanguage, formatTasting, formatOlfactoryExam, findWineCategoryId };
+export {
+	getPreferredLanguage,
+	formatTasting,
+	formatOlfactoryExam,
+	findWineCategoryId,
+	formatScoringEvaluation,
+};

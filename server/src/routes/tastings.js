@@ -19,6 +19,7 @@ router.get("/", async (req, res) => {
 				olfactory_exams: true,
 				taste_olfactory_exams: true,
 				final_considerations: true,
+				scoring_evaluation: true,
 			},
 			orderBy: { id: "desc" },
 		});
@@ -48,6 +49,7 @@ router.get("/:tid", async (req, res) => {
 				olfactory_exams: true,
 				taste_olfactory_exams: true,
 				final_considerations: true,
+				scoring_evaluation: true,
 			},
 		});
 

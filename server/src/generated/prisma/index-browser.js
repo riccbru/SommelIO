@@ -18,12 +18,12 @@ exports.Prisma = Prisma;
 exports.$Enums = {};
 
 /**
- * Prisma Client JS version: 6.13.0
- * Query Engine version: 361e86d0ea4987e9f53a565309b3eed797a6bcbd
+ * Prisma Client JS version: 6.14.0
+ * Query Engine version: 717184b7b35ea05dfa71a3236b7af656013e1e49
  */
 Prisma.prismaVersion = {
-	client: "6.13.0",
-	engine: "361e86d0ea4987e9f53a565309b3eed797a6bcbd",
+	client: "6.14.0",
+	engine: "717184b7b35ea05dfa71a3236b7af656013e1e49",
 };
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -220,6 +220,31 @@ exports.Prisma.Final_considerationsScalarFieldEnum = {
 	notes: "notes",
 };
 
+exports.Prisma.Corrective_coefficientsScalarFieldEnum = {
+	id: "id",
+	attribute: "attribute",
+	coefficient: "coefficient",
+};
+
+exports.Prisma.Scoring_evaluationScalarFieldEnum = {
+	id: "id",
+	tid: "tid",
+	sid: "sid",
+	visual_appearance: "visual_appearance",
+	visual_color: "visual_color",
+	olfactory_intensity: "olfactory_intensity",
+	olfactory_complexity: "olfactory_complexity",
+	olfactory_quality: "olfactory_quality",
+	taste_structure: "taste_structure",
+	taste_balance: "taste_balance",
+	taste_intensity: "taste_intensity",
+	taste_persistence: "taste_persistence",
+	taste_quality: "taste_quality",
+	harmony: "harmony",
+	total_score: "total_score",
+	notes: "notes",
+};
+
 exports.Prisma.SortOrder = {
 	asc: "asc",
 	desc: "desc",
@@ -243,6 +268,8 @@ exports.Prisma.ModelName = {
 	taste_olfactory_exams: "taste_olfactory_exams",
 	visual_exams: "visual_exams",
 	final_considerations: "final_considerations",
+	corrective_coefficients: "corrective_coefficients",
+	scoring_evaluation: "scoring_evaluation",
 };
 
 /**
