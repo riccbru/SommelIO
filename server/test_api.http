@@ -325,7 +325,7 @@ Authorization: Bearer {{token}}
     "taste_persistence": 5,
     "taste_quality": 5,
     "harmony": 5,
-    "notes": "some final consideration note"
+    "notes": "some scoring evaluation note"
 }
 
 ### PUT UPDATE SCORING EVALUATION
@@ -346,7 +346,7 @@ Authorization: Bearer {{token}}
     "taste_persistence": 1,
     "taste_quality": 1,
     "harmony": 1,
-    "notes": "some final consideration note"
+    "notes": ""
 }
 
 ### LOGOUT (UNSET REFRESH TOKEN COOKIE)

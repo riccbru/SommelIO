@@ -7,6 +7,7 @@ import ScoringsAPI from "@/src/services/scorings";
 import { isRightRange } from "@/src/utils/utils";
 import FormInput from "@/src/components/new/FormInput";
 import FormScore from "@/src/components/new/FormScore";
+import CancelButton from "@/src/components/new/CancelButton";
 
 type ScoringEvaluation = {
 	visual_appearance: number;
@@ -42,13 +43,20 @@ const defaultFormData = {
 export default function Scoring() {
 	const theme = useTheme();
 	const [errors, setErrors] = useState<Record<string, string>>({});
-	const [formData, setFormData] = useState<ScoringEvaluation>(defaultFormData);
+	const [formData, setFormData] = useState<Record<string, string>>(defaultFormData);
 
 	const styles = StyleSheet.create({
 		container: {
 			flex: 1,
 			flexDirection: "column",
 			backgroundColor: theme.colors.background,
+		},
+		cardHeader: {
+			flex: 1,
+			alignItems: "center",
+			flexDirection: "row",
+			alignContent: "center",
+			justifyContent: "space-between",
 		},
 		sectionTitle: {
 			fontSize: 18,
@@ -97,34 +105,37 @@ export default function Scoring() {
 		const newErrors: Record<string, string> = {};
 
 		if (!isRightRange(formData.visual_appearance, MIN, MAX)) {
-			newErrors.visual_appearance = `${formData.visual_appearance} ${errMex}`;
+			newErrors.visual_appearance = `Visual Appearance ${errMex}`;
 		}
 		if (!isRightRange(formData.visual_color, MIN, MAX)) {
-			newErrors.visual_color = `${formData.visual_color} ${errMex}`;
+			newErrors.visual_color = `Visual Color ${errMex}`;
 		}
 		if (!isRightRange(formData.olfactory_intensity, MIN, MAX)) {
-			newErrors.olfactory_intensity = `${formData.olfactory_intensity} ${errMex}`;
+			newErrors.olfactory_intensity = `Olfactory Intensity ${errMex}`;
 		}
 		if (!isRightRange(formData.olfactory_complexity, MIN, MAX)) {
-			newErrors.olfactory_complexity = `${formData.olfactory_complexity} ${errMex}`;
+			newErrors.olfactory_complexity = `Olfactory Complexity ${errMex}`;
 		}
 		if (!isRightRange(formData.olfactory_quality, MIN, MAX)) {
-			newErrors.olfactory_quality = `${formData.olfactory_quality} ${errMex}`;
+			newErrors.olfactory_quality = `Olfactory Quality ${errMex}`;
 		}
 		if (!isRightRange(formData.taste_structure, MIN, MAX)) {
-			newErrors.taste_structure = `${formData.taste_structure} ${errMex}`;
+			newErrors.taste_structure = `Taste Structure ${errMex}`;
 		}
 		if (!isRightRange(formData.taste_balance, MIN, MAX)) {
-			newErrors.taste_balance = `${formData.taste_balance} ${errMex}`;
+			newErrors.taste_balance = `Taste Balance ${errMex}`;
 		}
 		if (!isRightRange(formData.taste_intensity, MIN, MAX)) {
-			newErrors.taste_intensity = `${formData.taste_intensity} ${errMex}`;
+			newErrors.taste_intensity = `Taste Intensity ${errMex}`;
 		}
 		if (!isRightRange(formData.taste_persistence, MIN, MAX)) {
-			newErrors.taste_persistence = `${formData.taste_persistence} ${errMex}`;
+			newErrors.taste_persistence = `Taste Persistence ${errMex}`;
 		}
 		if (!isRightRange(formData.taste_quality, MIN, MAX)) {
-			newErrors.taste_quality = `${formData.taste_quality} ${errMex}`;
+			newErrors.taste_quality = `Taste Quality ${errMex}`;
+		}
+		if (!isRightRange(formData.harmony, MIN, MAX)) {
+			newErrors.harmony = `Harmony ${errMex}`;
 		}
 
 		setErrors(newErrors);
@@ -141,8 +152,13 @@ export default function Scoring() {
 				<ScrollView style={styles.container} keyboardShouldPersistTaps='handled'>
 					<Card>
 						<Card.Content>
-							<View>
+							<View style={styles.cardHeader}>
 								<Text style={styles.sectionTitle}>Scoring Evaluation</Text>
+								<CancelButton
+									setErrors={setErrors}
+									setFormData={setFormData}
+									defaultFormData={defaultFormData}
+								/>
 							</View>
 
 							<FormScore
@@ -218,9 +234,7 @@ export default function Scoring() {
 								error={errors.notes}
 								onChange={updateFormData}
 							/>
-							<Text style={{ color: "#ffffff" }}>
-								{JSON.stringify(formData ?? {}, null, 4)}
-							</Text>
+
 						</Card.Content>
 					</Card>
 					<View style={styles.buttonContainer}>
