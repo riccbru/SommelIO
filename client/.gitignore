@@ -2,7 +2,6 @@
 
 # misc
 .vscode/
-API/config.ts
 
 # dependencies
 node_modules/
@@ -35,6 +34,7 @@ yarn-error.*
 *.pem
 
 # local env files
+.env
 .env*.local
 
 # typescript

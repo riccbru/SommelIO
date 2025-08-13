@@ -1,6 +1,6 @@
 const config = {
-	PORT: 3001,
-	HOSTNAME: "192.168.1.225",
+	PORT: process.env.EXPO_PUBLIC_BACKEND_PORT,
+	HOSTNAME: process.env.EXPO_PUBLIC_BACKEND_HOSTNAME,
 };
 
 export default config;
