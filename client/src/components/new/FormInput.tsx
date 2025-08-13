@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { HelperText, TextInput } from "react-native-paper";
+import { HelperText, TextInput, useTheme } from "react-native-paper";
 
 type Props<T> = {
 	label: string;
@@ -18,6 +18,7 @@ export default function FormInput<T>({
 	keyboardType = "default",
 	onChange,
 }: Props<T>) {
+	const theme = useTheme();
 	return (
 		<View>
 			<TextInput
@@ -28,7 +29,7 @@ export default function FormInput<T>({
 				keyboardType={keyboardType}
 				onChangeText={text => onChange(field, text)}
 			/>
-			<HelperText type='error' visible={!!error}>
+			<HelperText type='error' visible={!!error} theme={theme.colors.red}>
 				{error}
 			</HelperText>
 		</View>

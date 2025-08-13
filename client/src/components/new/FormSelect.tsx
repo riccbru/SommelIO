@@ -20,6 +20,7 @@ export default function FormSelect<T>({ label, field, value, error, options, onC
 
 	const hasValue = value && value.trim() !== "";
 	const shouldFloatLabel = hasValue || isFocused;
+	const ArrowIcon = isOpen ? CaretUpIcon : CaretDownIcon;
 
 	return (
 		<View>
@@ -33,7 +34,7 @@ export default function FormSelect<T>({ label, field, value, error, options, onC
 					styles.container,
 					{
 						borderColor: error
-							? theme.colors.red
+							? theme.colors.error
 							: isFocused || isOpen
 								? theme.colors.primary
 								: theme.colors.gray,
@@ -47,7 +48,7 @@ export default function FormSelect<T>({ label, field, value, error, options, onC
 					style={[
 						styles.label,
 						{
-							color: error ? theme.colors.red : "#c9c4cf",
+							color: error ? theme.colors.error : "#c9c4cf",
 							top: shouldFloatLabel ? -8 : 16,
 							fontSize: shouldFloatLabel ? 12 : 16,
 							backgroundColor: shouldFloatLabel ? theme.colors.surface : "transparent",
@@ -67,11 +68,7 @@ export default function FormSelect<T>({ label, field, value, error, options, onC
 
 				{/* Dropdown Arrow */}
 				<View style={styles.arrow}>
-					{isOpen ? (
-						<CaretUpIcon size={16} color={error ? theme.colors.red : theme.colors.gray} />
-					) : (
-						<CaretDownIcon size={16} color={error ? theme.colors.red : theme.colors.gray} />
-					)}
+					<ArrowIcon size={16} color={error ? theme.colors.error : theme.colors.gray} />
 				</View>
 			</TouchableOpacity>
 

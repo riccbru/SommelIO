@@ -147,7 +147,7 @@ export default function New() {
 		}
 
 		if (!formData.tasting_date || !formData.tasting_date.trim()) {
-			newErrors.tasting_date = "Date is required";
+			newErrors.tasting_date = "Tasting date is required";
 		} else if (isNaN(Date.parse(formData.tasting_date))) {
 			newErrors.date = "Tasting date is invalid";
 		}

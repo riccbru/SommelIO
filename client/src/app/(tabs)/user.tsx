@@ -6,6 +6,7 @@ import { Avatar, Card, Divider, useTheme } from "react-native-paper";
 import { GavelIcon, GearIcon, SignOutIcon, StarIcon, WineIcon } from "phosphor-react-native";
 import {
 	Animated,
+	Linking,
 	RefreshControl,
 	ScrollView,
 	StyleSheet,
@@ -13,8 +14,10 @@ import {
 	TouchableOpacity,
 	View,
 } from "react-native";
+import { getInitials } from "@/src/utils/utils";
 
 export default function User() {
+
 	const theme = useTheme();
 	const router = useRouter();
 	const { accessToken, user, logout } = useAuth();
@@ -34,7 +37,7 @@ export default function User() {
 				<TouchableOpacity
 					style={{ marginTop: 10, marginBottom: 10, marginLeft: 20 }}
 					onPress={() => {
-						console.log("profile settings");
+						console.log(`User ${user?.uid} settings`);
 					}}
 				>
 					<GearIcon size={32} color={theme.colors.primary} />
@@ -53,7 +56,6 @@ export default function User() {
 			),
 		});
 
-		// Fade in animation
 		Animated.timing(fadeAnim, {
 			toValue: 1,
 			duration: 800,
@@ -68,26 +70,26 @@ export default function User() {
 			padding: 16,
 		},
 		profileCard: {
-			marginBottom: 20,
-			backgroundColor: theme.colors.pearl,
-			borderRadius: 16,
 			elevation: 4,
-			shadowColor: theme.colors.primary,
-			shadowOffset: { width: 0, height: 4 },
-			shadowOpacity: 0.1,
 			shadowRadius: 8,
+			marginBottom: 20,
+			borderRadius: 16,
+			shadowOpacity: 0.1,
+			shadowColor: theme.colors.primary,
+			backgroundColor: theme.colors.pearl,
+			shadowOffset: { width: 0, height: 4 }
 		},
 		profileHeader: {
-			alignItems: "center",
 			paddingVertical: 24,
+			alignItems: "center"
 		},
 		avatarContainer: {
-			marginBottom: 16,
 			elevation: 8,
-			shadowColor: theme.colors.primary,
-			shadowOffset: { width: 0, height: 4 },
-			shadowOpacity: 0.3,
 			shadowRadius: 8,
+			marginBottom: 16,
+			shadowOpacity: 0.3,
+			shadowColor: theme.colors.primary,
+			shadowOffset: { width: 0, height: 4 }
 		},
 		userName: {
 			fontSize: 28,
@@ -95,88 +97,79 @@ export default function User() {
 			fontWeight: "700",
 			color: "#000000",
 			textAlign: "center",
-			fontFamily: "Epilogue",
+			fontFamily: "Epilogue"
 		},
 		userEmail: {
 			fontSize: 16,
-			fontFamily: "Epilogue",
-			color: theme.colors.gray,
-			textAlign: "center",
 			marginBottom: 16,
+			textAlign: "center",
+			fontFamily: "Epilogue",
+			color: theme.colors.gray
 		},
 		statsContainer: {
-			flexDirection: "row",
-			justifyContent: "space-around",
 			paddingVertical: 16,
+			flexDirection: "row",
+			justifyContent: "space-around"
 		},
 		statItem: {
-			alignItems: "center",
 			flex: 1,
+			alignItems: "center"
 		},
 		statNumber: {
 			fontSize: 24,
+			marginBottom: 4,
 			fontWeight: "700",
 			fontFamily: "Epilogue",
-			color: theme.colors.primary,
-			marginBottom: 4,
+			color: theme.colors.primary
 		},
 		statLabel: {
 			fontSize: 12,
-			fontFamily: "Epilogue",
-			color: theme.colors.gray,
 			textAlign: "center",
+			fontFamily: "Epilogue",
+			color: theme.colors.gray
 		},
 		infoCard: {
-			marginBottom: 16,
-			backgroundColor: theme.colors.surface,
 			borderRadius: 12,
+			marginBottom: 16,
+			backgroundColor: theme.colors.surface
 		},
 		infoRow: {
+			paddingVertical: 16,
 			flexDirection: "row",
 			alignItems: "center",
-			paddingVertical: 16,
-			paddingHorizontal: 20,
+			paddingHorizontal: 20
 		},
 		infoIcon: {
-			marginRight: 16,
 			width: 24,
-			alignItems: "center",
+			marginRight: 16,
+			alignItems: "center"
 		},
 		infoLabel: {
+			flex: 1,
 			fontSize: 14,
+			marginBottom: 2,
 			fontWeight: "600",
 			fontFamily: "Epilogue",
-			color: theme.colors.gray,
-			marginBottom: 2,
-			flex: 1,
+			color: theme.colors.gray
 		},
 		infoValue: {
+			flex: 2,
 			fontSize: 16,
 			fontFamily: "Epilogue",
-			color: theme.colors.text,
-			flex: 2,
+			color: theme.colors.text
 		},
 		actionButtons: {
-			marginTop: 20,
 			gap: 12,
+			marginTop: 20
 		},
 		actionButton: {
 			borderRadius: 12,
-			paddingVertical: 4,
+			paddingVertical: 4
 		},
 		wineIcon: {
-			marginBottom: 8,
+			marginBottom: 8
 		},
 	});
-
-	const getInitials = (name: string) => {
-		return name
-			.split(" ")
-			.map(word => word[0])
-			.join("")
-			.toUpperCase()
-			.slice(0, 2);
-	};
 
 	useEffect(() => {
 		const fetchStats = async () => {
@@ -210,6 +203,7 @@ export default function User() {
 			}
 		>
 			<Animated.View style={{ opacity: fadeAnim }}>
+
 				{/* Profile Header Card */}
 				<Card style={styles.profileCard}>
 					<View style={styles.profileHeader}>
@@ -256,6 +250,51 @@ export default function User() {
 								number={stats.ratedTastings}
 								icon={<GavelIcon size={24} weight='fill' color={theme.colors.green} />}
 							/>
+						</View>
+
+						{/* Footer Developer */}
+						<View style={{ marginTop: 24, alignItems: "center" }}>
+							<Text style={{ fontSize: 12, color: theme.colors.gray, fontFamily: "Epilogue" }}>
+								Developed by Riccardo Bruno
+							</Text>
+							<View style={{ flexDirection: "row", marginTop: 8, gap: 12 }}>
+								<TouchableOpacity
+									onPress={() => {
+										Linking.openURL("mailto:riccbru@sommel.io");
+									}}
+								>
+									<Avatar.Icon
+										size={36}
+										icon="email"
+										style={{ backgroundColor: theme.colors.primary }}
+										color={theme.colors.surface}
+									/>
+								</TouchableOpacity>
+								<TouchableOpacity
+									onPress={() => {
+										Linking.openURL("https://github.com/riccbru");
+									}}
+								>
+									<Avatar.Icon
+										size={36}
+										icon="github"
+										style={{ backgroundColor: theme.colors.primary }}
+										color={theme.colors.surface}
+									/>
+								</TouchableOpacity>
+								<TouchableOpacity
+									onPress={() => {
+										Linking.openURL("https://linkedin.com/in/riccbrun");
+									}}
+								>
+									<Avatar.Icon
+										size={36}
+										icon="linkedin"
+										style={{ backgroundColor: theme.colors.primary }}
+										color={theme.colors.surface}
+									/>
+								</TouchableOpacity>
+							</View>
 						</View>
 					</View>
 				</Card>

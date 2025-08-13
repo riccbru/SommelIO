@@ -21,6 +21,15 @@ export function formatOption(value: string): string {
 	return withSpaces.charAt(0).toUpperCase() + withSpaces.slice(1).toLowerCase();
 }
 
+export function getInitials(name: string) {
+	return name
+		.split(" ")
+		.map(word => word[0])
+		.join("")
+		.toUpperCase()
+		.slice(0, 2);
+};
+
 export function isRightRange(num: number, MIN: number, MAX: number): boolean {
 	return num >= MIN && num <= MAX;
 }
