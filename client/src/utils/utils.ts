@@ -20,3 +20,7 @@ export function formatOption(value: string): string {
 	if (withSpaces.length === 0) return "";
 	return withSpaces.charAt(0).toUpperCase() + withSpaces.slice(1).toLowerCase();
 }
+
+export function isRightRange(num: number, MIN: number, MAX: number): boolean {
+	return num >= MIN && num <= MAX;
+}

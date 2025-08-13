@@ -25,7 +25,7 @@ export default function User() {
 	const [stats, setStats] = useState({
 		totalTastings: 0,
 		favoriteTastings: 0,
-		averageRating: 0.0,
+		ratedTastings: 0,
 	});
 
 	useLayoutEffect(() => {
@@ -242,19 +242,19 @@ export default function User() {
 								label='Total Tastings'
 								color={"#000000"}
 								number={stats.totalTastings}
-								icon={<WineIcon size={24} color={"#000000"} />}
+								icon={<WineIcon size={24} weight='fill' color={"#000000"} />}
 							/>
 							<StatItem
 								label='Favorite Tastings'
 								color={theme.colors.amber}
 								number={stats.favoriteTastings}
-								icon={<StarIcon size={24} color={theme.colors.amber} />}
+								icon={<StarIcon size={24} weight='fill' color={theme.colors.amber} />}
 							/>
 							<StatItem
-								label='Average Rating'
+								label='Rated Tastings'
 								color={theme.colors.green}
-								number={stats.averageRating}
-								icon={<GavelIcon size={24} color={theme.colors.green} />}
+								number={stats.ratedTastings}
+								icon={<GavelIcon size={24} weight='fill' color={theme.colors.green} />}
 							/>
 						</View>
 					</View>

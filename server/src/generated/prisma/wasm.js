@@ -228,8 +228,9 @@ exports.Prisma.Corrective_coefficientsScalarFieldEnum = {
 
 exports.Prisma.Scoring_evaluationScalarFieldEnum = {
 	id: "id",
-	tid: "tid",
 	sid: "sid",
+	tid: "tid",
+	uid: "uid",
 	visual_appearance: "visual_appearance",
 	visual_color: "visual_color",
 	olfactory_intensity: "olfactory_intensity",

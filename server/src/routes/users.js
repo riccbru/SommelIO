@@ -4,16 +4,6 @@ import { PrismaClient } from "../generated/prisma/index.js";
 const router = Router();
 const prisma = new PrismaClient();
 
-// GET /api/v1/users/
-router.get("/", async (_req, res) => {
-	try {
-		const users = await prisma.users.findMany();
-		res.json(users);
-	} catch (error) {
-		res.status(500).json({ error });
-	}
-});
-
 // GET /api/v1/users/me
 router.get("/me", async (req, res) => {
 	try {
@@ -57,19 +47,16 @@ router.get("/me/stats", async (req, res) => {
 			},
 		});
 
-		// const ratedTastings = await prisma.tastings.count({
-		// 	where: {
-		// 		uid: req.user.uid,
-		// 		rated: true
-		// 	}
-		// });
-
-		const averageRating = 0.1;
+		const ratedTastings = await prisma.tastings.count({
+			where: {
+				uid: req.user.uid,
+			},
+		});
 
 		const payload = {
 			stats: {
 				totalTastings: totalTastings,
-				averageRating: averageRating,
+				ratedTastings: ratedTastings,
 				favoriteTastings: favoriteTastings,
 			},
 		};

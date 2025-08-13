@@ -61,6 +61,18 @@ export default function TastingsLayout() {
 					},
 				}}
 			/>
+			<Stack.Screen
+				name='scoring'
+				options={{
+					headerShown: true,
+					presentation: "card",
+					headerBackTitle: "Scoring",
+					title: "",
+					headerStyle: {
+						backgroundColor: theme.colors.background,
+					},
+				}}
+			/>
 		</Stack>
 	);
 }

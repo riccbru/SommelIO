@@ -1,7 +1,7 @@
 @PORT = 3001
 @HOSTNAME = localhost
-@token = 
-@tid = 
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NjdhNjIzNi00YjJlLTQ0N2UtOGYyMC0zOTdkNDUyZDE0MTIiLCJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJiYW5raWNoIiwiZnVsbF9uYW1lIjoiQmFua2ljaCBBZG1pbiIsImVtYWlsIjoiYmFua2ljaEBzb21tZWwuaW8iLCJpYXQiOjE3NTUxMTYyODEsImV4cCI6MTc1NTExNzE4MX0.-LKigmmfyYcgrC4ScJ00cZEkYXr36QiTxAvN07kyqts
+@tid = 7789f41d-abb9-4123-8436-ee4501ef2aef
 
 ### LOGIN + TOKEN
 
@@ -9,15 +9,15 @@ POST http://{{HOSTNAME}}:{{PORT}}/api/v1/auth/login
 Content-Type: application/json
 
 {
-    "username": "riccbru",
-    "password": "The hangover01!"
+    "username": "bankich",
+    "password": "bankich_pwd"
 }
 
 ### REFRESH TOKEN
 
 POST http://{{HOSTNAME}}:{{PORT}}/api/v1/auth/refresh HTTP/1.1
 
-### GET USER BY ID
+### GET USER INFO
 
 GET http://{{HOSTNAME}}:{{PORT}}/api/v1/users/me/stats HTTP/1.1
 Authorization: Bearer {{token}}

@@ -9,21 +9,22 @@ datasource db {
 }
 
 model users {
-  id            Int        @id @default(autoincrement())
-  uid           String     @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  username      String?    @unique
-  full_name     String?
-  birthdate     DateTime?  @db.Date
-  email         String?    @unique
-  password_hash String?
-  admin         Boolean?   @default(false)
-  premium       Boolean?   @default(false)
-  google_id     String?    @unique
-  facebook_id   String?    @unique
-  apple_id      String?    @unique
-  created_at    DateTime?  @default(now()) @db.Timestamptz(6)
-  updated_at    DateTime?  @default(now()) @db.Timestamptz(6)
-  tastings      tastings[]
+  id                 Int                  @id @default(autoincrement())
+  uid                String               @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  username           String?              @unique
+  full_name          String?
+  birthdate          DateTime?            @db.Date
+  email              String?              @unique
+  password_hash      String?
+  admin              Boolean?             @default(false)
+  premium            Boolean?             @default(false)
+  google_id          String?              @unique
+  facebook_id        String?              @unique
+  apple_id           String?              @unique
+  created_at         DateTime?            @default(now()) @db.Timestamptz(6)
+  updated_at         DateTime?            @default(now()) @db.Timestamptz(6)
+  scoring_evaluation scoring_evaluation[]
+  tastings           tastings[]
 }
 
 model wine_categories {
@@ -139,8 +140,9 @@ model corrective_coefficients {
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model scoring_evaluation {
   id                   Int      @id @default(autoincrement())
-  tid                  String   @unique @db.Uuid
   sid                  String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tid                  String   @unique @db.Uuid
+  uid                  String   @db.Uuid
   visual_appearance    Int
   visual_color         Int
   olfactory_intensity  Int
@@ -155,4 +157,5 @@ model scoring_evaluation {
   total_score          Int?
   notes                String?
   tastings             tastings @relation(fields: [tid], references: [tid], onDelete: Cascade, onUpdate: NoAction)
+  users                users    @relation(fields: [uid], references: [uid], onDelete: Cascade, onUpdate: NoAction)
 }

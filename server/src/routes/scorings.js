@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { PrismaClient } from "../generated/prisma/index.js";
 import { ScoringSchema } from "../validators/scoringSchema.js";
+import { formatScoringEvaluation } from "../utils/tastings.js";
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -32,9 +33,7 @@ router.get("/:tid", async (req, res) => {
 		if (!scoring) {
 			res.status(404).json({ error: `Tasting ${tid} does not have a scoring evaluation yet` });
 		}
-		delete scoring.id;
-		delete scoring.tid;
-		res.json(scoring);
+		res.json(formatScoringEvaluation(scoring));
 	} catch (err) {
 		console.error(err);
 		res.status(500).json({ error: `Error getting scoring evaluation` });
@@ -57,15 +56,12 @@ router.post("/:tid", async (req, res) => {
 		if (!tasting) return;
 		const newScore = await prisma.scoring_evaluation.create({
 			data: {
-				tastings: {
-					connect: { tid: tid },
-				},
+				tastings: { connect: { tid: tid } },
+				users: { connect: { uid: uid } },
 				...parsed.data,
 			},
 		});
-		delete newScore.id;
-		delete newScore.tid;
-		res.status(201).json(newScore);
+		res.status(201).json(formatScoringEvaluation(newScore));
 	} catch (err) {
 		if (err.code === "P2014") {
 			return res.status(409).json({ error: `Tasting ${tid} already has a scoring evaluation` });
@@ -100,10 +96,7 @@ router.put("/:tid", async (req, res) => {
 			where: { tid },
 			data: parsed.data,
 		});
-		delete updatedScoring.id;
-		delete updatedScoring.tid;
-
-		res.status(200).json(updatedScoring);
+		res.status(200).json(formatScoringEvaluation(updatedScoring));
 	} catch (err) {
 		console.error(err);
 		res.status(500).json({ error: `Error updating scoring evaluation` });

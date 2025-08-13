@@ -75,7 +75,6 @@ export default function Final() {
 
 	const evolutionaryStateOptions = ["immature", "young", "ready", "mature", "old"];
 	const harmonyOptions = ["disharmonious", "quite_harmonious", "harmonious"];
-
 	const validateForm = (): boolean => {
 		const newErrors: Record<string, string> = {};
 
@@ -162,8 +161,8 @@ export default function Final() {
 						/>
 						<NextButton
 							requiresTid
-							path='/new/final'
-							text='SAVE'
+							path='/new/scoring'
+							text='SCORING'
 							formData={formData}
 							validation={validateForm}
 							action={ExamsAPI.createFinal}

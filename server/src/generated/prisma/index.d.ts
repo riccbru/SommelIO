@@ -1620,12 +1620,14 @@ export namespace Prisma {
 	 */
 
 	export type UsersCountOutputType = {
+		scoring_evaluation: number;
 		tastings: number;
 	};
 
 	export type UsersCountOutputTypeSelect<
 		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
 	> = {
+		scoring_evaluation?: boolean | UsersCountOutputTypeCountScoring_evaluationArgs;
 		tastings?: boolean | UsersCountOutputTypeCountTastingsArgs;
 	};
 
@@ -1640,6 +1642,15 @@ export namespace Prisma {
 		 * Select specific fields to fetch from the UsersCountOutputType
 		 */
 		select?: UsersCountOutputTypeSelect<ExtArgs> | null;
+	};
+
+	/**
+	 * UsersCountOutputType without action
+	 */
+	export type UsersCountOutputTypeCountScoring_evaluationArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		where?: scoring_evaluationWhereInput;
 	};
 
 	/**
@@ -1961,6 +1972,7 @@ export namespace Prisma {
 				apple_id?: boolean;
 				created_at?: boolean;
 				updated_at?: boolean;
+				scoring_evaluation?: boolean | users$scoring_evaluationArgs<ExtArgs>;
 				tastings?: boolean | users$tastingsArgs<ExtArgs>;
 				_count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>;
 			},
@@ -2047,6 +2059,7 @@ export namespace Prisma {
 			ExtArgs["result"]["users"]
 		>;
 	export type usersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+		scoring_evaluation?: boolean | users$scoring_evaluationArgs<ExtArgs>;
 		tastings?: boolean | users$tastingsArgs<ExtArgs>;
 		_count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>;
 	};
@@ -2060,6 +2073,7 @@ export namespace Prisma {
 	export type $usersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
 		name: "users";
 		objects: {
+			scoring_evaluation: Prisma.$scoring_evaluationPayload<ExtArgs>[];
 			tastings: Prisma.$tastingsPayload<ExtArgs>[];
 		};
 		scalars: $Extensions.GetPayloadResult<
@@ -2574,6 +2588,17 @@ export namespace Prisma {
 		GlobalOmitOptions = {},
 	> extends Prisma.PrismaPromise<T> {
 		readonly [Symbol.toStringTag]: "PrismaPromise";
+		scoring_evaluation<T extends users$scoring_evaluationArgs<ExtArgs> = {}>(
+			args?: Subset<T, users$scoring_evaluationArgs<ExtArgs>>,
+		): Prisma.PrismaPromise<
+			| $Result.GetResult<
+					Prisma.$scoring_evaluationPayload<ExtArgs>,
+					T,
+					"findMany",
+					GlobalOmitOptions
+			  >
+			| Null
+		>;
 		tastings<T extends users$tastingsArgs<ExtArgs> = {}>(
 			args?: Subset<T, users$tastingsArgs<ExtArgs>>,
 		): Prisma.PrismaPromise<
@@ -3033,6 +3058,34 @@ export namespace Prisma {
 		 * Limit how many users to delete.
 		 */
 		limit?: number;
+	};
+
+	/**
+	 * users.scoring_evaluation
+	 */
+	export type users$scoring_evaluationArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the scoring_evaluation
+		 */
+		select?: scoring_evaluationSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the scoring_evaluation
+		 */
+		omit?: scoring_evaluationOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: scoring_evaluationInclude<ExtArgs> | null;
+		where?: scoring_evaluationWhereInput;
+		orderBy?:
+			| scoring_evaluationOrderByWithRelationInput
+			| scoring_evaluationOrderByWithRelationInput[];
+		cursor?: scoring_evaluationWhereUniqueInput;
+		take?: number;
+		skip?: number;
+		distinct?: Scoring_evaluationScalarFieldEnum | Scoring_evaluationScalarFieldEnum[];
 	};
 
 	/**
@@ -12904,8 +12957,9 @@ export namespace Prisma {
 
 	export type Scoring_evaluationMinAggregateOutputType = {
 		id: number | null;
-		tid: string | null;
 		sid: string | null;
+		tid: string | null;
+		uid: string | null;
 		visual_appearance: number | null;
 		visual_color: number | null;
 		olfactory_intensity: number | null;
@@ -12923,8 +12977,9 @@ export namespace Prisma {
 
 	export type Scoring_evaluationMaxAggregateOutputType = {
 		id: number | null;
-		tid: string | null;
 		sid: string | null;
+		tid: string | null;
+		uid: string | null;
 		visual_appearance: number | null;
 		visual_color: number | null;
 		olfactory_intensity: number | null;
@@ -12942,8 +12997,9 @@ export namespace Prisma {
 
 	export type Scoring_evaluationCountAggregateOutputType = {
 		id: number;
-		tid: number;
 		sid: number;
+		tid: number;
+		uid: number;
 		visual_appearance: number;
 		visual_color: number;
 		olfactory_intensity: number;
@@ -12994,8 +13050,9 @@ export namespace Prisma {
 
 	export type Scoring_evaluationMinAggregateInputType = {
 		id?: true;
-		tid?: true;
 		sid?: true;
+		tid?: true;
+		uid?: true;
 		visual_appearance?: true;
 		visual_color?: true;
 		olfactory_intensity?: true;
@@ -13013,8 +13070,9 @@ export namespace Prisma {
 
 	export type Scoring_evaluationMaxAggregateInputType = {
 		id?: true;
-		tid?: true;
 		sid?: true;
+		tid?: true;
+		uid?: true;
 		visual_appearance?: true;
 		visual_color?: true;
 		olfactory_intensity?: true;
@@ -13032,8 +13090,9 @@ export namespace Prisma {
 
 	export type Scoring_evaluationCountAggregateInputType = {
 		id?: true;
-		tid?: true;
 		sid?: true;
+		tid?: true;
+		uid?: true;
 		visual_appearance?: true;
 		visual_color?: true;
 		olfactory_intensity?: true;
@@ -13143,8 +13202,9 @@ export namespace Prisma {
 
 	export type Scoring_evaluationGroupByOutputType = {
 		id: number;
-		tid: string;
 		sid: string;
+		tid: string;
+		uid: string;
 		visual_appearance: number;
 		visual_color: number;
 		olfactory_intensity: number;
@@ -13183,8 +13243,9 @@ export namespace Prisma {
 	> = $Extensions.GetSelect<
 		{
 			id?: boolean;
-			tid?: boolean;
 			sid?: boolean;
+			tid?: boolean;
+			uid?: boolean;
 			visual_appearance?: boolean;
 			visual_color?: boolean;
 			olfactory_intensity?: boolean;
@@ -13199,6 +13260,7 @@ export namespace Prisma {
 			total_score?: boolean;
 			notes?: boolean;
 			tastings?: boolean | tastingsDefaultArgs<ExtArgs>;
+			users?: boolean | usersDefaultArgs<ExtArgs>;
 		},
 		ExtArgs["result"]["scoring_evaluation"]
 	>;
@@ -13208,8 +13270,9 @@ export namespace Prisma {
 	> = $Extensions.GetSelect<
 		{
 			id?: boolean;
-			tid?: boolean;
 			sid?: boolean;
+			tid?: boolean;
+			uid?: boolean;
 			visual_appearance?: boolean;
 			visual_color?: boolean;
 			olfactory_intensity?: boolean;
@@ -13224,6 +13287,7 @@ export namespace Prisma {
 			total_score?: boolean;
 			notes?: boolean;
 			tastings?: boolean | tastingsDefaultArgs<ExtArgs>;
+			users?: boolean | usersDefaultArgs<ExtArgs>;
 		},
 		ExtArgs["result"]["scoring_evaluation"]
 	>;
@@ -13233,8 +13297,9 @@ export namespace Prisma {
 	> = $Extensions.GetSelect<
 		{
 			id?: boolean;
-			tid?: boolean;
 			sid?: boolean;
+			tid?: boolean;
+			uid?: boolean;
 			visual_appearance?: boolean;
 			visual_color?: boolean;
 			olfactory_intensity?: boolean;
@@ -13249,14 +13314,16 @@ export namespace Prisma {
 			total_score?: boolean;
 			notes?: boolean;
 			tastings?: boolean | tastingsDefaultArgs<ExtArgs>;
+			users?: boolean | usersDefaultArgs<ExtArgs>;
 		},
 		ExtArgs["result"]["scoring_evaluation"]
 	>;
 
 	export type scoring_evaluationSelectScalar = {
 		id?: boolean;
-		tid?: boolean;
 		sid?: boolean;
+		tid?: boolean;
+		uid?: boolean;
 		visual_appearance?: boolean;
 		visual_color?: boolean;
 		olfactory_intensity?: boolean;
@@ -13276,8 +13343,9 @@ export namespace Prisma {
 		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
 	> = $Extensions.GetOmit<
 		| "id"
-		| "tid"
 		| "sid"
+		| "tid"
+		| "uid"
 		| "visual_appearance"
 		| "visual_color"
 		| "olfactory_intensity"
@@ -13297,16 +13365,19 @@ export namespace Prisma {
 		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
 	> = {
 		tastings?: boolean | tastingsDefaultArgs<ExtArgs>;
+		users?: boolean | usersDefaultArgs<ExtArgs>;
 	};
 	export type scoring_evaluationIncludeCreateManyAndReturn<
 		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
 	> = {
 		tastings?: boolean | tastingsDefaultArgs<ExtArgs>;
+		users?: boolean | usersDefaultArgs<ExtArgs>;
 	};
 	export type scoring_evaluationIncludeUpdateManyAndReturn<
 		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
 	> = {
 		tastings?: boolean | tastingsDefaultArgs<ExtArgs>;
+		users?: boolean | usersDefaultArgs<ExtArgs>;
 	};
 
 	export type $scoring_evaluationPayload<
@@ -13315,12 +13386,14 @@ export namespace Prisma {
 		name: "scoring_evaluation";
 		objects: {
 			tastings: Prisma.$tastingsPayload<ExtArgs>;
+			users: Prisma.$usersPayload<ExtArgs>;
 		};
 		scalars: $Extensions.GetPayloadResult<
 			{
 				id: number;
-				tid: string;
 				sid: string;
+				tid: string;
+				uid: string;
 				visual_appearance: number;
 				visual_color: number;
 				olfactory_intensity: number;
@@ -13884,6 +13957,20 @@ export namespace Prisma {
 			ExtArgs,
 			GlobalOmitOptions
 		>;
+		users<T extends usersDefaultArgs<ExtArgs> = {}>(
+			args?: Subset<T, usersDefaultArgs<ExtArgs>>,
+		): Prisma__usersClient<
+			| $Result.GetResult<
+					Prisma.$usersPayload<ExtArgs>,
+					T,
+					"findUniqueOrThrow",
+					GlobalOmitOptions
+			  >
+			| Null,
+			Null,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
 		/**
 		 * Attaches callbacks for the resolution and/or rejection of the Promise.
 		 * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13916,8 +14003,9 @@ export namespace Prisma {
 	 */
 	interface scoring_evaluationFieldRefs {
 		readonly id: FieldRef<"scoring_evaluation", "Int">;
-		readonly tid: FieldRef<"scoring_evaluation", "String">;
 		readonly sid: FieldRef<"scoring_evaluation", "String">;
+		readonly tid: FieldRef<"scoring_evaluation", "String">;
+		readonly uid: FieldRef<"scoring_evaluation", "String">;
 		readonly visual_appearance: FieldRef<"scoring_evaluation", "Int">;
 		readonly visual_color: FieldRef<"scoring_evaluation", "Int">;
 		readonly olfactory_intensity: FieldRef<"scoring_evaluation", "Int">;
@@ -14535,8 +14623,9 @@ export namespace Prisma {
 
 	export const Scoring_evaluationScalarFieldEnum: {
 		id: "id";
-		tid: "tid";
 		sid: "sid";
+		tid: "tid";
+		uid: "uid";
 		visual_appearance: "visual_appearance";
 		visual_color: "visual_color";
 		olfactory_intensity: "olfactory_intensity";
@@ -14663,6 +14752,7 @@ export namespace Prisma {
 		apple_id?: StringNullableFilter<"users"> | string | null;
 		created_at?: DateTimeNullableFilter<"users"> | Date | string | null;
 		updated_at?: DateTimeNullableFilter<"users"> | Date | string | null;
+		scoring_evaluation?: Scoring_evaluationListRelationFilter;
 		tastings?: TastingsListRelationFilter;
 	};
 
@@ -14681,6 +14771,7 @@ export namespace Prisma {
 		apple_id?: SortOrderInput | SortOrder;
 		created_at?: SortOrderInput | SortOrder;
 		updated_at?: SortOrderInput | SortOrder;
+		scoring_evaluation?: scoring_evaluationOrderByRelationAggregateInput;
 		tastings?: tastingsOrderByRelationAggregateInput;
 	};
 
@@ -14703,6 +14794,7 @@ export namespace Prisma {
 			premium?: BoolNullableFilter<"users"> | boolean | null;
 			created_at?: DateTimeNullableFilter<"users"> | Date | string | null;
 			updated_at?: DateTimeNullableFilter<"users"> | Date | string | null;
+			scoring_evaluation?: Scoring_evaluationListRelationFilter;
 			tastings?: TastingsListRelationFilter;
 		},
 		"id" | "uid" | "username" | "email" | "google_id" | "facebook_id" | "apple_id"
@@ -15454,8 +15546,9 @@ export namespace Prisma {
 		OR?: scoring_evaluationWhereInput[];
 		NOT?: scoring_evaluationWhereInput | scoring_evaluationWhereInput[];
 		id?: IntFilter<"scoring_evaluation"> | number;
-		tid?: UuidFilter<"scoring_evaluation"> | string;
 		sid?: UuidFilter<"scoring_evaluation"> | string;
+		tid?: UuidFilter<"scoring_evaluation"> | string;
+		uid?: UuidFilter<"scoring_evaluation"> | string;
 		visual_appearance?: IntFilter<"scoring_evaluation"> | number;
 		visual_color?: IntFilter<"scoring_evaluation"> | number;
 		olfactory_intensity?: IntFilter<"scoring_evaluation"> | number;
@@ -15470,12 +15563,14 @@ export namespace Prisma {
 		total_score?: IntNullableFilter<"scoring_evaluation"> | number | null;
 		notes?: StringNullableFilter<"scoring_evaluation"> | string | null;
 		tastings?: XOR<TastingsScalarRelationFilter, tastingsWhereInput>;
+		users?: XOR<UsersScalarRelationFilter, usersWhereInput>;
 	};
 
 	export type scoring_evaluationOrderByWithRelationInput = {
 		id?: SortOrder;
-		tid?: SortOrder;
 		sid?: SortOrder;
+		tid?: SortOrder;
+		uid?: SortOrder;
 		visual_appearance?: SortOrder;
 		visual_color?: SortOrder;
 		olfactory_intensity?: SortOrder;
@@ -15490,16 +15585,18 @@ export namespace Prisma {
 		total_score?: SortOrderInput | SortOrder;
 		notes?: SortOrderInput | SortOrder;
 		tastings?: tastingsOrderByWithRelationInput;
+		users?: usersOrderByWithRelationInput;
 	};
 
 	export type scoring_evaluationWhereUniqueInput = Prisma.AtLeast<
 		{
 			id?: number;
-			tid?: string;
 			sid?: string;
+			tid?: string;
 			AND?: scoring_evaluationWhereInput | scoring_evaluationWhereInput[];
 			OR?: scoring_evaluationWhereInput[];
 			NOT?: scoring_evaluationWhereInput | scoring_evaluationWhereInput[];
+			uid?: UuidFilter<"scoring_evaluation"> | string;
 			visual_appearance?: IntFilter<"scoring_evaluation"> | number;
 			visual_color?: IntFilter<"scoring_evaluation"> | number;
 			olfactory_intensity?: IntFilter<"scoring_evaluation"> | number;
@@ -15514,14 +15611,16 @@ export namespace Prisma {
 			total_score?: IntNullableFilter<"scoring_evaluation"> | number | null;
 			notes?: StringNullableFilter<"scoring_evaluation"> | string | null;
 			tastings?: XOR<TastingsScalarRelationFilter, tastingsWhereInput>;
+			users?: XOR<UsersScalarRelationFilter, usersWhereInput>;
 		},
-		"id" | "tid" | "sid"
+		"id" | "sid" | "tid"
 	>;
 
 	export type scoring_evaluationOrderByWithAggregationInput = {
 		id?: SortOrder;
-		tid?: SortOrder;
 		sid?: SortOrder;
+		tid?: SortOrder;
+		uid?: SortOrder;
 		visual_appearance?: SortOrder;
 		visual_color?: SortOrder;
 		olfactory_intensity?: SortOrder;
@@ -15551,8 +15650,9 @@ export namespace Prisma {
 			| scoring_evaluationScalarWhereWithAggregatesInput
 			| scoring_evaluationScalarWhereWithAggregatesInput[];
 		id?: IntWithAggregatesFilter<"scoring_evaluation"> | number;
-		tid?: UuidWithAggregatesFilter<"scoring_evaluation"> | string;
 		sid?: UuidWithAggregatesFilter<"scoring_evaluation"> | string;
+		tid?: UuidWithAggregatesFilter<"scoring_evaluation"> | string;
+		uid?: UuidWithAggregatesFilter<"scoring_evaluation"> | string;
 		visual_appearance?: IntWithAggregatesFilter<"scoring_evaluation"> | number;
 		visual_color?: IntWithAggregatesFilter<"scoring_evaluation"> | number;
 		olfactory_intensity?: IntWithAggregatesFilter<"scoring_evaluation"> | number;
@@ -15582,6 +15682,7 @@ export namespace Prisma {
 		apple_id?: string | null;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
+		scoring_evaluation?: scoring_evaluationCreateNestedManyWithoutUsersInput;
 		tastings?: tastingsCreateNestedManyWithoutUsersInput;
 	};
 
@@ -15600,6 +15701,7 @@ export namespace Prisma {
 		apple_id?: string | null;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
+		scoring_evaluation?: scoring_evaluationUncheckedCreateNestedManyWithoutUsersInput;
 		tastings?: tastingsUncheckedCreateNestedManyWithoutUsersInput;
 	};
 
@@ -15617,6 +15719,7 @@ export namespace Prisma {
 		apple_id?: NullableStringFieldUpdateOperationsInput | string | null;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		scoring_evaluation?: scoring_evaluationUpdateManyWithoutUsersNestedInput;
 		tastings?: tastingsUpdateManyWithoutUsersNestedInput;
 	};
 
@@ -15635,6 +15738,7 @@ export namespace Prisma {
 		apple_id?: NullableStringFieldUpdateOperationsInput | string | null;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		scoring_evaluation?: scoring_evaluationUncheckedUpdateManyWithoutUsersNestedInput;
 		tastings?: tastingsUncheckedUpdateManyWithoutUsersNestedInput;
 	};
 
@@ -16416,12 +16520,14 @@ export namespace Prisma {
 		total_score?: number | null;
 		notes?: string | null;
 		tastings: tastingsCreateNestedOneWithoutScoring_evaluationInput;
+		users: usersCreateNestedOneWithoutScoring_evaluationInput;
 	};
 
 	export type scoring_evaluationUncheckedCreateInput = {
 		id?: number;
-		tid: string;
 		sid?: string;
+		tid: string;
+		uid: string;
 		visual_appearance: number;
 		visual_color: number;
 		olfactory_intensity: number;
@@ -16453,12 +16559,14 @@ export namespace Prisma {
 		total_score?: NullableIntFieldUpdateOperationsInput | number | null;
 		notes?: NullableStringFieldUpdateOperationsInput | string | null;
 		tastings?: tastingsUpdateOneRequiredWithoutScoring_evaluationNestedInput;
+		users?: usersUpdateOneRequiredWithoutScoring_evaluationNestedInput;
 	};
 
 	export type scoring_evaluationUncheckedUpdateInput = {
 		id?: IntFieldUpdateOperationsInput | number;
-		tid?: StringFieldUpdateOperationsInput | string;
 		sid?: StringFieldUpdateOperationsInput | string;
+		tid?: StringFieldUpdateOperationsInput | string;
+		uid?: StringFieldUpdateOperationsInput | string;
 		visual_appearance?: IntFieldUpdateOperationsInput | number;
 		visual_color?: IntFieldUpdateOperationsInput | number;
 		olfactory_intensity?: IntFieldUpdateOperationsInput | number;
@@ -16476,8 +16584,9 @@ export namespace Prisma {
 
 	export type scoring_evaluationCreateManyInput = {
 		id?: number;
-		tid: string;
 		sid?: string;
+		tid: string;
+		uid: string;
 		visual_appearance: number;
 		visual_color: number;
 		olfactory_intensity: number;
@@ -16512,8 +16621,9 @@ export namespace Prisma {
 
 	export type scoring_evaluationUncheckedUpdateManyInput = {
 		id?: IntFieldUpdateOperationsInput | number;
-		tid?: StringFieldUpdateOperationsInput | string;
 		sid?: StringFieldUpdateOperationsInput | string;
+		tid?: StringFieldUpdateOperationsInput | string;
+		uid?: StringFieldUpdateOperationsInput | string;
 		visual_appearance?: IntFieldUpdateOperationsInput | number;
 		visual_color?: IntFieldUpdateOperationsInput | number;
 		olfactory_intensity?: IntFieldUpdateOperationsInput | number;
@@ -16583,6 +16693,12 @@ export namespace Prisma {
 		not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null;
 	};
 
+	export type Scoring_evaluationListRelationFilter = {
+		every?: scoring_evaluationWhereInput;
+		some?: scoring_evaluationWhereInput;
+		none?: scoring_evaluationWhereInput;
+	};
+
 	export type TastingsListRelationFilter = {
 		every?: tastingsWhereInput;
 		some?: tastingsWhereInput;
@@ -16592,6 +16708,10 @@ export namespace Prisma {
 	export type SortOrderInput = {
 		sort: SortOrder;
 		nulls?: NullsOrder;
+	};
+
+	export type scoring_evaluationOrderByRelationAggregateInput = {
+		_count?: SortOrder;
 	};
 
 	export type tastingsOrderByRelationAggregateInput = {
@@ -17326,8 +17446,9 @@ export namespace Prisma {
 
 	export type scoring_evaluationCountOrderByAggregateInput = {
 		id?: SortOrder;
-		tid?: SortOrder;
 		sid?: SortOrder;
+		tid?: SortOrder;
+		uid?: SortOrder;
 		visual_appearance?: SortOrder;
 		visual_color?: SortOrder;
 		olfactory_intensity?: SortOrder;
@@ -17361,8 +17482,9 @@ export namespace Prisma {
 
 	export type scoring_evaluationMaxOrderByAggregateInput = {
 		id?: SortOrder;
-		tid?: SortOrder;
 		sid?: SortOrder;
+		tid?: SortOrder;
+		uid?: SortOrder;
 		visual_appearance?: SortOrder;
 		visual_color?: SortOrder;
 		olfactory_intensity?: SortOrder;
@@ -17380,8 +17502,9 @@ export namespace Prisma {
 
 	export type scoring_evaluationMinOrderByAggregateInput = {
 		id?: SortOrder;
-		tid?: SortOrder;
 		sid?: SortOrder;
+		tid?: SortOrder;
+		uid?: SortOrder;
 		visual_appearance?: SortOrder;
 		visual_color?: SortOrder;
 		olfactory_intensity?: SortOrder;
@@ -17429,6 +17552,21 @@ export namespace Prisma {
 		_max?: NestedIntNullableFilter<$PrismaModel>;
 	};
 
+	export type scoring_evaluationCreateNestedManyWithoutUsersInput = {
+		create?:
+			| XOR<
+					scoring_evaluationCreateWithoutUsersInput,
+					scoring_evaluationUncheckedCreateWithoutUsersInput
+			  >
+			| scoring_evaluationCreateWithoutUsersInput[]
+			| scoring_evaluationUncheckedCreateWithoutUsersInput[];
+		connectOrCreate?:
+			| scoring_evaluationCreateOrConnectWithoutUsersInput
+			| scoring_evaluationCreateOrConnectWithoutUsersInput[];
+		createMany?: scoring_evaluationCreateManyUsersInputEnvelope;
+		connect?: scoring_evaluationWhereUniqueInput | scoring_evaluationWhereUniqueInput[];
+	};
+
 	export type tastingsCreateNestedManyWithoutUsersInput = {
 		create?:
 			| XOR<tastingsCreateWithoutUsersInput, tastingsUncheckedCreateWithoutUsersInput>
@@ -17439,6 +17577,21 @@ export namespace Prisma {
 			| tastingsCreateOrConnectWithoutUsersInput[];
 		createMany?: tastingsCreateManyUsersInputEnvelope;
 		connect?: tastingsWhereUniqueInput | tastingsWhereUniqueInput[];
+	};
+
+	export type scoring_evaluationUncheckedCreateNestedManyWithoutUsersInput = {
+		create?:
+			| XOR<
+					scoring_evaluationCreateWithoutUsersInput,
+					scoring_evaluationUncheckedCreateWithoutUsersInput
+			  >
+			| scoring_evaluationCreateWithoutUsersInput[]
+			| scoring_evaluationUncheckedCreateWithoutUsersInput[];
+		connectOrCreate?:
+			| scoring_evaluationCreateOrConnectWithoutUsersInput
+			| scoring_evaluationCreateOrConnectWithoutUsersInput[];
+		createMany?: scoring_evaluationCreateManyUsersInputEnvelope;
+		connect?: scoring_evaluationWhereUniqueInput | scoring_evaluationWhereUniqueInput[];
 	};
 
 	export type tastingsUncheckedCreateNestedManyWithoutUsersInput = {
@@ -17467,6 +17620,34 @@ export namespace Prisma {
 
 	export type NullableBoolFieldUpdateOperationsInput = {
 		set?: boolean | null;
+	};
+
+	export type scoring_evaluationUpdateManyWithoutUsersNestedInput = {
+		create?:
+			| XOR<
+					scoring_evaluationCreateWithoutUsersInput,
+					scoring_evaluationUncheckedCreateWithoutUsersInput
+			  >
+			| scoring_evaluationCreateWithoutUsersInput[]
+			| scoring_evaluationUncheckedCreateWithoutUsersInput[];
+		connectOrCreate?:
+			| scoring_evaluationCreateOrConnectWithoutUsersInput
+			| scoring_evaluationCreateOrConnectWithoutUsersInput[];
+		upsert?:
+			| scoring_evaluationUpsertWithWhereUniqueWithoutUsersInput
+			| scoring_evaluationUpsertWithWhereUniqueWithoutUsersInput[];
+		createMany?: scoring_evaluationCreateManyUsersInputEnvelope;
+		set?: scoring_evaluationWhereUniqueInput | scoring_evaluationWhereUniqueInput[];
+		disconnect?: scoring_evaluationWhereUniqueInput | scoring_evaluationWhereUniqueInput[];
+		delete?: scoring_evaluationWhereUniqueInput | scoring_evaluationWhereUniqueInput[];
+		connect?: scoring_evaluationWhereUniqueInput | scoring_evaluationWhereUniqueInput[];
+		update?:
+			| scoring_evaluationUpdateWithWhereUniqueWithoutUsersInput
+			| scoring_evaluationUpdateWithWhereUniqueWithoutUsersInput[];
+		updateMany?:
+			| scoring_evaluationUpdateManyWithWhereWithoutUsersInput
+			| scoring_evaluationUpdateManyWithWhereWithoutUsersInput[];
+		deleteMany?: scoring_evaluationScalarWhereInput | scoring_evaluationScalarWhereInput[];
 	};
 
 	export type tastingsUpdateManyWithoutUsersNestedInput = {
@@ -17500,6 +17681,34 @@ export namespace Prisma {
 		decrement?: number;
 		multiply?: number;
 		divide?: number;
+	};
+
+	export type scoring_evaluationUncheckedUpdateManyWithoutUsersNestedInput = {
+		create?:
+			| XOR<
+					scoring_evaluationCreateWithoutUsersInput,
+					scoring_evaluationUncheckedCreateWithoutUsersInput
+			  >
+			| scoring_evaluationCreateWithoutUsersInput[]
+			| scoring_evaluationUncheckedCreateWithoutUsersInput[];
+		connectOrCreate?:
+			| scoring_evaluationCreateOrConnectWithoutUsersInput
+			| scoring_evaluationCreateOrConnectWithoutUsersInput[];
+		upsert?:
+			| scoring_evaluationUpsertWithWhereUniqueWithoutUsersInput
+			| scoring_evaluationUpsertWithWhereUniqueWithoutUsersInput[];
+		createMany?: scoring_evaluationCreateManyUsersInputEnvelope;
+		set?: scoring_evaluationWhereUniqueInput | scoring_evaluationWhereUniqueInput[];
+		disconnect?: scoring_evaluationWhereUniqueInput | scoring_evaluationWhereUniqueInput[];
+		delete?: scoring_evaluationWhereUniqueInput | scoring_evaluationWhereUniqueInput[];
+		connect?: scoring_evaluationWhereUniqueInput | scoring_evaluationWhereUniqueInput[];
+		update?:
+			| scoring_evaluationUpdateWithWhereUniqueWithoutUsersInput
+			| scoring_evaluationUpdateWithWhereUniqueWithoutUsersInput[];
+		updateMany?:
+			| scoring_evaluationUpdateManyWithWhereWithoutUsersInput
+			| scoring_evaluationUpdateManyWithWhereWithoutUsersInput[];
+		deleteMany?: scoring_evaluationScalarWhereInput | scoring_evaluationScalarWhereInput[];
 	};
 
 	export type tastingsUncheckedUpdateManyWithoutUsersNestedInput = {
@@ -18073,6 +18282,15 @@ export namespace Prisma {
 		connect?: tastingsWhereUniqueInput;
 	};
 
+	export type usersCreateNestedOneWithoutScoring_evaluationInput = {
+		create?: XOR<
+			usersCreateWithoutScoring_evaluationInput,
+			usersUncheckedCreateWithoutScoring_evaluationInput
+		>;
+		connectOrCreate?: usersCreateOrConnectWithoutScoring_evaluationInput;
+		connect?: usersWhereUniqueInput;
+	};
+
 	export type NullableIntFieldUpdateOperationsInput = {
 		set?: number | null;
 		increment?: number;
@@ -18095,6 +18313,23 @@ export namespace Prisma {
 				tastingsUpdateWithoutScoring_evaluationInput
 			>,
 			tastingsUncheckedUpdateWithoutScoring_evaluationInput
+		>;
+	};
+
+	export type usersUpdateOneRequiredWithoutScoring_evaluationNestedInput = {
+		create?: XOR<
+			usersCreateWithoutScoring_evaluationInput,
+			usersUncheckedCreateWithoutScoring_evaluationInput
+		>;
+		connectOrCreate?: usersCreateOrConnectWithoutScoring_evaluationInput;
+		upsert?: usersUpsertWithoutScoring_evaluationInput;
+		connect?: usersWhereUniqueInput;
+		update?: XOR<
+			XOR<
+				usersUpdateToOneWithWhereWithoutScoring_evaluationInput,
+				usersUpdateWithoutScoring_evaluationInput
+			>,
+			usersUncheckedUpdateWithoutScoring_evaluationInput
 		>;
 	};
 
@@ -18464,6 +18699,56 @@ export namespace Prisma {
 		not?: NestedFloatNullableFilter<$PrismaModel> | number | null;
 	};
 
+	export type scoring_evaluationCreateWithoutUsersInput = {
+		sid?: string;
+		visual_appearance: number;
+		visual_color: number;
+		olfactory_intensity: number;
+		olfactory_complexity: number;
+		olfactory_quality: number;
+		taste_structure: number;
+		taste_balance: number;
+		taste_intensity: number;
+		taste_persistence: number;
+		taste_quality: number;
+		harmony: number;
+		total_score?: number | null;
+		notes?: string | null;
+		tastings: tastingsCreateNestedOneWithoutScoring_evaluationInput;
+	};
+
+	export type scoring_evaluationUncheckedCreateWithoutUsersInput = {
+		id?: number;
+		sid?: string;
+		tid: string;
+		visual_appearance: number;
+		visual_color: number;
+		olfactory_intensity: number;
+		olfactory_complexity: number;
+		olfactory_quality: number;
+		taste_structure: number;
+		taste_balance: number;
+		taste_intensity: number;
+		taste_persistence: number;
+		taste_quality: number;
+		harmony: number;
+		total_score?: number | null;
+		notes?: string | null;
+	};
+
+	export type scoring_evaluationCreateOrConnectWithoutUsersInput = {
+		where: scoring_evaluationWhereUniqueInput;
+		create: XOR<
+			scoring_evaluationCreateWithoutUsersInput,
+			scoring_evaluationUncheckedCreateWithoutUsersInput
+		>;
+	};
+
+	export type scoring_evaluationCreateManyUsersInputEnvelope = {
+		data: scoring_evaluationCreateManyUsersInput | scoring_evaluationCreateManyUsersInput[];
+		skipDuplicates?: boolean;
+	};
+
 	export type tastingsCreateWithoutUsersInput = {
 		tid?: string;
 		full_name?: string | null;
@@ -18519,6 +18804,57 @@ export namespace Prisma {
 	export type tastingsCreateManyUsersInputEnvelope = {
 		data: tastingsCreateManyUsersInput | tastingsCreateManyUsersInput[];
 		skipDuplicates?: boolean;
+	};
+
+	export type scoring_evaluationUpsertWithWhereUniqueWithoutUsersInput = {
+		where: scoring_evaluationWhereUniqueInput;
+		update: XOR<
+			scoring_evaluationUpdateWithoutUsersInput,
+			scoring_evaluationUncheckedUpdateWithoutUsersInput
+		>;
+		create: XOR<
+			scoring_evaluationCreateWithoutUsersInput,
+			scoring_evaluationUncheckedCreateWithoutUsersInput
+		>;
+	};
+
+	export type scoring_evaluationUpdateWithWhereUniqueWithoutUsersInput = {
+		where: scoring_evaluationWhereUniqueInput;
+		data: XOR<
+			scoring_evaluationUpdateWithoutUsersInput,
+			scoring_evaluationUncheckedUpdateWithoutUsersInput
+		>;
+	};
+
+	export type scoring_evaluationUpdateManyWithWhereWithoutUsersInput = {
+		where: scoring_evaluationScalarWhereInput;
+		data: XOR<
+			scoring_evaluationUpdateManyMutationInput,
+			scoring_evaluationUncheckedUpdateManyWithoutUsersInput
+		>;
+	};
+
+	export type scoring_evaluationScalarWhereInput = {
+		AND?: scoring_evaluationScalarWhereInput | scoring_evaluationScalarWhereInput[];
+		OR?: scoring_evaluationScalarWhereInput[];
+		NOT?: scoring_evaluationScalarWhereInput | scoring_evaluationScalarWhereInput[];
+		id?: IntFilter<"scoring_evaluation"> | number;
+		sid?: UuidFilter<"scoring_evaluation"> | string;
+		tid?: UuidFilter<"scoring_evaluation"> | string;
+		uid?: UuidFilter<"scoring_evaluation"> | string;
+		visual_appearance?: IntFilter<"scoring_evaluation"> | number;
+		visual_color?: IntFilter<"scoring_evaluation"> | number;
+		olfactory_intensity?: IntFilter<"scoring_evaluation"> | number;
+		olfactory_complexity?: IntFilter<"scoring_evaluation"> | number;
+		olfactory_quality?: IntFilter<"scoring_evaluation"> | number;
+		taste_structure?: IntFilter<"scoring_evaluation"> | number;
+		taste_balance?: IntFilter<"scoring_evaluation"> | number;
+		taste_intensity?: IntFilter<"scoring_evaluation"> | number;
+		taste_persistence?: IntFilter<"scoring_evaluation"> | number;
+		taste_quality?: IntFilter<"scoring_evaluation"> | number;
+		harmony?: IntFilter<"scoring_evaluation"> | number;
+		total_score?: IntNullableFilter<"scoring_evaluation"> | number | null;
+		notes?: StringNullableFilter<"scoring_evaluation"> | string | null;
 	};
 
 	export type tastingsUpsertWithWhereUniqueWithoutUsersInput = {
@@ -18739,11 +19075,13 @@ export namespace Prisma {
 		harmony: number;
 		total_score?: number | null;
 		notes?: string | null;
+		users: usersCreateNestedOneWithoutScoring_evaluationInput;
 	};
 
 	export type scoring_evaluationUncheckedCreateWithoutTastingsInput = {
 		id?: number;
 		sid?: string;
+		uid: string;
 		visual_appearance: number;
 		visual_color: number;
 		olfactory_intensity: number;
@@ -18822,6 +19160,7 @@ export namespace Prisma {
 		apple_id?: string | null;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
+		scoring_evaluation?: scoring_evaluationCreateNestedManyWithoutUsersInput;
 	};
 
 	export type usersUncheckedCreateWithoutTastingsInput = {
@@ -18839,6 +19178,7 @@ export namespace Prisma {
 		apple_id?: string | null;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
+		scoring_evaluation?: scoring_evaluationUncheckedCreateNestedManyWithoutUsersInput;
 	};
 
 	export type usersCreateOrConnectWithoutTastingsInput = {
@@ -19025,11 +19365,13 @@ export namespace Prisma {
 		harmony?: IntFieldUpdateOperationsInput | number;
 		total_score?: NullableIntFieldUpdateOperationsInput | number | null;
 		notes?: NullableStringFieldUpdateOperationsInput | string | null;
+		users?: usersUpdateOneRequiredWithoutScoring_evaluationNestedInput;
 	};
 
 	export type scoring_evaluationUncheckedUpdateWithoutTastingsInput = {
 		id?: IntFieldUpdateOperationsInput | number;
 		sid?: StringFieldUpdateOperationsInput | string;
+		uid?: StringFieldUpdateOperationsInput | string;
 		visual_appearance?: IntFieldUpdateOperationsInput | number;
 		visual_color?: IntFieldUpdateOperationsInput | number;
 		olfactory_intensity?: IntFieldUpdateOperationsInput | number;
@@ -19123,6 +19465,7 @@ export namespace Prisma {
 		apple_id?: NullableStringFieldUpdateOperationsInput | string | null;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		scoring_evaluation?: scoring_evaluationUpdateManyWithoutUsersNestedInput;
 	};
 
 	export type usersUncheckedUpdateWithoutTastingsInput = {
@@ -19140,6 +19483,7 @@ export namespace Prisma {
 		apple_id?: NullableStringFieldUpdateOperationsInput | string | null;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		scoring_evaluation?: scoring_evaluationUncheckedUpdateManyWithoutUsersNestedInput;
 	};
 
 	export type wine_categoriesUpsertWithoutTastingsInput = {
@@ -19887,6 +20231,49 @@ export namespace Prisma {
 		>;
 	};
 
+	export type usersCreateWithoutScoring_evaluationInput = {
+		uid?: string;
+		username?: string | null;
+		full_name?: string | null;
+		birthdate?: Date | string | null;
+		email?: string | null;
+		password_hash?: string | null;
+		admin?: boolean | null;
+		premium?: boolean | null;
+		google_id?: string | null;
+		facebook_id?: string | null;
+		apple_id?: string | null;
+		created_at?: Date | string | null;
+		updated_at?: Date | string | null;
+		tastings?: tastingsCreateNestedManyWithoutUsersInput;
+	};
+
+	export type usersUncheckedCreateWithoutScoring_evaluationInput = {
+		id?: number;
+		uid?: string;
+		username?: string | null;
+		full_name?: string | null;
+		birthdate?: Date | string | null;
+		email?: string | null;
+		password_hash?: string | null;
+		admin?: boolean | null;
+		premium?: boolean | null;
+		google_id?: string | null;
+		facebook_id?: string | null;
+		apple_id?: string | null;
+		created_at?: Date | string | null;
+		updated_at?: Date | string | null;
+		tastings?: tastingsUncheckedCreateNestedManyWithoutUsersInput;
+	};
+
+	export type usersCreateOrConnectWithoutScoring_evaluationInput = {
+		where: usersWhereUniqueInput;
+		create: XOR<
+			usersCreateWithoutScoring_evaluationInput,
+			usersUncheckedCreateWithoutScoring_evaluationInput
+		>;
+	};
+
 	export type tastingsUpsertWithoutScoring_evaluationInput = {
 		update: XOR<
 			tastingsUpdateWithoutScoring_evaluationInput,
@@ -19986,6 +20373,80 @@ export namespace Prisma {
 		visual_exams?: visual_examsUncheckedUpdateOneWithoutTastingsNestedInput;
 	};
 
+	export type usersUpsertWithoutScoring_evaluationInput = {
+		update: XOR<
+			usersUpdateWithoutScoring_evaluationInput,
+			usersUncheckedUpdateWithoutScoring_evaluationInput
+		>;
+		create: XOR<
+			usersCreateWithoutScoring_evaluationInput,
+			usersUncheckedCreateWithoutScoring_evaluationInput
+		>;
+		where?: usersWhereInput;
+	};
+
+	export type usersUpdateToOneWithWhereWithoutScoring_evaluationInput = {
+		where?: usersWhereInput;
+		data: XOR<
+			usersUpdateWithoutScoring_evaluationInput,
+			usersUncheckedUpdateWithoutScoring_evaluationInput
+		>;
+	};
+
+	export type usersUpdateWithoutScoring_evaluationInput = {
+		uid?: StringFieldUpdateOperationsInput | string;
+		username?: NullableStringFieldUpdateOperationsInput | string | null;
+		full_name?: NullableStringFieldUpdateOperationsInput | string | null;
+		birthdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		email?: NullableStringFieldUpdateOperationsInput | string | null;
+		password_hash?: NullableStringFieldUpdateOperationsInput | string | null;
+		admin?: NullableBoolFieldUpdateOperationsInput | boolean | null;
+		premium?: NullableBoolFieldUpdateOperationsInput | boolean | null;
+		google_id?: NullableStringFieldUpdateOperationsInput | string | null;
+		facebook_id?: NullableStringFieldUpdateOperationsInput | string | null;
+		apple_id?: NullableStringFieldUpdateOperationsInput | string | null;
+		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		tastings?: tastingsUpdateManyWithoutUsersNestedInput;
+	};
+
+	export type usersUncheckedUpdateWithoutScoring_evaluationInput = {
+		id?: IntFieldUpdateOperationsInput | number;
+		uid?: StringFieldUpdateOperationsInput | string;
+		username?: NullableStringFieldUpdateOperationsInput | string | null;
+		full_name?: NullableStringFieldUpdateOperationsInput | string | null;
+		birthdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		email?: NullableStringFieldUpdateOperationsInput | string | null;
+		password_hash?: NullableStringFieldUpdateOperationsInput | string | null;
+		admin?: NullableBoolFieldUpdateOperationsInput | boolean | null;
+		premium?: NullableBoolFieldUpdateOperationsInput | boolean | null;
+		google_id?: NullableStringFieldUpdateOperationsInput | string | null;
+		facebook_id?: NullableStringFieldUpdateOperationsInput | string | null;
+		apple_id?: NullableStringFieldUpdateOperationsInput | string | null;
+		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		tastings?: tastingsUncheckedUpdateManyWithoutUsersNestedInput;
+	};
+
+	export type scoring_evaluationCreateManyUsersInput = {
+		id?: number;
+		sid?: string;
+		tid: string;
+		visual_appearance: number;
+		visual_color: number;
+		olfactory_intensity: number;
+		olfactory_complexity: number;
+		olfactory_quality: number;
+		taste_structure: number;
+		taste_balance: number;
+		taste_intensity: number;
+		taste_persistence: number;
+		taste_quality: number;
+		harmony: number;
+		total_score?: number | null;
+		notes?: string | null;
+	};
+
 	export type tastingsCreateManyUsersInput = {
 		id?: number;
 		tid?: string;
@@ -20003,6 +20464,62 @@ export namespace Prisma {
 		tasting_location: string;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
+	};
+
+	export type scoring_evaluationUpdateWithoutUsersInput = {
+		sid?: StringFieldUpdateOperationsInput | string;
+		visual_appearance?: IntFieldUpdateOperationsInput | number;
+		visual_color?: IntFieldUpdateOperationsInput | number;
+		olfactory_intensity?: IntFieldUpdateOperationsInput | number;
+		olfactory_complexity?: IntFieldUpdateOperationsInput | number;
+		olfactory_quality?: IntFieldUpdateOperationsInput | number;
+		taste_structure?: IntFieldUpdateOperationsInput | number;
+		taste_balance?: IntFieldUpdateOperationsInput | number;
+		taste_intensity?: IntFieldUpdateOperationsInput | number;
+		taste_persistence?: IntFieldUpdateOperationsInput | number;
+		taste_quality?: IntFieldUpdateOperationsInput | number;
+		harmony?: IntFieldUpdateOperationsInput | number;
+		total_score?: NullableIntFieldUpdateOperationsInput | number | null;
+		notes?: NullableStringFieldUpdateOperationsInput | string | null;
+		tastings?: tastingsUpdateOneRequiredWithoutScoring_evaluationNestedInput;
+	};
+
+	export type scoring_evaluationUncheckedUpdateWithoutUsersInput = {
+		id?: IntFieldUpdateOperationsInput | number;
+		sid?: StringFieldUpdateOperationsInput | string;
+		tid?: StringFieldUpdateOperationsInput | string;
+		visual_appearance?: IntFieldUpdateOperationsInput | number;
+		visual_color?: IntFieldUpdateOperationsInput | number;
+		olfactory_intensity?: IntFieldUpdateOperationsInput | number;
+		olfactory_complexity?: IntFieldUpdateOperationsInput | number;
+		olfactory_quality?: IntFieldUpdateOperationsInput | number;
+		taste_structure?: IntFieldUpdateOperationsInput | number;
+		taste_balance?: IntFieldUpdateOperationsInput | number;
+		taste_intensity?: IntFieldUpdateOperationsInput | number;
+		taste_persistence?: IntFieldUpdateOperationsInput | number;
+		taste_quality?: IntFieldUpdateOperationsInput | number;
+		harmony?: IntFieldUpdateOperationsInput | number;
+		total_score?: NullableIntFieldUpdateOperationsInput | number | null;
+		notes?: NullableStringFieldUpdateOperationsInput | string | null;
+	};
+
+	export type scoring_evaluationUncheckedUpdateManyWithoutUsersInput = {
+		id?: IntFieldUpdateOperationsInput | number;
+		sid?: StringFieldUpdateOperationsInput | string;
+		tid?: StringFieldUpdateOperationsInput | string;
+		visual_appearance?: IntFieldUpdateOperationsInput | number;
+		visual_color?: IntFieldUpdateOperationsInput | number;
+		olfactory_intensity?: IntFieldUpdateOperationsInput | number;
+		olfactory_complexity?: IntFieldUpdateOperationsInput | number;
+		olfactory_quality?: IntFieldUpdateOperationsInput | number;
+		taste_structure?: IntFieldUpdateOperationsInput | number;
+		taste_balance?: IntFieldUpdateOperationsInput | number;
+		taste_intensity?: IntFieldUpdateOperationsInput | number;
+		taste_persistence?: IntFieldUpdateOperationsInput | number;
+		taste_quality?: IntFieldUpdateOperationsInput | number;
+		harmony?: IntFieldUpdateOperationsInput | number;
+		total_score?: NullableIntFieldUpdateOperationsInput | number | null;
+		notes?: NullableStringFieldUpdateOperationsInput | string | null;
 	};
 
 	export type tastingsUpdateWithoutUsersInput = {

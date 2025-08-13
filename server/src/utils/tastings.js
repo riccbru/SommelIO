@@ -87,7 +87,9 @@ const formatTasting = tasting => {
 		olfactory_exam: tasting.olfactory_exams ? formatOlfactoryExam(tasting.olfactory_exams) : {},
 		taste_olfactory_exam: tasting.taste_olfactory_exams || {},
 		final_considerations: tasting.final_considerations || {},
-		scoring_evaluation: formatScoringEvaluation(tasting.scoring_evaluation) ?? {},
+		scoring_evaluation: tasting.scoring_evaluation
+			? formatScoringEvaluation(tasting.scoring_evaluation)
+			: {},
 	};
 	return tastingFormatted;
 };
