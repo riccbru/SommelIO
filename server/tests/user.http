@@ -1,0 +1,43 @@
+@PORT = 3001
+@HOSTNAME = localhost
+@token = 
+@tid = 
+
+### LOGIN + TOKEN
+
+POST http://{{HOSTNAME}}:{{PORT}}/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "username": "bankich",
+    "password": "bankich_pwd"
+}
+
+### REFRESH TOKEN
+
+POST http://{{HOSTNAME}}:{{PORT}}/api/v1/auth/refresh HTTP/1.1
+
+### LOGOUT (UNSET REFRESH TOKEN COOKIE)
+
+POST http://{{HOSTNAME}}:{{PORT}}/api/v1/auth/logout HTTP/1.1
+
+
+### GET USER INFO
+
+GET http://{{HOSTNAME}}:{{PORT}}/api/v1/users/me/stats HTTP/1.1
+Authorization: Bearer {{token}}
+
+### POST NEW USER
+
+POST http://{{HOSTNAME}}:{{PORT}}/api/v1/auth/signup
+Content-Type: application/json
+
+{
+    "username": "riccbru",
+    "email": "riccbru@sommel.io",
+    "full_name": "Riccardo Bruno",
+    "birthdate": "1999-11-25",
+    "password": "riccbru_pwd"
+}
+
+###

@@ -9,22 +9,24 @@ datasource db {
 }
 
 model users {
-  id                 Int                  @id @default(autoincrement())
-  uid                String               @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  username           String?              @unique
-  full_name          String?
-  birthdate          DateTime?            @db.Date
-  email              String?              @unique
-  password_hash      String?
-  admin              Boolean?             @default(false)
-  premium            Boolean?             @default(false)
-  google_id          String?              @unique
-  facebook_id        String?              @unique
-  apple_id           String?              @unique
-  created_at         DateTime?            @default(now()) @db.Timestamptz(6)
-  updated_at         DateTime?            @default(now()) @db.Timestamptz(6)
-  scoring_evaluation scoring_evaluation[]
-  tastings           tastings[]
+  id                                        Int                  @id @default(autoincrement())
+  uid                                       String               @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  username                                  String?              @unique
+  full_name                                 String?
+  birthdate                                 DateTime?            @db.Date
+  email                                     String?              @unique
+  password_hash                             String?
+  admin                                     Boolean?             @default(false)
+  premium                                   Boolean?             @default(false)
+  google_id                                 String?              @unique
+  facebook_id                               String?              @unique
+  apple_id                                  String?              @unique
+  created_at                                DateTime?            @default(now()) @db.Timestamptz(6)
+  updated_at                                DateTime?            @default(now()) @db.Timestamptz(6)
+  colleagues_colleagues_addressee_idTousers colleagues[]         @relation("colleagues_addressee_idTousers")
+  colleagues_colleagues_requester_idTousers colleagues[]         @relation("colleagues_requester_idTousers")
+  scoring_evaluation                        scoring_evaluation[]
+  tastings                                  tastings[]
 }
 
 model wine_categories {
@@ -158,4 +160,23 @@ model scoring_evaluation {
   notes                String?
   tastings             tastings @relation(fields: [tid], references: [tid], onDelete: Cascade, onUpdate: NoAction)
   users                users    @relation(fields: [uid], references: [uid], onDelete: Cascade, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model colleagues {
+  id                                   Int       @id @default(autoincrement())
+  rid                                  String    @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  requester_id                         String    @db.Uuid
+  addressee_id                         String    @db.Uuid
+  status                               String    @default("pending") @db.VarChar(20)
+  created_at                           DateTime? @default(now()) @db.Timestamptz(6)
+  updated_at                           DateTime? @default(now()) @db.Timestamptz(6)
+  users_colleagues_addressee_idTousers users     @relation("colleagues_addressee_idTousers", fields: [addressee_id], references: [uid], onDelete: Cascade, onUpdate: NoAction)
+  users_colleagues_requester_idTousers users     @relation("colleagues_requester_idTousers", fields: [requester_id], references: [uid], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([requester_id, addressee_id])
+  @@index([addressee_id], map: "idx_colleagues_addressee")
+  @@index([requester_id], map: "idx_colleagues_requester")
+  @@index([status], map: "idx_colleagues_status")
+  @@index([requester_id, addressee_id], map: "idx_colleagues_users")
 }
