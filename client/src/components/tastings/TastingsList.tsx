@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import { FileTextIcon } from "phosphor-react-native";
+import { FileMagnifyingGlassIcon, FileTextIcon } from "phosphor-react-native";
 import { StyleSheet, Text, View } from "react-native";
 import { Button, List, useTheme } from "react-native-paper";
 import { capitalizeFirst, formatDescription } from "@/src/utils/utils";
@@ -56,6 +56,7 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
 						<View style={styles.iconContainer}>
 							<Button onPress={() => handlePress(t)}>
 								<FileTextIcon size={32} />
+								{/* <FileMagnifyingGlassIcon size={32} /> */}
 							</Button>
 						</View>
 

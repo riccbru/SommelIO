@@ -1,23 +1,28 @@
 import { StarIcon } from "phosphor-react-native";
+import { useLocalSearchParams, useNavigation } from "expo-router";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
+import { Text, Card, useTheme, ActivityIndicator } from "react-native-paper";
+import { View, ScrollView, StyleSheet, TouchableOpacity, RefreshControl } from "react-native";
+
 import TastingsAPI from "@/src/services/tastings";
 import TastingCard from "@/src/components/tastings/TastingCard";
-import { useLocalSearchParams, useNavigation } from "expo-router";
 import ActionButton from "@/src/components/tastings/ActionButton";
-import FinalDetails from "@/src/components/tastings/FinalDetails";
-import TasteDetails from "@/src/components/tastings/TasteDetails";
-import VisualDetails from "@/src/components/tastings/VisualDetails";
-import TastingDetails from "@/src/components/tastings/TastingDetails";
-import ScoringDetails from "@/src/components/tastings/ScoringDetails";
+
+import FinalDetails from "@/src/components/tastings/details/FinalDetails";
+import TasteDetails from "@/src/components/tastings/details/TasteDetails";
+import VisualDetails from "@/src/components/tastings/details/VisualDetails";
+import TastingDetails from "@/src/components/tastings/details/TastingDetails";
+import ScoringDetails from "@/src/components/tastings/details/ScoringDetails";
+import OlfactoryDetails from "@/src/components/tastings/details/OlfactoryDetails";
+
 import FinalUpdate from "@/src/components/tastings/update/FinalUpdate";
 import TasteUpdate from "@/src/components/tastings/update/TasteUpdate";
 import VisualUpdate from "@/src/components/tastings/update/VisualUpdate";
-import { useCallback, useEffect, useLayoutEffect, useState } from "react";
-import OlfactoryDetails from "@/src/components/tastings/OlfactoryDetails";
 import ScoringUpdate from "@/src/components/tastings/update/ScoringUpdate";
 import TastingUpdate from "@/src/components/tastings/update/TastingUpdate";
-import { Text, Card, useTheme, ActivityIndicator } from "react-native-paper";
 import OlfactoryUpdate from "@/src/components/tastings/update/OlfactoryUpdate";
-import { View, ScrollView, StyleSheet, TouchableOpacity, RefreshControl } from "react-native";
+
+
 
 type EditModeShape = {
 	tasting: boolean;
@@ -54,6 +59,7 @@ type Tasting = {
 };
 
 export default function TastingDetail() {
+
 	const theme = useTheme();
 	const navigation = useNavigation();
 	const [loading, setLoading] = useState(true);
@@ -200,7 +206,11 @@ export default function TastingDetail() {
 						setEditMode={setEditMode}
 						subtitle='Wine description'
 					/>
-					{!editMode["tasting"] ? <TastingDetails tasting={tasting} /> : <TastingUpdate />}
+					{!editMode["tasting"] ? (
+						<TastingDetails tasting={tasting} />
+					) : (
+						<TastingUpdate />
+					)}
 				</Card.Content>
 			</Card>
 

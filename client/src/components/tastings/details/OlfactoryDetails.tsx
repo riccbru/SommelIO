@@ -209,7 +209,7 @@ export default function OlfactoryDetails({ exam }: Props) {
 			{booleanFields.map(({ label, value }) => (
 				<View key={label} style={styles.descriptorRow}>
 					<Text style={styles.descriptorLabel}>{label}</Text>
-					<Text style={styles.descriptorValue}>{value ? "X" : ""}</Text>
+					<Text style={styles.descriptorValue}>{value ? "X" : "-"}</Text>
 				</View>
 			))}
 

@@ -5,6 +5,7 @@ import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from "ax
 
 const axiosClient = axios.create({
 	baseURL: `http://${config.HOSTNAME}:${config.PORT}/api/v1`,
+	withCredentials: true, // Ensures cookies (including refresh token) are sent with requests
 });
 
 let isRefreshing = false;
@@ -92,13 +93,12 @@ axiosClient.interceptors.response.use(
 			isRefreshing = true;
 
 			try {
-				const refreshToken = await SecureStore.getItemAsync("refreshToken");
+				const refreshAxios = axios.create({
+					baseURL: `http://${config.HOSTNAME}:${config.PORT}/api/v1`,
+					withCredentials: true,
+				});
 
-				if (!refreshToken) {
-					throw new Error("No refresh token available");
-				}
-
-				const response = await axios.post(`/auth/refresh`, null);
+				const response = await refreshAxios.post(`/auth/refresh`);
 
 				const newAccessToken = response.data.token;
 
@@ -121,7 +121,6 @@ axiosClient.interceptors.response.use(
 				processQueue(refreshError, null);
 
 				await SecureStore.deleteItemAsync("accessToken");
-				await SecureStore.deleteItemAsync("refreshToken");
 
 				currentAccessToken = null;
 

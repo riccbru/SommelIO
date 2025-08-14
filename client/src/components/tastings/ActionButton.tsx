@@ -3,7 +3,7 @@ import { useRouter } from "expo-router";
 import TastingsAPI from "@/src/services/tastings";
 import { capitalizeFirst } from "@/src/utils/utils";
 import { Button, useTheme } from "react-native-paper";
-import { FileArrowDownIcon, TrashIcon } from "phosphor-react-native";
+import { FileArrowDownIcon, FilePdfIcon, TrashIcon } from "phosphor-react-native";
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 type Props = {
@@ -17,6 +17,7 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 	const theme = useTheme();
 	const router = useRouter();
 	const [modal, setModal] = useState(false);
+	// const Icon = action.toLowerCase() === "delete" ? TrashIcon : FilePdfIcon;
 	const Icon = action.toLowerCase() === "delete" ? TrashIcon : FileArrowDownIcon;
 
 	const showModal = () => setModal(true);
