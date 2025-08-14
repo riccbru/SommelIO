@@ -2,6 +2,62 @@
 @HOSTNAME = localhost
 @token = 
 @rid = 
+@cuid = 
+
+### GET COLLEAGUES
+
+GET http://{{HOSTNAME}}:{{PORT}}/api/v1/colleagues HTTP/1.1
+Authorization: Bearer {{token}}
+
+### GET PENDING REQUESTS
+
+GET http://{{HOSTNAME}}:{{PORT}}/api/v1/colleagues/requests HTTP/1.1
+Authorization: Bearer {{token}}
+
+### SEARCH COLLEAGUES
+
+GET http://{{HOSTNAME}}:{{PORT}}/api/v1/colleagues/search?q= HTTP/1.1
+Authorization: Bearer {{token}}
+
+### SEND REQUEST
+
+POST http://{{HOSTNAME}}:{{PORT}}/api/v1/colleagues/{{cuid}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### ACCEPT REQUEST
+
+PUT http://{{HOSTNAME}}:{{PORT}}/api/v1/colleagues/accept/{{rid}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### DECLINE REQUEST
+
+PUT http://{{HOSTNAME}}:{{PORT}}/api/v1/colleagues/decline/{{rid}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### DELETE COLLEAGUE
+
+DELETE http://{{HOSTNAME}}:{{PORT}}/api/v1/colleagues/{{rid}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### BLOCK COLLEAGUE
+
+PUT http://{{HOSTNAME}}:{{PORT}}/api/v1/colleagues/block/{{cuid}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### UNBLOCK COLLEAGUE
+
+PUT http://{{HOSTNAME}}:{{PORT}}/api/v1/colleagues/unblock/{{rid}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### GET BLOCKED COLLEAGUES
+
+GET http://{{HOSTNAME}}:{{PORT}}/api/v1/colleagues/blocked HTTP/1.1
+Authorization: Bearer {{token}}
+
+### REFRESH TOKEN
+
+POST http://{{HOSTNAME}}:{{PORT}}/api/v1/auth/refresh HTTP/1.1
+
 
 ### LOGIN + TOKEN
 
@@ -9,22 +65,8 @@ POST http://{{HOSTNAME}}:{{PORT}}/api/v1/auth/login
 Content-Type: application/json
 
 {
-    "username": "bankich",
-    "password": "bankich_pwd"
+    "username": "baffanghirlo",
+    "password": "baffanghirlo_pwd"
 }
-
-### REFRESH TOKEN
-
-POST http://{{HOSTNAME}}:{{PORT}}/api/v1/auth/refresh HTTP/1.1
-
-### LOGOUT (UNSET REFRESH TOKEN COOKIE)
-
-POST http://{{HOSTNAME}}:{{PORT}}/api/v1/auth/logout HTTP/1.1
-
-
-### GET COLLEAGUES
-
-GET http://{{HOSTNAME}}:{{PORT}}/api/v1/colleagues HTTP/1.1
-Authorization: Bearer {{token}}
 
 ###
