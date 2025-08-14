@@ -27,7 +27,7 @@ export default function FormSwitch<T extends Record<string, any>>({
 				justifyContent: "space-between",
 			}}
 		>
-			<Text style={{ fontSize: 18, color: "#c9c4cf" }}>{label}</Text>
+			<Text style={{ fontSize: 18, color: "#c9c4cf", fontFamily: "Epilogue-Regular" }}>{label}</Text>
 			<Switch value={isChecked} onChange={toggle} />
 		</View>
 	);

@@ -84,8 +84,8 @@ export default function TastingDetail() {
 		},
 		loadingContainer: {
 			flex: 1,
-			justifyContent: "center",
 			alignItems: "center",
+			justifyContent: "center",
 			backgroundColor: theme.colors.background,
 		},
 		card: {
@@ -95,8 +95,8 @@ export default function TastingDetail() {
 		title: {
 			color: "#000000",
 			fontSize: 24,
-			fontWeight: "bold",
 			marginBottom: 8,
+			fontFamily: "Epilogue-Bold"
 		},
 		cardSubtitle: {
 			marginBottom: 10,
@@ -106,11 +106,12 @@ export default function TastingDetail() {
 		},
 		subtitle: {
 			fontSize: 18,
-			fontWeight: "600",
-			color: "#000000",
+			color: theme.colors.text,
+			fontFamily: "Epilogue-Bold"
 		},
 		text: {
-			color: "#000000",
+			color: theme.colors.text,
+			fontFamily: "Epilogue-Regular"
 		},
 	});
 
@@ -128,7 +129,8 @@ export default function TastingDetail() {
 		navigation.setOptions({
 			title: `${tasting?.wine_denomination} - ${tasting?.winemaker}`,
 			headerTitleStyle: {
-				color: theme.dark ? "#ffffff" : "#000000",
+				fontFamily: "Epilogue-Regular",
+				color: theme.dark ? "#ffffff" : "#000000"
 			},
 			headerRight: () => (
 				<TouchableOpacity
@@ -167,7 +169,8 @@ export default function TastingDetail() {
 		return (
 			<View style={styles.loadingContainer}>
 				<ActivityIndicator size='large' />
-				<Text style={{ marginTop: 10 }}>Loading tasting details...</Text>
+				<View style={{ marginTop: 10 }} />
+				<Text style={styles.text}>Loading tasting details...</Text>
 			</View>
 		);
 	}
@@ -175,7 +178,7 @@ export default function TastingDetail() {
 	if (!tasting) {
 		return (
 			<View style={styles.loadingContainer}>
-				<Text>Tasting not found</Text>
+				<Text style={styles.text}>Tasting not found</Text>
 			</View>
 		);
 	}

@@ -9,7 +9,7 @@ export default function Index() {
 	if (!isReady) {
 		return (
 			<View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-				<Text>Checking session...</Text>
+				<Text style={{ fontFamily: "Epilogue-Regular" }}>Checking session...</Text>
 			</View>
 		);
 	}

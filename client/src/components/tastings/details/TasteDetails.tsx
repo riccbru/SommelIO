@@ -33,11 +33,12 @@ export default function TasteDetails({ exam }: Props) {
 		},
 		label: {
 			flex: 1,
-			fontWeight: "bold",
+			fontFamily: "Epilogue-Bold"
 		},
 		value: {
 			flex: 1,
 			textAlign: "center",
+			fontFamily: "Epilogue-Regular"
 		},
 		notes: {
 			marginTop: 10,
@@ -48,6 +49,14 @@ export default function TasteDetails({ exam }: Props) {
 			borderTopWidth: 1,
 			borderTopColor: "#000000",
 		},
+		notesTitle: {
+			marginBottom: 4,
+			fontFamily: "Epilogue-Bold"
+		},
+		notesText: {
+			lineHeight: 20,
+			fontFamily: "Epilogue-Regular"
+		}
 	});
 
 	const tasteFields = [
@@ -75,8 +84,8 @@ export default function TasteDetails({ exam }: Props) {
 
 			{exam.notes && (
 				<View style={styles.notesRow}>
-					<Text style={{ fontWeight: "bold", marginBottom: 4 }}>Notes</Text>
-					<Text style={{ lineHeight: 20 }}>{exam.notes}</Text>
+					<Text style={styles.notesTitle}>Notes</Text>
+					<Text style={styles.notesText}>{exam.notes}</Text>
 				</View>
 			)}
 		</View>

@@ -39,6 +39,11 @@ Authorization: Bearer {{token}}
 DELETE http://{{HOSTNAME}}:{{PORT}}/api/v1/colleagues/{{rid}} HTTP/1.1
 Authorization: Bearer {{token}}
 
+### GET BLOCKED COLLEAGUES
+
+GET http://{{HOSTNAME}}:{{PORT}}/api/v1/colleagues/blocked HTTP/1.1
+Authorization: Bearer {{token}}
+
 ### BLOCK COLLEAGUE
 
 PUT http://{{HOSTNAME}}:{{PORT}}/api/v1/colleagues/block/{{cuid}} HTTP/1.1
@@ -49,24 +54,18 @@ Authorization: Bearer {{token}}
 PUT http://{{HOSTNAME}}:{{PORT}}/api/v1/colleagues/unblock/{{rid}} HTTP/1.1
 Authorization: Bearer {{token}}
 
-### GET BLOCKED COLLEAGUES
-
-GET http://{{HOSTNAME}}:{{PORT}}/api/v1/colleagues/blocked HTTP/1.1
-Authorization: Bearer {{token}}
-
-### REFRESH TOKEN
-
-POST http://{{HOSTNAME}}:{{PORT}}/api/v1/auth/refresh HTTP/1.1
-
-
 ### LOGIN + TOKEN
 
 POST http://{{HOSTNAME}}:{{PORT}}/api/v1/auth/login
 Content-Type: application/json
 
 {
-    "username": "baffanghirlo",
-    "password": "baffanghirlo_pwd"
+    "username": "ciclarimpo",
+    "password": "ciclarimpo_pwd"
 }
+
+### REFRESH TOKEN
+
+POST http://{{HOSTNAME}}:{{PORT}}/api/v1/auth/refresh HTTP/1.1
 
 ###

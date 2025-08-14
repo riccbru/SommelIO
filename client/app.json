@@ -1,72 +1,60 @@
 {
-	"expo": {
-		"name": "client",
-		"slug": "client",
-		"version": "1.0.0",
-		"orientation": "portrait",
-		"icon": "./assets/images/icon.png",
-		"scheme": "client",
-		"userInterfaceStyle": "automatic",
-		"newArchEnabled": true,
-		"ios": {
-			"supportsTablet": true
-		},
-		"android": {
-			"adaptiveIcon": {
-				"foregroundImage": "./assets/images/adaptive-icon.png",
-				"backgroundColor": "#ffffff"
-			},
-			"edgeToEdgeEnabled": true
-		},
-		"web": {
-			"bundler": "metro",
-			"output": "static",
-			"favicon": "./assets/images/favicon.png"
-		},
-		"plugins": [
-			"expo-router",
-			[
-				"expo-splash-screen",
-				{
-					"image": "./assets/images/logo-ais.png",
-					"imageWidth": 200,
-					"resizeMode": "contain",
-					"backgroundColor": "#ffffff",
-					"dark": {
-						"image": "./assets/images/logo-neg.png",
-						"imageWidth": 200,
-						"resizeMode": "contain",
-						"backgroundColor": "#000000"
-					}
-				}
-			],
-			[
-				"expo-font",
-				{
-					"fonts": ["./assets/fonts/Epilogue-Regular.ttf"],
-					"android": {
-						"fonts": [
-							{
-								"fontFamily": "Epilogue",
-								"fontDefinitions": [
-									{
-										"weight": 300,
-										"style": "normal",
-										"path": "./assets/fonts/Epilogue-Regular.ttf"
-									}
-								]
-							}
-						]
-					},
-					"ios": {
-						"fonts": ["./assets/fonts/Epilogue-Regular.ttf"]
-					}
-				}
-			],
-			"expo-secure-store"
-		],
-		"experiments": {
-			"typedRoutes": true
-		}
-	}
+  "expo": {
+    "name": "client",
+    "slug": "client",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "",
+    "scheme": "client",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.riccbru.client"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.riccbru.client"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": ""
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/AIS-logo/logo-ais.png",
+          "imageWidth": 350,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff",
+          "dark": {
+            "image": "./assets/images/AIS-logo/logo-neg.png",
+            "imageWidth": 350,
+            "resizeMode": "contain",
+            "backgroundColor": "#000000"
+          }
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Epilogue-Regular.ttf",
+            "./assets/fonts/Epilogue-Bold.ttf"
+          ]
+        }
+      ],
+      "expo-secure-store"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
 }

@@ -9,11 +9,12 @@ type Props = {
 };
 
 export default function FormScore({ label, value, error, onChange }: Props) {
+
 	const theme = useTheme();
 
 	return (
 		<View>
-			<Text style={{ marginBottom: 10, color: theme.colors.text }}>{label}</Text>
+			<Text style={{ marginBottom: 10, color: theme.colors.text, fontFamily: "Epilogue-Regular" }}>{label}</Text>
 			<View style={{ alignItems: "center" }}>
 				<SegmentedButtons
 					value={value.toString()}
@@ -27,7 +28,7 @@ export default function FormScore({ label, value, error, onChange }: Props) {
 					]}
 				/>
 			</View>
-			<HelperText type='error' visible={!!error}>
+			<HelperText type='error' visible={!!error} theme={theme.colors.red} style={{ fontFamily: "Epilogue-Bold" }}>
 				{error}
 			</HelperText>
 		</View>

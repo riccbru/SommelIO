@@ -33,6 +33,7 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
 			marginLeft: 5,
 			marginRight: 5,
 			color: theme.colors.text,
+			fontFamily: "Epilogue-Regular"
 		},
 		accordionBody: {
 			marginLeft: 30,
@@ -40,6 +41,7 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
 		},
 		text: {
 			color: theme.colors.text,
+			fontFamily: "Epilogue-Regular"
 		},
 	});
 
@@ -62,7 +64,11 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
 
 						<View style={styles.accordionTrigger}>
 							<List.Accordion
-								title={`${capitalizeFirst(t.winemaker)} - ${t.wine_denomination.toUpperCase()}`}
+								title={
+									<Text style={{ fontFamily: "Epilogue-Regular" }}>
+										{`${capitalizeFirst(t.winemaker)} - ${t.wine_denomination.toUpperCase()}`}
+									</Text>
+									}
 								description={formatDescription(
 									t.tasting_date,
 									t.tasting_time,

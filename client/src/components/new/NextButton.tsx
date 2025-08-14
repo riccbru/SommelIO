@@ -65,7 +65,7 @@ export default function NextButton({
 						alignItems: "center",
 					}}
 				>
-					<Text style={{ fontWeight: "bold", color: "#000000" }}>{text}</Text>
+					<Text style={{ fontFamily: "Epilogue-Bold", color: "#000000" }}>{text}</Text>
 					{text === "SAVE" ? (
 						<CheckCircleIcon size={24} style={{ marginLeft: 5 }} color={"#000000"} />
 					) : (

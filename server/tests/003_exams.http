@@ -3,25 +3,6 @@
 @token = 
 @tid = 
 
-### LOGIN + TOKEN
-
-POST http://{{HOSTNAME}}:{{PORT}}/api/v1/auth/login
-Content-Type: application/json
-
-{
-    "username": "bankich",
-    "password": "bankich_pwd"
-}
-
-### REFRESH TOKEN
-
-POST http://{{HOSTNAME}}:{{PORT}}/api/v1/auth/refresh HTTP/1.1
-
-### LOGOUT (UNSET REFRESH TOKEN COOKIE)
-
-POST http://{{HOSTNAME}}:{{PORT}}/api/v1/auth/logout HTTP/1.1
-
-
 ### GET EXAMS BY ID
 
 GET http://{{HOSTNAME}}:{{PORT}}/api/v1/exams/{{tid}} HTTP/1.1
@@ -227,5 +208,19 @@ Authorization: Bearer {{token}}
     "pairings": "red meat, fish, cheese",
     "notes": "some final consideration note"
 }
+
+### LOGIN + TOKEN
+
+POST http://{{HOSTNAME}}:{{PORT}}/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "username": "bankich",
+    "password": "bankich_pwd"
+}
+
+### REFRESH TOKEN
+
+POST http://{{HOSTNAME}}:{{PORT}}/api/v1/auth/refresh HTTP/1.1
 
 ###

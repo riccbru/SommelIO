@@ -9,7 +9,7 @@ export default function TastingsLayout() {
 			<Stack.Screen
 				name='index'
 				options={{
-					title: "Tastings",
+					title: "",
 					headerShown: false,
 				}}
 			/>
@@ -18,11 +18,14 @@ export default function TastingsLayout() {
 				options={{
 					headerShown: true,
 					presentation: "card",
-					headerBackTitle: "Back",
+					headerBackTitle: "",
 					title: "",
 					headerStyle: {
 						backgroundColor: theme.colors.background,
 					},
+					headerTitleStyle: {
+						fontFamily: "Epilogue-Regular"
+					}
 				}}
 			/>
 		</Stack>

@@ -18,6 +18,7 @@ export default function AuthInput({ value, holder, isEmail, onSubmit, onChangeTe
 			borderRadius: 12,
 			marginBottom: 16,
 			color: "#000000",
+			fontFamily: "Epilogue-Regular",
 			backgroundColor: theme.colors.pearl,
 		},
 	});

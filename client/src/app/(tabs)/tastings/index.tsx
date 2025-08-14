@@ -60,6 +60,7 @@ export default function Tastings() {
 		},
 		text: {
 			fontSize: 22,
+			fontFamily: "Epilogue-Regular"
 		},
 	});
 

@@ -14,20 +14,14 @@ export default function Index() {
 		},
 		text: {
 			fontSize: 30,
-			fontWeight: 300,
-			fontFamily: "Epilogue",
 			color: theme.colors.text,
+			fontFamily: "Epilogue-Bold"
 		},
 		link: {
 			fontSize: 20,
 			color: theme.colors.amber,
+			fontFamily: "Epilogue-Regular",
 			textDecorationLine: "underline",
-		},
-		tokenText: {
-			fontSize: 15,
-			fontWeight: 300,
-			fontFamily: "Epilogue",
-			color: theme.colors.text,
 		},
 	});
 

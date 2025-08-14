@@ -63,9 +63,9 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 				<View
 					style={{
 						marginLeft: 10,
+						alignItems: "center",
 						flexDirection: "row",
 						justifyContent: "flex-start",
-						alignItems: "center",
 					}}
 				>
 					<Icon
@@ -77,9 +77,9 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 					<Text
 						style={{
 							fontSize: 20,
-							fontWeight: "500",
 							marginBottom: 20,
 							color: theme.colors.text,
+							fontFamily: "Epilogue-Bold"
 						}}
 					>
 						{capitalizeFirst(action)} tasting
@@ -89,15 +89,15 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 			<Modal transparent={true} visible={modal} animationType='fade' onDismiss={hideModal}>
 				<View style={styles.modalContainer}>
 					<View style={styles.modalCard}>
-						<Text style={{ fontSize: 18, marginBottom: 20, color: theme.colors.text }}>
+						<Text style={{ fontSize: 18, marginBottom: 20, fontFamily: "Epilogue-Regular", color: theme.colors.text }}>
 							Are you sure you want to delete tasting {name} - {winemaker}?
 						</Text>
 						<View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
 							<Button onPress={hideModal} mode='text' style={{ marginRight: 10 }}>
-								Cancel
+								<Text style={{ fontFamily: "Epilogue-Regular" }}>Cancel</Text>
 							</Button>
 							<Button onPress={handleDelete} mode='contained' buttonColor={theme.colors.red}>
-								Delete
+								<Text style={{ fontFamily: "Epilogue-Regular" }}>Delete</Text>
 							</Button>
 						</View>
 					</View>

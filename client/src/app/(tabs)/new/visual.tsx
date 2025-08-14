@@ -53,14 +53,14 @@ export default function Visual() {
 		},
 		sectionTitle: {
 			fontSize: 18,
-			fontWeight: "bold",
 			marginBottom: 15,
 			color: theme.colors.text,
+			fontFamily: "Epilogue-Bold"
 		},
 		text: {
 			fontSize: 30,
 			fontWeight: 300,
-			fontFamily: "Epilogue",
+			fontFamily: "Epilogue-Regular",
 			color: theme.colors.text,
 		},
 		loadingContainer: {

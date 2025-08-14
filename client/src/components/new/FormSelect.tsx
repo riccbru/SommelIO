@@ -48,11 +48,12 @@ export default function FormSelect<T>({ label, field, value, error, options, onC
 					style={[
 						styles.label,
 						{
-							color: error ? theme.colors.error : "#c9c4cf",
+							fontFamily: "Epilogue-Regular",
 							top: shouldFloatLabel ? -8 : 16,
 							fontSize: shouldFloatLabel ? 12 : 16,
-							backgroundColor: shouldFloatLabel ? theme.colors.surface : "transparent",
 							paddingHorizontal: shouldFloatLabel ? 4 : 0,
+							color: error ? theme.colors.error : "#c9c4cf",
+							backgroundColor: shouldFloatLabel ? theme.colors.surface : "transparent",
 						},
 					]}
 				>
@@ -152,6 +153,7 @@ const styles = StyleSheet.create({
 	selectedText: {
 		fontSize: 16,
 		paddingTop: 8,
+		fontFamily: "Epilogue-Regular"
 	},
 	arrow: {
 		right: 14,
@@ -186,5 +188,6 @@ const styles = StyleSheet.create({
 	},
 	optionText: {
 		fontSize: 16,
+		fontFamily: "Epilogue-Regular"
 	},
 });

@@ -12,11 +12,13 @@ export function SignupFooter() {
 		},
 		text: {
 			color: theme.colors.text,
+			fontFamily: "Epilogue-Regular"
 		},
 		linkText: {
 			marginLeft: 5,
 			color: theme.colors.gray,
 			textDecorationLine: "underline",
+			fontFamily: "Epilogue-Regular"
 		},
 	});
 	return (

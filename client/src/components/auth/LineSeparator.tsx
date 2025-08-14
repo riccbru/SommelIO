@@ -13,11 +13,13 @@ export function LineSeparator() {
 		lines: {
 			flex: 1,
 			height: 1,
+			fontFamily: "Epilogue-Regular",
 			backgroundColor: theme.colors.gray,
 		},
 		lineText: {
 			marginHorizontal: 10,
 			color: theme.colors.gray,
+			fontFamily: "Epilogue-Regular"
 		},
 	});
 

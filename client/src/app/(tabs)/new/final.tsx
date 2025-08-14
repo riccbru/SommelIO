@@ -35,27 +35,26 @@ export default function Final() {
 		},
 		cardHeader: {
 			flex: 1,
-			flexDirection: "row",
 			alignItems: "center",
+			flexDirection: "row",
 			alignContent: "center",
 			justifyContent: "space-between",
 		},
 		sectionTitle: {
 			fontSize: 18,
-			fontWeight: "bold",
 			marginBottom: 15,
 			color: theme.colors.text,
+			fontFamily: "Epilogue-Bold"
 		},
 		text: {
 			fontSize: 30,
-			fontWeight: 300,
-			fontFamily: "Epilogue",
 			color: theme.colors.text,
+			fontFamily: "Epilogue-Regular"
 		},
 		loadingContainer: {
 			flex: 1,
-			justifyContent: "center",
 			alignItems: "center",
+			justifyContent: "center",
 			backgroundColor: theme.colors.background,
 		},
 		buttonContainer: {

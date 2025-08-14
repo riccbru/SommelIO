@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { Text, View } from "react-native";
 import { HelperText, TextInput, useTheme } from "react-native-paper";
 
 type Props<T> = {
@@ -23,13 +23,13 @@ export default function FormInput<T>({
 		<View>
 			<TextInput
 				mode='outlined'
-				label={label}
+				label={<Text style={{ fontFamily: "Epilogue-Regular" }}>{label}</Text>}
 				value={value}
 				error={!!error}
 				keyboardType={keyboardType}
 				onChangeText={text => onChange(field, text)}
 			/>
-			<HelperText type='error' visible={!!error} theme={theme.colors.red}>
+			<HelperText type='error' visible={!!error} theme={theme.colors.red} style={{ fontFamily: "Epilogue-Bold" }}>
 				{error}
 			</HelperText>
 		</View>

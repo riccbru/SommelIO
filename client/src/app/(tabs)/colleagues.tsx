@@ -30,9 +30,8 @@ export default function Colleagues() {
 		},
 		text: {
 			fontSize: 30,
-			fontWeight: 300,
-			fontFamily: "Epilogue",
 			color: theme.colors.text,
+			fontFamily: "Epilogue-Regular"
 		},
 	});
 

@@ -94,17 +94,16 @@ export default function User() {
 		userName: {
 			fontSize: 28,
 			marginBottom: 8,
-			fontWeight: "700",
 			color: "#000000",
 			textAlign: "center",
-			fontFamily: "Epilogue"
+			fontFamily: "Epilogue-Bold"
 		},
 		userEmail: {
 			fontSize: 16,
 			marginBottom: 16,
 			textAlign: "center",
-			fontFamily: "Epilogue",
-			color: theme.colors.gray
+			color: theme.colors.gray,
+			fontFamily: "Epilogue-Regular"
 		},
 		statsContainer: {
 			paddingVertical: 16,
@@ -118,15 +117,14 @@ export default function User() {
 		statNumber: {
 			fontSize: 24,
 			marginBottom: 4,
-			fontWeight: "700",
-			fontFamily: "Epilogue",
-			color: theme.colors.primary
+			color: theme.colors.primary,
+			fontFamily: "Epilogue-Bold"
 		},
 		statLabel: {
 			fontSize: 12,
 			textAlign: "center",
-			fontFamily: "Epilogue",
-			color: theme.colors.gray
+			color: theme.colors.gray,
+			fontFamily: "Epilogue-Regular"
 		},
 		infoCard: {
 			borderRadius: 12,

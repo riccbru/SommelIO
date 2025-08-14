@@ -28,11 +28,12 @@ export default function TastingDetails({ tasting }: Props) {
 		},
 		label: {
 			flex: 1,
-			fontWeight: "bold",
+			fontFamily: "Epilogue-Bold"
 		},
 		value: {
 			flex: 1,
 			textAlign: "center",
+			fontFamily: "Epilogue-Regular"
 		},
 	});
 
@@ -43,8 +44,8 @@ export default function TastingDetails({ tasting }: Props) {
 		{ label: "Vintage", value: tasting.vintage },
 		{ label: "Wine Temperature", value: tasting.wine_temperature },
 		{ label: "Ambient Temperature", value: tasting.ambient_temperature },
-		{ label: "Date", value: tasting.tasting_date },
-		{ label: "Time", value: tasting.tasting_time },
+		{ label: "Tasting Date", value: tasting.tasting_date },
+		{ label: "Tasting Time", value: tasting.tasting_time },
 		{ label: "Location", value: tasting.tasting_location.toUpperCase() },
 	];
 
