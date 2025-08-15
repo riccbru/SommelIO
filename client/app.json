@@ -40,12 +40,12 @@
 			[
 				"expo-splash-screen",
 				{
-					"image": "./assets/images/AIS-logo/logo-ais.png",
+					"image": "./assets/images/title/title-nobg.png",
 					"imageWidth": 350,
 					"resizeMode": "contain",
 					"backgroundColor": "#ffffff",
 					"dark": {
-						"image": "./assets/images/AIS-logo/logo-neg.png",
+						"image": "./assets/images/title/title-nobg.png",
 						"imageWidth": 350,
 						"resizeMode": "contain",
 						"backgroundColor": "#000000"
