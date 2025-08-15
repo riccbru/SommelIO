@@ -24,7 +24,7 @@ export default function AuthButton({ action, loading, onPress, disabled }: Props
 			fontSize: 16,
 			fontWeight: "600",
 			color: "#ffffff",
-			fontFamily: "Epilogue-Bold"
+			fontFamily: "Epilogue-Bold",
 		},
 	});
 

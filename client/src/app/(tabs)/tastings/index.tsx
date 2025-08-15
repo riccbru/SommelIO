@@ -60,7 +60,8 @@ export default function Tastings() {
 		},
 		text: {
 			fontSize: 22,
-			fontFamily: "Epilogue-Regular"
+			color: theme.colors.text,
+			fontFamily: "Epilogue-Regular",
 		},
 	});
 
@@ -100,7 +101,7 @@ export default function Tastings() {
 			<View style={styles.centeredContainer}>
 				<ActivityIndicator size={"large"} color={theme.dark ? "#ffffff" : "#000000"} />
 				<View style={{ marginTop: 10 }} />
-				<Text style={styles.text}>Fetching wines...</Text>
+				<Text style={styles.text}>Loading tastings...</Text>
 			</View>
 		);
 	}

@@ -34,12 +34,12 @@ export default function ScoringDetails({ scoring }: Props) {
 		},
 		label: {
 			flex: 2,
-			fontFamily: "Epilogue-Bold"
+			fontFamily: "Epilogue-Bold",
 		},
 		value: {
 			flex: 1,
 			textAlign: "center",
-			fontFamily: "Epilogue-Regular"
+			fontFamily: "Epilogue-Regular",
 		},
 		notesRow: {
 			marginTop: 8,
@@ -48,19 +48,19 @@ export default function ScoringDetails({ scoring }: Props) {
 			borderTopColor: "#000000",
 		},
 		totalText: {
-			fontFamily: "Epilogue-Bold"
+			fontFamily: "Epilogue-Bold",
 		},
 		notes: {
 			marginTop: 10,
 		},
 		notesTitle: {
 			marginBottom: 4,
-			fontFamily: "Epilogue-Bold"
+			fontFamily: "Epilogue-Bold",
 		},
 		notesText: {
 			lineHeight: 20,
-			fontFamily: "Epilogue-Regular"
-		}
+			fontFamily: "Epilogue-Regular",
+		},
 	});
 
 	const scoringFields = [

@@ -28,7 +28,7 @@ export function getInitials(name: string) {
 		.join("")
 		.toUpperCase()
 		.slice(0, 2);
-};
+}
 
 export function isRightRange(num: number, MIN: number, MAX: number): boolean {
 	return num >= MIN && num <= MAX;

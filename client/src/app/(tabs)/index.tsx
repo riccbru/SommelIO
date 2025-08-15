@@ -15,7 +15,7 @@ export default function Index() {
 		text: {
 			fontSize: 30,
 			color: theme.colors.text,
-			fontFamily: "Epilogue-Bold"
+			fontFamily: "Epilogue-Bold",
 		},
 		link: {
 			fontSize: 20,

@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
 				},
 				users_colleagues_addressee_idTousers: {
 					select: {
-            			premium: true,
+						premium: true,
 						username: true,
 						full_name: true,
 						uid: true,
@@ -100,13 +100,13 @@ router.get("/requests", async (req, res) => {
 				username: req.users_colleagues_requester_idTousers.username,
 				created_at: req.created_at,
 				rid: req.rid,
-				uid: req.requester_id
+				uid: req.requester_id,
 			})),
 			outgoing: outgoingRequests.map(req => ({
 				username: req.users_colleagues_addressee_idTousers.username,
 				created_at: req.created_at,
 				rid: req.rid,
-				uid: req.addressee_id
+				uid: req.addressee_id,
 			})),
 		});
 	} catch (error) {
@@ -144,8 +144,8 @@ router.post("/:cuid", async (req, res) => {
 				OR: [
 					{ requester_id: requesterId, addressee_id: addresseeId },
 					{ requester_id: addresseeId, addressee_id: requesterId },
+					{ status: "blocked" }
 				],
-				OR: [{ status: "blocked" }]
 			},
 		});
 
@@ -173,7 +173,9 @@ router.post("/:cuid", async (req, res) => {
 			},
 		});
 
-		res.status(201).json({ success: `Colleague request sent successfully to ${newRequest.users_colleagues_addressee_idTousers.username}` });
+		res.status(201).json({
+			success: `Colleague request sent successfully to ${newRequest.users_colleagues_addressee_idTousers.username}`,
+		});
 	} catch (error) {
 		console.error("Error sending request:", error);
 		res.status(500).json({ error: "Failed to send colleague request" });
@@ -222,7 +224,9 @@ router.put("/accept/:rid", async (req, res) => {
 			},
 		});
 
-		res.json({ success: `Colleague request ${updatedRequest.users_colleagues_requester_idTousers.username} accepted` });
+		res.json({
+			success: `Colleague request ${updatedRequest.users_colleagues_requester_idTousers.username} accepted`,
+		});
 	} catch (error) {
 		console.error("Error accepting request:", error);
 		res.status(500).json({ error: "Failed to accept colleague request" });
@@ -266,13 +270,15 @@ router.put("/decline/:rid", async (req, res) => {
 						premium: true,
 						username: true,
 						full_name: true,
-						uid: true
+						uid: true,
 					},
 				},
 			},
 		});
 
-		res.json({ success: `Colleague request from ${updatedRequest.users_colleagues_requester_idTousers.username} declined` });
+		res.json({
+			success: `Colleague request from ${updatedRequest.users_colleagues_requester_idTousers.username} declined`,
+		});
 	} catch (error) {
 		console.error("Error declining request:", error);
 		res.status(500).json({ error: "Failed to decline colleague request" });
@@ -325,13 +331,15 @@ router.put("/block/:uid", async (req, res) => {
 							premium: true,
 							username: true,
 							full_name: true,
-							uid: true
+							uid: true,
+						},
 					},
-					}
-				}
+				},
 			});
 
-			res.json({ success: `Colleague ${blocked.users_colleagues_addressee_idTousers.username} blocked successfully` });
+			res.json({
+				success: `Colleague ${blocked.users_colleagues_addressee_idTousers.username} blocked successfully`,
+			});
 		} else {
 			// Create new blocking relationship
 			const blocked = await prisma.colleagues.create({
@@ -346,13 +354,15 @@ router.put("/block/:uid", async (req, res) => {
 							premium: true,
 							username: true,
 							full_name: true,
-							uid: true
+							uid: true,
+						},
 					},
-					}
-				}
+				},
 			});
 
-			res.json({ success: `Colleague ${blocked.users_colleagues_addressee_idTousers.username} blocked successfully` });
+			res.json({
+				success: `Colleague ${blocked.users_colleagues_addressee_idTousers.username} blocked successfully`,
+			});
 		}
 	} catch (error) {
 		console.error("Error blocking user:", error);
@@ -393,13 +403,15 @@ router.put("/unblock/:rid", async (req, res) => {
 						premium: true,
 						username: true,
 						full_name: true,
-						uid: true
+						uid: true,
 					},
-				}
-			}
+				},
+			},
 		});
 
-		res.json({ success: `Colleague ${result.users_colleagues_addressee_idTousers.username} unblocked successfully` });
+		res.json({
+			success: `Colleague ${result.users_colleagues_addressee_idTousers.username} unblocked successfully`,
+		});
 	} catch (error) {
 		console.error("Error unblocking user:", error);
 		res.status(500).json({ error: "Failed to unblock user" });
@@ -423,7 +435,7 @@ router.get("/blocked", async (req, res) => {
 						premium: true,
 						username: true,
 						full_name: true,
-						uid: true
+						uid: true,
 					},
 				},
 			},
@@ -470,8 +482,9 @@ router.delete("/:rid", async (req, res) => {
 			where: { rid: rid },
 		});
 
-		res.status(200).json({ success: `Colleague ${relationship.addressee_id} removed successfully` });
-
+		res.status(200).json({
+			success: `Colleague ${relationship.addressee_id} removed successfully`,
+		});
 	} catch (error) {
 		console.error(`Error removing relationship: ${error}`);
 		res.status(500).json({ error: "Failed to remove colleague relationship" });
@@ -481,43 +494,47 @@ router.delete("/:rid", async (req, res) => {
 // GET /api/v1/colleagues/search?q=username
 // Search for users to add as colleagues
 router.get("/search", async (req, res) => {
-  try {
-    const uid = req.user.uid;
-    const name = req.query.q.trim();
+	try {
+		const uid = req.user.uid;
+		const name = req.query.q.trim();
 
-    if (!uid) return res.status(401).json({ error: "Unauthorized" });
+		if (!uid) return res.status(401).json({ error: "Unauthorized" });
 
-    const existingRelationships = await prisma.colleagues.findMany({
-		where: {
-			OR: [{ requester_id: uid }, { addressee_id: uid }],
-			OR: [{ status: "accepted" }, { status: "blocked" }]
-		},
-      	select: { requester_id: true, addressee_id: true },
-    });
+		const existingRelationships = await prisma.colleagues.findMany({
+			where: {
+				OR: [
+					{ requester_id: uid },
+					{ addressee_id: uid },
+					{ status: "accepted" },
+					{ status: "blocked" }
+				],
+			},
+			select: { requester_id: true, addressee_id: true },
+		});
 
-    const excludeIds = new Set([uid]);
-	existingRelationships.forEach(rel => {
-    	const otherId = rel.requester_id === uid ? rel.addressee_id : rel.requester_id;
-    	excludeIds.add(otherId);
-	});
+		const excludeIds = new Set([uid]);
+		existingRelationships.forEach(rel => {
+			const otherId = rel.requester_id === uid ? rel.addressee_id : rel.requester_id;
+			excludeIds.add(otherId);
+		});
 
-    const users = await prisma.users.findMany({
-      where: {
-        uid: { notIn: [...excludeIds] },
-        OR: [
-          { username: { contains: name, mode: "insensitive" } },
-          { full_name: { contains: name, mode: "insensitive" } },
-        ],
-      },
-      select: { premium: true, username: true, full_name: true, uid: true },
-      take: 20,
-    });
+		const users = await prisma.users.findMany({
+			where: {
+				uid: { notIn: [...excludeIds] },
+				OR: [
+					{ username: { contains: name, mode: "insensitive" } },
+					{ full_name: { contains: name, mode: "insensitive" } },
+				],
+			},
+			select: { premium: true, username: true, full_name: true, uid: true },
+			take: 20,
+		});
 
-    res.json(users);
-  } catch (error) {
-    console.error(`Error searching users: ${error}`);
-    res.status(500).json({ error: "Failed searching users" });
-  }
+		res.json(users);
+	} catch (error) {
+		console.error(`Error searching users: ${error}`);
+		res.status(500).json({ error: "Failed searching users" });
+	}
 });
 
 export default router;

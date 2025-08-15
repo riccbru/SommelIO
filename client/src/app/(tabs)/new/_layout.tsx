@@ -10,7 +10,7 @@ export default function TastingsLayout() {
 				name='index'
 				options={{
 					headerShown: false,
-					title: "New tasting"
+					title: "New tasting",
 				}}
 			/>
 			<Stack.Screen

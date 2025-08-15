@@ -22,6 +22,63 @@ export default function FormSelect<T>({ label, field, value, error, options, onC
 	const shouldFloatLabel = hasValue || isFocused;
 	const ArrowIcon = isOpen ? CaretUpIcon : CaretDownIcon;
 
+	const styles = StyleSheet.create({
+		container: {
+			height: 52,
+			borderRadius: 4,
+			position: "relative",
+			paddingHorizontal: 14,
+			justifyContent: "center",
+		},
+		label: {
+			left: 14,
+			fontWeight: "400",
+			position: "absolute",
+		},
+		selectedText: {
+			fontSize: 16,
+			paddingTop: 8,
+			fontFamily: "Epilogue-Regular",
+		},
+		arrow: {
+			right: 14,
+			fontSize: 12,
+			fontWeight: "bold",
+			position: "absolute",
+		},
+		modalOverlay: {
+			flex: 1,
+			alignItems: "center",
+			justifyContent: "center",
+			backgroundColor: "rgba(0,0,0,0.3)",
+		},
+		modalContent: {
+			width: "80%",
+			maxWidth: 300,
+		},
+		dropdownCard: {
+			elevation: 8,
+			maxHeight: 250,
+			borderWidth: 2,
+			shadowRadius: 8,
+			shadowOpacity: 0.25,
+			shadowColor: "#000000",
+			borderColor: theme.colors.primary,
+			shadowOffset: { width: 0, height: 2 },
+		},
+		option: {
+			padding: 16,
+			borderBottomWidth: 1,
+		},
+		lastOption: {
+			borderBottomWidth: 0,
+		},
+		optionText: {
+			fontSize: 16,
+			fontFamily: "Epilogue-Regular",
+		},
+	});
+
 	return (
 		<View>
 			<TouchableOpacity
@@ -130,64 +187,14 @@ export default function FormSelect<T>({ label, field, value, error, options, onC
 				</TouchableOpacity>
 			</Modal>
 
-			<HelperText type='error' visible={!!error}>
+			<HelperText
+				type='error'
+				visible={!!error}
+				theme={theme.colors.red}
+				style={{ fontFamily: "Epilogue-Bold" }}
+			>
 				{error}
 			</HelperText>
 		</View>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: {
-		height: 56,
-		borderRadius: 4,
-		position: "relative",
-		paddingHorizontal: 14,
-		justifyContent: "center",
-	},
-	label: {
-		left: 14,
-		fontWeight: "400",
-		position: "absolute",
-	},
-	selectedText: {
-		fontSize: 16,
-		paddingTop: 8,
-		fontFamily: "Epilogue-Regular"
-	},
-	arrow: {
-		right: 14,
-		fontSize: 12,
-		fontWeight: "bold",
-		position: "absolute",
-	},
-	modalOverlay: {
-		flex: 1,
-		alignItems: "center",
-		justifyContent: "center",
-		backgroundColor: "rgba(0,0,0,0.3)",
-	},
-	modalContent: {
-		width: "80%",
-		maxWidth: 300,
-	},
-	dropdownCard: {
-		elevation: 8,
-		maxHeight: 250,
-		shadowRadius: 8,
-		shadowColor: "#000",
-		shadowOpacity: 0.25,
-		shadowOffset: { width: 0, height: 2 },
-	},
-	option: {
-		padding: 16,
-		borderBottomWidth: 1,
-	},
-	lastOption: {
-		borderBottomWidth: 0,
-	},
-	optionText: {
-		fontSize: 16,
-		fontFamily: "Epilogue-Regular"
-	},
-});

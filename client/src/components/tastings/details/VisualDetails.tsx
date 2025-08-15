@@ -29,12 +29,12 @@ export default function VisualDetails({ exam }: Props) {
 		},
 		label: {
 			flex: 1,
-			fontFamily: "Epilogue-Bold"
+			fontFamily: "Epilogue-Bold",
 		},
 		value: {
 			flex: 1,
 			textAlign: "center",
-			fontFamily: "Epilogue-Regular"
+			fontFamily: "Epilogue-Regular",
 		},
 		notes: {
 			marginTop: 10,
@@ -47,12 +47,12 @@ export default function VisualDetails({ exam }: Props) {
 		},
 		notesTitle: {
 			marginBottom: 4,
-			fontFamily: "Epilogue-Bold"
+			fontFamily: "Epilogue-Bold",
 		},
 		notesText: {
 			lineHeight: 20,
-			fontFamily: "Epilogue-Regular"
-		}
+			fontFamily: "Epilogue-Regular",
+		},
 	});
 
 	const visualFields = [
@@ -67,7 +67,12 @@ export default function VisualDetails({ exam }: Props) {
 			? [{ label: "Bubble Number", value: formatOption(exam?.bubble_number).toUpperCase() }]
 			: []),
 		...(exam.bubble_persistence
-			? [{ label: "Bubble Persistence", value: formatOption(exam?.bubble_persistence).toUpperCase() }]
+			? [
+					{
+						label: "Bubble Persistence",
+						value: formatOption(exam?.bubble_persistence).toUpperCase(),
+					},
+				]
 			: []),
 	];
 

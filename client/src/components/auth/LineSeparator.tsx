@@ -19,7 +19,7 @@ export function LineSeparator() {
 		lineText: {
 			marginHorizontal: 10,
 			color: theme.colors.gray,
-			fontFamily: "Epilogue-Regular"
+			fontFamily: "Epilogue-Regular",
 		},
 	});
 

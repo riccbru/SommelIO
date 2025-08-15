@@ -62,12 +62,12 @@ export default function Scoring() {
 			fontSize: 18,
 			marginBottom: 15,
 			color: theme.colors.text,
-			fontFamily: "Epilogue-Bold"
+			fontFamily: "Epilogue-Bold",
 		},
 		text: {
 			fontSize: 30,
 			color: theme.colors.text,
-			fontFamily: "Epilogue-Regular"
+			fontFamily: "Epilogue-Regular",
 		},
 		loadingContainer: {
 			flex: 1,
@@ -233,7 +233,6 @@ export default function Scoring() {
 								error={errors.notes}
 								onChange={updateFormData}
 							/>
-
 						</Card.Content>
 					</Card>
 					<View style={styles.buttonContainer}>

@@ -22,8 +22,6 @@ import ScoringUpdate from "@/src/components/tastings/update/ScoringUpdate";
 import TastingUpdate from "@/src/components/tastings/update/TastingUpdate";
 import OlfactoryUpdate from "@/src/components/tastings/update/OlfactoryUpdate";
 
-
-
 type EditModeShape = {
 	tasting: boolean;
 	visual: boolean;
@@ -59,7 +57,6 @@ type Tasting = {
 };
 
 export default function TastingDetail() {
-
 	const theme = useTheme();
 	const navigation = useNavigation();
 	const [loading, setLoading] = useState(true);
@@ -79,8 +76,8 @@ export default function TastingDetail() {
 	const styles = StyleSheet.create({
 		container: {
 			flex: 1,
-			backgroundColor: theme.colors.background,
 			padding: 16,
+			backgroundColor: theme.colors.background,
 		},
 		loadingContainer: {
 			flex: 1,
@@ -96,7 +93,7 @@ export default function TastingDetail() {
 			color: "#000000",
 			fontSize: 24,
 			marginBottom: 8,
-			fontFamily: "Epilogue-Bold"
+			fontFamily: "Epilogue-Bold",
 		},
 		cardSubtitle: {
 			marginBottom: 10,
@@ -107,11 +104,12 @@ export default function TastingDetail() {
 		subtitle: {
 			fontSize: 18,
 			color: theme.colors.text,
-			fontFamily: "Epilogue-Bold"
+			fontFamily: "Epilogue-Bold",
 		},
 		text: {
+			fontSize: 22,
 			color: theme.colors.text,
-			fontFamily: "Epilogue-Regular"
+			fontFamily: "Epilogue-Regular",
 		},
 	});
 
@@ -130,7 +128,7 @@ export default function TastingDetail() {
 			title: `${tasting?.wine_denomination} - ${tasting?.winemaker}`,
 			headerTitleStyle: {
 				fontFamily: "Epilogue-Regular",
-				color: theme.dark ? "#ffffff" : "#000000"
+				color: theme.dark ? "#ffffff" : "#000000",
 			},
 			headerRight: () => (
 				<TouchableOpacity
@@ -168,7 +166,7 @@ export default function TastingDetail() {
 	if (loading) {
 		return (
 			<View style={styles.loadingContainer}>
-				<ActivityIndicator size='large' />
+				<ActivityIndicator size='large' color={theme.dark ? "#ffffff" : "#000000"} />
 				<View style={{ marginTop: 10 }} />
 				<Text style={styles.text}>Loading tasting details...</Text>
 			</View>
@@ -209,11 +207,7 @@ export default function TastingDetail() {
 						setEditMode={setEditMode}
 						subtitle='Wine description'
 					/>
-					{!editMode["tasting"] ? (
-						<TastingDetails tasting={tasting} />
-					) : (
-						<TastingUpdate />
-					)}
+					{!editMode["tasting"] ? <TastingDetails tasting={tasting} /> : <TastingUpdate />}
 				</Card.Content>
 			</Card>
 

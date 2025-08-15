@@ -5,10 +5,12 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 import { updateCachedToken, setCallback } from "@/src/services/axiosClient";
 
 export type User = {
-	uid: string;
+	admin: boolean;
+	premium: boolean;
 	username: string;
 	full_name: string;
 	email: string;
+	uid: string;
 	stats: {
 		totalTastings: number;
 		favoriteTastings: number;

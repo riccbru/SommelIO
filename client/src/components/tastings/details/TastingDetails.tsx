@@ -28,12 +28,12 @@ export default function TastingDetails({ tasting }: Props) {
 		},
 		label: {
 			flex: 1,
-			fontFamily: "Epilogue-Bold"
+			fontFamily: "Epilogue-Bold",
 		},
 		value: {
 			flex: 1,
 			textAlign: "center",
-			fontFamily: "Epilogue-Regular"
+			fontFamily: "Epilogue-Regular",
 		},
 	});
 

@@ -27,7 +27,7 @@ export default function PasswordInput({ loginData, setLoginData, onSubmit }: Pas
 			borderRadius: 12,
 			flexDirection: "row",
 			alignItems: "center",
-			backgroundColor: theme.colors.pearl
+			backgroundColor: theme.colors.pearl,
 		},
 		input: {
 			flex: 1,

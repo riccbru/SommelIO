@@ -55,7 +55,7 @@ export default function Visual() {
 			fontSize: 18,
 			marginBottom: 15,
 			color: theme.colors.text,
-			fontFamily: "Epilogue-Bold"
+			fontFamily: "Epilogue-Bold",
 		},
 		text: {
 			fontSize: 30,

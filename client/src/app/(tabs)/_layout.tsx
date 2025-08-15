@@ -1,6 +1,7 @@
 import { Tabs } from "expo-router";
 import { useTheme } from "react-native-paper";
 import { TAB_CONFIG } from "@/src/constants/tabConfig";
+import AnimatedTabButton from "@/src/components/navigation/AnimatedTabButton";
 
 export default function TabsLayout() {
 	const theme = useTheme();
@@ -26,6 +27,7 @@ export default function TabsLayout() {
 					tabBarIcon: ({ focused }) => (
 						<Icon size={32} color={iconColor(focused)} weight={iconWeight(focused)} />
 					),
+					tabBarButton: props => <AnimatedTabButton {...props} />,
 				};
 			}}
 		>

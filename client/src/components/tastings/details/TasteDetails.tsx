@@ -33,12 +33,12 @@ export default function TasteDetails({ exam }: Props) {
 		},
 		label: {
 			flex: 1,
-			fontFamily: "Epilogue-Bold"
+			fontFamily: "Epilogue-Bold",
 		},
 		value: {
 			flex: 1,
 			textAlign: "center",
-			fontFamily: "Epilogue-Regular"
+			fontFamily: "Epilogue-Regular",
 		},
 		notes: {
 			marginTop: 10,
@@ -51,12 +51,12 @@ export default function TasteDetails({ exam }: Props) {
 		},
 		notesTitle: {
 			marginBottom: 4,
-			fontFamily: "Epilogue-Bold"
+			fontFamily: "Epilogue-Bold",
 		},
 		notesText: {
 			lineHeight: 20,
-			fontFamily: "Epilogue-Regular"
-		}
+			fontFamily: "Epilogue-Regular",
+		},
 	});
 
 	const tasteFields = [

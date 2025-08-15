@@ -39,17 +39,17 @@ export default function OlfactoryDetails({ exam }: Props) {
 		},
 		label: {
 			flex: 1,
-			fontFamily: "Epilogue-Bold"
+			fontFamily: "Epilogue-Bold",
 		},
 		value: {
 			flex: 1,
 			textAlign: "center",
-			fontFamily: "Epilogue-Regular"
+			fontFamily: "Epilogue-Regular",
 		},
 		descriptorsHeader: {
 			marginTop: 10,
 			marginBottom: 5,
-			fontFamily: "Epilogue-Bold"
+			fontFamily: "Epilogue-Bold",
 		},
 		descriptorRow: {
 			marginBottom: 3,
@@ -59,7 +59,7 @@ export default function OlfactoryDetails({ exam }: Props) {
 		},
 		descriptorLabel: {
 			flex: 1,
-			fontFamily: "Epilogue-Bold"
+			fontFamily: "Epilogue-Bold",
 		},
 		descriptorValue: {
 			flex: 1,
@@ -76,12 +76,12 @@ export default function OlfactoryDetails({ exam }: Props) {
 		},
 		notesTitle: {
 			marginBottom: 4,
-			fontFamily: "Epilogue-Bold"
+			fontFamily: "Epilogue-Bold",
 		},
 		notesText: {
 			lineHeight: 20,
-			fontFamily: "Epilogue"
-		}
+			fontFamily: "Epilogue",
+		},
 	});
 
 	const booleanFields = [

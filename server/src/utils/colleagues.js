@@ -1,5 +1,5 @@
 export default function formatRelationship(uid, relationship) {
-    const isRequester = relationship.requester_id === uid;
+	const isRequester = relationship.requester_id === uid;
 	const r = {};
 	r.status = relationship.status;
 	r.rid = relationship.rid;

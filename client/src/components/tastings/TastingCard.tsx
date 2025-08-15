@@ -34,7 +34,7 @@ export default function TastingCard({ uuid, name, subtitle, editMode, setEditMod
 			fontSize: 18,
 			marginBottom: 13,
 			color: "#000000",
-			fontFamily: "Epilogue-Bold"
+			fontFamily: "Epilogue-Bold",
 		},
 		leftIcon: {
 			marginRight: 10,

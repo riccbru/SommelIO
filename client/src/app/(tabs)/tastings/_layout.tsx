@@ -24,8 +24,8 @@ export default function TastingsLayout() {
 						backgroundColor: theme.colors.background,
 					},
 					headerTitleStyle: {
-						fontFamily: "Epilogue-Regular"
-					}
+						fontFamily: "Epilogue-Regular",
+					},
 				}}
 			/>
 		</Stack>

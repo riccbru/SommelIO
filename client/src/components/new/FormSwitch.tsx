@@ -20,14 +20,17 @@ export default function FormSwitch<T extends Record<string, any>>({
 	return (
 		<View
 			style={{
-				marginBottom: 20,
+				marginTop: 8,
+				marginBottom: 30,
 				flexDirection: "row",
 				alignItems: "center",
 				paddingHorizontal: 16,
 				justifyContent: "space-between",
 			}}
 		>
-			<Text style={{ fontSize: 18, color: "#c9c4cf", fontFamily: "Epilogue-Regular" }}>{label}</Text>
+			<Text style={{ fontSize: 18, color: "#c9c4cf", fontFamily: "Epilogue-Regular" }}>
+				{label}
+			</Text>
 			<Switch value={isChecked} onChange={toggle} />
 		</View>
 	);

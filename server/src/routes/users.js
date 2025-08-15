@@ -14,10 +14,12 @@ router.get("/me", async (req, res) => {
 		}
 
 		const payload = {
-			uid: user?.uid,
+			admin: user?.admin,
+			premium: user?.premium,
 			username: user?.username,
 			full_name: user?.full_name,
 			email: user?.email,
+			uid: user?.uid,
 		};
 
 		res.json(payload);

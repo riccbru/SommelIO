@@ -39,7 +39,7 @@ export default function SignupLayout() {
 		},
 		text: {
 			color: "#ffffff",
-			fontFamily: "Epilogue-Regular"
+			fontFamily: "Epilogue-Regular",
 		},
 	});
 

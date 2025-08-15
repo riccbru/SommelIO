@@ -45,21 +45,21 @@ const defaultFormData = {
 
 type TastingFormProps = {
 	// Mode-specific props
-	mode?: 'create' | 'update';
+	mode?: "create" | "update";
 	initialData?: Tasting;
-	
+
 	// Create mode props
 	nextPath?: string;
 	nextButtonText?: string;
 	showExitButton?: boolean;
 	showCancelButton?: boolean;
-	
+
 	// Update mode props
 	onSave?: (data: Tasting) => Promise<void> | void;
 	onCancel?: () => void;
 	saveButtonText?: string;
 	cancelButtonText?: string;
-	
+
 	// Common props
 	title?: string;
 	showCard?: boolean;
@@ -67,20 +67,20 @@ type TastingFormProps = {
 };
 
 export default function TastingForm({
-	mode = 'create',
+	mode = "create",
 	initialData,
 	// Create mode props
 	nextPath = "/new/visual",
 	nextButtonText = "VISUAL",
 	showExitButton = true,
 	showCancelButton = true,
-	
+
 	// Update mode props
 	onSave,
 	onCancel,
 	saveButtonText = "SAVE",
 	cancelButtonText = "CANCEL",
-	
+
 	// Common props
 	title = "Wine description",
 	showCard = true,
@@ -88,18 +88,18 @@ export default function TastingForm({
 }: TastingFormProps) {
 	const theme = useTheme();
 	const [errors, setErrors] = useState<Record<string, string>>({});
-	
+
 	const getInitialFormData = (): Tasting => {
-		if (mode === 'update' && initialData) {
+		if (mode === "update" && initialData) {
 			return { ...initialData };
 		}
 		return { ...defaultFormData };
 	};
-	
+
 	const [formData, setFormData] = useState<Tasting>(getInitialFormData);
 
 	useEffect(() => {
-		if (mode === 'update' && initialData) {
+		if (mode === "update" && initialData) {
 			setFormData({ ...initialData });
 		}
 	}, [mode, initialData]);
@@ -121,18 +121,18 @@ export default function TastingForm({
 			fontSize: 18,
 			marginBottom: 15,
 			color: theme.colors.text,
-			fontFamily: "Epilogue-Bold"
+			fontFamily: "Epilogue-Bold",
 		},
 		text: {
 			fontSize: 30,
 			color: theme.colors.text,
-			fontFamily: "Epilogue-Regular"
+			fontFamily: "Epilogue-Regular",
 		},
 		loadingContainer: {
 			flex: 1,
 			alignItems: "center",
 			justifyContent: "center",
-			backgroundColor: theme.colors.background
+			backgroundColor: theme.colors.background,
 		},
 		buttonContainer: {
 			marginTop: 20,
@@ -141,7 +141,7 @@ export default function TastingForm({
 			marginBottom: 20,
 			flexDirection: "row",
 			alignItems: "center",
-			justifyContent: "space-between"
+			justifyContent: "space-between",
 		},
 	});
 
@@ -229,26 +229,26 @@ export default function TastingForm({
 	// Handle save for update mode
 	const handleSave = async () => {
 		if (!validateForm()) return;
-		
+
 		if (onSave) {
 			try {
 				await onSave(formData);
 			} catch (error) {
-				console.error('Save failed:', error);
+				console.error("Save failed:", error);
 			}
 		}
 	};
 
 	// Generate next path for create mode
 	const getNextPath = () => {
-		if (nextPath.includes('?')) {
+		if (nextPath.includes("?")) {
 			return `${nextPath}&wine_category_name=${encodeURIComponent(formData.wine_category_name)}`;
 		}
 		return `${nextPath}?wine_category_name=${encodeURIComponent(formData.wine_category_name)}`;
 	};
 
 	const renderButtons = () => {
-		if (mode === 'update') {
+		if (mode === "update") {
 			return (
 				<View style={styles.buttonContainer}>
 					{onCancel && (
@@ -260,11 +260,7 @@ export default function TastingForm({
 							defaultFormData={getInitialFormData()}
 						/>
 					)}
-					<NextButton
-						text={saveButtonText}
-						onPress={handleSave}
-						validation={validateForm}
-					/>
+					<NextButton text={saveButtonText} onPress={handleSave} validation={validateForm} />
 				</View>
 			);
 		}
@@ -295,7 +291,7 @@ export default function TastingForm({
 			{showCard && (
 				<View style={styles.cardHeader}>
 					<Text style={styles.sectionTitle}>{title}</Text>
-					{mode === 'create' && showCancelButton && (
+					{mode === "create" && showCancelButton && (
 						<CancelButton
 							setErrors={setErrors}
 							setFormData={setFormData}
@@ -418,14 +414,10 @@ export default function TastingForm({
 			<ScrollView style={styles.container} keyboardShouldPersistTaps='handled'>
 				{showCard ? (
 					<Card>
-						<Card.Content>
-							{renderFormContent()}
-						</Card.Content>
+						<Card.Content>{renderFormContent()}</Card.Content>
 					</Card>
 				) : (
-					<View style={{ padding: 16 }}>
-						{renderFormContent()}
-					</View>
+					<View style={{ padding: 16 }}>{renderFormContent()}</View>
 				)}
 
 				{renderButtons()}

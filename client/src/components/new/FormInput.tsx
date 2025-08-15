@@ -26,10 +26,16 @@ export default function FormInput<T>({
 				label={<Text style={{ fontFamily: "Epilogue-Regular" }}>{label}</Text>}
 				value={value}
 				error={!!error}
+				style={{ height: 50 }}
 				keyboardType={keyboardType}
 				onChangeText={text => onChange(field, text)}
 			/>
-			<HelperText type='error' visible={!!error} theme={theme.colors.red} style={{ fontFamily: "Epilogue-Bold" }}>
+			<HelperText
+				type='error'
+				visible={!!error}
+				theme={theme.colors.red}
+				style={{ fontFamily: "Epilogue-Bold" }}
+			>
 				{error}
 			</HelperText>
 		</View>

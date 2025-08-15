@@ -1,9 +1,25 @@
 import UserAPI from "@/src/services/user";
 import { useAuth } from "@/src/hooks/useAuth";
+import { getInitials } from "@/src/utils/utils";
 import { useNavigation, useRouter } from "expo-router";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { Avatar, Card, Divider, useTheme } from "react-native-paper";
-import { GavelIcon, GearIcon, SignOutIcon, StarIcon, WineIcon } from "phosphor-react-native";
+import {
+	Avatar,
+	Card,
+	Divider,
+	Icon,
+	SegmentedButtons,
+	Switch,
+	useTheme,
+} from "react-native-paper";
+import {
+	DevToLogoIcon,
+	GavelIcon,
+	GearIcon,
+	SignOutIcon,
+	StarIcon,
+	WineIcon,
+} from "phosphor-react-native";
 import {
 	Animated,
 	Linking,
@@ -14,12 +30,12 @@ import {
 	TouchableOpacity,
 	View,
 } from "react-native";
-import { getInitials } from "@/src/utils/utils";
+import { useLanguage } from "@/src/hooks/useLanguage";
 
 export default function User() {
-
 	const theme = useTheme();
 	const router = useRouter();
+	const { language, setLanguage } = useLanguage();
 	const { accessToken, user, logout } = useAuth();
 	const navigation = useNavigation();
 	const [refresh, setRefresh] = useState(false);
@@ -37,7 +53,7 @@ export default function User() {
 				<TouchableOpacity
 					style={{ marginTop: 10, marginBottom: 10, marginLeft: 20 }}
 					onPress={() => {
-						console.log(`User ${user?.uid} settings`);
+						console.log(`User settings`);
 					}}
 				>
 					<GearIcon size={32} color={theme.colors.primary} />
@@ -77,11 +93,11 @@ export default function User() {
 			shadowOpacity: 0.1,
 			shadowColor: theme.colors.primary,
 			backgroundColor: theme.colors.pearl,
-			shadowOffset: { width: 0, height: 4 }
+			shadowOffset: { width: 0, height: 4 },
 		},
 		profileHeader: {
 			paddingVertical: 24,
-			alignItems: "center"
+			alignItems: "center",
 		},
 		avatarContainer: {
 			elevation: 8,
@@ -89,58 +105,58 @@ export default function User() {
 			marginBottom: 16,
 			shadowOpacity: 0.3,
 			shadowColor: theme.colors.primary,
-			shadowOffset: { width: 0, height: 4 }
+			shadowOffset: { width: 0, height: 4 },
 		},
 		userName: {
 			fontSize: 28,
 			marginBottom: 8,
 			color: "#000000",
 			textAlign: "center",
-			fontFamily: "Epilogue-Bold"
+			fontFamily: "Epilogue-Bold",
 		},
 		userEmail: {
 			fontSize: 16,
 			marginBottom: 16,
 			textAlign: "center",
 			color: theme.colors.gray,
-			fontFamily: "Epilogue-Regular"
+			fontFamily: "Epilogue-Regular",
 		},
 		statsContainer: {
 			paddingVertical: 16,
 			flexDirection: "row",
-			justifyContent: "space-around"
+			justifyContent: "space-around",
 		},
 		statItem: {
 			flex: 1,
-			alignItems: "center"
+			alignItems: "center",
 		},
 		statNumber: {
 			fontSize: 24,
 			marginBottom: 4,
 			color: theme.colors.primary,
-			fontFamily: "Epilogue-Bold"
+			fontFamily: "Epilogue-Bold",
 		},
 		statLabel: {
 			fontSize: 12,
 			textAlign: "center",
 			color: theme.colors.gray,
-			fontFamily: "Epilogue-Regular"
+			fontFamily: "Epilogue-Regular",
 		},
 		infoCard: {
 			borderRadius: 12,
 			marginBottom: 16,
-			backgroundColor: theme.colors.surface
+			backgroundColor: theme.colors.surface,
 		},
 		infoRow: {
 			paddingVertical: 16,
 			flexDirection: "row",
 			alignItems: "center",
-			paddingHorizontal: 20
+			paddingHorizontal: 20,
 		},
 		infoIcon: {
 			width: 24,
 			marginRight: 16,
-			alignItems: "center"
+			alignItems: "center",
 		},
 		infoLabel: {
 			flex: 1,
@@ -148,24 +164,42 @@ export default function User() {
 			marginBottom: 2,
 			fontWeight: "600",
 			fontFamily: "Epilogue",
-			color: theme.colors.gray
+			color: theme.colors.gray,
 		},
 		infoValue: {
 			flex: 2,
 			fontSize: 16,
 			fontFamily: "Epilogue",
-			color: theme.colors.text
+			color: theme.colors.text,
 		},
 		actionButtons: {
 			gap: 12,
-			marginTop: 20
+			marginTop: 20,
 		},
 		actionButton: {
 			borderRadius: 12,
-			paddingVertical: 4
+			paddingVertical: 4,
 		},
 		wineIcon: {
-			marginBottom: 8
+			marginBottom: 8,
+		},
+		settingsCard: {
+			padding: 12,
+			marginTop: 16,
+		},
+		row: {
+			paddingVertical: 8,
+			marginLeft: 15,
+			marginRight: 15,
+			marginTop: 10,
+			marginBottom: 10,
+			flexDirection: "row",
+			alignItems: "center",
+			justifyContent: "space-between",
+		},
+		rowLabel: {
+			fontSize: 16,
+			fontFamily: "Epilogue-Bold",
 		},
 	});
 
@@ -201,9 +235,15 @@ export default function User() {
 			}
 		>
 			<Animated.View style={{ opacity: fadeAnim }}>
-
 				{/* Profile Header Card */}
 				<Card style={styles.profileCard}>
+					{!user?.admin ? (
+						<></>
+					) : (
+						<View style={{ position: "absolute", marginLeft: 10, marginTop: 5 }}>
+							<DevToLogoIcon size={28} weight='fill' color={"#000000"} />
+						</View>
+					)}
 					<View style={styles.profileHeader}>
 						<View style={styles.avatarContainer}>
 							<Avatar.Text
@@ -223,10 +263,7 @@ export default function User() {
 						<Text style={styles.userName}>{user?.username}</Text>
 						<Text style={styles.userName}>{user?.full_name}</Text>
 
-						<Text style={styles.userEmail}>{user?.email}</Text>
-						<Text style={styles.userEmail}>{user?.uid}</Text>
-
-						<Divider style={{ width: "90%", marginBottom: 16 }} />
+						<Divider style={{ width: "90%", marginTop: 16, marginBottom: 16 }} />
 
 						{/* Stats Section */}
 						<View style={styles.statsContainer}>
@@ -251,14 +288,14 @@ export default function User() {
 						</View>
 
 						{/* Footer Developer */}
-						<View style={{ marginTop: 24, alignItems: "center" }}>
+						{/* <View style={{ marginTop: 24, alignItems: "center" }}>
 							<Text style={{ fontSize: 12, color: theme.colors.gray, fontFamily: "Epilogue" }}>
 								Developed by Riccardo Bruno
 							</Text>
 							<View style={{ flexDirection: "row", marginTop: 8, gap: 12 }}>
 								<TouchableOpacity
 									onPress={() => {
-										Linking.openURL("mailto:riccbru@sommel.io");
+										Linking.openURL(`mailto:${user?.email}`);
 									}}
 								>
 									<Avatar.Icon
@@ -293,8 +330,49 @@ export default function User() {
 									/>
 								</TouchableOpacity>
 							</View>
-						</View>
+						</View> */}
+
+						{/* ITEMS TO ADD:
+						1. dark theme
+						2. segmented button for nationality (en/it/fr) with flags in it
+						3. Info/About
+						*/}
 					</View>
+				</Card>
+
+				<Card style={styles.profileCard}>
+					<View style={styles.row}>
+						<Text style={styles.rowLabel}>Dark Theme</Text>
+						<Switch
+							value={true}
+							onValueChange={() => console.log("Dark mode set")}
+							color={theme.colors.primary}
+						/>
+					</View>
+
+					<Divider />
+
+					{/* Language Selector */}
+					<View style={styles.row}>
+						<Text style={styles.rowLabel}>Language</Text>
+						<SegmentedButtons
+							value={language}
+							onValueChange={setLanguage}
+							buttons={[
+								{ value: "en", label: "🇬🇧" },
+								{ value: "it", label: "🇮🇹" },
+								{ value: "fr", label: "🇫🇷" },
+							]}
+							style={{ flex: 1, marginLeft: 16 }}
+						/>
+					</View>
+
+					<Divider />
+
+					{/* Info & About Button */}
+					<TouchableOpacity style={styles.row} onPress={() => console.log("info & about dev")}>
+						<Text style={styles.rowLabel}>Info & About</Text>
+					</TouchableOpacity>
 				</Card>
 			</Animated.View>
 		</ScrollView>
