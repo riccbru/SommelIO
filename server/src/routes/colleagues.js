@@ -144,7 +144,7 @@ router.post("/:cuid", async (req, res) => {
 				OR: [
 					{ requester_id: requesterId, addressee_id: addresseeId },
 					{ requester_id: addresseeId, addressee_id: requesterId },
-					{ status: "blocked" }
+					{ status: "blocked" },
 				],
 			},
 		});
@@ -506,7 +506,7 @@ router.get("/search", async (req, res) => {
 					{ requester_id: uid },
 					{ addressee_id: uid },
 					{ status: "accepted" },
-					{ status: "blocked" }
+					{ status: "blocked" },
 				],
 			},
 			select: { requester_id: true, addressee_id: true },

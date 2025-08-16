@@ -109,7 +109,7 @@ export default function FormSelect<T>({ label, field, value, error, options, onC
 							top: shouldFloatLabel ? -8 : 16,
 							fontSize: shouldFloatLabel ? 12 : 16,
 							paddingHorizontal: shouldFloatLabel ? 4 : 0,
-							color: error ? theme.colors.error : "#c9c4cf",
+							color: error ? theme.colors.error : theme.dark ? "#c9c4cf" : "#565656",
 							backgroundColor: shouldFloatLabel ? theme.colors.surface : "transparent",
 						},
 					]}
@@ -173,8 +173,8 @@ export default function FormSelect<T>({ label, field, value, error, options, onC
 										<Text
 											style={[
 												styles.optionText,
-												{ color: theme.colors.text },
 												value === item && { fontWeight: "600" },
+												{ color: value === item ? "#000000" : theme.colors.text },
 											]}
 										>
 											{formatOption(item)}

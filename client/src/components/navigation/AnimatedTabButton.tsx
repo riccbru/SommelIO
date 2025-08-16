@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Animated, Pressable, Text } from "react-native";
+import { Animated, Pressable } from "react-native";
 
 export default function AnimatedTabButton({ children, onPress, style }) {
 	const scale = useRef(new Animated.Value(1)).current;
@@ -27,7 +27,9 @@ export default function AnimatedTabButton({ children, onPress, style }) {
 			onPressIn={handlePressIn}
 			onPressOut={handlePressOut}
 		>
-			<Animated.View style={{ alignItems: "center", transform: [{ scale }] }}>{children}</Animated.View>
+			<Animated.View style={{ alignItems: "center", transform: [{ scale }] }}>
+				{children}
+			</Animated.View>
 		</Pressable>
 	);
 }

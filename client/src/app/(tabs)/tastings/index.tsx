@@ -1,9 +1,10 @@
 import { useNavigation } from "expo-router";
 import TastingsAPI from "@/src/services/tastings";
 import { ListPlusIcon } from "phosphor-react-native";
+import LoadingSpinner from "@/src/components/LoadingSpinner";
 import TastingsList from "@/src/components/tastings/TastingsList";
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
-import { useTheme, ActivityIndicator, Searchbar, Text } from "react-native-paper";
+import { useTheme, Searchbar, Text } from "react-native-paper";
 import { RefreshControl, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 
 type Exam = Record<string, any>;
@@ -44,7 +45,6 @@ export default function Tastings() {
 		centeredContainer: {
 			flex: 1,
 			alignItems: "center",
-			alignContent: "center",
 			justifyContent: "center",
 			backgroundColor: theme.colors.background,
 		},
@@ -97,13 +97,7 @@ export default function Tastings() {
 	}, [fetchTastings]);
 
 	if (loading) {
-		return (
-			<View style={styles.centeredContainer}>
-				<ActivityIndicator size={"large"} color={theme.dark ? "#ffffff" : "#000000"} />
-				<View style={{ marginTop: 10 }} />
-				<Text style={styles.text}>Loading tastings...</Text>
-			</View>
-		);
+		return <LoadingSpinner text={"Loading tastings..."} />;
 	}
 
 	return (

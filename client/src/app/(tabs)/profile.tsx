@@ -32,7 +32,7 @@ import {
 } from "react-native";
 import { useLanguage } from "@/src/hooks/useLanguage";
 
-export default function User() {
+export default function Profile() {
 	const theme = useTheme();
 	const router = useRouter();
 	const { language, setLanguage } = useLanguage();

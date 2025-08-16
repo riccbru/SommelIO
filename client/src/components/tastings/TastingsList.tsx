@@ -36,10 +36,22 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
 			fontFamily: "Epilogue-Regular",
 		},
 		accordionBody: {
-			marginLeft: 30,
+			marginLeft: 20,
+			marginRight: 35,
 			backgroundColor: theme.colors.background,
 		},
-		text: {
+		accordionRow: {
+			marginVertical: 3,
+			flexDirection: "row",
+			justifyContent: "space-between",
+		},
+		textLabel: {
+			fontSize: 13,
+			color: theme.colors.text,
+			fontFamily: "Epilogue-Bold",
+		},
+		textValue: {
+			fontSize: 14,
 			color: theme.colors.text,
 			fontFamily: "Epilogue-Regular",
 		},
@@ -52,7 +64,13 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
 	return (
 		<List.Section>
 			{tastings
-				.filter(t => t.wine_denomination.toLowerCase().includes(searchQuery.toLowerCase()))
+				.filter(t => {
+					const query = searchQuery.toLowerCase();
+					return (
+						t.winemaker.toLowerCase().includes(query) ||
+						t.wine_denomination.toLowerCase().includes(query)
+					);
+				})
 				.map((t, index) => (
 					<View key={index} style={styles.row}>
 						<View style={styles.iconContainer}>
@@ -76,13 +94,26 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
 								)}
 							>
 								<View style={styles.accordionBody}>
-									<Text style={styles.text}>Sample Number: {t.sample_number}</Text>
-									<Text style={styles.text}>Alcohol Content: {t.alcohol_content}</Text>
-									<Text style={styles.text}>Vintage Year: {t.vintage}</Text>
-									<Text style={styles.text}>Wine Temperature: {t.wine_temperature}</Text>
-									<Text style={styles.text}>
-										Ambient Temperature: {t.ambient_temperature}
-									</Text>
+									<View style={styles.accordionRow}>
+										<Text style={styles.textLabel}>Vintage Year:</Text>
+										<Text style={styles.textValue}>{t.vintage}</Text>
+									</View>
+									<View style={styles.accordionRow}>
+										<Text style={styles.textLabel}>Sample Number:</Text>
+										<Text style={styles.textValue}>{t.sample_number}</Text>
+									</View>
+									<View style={styles.accordionRow}>
+										<Text style={styles.textLabel}>Alcohol Content:</Text>
+										<Text style={styles.textValue}>{t.alcohol_content}</Text>
+									</View>
+									<View style={styles.accordionRow}>
+										<Text style={styles.textLabel}>Wine Temperature:</Text>
+										<Text style={styles.textValue}>{t.wine_temperature}</Text>
+									</View>
+									<View style={styles.accordionRow}>
+										<Text style={styles.textLabel}>Ambient Temperature:</Text>
+										<Text style={styles.textValue}>{t.ambient_temperature}</Text>
+									</View>
 								</View>
 							</List.Accordion>
 						</View>

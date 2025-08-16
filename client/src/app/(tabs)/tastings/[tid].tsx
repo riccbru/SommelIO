@@ -1,10 +1,11 @@
 import { StarIcon } from "phosphor-react-native";
+import { Text, Card, useTheme } from "react-native-paper";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
-import { Text, Card, useTheme, ActivityIndicator } from "react-native-paper";
 import { View, ScrollView, StyleSheet, TouchableOpacity, RefreshControl } from "react-native";
 
 import TastingsAPI from "@/src/services/tastings";
+import LoadingSpinner from "@/src/components/LoadingSpinner";
 import TastingCard from "@/src/components/tastings/TastingCard";
 import ActionButton from "@/src/components/tastings/ActionButton";
 
@@ -164,13 +165,7 @@ export default function TastingDetail() {
 	}, [tid, refresh]);
 
 	if (loading) {
-		return (
-			<View style={styles.loadingContainer}>
-				<ActivityIndicator size='large' color={theme.dark ? "#ffffff" : "#000000"} />
-				<View style={{ marginTop: 10 }} />
-				<Text style={styles.text}>Loading tasting details...</Text>
-			</View>
-		);
+		return <LoadingSpinner text={"Loading tasting details..."} />;
 	}
 
 	if (!tasting) {

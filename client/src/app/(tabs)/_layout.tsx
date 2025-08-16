@@ -15,7 +15,7 @@ export default function TabsLayout() {
 				const config = TAB_CONFIG[route.name as keyof typeof TAB_CONFIG];
 				const Icon = config?.icon;
 				return {
-					headerTitle: config?.title ?? route.name,
+					headerTitle: "",
 					headerStyle: {
 						backgroundColor: theme.colors.background,
 					},
@@ -25,15 +25,37 @@ export default function TabsLayout() {
 						backgroundColor: theme.colors.background,
 					},
 					// tabBarLabel: "",
-					tabBarLabel: config?.title,
-					tabBarLabelStyle: {
-						paddingTop: 5,
-						fontFamily: "Epilogue-Regular",
-						color: focused ? theme.colors.amber : theme.colors.primary,
-					},
+					// tabBarLabel: config?.title,
+					// tabBarLabelStyle: ({focused}) => ({
+					// 	paddingTop: 5,
+					// 	color: focused ? theme.colors.amber : theme.colors.text,
+					// 	fontFamily: "Epilogue-Regular"
+					// }),
+					tabBarLabel: ({ focused }) =>
+						!config.title.length ? (
+							<></>
+						) : (
+							<Text
+								style={{
+									fontSize: 12,
+									paddingTop: 5,
+									color: focused ? theme.colors.amber : theme.colors.text,
+									fontFamily: focused ? "Epilogue-Bold" : "Epilogue-Regular",
+								}}
+							>
+								{config?.title}
+							</Text>
+						),
 					tabBarIcon: ({ focused }) => (
-						<Icon size={32} color={iconColor(focused)} weight={iconWeight(focused)} />
+						<Icon
+							size={!config.title.length ? 42 : 32}
+							color={iconColor(focused)}
+							weight={iconWeight(focused)}
+						/>
 					),
+					tabBarIconStyle: {
+						marginTop: !config.title.length ? 7 : 0,
+					},
 					tabBarButton: props => <AnimatedTabButton {...props} />,
 				};
 			}}
