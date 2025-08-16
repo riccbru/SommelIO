@@ -6,8 +6,8 @@ import { Text } from "react-native";
 
 export default function TabsLayout() {
 	const theme = useTheme();
-	const iconWeight = (focused: boolean) => (!focused ? "regular" : "fill");
 	const iconColor = (focused: boolean) => (!focused ? theme.colors.primary : theme.colors.amber);
+	const iconWeight = (base: "regular" | "light", focused: boolean) => (!focused ? base : "fill");
 
 	return (
 		<Tabs
@@ -50,7 +50,7 @@ export default function TabsLayout() {
 						<Icon
 							size={!config.title.length ? 42 : 32}
 							color={iconColor(focused)}
-							weight={iconWeight(focused)}
+							weight={iconWeight(!config.title.length ? "light" : "regular", focused)}
 						/>
 					),
 					tabBarIconStyle: {

@@ -38,6 +38,8 @@ export default function TastingDetails({ tasting }: Props) {
 	});
 
 	const tastingFields = [
+		{ label: "Denomination", value: tasting.wine_denomination },
+		{ label: "Winemaker", value: tasting.winemaker },
 		{ label: "Category", value: tasting.wine_category_name.toUpperCase() },
 		{ label: "Sample", value: tasting.sample_number ?? "-" },
 		{ label: "Alcohol", value: tasting.alcohol_content },
