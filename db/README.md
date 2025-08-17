@@ -27,7 +27,7 @@ docker compose down -v
 ### Esame olfattivo / Examen olfactif / Olfactory analysis
 | | |
 |-|-|
-| `INTENSITÀ` <br> `INTENSITÉ` <br> `INTENSITY` | `carente`/`poco intenso`/`abbastanza intenso`/`intenso`/`molto intenso` <br> `dépourvu d'intensité`/`peu intense`/`intense`/`très intense` <br> `lacking`/`scarcely intense`/`quite intense`/`intense`/`very intense`|
+| `INTENSITÀ` <br> `INTENSITÉ` <br> `INTENSITY` | `carente`/`poco intenso`/`abbastanza intenso`/`intenso`/`molto intenso` <br> `dépourvu d'intensité`/`peu intense`/`assez intense`/`intense`/`très intense` <br> `lacking`/`scarcely intense`/`quite intense`/`intense`/`very intense`|
 | `COMPLESSITÀ` <br> `COMPLEXITÉ` <br> `COMPLEXITY` | `carente`/`poco complesso`/`abbastanza complesso`/`complesso`/`ampio` <br> `dépourvu de complexité`/`peu complexe`/`assez complexe`/`complexe`/`ample` <br> `lacking`/`scarcely complex`/`quite complex`/`complex`/`ample` |
 | `QUALITÀ` <br> `QUALITÉ` <br> `QUALITY` | `comune`/`poco fine`/`abbastanza fine`/`fine`/`eccellente` <br> `commun`/`peu fin`/`assez fin`/`fin`/`excellent` <br> `coarse`/`scarcely fine`/`quite fine`/`fine`/`excellent` |
 | `DESCRIZIONE` <br> `DESCRIPTION` <br> `DESCRIPTION` | `aromatico`/`vinoso`/`floreale`/`fruttato`/`erbaceo`/`minerale`/`fragrante`/`speziato`/`tostato`/`etereo` <br> `aromatique`/`vineux`/`floréal`/`fruité`/`herbacé`/`minérale`/`fragrant`/`épicé`/`toasté`/`éthéré` <br> `aromatic`/`vinous`/`floral`/`fruity`/`grassy`/`mineral`/`fragrant`/`spicy`/`toasted`/`ethereal`|

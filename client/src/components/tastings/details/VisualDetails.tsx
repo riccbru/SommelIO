@@ -1,4 +1,3 @@
-import { formatOption } from "@/src/utils/utils";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -58,15 +57,27 @@ export default function VisualDetails({ exam }: Props) {
 	});
 
 	const visualFields = [
-		{ label: t("new.visual.limpidity"), value: formatOption(exam?.limpidity).toUpperCase() },
-		{ label: t("new.visual.color"), value: formatOption(exam?.color_family).toUpperCase() },
-		{ label: t("new.visual.shade"), value: formatOption(exam?.color_shade).toUpperCase() },
-		{ label: t("new.visual.consistency"), value: formatOption(exam?.consistency).toUpperCase() },
+		{
+			label: t("new.visual.limpidity"),
+			value: t(`new.visual.values.limpidity.${exam?.limpidity}`).toUpperCase(),
+		},
+		{
+			label: t("new.visual.color"),
+			value: t(`new.visual.values.color.${exam?.color_family}`).toUpperCase(),
+		},
+		{
+			label: t("new.visual.shade"),
+			value: t(`new.visual.values.shade.${exam?.color_shade}`).toUpperCase(),
+		},
+		{
+			label: t("new.visual.consistency"),
+			value: t(`new.visual.values.consistency.${exam?.consistency}`).toUpperCase(),
+		},
 		...(exam.bubble_size
 			? [
 					{
 						label: t("new.visual.bubble_size"),
-						value: formatOption(exam?.bubble_size).toUpperCase(),
+						value: t(`new.visual.values.bubble_size.${exam?.bubble_size}`).toUpperCase(),
 					},
 				]
 			: []),
@@ -74,7 +85,7 @@ export default function VisualDetails({ exam }: Props) {
 			? [
 					{
 						label: t("new.visual.bubble_number"),
-						value: formatOption(exam?.bubble_number).toUpperCase(),
+						value: t(`new.visual.values.bubble_number.${exam?.bubble_number}`).toUpperCase(),
 					},
 				]
 			: []),
@@ -82,7 +93,9 @@ export default function VisualDetails({ exam }: Props) {
 			? [
 					{
 						label: t("new.visual.bubble_persistence"),
-						value: formatOption(exam?.bubble_persistence).toUpperCase(),
+						value: t(
+							`new.visual.values.bubble_persistence.${exam?.bubble_persistence}`
+						).toUpperCase(),
 					},
 				]
 			: []),

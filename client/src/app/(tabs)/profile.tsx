@@ -296,17 +296,19 @@ export default function Profile() {
 
 					{/* Language Selector */}
 					<View style={styles.row}>
-						<Text style={styles.rowLabel}>{t("profile.lang")}</Text>
-						<SegmentedButtons
-							value={language}
-							style={{ flex: 1, marginLeft: 16 }}
-							onValueChange={val => setLanguage(val)}
-							buttons={[
-								{ value: "en", label: "🇬🇧" },
-								{ value: "it", label: "🇮🇹" },
-								{ value: "fr", label: "🇫🇷" },
-							]}
-						/>
+						<View style={{ flex: 1, flexDirection: "column" }}>
+							<Text style={styles.rowLabel}>{t("profile.lang")}</Text>
+							<SegmentedButtons
+								value={language}
+								style={{ marginTop: 8 }}
+								onValueChange={val => setLanguage(val)}
+								buttons={[
+									{ value: "en", label: "🇬🇧" },
+									{ value: "it", label: "🇮🇹" },
+									{ value: "fr", label: "🇫🇷" },
+								]}
+							/>
+						</View>
 					</View>
 
 					<Divider />

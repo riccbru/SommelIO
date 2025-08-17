@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
-import { formatOption } from "@/src/utils/utils";
 import { useTranslation } from "react-i18next";
+import { StyleSheet, Text, View } from "react-native";
 
 type OlfactoryExam = {
 	intensity: string;
@@ -103,15 +102,21 @@ export default function OlfactoryDetails({ exam }: Props) {
 		<View>
 			<View style={styles.row}>
 				<Text style={styles.label}>{t("new.intensity")}</Text>
-				<Text style={styles.value}>{formatOption(exam.intensity).toUpperCase()}</Text>
+				<Text style={styles.value}>
+					{t(`new.olfactory.values.intensity.${exam.intensity}`).toUpperCase()}
+				</Text>
 			</View>
 			<View style={styles.row}>
 				<Text style={styles.label}>{t("new.olfactory.complexity")}</Text>
-				<Text style={styles.value}>{formatOption(exam.complexity).toUpperCase()}</Text>
+				<Text style={styles.value}>
+					{t(`new.olfactory.values.complexity.${exam.complexity}`).toUpperCase()}
+				</Text>
 			</View>
 			<View style={styles.row}>
 				<Text style={styles.label}>{t("new.quality")}</Text>
-				<Text style={styles.value}>{formatOption(exam.quality).toUpperCase()}</Text>
+				<Text style={styles.value}>
+					{t(`new.olfactory.values.quality.${exam.quality}`).toUpperCase()}
+				</Text>
 			</View>
 
 			<Text style={styles.descriptorsHeader}>{t("new.olfactory.descriptors")}</Text>

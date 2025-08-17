@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useRouter } from "expo-router";
+import { useTranslation } from "react-i18next";
 import TastingsAPI from "@/src/services/tastings";
 import { Button, useTheme } from "react-native-paper";
-import { FileArrowDownIcon, FilePdfIcon, TrashIcon } from "phosphor-react-native";
+import { FilePdfIcon, TrashIcon } from "phosphor-react-native";
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useTranslation } from "react-i18next";
 
 type Props = {
 	tid: string;
@@ -18,8 +18,7 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 	const router = useRouter();
 	const { t } = useTranslation();
 	const [modal, setModal] = useState(false);
-	// const Icon = action.toLowerCase() === "delete" ? TrashIcon : FilePdfIcon;
-	const Icon = action.toLowerCase() === "delete" ? TrashIcon : FileArrowDownIcon;
+	const Icon = action.toLowerCase() === "delete" ? TrashIcon : FilePdfIcon;
 
 	const showModal = () => setModal(true);
 	const hideModal = () => setModal(false);
@@ -80,7 +79,7 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 							fontSize: 20,
 							marginBottom: 20,
 							color: theme.colors.text,
-							fontFamily: "Epilogue-Bold",
+							fontFamily: "Epilogue-Regular",
 						}}
 					>
 						{t(`tastings.${action}`)}

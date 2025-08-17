@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
-import { formatOption } from "@/src/utils/utils";
 import { useTranslation } from "react-i18next";
+import { StyleSheet, Text, View } from "react-native";
 
 type FinalExam = {
 	evolutionary_state: string;
@@ -56,9 +55,12 @@ export default function FinalDetails({ exam }: Props) {
 	const finalFields = [
 		{
 			label: t("new.final.evolution"),
-			value: formatOption(exam.evolutionary_state).toUpperCase(),
+			value: t(`new.final.values.evolution.${exam.evolutionary_state}`).toUpperCase(),
 		},
-		{ label: t("new.harmony"), value: formatOption(exam.harmony).toUpperCase() },
+		{
+			label: t("new.harmony"),
+			value: t(`new.final.values.harmony.${exam.harmony}`).toUpperCase(),
+		},
 	];
 
 	return (

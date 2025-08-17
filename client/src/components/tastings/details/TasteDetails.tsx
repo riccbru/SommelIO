@@ -1,4 +1,3 @@
-import { formatOption } from "@/src/utils/utils";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -62,17 +61,50 @@ export default function TasteDetails({ exam }: Props) {
 	});
 
 	const tasteFields = [
-		{ label: t("new.taste.sweetness"), value: formatOption(exam.sweetness).toUpperCase() },
-		{ label: t("new.taste.alcohols"), value: formatOption(exam.alcohols).toUpperCase() },
-		{ label: t("new.taste.softness"), value: formatOption(exam.softness).toUpperCase() },
-		{ label: t("new.taste.acidity"), value: formatOption(exam.acidity).toUpperCase() },
-		{ label: t("new.taste.tannicity"), value: formatOption(exam.tannicity).toUpperCase() },
-		{ label: t("new.taste.saltiness"), value: formatOption(exam.saltiness).toUpperCase() },
-		{ label: t("new.intensity"), value: formatOption(exam.intensity).toUpperCase() },
-		{ label: t("new.taste.persistence"), value: formatOption(exam.persistence).toUpperCase() },
-		{ label: t("new.quality"), value: formatOption(exam.quality).toUpperCase() },
-		{ label: t("new.taste.structure"), value: formatOption(exam.structure).toUpperCase() },
-		{ label: t("new.taste.balance"), value: formatOption(exam.balance).toUpperCase() },
+		{
+			label: t("new.taste.sweetness"),
+			value: t(`new.taste.values.sweetness.${exam.sweetness}`).toUpperCase(),
+		},
+		{
+			label: t("new.taste.alcohols"),
+			value: t(`new.taste.values.alcohols.${exam.alcohols}`).toUpperCase(),
+		},
+		{
+			label: t("new.taste.softness"),
+			value: t(`new.taste.values.softness.${exam.softness}`).toUpperCase(),
+		},
+		{
+			label: t("new.taste.acidity"),
+			value: t(`new.taste.values.acidity.${exam.acidity}`).toUpperCase(),
+		},
+		{
+			label: t("new.taste.tannicity"),
+			value: t(`new.taste.values.tannicity.${exam.tannicity}`).toUpperCase(),
+		},
+		{
+			label: t("new.taste.saltiness"),
+			value: t(`new.taste.values.saltiness.${exam.saltiness}`).toUpperCase(),
+		},
+		{
+			label: t("new.intensity"),
+			value: t(`new.taste.values.intensity.${exam.intensity}`).toUpperCase(),
+		},
+		{
+			label: t("new.taste.persistence"),
+			value: t(`new.taste.values.persistence.${exam.persistence}`).toUpperCase(),
+		},
+		{
+			label: t("new.quality"),
+			value: t(`new.taste.values.quality.${exam.quality}`).toUpperCase(),
+		},
+		{
+			label: t("new.taste.structure"),
+			value: t(`new.taste.values.structure.${exam.structure}`).toUpperCase(),
+		},
+		{
+			label: t("new.taste.balance"),
+			value: t(`new.taste.values.balance.${exam.balance}`).toUpperCase(),
+		},
 	];
 
 	return (

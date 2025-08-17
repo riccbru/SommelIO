@@ -28,6 +28,7 @@ export function formatDescription(
 }
 
 export function formatOption(value: string): string {
+	// 'value_to_process' ==> 'Value to process'
 	if (!value || value === null || value === undefined) return "";
 	const withSpaces = value.replace("_", " ");
 	if (withSpaces.length === 0) return "";

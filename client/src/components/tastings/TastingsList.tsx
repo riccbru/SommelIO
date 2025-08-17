@@ -1,10 +1,10 @@
+import i18n from "@/src/locales/i18n";
 import { useRouter } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { List, useTheme } from "react-native-paper";
 import { capitalizeFirst, formatDescription } from "@/src/utils/utils";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { FileMagnifyingGlassIcon, FileTextIcon } from "phosphor-react-native";
-import { useTranslation } from "react-i18next";
-import i18n from "@/src/locales/i18n";
 
 type Props = {
 	searchQuery: string;
@@ -76,17 +76,12 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
 				})
 				.map((tasting, index) => (
 					<View key={index} style={styles.row}>
-						{/* <View style={styles.iconContainer}>
-							<Button onPress={() => handlePress(t)}>
-							<FileTextIcon size={32} />
-							<FileMagnifyingGlassIcon size={32} />
-							</Button>
-							</View> */}
 						<TouchableOpacity
 							style={styles.iconContainer}
 							onPress={() => handlePress(tasting)}
 						>
 							<FileTextIcon size={32} />
+							{/* <FileMagnifyingGlassIcon size={32} /> */}
 						</TouchableOpacity>
 
 						<View style={styles.accordionTrigger}>
