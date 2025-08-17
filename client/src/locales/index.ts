@@ -4,8 +4,8 @@ import it from "./it";
 
 export const resources = {
 	en: { translation: en },
-	it: { translation: it },
 	fr: { translation: fr },
+	it: { translation: it },
 } as const;
 
 export type SupportedLanguages = keyof typeof resources;

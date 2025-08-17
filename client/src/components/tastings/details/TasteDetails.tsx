@@ -1,4 +1,5 @@
 import { formatOption } from "@/src/utils/utils";
+import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
 
 type TasteExam = {
@@ -21,6 +22,8 @@ type Props = {
 };
 
 export default function TasteDetails({ exam }: Props) {
+
+	const {t} = useTranslation();
 	if (!exam || Object.keys(exam).length === 0) {
 		return <Text>{}</Text>;
 	}
@@ -60,17 +63,17 @@ export default function TasteDetails({ exam }: Props) {
 	});
 
 	const tasteFields = [
-		{ label: "Sweetness", value: formatOption(exam.sweetness).toUpperCase() },
-		{ label: "Alcohols", value: formatOption(exam.alcohols).toUpperCase() },
-		{ label: "Softness", value: formatOption(exam.softness).toUpperCase() },
-		{ label: "Acidity", value: formatOption(exam.acidity).toUpperCase() },
-		{ label: "Tannicity", value: formatOption(exam.tannicity).toUpperCase() },
-		{ label: "Saltiness", value: formatOption(exam.saltiness).toUpperCase() },
-		{ label: "Intensity", value: formatOption(exam.intensity).toUpperCase() },
-		{ label: "Persistence", value: formatOption(exam.persistence).toUpperCase() },
-		{ label: "Quality", value: formatOption(exam.quality).toUpperCase() },
-		{ label: "Structure", value: formatOption(exam.structure).toUpperCase() },
-		{ label: "Balance", value: formatOption(exam.balance).toUpperCase() },
+		{ label: t("new.taste.sweetness"), value: formatOption(exam.sweetness).toUpperCase() },
+		{ label: t("new.taste.alcohols"), value: formatOption(exam.alcohols).toUpperCase() },
+		{ label: t("new.taste.softness"), value: formatOption(exam.softness).toUpperCase() },
+		{ label: t("new.taste.acidity"), value: formatOption(exam.acidity).toUpperCase() },
+		{ label: t("new.taste.tannicity"), value: formatOption(exam.tannicity).toUpperCase() },
+		{ label: t("new.taste.saltiness"), value: formatOption(exam.saltiness).toUpperCase() },
+		{ label: t("new.intensity"), value: formatOption(exam.intensity).toUpperCase() },
+		{ label: t("new.taste.persistence"), value: formatOption(exam.persistence).toUpperCase() },
+		{ label: t("new.quality"), value: formatOption(exam.quality).toUpperCase() },
+		{ label: t("new.taste.structure"), value: formatOption(exam.structure).toUpperCase() },
+		{ label: t("new.taste.balance"), value: formatOption(exam.balance).toUpperCase() },
 	];
 
 	return (
@@ -84,7 +87,7 @@ export default function TasteDetails({ exam }: Props) {
 
 			{exam.notes && (
 				<View style={styles.notesRow}>
-					<Text style={styles.notesTitle}>Notes</Text>
+					<Text style={styles.notesTitle}>{t("new.notes")}</Text>
 					<Text style={styles.notesText}>{exam.notes}</Text>
 				</View>
 			)}

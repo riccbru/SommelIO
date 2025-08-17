@@ -77,6 +77,7 @@ export default function SignupLayout() {
 					value={signupData.full_name}
 					onChangeText={text => setSignupData(prev => ({ ...prev, full_name: text }))}
 				/>
+				
 				<AuthInput
 					holder='Email'
 					isEmail={true}

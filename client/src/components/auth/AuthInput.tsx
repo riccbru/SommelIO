@@ -14,11 +14,10 @@ export default function AuthInput({ value, holder, isEmail, onSubmit, onChangeTe
 
 	const styles = StyleSheet.create({
 		input: {
-			height: 54,
+			height: 56,
 			padding: 16,
 			borderRadius: 12,
 			marginBottom: 16,
-			marginTop: 16,
 			color: "#000000",
 			fontFamily: "Epilogue-Regular",
 			backgroundColor: theme.colors.pearl,

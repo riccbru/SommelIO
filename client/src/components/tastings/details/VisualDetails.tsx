@@ -1,4 +1,5 @@
 import { formatOption } from "@/src/utils/utils";
+import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
 
 type VisualExam = {
@@ -17,6 +18,8 @@ type Props = {
 };
 
 export default function VisualDetails({ exam }: Props) {
+
+	const {t} = useTranslation();
 	if (!exam || Object.keys(exam).length === 0) {
 		return <Text>{}</Text>;
 	}
@@ -56,20 +59,20 @@ export default function VisualDetails({ exam }: Props) {
 	});
 
 	const visualFields = [
-		{ label: "Limpidity", value: formatOption(exam?.limpidity).toUpperCase() },
-		{ label: "Color Family", value: formatOption(exam?.color_family).toUpperCase() },
-		{ label: "Color Shade", value: formatOption(exam?.color_shade).toUpperCase() },
-		{ label: "Consistency", value: formatOption(exam?.consistency).toUpperCase() },
+		{ label: t("new.visual.limpidity"), value: formatOption(exam?.limpidity).toUpperCase() },
+		{ label: t("new.visual.color"), value: formatOption(exam?.color_family).toUpperCase() },
+		{ label: t("new.visual.shade"), value: formatOption(exam?.color_shade).toUpperCase() },
+		{ label: t("new.visual.consistency"), value: formatOption(exam?.consistency).toUpperCase() },
 		...(exam.bubble_size
-			? [{ label: "Bubble Size", value: formatOption(exam?.bubble_size).toUpperCase() }]
+			? [{ label: t("new.visual.bubble_size"), value: formatOption(exam?.bubble_size).toUpperCase() }]
 			: []),
 		...(exam.bubble_number
-			? [{ label: "Bubble Number", value: formatOption(exam?.bubble_number).toUpperCase() }]
+			? [{ label: t("new.visual.bubble_number"), value: formatOption(exam?.bubble_number).toUpperCase() }]
 			: []),
 		...(exam.bubble_persistence
 			? [
 					{
-						label: "Bubble Persistence",
+						label: t("new.visual.bubble_persistence"),
 						value: formatOption(exam?.bubble_persistence).toUpperCase(),
 					},
 				]

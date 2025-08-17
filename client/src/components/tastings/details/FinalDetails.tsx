@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import { formatOption } from "@/src/utils/utils";
+import { useTranslation } from "react-i18next";
 
 type FinalExam = {
 	evolutionary_state: string;
@@ -13,6 +14,8 @@ type Props = {
 };
 
 export default function FinalDetails({ exam }: Props) {
+
+	const {t} = useTranslation();
 	if (!exam || Object.keys(exam).length === 0) {
 		return <Text>{}</Text>;
 	}
@@ -52,8 +55,8 @@ export default function FinalDetails({ exam }: Props) {
 	});
 
 	const finalFields = [
-		{ label: "Evolutionary State", value: formatOption(exam.evolutionary_state).toUpperCase() },
-		{ label: "Harmony", value: formatOption(exam.harmony).toUpperCase() },
+		{ label: t("new.final.evolution"), value: formatOption(exam.evolutionary_state).toUpperCase() },
+		{ label: t("new.harmony"), value: formatOption(exam.harmony).toUpperCase() },
 	];
 
 	return (
@@ -67,14 +70,14 @@ export default function FinalDetails({ exam }: Props) {
 
 			{exam.pairings && (
 				<View style={styles.notesRow}>
-					<Text style={styles.notesTitle}>Pairings</Text>
+					<Text style={styles.notesTitle}>{t("new.final.pairings")}</Text>
 					<Text style={styles.notesText}>{exam.pairings}</Text>
 				</View>
 			)}
 
 			{exam.notes && (
 				<View style={styles.notes}>
-					<Text style={styles.notesTitle}>Notes</Text>
+					<Text style={styles.notesTitle}>{t("new.notes")}</Text>
 					<Text style={styles.notesText}>{exam.notes}</Text>
 				</View>
 			)}

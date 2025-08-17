@@ -13,7 +13,7 @@ export default {
 		exit_exam: "ABBANDONA",
 		save_exam: "SALVA",
 		tasting: {
-			title: "Descrizione del Vino",
+			title: "Dettagli degustazione",
 			denomination: "Denominazione",
 			winemaker: "Produttore",
 			category: "Categoria",
@@ -23,9 +23,9 @@ export default {
 			alcohol: "Contenuto Alcolico",
 			wine_temperature: "Temperatura Vino",
 			ambient_temperature: "Temperatura Ambiente",
-			date: "Data Degustazione",
-			time: "Ora Degustazione",
-			location: "Luogo Degustazione",
+			date: "Data",
+			time: "Ora",
+			location: "Luogo",
 		},
 		visual: {
 			short: "VISIVO",
@@ -42,6 +42,7 @@ export default {
 			short: "OLFATTIVO",
 			title: "Esame Olfattivo",
 			complexity: "Complessità",
+			descriptors: "Descrittori",
 			aromatic: "Aromatico",
 			vinous: "Vinoso",
 			floral: "Floreale",
@@ -85,11 +86,19 @@ export default {
 			Tintensity: "Intensità Gustativa",
 			Tpersistence: "Persistenza Gustativa",
 			Tquality: "Qualità Gustativa",
+			total: "PUNTEGGIO TOTALE"
 		},
 	},
 	tastings: {
 		loading_tastings: "Caricando degustazioni...",
 		loading_details: "Caricando dettagli...",
+		searchbar: "Cerca vino...",
+		notFound: "Degustazione non trovata",
+		download: "Scarica degustazione",
+		delete: "Elimina degustazione",
+		confirm_mex: "Sei sicuro di voler eliminare",
+		delete_confirm: "Elimina",
+		cancel: "Annulla"
 	},
 	profile: {
 		dark: "Tema Scuro",

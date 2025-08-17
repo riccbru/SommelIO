@@ -173,7 +173,7 @@ export default function TastingDetail() {
 	if (!tasting) {
 		return (
 			<View style={styles.loadingContainer}>
-				<Text style={styles.text}>Tasting not found</Text>
+				<Text style={styles.text}>{t("tastings.notFound")}</Text>
 			</View>
 		);
 	}
@@ -202,7 +202,7 @@ export default function TastingDetail() {
 						uuid={tasting.tid}
 						editMode={editMode}
 						setEditMode={setEditMode}
-						subtitle='Wine description'
+						subtitle={t("new.tasting.title")}
 					/>
 					{!editMode["tasting"] ? <TastingDetails tasting={tasting} /> : <TastingUpdate />}
 				</Card.Content>
@@ -215,7 +215,7 @@ export default function TastingDetail() {
 						uuid={tasting.visual_exam.eid}
 						editMode={editMode}
 						setEditMode={setEditMode}
-						subtitle='Visual Examination'
+						subtitle={t("new.visual.title")}
 					/>
 					{!editMode["visual"] ? (
 						<VisualDetails exam={tasting.visual_exam} />
@@ -232,7 +232,7 @@ export default function TastingDetail() {
 						uuid={tasting.olfactory_exam.eid}
 						editMode={editMode}
 						setEditMode={setEditMode}
-						subtitle='Olfactory Examination'
+						subtitle={t("new.olfactory.title")}
 					/>
 					{!editMode["olfactory"] ? (
 						<OlfactoryDetails exam={tasting.olfactory_exam} />
@@ -249,7 +249,7 @@ export default function TastingDetail() {
 						uuid={tasting.taste_olfactory_exam.eid}
 						editMode={editMode}
 						setEditMode={setEditMode}
-						subtitle='Taste-Olfactory Examination'
+						subtitle={t("new.taste.title")}
 					/>
 					{!editMode["taste"] ? (
 						<TasteDetails exam={tasting.taste_olfactory_exam} />
@@ -266,7 +266,7 @@ export default function TastingDetail() {
 						uuid={tasting.final_considerations.eid}
 						editMode={editMode}
 						setEditMode={setEditMode}
-						subtitle='Final Considerations'
+						subtitle={t("new.final.title")}
 					/>
 					{!editMode["final"] ? (
 						<FinalDetails exam={tasting.final_considerations} />
@@ -283,7 +283,7 @@ export default function TastingDetail() {
 						uuid={tasting.scoring_evaluation.sid}
 						editMode={editMode}
 						setEditMode={setEditMode}
-						subtitle='Scoring Evaluation'
+						subtitle={t("new.scoring.title")}
 					/>
 					{!editMode["scoring"] ? (
 						<ScoringDetails scoring={tasting.scoring_evaluation} />

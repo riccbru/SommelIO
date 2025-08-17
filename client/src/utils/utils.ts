@@ -5,13 +5,21 @@ export function capitalizeFirst(input: string): string {
 		.join(" ");
 }
 
-export function formatDescription(date: string, time: string, location: string): string {
-	const formattedDate = new Date(date.split("T")[0]).toLocaleDateString(undefined, {
+export function formatDescription(lang: string, date: string, time: string, location: string): string {
+	const formattedDate = new Date(date.split("T")[0]).toLocaleDateString(lang, {
 		month: "long",
 		day: "numeric",
 		year: "numeric",
 	});
-	return `${location}\n${formattedDate}, ${time}`;
+	const [hours, minutes] = time.split(":").map(Number);
+	const dateTime = new Date(date);
+	dateTime.setHours(hours, minutes);
+
+	const formattedTime = dateTime.toLocaleTimeString(lang, {
+		hour: "2-digit",
+		minute: "2-digit",
+	});
+	return `${formattedDate} @ ${formattedTime}\n${location}`;
 }
 
 export function formatOption(value: string): string {

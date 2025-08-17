@@ -13,7 +13,7 @@ export default {
 		exit_exam: "EXIT",
 		save_exam: "SAVE",
 		tasting: {
-			title: "Wine Description",
+			title: "Tasting details",
 			denomination: "Denomination",
 			winemaker: "Winemaker",
 			category: "Category",
@@ -23,9 +23,9 @@ export default {
 			alcohol: "Alcohol Content",
 			wine_temperature: "Wine Temperature",
 			ambient_temperature: "Ambient Temperature",
-			date: "Tasting Date",
-			time: "Tasting Time",
-			location: "Tasting Location",
+			date: "Date",
+			time: "Time",
+			location: "Location",
 		},
 		visual: {
 			short: "VISUAL",
@@ -42,6 +42,7 @@ export default {
 			short: "OLFACTORY",
 			title: "Olfactory Examination",
 			complexity: "Complexity",
+			descriptors: "Descriptors",
 			aromatic: "Aromatic",
 			vinous: "Vinous",
 			floral: "Floral",
@@ -74,7 +75,7 @@ export default {
 		},
 		scoring: {
 			short: "SCORING",
-			title: "Point Evaluation",
+			title: "Scoring Evaluation",
 			Vappearance: "Visual Appearance",
 			Vcolor: "Visual Color",
 			Ointensity: "Olfactory Intensity",
@@ -85,11 +86,19 @@ export default {
 			Tintensity: "Taste Intensity",
 			Tpersistence: "Taste Persistence",
 			Tquality: "Taste Quality",
+			total: "TOTAL SCORE"
 		},
 	},
 	tastings: {
 		loading_tastings: "Loading tastings...",
 		loading_details: "Loading details...",
+		searchbar: "Search wine...",
+		notFound: "Tasting not found",
+		download: "Download tasting",
+		delete: "Delete tasting",
+		confirm_mex: "Are you sure you want to delete",
+		delete_confirm: "Delete",
+		cancel: "Cancel"
 	},
 	profile: {
 		dark: "Dark Theme",

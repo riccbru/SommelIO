@@ -106,7 +106,7 @@ export default function Tastings() {
 		<>
 			{!tastings.length ? (
 				<View style={styles.centeredContainer}>
-					<Text style={styles.text}>No tasting found</Text>
+					<Text style={styles.text}>{t("tastings.notFound")}</Text>
 				</View>
 			) : (
 				<>
@@ -116,7 +116,7 @@ export default function Tastings() {
 								style={{ marginTop: 5 }}
 								value={searchQuery}
 								onChangeText={setSearchQuery}
-								placeholder='Search wine...'
+								placeholder={t("tastings.searchbar")}
 							/>
 						</View>
 					</View>

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
 
 type ScoringEvaluation = {
@@ -22,6 +23,8 @@ type Props = {
 };
 
 export default function ScoringDetails({ scoring }: Props) {
+
+	const {t} = useTranslation();
 	if (!scoring || Object.keys(scoring).length === 0) {
 		return <Text>{}</Text>;
 	}
@@ -64,17 +67,17 @@ export default function ScoringDetails({ scoring }: Props) {
 	});
 
 	const scoringFields = [
-		{ label: "Visual Appearance", value: scoring.visual_appearance },
-		{ label: "Visual Color", value: scoring.visual_color },
-		{ label: "Olfactory Intensity", value: scoring.olfactory_intensity },
-		{ label: "Olfactory Complexity", value: scoring.olfactory_complexity },
-		{ label: "Olfactory Quality", value: scoring.olfactory_quality },
-		{ label: "Taste Structure", value: scoring.taste_structure },
-		{ label: "Taste Balance", value: scoring.taste_balance },
-		{ label: "Taste Intensity", value: scoring.taste_intensity },
-		{ label: "Taste Persistence", value: scoring.taste_persistence },
-		{ label: "Taste Quality", value: scoring.taste_quality },
-		{ label: "Harmony", value: scoring.harmony },
+		{ label: t("new.scoring.Vappearance"), value: scoring.visual_appearance },
+		{ label: t("new.scoring.Vcolor"), value: scoring.visual_color },
+		{ label: t("new.scoring.Ointensity"), value: scoring.olfactory_intensity },
+		{ label: t("new.scoring.Ocomplexity"), value: scoring.olfactory_complexity },
+		{ label: t("new.scoring.Oquality"), value: scoring.olfactory_quality },
+		{ label: t("new.scoring.Tstructure"), value: scoring.taste_structure },
+		{ label: t("new.scoring.Tbalance"), value: scoring.taste_balance },
+		{ label: t("new.scoring.Tintensity"), value: scoring.taste_intensity },
+		{ label: t("new.scoring.Tpersistence"), value: scoring.taste_persistence },
+		{ label: t("new.scoring.Tquality"), value: scoring.taste_quality },
+		{ label: t("new.harmony"), value: scoring.harmony },
 	];
 
 	return (
@@ -87,13 +90,13 @@ export default function ScoringDetails({ scoring }: Props) {
 			))}
 
 			<View style={[styles.row, { marginTop: 8 }]}>
-				<Text style={[styles.label, styles.totalText]}>TOTAL SCORE</Text>
+				<Text style={[styles.label, styles.totalText]}>{t("new.scoring.total")}</Text>
 				<Text style={[styles.value, styles.totalText]}>{scoring.total_score}</Text>
 			</View>
 
 			{scoring.notes && (
 				<View style={styles.notesRow}>
-					<Text style={styles.notesTitle}>Notes</Text>
+					<Text style={styles.notesTitle}>{t("new.notes")}</Text>
 					<Text style={styles.notesText}>{scoring.notes}</Text>
 				</View>
 			)}

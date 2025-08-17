@@ -3,6 +3,8 @@ import { List, useTheme } from "react-native-paper";
 import { capitalizeFirst, formatDescription } from "@/src/utils/utils";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { FileMagnifyingGlassIcon, FileTextIcon } from "phosphor-react-native";
+import { useTranslation } from "react-i18next";
+import i18n from "@/src/locales/i18n";
 
 type Props = {
 	searchQuery: string;
@@ -12,6 +14,7 @@ type Props = {
 export default function TastingsList({ searchQuery, tastings }: Props) {
 	const theme = useTheme();
 	const router = useRouter();
+	const {t} = useTranslation();
 
 	const styles = StyleSheet.create({
 		row: {
@@ -64,14 +67,14 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
 	return (
 		<List.Section>
 			{tastings
-				.filter(t => {
+				.filter(tasting => {
 					const query = searchQuery.toLowerCase();
 					return (
-						t.winemaker.toLowerCase().includes(query) ||
-						t.wine_denomination.toLowerCase().includes(query)
+						tasting.winemaker.toLowerCase().includes(query) ||
+						tasting.wine_denomination.toLowerCase().includes(query)
 					);
 				})
-				.map((t, index) => (
+				.map((tasting, index) => (
 					<View key={index} style={styles.row}>
 						{/* <View style={styles.iconContainer}>
 							<Button onPress={() => handlePress(t)}>
@@ -79,7 +82,7 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
 							<FileMagnifyingGlassIcon size={32} />
 							</Button>
 							</View> */}
-						<TouchableOpacity style={styles.iconContainer} onPress={() => handlePress(t)}>
+						<TouchableOpacity style={styles.iconContainer} onPress={() => handlePress(tasting)}>
 							<FileTextIcon size={32} />
 						</TouchableOpacity>
 
@@ -87,35 +90,36 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
 							<List.Accordion
 								title={
 									<Text style={{ fontFamily: "Epilogue-Regular" }}>
-										{`${capitalizeFirst(t.winemaker)} - ${t.wine_denomination.toUpperCase()}`}
+										{`${capitalizeFirst(tasting.winemaker)} - ${tasting.wine_denomination.toUpperCase()}`}
 									</Text>
 								}
 								description={formatDescription(
-									t.tasting_date,
-									t.tasting_time,
-									t.tasting_location
+									i18n.language,
+									tasting.tasting_date,
+									tasting.tasting_time,
+									tasting.tasting_location
 								)}
 							>
 								<View style={styles.accordionBody}>
 									<View style={styles.accordionRow}>
-										<Text style={styles.textLabel}>Vintage Year:</Text>
-										<Text style={styles.textValue}>{t.vintage}</Text>
+										<Text style={styles.textLabel}>{t("new.tasting.vintage")}</Text>
+										<Text style={styles.textValue}>{tasting.vintage}</Text>
 									</View>
 									<View style={styles.accordionRow}>
-										<Text style={styles.textLabel}>Sample Number:</Text>
-										<Text style={styles.textValue}>{t.sample_number}</Text>
+										<Text style={styles.textLabel}>{t("new.tasting.sample")}</Text>
+										<Text style={styles.textValue}>{tasting.sample_number}</Text>
 									</View>
 									<View style={styles.accordionRow}>
-										<Text style={styles.textLabel}>Alcohol Content:</Text>
-										<Text style={styles.textValue}>{t.alcohol_content}</Text>
+										<Text style={styles.textLabel}>{t("new.tasting.alcohol")}</Text>
+										<Text style={styles.textValue}>{tasting.alcohol_content}</Text>
 									</View>
 									<View style={styles.accordionRow}>
-										<Text style={styles.textLabel}>Wine Temperature:</Text>
-										<Text style={styles.textValue}>{t.wine_temperature}</Text>
+										<Text style={styles.textLabel}>{t("new.tasting.wine_temperature")}</Text>
+										<Text style={styles.textValue}>{tasting.wine_temperature}</Text>
 									</View>
 									<View style={styles.accordionRow}>
-										<Text style={styles.textLabel}>Ambient Temperature:</Text>
-										<Text style={styles.textValue}>{t.ambient_temperature}</Text>
+										<Text style={styles.textLabel}>{t("new.tasting.ambient_temperature")}</Text>
+										<Text style={styles.textValue}>{tasting.ambient_temperature}</Text>
 									</View>
 								</View>
 							</List.Accordion>

@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import { formatOption } from "@/src/utils/utils";
+import { useTranslation } from "react-i18next";
 
 type OlfactoryExam = {
 	intensity: string;
@@ -26,6 +27,8 @@ type Props = {
 };
 
 export default function OlfactoryDetails({ exam }: Props) {
+
+	const {t} = useTranslation();
 	if (!exam || Object.keys(exam).length === 0) {
 		console.log(exam);
 		return <Text>{}</Text>;
@@ -85,34 +88,34 @@ export default function OlfactoryDetails({ exam }: Props) {
 	});
 
 	const booleanFields = [
-		{ label: "Aromatic", value: exam.description.aromatic },
-		{ label: "Vinous", value: exam.description.vinous },
-		{ label: "Floral", value: exam.description.floral },
-		{ label: "Fruity", value: exam.description.fruity },
-		{ label: "Grassy", value: exam.description.grassy },
-		{ label: "Mineral", value: exam.description.mineral },
-		{ label: "Fragrant", value: exam.description.fragrant },
-		{ label: "Spicy", value: exam.description.spicy },
-		{ label: "Toasted", value: exam.description.toasted },
-		{ label: "Ethereal", value: exam.description.ethereal },
+		{ label: t("new.olfactory.aromatic"), value: exam.description.aromatic },
+		{ label: t("new.olfactory.vinous"), value: exam.description.vinous },
+		{ label: t("new.olfactory.floral"), value: exam.description.floral },
+		{ label: t("new.olfactory.fruity"), value: exam.description.fruity },
+		{ label: t("new.olfactory.grassy"), value: exam.description.grassy },
+		{ label: t("new.olfactory.mineral"), value: exam.description.mineral },
+		{ label: t("new.olfactory.fragrant"), value: exam.description.fragrant },
+		{ label: t("new.olfactory.spicy"), value: exam.description.spicy },
+		{ label: t("new.olfactory.toasted"), value: exam.description.toasted },
+		{ label: t("new.olfactory.ethereal"), value: exam.description.ethereal },
 	];
 
 	return (
 		<View>
 			<View style={styles.row}>
-				<Text style={styles.label}>Intensity</Text>
+				<Text style={styles.label}>{t("new.intensity")}</Text>
 				<Text style={styles.value}>{formatOption(exam.intensity).toUpperCase()}</Text>
 			</View>
 			<View style={styles.row}>
-				<Text style={styles.label}>Complexity</Text>
+				<Text style={styles.label}>{t("new.olfactory.complexity")}</Text>
 				<Text style={styles.value}>{formatOption(exam.complexity).toUpperCase()}</Text>
 			</View>
 			<View style={styles.row}>
-				<Text style={styles.label}>Quality</Text>
+				<Text style={styles.label}>{t("new.quality")}</Text>
 				<Text style={styles.value}>{formatOption(exam.quality).toUpperCase()}</Text>
 			</View>
 
-			<Text style={styles.descriptorsHeader}>Descriptors</Text>
+			<Text style={styles.descriptorsHeader}>{t("new.olfactory.descriptors")}</Text>
 			{booleanFields.map(({ label, value }) => (
 				<View key={label} style={styles.descriptorRow}>
 					<Text style={styles.descriptorLabel}>{label}</Text>
@@ -122,7 +125,7 @@ export default function OlfactoryDetails({ exam }: Props) {
 
 			{exam.notes && (
 				<View style={styles.notesRow}>
-					<Text style={styles.notesTitle}>Notes</Text>
+					<Text style={styles.notesTitle}>{t("new.notes")}</Text>
 					<Text style={styles.notesText}>{exam.notes}</Text>
 				</View>
 			)}
