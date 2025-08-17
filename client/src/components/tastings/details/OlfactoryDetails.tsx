@@ -27,8 +27,7 @@ type Props = {
 };
 
 export default function OlfactoryDetails({ exam }: Props) {
-
-	const {t} = useTranslation();
+	const { t } = useTranslation();
 	if (!exam || Object.keys(exam).length === 0) {
 		console.log(exam);
 		return <Text>{}</Text>;

@@ -23,8 +23,7 @@ type Props = {
 };
 
 export default function ScoringDetails({ scoring }: Props) {
-
-	const {t} = useTranslation();
+	const { t } = useTranslation();
 	if (!scoring || Object.keys(scoring).length === 0) {
 		return <Text>{}</Text>;
 	}

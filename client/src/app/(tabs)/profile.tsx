@@ -3,14 +3,7 @@ import { useAuth } from "@/src/hooks/useAuth";
 import { getInitials } from "@/src/utils/utils";
 import { useNavigation, useRouter } from "expo-router";
 import { useEffect, useLayoutEffect, useState } from "react";
-import {
-	Avatar,
-	Card,
-	Divider,
-	SegmentedButtons,
-	Switch,
-	useTheme,
-} from "react-native-paper";
+import { Avatar, Card, Divider, SegmentedButtons, Switch, useTheme } from "react-native-paper";
 import {
 	DevToLogoIcon,
 	GavelIcon,
@@ -29,12 +22,13 @@ import {
 	View,
 } from "react-native";
 import { useTranslation } from "react-i18next";
+import { useLanguage } from "@/src/hooks/useLanguage";
 
 export default function Profile() {
 	const theme = useTheme();
 	const router = useRouter();
-	const { t, i18n } = useTranslation();
-	const [language, setLanguage] = useState(i18n.language);
+	const { t } = useTranslation();
+	const { language, setLanguage } = useLanguage();
 	const { accessToken, user, logout } = useAuth();
 	const navigation = useNavigation();
 	const [refresh, setRefresh] = useState(false);
@@ -262,26 +256,26 @@ export default function Profile() {
 						<Text style={styles.userName}>{user?.username}</Text>
 						<Text style={styles.userName}>{user?.full_name}</Text>
 
-						<Divider style={{ width: "90%", marginTop: 16, marginBottom: 16 }} />
+						<Divider style={{ width: "80%", marginTop: 16, marginBottom: 16 }} />
 
 						{/* Stats Section */}
 						<View style={styles.statsContainer}>
 							<StatItem
-								label={t("profile.tastings.total").replace(" ", "\n")}
 								color={"#000000"}
 								number={stats.totalTastings}
+								label={t("profile.tastings.total").replace(" ", "\n")}
 								icon={<WineIcon size={24} weight='fill' color={"#000000"} />}
 							/>
 							<StatItem
-								label={t("profile.tastings.favorite").replace(" ", "\n")}
 								color={theme.colors.amber}
 								number={stats.favoriteTastings}
+								label={t("profile.tastings.favorite").replace(" ", "\n")}
 								icon={<StarIcon size={24} weight='fill' color={theme.colors.amber} />}
 							/>
 							<StatItem
-								label={t("profile.tastings.rated").replace(" ", "\n")}
 								color={theme.colors.green}
 								number={stats.ratedTastings}
+								label={t("profile.tastings.rated").replace(" ", "\n")}
 								icon={<GavelIcon size={24} weight='fill' color={theme.colors.green} />}
 							/>
 						</View>
@@ -305,16 +299,13 @@ export default function Profile() {
 						<Text style={styles.rowLabel}>{t("profile.lang")}</Text>
 						<SegmentedButtons
 							value={language}
-							onValueChange={newLang => {
-								setLanguage(newLang);
-								i18n.changeLanguage(newLang);
-							}}
+							style={{ flex: 1, marginLeft: 16 }}
+							onValueChange={val => setLanguage(val)}
 							buttons={[
 								{ value: "en", label: "🇬🇧" },
 								{ value: "it", label: "🇮🇹" },
 								{ value: "fr", label: "🇫🇷" },
 							]}
-							style={{ flex: 1, marginLeft: 16 }}
 						/>
 					</View>
 

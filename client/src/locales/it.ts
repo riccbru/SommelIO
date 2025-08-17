@@ -86,7 +86,7 @@ export default {
 			Tintensity: "Intensità Gustativa",
 			Tpersistence: "Persistenza Gustativa",
 			Tquality: "Qualità Gustativa",
-			total: "PUNTEGGIO TOTALE"
+			total: "PUNTEGGIO TOTALE",
 		},
 	},
 	tastings: {
@@ -98,7 +98,7 @@ export default {
 		delete: "Elimina degustazione",
 		confirm_mex: "Sei sicuro di voler eliminare",
 		delete_confirm: "Elimina",
-		cancel: "Annulla"
+		cancel: "Annulla",
 	},
 	profile: {
 		dark: "Tema Scuro",

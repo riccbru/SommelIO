@@ -14,7 +14,7 @@ type Props = {
 export default function TastingsList({ searchQuery, tastings }: Props) {
 	const theme = useTheme();
 	const router = useRouter();
-	const {t} = useTranslation();
+	const { t } = useTranslation();
 
 	const styles = StyleSheet.create({
 		row: {
@@ -82,7 +82,10 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
 							<FileMagnifyingGlassIcon size={32} />
 							</Button>
 							</View> */}
-						<TouchableOpacity style={styles.iconContainer} onPress={() => handlePress(tasting)}>
+						<TouchableOpacity
+							style={styles.iconContainer}
+							onPress={() => handlePress(tasting)}
+						>
 							<FileTextIcon size={32} />
 						</TouchableOpacity>
 
@@ -114,11 +117,15 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
 										<Text style={styles.textValue}>{tasting.alcohol_content}</Text>
 									</View>
 									<View style={styles.accordionRow}>
-										<Text style={styles.textLabel}>{t("new.tasting.wine_temperature")}</Text>
+										<Text style={styles.textLabel}>
+											{t("new.tasting.wine_temperature")}
+										</Text>
 										<Text style={styles.textValue}>{tasting.wine_temperature}</Text>
 									</View>
 									<View style={styles.accordionRow}>
-										<Text style={styles.textLabel}>{t("new.tasting.ambient_temperature")}</Text>
+										<Text style={styles.textLabel}>
+											{t("new.tasting.ambient_temperature")}
+										</Text>
 										<Text style={styles.textValue}>{tasting.ambient_temperature}</Text>
 									</View>
 								</View>

@@ -86,7 +86,7 @@ export default {
 			Tintensity: "Taste Intensity",
 			Tpersistence: "Taste Persistence",
 			Tquality: "Taste Quality",
-			total: "TOTAL SCORE"
+			total: "TOTAL SCORE",
 		},
 	},
 	tastings: {
@@ -98,7 +98,7 @@ export default {
 		delete: "Delete tasting",
 		confirm_mex: "Are you sure you want to delete",
 		delete_confirm: "Delete",
-		cancel: "Cancel"
+		cancel: "Cancel",
 	},
 	profile: {
 		dark: "Dark Theme",

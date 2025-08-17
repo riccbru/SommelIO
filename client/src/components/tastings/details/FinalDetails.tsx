@@ -14,8 +14,7 @@ type Props = {
 };
 
 export default function FinalDetails({ exam }: Props) {
-
-	const {t} = useTranslation();
+	const { t } = useTranslation();
 	if (!exam || Object.keys(exam).length === 0) {
 		return <Text>{}</Text>;
 	}
@@ -55,7 +54,10 @@ export default function FinalDetails({ exam }: Props) {
 	});
 
 	const finalFields = [
-		{ label: t("new.final.evolution"), value: formatOption(exam.evolutionary_state).toUpperCase() },
+		{
+			label: t("new.final.evolution"),
+			value: formatOption(exam.evolutionary_state).toUpperCase(),
+		},
 		{ label: t("new.harmony"), value: formatOption(exam.harmony).toUpperCase() },
 	];
 

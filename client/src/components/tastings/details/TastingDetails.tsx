@@ -21,8 +21,7 @@ type Props = {
 };
 
 export default function TastingDetails({ tasting }: Props) {
-
-	const {t} = useTranslation();
+	const { t } = useTranslation();
 	const styles = StyleSheet.create({
 		row: {
 			marginBottom: 5,

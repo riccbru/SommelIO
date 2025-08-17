@@ -6,6 +6,7 @@ import { I18nextProvider } from "react-i18next";
 import { DarkTheme, LightTheme } from "../theme";
 import { AuthProvider } from "@/src/contexts/AuthContext";
 import { Provider as PaperProvider } from "react-native-paper";
+import { LanguageProvider } from "../contexts/LanguageContext";
 
 export default function RootLayout() {
 	const colorScheme = useColorScheme();
@@ -13,12 +14,14 @@ export default function RootLayout() {
 
 	return (
 		<I18nextProvider i18n={i18n}>
-			<PaperProvider theme={theme}>
-				<AuthProvider>
-					<StatusBar style='auto' />
-					<Slot />
-				</AuthProvider>
-			</PaperProvider>
+			<LanguageProvider>
+				<PaperProvider theme={theme}>
+					<AuthProvider>
+						<StatusBar style='auto' />
+						<Slot />
+					</AuthProvider>
+				</PaperProvider>
+			</LanguageProvider>
 		</I18nextProvider>
 	);
 }

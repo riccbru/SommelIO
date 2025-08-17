@@ -5,7 +5,12 @@ export function capitalizeFirst(input: string): string {
 		.join(" ");
 }
 
-export function formatDescription(lang: string, date: string, time: string, location: string): string {
+export function formatDescription(
+	lang: string,
+	date: string,
+	time: string,
+	location: string
+): string {
 	const formattedDate = new Date(date.split("T")[0]).toLocaleDateString(lang, {
 		month: "long",
 		day: "numeric",

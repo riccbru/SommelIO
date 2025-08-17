@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "expo-router";
 import TastingsAPI from "@/src/services/tastings";
-import { capitalizeFirst } from "@/src/utils/utils";
 import { Button, useTheme } from "react-native-paper";
 import { FileArrowDownIcon, FilePdfIcon, TrashIcon } from "phosphor-react-native";
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -17,7 +16,7 @@ type Props = {
 export default function ActionButton({ tid, action, name, winemaker }: Props) {
 	const theme = useTheme();
 	const router = useRouter();
-	const {t} = useTranslation();
+	const { t } = useTranslation();
 	const [modal, setModal] = useState(false);
 	// const Icon = action.toLowerCase() === "delete" ? TrashIcon : FilePdfIcon;
 	const Icon = action.toLowerCase() === "delete" ? TrashIcon : FileArrowDownIcon;
@@ -99,14 +98,20 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 								color: theme.colors.text,
 							}}
 						>
-							{t("tastings.confirm_mex")}{"\n"}{name} - {winemaker}?
+							{t("tastings.confirm_mex")}
+							{"\n"}
+							{name} - {winemaker}?
 						</Text>
 						<View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
 							<Button onPress={hideModal} mode='text' style={{ marginRight: 10 }}>
-								<Text style={{ fontFamily: "Epilogue-Regular" }}>{t("tastings.cancel")}</Text>
+								<Text style={{ fontFamily: "Epilogue-Regular" }}>
+									{t("tastings.cancel")}
+								</Text>
 							</Button>
 							<Button onPress={handleDelete} mode='contained' buttonColor={theme.colors.red}>
-								<Text style={{ fontFamily: "Epilogue-Regular" }}>{t("tastings.delete_confirm")}</Text>
+								<Text style={{ fontFamily: "Epilogue-Regular" }}>
+									{t("tastings.delete_confirm")}
+								</Text>
 							</Button>
 						</View>
 					</View>

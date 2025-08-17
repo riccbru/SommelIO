@@ -22,8 +22,7 @@ type Props = {
 };
 
 export default function TasteDetails({ exam }: Props) {
-
-	const {t} = useTranslation();
+	const { t } = useTranslation();
 	if (!exam || Object.keys(exam).length === 0) {
 		return <Text>{}</Text>;
 	}
