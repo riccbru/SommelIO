@@ -22,6 +22,7 @@ import VisualUpdate from "@/src/components/tastings/update/VisualUpdate";
 import ScoringUpdate from "@/src/components/tastings/update/ScoringUpdate";
 import TastingUpdate from "@/src/components/tastings/update/TastingUpdate";
 import OlfactoryUpdate from "@/src/components/tastings/update/OlfactoryUpdate";
+import { useTranslation } from "react-i18next";
 
 type EditModeShape = {
 	tasting: boolean;
@@ -59,6 +60,7 @@ type Tasting = {
 
 export default function TastingDetail() {
 	const theme = useTheme();
+	const { t } = useTranslation();
 	const navigation = useNavigation();
 	const [loading, setLoading] = useState(true);
 	const [refresh, setRefresh] = useState(false);
@@ -165,7 +167,7 @@ export default function TastingDetail() {
 	}, [tid, refresh]);
 
 	if (loading) {
-		return <LoadingSpinner text={"Loading tasting details..."} />;
+		return <LoadingSpinner text={t("tastings.loading_details")} />;
 	}
 
 	if (!tasting) {

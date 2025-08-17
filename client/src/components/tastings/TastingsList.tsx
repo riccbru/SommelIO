@@ -1,8 +1,8 @@
 import { useRouter } from "expo-router";
-import { FileMagnifyingGlassIcon, FileTextIcon } from "phosphor-react-native";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Button, List, useTheme } from "react-native-paper";
+import { List, useTheme } from "react-native-paper";
 import { capitalizeFirst, formatDescription } from "@/src/utils/utils";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { FileMagnifyingGlassIcon, FileTextIcon } from "phosphor-react-native";
 
 type Props = {
 	searchQuery: string;

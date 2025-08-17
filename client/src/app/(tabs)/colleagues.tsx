@@ -1,11 +1,13 @@
 import { useLayoutEffect } from "react";
 import { useNavigation } from "expo-router";
 import { useTheme } from "react-native-paper";
+import { useTranslation } from "react-i18next";
 import { UserPlusIcon } from "phosphor-react-native";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Colleagues() {
 	const theme = useTheme();
+	const { t } = useTranslation();
 	const navigation = useNavigation();
 
 	useLayoutEffect(() => {
@@ -37,7 +39,7 @@ export default function Colleagues() {
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.text}>colleagues</Text>
+			<Text style={styles.text}>{t("colleagues.title")}</Text>
 		</View>
 	);
 }

@@ -7,6 +7,7 @@ import FormSelect from "@/src/components/new/FormSelect";
 import NextButton from "@/src/components/new/NextButton";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
 
 type TasteExam = {
 	sweetness: string;
@@ -40,6 +41,7 @@ const defaultFormData = {
 
 export default function Taste() {
 	const theme = useTheme();
+	const { t } = useTranslation();
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<TasteExam>(defaultFormData);
 
@@ -192,7 +194,7 @@ export default function Taste() {
 							</View>
 
 							<FormSelect
-								label='Sweetness'
+								label={t("new.taste.sweetness")}
 								field='sweetness'
 								value={formData.sweetness}
 								error={errors.sweetness}
@@ -201,7 +203,7 @@ export default function Taste() {
 							/>
 
 							<FormSelect
-								label='Alcohols'
+								label={t("new.taste.alcohols")}
 								field='alcohols'
 								value={formData.alcohols}
 								error={errors.alcohols}
@@ -210,7 +212,7 @@ export default function Taste() {
 							/>
 
 							<FormSelect
-								label='Softness'
+								label={t("new.taste.softness")}
 								field='softness'
 								value={formData.softness}
 								error={errors.softness}
@@ -219,7 +221,7 @@ export default function Taste() {
 							/>
 
 							<FormSelect
-								label='Acidity'
+								label={t("new.taste.acidity")}
 								field='acidity'
 								value={formData.acidity}
 								error={errors.acidity}
@@ -228,7 +230,7 @@ export default function Taste() {
 							/>
 
 							<FormSelect
-								label='Tannicity'
+								label={t("new.taste.tannicity")}
 								field='tannicity'
 								value={formData.tannicity}
 								error={errors.tannicity}
@@ -237,7 +239,7 @@ export default function Taste() {
 							/>
 
 							<FormSelect
-								label='Saltiness'
+								label={t("new.taste.saltiness")}
 								field='saltiness'
 								value={formData.saltiness}
 								error={errors.saltiness}
@@ -246,7 +248,7 @@ export default function Taste() {
 							/>
 
 							<FormSelect
-								label='Balance'
+								label={t("new.taste.balance")}
 								field='balance'
 								value={formData.balance}
 								error={errors.balance}
@@ -255,7 +257,7 @@ export default function Taste() {
 							/>
 
 							<FormSelect
-								label='Intensity'
+								label={t("new.intensity")}
 								field='intensity'
 								value={formData.intensity}
 								error={errors.intensity}
@@ -264,7 +266,7 @@ export default function Taste() {
 							/>
 
 							<FormSelect
-								label='Persistence'
+								label={t("new.taste.persistence")}
 								field='persistence'
 								value={formData.persistence}
 								error={errors.persistence}
@@ -273,7 +275,7 @@ export default function Taste() {
 							/>
 
 							<FormSelect
-								label='Quality'
+								label={t("new.quality")}
 								field='quality'
 								value={formData.quality}
 								error={errors.quality}
@@ -282,7 +284,7 @@ export default function Taste() {
 							/>
 
 							<FormSelect
-								label='Structure'
+								label={t("new.taste.structure")}
 								field='structure'
 								value={formData.structure}
 								error={errors.structure}
@@ -291,7 +293,7 @@ export default function Taste() {
 							/>
 
 							<FormInput
-								label='Notes'
+								label={t("new.notes")}
 								field='notes'
 								value={formData.notes}
 								error={errors.notes}
@@ -309,7 +311,7 @@ export default function Taste() {
 						<NextButton
 							requiresTid
 							path='/new/final'
-							text='FINAL'
+							text={t("new.final.short")}
 							formData={formData}
 							validation={validateForm}
 							action={ExamsAPI.createTaste}

@@ -8,6 +8,7 @@ import ExitButton from "@/src/components/new/ExitButton";
 import NextButton from "@/src/components/new/NextButton";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View, Text } from "react-native";
+import { useTranslation } from "react-i18next";
 
 type ScoringEvaluation = {
 	visual_appearance: number;
@@ -42,6 +43,7 @@ const defaultFormData = {
 
 export default function Scoring() {
 	const theme = useTheme();
+	const { t } = useTranslation();
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<Record<string, string>>(defaultFormData);
 
@@ -152,7 +154,7 @@ export default function Scoring() {
 					<Card>
 						<Card.Content>
 							<View style={styles.cardHeader}>
-								<Text style={styles.sectionTitle}>Scoring Evaluation</Text>
+								<Text style={styles.sectionTitle}>{t("new.scoring.title")}</Text>
 								<CancelButton
 									setErrors={setErrors}
 									setFormData={setFormData}
@@ -161,73 +163,73 @@ export default function Scoring() {
 							</View>
 
 							<FormScore
-								label='Visual Appearance'
+								label={t("new.scoring.Vappearance")}
 								value={formData.visual_appearance}
 								error={errors.visual_appearance}
 								onChange={v => updateFormData("visual_appearance", v)}
 							/>
 							<FormScore
-								label='Visual Color'
+								label={t("new.scoring.Vcolor")}
 								value={formData.visual_color}
 								error={errors.visual_color}
 								onChange={v => updateFormData("visual_color", v)}
 							/>
 							<FormScore
-								label='Olfactory Intensity'
+								label={t("new.scoring.Ointensity")}
 								value={formData.olfactory_intensity}
 								error={errors.olfactory_intensity}
 								onChange={v => updateFormData("olfactory_intensity", v)}
 							/>
 							<FormScore
-								label='Olfactory Complexity'
+								label={t("new.scoring.Ocomplexity")}
 								value={formData.olfactory_complexity}
 								error={errors.olfactory_complexity}
 								onChange={v => updateFormData("olfactory_complexity", v)}
 							/>
 							<FormScore
-								label='Olfactory Quality'
+								label={t("new.scoring.Oquality")}
 								value={formData.olfactory_quality}
 								error={errors.olfactory_quality}
 								onChange={v => updateFormData("olfactory_quality", v)}
 							/>
 							<FormScore
-								label='Taste Structure'
+								label={t("new.scoring.Tstructure")}
 								value={formData.taste_structure}
 								error={errors.taste_structure}
 								onChange={v => updateFormData("taste_structure", v)}
 							/>
 							<FormScore
-								label='Taste Balance'
+								label={t("new.scoring.Tbalance")}
 								value={formData.taste_balance}
 								error={errors.taste_balance}
 								onChange={v => updateFormData("taste_balance", v)}
 							/>
 							<FormScore
-								label='Taste Intensity'
+								label={t("new.scoring.Tintensity")}
 								value={formData.taste_intensity}
 								error={errors.taste_intensity}
 								onChange={v => updateFormData("taste_intensity", v)}
 							/>
 							<FormScore
-								label='Taste Persistence'
+								label={t("new.scoring.Tpersistence")}
 								value={formData.taste_persistence}
 								error={errors.taste_persistence}
 								onChange={v => updateFormData("taste_persistence", v)}
 							/>
 							<FormScore
-								label='Taste Quality'
+								label={t("new.scoring.Tquality")}
 								value={formData.taste_quality}
 								error={errors.taste_quality}
 								onChange={v => updateFormData("taste_quality", v)}
 							/>
 							<FormScore
-								label='Harmony'
+								label={t("new.harmony")}
 								value={formData.harmony}
 								error={errors.harmony}
 								onChange={v => updateFormData("harmony", v)}
 							/>
 							<FormInput
-								label='Notes'
+								label={t("new.notes")}
 								field='notes'
 								value={formData.notes}
 								error={errors.notes}
@@ -244,7 +246,7 @@ export default function Scoring() {
 						<NextButton
 							requiresTid
 							path='/new/scoring'
-							text='SAVE'
+							text={t("new.save_exam")}
 							formData={formData}
 							validation={validateForm}
 							action={ScoringsAPI.createScoring}

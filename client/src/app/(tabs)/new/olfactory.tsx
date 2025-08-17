@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ExamsAPI from "@/src/services/exams";
-import { capitalizeFirst } from "@/src/utils/utils";
+import { useTranslation } from "react-i18next";
 import { Card, useTheme } from "react-native-paper";
 import FormInput from "@/src/components/new/FormInput";
 import ExitButton from "@/src/components/new/ExitButton";
@@ -46,6 +46,7 @@ const defaultFormData = {
 
 export default function Olfactory() {
 	const theme = useTheme();
+	const { t } = useTranslation();
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<OlfactoryExam>(defaultFormData);
 
@@ -170,7 +171,7 @@ export default function Olfactory() {
 							</View>
 
 							<FormSelect
-								label='Intensity'
+								label={t("new.intensity")}
 								field='intensity'
 								value={formData.intensity}
 								error={errors.intensity}
@@ -179,7 +180,7 @@ export default function Olfactory() {
 							/>
 
 							<FormSelect
-								label='Complexity'
+								label={t("new.olfactory.complexity")}
 								field='complexity'
 								value={formData.complexity}
 								error={errors.complexity}
@@ -188,7 +189,7 @@ export default function Olfactory() {
 							/>
 
 							<FormSelect
-								label='Quality'
+								label={t("new.quality")}
 								field='quality'
 								value={formData.quality}
 								error={errors.quality}
@@ -199,7 +200,7 @@ export default function Olfactory() {
 							{descriptors.map((el, index) => (
 								<FormSwitch
 									key={index}
-									label={capitalizeFirst(el)}
+									label={t(`new.olfactory.${el}`)}
 									name={el}
 									formData={formData}
 									setFormData={setFormData}
@@ -207,7 +208,7 @@ export default function Olfactory() {
 							))}
 
 							<FormInput
-								label='Notes'
+								label={t("new.notes")}
 								field='notes'
 								value={formData.notes}
 								error={errors.notes}
@@ -225,7 +226,7 @@ export default function Olfactory() {
 						<NextButton
 							requiresTid
 							path='/new/taste'
-							text='TASTE'
+							text={t("new.taste.short")}
 							formData={formData}
 							validation={validateForm}
 							action={ExamsAPI.createOlfactory}

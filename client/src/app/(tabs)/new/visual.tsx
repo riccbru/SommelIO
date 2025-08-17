@@ -8,6 +8,7 @@ import ExitButton from "@/src/components/new/ExitButton";
 import FormSelect from "@/src/components/new/FormSelect";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
 
 type VisualExam = {
 	limpidity: string;
@@ -33,6 +34,7 @@ const defaultFormData = {
 
 export default function Visual() {
 	const theme = useTheme();
+	const { t } = useTranslation();
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<VisualExam>(defaultFormData);
 	const { wine_category_name } = useLocalSearchParams();
@@ -183,7 +185,7 @@ export default function Visual() {
 							</View>
 
 							<FormSelect
-								label='Limpidity'
+								label={t("new.visual.limpidity")}
 								field='limpidity'
 								value={formData.limpidity}
 								error={errors.limpidity}
@@ -192,7 +194,7 @@ export default function Visual() {
 							/>
 
 							<FormSelect
-								label='Color Family'
+								label={t("new.visual.color")}
 								field='color_family'
 								value={formData.color_family}
 								error={errors.color_family}
@@ -204,7 +206,7 @@ export default function Visual() {
 							/>
 
 							<FormSelect
-								label='Color Shade'
+								label={t("new.visual.shade")}
 								field='color_shade'
 								value={formData.color_shade}
 								error={errors.color_shade}
@@ -213,7 +215,7 @@ export default function Visual() {
 							/>
 
 							<FormSelect
-								label='Consistency'
+								label={t("new.visual.consistency")}
 								field='consistency'
 								value={formData.consistency}
 								error={errors.consistency}
@@ -223,7 +225,7 @@ export default function Visual() {
 
 							{category === "sparkling" ? (
 								<FormSelect
-									label='Bubble Size'
+									label={t("new.visual.bubble_size")}
 									field='bubble_size'
 									value={formData.bubble_size}
 									error={errors.bubble_size}
@@ -236,7 +238,7 @@ export default function Visual() {
 
 							{category === "sparkling" ? (
 								<FormSelect
-									label='Bubble Number'
+									label={t("new.visual.bubble_number")}
 									field='bubble_number'
 									value={formData.bubble_number}
 									error={errors.bubble_number}
@@ -249,7 +251,7 @@ export default function Visual() {
 
 							{category === "sparkling" ? (
 								<FormSelect
-									label='Bubble Persistence'
+									label={t("new.visual.bubble_persistence")}
 									field='bubble_persistence'
 									value={formData.bubble_persistence}
 									error={errors.bubble_persistence}
@@ -261,7 +263,7 @@ export default function Visual() {
 							)}
 
 							<FormInput
-								label='Notes'
+								label={t("new.notes")}
 								field='notes'
 								value={formData.notes}
 								error={errors.notes}
@@ -279,7 +281,7 @@ export default function Visual() {
 						<NextButton
 							requiresTid
 							path='/new/olfactory'
-							text='OLFACTORY'
+							text={t("new.olfactory.short")}
 							formData={formData}
 							validation={validateForm}
 							action={ExamsAPI.createVisual}

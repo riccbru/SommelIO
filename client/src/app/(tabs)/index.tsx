@@ -1,9 +1,11 @@
-import { useTheme } from "react-native-paper";
-import { Linking, StyleSheet, Pressable, Text, View } from "react-native";
 import Title from "@/src/components/Title";
+import { useTheme } from "react-native-paper";
+import { useTranslation } from "react-i18next";
+import { Linking, StyleSheet, Pressable, Text, View } from "react-native";
 
 export default function Index() {
 	const theme = useTheme();
+	const { t } = useTranslation();
 
 	const styles = StyleSheet.create({
 		container: {
@@ -32,7 +34,7 @@ export default function Index() {
 	return (
 		<View style={styles.container}>
 			<View style={{ flexDirection: "column", alignItems: "center" }}>
-				<Text style={styles.text}>Welcome to </Text>
+				<Text style={styles.text}>{t("index.welcome")}</Text>
 				<View style={{ marginLeft: 30 }}>
 					<Title />
 				</View>

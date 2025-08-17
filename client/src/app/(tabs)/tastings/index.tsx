@@ -6,6 +6,7 @@ import TastingsList from "@/src/components/tastings/TastingsList";
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { useTheme, Searchbar, Text } from "react-native-paper";
 import { RefreshControl, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { useTranslation } from "react-i18next";
 
 type Exam = Record<string, any>;
 
@@ -33,6 +34,7 @@ type Tasting = {
 
 export default function Tastings() {
 	const theme = useTheme();
+	const { t } = useTranslation();
 	const navigation = useNavigation();
 	const [loading, setLoading] = useState(true);
 	const [searchQuery, setSearchQuery] = useState("");
@@ -97,7 +99,7 @@ export default function Tastings() {
 	}, [fetchTastings]);
 
 	if (loading) {
-		return <LoadingSpinner text={"Loading tastings..."} />;
+		return <LoadingSpinner text={t("tastings.loading_tastings")} />;
 	}
 
 	return (

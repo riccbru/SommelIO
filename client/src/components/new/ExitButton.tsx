@@ -2,6 +2,7 @@ import { useRouter } from "expo-router";
 import { View, Text } from "react-native";
 import { XCircleIcon } from "phosphor-react-native";
 import { Button, useTheme } from "react-native-paper";
+import { useTranslation } from "react-i18next";
 
 type Props<T> = {
 	defaultFormData: T;
@@ -12,8 +13,9 @@ type Props<T> = {
 export default function ExitButton({ defaultFormData, setFormData, setErrors }: Props<T>) {
 	const theme = useTheme();
 	const router = useRouter();
+	const { t } = useTranslation();
 
-	const text = "EXIT EXAM";
+	const text = t("new.exit_exam");
 	const handlePress = () => {
 		setErrors({});
 		setFormData(defaultFormData);

@@ -7,7 +7,6 @@ import {
 	Avatar,
 	Card,
 	Divider,
-	Icon,
 	SegmentedButtons,
 	Switch,
 	useTheme,
@@ -22,7 +21,6 @@ import {
 } from "phosphor-react-native";
 import {
 	Animated,
-	Linking,
 	RefreshControl,
 	ScrollView,
 	StyleSheet,
@@ -30,12 +28,13 @@ import {
 	TouchableOpacity,
 	View,
 } from "react-native";
-import { useLanguage } from "@/src/hooks/useLanguage";
+import { useTranslation } from "react-i18next";
 
 export default function Profile() {
 	const theme = useTheme();
 	const router = useRouter();
-	const { language, setLanguage } = useLanguage();
+	const { t, i18n } = useTranslation();
+	const [language, setLanguage] = useState(i18n.language);
 	const { accessToken, user, logout } = useAuth();
 	const navigation = useNavigation();
 	const [refresh, setRefresh] = useState(false);
@@ -268,81 +267,30 @@ export default function Profile() {
 						{/* Stats Section */}
 						<View style={styles.statsContainer}>
 							<StatItem
-								label='Total Tastings'
+								label={t("profile.tastings.total").replace(" ", "\n")}
 								color={"#000000"}
 								number={stats.totalTastings}
 								icon={<WineIcon size={24} weight='fill' color={"#000000"} />}
 							/>
 							<StatItem
-								label='Favorite Tastings'
+								label={t("profile.tastings.favorite").replace(" ", "\n")}
 								color={theme.colors.amber}
 								number={stats.favoriteTastings}
 								icon={<StarIcon size={24} weight='fill' color={theme.colors.amber} />}
 							/>
 							<StatItem
-								label='Rated Tastings'
+								label={t("profile.tastings.rated").replace(" ", "\n")}
 								color={theme.colors.green}
 								number={stats.ratedTastings}
 								icon={<GavelIcon size={24} weight='fill' color={theme.colors.green} />}
 							/>
 						</View>
-
-						{/* Footer Developer */}
-						{/* <View style={{ marginTop: 24, alignItems: "center" }}>
-							<Text style={{ fontSize: 12, color: theme.colors.gray, fontFamily: "Epilogue" }}>
-								Developed by Riccardo Bruno
-							</Text>
-							<View style={{ flexDirection: "row", marginTop: 8, gap: 12 }}>
-								<TouchableOpacity
-									onPress={() => {
-										Linking.openURL(`mailto:${user?.email}`);
-									}}
-								>
-									<Avatar.Icon
-										size={36}
-										icon="email"
-										style={{ backgroundColor: theme.colors.primary }}
-										color={theme.colors.surface}
-									/>
-								</TouchableOpacity>
-								<TouchableOpacity
-									onPress={() => {
-										Linking.openURL("https://github.com/riccbru");
-									}}
-								>
-									<Avatar.Icon
-										size={36}
-										icon="github"
-										style={{ backgroundColor: theme.colors.primary }}
-										color={theme.colors.surface}
-									/>
-								</TouchableOpacity>
-								<TouchableOpacity
-									onPress={() => {
-										Linking.openURL("https://linkedin.com/in/riccbrun");
-									}}
-								>
-									<Avatar.Icon
-										size={36}
-										icon="linkedin"
-										style={{ backgroundColor: theme.colors.primary }}
-										color={theme.colors.surface}
-									/>
-								</TouchableOpacity>
-							</View>
-						</View> */}
-
-						{/* ITEMS TO ADD:
-						1. dark theme
-						2. segmented button for nationality (en/it/fr) with flags in it
-						3. Info/About
-						*/}
 					</View>
 				</Card>
 
 				<Card style={styles.profileCard}>
 					<View style={styles.row}>
-						<Text style={styles.rowLabel}>Dark Theme</Text>
+						<Text style={styles.rowLabel}>{t("profile.dark")}</Text>
 						<Switch
 							value={true}
 							onValueChange={() => console.log("Dark mode set")}
@@ -354,10 +302,13 @@ export default function Profile() {
 
 					{/* Language Selector */}
 					<View style={styles.row}>
-						<Text style={styles.rowLabel}>Language</Text>
+						<Text style={styles.rowLabel}>{t("profile.lang")}</Text>
 						<SegmentedButtons
 							value={language}
-							onValueChange={setLanguage}
+							onValueChange={newLang => {
+								setLanguage(newLang);
+								i18n.changeLanguage(newLang);
+							}}
 							buttons={[
 								{ value: "en", label: "🇬🇧" },
 								{ value: "it", label: "🇮🇹" },
@@ -371,7 +322,7 @@ export default function Profile() {
 
 					{/* Info & About Button */}
 					<TouchableOpacity style={styles.row} onPress={() => console.log("info & about dev")}>
-						<Text style={styles.rowLabel}>Info & About</Text>
+						<Text style={styles.rowLabel}>{t("profile.info")}</Text>
 					</TouchableOpacity>
 				</Card>
 			</Animated.View>

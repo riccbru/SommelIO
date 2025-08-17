@@ -7,6 +7,7 @@ import FormSelect from "@/src/components/new/FormSelect";
 import NextButton from "@/src/components/new/NextButton";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
 
 type FinalExam = {
 	evolutionary_state: string;
@@ -24,6 +25,7 @@ const defaultFormData = {
 
 export default function Final() {
 	const theme = useTheme();
+	const { t } = useTranslation();
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<FinalExam>(defaultFormData);
 
@@ -116,7 +118,7 @@ export default function Final() {
 							</View>
 
 							<FormSelect
-								label='Evolutionary State'
+								label={t("new.final.evolution")}
 								field='evolutionary_state'
 								value={formData.evolutionary_state}
 								error={errors.evolutionary_state}
@@ -125,7 +127,7 @@ export default function Final() {
 							/>
 
 							<FormSelect
-								label='Harmony'
+								label={t("new.harmony")}
 								field='harmony'
 								value={formData.harmony}
 								error={errors.harmony}
@@ -134,7 +136,7 @@ export default function Final() {
 							/>
 
 							<FormInput
-								label='Pairings'
+								label={t("new.final.pairings")}
 								field='pairings'
 								value={formData.pairings}
 								error={errors.pairings}
@@ -142,7 +144,7 @@ export default function Final() {
 							/>
 
 							<FormInput
-								label='Notes'
+								label={t("new.notes")}
 								field='notes'
 								value={formData.notes}
 								error={errors.notes}
@@ -160,7 +162,7 @@ export default function Final() {
 						<NextButton
 							requiresTid
 							path='/new/scoring'
-							text='SCORING'
+							text={t("new.scoring.short")}
 							formData={formData}
 							validation={validateForm}
 							action={ExamsAPI.createFinal}

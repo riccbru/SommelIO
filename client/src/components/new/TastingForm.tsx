@@ -8,6 +8,7 @@ import ExitButton from "@/src/components/new/ExitButton";
 import FormSwitch from "@/src/components/new/FormSwitch";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
 
 type Tasting = {
 	wine_denomination: string;
@@ -71,7 +72,7 @@ export default function TastingForm({
 	initialData,
 	// Create mode props
 	nextPath = "/new/visual",
-	nextButtonText = "VISUAL",
+	nextButtonText = "",
 	showExitButton = true,
 	showCancelButton = true,
 
@@ -82,11 +83,12 @@ export default function TastingForm({
 	cancelButtonText = "CANCEL",
 
 	// Common props
-	title = "Wine description",
+	title = "",
 	showCard = true,
 	keyboardVerticalOffset = 90,
 }: TastingFormProps) {
 	const theme = useTheme();
+	const { t } = useTranslation();
 	const [errors, setErrors] = useState<Record<string, string>>({});
 
 	const getInitialFormData = (): Tasting => {
@@ -277,7 +279,7 @@ export default function TastingForm({
 				)}
 				<NextButton
 					path={getNextPath()}
-					text={nextButtonText}
+					text={t("new.visual.short")}
 					validation={validateForm}
 					formData={{ ...formData, vintage: Number(formData.vintage) }}
 					action={TastingsAPI.createTasting}
@@ -290,7 +292,7 @@ export default function TastingForm({
 		<>
 			{showCard && (
 				<View style={styles.cardHeader}>
-					<Text style={styles.sectionTitle}>{title}</Text>
+					<Text style={styles.sectionTitle}>{t("new.tasting.title")}</Text>
 					{mode === "create" && showCancelButton && (
 						<CancelButton
 							setErrors={setErrors}
@@ -302,7 +304,7 @@ export default function TastingForm({
 			)}
 
 			<FormInput
-				label='Denomination'
+				label={t("new.tasting.denomination")}
 				field='wine_denomination'
 				value={formData.wine_denomination}
 				error={errors.wine_denomination}
@@ -310,7 +312,7 @@ export default function TastingForm({
 			/>
 
 			<FormInput
-				label='Winemaker'
+				label={t("new.tasting.winemaker")}
 				field='winemaker'
 				value={formData.winemaker}
 				error={errors.winemaker}
@@ -318,7 +320,7 @@ export default function TastingForm({
 			/>
 
 			<FormSelect
-				label='Category'
+				label={t("new.tasting.category")}
 				field='wine_category_name'
 				value={formData.wine_category_name}
 				error={errors.wine_category_name}
@@ -327,14 +329,14 @@ export default function TastingForm({
 			/>
 
 			<FormSwitch
-				label='Favorite'
+				label={t("new.tasting.favorite")}
 				name='favorite'
 				formData={formData}
 				setFormData={setFormData}
 			/>
 
 			<FormInput
-				label='Sample number'
+				label={t("new.tasting.sample")}
 				field='sample_number'
 				value={formData.sample_number}
 				error={errors.sample_number}
@@ -342,7 +344,7 @@ export default function TastingForm({
 			/>
 
 			<FormInput
-				label='Vintage year (YYYY)'
+				label={`${t("new.tasting.vintage")} (YYYY)`}
 				field='vintage'
 				value={formData.vintage}
 				error={errors.vintage}
@@ -351,7 +353,7 @@ export default function TastingForm({
 			/>
 
 			<FormInput
-				label='Alcohol content (%)'
+				label={`${t("new.tasting.alcohol")} (%)`}
 				field='alcohol_content'
 				value={formData.alcohol_content}
 				error={errors.alcohol_content}
@@ -360,7 +362,7 @@ export default function TastingForm({
 			/>
 
 			<FormInput
-				label='Wine temperature (°C)'
+				label={`${t("new.tasting.wine_temperature")} (°C)`}
 				field='wine_temperature'
 				value={formData.wine_temperature}
 				error={errors.wine_temperature}
@@ -369,7 +371,7 @@ export default function TastingForm({
 			/>
 
 			<FormInput
-				label='Ambient temperature (°C)'
+				label={`${t("new.tasting.ambient_temperature")} (°C)`}
 				field='ambient_temperature'
 				value={formData.ambient_temperature}
 				error={errors.ambient_temperature}
@@ -378,7 +380,7 @@ export default function TastingForm({
 			/>
 
 			<FormInput
-				label='Tasting date (YYYY-MM-DD)'
+				label={`${t("new.tasting.date")} (YYYY-MM-DD)`}
 				field='tasting_date'
 				value={formData.tasting_date}
 				error={errors.tasting_date}
@@ -387,7 +389,7 @@ export default function TastingForm({
 			/>
 
 			<FormInput
-				label='Tasting time (HH:MM)'
+				label={`${t("new.tasting.time")} (HH:mm)`}
 				field='tasting_time'
 				value={formData.tasting_time}
 				error={errors.tasting_time}
@@ -396,7 +398,7 @@ export default function TastingForm({
 			/>
 
 			<FormInput
-				label='Tasting location'
+				label={t("new.tasting.location")}
 				field='tasting_location'
 				value={formData.tasting_location}
 				error={errors.tasting_location}
