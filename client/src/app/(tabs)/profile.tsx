@@ -1,6 +1,7 @@
 import UserAPI from "@/src/services/user";
 import { useAuth } from "@/src/hooks/useAuth";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@/src/hooks/useTheme";
 import { getInitials } from "@/src/utils/utils";
 import { useLanguage } from "@/src/hooks/useLanguage";
 import { useNavigation, useRouter } from "expo-router";
@@ -24,7 +25,6 @@ import {
 	TouchableOpacity,
 	View,
 } from "react-native";
-import { useTheme } from "@/src/hooks/useTheme";
 
 type Stats = {
 	totalTastings: number;

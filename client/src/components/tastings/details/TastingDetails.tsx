@@ -58,7 +58,7 @@ export default function TastingDetails({ tasting }: Props) {
 		{ label: t("new.tasting.ambient_temperature"), value: tasting.ambient_temperature },
 		{ label: `${t("new.tasting.date")} (YYYY-MM-DD)`, value: tasting.tasting_date },
 		{ label: `${t("new.tasting.time")} (HH:mm)`, value: tasting.tasting_time },
-		{ label: t("new.tasting.location"), value: tasting.tasting_location.toUpperCase() },
+		{ label: t("new.tasting.location"), value: tasting.tasting_location },
 	];
 
 	return (

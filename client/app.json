@@ -37,6 +37,16 @@
 		},
 		"plugins": [
 			"expo-router",
+			"expo-secure-store",
+			[
+				"expo-font",
+				{
+					"fonts": [
+						"./assets/fonts/Epilogue-Regular.ttf",
+						"./assets/fonts/Epilogue-Bold.ttf"
+					]
+				}
+			],
 			[
 				"expo-splash-screen",
 				{
@@ -51,14 +61,7 @@
 						"backgroundColor": "#000000"
 					}
 				}
-			],
-			[
-				"expo-font",
-				{
-					"fonts": ["./assets/fonts/Epilogue-Regular.ttf", "./assets/fonts/Epilogue-Bold.ttf"]
-				}
-			],
-			"expo-secure-store"
+			]
 		],
 		"experiments": {
 			"typedRoutes": true
