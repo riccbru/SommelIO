@@ -5,7 +5,7 @@ import { getInitials } from "@/src/utils/utils";
 import { useLanguage } from "@/src/hooks/useLanguage";
 import { useNavigation, useRouter } from "expo-router";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { Avatar, Card, Divider, SegmentedButtons, Switch, useTheme } from "react-native-paper";
+import { Avatar, Card, Divider, SegmentedButtons } from "react-native-paper";
 import {
 	DevToLogoIcon,
 	GavelIcon,
@@ -19,22 +19,24 @@ import {
 	RefreshControl,
 	ScrollView,
 	StyleSheet,
+	Switch,
 	Text,
 	TouchableOpacity,
 	View,
 } from "react-native";
+import { useTheme } from "@/src/hooks/useTheme";
 
 type Stats = {
 	totalTastings: number;
 	favoriteTastings: number;
 	ratedTastings: number;
-}
+};
 
 const defaultStats: Stats = {
 	totalTastings: 0,
 	favoriteTastings: 0,
 	ratedTastings: 0,
-}
+};
 
 export default function Profile() {
 	const theme = useTheme();
@@ -43,7 +45,7 @@ export default function Profile() {
 	const navigation = useNavigation();
 	const { language, setLanguage } = useLanguage();
 	const { accessToken, user, logout } = useAuth();
-	
+
 	const [refresh, setRefresh] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [fadeAnim] = useState(new Animated.Value(0));
@@ -296,14 +298,11 @@ export default function Profile() {
 					</View>
 				</Card>
 
+				{/* Dark Theme Switch */}
 				<Card style={styles.profileCard}>
 					<View style={styles.row}>
 						<Text style={styles.rowLabel}>{t("profile.dark")}</Text>
-						<Switch
-							value={true}
-							onValueChange={() => console.log("Dark mode set")}
-							color={theme.colors.primary}
-						/>
+						<Switch value={theme.isDark} onValueChange={theme.toggleTheme} />
 					</View>
 
 					<Divider />

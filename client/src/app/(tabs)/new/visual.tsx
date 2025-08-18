@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ExamsAPI from "@/src/services/exams";
+import { useTranslation } from "react-i18next";
 import { useLocalSearchParams } from "expo-router";
 import { Card, useTheme } from "react-native-paper";
 import FormInput from "@/src/components/new/FormInput";
@@ -8,8 +9,6 @@ import ExitButton from "@/src/components/new/ExitButton";
 import FormSelect from "@/src/components/new/FormSelect";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
-import { useTranslation } from "react-i18next";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type VisualExam = {
 	limpidity: string;
@@ -51,7 +50,7 @@ export default function Visual() {
 		},
 		card: {
 			borderWidth: 2,
-			borderColor: theme.colors.primary
+			borderColor: theme.colors.primary,
 		},
 		cardHeader: {
 			flex: 1,

@@ -6,10 +6,9 @@ import { Card, useTheme } from "react-native-paper";
 import FormInput from "@/src/components/new/FormInput";
 import FormScore from "@/src/components/new/FormScore";
 import ExitButton from "@/src/components/new/ExitButton";
-import NextButton from "@/src/components/new/NextButton";
+import SaveButton from "@/src/components/new/SaveButton";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
-import SaveButton from "@/src/components/new/SaveButton";
 
 const defaultFormData = {
 	visual_appearance: 0,
@@ -41,7 +40,7 @@ export default function Scoring() {
 		},
 		card: {
 			borderWidth: 2,
-			borderColor: theme.colors.primary
+			borderColor: theme.colors.primary,
 		},
 		cardHeader: {
 			flex: 1,

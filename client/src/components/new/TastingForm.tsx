@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import TastingsAPI from "@/src/services/tastings";
 import { Card, useTheme } from "react-native-paper";
 import FormInput from "@/src/components/new/FormInput";
@@ -8,8 +9,6 @@ import ExitButton from "@/src/components/new/ExitButton";
 import FormSwitch from "@/src/components/new/FormSwitch";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
-import { useTranslation } from "react-i18next";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type Tasting = {
 	wine_denomination: string;

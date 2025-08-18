@@ -5,7 +5,7 @@ import { useTheme } from "react-native-paper";
 
 export default function TastingsLayout() {
 	const theme = useTheme();
-	const {t} = useTranslation();
+	const { t } = useTranslation();
 
 	return (
 		<Stack>

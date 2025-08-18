@@ -1,21 +1,21 @@
-import { useRouter } from 'expo-router';
-import { View, Text } from 'react-native';
-import { Button, useTheme } from 'react-native-paper';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ArrowCircleRightIcon, CheckCircleIcon } from 'phosphor-react-native';
+import { useRouter } from "expo-router";
+import { View, Text } from "react-native";
+import { Button, useTheme } from "react-native-paper";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ArrowCircleRightIcon, CheckCircleIcon } from "phosphor-react-native";
 
 type Props = {
-    text: string;
-    formData: any;
-    validation: () => boolean;
-    action: (tid: string, formData: any) => Promise<any>;
+	text: string;
+	formData: any;
+	validation: () => boolean;
+	action: (tid: string, formData: any) => Promise<any>;
 };
 
 export default function SaveButton({ text, formData, validation, action }: Props) {
-    const theme = useTheme();
-    const router = useRouter();
+	const theme = useTheme();
+	const router = useRouter();
 
-    const handlePress = async () => {
+	const handlePress = async () => {
 		const isValid = validation();
 		if (isValid) {
 			try {
@@ -31,8 +31,8 @@ export default function SaveButton({ text, formData, validation, action }: Props
 		}
 	};
 
-    return (
-        <View style={{ alignItems: "center", backgroundColor: theme.colors.background }}>
+	return (
+		<View style={{ alignItems: "center", backgroundColor: theme.colors.background }}>
 			<Button
 				mode='text'
 				onPress={handlePress}
@@ -43,7 +43,7 @@ export default function SaveButton({ text, formData, validation, action }: Props
 						flex: 1,
 						alignItems: "center",
 						flexDirection: "row",
-						justifyContent: "center"
+						justifyContent: "center",
 					}}
 				>
 					<Text style={{ marginTop: 3, fontFamily: "Epilogue-Bold", color: "#000000" }}>
@@ -57,5 +57,5 @@ export default function SaveButton({ text, formData, validation, action }: Props
 				</View>
 			</Button>
 		</View>
-    )
+	);
 }

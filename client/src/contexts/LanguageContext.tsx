@@ -14,14 +14,12 @@ export const LanguageContext = createContext<LanguageContextType | undefined>(un
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 	const [language, setLanguageState] = useState<Language>("en");
 
-	// Update both i18n + context state + storage
 	const setLanguage = async (lang: Language) => {
 		i18n.changeLanguage(lang);
 		setLanguageState(lang);
 		await AsyncStorage.setItem("language", lang);
 	};
 
-	// Detect system language OR load saved override
 	useEffect(() => {
 		const loadLanguage = async () => {
 			const saved = await AsyncStorage.getItem("language");

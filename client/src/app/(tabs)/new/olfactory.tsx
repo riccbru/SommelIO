@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ExamsAPI from "@/src/services/exams";
 import { useTranslation } from "react-i18next";
 import { Card, useTheme } from "react-native-paper";
@@ -9,7 +9,6 @@ import NextButton from "@/src/components/new/NextButton";
 import FormSwitch from "@/src/components/new/FormSwitch";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type OlfactoryExam = {
 	intensity: string;
@@ -61,7 +60,7 @@ export default function Olfactory() {
 		},
 		card: {
 			borderWidth: 2,
-			borderColor: theme.colors.primary
+			borderColor: theme.colors.primary,
 		},
 		cardHeader: {
 			flex: 1,

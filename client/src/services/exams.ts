@@ -58,7 +58,7 @@ const ExamsAPI = {
 	createOlfactory,
 	createTaste,
 	createFinal,
-	updateExam
+	updateExam,
 };
 
 export default ExamsAPI;
