@@ -9,6 +9,7 @@ import FormSwitch from "@/src/components/new/FormSwitch";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type Tasting = {
 	wine_denomination: string;
@@ -89,6 +90,7 @@ export default function TastingForm({
 }: TastingFormProps) {
 	const theme = useTheme();
 	const { t } = useTranslation();
+	const i18nextPath = "new.tasting.values";
 	const [errors, setErrors] = useState<Record<string, string>>({});
 
 	const getInitialFormData = (): Tasting => {
@@ -331,6 +333,7 @@ export default function TastingForm({
 				error={errors.wine_category_name}
 				onChange={updateFormData}
 				options={allowedCategories}
+				i18nPath={`${i18nextPath}.category`}
 			/>
 
 			<FormSwitch

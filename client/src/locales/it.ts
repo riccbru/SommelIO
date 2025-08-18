@@ -16,6 +16,7 @@ export default {
 		exit_exam: "ABBANDONA",
 		save_exam: "SALVA",
 		tasting: {
+			short: "DESCRIZIONE",
 			title: "Dettagli degustazione",
 			denomination: "Denominazione",
 			winemaker: "Produttore",

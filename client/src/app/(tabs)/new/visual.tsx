@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ExamsAPI from "@/src/services/exams";
 import { useLocalSearchParams } from "expo-router";
 import { Card, useTheme } from "react-native-paper";
@@ -9,6 +9,7 @@ import FormSelect from "@/src/components/new/FormSelect";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type VisualExam = {
 	limpidity: string;
@@ -35,6 +36,7 @@ const defaultFormData = {
 export default function Visual() {
 	const theme = useTheme();
 	const { t } = useTranslation();
+	const i18nextPath = "new.visual.values";
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<VisualExam>(defaultFormData);
 	const { wine_category_name } = useLocalSearchParams();
@@ -43,8 +45,13 @@ export default function Visual() {
 	const styles = StyleSheet.create({
 		container: {
 			flex: 1,
+			padding: 5,
 			flexDirection: "column",
 			backgroundColor: theme.colors.background,
+		},
+		card: {
+			borderWidth: 2,
+			borderColor: theme.colors.primary
 		},
 		cardHeader: {
 			flex: 1,
@@ -172,7 +179,7 @@ export default function Visual() {
 				style={{ flex: 1, backgroundColor: theme.colors.background }}
 			>
 				<ScrollView style={styles.container} keyboardShouldPersistTaps='handled'>
-					<Card>
+					<Card style={styles.card}>
 						<Card.Content>
 							<View style={styles.cardHeader}>
 								<Text style={styles.sectionTitle}>Visual Exam</Text>
@@ -190,6 +197,7 @@ export default function Visual() {
 								error={errors.limpidity}
 								onChange={updateFormData}
 								options={limpidityOptions}
+								i18nPath={`${i18nextPath}.limpidity`}
 							/>
 
 							<FormSelect
@@ -202,6 +210,7 @@ export default function Visual() {
 									updateFormData("color_shade", "");
 								}}
 								options={colorFamilyOptions}
+								i18nPath={`${i18nextPath}.color`}
 							/>
 
 							<FormSelect
@@ -211,6 +220,7 @@ export default function Visual() {
 								error={errors.color_shade}
 								onChange={updateFormData}
 								options={colorShadesOptions[formData.color_family]}
+								i18nPath={`${i18nextPath}.shade`}
 							/>
 
 							<FormSelect
@@ -220,6 +230,7 @@ export default function Visual() {
 								error={errors.consistency}
 								onChange={updateFormData}
 								options={consistencyOptions}
+								i18nPath={`${i18nextPath}.consistency`}
 							/>
 
 							{category === "sparkling" ? (
@@ -230,6 +241,7 @@ export default function Visual() {
 									error={errors.bubble_size}
 									onChange={updateFormData}
 									options={bubblesizeOptions}
+									i18nPath={`${i18nextPath}.bubble_size`}
 								/>
 							) : (
 								<></>
@@ -243,6 +255,7 @@ export default function Visual() {
 									error={errors.bubble_number}
 									onChange={updateFormData}
 									options={bubbleNumberOptions}
+									i18nPath={`${i18nextPath}.bubble_number`}
 								/>
 							) : (
 								<></>
@@ -256,6 +269,7 @@ export default function Visual() {
 									error={errors.bubble_persistence}
 									onChange={updateFormData}
 									options={bubblePersistenceOptions}
+									i18nPath={`${i18nextPath}.bubble_persistence`}
 								/>
 							) : (
 								<></>

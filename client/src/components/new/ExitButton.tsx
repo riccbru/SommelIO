@@ -19,6 +19,7 @@ export default function ExitButton({ defaultFormData, setFormData, setErrors }: 
 	const handlePress = () => {
 		setErrors({});
 		setFormData(defaultFormData);
+		router.replace("/(tabs)/new");
 		router.replace("/(tabs)/tastings");
 	};
 

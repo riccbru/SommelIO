@@ -1,15 +1,42 @@
 import axiosClient from "./axiosClient";
 
-async function createExam(tid: string, data: any, exam: string) {
+async function createVisual(tid: string, data: any) {
 	try {
-		if (!["visual", "olfactory", "taste", "final"].includes(exam)) {
-			throw new Error(`Invalid exam type: ${exam}`);
-		}
-		const response = await axiosClient.post(`/exams/${tid}/${exam}`, data);
+		const response = await axiosClient.post(`/exams/${tid}/visual`, data);
 		return response;
 	} catch (error: any) {
 		console.error(error);
-		throw new Error(error.response?.data?.message || `Unable to create exam ${exam}: ${error}`);
+		throw new Error(error.response?.data?.message || `Unable to fetch tastings: ${error}`);
+	}
+}
+
+async function createOlfactory(tid: string, data: any) {
+	try {
+		const response = await axiosClient.post(`/exams/${tid}/olfactory`, data);
+		return response;
+	} catch (error: any) {
+		console.error(error);
+		throw new Error(error.response?.data?.message || `Unable to fetch tastings: ${error}`);
+	}
+}
+
+async function createTaste(tid: string, data: any) {
+	try {
+		const response = await axiosClient.post(`/exams/${tid}/taste`, data);
+		return response;
+	} catch (error: any) {
+		console.error(error);
+		throw new Error(error.response?.data?.message || `Unable to fetch tastings: ${error}`);
+	}
+}
+
+async function createFinal(tid: string, data: any) {
+	try {
+		const response = await axiosClient.post(`/exams/${tid}/final`, data);
+		return response;
+	} catch (error: any) {
+		console.error(error);
+		throw new Error(error.response?.data?.message || `Unable to fetch tastings: ${error}`);
 	}
 }
 
@@ -27,8 +54,11 @@ async function updateExam(tid: string, data: any, exam: string) {
 }
 
 const ExamsAPI = {
-	createExam,
-	updateExam,
+	createVisual,
+	createOlfactory,
+	createTaste,
+	createFinal,
+	updateExam
 };
 
 export default ExamsAPI;

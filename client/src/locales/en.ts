@@ -16,6 +16,7 @@ export default {
 		exit_exam: "EXIT",
 		save_exam: "SAVE",
 		tasting: {
+			short: "DESCRIPTION",
 			title: "Tasting details",
 			denomination: "Denomination",
 			winemaker: "Winemaker",

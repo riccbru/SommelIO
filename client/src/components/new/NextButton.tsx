@@ -1,8 +1,9 @@
 import { View, Text } from "react-native";
 import { LinkProps, useRouter } from "expo-router";
 import { Button, useTheme } from "react-native-paper";
-import { ArrowCircleRightIcon, CheckCircleIcon } from "phosphor-react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ArrowCircleRightIcon, CheckCircleIcon } from "phosphor-react-native";
+import { useEffect, useState } from "react";
 
 type Props = {
 	path: LinkProps["href"];
@@ -13,42 +14,29 @@ type Props = {
 	requiresTid?: boolean;
 };
 
-export default function NextButton({
-	path,
-	text,
-	validation,
-	formData,
-	action,
-	requiresTid,
-}: Props) {
-	const theme = useTheme();
-	const router = useRouter();
+export default function NextButton({ path, text, validation, formData, action, requiresTid }: Props) {
+    const theme = useTheme();
+    const router = useRouter();
 
-	const handlePress = async () => {
-		const isValid = validation();
-		if (isValid) {
-			try {
+    const handlePress = async () => {
+        const isValid = validation();
+        if (isValid) {
+            try {
 				if (!requiresTid) {
 					const response = await action(formData);
-					const newTid = response?.data?.tid;
-					if (newTid) await AsyncStorage.setItem("newTid", newTid);
-				} else {
+                    const newTid = response?.data?.tid;
+                    if (newTid) await AsyncStorage.setItem("newTid", newTid);
+                } else {
 					const tid = await AsyncStorage.getItem("newTid");
-					if (!tid) throw new Error("No tasting ID found");
-					await action(tid, formData);
-				}
-				if (text !== "SAVE") {
-					router.push(path);
-				} else {
-					router.replace("/(tabs)/new");
-					router.replace("/(tabs)/tastings");
-					await AsyncStorage.removeItem("newTid");
-				}
-			} catch (error) {
-				console.log(`NextButton: ${error}`);
-			}
-		}
-	};
+                    if (!tid) throw new Error("No tasting ID found");
+                    await action(tid, formData);
+                }
+                router.push(path);
+            } catch (error) {
+                console.log(`NextButton: ${error}`);
+            }
+        }
+    };
 
 	return (
 		<View style={{ alignItems: "center", backgroundColor: theme.colors.background }}>

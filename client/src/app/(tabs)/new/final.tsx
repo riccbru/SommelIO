@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ExamsAPI from "@/src/services/exams";
 import { Card, useTheme } from "react-native-paper";
 import FormInput from "@/src/components/new/FormInput";
@@ -8,6 +8,7 @@ import NextButton from "@/src/components/new/NextButton";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type FinalExam = {
 	evolutionary_state: string;
@@ -26,14 +27,20 @@ const defaultFormData = {
 export default function Final() {
 	const theme = useTheme();
 	const { t } = useTranslation();
+	const i18nextPath = "new.final.values";
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<FinalExam>(defaultFormData);
 
 	const styles = StyleSheet.create({
 		container: {
 			flex: 1,
+			padding: 5,
 			flexDirection: "column",
 			backgroundColor: theme.colors.background,
+		},
+		card: {
+			borderWidth: 2,
+			borderColor: theme.colors.primary
 		},
 		cardHeader: {
 			flex: 1,
@@ -106,7 +113,7 @@ export default function Final() {
 				style={{ flex: 1, backgroundColor: theme.colors.background }}
 			>
 				<ScrollView style={styles.container} keyboardShouldPersistTaps='handled'>
-					<Card>
+					<Card style={styles.card}>
 						<Card.Content>
 							<View style={styles.cardHeader}>
 								<Text style={styles.sectionTitle}>Final</Text>
@@ -124,6 +131,7 @@ export default function Final() {
 								error={errors.evolutionary_state}
 								onChange={updateFormData}
 								options={evolutionaryStateOptions}
+								i18nPath={`${i18nextPath}.evolution`}
 							/>
 
 							<FormSelect
@@ -133,6 +141,7 @@ export default function Final() {
 								error={errors.harmony}
 								onChange={updateFormData}
 								options={harmonyOptions}
+								i18nPath={`${i18nextPath}.harmony`}
 							/>
 
 							<FormInput

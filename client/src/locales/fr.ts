@@ -16,6 +16,7 @@ export default {
 		exit_exam: "QUITTEZ",
 		save_exam: "ENREGISTER",
 		tasting: {
+			short: "DESCRIPTION",
 			title: "Dégustation détails",
 			denomination: "Appellation",
 			winemaker: "Vigneron",

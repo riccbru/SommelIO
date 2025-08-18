@@ -9,6 +9,7 @@ import ExitButton from "@/src/components/new/ExitButton";
 import NextButton from "@/src/components/new/NextButton";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import SaveButton from "@/src/components/new/SaveButton";
 
 const defaultFormData = {
 	visual_appearance: 0,
@@ -34,8 +35,13 @@ export default function Scoring() {
 	const styles = StyleSheet.create({
 		container: {
 			flex: 1,
+			padding: 5,
 			flexDirection: "column",
 			backgroundColor: theme.colors.background,
+		},
+		card: {
+			borderWidth: 2,
+			borderColor: theme.colors.primary
 		},
 		cardHeader: {
 			flex: 1,
@@ -121,7 +127,7 @@ export default function Scoring() {
 				behavior={Platform.OS === "ios" ? "padding" : "height"}
 			>
 				<ScrollView style={styles.container} keyboardShouldPersistTaps='handled'>
-					<Card>
+					<Card style={styles.card}>
 						<Card.Content>
 							<View style={styles.cardHeader}>
 								<Text style={styles.sectionTitle}>{t("new.scoring.title")}</Text>
@@ -158,9 +164,7 @@ export default function Scoring() {
 							setFormData={setFormData}
 							defaultFormData={defaultFormData}
 						/>
-						<NextButton
-							requiresTid
-							path='/new/scoring'
+						<SaveButton
 							text={t("new.save_exam")}
 							formData={formData}
 							validation={validateForm}

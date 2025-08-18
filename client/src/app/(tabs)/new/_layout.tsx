@@ -1,8 +1,11 @@
+import { capitalizeFirst } from "@/src/utils/utils";
 import { Stack } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { useTheme } from "react-native-paper";
 
 export default function TastingsLayout() {
 	const theme = useTheme();
+	const {t} = useTranslation();
 
 	return (
 		<Stack>
@@ -18,7 +21,7 @@ export default function TastingsLayout() {
 				options={{
 					headerShown: true,
 					presentation: "card",
-					headerBackTitle: "Description",
+					headerBackTitle: capitalizeFirst(t("new.tasting.short").toLowerCase()),
 					title: "",
 					headerStyle: {
 						backgroundColor: theme.colors.background,
@@ -30,7 +33,7 @@ export default function TastingsLayout() {
 				options={{
 					headerShown: true,
 					presentation: "card",
-					headerBackTitle: "Visual",
+					headerBackTitle: capitalizeFirst(t("new.visual.short").toLowerCase()),
 					title: "",
 					headerStyle: {
 						backgroundColor: theme.colors.background,
@@ -42,7 +45,7 @@ export default function TastingsLayout() {
 				options={{
 					headerShown: true,
 					presentation: "card",
-					headerBackTitle: "Olfactory",
+					headerBackTitle: capitalizeFirst(t("new.olfactory.short").toLowerCase()),
 					title: "",
 					headerStyle: {
 						backgroundColor: theme.colors.background,
@@ -54,7 +57,7 @@ export default function TastingsLayout() {
 				options={{
 					headerShown: true,
 					presentation: "card",
-					headerBackTitle: "Taste",
+					headerBackTitle: capitalizeFirst(t("new.taste.short").toLowerCase()),
 					title: "",
 					headerStyle: {
 						backgroundColor: theme.colors.background,
@@ -66,7 +69,7 @@ export default function TastingsLayout() {
 				options={{
 					headerShown: true,
 					presentation: "card",
-					headerBackTitle: "Scoring",
+					headerBackTitle: capitalizeFirst(t("new.final.short").toLowerCase()),
 					title: "",
 					headerStyle: {
 						backgroundColor: theme.colors.background,

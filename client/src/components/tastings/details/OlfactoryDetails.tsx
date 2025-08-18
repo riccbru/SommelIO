@@ -30,7 +30,6 @@ export default function OlfactoryDetails({ exam }: Props) {
 	const theme = useTheme();
 	const { t } = useTranslation();
 	if (!exam || Object.keys(exam).length === 0) {
-		console.log(exam);
 		return <Text>{}</Text>;
 	}
 

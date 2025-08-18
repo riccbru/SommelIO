@@ -1,11 +1,11 @@
 {
 	"expo": {
-		"name": "client",
-		"slug": "client",
+		"name": "SommelIO",
+		"slug": "sommelio",
 		"version": "1.0.0",
 		"orientation": "portrait",
-		"icon": "",
-		"scheme": "client",
+		"icon": "./assets/images/icon/ios/ios_1024.png",
+		"scheme": "sommelio",
 		"userInterfaceStyle": "automatic",
 		"newArchEnabled": true,
 		"ios": {
@@ -18,7 +18,7 @@
 		},
 		"android": {
 			"adaptiveIcon": {
-				"foregroundImage": "",
+				"foregroundImage": "./assets/images/icon/android/android_512.png",
 				"backgroundColor": "#ffffff"
 			},
 			"edgeToEdgeEnabled": true,

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ExamsAPI from "@/src/services/exams";
 import { useTranslation } from "react-i18next";
 import { Card, useTheme } from "react-native-paper";
@@ -9,6 +9,7 @@ import NextButton from "@/src/components/new/NextButton";
 import FormSwitch from "@/src/components/new/FormSwitch";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type OlfactoryExam = {
 	intensity: string;
@@ -47,14 +48,20 @@ const defaultFormData = {
 export default function Olfactory() {
 	const theme = useTheme();
 	const { t } = useTranslation();
+	const i18nextPath = "new.olfactory.values";
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<OlfactoryExam>(defaultFormData);
 
 	const styles = StyleSheet.create({
 		container: {
 			flex: 1,
+			padding: 5,
 			flexDirection: "column",
 			backgroundColor: theme.colors.background,
+		},
+		card: {
+			borderWidth: 2,
+			borderColor: theme.colors.primary
 		},
 		cardHeader: {
 			flex: 1,
@@ -156,7 +163,7 @@ export default function Olfactory() {
 				behavior={Platform.OS === "ios" ? "padding" : "height"}
 			>
 				<ScrollView style={styles.container} keyboardShouldPersistTaps='handled'>
-					<Card>
+					<Card style={styles.card}>
 						<Card.Content>
 							<View style={styles.cardHeader}>
 								<Text style={styles.sectionTitle}>Olfactory Exam</Text>
@@ -174,6 +181,7 @@ export default function Olfactory() {
 								error={errors.intensity}
 								onChange={updateFormData}
 								options={intensityOptions}
+								i18nPath={`${i18nextPath}.intensity`}
 							/>
 
 							<FormSelect
@@ -183,6 +191,7 @@ export default function Olfactory() {
 								error={errors.complexity}
 								onChange={updateFormData}
 								options={complexityOptions}
+								i18nPath={`${i18nextPath}.complexity`}
 							/>
 
 							<FormSelect
@@ -192,6 +201,7 @@ export default function Olfactory() {
 								error={errors.quality}
 								onChange={updateFormData}
 								options={qualityOptions}
+								i18nPath={`${i18nextPath}.quality`}
 							/>
 
 							{descriptors.map((el, index) => (
