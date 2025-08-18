@@ -77,7 +77,7 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 					<Text
 						style={{
 							fontSize: 20,
-							color: theme.colors.text,
+							color: theme.colors.primary,
 							fontFamily: "Epilogue-Regular",
 						}}
 					>
@@ -93,7 +93,7 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 								fontSize: 18,
 								marginBottom: 20,
 								fontFamily: "Epilogue-Regular",
-								color: theme.colors.text,
+								color: theme.colors.primary,
 							}}
 						>
 							{t("tastings.confirm_mex")}

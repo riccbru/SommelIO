@@ -17,7 +17,7 @@ export default function Colleagues() {
 					style={{ marginTop: 10, marginBottom: 10, marginLeft: 20 }}
 					onPress={() => console.log("add colleague")}
 				>
-					<UserPlusIcon size={32} color={theme.dark ? "#ffffff" : "#000000"} />
+					<UserPlusIcon size={32} color={theme.colors.primary} />
 				</TouchableOpacity>
 			),
 		});
@@ -32,7 +32,7 @@ export default function Colleagues() {
 		},
 		text: {
 			fontSize: 30,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
 	});

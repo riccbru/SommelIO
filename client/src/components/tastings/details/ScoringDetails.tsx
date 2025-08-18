@@ -39,13 +39,13 @@ export default function ScoringDetails({ scoring }: Props) {
 		label: {
 			flex: 3,
 			marginLeft: 10,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
 		value: {
 			flex: 1,
 			textAlign: "center",
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
 		notesRow: {
@@ -55,24 +55,24 @@ export default function ScoringDetails({ scoring }: Props) {
 			borderTopColor: theme.colors.gray,
 		},
 		totalText: {
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
 		notes: {
 			marginTop: 10,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 		},
 		notesTitle: {
 			marginTop: 10,
 			marginLeft: 10,
 			marginBottom: 4,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
 		notesText: {
 			lineHeight: 20,
 			marginLeft: 15,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
 	});

@@ -115,7 +115,7 @@ export default function TastingForm({
 		},
 		card: {
 			borderWidth: 2,
-			borderColor: theme.colors.text,
+			borderColor: theme.colors.primary,
 		},
 		cardHeader: {
 			flex: 1,
@@ -127,12 +127,12 @@ export default function TastingForm({
 		sectionTitle: {
 			fontSize: 18,
 			marginBottom: 15,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
 		text: {
 			fontSize: 30,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
 		loadingContainer: {

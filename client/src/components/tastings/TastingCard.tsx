@@ -33,7 +33,7 @@ export default function TastingCard({ uuid, name, subtitle, editMode, setEditMod
 		subtitle: {
 			fontSize: 18,
 			marginBottom: 13,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
 		leftIcon: {
@@ -56,7 +56,7 @@ export default function TastingCard({ uuid, name, subtitle, editMode, setEditMod
 					<Icon
 						size={32}
 						weight={"regular"}
-						color={!editMode[name] ? theme.colors.text : theme.colors.red}
+						color={!editMode[name] ? theme.colors.primary : theme.colors.red}
 					/>
 				</TouchableOpacity>
 			</View>

@@ -11,7 +11,7 @@ export function SignupFooter() {
 			alignItems: "center",
 		},
 		text: {
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
 		linkText: {

@@ -130,7 +130,7 @@ export default function FormSelect<T>({
 
 				{/* Selected Value */}
 				{hasValue && (
-					<Text style={[styles.selectedText, { color: theme.colors.text }]}>
+					<Text style={[styles.selectedText, { color: theme.colors.primary }]}>
 						{/* {formatOption(value)} */}
 						{formatOption(t(`${i18nPath}.${value}`))}
 					</Text>
@@ -186,7 +186,7 @@ export default function FormSelect<T>({
 											style={[
 												styles.optionText,
 												value === item && { fontWeight: "600" },
-												{ color: value === item ? "#000000" : theme.colors.text },
+												{ color: value === item ? "#000000" : theme.colors.primary },
 											]}
 										>
 											{formatOption(t(`${i18nPath}.${item}`))}

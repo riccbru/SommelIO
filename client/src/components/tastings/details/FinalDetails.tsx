@@ -29,18 +29,18 @@ export default function FinalDetails({ exam }: Props) {
 		label: {
 			flex: 1,
 			marginLeft: 10,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
 		value: {
 			flex: 1,
 			textAlign: "center",
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
 		notes: {
 			marginTop: 10,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 		},
 		notesRow: {
 			marginTop: 8,
@@ -52,13 +52,13 @@ export default function FinalDetails({ exam }: Props) {
 			marginTop: 10,
 			marginBottom: 4,
 			marginLeft: 10,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
 		notesText: {
 			lineHeight: 20,
 			marginLeft: 15,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
 	});

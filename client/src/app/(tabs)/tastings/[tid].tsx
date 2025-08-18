@@ -91,12 +91,12 @@ export default function TastingDetail() {
 		card: {
 			borderWidth: 2,
 			marginBottom: 16,
-			borderColor: theme.colors.text,
+			borderColor: theme.colors.primary,
 		},
 		title: {
 			fontSize: 24,
 			marginBottom: 8,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
 		cardSubtitle: {
@@ -107,12 +107,12 @@ export default function TastingDetail() {
 		},
 		subtitle: {
 			fontSize: 18,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
 		text: {
 			fontSize: 22,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
 	});

@@ -33,13 +33,13 @@ export default function TastingDetails({ tasting }: Props) {
 		label: {
 			flex: 1,
 			marginLeft: 10,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
 		value: {
 			flex: 1,
 			textAlign: "center",
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
 	});

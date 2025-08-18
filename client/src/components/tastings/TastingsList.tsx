@@ -60,7 +60,7 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
 			flex: 1,
 			marginLeft: 5,
 			marginRight: 5,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
 		accordionBody: {
@@ -75,12 +75,12 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
 		},
 		textLabel: {
 			fontSize: 13,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
 		textValue: {
 			fontSize: 14,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
 	});

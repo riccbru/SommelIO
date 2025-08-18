@@ -66,12 +66,12 @@ export default function Olfactory() {
 		sectionTitle: {
 			fontSize: 18,
 			marginBottom: 15,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
 		text: {
 			fontSize: 30,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
 		loadingContainer: {

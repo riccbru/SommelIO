@@ -33,7 +33,7 @@ export default function UserModal({ modal, setModal }: UserModalProps) {
 		},
 		userTitleData: {
 			fontSize: 18,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 		},
 		userEntries: {
 			fontSize: 14,
@@ -41,7 +41,7 @@ export default function UserModal({ modal, setModal }: UserModalProps) {
 		},
 		userData: {
 			fontSize: 14,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 		},
 		buttonContainer: {
 			marginTop: 15,
@@ -55,7 +55,7 @@ export default function UserModal({ modal, setModal }: UserModalProps) {
 		},
 		buttonText: {
 			fontSize: 16,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 		},
 	});
 

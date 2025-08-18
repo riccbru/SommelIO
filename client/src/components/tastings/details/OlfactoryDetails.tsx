@@ -43,20 +43,20 @@ export default function OlfactoryDetails({ exam }: Props) {
 		label: {
 			flex: 1,
 			marginLeft: 10,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
 		value: {
 			flex: 1,
 			textAlign: "center",
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
 		descriptorsHeader: {
 			marginTop: 10,
 			marginLeft: 10,
 			marginBottom: 5,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
 		descriptorRow: {
@@ -68,13 +68,13 @@ export default function OlfactoryDetails({ exam }: Props) {
 		descriptorLabel: {
 			flex: 1,
 			marginLeft: 5,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
 		descriptorValue: {
 			flex: 1,
 			textAlign: "center",
-			color: theme.colors.text,
+			color: theme.colors.primary,
 		},
 		notes: {
 			marginTop: 10,
@@ -89,13 +89,13 @@ export default function OlfactoryDetails({ exam }: Props) {
 			marginTop: 10,
 			marginLeft: 10,
 			marginBottom: 4,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
 		notesText: {
 			lineHeight: 20,
 			marginLeft: 15,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
 	});

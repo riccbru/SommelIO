@@ -18,7 +18,7 @@ export default function TabsLayout() {
 					headerStyle: {
 						backgroundColor: theme.colors.background,
 					},
-					headerTintColor: theme.colors.text,
+					headerTintColor: theme.colors.primary,
 					tabBarStyle: {
 						paddingTop: 5,
 						backgroundColor: theme.colors.background,
@@ -26,7 +26,7 @@ export default function TabsLayout() {
 					tabBarLabel: "",
 					// tabBarLabelStyle: ({focused}) => ({
 					// 	paddingTop: 5,
-					// 	color: focused ? theme.colors.amber : theme.colors.text,
+					// 	color: focused ? theme.colors.amber : theme.colors.primary,
 					// 	fontFamily: "Epilogue-Regular"
 					// }),
 					// tabBarLabel: ({ focused }) =>
@@ -37,7 +37,7 @@ export default function TabsLayout() {
 					// 			style={{
 					// 				fontSize: 12,
 					// 				paddingTop: 5,
-					// 				color: focused ? theme.colors.amber : theme.colors.text,
+					// 				color: focused ? theme.colors.amber : theme.colors.primary,
 					// 				fontFamily: focused ? "Epilogue-Bold" : "Epilogue-Regular",
 					// 			}}
 					// 		>

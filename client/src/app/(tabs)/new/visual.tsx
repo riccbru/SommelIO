@@ -56,14 +56,14 @@ export default function Visual() {
 		sectionTitle: {
 			fontSize: 18,
 			marginBottom: 15,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
 		text: {
 			fontSize: 30,
 			fontWeight: 300,
 			fontFamily: "Epilogue-Regular",
-			color: theme.colors.text,
+			color: theme.colors.primary,
 		},
 		loadingContainer: {
 			flex: 1,

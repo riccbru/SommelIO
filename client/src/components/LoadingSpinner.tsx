@@ -16,7 +16,7 @@ export default function LoadingSpinner({ text }: Props) {
 		},
 		text: {
 			fontSize: 22,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
 	});

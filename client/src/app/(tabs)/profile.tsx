@@ -1,6 +1,8 @@
 import UserAPI from "@/src/services/user";
 import { useAuth } from "@/src/hooks/useAuth";
+import { useTranslation } from "react-i18next";
 import { getInitials } from "@/src/utils/utils";
+import { useLanguage } from "@/src/hooks/useLanguage";
 import { useNavigation, useRouter } from "expo-router";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { Avatar, Card, Divider, SegmentedButtons, Switch, useTheme } from "react-native-paper";
@@ -21,24 +23,31 @@ import {
 	TouchableOpacity,
 	View,
 } from "react-native";
-import { useTranslation } from "react-i18next";
-import { useLanguage } from "@/src/hooks/useLanguage";
+
+type Stats = {
+	totalTastings: number;
+	favoriteTastings: number;
+	ratedTastings: number;
+}
+
+const defaultStats: Stats = {
+	totalTastings: 0,
+	favoriteTastings: 0,
+	ratedTastings: 0,
+}
 
 export default function Profile() {
 	const theme = useTheme();
 	const router = useRouter();
 	const { t } = useTranslation();
+	const navigation = useNavigation();
 	const { language, setLanguage } = useLanguage();
 	const { accessToken, user, logout } = useAuth();
-	const navigation = useNavigation();
+	
 	const [refresh, setRefresh] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [fadeAnim] = useState(new Animated.Value(0));
-	const [stats, setStats] = useState({
-		totalTastings: 0,
-		favoriteTastings: 0,
-		ratedTastings: 0,
-	});
+	const [stats, setStats] = useState<Stats>(defaultStats);
 
 	useLayoutEffect(() => {
 		navigation.setOptions({
@@ -75,8 +84,8 @@ export default function Profile() {
 	const styles = StyleSheet.create({
 		container: {
 			flex: 1,
-			backgroundColor: theme.colors.background,
 			padding: 16,
+			backgroundColor: theme.colors.background,
 		},
 		profileCard: {
 			elevation: 4,
@@ -84,7 +93,7 @@ export default function Profile() {
 			marginBottom: 20,
 			borderRadius: 16,
 			shadowOpacity: 0.1,
-			borderColor: theme.colors.text,
+			borderColor: theme.colors.primary,
 		},
 		profileHeader: {
 			paddingVertical: 24,
@@ -102,14 +111,14 @@ export default function Profile() {
 			fontSize: 28,
 			marginBottom: 8,
 			textAlign: "center",
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
 		userEmail: {
 			fontSize: 16,
 			marginBottom: 16,
 			textAlign: "center",
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
 		statsContainer: {
@@ -130,7 +139,7 @@ export default function Profile() {
 		statLabel: {
 			fontSize: 12,
 			textAlign: "center",
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
 		infoCard: {
@@ -154,13 +163,13 @@ export default function Profile() {
 			marginBottom: 2,
 			fontWeight: "600",
 			fontFamily: "Epilogue",
-			color: theme.colors.text,
+			color: theme.colors.primary,
 		},
 		infoValue: {
 			flex: 2,
 			fontSize: 16,
 			fontFamily: "Epilogue",
-			color: theme.colors.text,
+			color: theme.colors.primary,
 		},
 		actionButtons: {
 			gap: 12,
@@ -189,7 +198,7 @@ export default function Profile() {
 		},
 		rowLabel: {
 			fontSize: 16,
-			color: theme.colors.text,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
 	});
@@ -232,7 +241,7 @@ export default function Profile() {
 						<></>
 					) : (
 						<View style={{ position: "absolute", marginLeft: 10, marginTop: 5 }}>
-							<DevToLogoIcon size={28} weight='fill' color={theme.colors.text} />
+							<DevToLogoIcon size={28} weight='fill' color={theme.colors.primary} />
 						</View>
 					)}
 					<View style={styles.profileHeader}>
@@ -259,17 +268,17 @@ export default function Profile() {
 								width: "80%",
 								marginTop: 16,
 								marginBottom: 16,
-								backgroundColor: theme.colors.text,
+								backgroundColor: theme.colors.primary,
 							}}
 						/>
 
 						{/* Stats Section */}
 						<View style={styles.statsContainer}>
 							<StatItem
-								color={theme.colors.text}
+								color={theme.colors.primary}
 								number={stats.totalTastings}
 								label={t("profile.tastings.total").replace(" ", "\n")}
-								icon={<WineIcon size={24} weight='fill' color={theme.colors.text} />}
+								icon={<WineIcon size={24} weight='fill' color={theme.colors.primary} />}
 							/>
 							<StatItem
 								color={theme.colors.amber}
