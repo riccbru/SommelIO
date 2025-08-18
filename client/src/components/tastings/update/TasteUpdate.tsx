@@ -1,11 +1,10 @@
+import { View } from "react-native";
 import React, { useState } from "react";
+import UpdateButton from "../UpdateButton";
 import ExamsAPI from "@/src/services/exams";
 import FormInput from "../../new/FormInput";
-import { useTheme } from "react-native-paper";
 import FormSelect from "../../new/FormSelect";
 import { useTranslation } from "react-i18next";
-import { PencilSimpleIcon } from "phosphor-react-native";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 type TasteExam = {
 	sweetness: string;
@@ -30,33 +29,9 @@ type Props = {
 };
 
 export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Props) {
-	const theme = useTheme();
 	const { t } = useTranslation();
 	const [formData, setFormData] = useState<TasteExam>(exam);
 	const [errors, setErrors] = useState<Record<string, string>>({});
-
-	const styles = StyleSheet.create({
-		button: {
-			maxWidth: 250,
-			borderWidth: 1,
-			borderRadius: 15,
-			alignSelf: "center",
-			paddingVertical: 10,
-			paddingHorizontal: 15,
-			backgroundColor: theme.colors.green,
-		},
-		buttonView: {
-			alignItems: "center",
-			flexDirection: "row",
-			justifyContent: "center",
-		},
-		buttonText: {
-			fontSize: 20,
-			marginTop: 3,
-			marginLeft: 3,
-			fontFamily: "Epilogue-Regular",
-		},
-	});
 
 	const updateFormData = (field: keyof TasteExam, value: string) => {
 		setFormData(prev => ({ ...prev, [field]: value }));
@@ -286,12 +261,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				onChange={updateFormData}
 			/>
 
-			<TouchableOpacity style={styles.button} onPress={handlePress}>
-				<View style={styles.buttonView}>
-					<PencilSimpleIcon size={24} weight='bold' />
-					<Text style={styles.buttonText}>{t("tastings.edit")}</Text>
-				</View>
-			</TouchableOpacity>
+			<UpdateButton onPress={handlePress} />
 		</View>
 	);
 }

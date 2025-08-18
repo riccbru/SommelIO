@@ -1,12 +1,11 @@
+import { View } from "react-native";
 import React, { useState } from "react";
+import UpdateButton from "../UpdateButton";
 import FormInput from "../../new/FormInput";
 import FormScore from "../../new/FormScore";
-import { useTheme } from "react-native-paper";
 import { useTranslation } from "react-i18next";
 import { isRightRange } from "@/src/utils/utils";
 import ScoringsAPI from "@/src/services/scorings";
-import { PencilSimpleIcon } from "phosphor-react-native";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 type ScoringBody = {
 	visual_appearance: number;
@@ -31,33 +30,9 @@ type Props = {
 };
 
 export default function ScoringUpdate({ tid, scoring, setRefresh, setEditMode }: Props) {
-	const theme = useTheme();
 	const { t } = useTranslation();
 	const [formData, setFormData] = useState<ScoringBody>(scoring);
 	const [errors, setErrors] = useState<Record<string, string>>({});
-
-	const styles = StyleSheet.create({
-		button: {
-			maxWidth: 250,
-			borderWidth: 1,
-			borderRadius: 15,
-			alignSelf: "center",
-			paddingVertical: 10,
-			paddingHorizontal: 15,
-			backgroundColor: theme.colors.green,
-		},
-		buttonView: {
-			alignItems: "center",
-			flexDirection: "row",
-			justifyContent: "center",
-		},
-		buttonText: {
-			fontSize: 20,
-			marginTop: 3,
-			marginLeft: 3,
-			fontFamily: "Epilogue-Regular",
-		},
-	});
 
 	const scoreFields: { key: string; label: string }[] = [
 		{ key: "visual_appearance", label: t("new.scoring.Vappearance") },
@@ -131,12 +106,7 @@ export default function ScoringUpdate({ tid, scoring, setRefresh, setEditMode }:
 				onChange={updateFormData}
 			/>
 
-			<TouchableOpacity style={styles.button} onPress={handlePress}>
-				<View style={styles.buttonView}>
-					<PencilSimpleIcon size={24} weight='bold' />
-					<Text style={styles.buttonText}>{t("tastings.edit")}</Text>
-				</View>
-			</TouchableOpacity>
+			<UpdateButton onPress={handlePress} />
 		</View>
 	);
 }
