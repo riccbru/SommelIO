@@ -109,7 +109,7 @@ export default function TastingForm({
 	const styles = StyleSheet.create({
 		container: {
 			flex: 1,
-			padding: 15,
+			padding: 5,
 			flexDirection: "column",
 			backgroundColor: theme.colors.background,
 		},

@@ -36,6 +36,7 @@ export default function TasteDetails({ exam }: Props) {
 		},
 		label: {
 			flex: 1,
+			marginLeft: 10,
 			color: theme.colors.text,
 			fontFamily: "Epilogue-Bold",
 		},
@@ -56,12 +57,14 @@ export default function TasteDetails({ exam }: Props) {
 		},
 		notesTitle: {
 			marginTop: 10,
+			marginLeft: 10,
 			marginBottom: 4,
 			color: theme.colors.text,
 			fontFamily: "Epilogue-Bold",
 		},
 		notesText: {
 			lineHeight: 20,
+			marginLeft: 15,
 			color: theme.colors.text,
 			fontFamily: "Epilogue-Regular",
 		},

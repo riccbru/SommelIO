@@ -79,7 +79,7 @@ export default function TastingDetail() {
 	const styles = StyleSheet.create({
 		container: {
 			flex: 1,
-			padding: 15,
+			padding: 5,
 			backgroundColor: theme.colors.background,
 		},
 		loadingContainer: {
@@ -89,8 +89,8 @@ export default function TastingDetail() {
 			backgroundColor: theme.colors.background,
 		},
 		card: {
-			marginBottom: 16,
 			borderWidth: 2,
+			marginBottom: 16,
 			borderColor: theme.colors.text,
 		},
 		title: {

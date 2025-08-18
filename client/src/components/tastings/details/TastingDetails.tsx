@@ -32,6 +32,7 @@ export default function TastingDetails({ tasting }: Props) {
 		},
 		label: {
 			flex: 1,
+			marginLeft: 10,
 			color: theme.colors.text,
 			fontFamily: "Epilogue-Bold",
 		},
