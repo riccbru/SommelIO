@@ -79,7 +79,7 @@ export default function TastingDetail() {
 	const styles = StyleSheet.create({
 		container: {
 			flex: 1,
-			padding: 16,
+			padding: 15,
 			backgroundColor: theme.colors.background,
 		},
 		loadingContainer: {
@@ -90,12 +90,13 @@ export default function TastingDetail() {
 		},
 		card: {
 			marginBottom: 16,
-			backgroundColor: theme.colors.pearl,
+			borderWidth: 2,
+			borderColor: theme.colors.text,
 		},
 		title: {
-			color: "#000000",
 			fontSize: 24,
 			marginBottom: 8,
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Bold",
 		},
 		cardSubtitle: {
@@ -204,7 +205,15 @@ export default function TastingDetail() {
 						setEditMode={setEditMode}
 						subtitle={t("new.tasting.title")}
 					/>
-					{!editMode["tasting"] ? <TastingDetails tasting={tasting} /> : <TastingUpdate />}
+					{!editMode["tasting"] ? (
+						<TastingDetails tasting={tasting} />
+					) : (
+						<TastingUpdate
+							tasting={tasting}
+							setEditMode={setEditMode}
+							setRefresh={setRefresh}
+						/>
+					)}
 				</Card.Content>
 			</Card>
 
@@ -220,7 +229,13 @@ export default function TastingDetail() {
 					{!editMode["visual"] ? (
 						<VisualDetails exam={tasting.visual_exam} />
 					) : (
-						<VisualUpdate />
+						<VisualUpdate
+							tid={tasting.tid}
+							sparkling={tasting.wine_category_name === "sparkling"}
+							exam={tasting.visual_exam}
+							setEditMode={setEditMode}
+							setRefresh={setRefresh}
+						/>
 					)}
 				</Card.Content>
 			</Card>
@@ -237,7 +252,12 @@ export default function TastingDetail() {
 					{!editMode["olfactory"] ? (
 						<OlfactoryDetails exam={tasting.olfactory_exam} />
 					) : (
-						<OlfactoryUpdate />
+						<OlfactoryUpdate
+							tid={tasting.tid}
+							exam={tasting.olfactory_exam}
+							setEditMode={setEditMode}
+							setRefresh={setRefresh}
+						/>
 					)}
 				</Card.Content>
 			</Card>
@@ -254,7 +274,12 @@ export default function TastingDetail() {
 					{!editMode["taste"] ? (
 						<TasteDetails exam={tasting.taste_olfactory_exam} />
 					) : (
-						<TasteUpdate />
+						<TasteUpdate
+							tid={tasting.tid}
+							exam={tasting.taste_olfactory_exam}
+							setEditMode={setEditMode}
+							setRefresh={setRefresh}
+						/>
 					)}
 				</Card.Content>
 			</Card>
@@ -271,7 +296,12 @@ export default function TastingDetail() {
 					{!editMode["final"] ? (
 						<FinalDetails exam={tasting.final_considerations} />
 					) : (
-						<FinalUpdate />
+						<FinalUpdate
+							tid={tasting.tid}
+							exam={tasting.final_considerations}
+							setEditMode={setEditMode}
+							setRefresh={setRefresh}
+						/>
 					)}
 				</Card.Content>
 			</Card>
@@ -288,7 +318,12 @@ export default function TastingDetail() {
 					{!editMode["scoring"] ? (
 						<ScoringDetails scoring={tasting.scoring_evaluation} />
 					) : (
-						<ScoringUpdate />
+						<ScoringUpdate
+							tid={tasting.tid}
+							scoring={tasting.scoring_evaluation}
+							setEditMode={setEditMode}
+							setRefresh={setRefresh}
+						/>
 					)}
 				</Card.Content>
 			</Card>

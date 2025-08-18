@@ -172,10 +172,9 @@ router.put("/:tid/:exam", async (req, res) => {
 		}
 
 		res.status(200).json(formattedData);
-		return res.status(200).json({ success: `Update tasting ${tid}'s ${exam} exam` });
 	} catch (err) {
 		console.log(err);
-		return res.status(500).json({ error: `Error updating ${exam} exam` });
+		res.status(500).json({ error: `Error updating ${exam} exam` });
 	}
 });
 

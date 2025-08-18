@@ -109,8 +109,13 @@ export default function TastingForm({
 	const styles = StyleSheet.create({
 		container: {
 			flex: 1,
+			padding: 15,
 			flexDirection: "column",
 			backgroundColor: theme.colors.background,
+		},
+		card: {
+			borderWidth: 2,
+			borderColor: theme.colors.text,
 		},
 		cardHeader: {
 			flex: 1,
@@ -415,7 +420,7 @@ export default function TastingForm({
 		>
 			<ScrollView style={styles.container} keyboardShouldPersistTaps='handled'>
 				{showCard ? (
-					<Card>
+					<Card style={styles.card}>
 						<Card.Content>{renderFormContent()}</Card.Content>
 					</Card>
 				) : (

@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
+import { useTheme } from "react-native-paper";
 
 type Tasting = {
 	wine_denomination: string;
@@ -21,6 +22,7 @@ type Props = {
 };
 
 export default function TastingDetails({ tasting }: Props) {
+	const theme = useTheme();
 	const { t } = useTranslation();
 	const styles = StyleSheet.create({
 		row: {
@@ -30,11 +32,13 @@ export default function TastingDetails({ tasting }: Props) {
 		},
 		label: {
 			flex: 1,
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Bold",
 		},
 		value: {
 			flex: 1,
 			textAlign: "center",
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Regular",
 		},
 	});

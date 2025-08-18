@@ -123,7 +123,6 @@ export default function Olfactory() {
 		"toasted",
 		"ethereal",
 	];
-
 	const validateForm = (): boolean => {
 		const newErrors: Record<string, string> = {};
 

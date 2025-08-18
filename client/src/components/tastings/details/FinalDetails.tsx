@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
+import { useTheme } from "react-native-paper";
 
 type FinalExam = {
 	evolutionary_state: string;
@@ -13,6 +14,7 @@ type Props = {
 };
 
 export default function FinalDetails({ exam }: Props) {
+	const theme = useTheme();
 	const { t } = useTranslation();
 	if (!exam || Object.keys(exam).length === 0) {
 		return <Text>{}</Text>;
@@ -26,28 +28,34 @@ export default function FinalDetails({ exam }: Props) {
 		},
 		label: {
 			flex: 1,
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Bold",
 		},
 		value: {
 			flex: 1,
 			textAlign: "center",
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Regular",
 		},
 		notes: {
 			marginTop: 10,
+			color: theme.colors.text,
 		},
 		notesRow: {
 			marginTop: 8,
 			paddingTop: 5,
 			borderTopWidth: 1,
-			borderTopColor: "#000000",
+			borderTopColor: theme.colors.gray,
 		},
 		notesTitle: {
+			marginTop: 10,
 			marginBottom: 4,
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Bold",
 		},
 		notesText: {
 			lineHeight: 20,
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Regular",
 		},
 	});

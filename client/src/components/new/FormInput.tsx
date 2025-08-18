@@ -8,6 +8,7 @@ type Props<T> = {
 	error?: string;
 	keyboardType?: "default" | "numeric" | "email-address" | "phone-pad" | "numbers-and-punctuation";
 	onChange: (field: keyof T, value: string) => void;
+	color?: string;
 };
 
 export default function FormInput<T>({
@@ -17,13 +18,14 @@ export default function FormInput<T>({
 	error,
 	keyboardType = "default",
 	onChange,
+	color,
 }: Props<T>) {
 	const theme = useTheme();
 	return (
 		<View>
 			<TextInput
 				mode='outlined'
-				label={<Text style={{ fontFamily: "Epilogue-Regular" }}>{label}</Text>}
+				label={<Text style={{ color: color, fontFamily: "Epilogue-Regular" }}>{label}</Text>}
 				value={value}
 				error={!!error}
 				style={{ height: 50 }}

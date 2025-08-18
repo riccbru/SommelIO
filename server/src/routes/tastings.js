@@ -115,7 +115,16 @@ router.post("/", async (req, res) => {
 				vintage,
 				wine_temperature: parseFloat(wine_temperature),
 				ambient_temperature: parseFloat(ambient_temperature),
-				tasting_timestamp: new Date(`${tasting_date}T${tasting_time}`).toISOString(),
+				tasting_timestamp: new Date(
+					Date.UTC(
+						...tasting_date
+							.split("-")
+							.map(Number)
+							.map((v, i) => (i === 1 ? v - 1 : v)),
+						...tasting_time.split(":").map(Number),
+						0,
+					),
+				).toISOString(),
 				tasting_location,
 			},
 			include: {
@@ -178,7 +187,14 @@ router.put("/:tid", async (req, res) => {
 		}
 		if ("tasting_date" in req.body && "tasting_time" in req.body) {
 			dataToUpdate.tasting_timestamp = new Date(
-				`${req.body.tasting_date}T${req.body.tasting_time}`,
+				Date.UTC(
+					...req.body.tasting_date
+						.split("-")
+						.map(Number)
+						.map((v, i) => (i === 1 ? v - 1 : v)),
+					...req.body.tasting_time.split(":").map(Number),
+					0,
+				),
 			).toISOString();
 		}
 		if ("vintage" in req.body) {

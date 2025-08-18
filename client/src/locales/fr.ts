@@ -242,6 +242,7 @@ export default {
 		scoring: {
 			short: "SCORE",
 			title: "Évaluation par Points",
+			error: "doit être compris en range [1, 5]",
 			Vappearance: "Aspect Visuel",
 			Vcolor: "Couleur Visuelle",
 			Ointensity: "Intensité Olfactive",
@@ -260,6 +261,7 @@ export default {
 		loading_details: "Chargement détails...",
 		searchbar: "Recherche vin...",
 		notFound: "Dégustation non trouvée",
+		edit: "MODIFIES",
 		download: "Télécharger dégustation",
 		delete: "Supprimer dégustation",
 		confirm_mex: "Êtes-vous sûr de vouloir supprimer",

@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
+import { useTheme } from "react-native-paper";
 
 type TasteExam = {
 	sweetness: string;
@@ -21,6 +22,7 @@ type Props = {
 };
 
 export default function TasteDetails({ exam }: Props) {
+	const theme = useTheme();
 	const { t } = useTranslation();
 	if (!exam || Object.keys(exam).length === 0) {
 		return <Text>{}</Text>;
@@ -34,11 +36,13 @@ export default function TasteDetails({ exam }: Props) {
 		},
 		label: {
 			flex: 1,
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Bold",
 		},
 		value: {
 			flex: 1,
 			textAlign: "center",
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Regular",
 		},
 		notes: {
@@ -48,14 +52,17 @@ export default function TasteDetails({ exam }: Props) {
 			marginTop: 8,
 			paddingTop: 5,
 			borderTopWidth: 1,
-			borderTopColor: "#000000",
+			borderTopColor: theme.colors.gray,
 		},
 		notesTitle: {
+			marginTop: 10,
 			marginBottom: 4,
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Bold",
 		},
 		notesText: {
 			lineHeight: 20,
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Regular",
 		},
 	});

@@ -1,7 +1,7 @@
 @PORT = 3001
 @HOSTNAME = localhost
-@token = 
-@tid = 
+@token =
+@tid =
 
 ### GET EXAMS BY ID
 

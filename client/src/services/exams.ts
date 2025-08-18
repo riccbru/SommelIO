@@ -1,60 +1,34 @@
 import axiosClient from "./axiosClient";
 
-async function createAllExams(tid: string, data: any) {
+async function createExam(tid: string, data: any, exam: string) {
 	try {
-		console.log("creating all exams");
-	} catch (error: any) {
-		console.error(error);
-		throw new Error(error.response?.data?.message || `Unable to fetch tastings: ${error}`);
-	}
-}
-
-async function createVisual(tid: string, data: any) {
-	try {
-		const response = await axiosClient.post(`/exams/${tid}/visual`, data);
+		if (!["visual", "olfactory", "taste", "final"].includes(exam)) {
+			throw new Error(`Invalid exam type: ${exam}`);
+		}
+		const response = await axiosClient.post(`/exams/${tid}/${exam}`, data);
 		return response;
 	} catch (error: any) {
 		console.error(error);
-		throw new Error(error.response?.data?.message || `Unable to fetch tastings: ${error}`);
+		throw new Error(error.response?.data?.message || `Unable to create exam ${exam}: ${error}`);
 	}
 }
 
-async function createOlfactory(tid: string, data: any) {
+async function updateExam(tid: string, data: any, exam: string) {
 	try {
-		const response = await axiosClient.post(`/exams/${tid}/olfactory`, data);
+		if (!["visual", "olfactory", "taste", "final"].includes(exam)) {
+			throw new Error(`Invalid exam type: ${exam}`);
+		}
+		const response = await axiosClient.put(`/exams/${tid}/${exam}`, data);
 		return response;
 	} catch (error: any) {
 		console.error(error);
-		throw new Error(error.response?.data?.message || `Unable to fetch tastings: ${error}`);
-	}
-}
-
-async function createTaste(tid: string, data: any) {
-	try {
-		const response = await axiosClient.post(`/exams/${tid}/taste`, data);
-		return response;
-	} catch (error: any) {
-		console.error(error);
-		throw new Error(error.response?.data?.message || `Unable to fetch tastings: ${error}`);
-	}
-}
-
-async function createFinal(tid: string, data: any) {
-	try {
-		const response = await axiosClient.post(`/exams/${tid}/final`, data);
-		return response;
-	} catch (error: any) {
-		console.error(error);
-		throw new Error(error.response?.data?.message || `Unable to fetch tastings: ${error}`);
+		throw new Error(error.response?.data?.message || `Unable to update exam ${exam}: ${error}`);
 	}
 }
 
 const ExamsAPI = {
-	createAllExams,
-	createVisual,
-	createOlfactory,
-	createTaste,
-	createFinal,
+	createExam,
+	updateExam,
 };
 
 export default ExamsAPI;

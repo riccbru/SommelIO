@@ -33,7 +33,7 @@ export default function TastingCard({ uuid, name, subtitle, editMode, setEditMod
 		subtitle: {
 			fontSize: 18,
 			marginBottom: 13,
-			color: "#000000",
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Bold",
 		},
 		leftIcon: {
@@ -42,7 +42,6 @@ export default function TastingCard({ uuid, name, subtitle, editMode, setEditMod
 	});
 
 	const handlePress = () => {
-		if (editMode[name]) console.log(`edit ${name}'s ${uuid}`);
 		setEditMode(prev => ({
 			...prev,
 			[name]: !prev[name],
@@ -57,7 +56,7 @@ export default function TastingCard({ uuid, name, subtitle, editMode, setEditMod
 					<Icon
 						size={32}
 						weight={"regular"}
-						color={!editMode[name] ? "#000000" : theme.colors.red}
+						color={!editMode[name] ? theme.colors.text : theme.colors.red}
 					/>
 				</TouchableOpacity>
 			</View>

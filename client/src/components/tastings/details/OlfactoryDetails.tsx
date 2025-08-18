@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
+import { useTheme } from "react-native-paper";
 
 type OlfactoryExam = {
 	intensity: string;
@@ -26,6 +27,7 @@ type Props = {
 };
 
 export default function OlfactoryDetails({ exam }: Props) {
+	const theme = useTheme();
 	const { t } = useTranslation();
 	if (!exam || Object.keys(exam).length === 0) {
 		console.log(exam);
@@ -40,16 +42,19 @@ export default function OlfactoryDetails({ exam }: Props) {
 		},
 		label: {
 			flex: 1,
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Bold",
 		},
 		value: {
 			flex: 1,
 			textAlign: "center",
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Regular",
 		},
 		descriptorsHeader: {
 			marginTop: 10,
 			marginBottom: 5,
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Bold",
 		},
 		descriptorRow: {
@@ -60,11 +65,13 @@ export default function OlfactoryDetails({ exam }: Props) {
 		},
 		descriptorLabel: {
 			flex: 1,
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Bold",
 		},
 		descriptorValue: {
 			flex: 1,
 			textAlign: "center",
+			color: theme.colors.text,
 		},
 		notes: {
 			marginTop: 10,
@@ -73,15 +80,18 @@ export default function OlfactoryDetails({ exam }: Props) {
 			marginTop: 15,
 			paddingTop: 10,
 			borderTopWidth: 1,
-			borderTopColor: "#000000",
+			borderTopColor: theme.colors.gray,
 		},
 		notesTitle: {
+			marginTop: 10,
 			marginBottom: 4,
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Bold",
 		},
 		notesText: {
 			lineHeight: 20,
-			fontFamily: "Epilogue",
+			color: theme.colors.text,
+			fontFamily: "Epilogue-Regular",
 		},
 	});
 

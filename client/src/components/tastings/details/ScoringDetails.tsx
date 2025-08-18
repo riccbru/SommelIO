@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
+import { useTheme } from "react-native-paper";
 
 type ScoringEvaluation = {
 	sid: string;
@@ -23,6 +24,7 @@ type Props = {
 };
 
 export default function ScoringDetails({ scoring }: Props) {
+	const theme = useTheme();
 	const { t } = useTranslation();
 	if (!scoring || Object.keys(scoring).length === 0) {
 		return <Text>{}</Text>;
@@ -36,31 +38,38 @@ export default function ScoringDetails({ scoring }: Props) {
 		},
 		label: {
 			flex: 2,
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Bold",
 		},
 		value: {
 			flex: 1,
 			textAlign: "center",
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Regular",
 		},
 		notesRow: {
 			marginTop: 8,
 			paddingTop: 5,
 			borderTopWidth: 1,
-			borderTopColor: "#000000",
+			borderTopColor: theme.colors.gray,
 		},
 		totalText: {
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Bold",
 		},
 		notes: {
 			marginTop: 10,
+			color: theme.colors.text,
 		},
 		notesTitle: {
+			marginTop: 10,
 			marginBottom: 4,
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Bold",
 		},
 		notesText: {
 			lineHeight: 20,
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Regular",
 		},
 	});

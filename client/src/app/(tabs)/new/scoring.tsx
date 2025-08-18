@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { isRightRange } from "@/src/utils/utils";
 import ScoringsAPI from "@/src/services/scorings";
 import { Card, useTheme } from "react-native-paper";
@@ -7,24 +8,7 @@ import FormScore from "@/src/components/new/FormScore";
 import ExitButton from "@/src/components/new/ExitButton";
 import NextButton from "@/src/components/new/NextButton";
 import CancelButton from "@/src/components/new/CancelButton";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View, Text } from "react-native";
-import { useTranslation } from "react-i18next";
-
-type ScoringEvaluation = {
-	visual_appearance: number;
-	visual_color: number;
-	olfactory_intensity: number;
-	olfactory_complexity: number;
-	olfactory_quality: number;
-	taste_structure: number;
-	taste_balance: number;
-	taste_intensity: number;
-	taste_persistence: number;
-	taste_quality: number;
-	harmony: number;
-	notes: string;
-	total_score: number;
-};
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 
 const defaultFormData = {
 	visual_appearance: 0,
@@ -88,7 +72,21 @@ export default function Scoring() {
 		},
 	});
 
-	const updateFormData = (field: keyof ScoringEvaluation, value: string) => {
+	const scoreFields: { key: keyof typeof defaultFormData; label: string }[] = [
+		{ key: "visual_appearance", label: t("new.scoring.Vappearance") },
+		{ key: "visual_color", label: t("new.scoring.Vcolor") },
+		{ key: "olfactory_intensity", label: t("new.scoring.Ointensity") },
+		{ key: "olfactory_complexity", label: t("new.scoring.Ocomplexity") },
+		{ key: "olfactory_quality", label: t("new.scoring.Oquality") },
+		{ key: "taste_structure", label: t("new.scoring.Tstructure") },
+		{ key: "taste_balance", label: t("new.scoring.Tbalance") },
+		{ key: "taste_intensity", label: t("new.scoring.Tintensity") },
+		{ key: "taste_persistence", label: t("new.scoring.Tpersistence") },
+		{ key: "taste_quality", label: t("new.scoring.Tquality") },
+		{ key: "harmony", label: t("new.harmony") },
+	];
+
+	const updateFormData = (field: keyof typeof formData, value: string) => {
 		setFormData(prev => ({ ...prev, [field]: value }));
 		if (errors[field]) {
 			setErrors(prev => {
@@ -102,42 +100,14 @@ export default function Scoring() {
 	const validateForm = (): boolean => {
 		const MIN = 1;
 		const MAX = 5;
-		const errMex = "must be in range [1, 5]";
+		const errMsg = t("new.scoring.error");
 		const newErrors: Record<string, string> = {};
 
-		if (!isRightRange(formData.visual_appearance, MIN, MAX)) {
-			newErrors.visual_appearance = `Visual Appearance ${errMex}`;
-		}
-		if (!isRightRange(formData.visual_color, MIN, MAX)) {
-			newErrors.visual_color = `Visual Color ${errMex}`;
-		}
-		if (!isRightRange(formData.olfactory_intensity, MIN, MAX)) {
-			newErrors.olfactory_intensity = `Olfactory Intensity ${errMex}`;
-		}
-		if (!isRightRange(formData.olfactory_complexity, MIN, MAX)) {
-			newErrors.olfactory_complexity = `Olfactory Complexity ${errMex}`;
-		}
-		if (!isRightRange(formData.olfactory_quality, MIN, MAX)) {
-			newErrors.olfactory_quality = `Olfactory Quality ${errMex}`;
-		}
-		if (!isRightRange(formData.taste_structure, MIN, MAX)) {
-			newErrors.taste_structure = `Taste Structure ${errMex}`;
-		}
-		if (!isRightRange(formData.taste_balance, MIN, MAX)) {
-			newErrors.taste_balance = `Taste Balance ${errMex}`;
-		}
-		if (!isRightRange(formData.taste_intensity, MIN, MAX)) {
-			newErrors.taste_intensity = `Taste Intensity ${errMex}`;
-		}
-		if (!isRightRange(formData.taste_persistence, MIN, MAX)) {
-			newErrors.taste_persistence = `Taste Persistence ${errMex}`;
-		}
-		if (!isRightRange(formData.taste_quality, MIN, MAX)) {
-			newErrors.taste_quality = `Taste Quality ${errMex}`;
-		}
-		if (!isRightRange(formData.harmony, MIN, MAX)) {
-			newErrors.harmony = `Harmony ${errMex}`;
-		}
+		scoreFields.forEach(({ key, label }) => {
+			if (!isRightRange(formData[key] as number, MIN, MAX)) {
+				newErrors[key] = `${label} ${errMsg}`;
+			}
+		});
 
 		setErrors(newErrors);
 		return Object.keys(newErrors).length === 0;
@@ -162,72 +132,16 @@ export default function Scoring() {
 								/>
 							</View>
 
-							<FormScore
-								label={t("new.scoring.Vappearance")}
-								value={formData.visual_appearance}
-								error={errors.visual_appearance}
-								onChange={v => updateFormData("visual_appearance", v)}
-							/>
-							<FormScore
-								label={t("new.scoring.Vcolor")}
-								value={formData.visual_color}
-								error={errors.visual_color}
-								onChange={v => updateFormData("visual_color", v)}
-							/>
-							<FormScore
-								label={t("new.scoring.Ointensity")}
-								value={formData.olfactory_intensity}
-								error={errors.olfactory_intensity}
-								onChange={v => updateFormData("olfactory_intensity", v)}
-							/>
-							<FormScore
-								label={t("new.scoring.Ocomplexity")}
-								value={formData.olfactory_complexity}
-								error={errors.olfactory_complexity}
-								onChange={v => updateFormData("olfactory_complexity", v)}
-							/>
-							<FormScore
-								label={t("new.scoring.Oquality")}
-								value={formData.olfactory_quality}
-								error={errors.olfactory_quality}
-								onChange={v => updateFormData("olfactory_quality", v)}
-							/>
-							<FormScore
-								label={t("new.scoring.Tstructure")}
-								value={formData.taste_structure}
-								error={errors.taste_structure}
-								onChange={v => updateFormData("taste_structure", v)}
-							/>
-							<FormScore
-								label={t("new.scoring.Tbalance")}
-								value={formData.taste_balance}
-								error={errors.taste_balance}
-								onChange={v => updateFormData("taste_balance", v)}
-							/>
-							<FormScore
-								label={t("new.scoring.Tintensity")}
-								value={formData.taste_intensity}
-								error={errors.taste_intensity}
-								onChange={v => updateFormData("taste_intensity", v)}
-							/>
-							<FormScore
-								label={t("new.scoring.Tpersistence")}
-								value={formData.taste_persistence}
-								error={errors.taste_persistence}
-								onChange={v => updateFormData("taste_persistence", v)}
-							/>
-							<FormScore
-								label={t("new.scoring.Tquality")}
-								value={formData.taste_quality}
-								error={errors.taste_quality}
-								onChange={v => updateFormData("taste_quality", v)}
-							/>
-							<FormScore
-								label={t("new.harmony")}
-								value={formData.harmony}
-								error={errors.harmony}
-								onChange={v => updateFormData("harmony", v)}
-							/>
+							{scoreFields.map(({ key, label }) => (
+								<FormScore
+									key={key}
+									label={label}
+									value={formData[key]}
+									error={errors[key]}
+									onChange={v => updateFormData(key, v)}
+								/>
+							))}
+
 							<FormInput
 								label={t("new.notes")}
 								field='notes'
@@ -237,6 +151,7 @@ export default function Scoring() {
 							/>
 						</Card.Content>
 					</Card>
+
 					<View style={styles.buttonContainer}>
 						<ExitButton
 							setErrors={setErrors}

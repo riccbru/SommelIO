@@ -104,7 +104,7 @@ export default {
 			fragrant: "Fragrant",
 			spicy: "Spicy",
 			toasted: "Toasted",
-			ethereal: "ethereal",
+			ethereal: "Ethereal",
 			values: {
 				intensity: {
 					lacking: "lacking",
@@ -138,7 +138,7 @@ export default {
 			acidity: "Acidity",
 			tannicity: "Tannicity",
 			saltiness: "Saltiness",
-			balance: "balance",
+			balance: "Balance",
 			persistence: "Persistence",
 			structure: "Structure or Body",
 			values: {
@@ -242,6 +242,7 @@ export default {
 		scoring: {
 			short: "SCORING",
 			title: "Scoring Evaluation",
+			error: "must be in range [1, 5]",
 			Vappearance: "Visual Appearance",
 			Vcolor: "Visual Color",
 			Ointensity: "Olfactory Intensity",
@@ -260,6 +261,7 @@ export default {
 		loading_details: "Loading details...",
 		searchbar: "Search wine...",
 		notFound: "Tasting not found",
+		edit: "EDIT",
 		download: "Download tasting",
 		delete: "Delete tasting",
 		confirm_mex: "Are you sure you want to delete",

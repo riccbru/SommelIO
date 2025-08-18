@@ -99,7 +99,6 @@ export default function Visual() {
 		red: ["purple_red", "ruby_red", "garnet", "orange_red"],
 		rosé: ["soft_rosé", "cherry_red", "dark_rosé"],
 	};
-
 	const limpidityOptions = ["veiled", "quite_limpid", "limpid", "crystal_clear", "brilliant"];
 	const consistencyOptions = [
 		"flowing",
