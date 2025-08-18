@@ -52,6 +52,7 @@ type Props = {
 
 export default function OlfactoryUpdate({ tid, exam, setRefresh, setEditMode }: Props) {
 	const { t } = useTranslation();
+	const i18nextPath = "new.olfactory.values";
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<OlfactoryExamBody>({
 		intensity: exam.intensity,
@@ -147,6 +148,7 @@ export default function OlfactoryUpdate({ tid, exam, setRefresh, setEditMode }: 
 				error={errors.intensity}
 				onChange={updateFormData}
 				options={intensityOptions}
+				i18nPath={`${i18nextPath}.intensity`}
 			/>
 
 			<FormSelect
@@ -156,6 +158,7 @@ export default function OlfactoryUpdate({ tid, exam, setRefresh, setEditMode }: 
 				error={errors.complexity}
 				onChange={updateFormData}
 				options={complexityOptions}
+				i18nPath={`${i18nextPath}.complexity`}
 			/>
 
 			<FormSelect
@@ -165,6 +168,7 @@ export default function OlfactoryUpdate({ tid, exam, setRefresh, setEditMode }: 
 				error={errors.quality}
 				onChange={updateFormData}
 				options={qualityOptions}
+				i18nPath={`${i18nextPath}.quality`}
 			/>
 
 			{descriptors.map((el, index) => (

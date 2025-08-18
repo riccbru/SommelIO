@@ -3,6 +3,7 @@ import { CaretDownIcon, CaretUpIcon } from "phosphor-react-native";
 import { HelperText, Text, Card, useTheme } from "react-native-paper";
 import { View, TouchableOpacity, Modal, FlatList, StyleSheet } from "react-native";
 import { formatOption } from "@/src/utils/utils";
+import { useTranslation } from "react-i18next";
 
 type Props<T> = {
 	label: string;
@@ -11,10 +12,20 @@ type Props<T> = {
 	error?: string;
 	options: string[];
 	onChange: (field: keyof T, value: string) => void;
+	i18nPath?: string;
 };
 
-export default function FormSelect<T>({ label, field, value, error, options, onChange }: Props<T>) {
+export default function FormSelect<T>({
+	label,
+	field,
+	value,
+	error,
+	options,
+	onChange,
+	i18nPath,
+}: Props<T>) {
 	const theme = useTheme();
+	const { t } = useTranslation();
 	const [isOpen, setIsOpen] = useState(false);
 	const [isFocused, setIsFocused] = useState(false);
 
@@ -120,7 +131,8 @@ export default function FormSelect<T>({ label, field, value, error, options, onC
 				{/* Selected Value */}
 				{hasValue && (
 					<Text style={[styles.selectedText, { color: theme.colors.text }]}>
-						{formatOption(value)}
+						{/* {formatOption(value)} */}
+						{formatOption(t(`${i18nPath}.${value}`))}
 					</Text>
 				)}
 
@@ -177,7 +189,7 @@ export default function FormSelect<T>({ label, field, value, error, options, onC
 												{ color: value === item ? "#000000" : theme.colors.text },
 											]}
 										>
-											{formatOption(item)}
+											{formatOption(t(`${i18nPath}.${item}`))}
 										</Text>
 									</TouchableOpacity>
 								)}

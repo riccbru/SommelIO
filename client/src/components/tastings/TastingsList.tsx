@@ -6,6 +6,31 @@ import { capitalizeFirst, formatDescription } from "@/src/utils/utils";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { FileMagnifyingGlassIcon, FileTextIcon } from "phosphor-react-native";
 
+type Tasting = {
+	tid: string;
+	uid: string;
+	full_name: string;
+	wine_category_name: string;
+	sample_number: string;
+	wine_denomination: string;
+	favorite: boolean;
+	winemaker: string;
+	alcohol_content: string;
+	vintage: string;
+	wine_temperature: string;
+	ambient_temperature: string;
+	tasting_date: string;
+	tasting_time: string;
+	tasting_location: string;
+	created_at: string;
+	updated_at: string;
+	visual_exam: Record<string, any>;
+	olfactory_exam: Record<string, any>;
+	taste_olfactory_exam: Record<string, any>;
+	final_considerations: Record<string, any>;
+	scoring_evaluation: Record<string, any>;
+};
+
 type Props = {
 	searchQuery: string;
 	tastings: Tasting[];
@@ -25,7 +50,7 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
 		iconContainer: {
 			width: 50,
 			height: 50,
-			marginLeft: 5,
+			marginLeft: 15,
 			borderRadius: 5,
 			alignItems: "center",
 			justifyContent: "center",
@@ -39,8 +64,8 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
 			fontFamily: "Epilogue-Regular",
 		},
 		accordionBody: {
-			marginLeft: 20,
-			marginRight: 35,
+			marginLeft: 16,
+			marginRight: 75,
 			backgroundColor: theme.colors.background,
 		},
 		accordionRow: {

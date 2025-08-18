@@ -27,6 +27,7 @@ type Props = {
 
 export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEditMode }: Props) {
 	const { t } = useTranslation();
+	const i18nextPath = "new.visual.values";
 	const [formData, setFormData] = useState<VisualExam>(exam);
 	const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -132,6 +133,7 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 				error={errors.limpidity}
 				onChange={updateFormData}
 				options={limpidityOptions}
+				i18nPath={`${i18nextPath}.limpidity`}
 			/>
 
 			<FormSelect
@@ -144,6 +146,7 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 					updateFormData("color_shade", "");
 				}}
 				options={colorFamilyOptions}
+				i18nPath={`${i18nextPath}.color`}
 			/>
 
 			<FormSelect
@@ -153,6 +156,7 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 				error={errors.color_shade}
 				onChange={updateFormData}
 				options={colorShadesOptions[formData.color_family]}
+				i18nPath={`${i18nextPath}.shade`}
 			/>
 
 			<FormSelect
@@ -162,6 +166,7 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 				error={errors.consistency}
 				onChange={updateFormData}
 				options={consistencyOptions}
+				i18nPath={`${i18nextPath}.consistency`}
 			/>
 
 			{sparkling ? (
@@ -172,6 +177,7 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 					error={errors.bubble_size}
 					onChange={updateFormData}
 					options={bubblesizeOptions}
+					i18nPath={`${i18nextPath}.bubble_size`}
 				/>
 			) : (
 				<></>
@@ -185,6 +191,7 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 					error={errors.bubble_number}
 					onChange={updateFormData}
 					options={bubbleNumberOptions}
+					i18nPath={`${i18nextPath}.bubble_number`}
 				/>
 			) : (
 				<></>
@@ -198,6 +205,7 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 					error={errors.bubble_persistence}
 					onChange={updateFormData}
 					options={bubblePersistenceOptions}
+					i18nPath={`${i18nextPath}.bubble_persistence`}
 				/>
 			) : (
 				<></>

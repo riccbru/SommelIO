@@ -29,6 +29,15 @@ export default {
 			date: "Data",
 			time: "Ora",
 			location: "Luogo",
+			values: {
+				category: {
+					white: "bianco",
+					red: "rosso",
+					rosé: "rosato",
+					sparkling: "frizzante",
+					fortified: "fortificato",
+				},
+			},
 		},
 		visual: {
 			short: "VISIVO",

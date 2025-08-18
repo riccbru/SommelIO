@@ -30,6 +30,7 @@ type Props = {
 
 export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Props) {
 	const { t } = useTranslation();
+	const i18nextPath = "new.taste.values";
 	const [formData, setFormData] = useState<TasteExam>(exam);
 	const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -161,6 +162,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				error={errors.sweetness}
 				onChange={updateFormData}
 				options={sweetnessOptions}
+				i18nPath={`${i18nextPath}.sweetness`}
 			/>
 
 			<FormSelect
@@ -170,6 +172,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				error={errors.alcohols}
 				onChange={updateFormData}
 				options={alcoholsOptions}
+				i18nPath={`${i18nextPath}.alcohols`}
 			/>
 
 			<FormSelect
@@ -179,6 +182,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				error={errors.softness}
 				onChange={updateFormData}
 				options={softnessOptions}
+				i18nPath={`${i18nextPath}.softness`}
 			/>
 
 			<FormSelect
@@ -188,6 +192,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				error={errors.acidity}
 				onChange={updateFormData}
 				options={acidityOptions}
+				i18nPath={`${i18nextPath}.acidity`}
 			/>
 
 			<FormSelect
@@ -197,6 +202,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				error={errors.tannicity}
 				onChange={updateFormData}
 				options={tannicityOptions}
+				i18nPath={`${i18nextPath}.tannicity`}
 			/>
 
 			<FormSelect
@@ -206,6 +212,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				error={errors.saltiness}
 				onChange={updateFormData}
 				options={saltinessOptions}
+				i18nPath={`${i18nextPath}.saltiness`}
 			/>
 
 			<FormSelect
@@ -215,6 +222,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				error={errors.balance}
 				onChange={updateFormData}
 				options={balanceOptions}
+				i18nPath={`${i18nextPath}.balance`}
 			/>
 
 			<FormSelect
@@ -224,6 +232,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				error={errors.intensity}
 				onChange={updateFormData}
 				options={intensityOptions}
+				i18nPath={`${i18nextPath}.intensity`}
 			/>
 
 			<FormSelect
@@ -233,6 +242,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				error={errors.persistence}
 				onChange={updateFormData}
 				options={persistenceOptions}
+				i18nPath={`${i18nextPath}.persistence`}
 			/>
 
 			<FormSelect
@@ -242,6 +252,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				error={errors.quality}
 				onChange={updateFormData}
 				options={qualityOptions}
+				i18nPath={`${i18nextPath}.quality`}
 			/>
 
 			<FormSelect
@@ -251,6 +262,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				error={errors.structure}
 				onChange={updateFormData}
 				options={structureOptions}
+				i18nPath={`${i18nextPath}.structure`}
 			/>
 
 			<FormInput

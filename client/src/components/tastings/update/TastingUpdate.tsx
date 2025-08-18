@@ -155,6 +155,7 @@ export default function TastingUpdate({ tasting, setEditMode, setRefresh }: Prop
 				error={errors.wine_category_name}
 				onChange={updateFormData}
 				options={allowedCategories}
+				i18nPath='new.tasting.values.category'
 			/>
 
 			<FormSwitch

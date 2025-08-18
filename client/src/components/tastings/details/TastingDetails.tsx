@@ -47,7 +47,10 @@ export default function TastingDetails({ tasting }: Props) {
 	const tastingFields = [
 		{ label: t("new.tasting.denomination"), value: tasting.wine_denomination },
 		{ label: t("new.tasting.winemaker"), value: tasting.winemaker },
-		{ label: t("new.tasting.category"), value: tasting.wine_category_name.toUpperCase() },
+		{
+			label: t("new.tasting.category"),
+			value: t(`new.tasting.values.category.${tasting.wine_category_name}`).toUpperCase(),
+		},
 		{ label: t("new.tasting.sample"), value: tasting.sample_number ?? "-" },
 		{ label: t("new.tasting.alcohol"), value: tasting.alcohol_content },
 		{ label: t("new.tasting.vintage"), value: tasting.vintage },

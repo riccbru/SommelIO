@@ -71,13 +71,12 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 					<Icon
 						size={32}
 						weight='bold'
-						style={{ marginRight: 10, marginBottom: 20 }}
+						style={{ marginRight: 10 }}
 						color={theme.dark ? "#ffffff" : "#000000"}
 					/>
 					<Text
 						style={{
 							fontSize: 20,
-							marginBottom: 20,
 							color: theme.colors.text,
 							fontFamily: "Epilogue-Regular",
 						}}

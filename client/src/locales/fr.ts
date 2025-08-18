@@ -29,6 +29,15 @@ export default {
 			date: "Date",
 			time: "Heure",
 			location: "Lieu",
+			values: {
+				category: {
+					white: "blanc",
+					red: "rouge",
+					rosé: "rosé",
+					sparkling: "mousseux",
+					fortified: "liquoreux",
+				},
+			},
 		},
 		visual: {
 			short: "VISUEL",

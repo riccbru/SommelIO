@@ -80,13 +80,11 @@ export default function Profile() {
 		},
 		profileCard: {
 			elevation: 4,
-			shadowRadius: 8,
+			borderWidth: 2,
 			marginBottom: 20,
 			borderRadius: 16,
 			shadowOpacity: 0.1,
-			shadowColor: theme.colors.primary,
-			backgroundColor: theme.colors.pearl,
-			shadowOffset: { width: 0, height: 4 },
+			borderColor: theme.colors.text,
 		},
 		profileHeader: {
 			paddingVertical: 24,
@@ -103,15 +101,15 @@ export default function Profile() {
 		userName: {
 			fontSize: 28,
 			marginBottom: 8,
-			color: "#000000",
 			textAlign: "center",
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Bold",
 		},
 		userEmail: {
 			fontSize: 16,
 			marginBottom: 16,
 			textAlign: "center",
-			color: theme.colors.gray,
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Regular",
 		},
 		statsContainer: {
@@ -132,13 +130,12 @@ export default function Profile() {
 		statLabel: {
 			fontSize: 12,
 			textAlign: "center",
-			color: theme.colors.gray,
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Regular",
 		},
 		infoCard: {
 			borderRadius: 12,
 			marginBottom: 16,
-			backgroundColor: theme.colors.surface,
 		},
 		infoRow: {
 			paddingVertical: 16,
@@ -157,7 +154,7 @@ export default function Profile() {
 			marginBottom: 2,
 			fontWeight: "600",
 			fontFamily: "Epilogue",
-			color: theme.colors.gray,
+			color: theme.colors.text,
 		},
 		infoValue: {
 			flex: 2,
@@ -192,6 +189,7 @@ export default function Profile() {
 		},
 		rowLabel: {
 			fontSize: 16,
+			color: theme.colors.text,
 			fontFamily: "Epilogue-Bold",
 		},
 	});
@@ -234,7 +232,7 @@ export default function Profile() {
 						<></>
 					) : (
 						<View style={{ position: "absolute", marginLeft: 10, marginTop: 5 }}>
-							<DevToLogoIcon size={28} weight='fill' color={"#000000"} />
+							<DevToLogoIcon size={28} weight='fill' color={theme.colors.text} />
 						</View>
 					)}
 					<View style={styles.profileHeader}>
@@ -256,15 +254,22 @@ export default function Profile() {
 						<Text style={styles.userName}>{user?.username}</Text>
 						<Text style={styles.userName}>{user?.full_name}</Text>
 
-						<Divider style={{ width: "80%", marginTop: 16, marginBottom: 16 }} />
+						<Divider
+							style={{
+								width: "80%",
+								marginTop: 16,
+								marginBottom: 16,
+								backgroundColor: theme.colors.text,
+							}}
+						/>
 
 						{/* Stats Section */}
 						<View style={styles.statsContainer}>
 							<StatItem
-								color={"#000000"}
+								color={theme.colors.text}
 								number={stats.totalTastings}
 								label={t("profile.tastings.total").replace(" ", "\n")}
-								icon={<WineIcon size={24} weight='fill' color={"#000000"} />}
+								icon={<WineIcon size={24} weight='fill' color={theme.colors.text} />}
 							/>
 							<StatItem
 								color={theme.colors.amber}

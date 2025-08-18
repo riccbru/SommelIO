@@ -187,13 +187,16 @@ export default function TastingDetail() {
 			}
 		>
 			<View style={{ flexDirection: "column", justifyContent: "flex-start" }}>
+				<View style={{ marginTop: 20 }} />
 				<ActionButton action='download' tid={tasting.tid} />
+				<View style={{ paddingVertical: 5 }} />
 				<ActionButton
 					action='delete'
 					tid={tasting.tid}
 					name={tasting.wine_denomination}
 					winemaker={tasting.winemaker}
 				/>
+				<View style={{ marginBottom: 20 }} />
 			</View>
 
 			<Card style={styles.card}>

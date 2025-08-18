@@ -22,6 +22,7 @@ type Props = {
 
 export default function FinalUpdate({ tid, exam, setRefresh, setEditMode }: Props) {
 	const { t } = useTranslation();
+	const i18nextPath = "new.final.values";
 	const [formData, setFormData] = useState<FinalExam>(exam);
 	const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -73,6 +74,7 @@ export default function FinalUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				error={errors.evolutionary_state}
 				onChange={updateFormData}
 				options={evolutionaryStateOptions}
+				i18nPath={`${i18nextPath}.evolution`}
 			/>
 
 			<FormSelect
@@ -82,6 +84,7 @@ export default function FinalUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				error={errors.harmony}
 				onChange={updateFormData}
 				options={harmonyOptions}
+				i18nPath={`${i18nextPath}.harmony`}
 			/>
 
 			<FormInput
