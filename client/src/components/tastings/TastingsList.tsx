@@ -105,7 +105,7 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
 									</View>
 									<View style={styles.accordionRow}>
 										<Text style={styles.textLabel}>{t("new.tasting.sample")}</Text>
-										<Text style={styles.textValue}>{tasting.sample_number}</Text>
+										<Text style={styles.textValue}>{tasting.sample_number ?? "-"}</Text>
 									</View>
 									<View style={styles.accordionRow}>
 										<Text style={styles.textLabel}>{t("new.tasting.alcohol")}</Text>

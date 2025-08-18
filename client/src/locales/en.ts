@@ -6,6 +6,9 @@ export default {
 		title: "Colleagues",
 	},
 	new: {
+		required: "is required",
+		invalid: "is invalid",
+		number: "must be a number",
 		notes: "Notes",
 		harmony: "Harmony",
 		intensity: "Intensity",

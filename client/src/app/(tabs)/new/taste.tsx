@@ -124,48 +124,70 @@ export default function Taste() {
 	const validateForm = (): boolean => {
 		const newErrors: Record<string, string> = {};
 
-		if (!sweetnessOptions.includes(formData.sweetness)) {
-			newErrors.sweetness = "Invalid sweetness value";
+		if (!formData.sweetness.trim()) {
+			newErrors.sweetness = `${t("new.taste.")} ${t("new.required")}`;
+		} else if (!sweetnessOptions.includes(formData.sweetness)) {
+			newErrors.sweetness = `${t("new.taste.")} ${t("new.invalid")}`;
 		}
 
-		if (!alcoholsOptions.includes(formData.alcohols)) {
-			newErrors.alcohols = "Invalid alcohols value";
+		if (!formData.alcohols.trim()) {
+			newErrors.alcohols = `${t("new.taste.alcohols")} ${t("new.required")}`;
+		} else if (!alcoholsOptions.includes(formData.alcohols)) {
+			newErrors.alcohols = `${t("new.taste.alcohols")} ${t("new.invalid")}`;
 		}
 
-		if (!softnessOptions.includes(formData.softness)) {
-			newErrors.softness = "Invalid softness value";
+		if (!formData.softness.trim()) {
+			newErrors.softness = `${t("new.taste.softness")} ${t("new.required")}`;
+		} else if (!softnessOptions.includes(formData.softness)) {
+			newErrors.softness = `${t("new.taste.softness")} ${t("new.invalid")}`;
 		}
 
-		if (!acidityOptions.includes(formData.acidity)) {
-			newErrors.acidity = "Invalid acidity value";
+		if (!formData.acidity.trim()) {
+			newErrors.acidity = `${t("new.taste.acidity")} ${t("new.required")}`;
+		} else if (!acidityOptions.includes(formData.acidity)) {
+			newErrors.acidity = `${t("new.taste.acidity")} ${t("new.invalid")}`;
 		}
 
-		if (!tannicityOptions.includes(formData.tannicity)) {
-			newErrors.tannicity = "Invalid tannicity value";
+		if (!formData.tannicity.trim()) {
+			newErrors.tannicity = `${t("new.taste.tannicity")} ${t("new.required")}`;
+		} else if (!tannicityOptions.includes(formData.tannicity)) {
+			newErrors.tannicity = `${t("new.taste.tannicity")} ${t("new.invalid")}`;
 		}
 
-		if (!saltinessOptions.includes(formData.saltiness)) {
-			newErrors.saltiness = "Invalid saltiness value";
+		if (!formData.saltiness.trim()) {
+			newErrors.saltiness = `${t("new.taste.saltiness")} ${t("new.required")}`;
+		} else if (!saltinessOptions.includes(formData.saltiness)) {
+			newErrors.saltiness = `${t("new.taste.saltiness")} ${t("new.invalid")}`;
 		}
 
-		if (!balanceOptions.includes(formData.balance)) {
-			newErrors.balance = "Invalid balance value";
+		if (!formData.balance.trim()) {
+			newErrors.balance = `${t("new.taste.balance")} ${t("new.required")}`;
+		} else if (!balanceOptions.includes(formData.balance)) {
+			newErrors.balance = `${t("new.taste.balance")} ${t("new.invalid")}`;
 		}
 
-		if (!intensityOptions.includes(formData.intensity)) {
-			newErrors.intensity = "Invalid intensity value";
+		if (!formData.intensity.trim()) {
+			newErrors.intensity = `${t("new.intensity")} ${t("new.required")}`;
+		} else if (!intensityOptions.includes(formData.intensity)) {
+			newErrors.intensity = `${t("new.intensity")} ${t("new.invalid")}`;
 		}
 
-		if (!persistenceOptions.includes(formData.persistence)) {
-			newErrors.persistence = "Invalid persistence value";
+		if (!formData.persistence.trim()) {
+			newErrors.persistence = `${t("new.taste.persistence")} ${t("new.required")}`;
+		} else if (!persistenceOptions.includes(formData.persistence)) {
+			newErrors.persistence = `${t("new.taste.persistence")} ${t("new.invalid")}`;
 		}
 
-		if (!qualityOptions.includes(formData.quality)) {
-			newErrors.quality = "Invalid quality value";
+		if (!formData.quality.trim()) {
+			newErrors.quality = `${t("new.quality")} ${t("new.required")}`;
+		} else if (!qualityOptions.includes(formData.quality)) {
+			newErrors.quality = `${t("new.quality")} ${t("new.invalid")}`;
 		}
 
-		if (!structureOptions.includes(formData.structure)) {
-			newErrors.structure = "Invalid structure value";
+		if (!formData.structure.trim()) {
+			newErrors.structure = `${t("new.taste.structure")} ${t("new.required")}`;
+		} else if (!structureOptions.includes(formData.structure)) {
+			newErrors.structure = `${t("new.taste.structure")} ${t("new.invalid")}`;
 		}
 
 		// Notes is optional — no validation

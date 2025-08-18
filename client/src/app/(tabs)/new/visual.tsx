@@ -116,48 +116,48 @@ export default function Visual() {
 		const newErrors: Record<string, string> = {};
 
 		if (!formData.limpidity.trim()) {
-			newErrors.limpidity = "Limpidity is required";
+			newErrors.limpidity = `${t("new.visual.limpidity")} ${t("new.required")}`;
 		} else if (!limpidityOptions.includes(formData.limpidity)) {
-			newErrors.limpidity = "Invalid limpidity value";
+			newErrors.limpidity = `${t("new.visual.limpidity")} ${t("new.invalid")}`;
 		}
 
 		if (!formData.color_family.trim()) {
-			newErrors.color_family = "Color family is required";
+			newErrors.color_family = `${t("new.visual.color")} ${t("new.required")}`;
 		} else if (!colorFamilyOptions.includes(formData.color_family)) {
-			newErrors.color_family = "Invalid color family";
+			newErrors.color_family = `${t("new.visual.color")} ${t("new.invalid")}`;
 		}
 
 		if (!formData.color_shade.trim()) {
-			newErrors.color_shade = "Color shade is required";
+			newErrors.color_shade = `${t("new.visual.shade")} ${t("new.required")}`;
 		}
 		const validShades = colorShadesOptions[formData.color_family] || [];
 		if (!validShades.includes(formData.color_shade)) {
-			newErrors.color_shade = `Invalid shade for color family ${formData.color_family}`;
+			newErrors.color_shade = `${t("new.visual.shade")} ${t("new.invalid")}`;
 		}
 
 		if (!formData.consistency.trim()) {
-			newErrors.consistency = "Consistency is required";
+			newErrors.consistency = `${t("new.visual.consistency")} ${t("new.required")}`;
 		} else if (!consistencyOptions.includes(formData.consistency)) {
-			newErrors.consistency = "Invalid consistency value";
+			newErrors.consistency = `${t("new.visual.consistency")} ${t("new.invalid")}`;
 		}
 
 		if (category === "sparkling") {
 			if (!formData.bubble_size.trim()) {
-				newErrors.bubble_size = "Bubble size is required";
+				newErrors.bubble_size = `${t("new.visual.bubble_size")} ${t("new.required")}`;
 			} else if (!bubblesizeOptions.includes(formData.bubble_size)) {
-				newErrors.bubble_size = "Invalid bubble size value";
+				newErrors.bubble_size = `${t("new.visual.bubble_size")} ${t("new.invalid")}`;
 			}
 
 			if (!formData.bubble_number.trim()) {
-				newErrors.bubble_number = "Bubble number is required";
+				newErrors.bubble_number = `${t("new.visual.bubble_number")} ${t("new.required")}`;
 			} else if (!bubbleNumberOptions.includes(formData.bubble_number)) {
-				newErrors.bubble_number = "Invalid bubble number value";
+				newErrors.bubble_number = `${t("new.visual.bubble_number")} ${t("new.invalid")}`;
 			}
 
 			if (!formData.bubble_persistence.trim()) {
-				newErrors.bubble_persistence = "Bubble persistence is required";
+				newErrors.bubble_persistence = `${t("new.visual.bubble_persistence")} ${t("new.required")}`;
 			} else if (!bubblePersistenceOptions.includes(formData.bubble_persistence)) {
-				newErrors.bubble_persistence = "Invalid bubble persistence value";
+				newErrors.bubble_persistence = `${t("new.visual.bubble_persistence")} ${t("new.invalid")}`;
 			}
 		}
 

@@ -127,24 +127,22 @@ export default function Olfactory() {
 	const validateForm = (): boolean => {
 		const newErrors: Record<string, string> = {};
 
-		if (!intensityOptions.includes(formData.intensity)) {
-			newErrors.intensity = "Invalid intensity value";
+		if (!formData.intensity.trim()) {
+			newErrors.intensity = `${t("new.intensity")} ${t("new.required")}`;
+		} else if (!intensityOptions.includes(formData.intensity)) {
+			newErrors.intensity = `${t("new.intensity")} ${t("new.invalid")}`;
 		}
 
-		if (!complexityOptions.includes(formData.complexity)) {
-			newErrors.complexity = "Invalid complexity value";
+		if (!formData.complexity.trim()) {
+			newErrors.complexity = `${t("new.olfactory.complexity")} ${t("new.required")}`;
+		} else if (!complexityOptions.includes(formData.complexity)) {
+			newErrors.complexity = `${t("new.olfactory.complexity")} ${t("new.invalid")}`;
 		}
 
-		if (!qualityOptions.includes(formData.quality)) {
-			newErrors.quality = "Invalid quality value";
-		}
-
-		const hasAtLeastOneDescriptor = descriptors.some(
-			key => formData[key as keyof OlfactoryExam] === true
-		);
-
-		if (!hasAtLeastOneDescriptor) {
-			newErrors.descriptors = "At least one descriptor must be selected";
+		if (!formData.quality.trim()) {
+			newErrors.quality = `${t("new.quality")} ${t("new.required")}`;
+		} else if (!qualityOptions.includes(formData.quality)) {
+			newErrors.quality = `${t("new.quality")} ${t("new.invalid")}`;
 		}
 
 		setErrors(newErrors);

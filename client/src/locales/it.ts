@@ -6,6 +6,9 @@ export default {
 		title: "Colleghi",
 	},
 	new: {
+		required: "è obbligatorio",
+		invalid: "non è valido",
+		number: "deve essere un numero",
 		notes: "Annotazioni",
 		harmony: "Armonia",
 		intensity: "Intensità",

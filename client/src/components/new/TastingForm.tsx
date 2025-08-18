@@ -169,59 +169,59 @@ export default function TastingForm({
 		const newErrors: Record<string, string> = {};
 
 		if (!formData.wine_denomination.trim()) {
-			newErrors.wine_denomination = "Wine denomination is required";
+			newErrors.wine_denomination = `${t("new.tasting.denomination")} ${t("new.required")}`;
 		}
 
 		if (!formData.winemaker.trim()) {
-			newErrors.winemaker = "Winemaker is required";
+			newErrors.winemaker = `${t("new.tasting.winemaker")} ${t("new.required")}`;
 		}
 
 		if (!formData.wine_category_name.trim()) {
-			newErrors.wine_category_name = "Wine category is required";
+			newErrors.wine_category_name = `${t("new.tasting.category")} ${t("new.required")}`;
 		} else if (!allowedCategories.includes(formData.wine_category_name.toLowerCase())) {
-			newErrors.wine_category_name = "Wine category must be white/red/rosé/sparkling/fortified";
+			newErrors.wine_category_name = `${t("new.tasting.")} ${t("new.invalid")}`;
 		}
 
 		if (!formData.vintage.trim()) {
-			newErrors.vintage = "Vintage is required";
+			newErrors.vintage = `${t("new.tasting.vintage")} ${t("new.required")}`;
 		} else if (!/^\d{4}$/.test(formData.vintage.trim())) {
-			newErrors.vintage = "Vintage year must be 4 digits (YYYY)";
+			newErrors.vintage = `${t("new.tasting.vintage")} must be 4 digits (YYYY)`;
 		} else if (parseInt(formData.vintage, 10) < 1000 || parseInt(formData.vintage, 10) > 2025) {
-			newErrors.vintage = "Vintage year must be in a reasonable range";
+			newErrors.vintage = `Vintage year must be in a reasonable range`;
 		}
 
 		if (!formData.alcohol_content.trim()) {
-			newErrors.alcohol_content = "Alcohol content is required";
+			newErrors.alcohol_content = `${t("new.tasting.alcohol")} ${t("new.required")}`;
 		} else if (isNaN(parseFloat(formData.alcohol_content))) {
-			newErrors.alcohol_content = "Alcohol content must be a number";
+			newErrors.alcohol_content = `${t("new.tasting.alcohol")} ${t("new.number")}`;
 		}
 
 		if (!formData.wine_temperature.trim()) {
-			newErrors.wine_temperature = "Wine temperature is required";
+			newErrors.wine_temperature = `${t("new.tasting.wine_temperature")} ${t("new.required")}`;
 		} else if (isNaN(parseFloat(formData.wine_temperature))) {
-			newErrors.wine_temperature = "Wine temperature must be a number";
+			newErrors.wine_temperature = `${t("new.tasting.wine_temperature")} ${t("new.number")}`;
 		}
 
 		if (!formData.ambient_temperature.trim()) {
-			newErrors.ambient_temperature = "Ambient temperature is required";
+			newErrors.ambient_temperature = `${t("new.tasting.ambient_temperature")} ${t("new.required")}`;
 		} else if (isNaN(parseFloat(formData.ambient_temperature))) {
-			newErrors.ambient_temperature = "Ambient temperature must be a number";
+			newErrors.ambient_temperature = `${t("new.tasting.ambient_temperature")} ${t("new.number")}`;
 		}
 
 		if (!formData.tasting_date || !formData.tasting_date.trim()) {
-			newErrors.tasting_date = "Tasting date is required";
+			newErrors.tasting_date = `${t("new.tasting.date")} ${t("new.required")}`;
 		} else if (isNaN(Date.parse(formData.tasting_date))) {
-			newErrors.tasting_date = "Tasting date is invalid";
+			newErrors.tasting_date = `${t("new.tasting.")} ${t("new.invalid")}`;
 		}
 
 		if (!formData.tasting_time || !formData.tasting_time.trim()) {
-			newErrors.tasting_time = "Tasting time is required";
+			newErrors.tasting_time = `${t("new.tasting.time")} ${t("new.required")}`;
 		} else if (!/^([01]\d|2[0-3]):([0-5]\d)$/.test(formData.tasting_time)) {
-			newErrors.tasting_time = "Tasting time is invalid";
+			newErrors.tasting_time = `${t("new.tasting.")} ${t("new.invalid")}`;
 		}
 
 		if (!formData.tasting_location.trim()) {
-			newErrors.tasting_location = "Tasting location is required";
+			newErrors.tasting_location = `${t("new.tasting.location")} ${t("new.required")}`;
 		}
 
 		setErrors(newErrors);
