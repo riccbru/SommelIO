@@ -285,7 +285,7 @@ export default {
 		lang: "Language",
 		info: "Information",
 		secpriv: "Security & Privacy",
-		contactus: "Contact Us",
+		contactus: "Contact us",
 		tastings: {
 			total: "Total",
 			favorite: "Favorite",

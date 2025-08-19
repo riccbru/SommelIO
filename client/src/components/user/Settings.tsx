@@ -95,18 +95,6 @@ export default function Settings() {
 				</View>
 			</View>
 
-			{/* Information */}
-			<TouchableOpacity activeOpacity={0.7} onPress={() => console.log("clicked Information")}>
-				<View style={styles.row}>
-					<View style={{ alignItems: "center", flexDirection: "row" }}>
-						<InfoIcon size={28} weight='bold' color={theme.colors.primary} />
-						<View style={{ marginLeft: 5, marginRight: 5 }} />
-						<Text style={styles.rowLabel}>{t("profile.info")}</Text>
-					</View>
-					<ArrowUpRightIcon size={24} weight='bold' color={theme.colors.primary} />
-				</View>
-			</TouchableOpacity>
-
 			{/* Security & Privacy */}
 			<TouchableOpacity
 				activeOpacity={0.7}
@@ -117,6 +105,18 @@ export default function Settings() {
 						<LockKeyIcon size={28} weight='bold' color={theme.colors.primary} />
 						<View style={{ marginLeft: 5, marginRight: 5 }} />
 						<Text style={styles.rowLabel}>{t("profile.secpriv")}</Text>
+					</View>
+					<ArrowUpRightIcon size={24} weight='bold' color={theme.colors.primary} />
+				</View>
+			</TouchableOpacity>
+
+			{/* Information */}
+			<TouchableOpacity activeOpacity={0.7} onPress={() => console.log("clicked Information")}>
+				<View style={styles.row}>
+					<View style={{ alignItems: "center", flexDirection: "row" }}>
+						<InfoIcon size={28} weight='bold' color={theme.colors.primary} />
+						<View style={{ marginLeft: 5, marginRight: 5 }} />
+						<Text style={styles.rowLabel}>{t("profile.info")}</Text>
 					</View>
 					<ArrowUpRightIcon size={24} weight='bold' color={theme.colors.primary} />
 				</View>

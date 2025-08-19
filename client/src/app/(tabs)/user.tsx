@@ -1,24 +1,14 @@
 import UserAPI from "@/src/services/user";
 import { useAuth } from "@/src/hooks/useAuth";
 import { useTheme } from "@/src/hooks/useTheme";
-import { getInitials } from "@/src/utils/utils";
-import Stats from "@/src/components/profile/Stats";
 import { useNavigation, useRouter } from "expo-router";
-import { Avatar, Card, Divider } from "react-native-paper";
+import UserProfile from "@/src/components/user/UserProfile";
+import { GearIcon, SignOutIcon } from "phosphor-react-native";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import SettingsBottomSheet from "@/src/components/user/SettingsBottomSheet";
 import { BottomSheetMethods } from "@gorhom/bottom-sheet/lib/typescript/types";
-import SettingsBottomSheet from "@/src/components/profile/SettingsBottomSheet";
-import {
-	Animated,
-	RefreshControl,
-	ScrollView,
-	StyleSheet,
-	Text,
-	TouchableOpacity,
-	View,
-} from "react-native";
-import { DevToLogoIcon, GearIcon, SignOutIcon } from "phosphor-react-native";
+import { Animated, RefreshControl, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 
 type UserStats = {
 	totalTastings: number;
@@ -152,40 +142,8 @@ export default function Profile() {
 				}
 			>
 				<Animated.View style={{ opacity: fadeAnim }}>
-					{/* Profile Header Card */}
-					<Card style={styles.profileCard}>
-						{!user?.admin ? null : (
-							<View style={{ position: "absolute", marginLeft: 10, marginTop: 5 }}>
-								<DevToLogoIcon size={28} weight='fill' color={theme.colors.primary} />
-							</View>
-						)}
-
-						<View style={styles.profileHeader}>
-							<View style={styles.avatarContainer}>
-								<Avatar.Text
-									size={80}
-									label={getInitials(user?.full_name || user?.username || "U")}
-									style={{
-										backgroundColor: theme.colors.primary,
-									}}
-									labelStyle={{
-										color: theme.colors.surface,
-										fontSize: 28,
-										fontWeight: "700",
-									}}
-								/>
-							</View>
-
-							<Text style={styles.userData}>{user?.username}</Text>
-							<Text style={styles.userEmail}>{user?.email}</Text>
-							<Text style={styles.userData}>{user?.full_name}</Text>
-
-							<Divider style={styles.divider} />
-
-							{/* Stats Section */}
-							<Stats stats={stats} />
-						</View>
-					</Card>
+					{/* User Profile Card */}
+					<UserProfile user={user} stats={stats} />
 				</Animated.View>
 			</ScrollView>
 
