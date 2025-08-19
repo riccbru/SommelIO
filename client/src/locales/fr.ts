@@ -1,4 +1,6 @@
 export default {
+	tasting_name: "dégustation",
+	tastings_name: "dégustations",
 	index: {
 		welcome: "Bienvenue sur",
 	},
@@ -283,9 +285,9 @@ export default {
 		lang: "Langue",
 		info: "Informacion",
 		tastings: {
-			total: "Dégustations Totales",
-			favorite: "Dégustations Préférées",
-			rated: "Dégustations Notées",
+			total: "Totales",
+			favorite: "Préférées",
+			rated: "Notées",
 		},
 	},
 };

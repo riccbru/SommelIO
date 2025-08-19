@@ -2,12 +2,14 @@ import { MD3DarkTheme, MD3LightTheme } from "react-native-paper";
 
 const customColors = {
 	amber: "#b58638",
+	black: "#000000",
 	darkGreen: "#145214",
 	facebook: "#2c64f6",
 	gray: "#808080",
 	green: "#67ce67",
 	pearl: "#d3d5cb",
 	red: "#cc4b4b",
+	white: "#ffffff",
 };
 
 export const LightTheme = {
@@ -20,6 +22,9 @@ export const LightTheme = {
 		surface: "#ffffff",
 		onSurface: "#000000",
 		onBackground: "#000000",
+		// card: "#f7f3f9",
+		card: "#e0e0e0",
+		notCard: "#252329",
 	},
 };
 
@@ -33,5 +38,7 @@ export const DarkTheme = {
 		surface: "#000000",
 		onSurface: "#ffffff",
 		onBackground: "#ffffff",
+		card: "#252329",
+		notCard: "#f7f3f9",
 	},
 };

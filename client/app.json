@@ -41,10 +41,7 @@
 			[
 				"expo-font",
 				{
-					"fonts": [
-						"./assets/fonts/Epilogue-Regular.ttf",
-						"./assets/fonts/Epilogue-Bold.ttf"
-					]
+					"fonts": ["./assets/fonts/Epilogue-Regular.ttf", "./assets/fonts/Epilogue-Bold.ttf"]
 				}
 			],
 			[
