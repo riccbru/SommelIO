@@ -35,7 +35,7 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 			borderWidth: 3,
 			borderRadius: 15,
 			borderColor: theme.colors.red,
-			backgroundColor: theme.colors.background,
+			backgroundColor: theme.colors.card,
 		},
 	});
 
@@ -72,7 +72,7 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 						size={32}
 						weight='bold'
 						style={{ marginRight: 10 }}
-						color={theme.dark ? "#ffffff" : "#000000"}
+						color={theme.colors.primary}
 					/>
 					<Text
 						style={{
@@ -100,14 +100,29 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 							{"\n"}
 							{name} - {winemaker}?
 						</Text>
-						<View style={{ flexDirection: "row", justifyContent: "flex-end" }}>
-							<Button onPress={hideModal} mode='text' style={{ marginRight: 10 }}>
-								<Text style={{ fontFamily: "Epilogue-Regular" }}>
+						<View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+							<Button
+								mode='contained'
+								onPress={hideModal}
+								style={{ marginLeft: 20 }}
+								buttonColor={theme.colors.primary}
+							>
+								<Text
+									style={{
+										color: theme.colors.background,
+										fontFamily: "Epilogue-Regular",
+									}}
+								>
 									{t("tastings.cancel")}
 								</Text>
 							</Button>
-							<Button onPress={handleDelete} mode='contained' buttonColor={theme.colors.red}>
-								<Text style={{ fontFamily: "Epilogue-Regular" }}>
+							<Button
+								mode='contained'
+								onPress={handleDelete}
+								style={{ marginRight: 20 }}
+								buttonColor={theme.colors.red}
+							>
+								<Text style={{ color: theme.colors.white, fontFamily: "Epilogue-Regular" }}>
 									{t("tastings.delete_confirm")}
 								</Text>
 							</Button>

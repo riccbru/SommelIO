@@ -284,6 +284,8 @@ export default {
 		dark: "Thème Sombre",
 		lang: "Langue",
 		info: "Informacion",
+		secpriv: "Sécurité & Confidentialité",
+		contactus: "Contactez-nous",
 		tastings: {
 			total: "Totales",
 			favorite: "Préférées",

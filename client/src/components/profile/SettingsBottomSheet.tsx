@@ -14,7 +14,7 @@ export default function SettingsBottomSheet({ bottomSheetRef }: Props) {
 		<>
 			<BottomSheet
 				index={-1}
-				snapPoints={["50%"]}
+				snapPoints={["80%"]}
 				ref={bottomSheetRef}
 				enablePanDownToClose={true}
 				backgroundStyle={{ backgroundColor: theme.colors.background }}
