@@ -8,6 +8,7 @@ type EditModeShape = {
 	olfactory: boolean;
 	taste: boolean;
 	final: boolean;
+	scoring: boolean;
 };
 
 type Props = {

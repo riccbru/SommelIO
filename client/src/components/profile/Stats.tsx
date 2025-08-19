@@ -26,7 +26,7 @@ export default function Stats({ stats }: Props) {
 		},
 		{
 			Icon: WineIcon,
-			color: theme.colors.primary,
+			color: theme.colors.red,
 			number: stats.totalTastings,
 			label: t("profile.tastings.total").replace(" ", "\n"),
 		},

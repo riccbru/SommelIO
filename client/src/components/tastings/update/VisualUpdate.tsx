@@ -17,12 +17,21 @@ type VisualExam = {
 	notes: string;
 };
 
+type EditModeShape = {
+	tasting: boolean;
+	visual: boolean;
+	olfactory: boolean;
+	taste: boolean;
+	final: boolean;
+	scoring: boolean;
+};
+
 type Props = {
 	tid: string;
 	sparkling: boolean;
 	exam: VisualExam;
 	setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
-	setEditMode: React.Dispatch<React.SetStateAction<{ [key: string]: boolean }>>;
+	setEditMode: React.Dispatch<React.SetStateAction<EditModeShape>>;
 };
 
 export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEditMode }: Props) {

@@ -23,10 +23,19 @@ type Tasting = {
 	tasting_location: string;
 };
 
+type EditModeShape = {
+	tasting: boolean;
+	visual: boolean;
+	olfactory: boolean;
+	taste: boolean;
+	final: boolean;
+	scoring: boolean;
+};
+
 type Props = {
 	tasting: Tasting;
 	setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
-	setEditMode: React.Dispatch<React.SetStateAction<{ [key: string]: boolean }>>;
+	setEditMode: React.Dispatch<React.SetStateAction<EditModeShape>>;
 };
 
 export default function TastingUpdate({ tasting, setEditMode, setRefresh }: Props) {
