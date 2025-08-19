@@ -34,7 +34,7 @@ export function GoogleButton() {
 
 	return (
 		<View style={styles.container}>
-			<TouchableOpacity style={styles.button} onPress={handlePress}>
+			<TouchableOpacity activeOpacity={0.7} style={styles.button} onPress={handlePress}>
 				<Image style={styles.image} source={iconSource} />
 			</TouchableOpacity>
 		</View>

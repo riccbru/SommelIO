@@ -102,6 +102,7 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
 				.map((tasting, index) => (
 					<View key={index} style={styles.row}>
 						<TouchableOpacity
+							activeOpacity={0.7}
 							style={styles.iconContainer}
 							onPress={() => handlePress(tasting)}
 						>

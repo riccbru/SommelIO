@@ -93,6 +93,7 @@ export default function FormSelect<T>({
 	return (
 		<View>
 			<TouchableOpacity
+				activeOpacity={0.7}
 				onPress={() => {
 					setIsOpen(true);
 					setIsFocused(true);
@@ -153,8 +154,8 @@ export default function FormSelect<T>({
 				}}
 			>
 				<TouchableOpacity
+					activeOpacity={0.7}
 					style={styles.modalOverlay}
-					activeOpacity={1}
 					onPress={() => {
 						setIsOpen(false);
 						setIsFocused(false);
@@ -168,6 +169,7 @@ export default function FormSelect<T>({
 								showsVerticalScrollIndicator={false}
 								renderItem={({ item, index }) => (
 									<TouchableOpacity
+										activeOpacity={0.7}
 										style={[
 											styles.option,
 											{ borderBottomColor: theme.colors.pearl },

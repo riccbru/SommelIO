@@ -52,7 +52,7 @@ export default function TastingCard({ uuid, name, subtitle, editMode, setEditMod
 		<View style={styles.subtitleRow}>
 			<Text style={styles.subtitle}>{subtitle}</Text>
 			<View style={styles.subtitleRow}>
-				<TouchableOpacity onPress={handlePress}>
+				<TouchableOpacity activeOpacity={0.7} onPress={handlePress}>
 					<Icon
 						size={32}
 						weight={"regular"}

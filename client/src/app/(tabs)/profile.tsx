@@ -48,6 +48,7 @@ export default function Profile() {
 		navigation.setOptions({
 			headerLeft: () => (
 				<TouchableOpacity
+					activeOpacity={0.7}
 					style={{ marginTop: 10, marginBottom: 10, marginLeft: 20 }}
 					onPress={() => {
 						bottomSheetRef.current?.expand();
@@ -58,6 +59,7 @@ export default function Profile() {
 			),
 			headerRight: () => (
 				<TouchableOpacity
+					activeOpacity={0.7}
 					style={{ marginTop: 10, marginBottom: 10, marginRight: 20 }}
 					onPress={() => {
 						logout();

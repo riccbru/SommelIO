@@ -58,7 +58,12 @@ export function BiometricButton() {
 	}, [biometricSupported]);
 
 	return (
-		<TouchableOpacity disabled={false} style={styles.button} onPress={handlePress}>
+		<TouchableOpacity
+			disabled={false}
+			activeOpacity={0.7}
+			style={styles.button}
+			onPress={handlePress}
+		>
 			<FingerprintIcon size={32} color={theme.colors.gray} />
 		</TouchableOpacity>
 	);

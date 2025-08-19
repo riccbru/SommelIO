@@ -49,8 +49,6 @@ export default function Settings() {
 
 	return (
 		<>
-			{/* <Card style={styles.card}> */}
-
 			<View style={styles.row}>
 				<View style={{ alignItems: "center", flexDirection: "row" }}>
 					<MoonIcon
@@ -90,17 +88,15 @@ export default function Settings() {
 			</View>
 
 			{/* Info & About Button */}
-			<View style={styles.row}>
-				<TouchableOpacity onPress={() => console.log("info & about dev")}>
+			<TouchableOpacity activeOpacity={0.7} onPress={() => console.log("info & about dev")}>
+				<View style={styles.row}>
 					<View style={{ alignItems: "center", flexDirection: "row" }}>
 						<InfoIcon size={28} weight='bold' color={theme.colors.primary} />
 						<View style={{ marginLeft: 5, marginRight: 5 }} />
 						<Text style={styles.rowLabel}>{t("profile.info")}</Text>
 					</View>
-				</TouchableOpacity>
-			</View>
-
-			{/* </Card> */}
+				</View>
+			</TouchableOpacity>
 		</>
 	);
 }

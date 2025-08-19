@@ -40,7 +40,7 @@ export function FacebookButton() {
 
 	return (
 		<View style={styles.container}>
-			<TouchableOpacity style={styles.button} onPress={handlePress}>
+			<TouchableOpacity activeOpacity={0.7} style={styles.button} onPress={handlePress}>
 				<View style={styles.buttonContainer}>
 					<Image style={styles.image} source={require("@/assets/images/facebook/logo.png")} />
 					<Text style={styles.text}>Continue with Facebook</Text>

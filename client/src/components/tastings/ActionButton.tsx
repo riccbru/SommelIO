@@ -59,7 +59,7 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 
 	return (
 		<>
-			<TouchableOpacity onPress={handlePress}>
+			<TouchableOpacity activeOpacity={0.7} onPress={handlePress}>
 				<View
 					style={{
 						marginLeft: 10,

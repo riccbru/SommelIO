@@ -86,7 +86,7 @@ export default function UserModal({ modal, setModal }: UserModalProps) {
 						UID: <Text style={styles.userData}>{user?.uid}</Text>
 					</Text>
 					<View style={styles.buttonContainer}>
-						<TouchableOpacity style={styles.button} onPress={handlePress}>
+						<TouchableOpacity activeOpacity={0.7} style={styles.button} onPress={handlePress}>
 							<Text style={styles.buttonText}>Login</Text>
 						</TouchableOpacity>
 					</View>

@@ -71,6 +71,7 @@ export default function Tastings() {
 		navigation.setOptions({
 			headerLeft: () => (
 				<TouchableOpacity
+					activeOpacity={0.7}
 					style={{ marginTop: 10, marginBottom: 10, marginLeft: 20 }}
 					onPress={() => {
 						console.log("add wine to drink");

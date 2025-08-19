@@ -29,9 +29,10 @@ export default function LoginButton({ loading, onPress, disabled }: Props) {
 
 	return (
 		<TouchableOpacity
-			disabled={disabled}
-			style={[styles.button, disabled && styles.buttonDisabled]}
 			onPress={onPress}
+			disabled={disabled}
+			activeOpacity={0.7}
+			style={[styles.button, disabled && styles.buttonDisabled]}
 		>
 			{loading ? (
 				<ActivityIndicator animating={true} color='#ffffff' />

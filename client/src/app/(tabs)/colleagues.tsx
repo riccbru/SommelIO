@@ -14,8 +14,9 @@ export default function Colleagues() {
 		navigation.setOptions({
 			headerLeft: () => (
 				<TouchableOpacity
-					style={{ marginTop: 10, marginBottom: 10, marginLeft: 20 }}
+					activeOpacity={0.7}
 					onPress={() => console.log("add colleague")}
+					style={{ marginTop: 10, marginBottom: 10, marginLeft: 20 }}
 				>
 					<UserPlusIcon size={32} color={theme.colors.primary} />
 				</TouchableOpacity>

@@ -35,7 +35,7 @@ export default function UpdateButton({ onPress }: Props) {
 	});
 
 	return (
-		<TouchableOpacity style={styles.button} onPress={onPress}>
+		<TouchableOpacity activeOpacity={0.7} style={styles.button} onPress={onPress}>
 			<View style={styles.buttonView}>
 				<PencilSimpleIcon size={24} weight='bold' />
 				<Text style={styles.buttonText}>{t("tastings.edit")}</Text>

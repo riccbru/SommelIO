@@ -136,8 +136,9 @@ export default function TastingDetail() {
 			},
 			headerRight: () => (
 				<TouchableOpacity
-					style={{ justifyContent: "center", marginTop: 10, marginBottom: 10 }}
+					activeOpacity={0.7}
 					onPress={toggleFavorite}
+					style={{ justifyContent: "center", marginTop: 10, marginBottom: 10 }}
 				>
 					<StarIcon
 						size={32}

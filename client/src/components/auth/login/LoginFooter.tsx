@@ -25,7 +25,7 @@ export function LoginFooter() {
 		<View style={styles.container}>
 			<View style={{ flexDirection: "row" }}>
 				<Text style={styles.text}>Don&apos;t have an account?</Text>
-				<TouchableOpacity onPress={() => router.replace("/signup")}>
+				<TouchableOpacity activeOpacity={0.7} onPress={() => router.replace("/signup")}>
 					<Text style={styles.linkText}>Signup</Text>
 				</TouchableOpacity>
 			</View>
