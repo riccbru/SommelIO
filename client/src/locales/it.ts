@@ -17,6 +17,7 @@ export default {
 		quality: "Qualità",
 		exit_exam: "ABBANDONA",
 		save_exam: "SALVA",
+		add_wine: "AGGIUNGI",
 		tasting: {
 			short: "DESCRIZIONE",
 			title: "Dettagli degustazione",

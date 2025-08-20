@@ -17,6 +17,7 @@ export default {
 		quality: "Quality",
 		exit_exam: "EXIT",
 		save_exam: "SAVE",
+		add_wine: "ADD",
 		tasting: {
 			short: "DESCRIPTION",
 			title: "Tasting details",

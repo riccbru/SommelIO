@@ -54,7 +54,7 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
 			borderRadius: 5,
 			alignItems: "center",
 			justifyContent: "center",
-			backgroundColor: theme.colors.pearl,
+			backgroundColor: theme.dark ? theme.colors.notCard : theme.colors.pearl,
 		},
 		accordionTrigger: {
 			flex: 1,

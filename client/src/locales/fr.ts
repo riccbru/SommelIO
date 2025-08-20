@@ -16,7 +16,8 @@ export default {
 		intensity: "Intensité",
 		quality: "Qualité",
 		exit_exam: "QUITTEZ",
-		save_exam: "ENREGISTER",
+		save_exam: "ENREGISTREZ",
+		add_wine: "AJOUTEZ",
 		tasting: {
 			short: "DESCRIPTION",
 			title: "Dégustation détails",
