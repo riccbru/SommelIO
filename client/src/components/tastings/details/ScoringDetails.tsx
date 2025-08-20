@@ -182,7 +182,7 @@ export default function ScoringDetails({ scoring }: Props) {
 				<View key={label} style={styles.row}>
 					<Text style={styles.label}>{label}</Text>
 					<Text style={styles.value}>{value}</Text>
-					<Text style={[styles.value, { fontFamily: "Epilogue-Bold" }]}>
+					<Text style={[styles.value, { color: theme.colors.gray, fontFamily: "Epilogue-Bold" }]}>
 						{coefficient !== 1 ? `(x ${coefficient})` : ""}
 					</Text>
 				</View>

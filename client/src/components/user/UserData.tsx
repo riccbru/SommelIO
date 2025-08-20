@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import Stats from "@/src/components/user/Stats";
+import Stats from "@/src/components/user/UserStats";
 import { useTheme } from "@/src/hooks/useTheme";
 import { getInitials } from "@/src/utils/utils";
 import { Avatar, Card, Divider } from "react-native-paper";
@@ -27,7 +27,7 @@ type Props = {
 	userStats: UserStats;
 };
 
-export default function UserProfile({ userData, userStats }: Props) {
+export default function UserData({ userData, userStats }: Props) {
 	const theme = useTheme();
 	const { user } = useAuth();
 	const { t } = useTranslation();
@@ -64,8 +64,8 @@ export default function UserProfile({ userData, userStats }: Props) {
 			fontSize: 16,
 			marginBottom: 16,
 			textAlign: "center",
-			color: theme.colors.primary,
-			fontFamily: "Epilogue-Regular",
+			color: theme.colors.gray,
+			fontFamily: "Epilogue-Bold",
 		},
 		divider: {
 			width: "80%",

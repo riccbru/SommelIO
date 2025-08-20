@@ -14,7 +14,7 @@ type Props = {
 	stats: UserStats;
 };
 
-export default function Stats({ stats }: Props) {
+export default function UserStats({ stats }: Props) {
 	const theme = useTheme();
 	const { t } = useTranslation();
 	const items = [
@@ -39,19 +39,26 @@ export default function Stats({ stats }: Props) {
 	];
 
 	const styles = StyleSheet.create({
-		statsContainer: {
+		statsTitleView: {
+			alignItems: "center",
+		},
+		statsTitle: {
+			color: theme.colors.gray,
+			fontFamily: "Epilogue-Bold",
+		},
+		statsView: {
 			paddingVertical: 16,
 			flexDirection: "row",
-			justifyContent: "space-around",
+			justifyContent: "space-between",
 		},
 	});
 
 	return (
 		<>
-			<View style={{ alignItems: "center" }}>
-				<Text style={{ color: theme.colors.gray }}>{t("tastings_name").toUpperCase()}</Text>
+			<View style={styles.statsTitleView}>
+				<Text style={styles.statsTitle}>{t("tastings_name").toUpperCase()}</Text>
 			</View>
-			<View style={styles.statsContainer}>
+			<View style={styles.statsView}>
 				{items.map((el, index) => (
 					<StatItem
 						key={index}

@@ -2,7 +2,7 @@ import UserAPI from "@/src/services/user";
 import { useAuth } from "@/src/hooks/useAuth";
 import { useTheme } from "@/src/hooks/useTheme";
 import { useNavigation, useRouter } from "expo-router";
-import UserProfile from "@/src/components/user/UserProfile";
+import UserProfile from "@/src/components/user/UserData";
 import { GearIcon, SignOutIcon } from "phosphor-react-native";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
