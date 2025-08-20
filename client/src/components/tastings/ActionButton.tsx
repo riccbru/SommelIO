@@ -72,7 +72,7 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 						size={32}
 						weight='bold'
 						style={{ marginRight: 10 }}
-						color={action === 'delete' ? theme.colors.red : theme.colors.premium}
+						color={action === "delete" ? theme.colors.red : theme.colors.premium}
 					/>
 					<Text
 						style={{

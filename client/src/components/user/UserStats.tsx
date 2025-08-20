@@ -4,14 +4,14 @@ import { useTheme } from "@/src/hooks/useTheme";
 import { StyleSheet, Text, View } from "react-native";
 import { GavelIcon, StarIcon, WineIcon } from "phosphor-react-native";
 
-type UserStats = {
+type UserStatsData = {
 	totalTastings: number;
 	favoriteTastings: number;
 	ratedTastings: number;
 };
 
 type Props = {
-	stats: UserStats;
+	stats: UserStatsData;
 };
 
 export default function UserStats({ stats }: Props) {
