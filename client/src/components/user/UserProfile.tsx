@@ -5,6 +5,7 @@ import { getInitials } from "@/src/utils/utils";
 import { Avatar, Card, Divider } from "react-native-paper";
 import { Share, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { DevToLogoIcon, ExportIcon, SealCheckIcon } from "phosphor-react-native";
+import { useAuth } from "@/src/hooks/useAuth";
 
 type UserInfo = {
 	admin: boolean;
@@ -22,12 +23,13 @@ type UserStats = {
 };
 
 type Props = {
-	user: UserInfo | null;
-	stats: UserStats;
+	userData: UserInfo | null;
+	userStats: UserStats;
 };
 
-export default function UserProfile({ user, stats }: Props) {
+export default function UserProfile({ userData, userStats }: Props) {
 	const theme = useTheme();
+	const { user } = useAuth();
 	const { t } = useTranslation();
 	const styles = StyleSheet.create({
 		profileCard: {
@@ -72,8 +74,8 @@ export default function UserProfile({ user, stats }: Props) {
 			backgroundColor: theme.colors.primary,
 		},
 		devLogo: {
-			top: 5,
-			right: 10,
+			top: 7,
+			right: 12,
 			position: "absolute",
 		},
 		shareButton: {
@@ -105,11 +107,13 @@ export default function UserProfile({ user, stats }: Props) {
 	return (
 		<Card style={styles.profileCard}>
 			{/* Share Button (Top-right of card) */}
-			<TouchableOpacity style={styles.shareButton} onPress={handleShare}>
-				<ExportIcon size={24} color={theme.colors.primary} />
-			</TouchableOpacity>
+			{userData?.uid === user?.uid && (
+				<TouchableOpacity style={styles.shareButton} onPress={handleShare}>
+					<ExportIcon size={28} color={theme.colors.primary} />
+				</TouchableOpacity>
+			)}
 
-			{!user?.admin ? null : (
+			{!userData?.admin ? null : (
 				<View style={styles.devLogo}>
 					<DevToLogoIcon size={28} weight='fill' color={theme.colors.primary} />
 				</View>
@@ -119,7 +123,7 @@ export default function UserProfile({ user, stats }: Props) {
 				<View style={styles.avatarContainer}>
 					<Avatar.Text
 						size={80}
-						label={getInitials(user?.full_name || user?.username || "U")}
+						label={getInitials(userData?.full_name || userData?.username || "U")}
 						style={{
 							backgroundColor: theme.colors.primary,
 						}}
@@ -132,8 +136,8 @@ export default function UserProfile({ user, stats }: Props) {
 				</View>
 
 				<View style={{ flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
-					<Text style={styles.userData}>{user?.username}</Text>
-					{!user?.premium ? null : (
+					<Text style={styles.userData}>{userData?.username}</Text>
+					{!userData?.premium ? null : (
 						<SealCheckIcon
 							size={28}
 							weight='fill'
@@ -142,13 +146,13 @@ export default function UserProfile({ user, stats }: Props) {
 						/>
 					)}
 				</View>
-				<Text style={styles.userEmail}>{user?.email}</Text>
-				<Text style={styles.userData}>{user?.full_name}</Text>
+				<Text style={styles.userEmail}>{userData?.email}</Text>
+				<Text style={styles.userData}>{userData?.full_name}</Text>
 
 				<Divider style={styles.divider} />
 
 				{/* Stats Section */}
-				<Stats stats={stats} />
+				<Stats stats={userStats} />
 			</View>
 		</Card>
 	);

@@ -888,6 +888,60 @@ The URL parameter `exam_type` can assume the following values:
       }
       ```
 
+## GET SCORING COEFFICIENTS
+
+Endpoint: `GET /api/v1/scoring/coefficients`.
+
+### REQUEST
+
+- Header
+   -
+   -
+- Body
+   -
+   ```json
+   {}
+   ```
+
+### RESPONSE
+
+- `200 OK`
+   - Header
+      -
+      -
+   - Body
+      -
+      ```json
+      {
+      	"visual_appearance": 1,
+      	"visual_color": 2,
+      	"olfactory_intensity": 1,
+      	"olfactory_complexity": 2,
+      	"olfactory_quality": 3,
+      	"taste_structure": 1,
+      	"taste_balance": 1,
+      	"taste_intensity": 1,
+      	"taste_persistence": 2,
+      	"taste_quality": 3,
+      	"harmony": 3
+      }
+      ```
+
+- `404 Not Found`
+   - Header
+      -
+      -
+   - Body
+      -
+      ```json
+      {
+      	"error": "Scoring coefficients not found"
+      }
+      ```
+   ```
+
+   ```
+
 ## GET SCORING EVALUATION
 
 Endpoint: `GET /api/v1/scoring/:tasting_uuid`.

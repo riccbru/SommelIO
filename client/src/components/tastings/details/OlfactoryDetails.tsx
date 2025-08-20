@@ -1,6 +1,6 @@
+import { useTheme } from "react-native-paper";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
-import { useTheme } from "react-native-paper";
 
 type OlfactoryExam = {
 	intensity: string;

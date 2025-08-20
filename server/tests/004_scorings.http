@@ -1,7 +1,12 @@
 @PORT = 3001
 @HOSTNAME = localhost
 @token = 
-@tid = 
+@tid =
+
+### GET SCORING COEFFICIENTS
+
+GET http://{{HOSTNAME}}:{{PORT}}/api/v1/scoring/coefficients HTTP/1.1
+Authorization: Bearer {{token}}
 
 ### GET SCORING EVALUATION BY ID
 
@@ -49,6 +54,7 @@ Authorization: Bearer {{token}}
     "harmony": 1,
     "notes": ""
 }
+
 
 ### LOGIN + TOKEN
 

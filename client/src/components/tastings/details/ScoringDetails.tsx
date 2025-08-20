@@ -1,6 +1,36 @@
+import ScoringsAPI from "@/src/services/scorings";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
 import { useTheme } from "react-native-paper";
+
+type ScoringCoefficients = {
+	visual_appearance: number;
+	visual_color: number;
+	olfactory_intensity: number;
+	olfactory_complexity: number;
+	olfactory_quality: number;
+	taste_structure: number;
+	taste_balance: number;
+	taste_intensity: number;
+	taste_persistence: number;
+	taste_quality: number;
+	harmony: number;
+};
+
+const defaultCoefficients: ScoringCoefficients = {
+	visual_appearance: 0,
+	visual_color: 0,
+	olfactory_intensity: 0,
+	olfactory_complexity: 0,
+	olfactory_quality: 0,
+	taste_structure: 0,
+	taste_balance: 0,
+	taste_intensity: 0,
+	taste_persistence: 0,
+	taste_quality: 0,
+	harmony: 0,
+};
 
 type ScoringEvaluation = {
 	sid: string;
@@ -26,9 +56,19 @@ type Props = {
 export default function ScoringDetails({ scoring }: Props) {
 	const theme = useTheme();
 	const { t } = useTranslation();
-	if (!scoring || Object.keys(scoring).length === 0) {
-		return <Text>{}</Text>;
-	}
+	const [coefficients, setCoefficients] = useState<ScoringCoefficients>(defaultCoefficients);
+
+	useEffect(() => {
+		const fetchCoefficients = async () => {
+			try {
+				const response = await ScoringsAPI.fetchCoefficients();
+				setCoefficients(response.data);
+			} catch (error) {
+				console.error(`Error fetching scoring coefficients: ${error}`);
+			}
+		};
+		fetchCoefficients();
+	}, []);
 
 	const styles = StyleSheet.create({
 		row: {
@@ -37,7 +77,7 @@ export default function ScoringDetails({ scoring }: Props) {
 			flexDirection: "row",
 		},
 		label: {
-			flex: 3,
+			flex: 6,
 			marginLeft: 10,
 			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
@@ -55,7 +95,8 @@ export default function ScoringDetails({ scoring }: Props) {
 			borderTopColor: theme.colors.gray,
 		},
 		totalText: {
-			color: theme.colors.primary,
+			fontSize: 18,
+			color: theme.colors.amber,
 			fontFamily: "Epilogue-Bold",
 		},
 		notes: {
@@ -78,31 +119,79 @@ export default function ScoringDetails({ scoring }: Props) {
 	});
 
 	const scoringFields = [
-		{ label: t("new.scoring.Vappearance"), value: scoring.visual_appearance },
-		{ label: t("new.scoring.Vcolor"), value: scoring.visual_color },
-		{ label: t("new.scoring.Ointensity"), value: scoring.olfactory_intensity },
-		{ label: t("new.scoring.Ocomplexity"), value: scoring.olfactory_complexity },
-		{ label: t("new.scoring.Oquality"), value: scoring.olfactory_quality },
-		{ label: t("new.scoring.Tstructure"), value: scoring.taste_structure },
-		{ label: t("new.scoring.Tbalance"), value: scoring.taste_balance },
-		{ label: t("new.scoring.Tintensity"), value: scoring.taste_intensity },
-		{ label: t("new.scoring.Tpersistence"), value: scoring.taste_persistence },
-		{ label: t("new.scoring.Tquality"), value: scoring.taste_quality },
-		{ label: t("new.harmony"), value: scoring.harmony },
+		{
+			label: t("new.scoring.Vappearance"),
+			value: scoring.visual_appearance,
+			coefficient: coefficients.visual_appearance,
+		},
+		{
+			label: t("new.scoring.Vcolor"),
+			value: scoring.visual_color,
+			coefficient: coefficients.visual_color,
+		},
+		{
+			label: t("new.scoring.Ointensity"),
+			value: scoring.olfactory_intensity,
+			coefficient: coefficients.olfactory_intensity,
+		},
+		{
+			label: t("new.scoring.Ocomplexity"),
+			value: scoring.olfactory_complexity,
+			coefficient: coefficients.olfactory_complexity,
+		},
+		{
+			label: t("new.scoring.Oquality"),
+			value: scoring.olfactory_quality,
+			coefficient: coefficients.olfactory_quality,
+		},
+		{
+			label: t("new.scoring.Tstructure"),
+			value: scoring.taste_structure,
+			coefficient: coefficients.taste_structure,
+		},
+		{
+			label: t("new.scoring.Tbalance"),
+			value: scoring.taste_balance,
+			coefficient: coefficients.taste_balance,
+		},
+		{
+			label: t("new.scoring.Tintensity"),
+			value: scoring.taste_intensity,
+			coefficient: coefficients.taste_intensity,
+		},
+		{
+			label: t("new.scoring.Tpersistence"),
+			value: scoring.taste_persistence,
+			coefficient: coefficients.taste_persistence,
+		},
+		{
+			label: t("new.scoring.Tquality"),
+			value: scoring.taste_quality,
+			coefficient: coefficients.taste_quality,
+		},
+		{ label: t("new.harmony"), value: scoring.harmony, coefficient: coefficients.harmony },
 	];
+
+	if (!scoring || Object.keys(scoring).length === 0) {
+		return <Text>{}</Text>;
+	}
 
 	return (
 		<View>
-			{scoringFields.map(({ label, value }) => (
+			{scoringFields.map(({ label, value, coefficient }) => (
 				<View key={label} style={styles.row}>
 					<Text style={styles.label}>{label}</Text>
 					<Text style={styles.value}>{value}</Text>
+					<Text style={[styles.value, { fontFamily: "Epilogue-Bold" }]}>
+						{coefficient !== 1 ? `(x ${coefficient})` : ""}
+					</Text>
 				</View>
 			))}
 
 			<View style={[styles.row, { marginTop: 8 }]}>
 				<Text style={[styles.label, styles.totalText]}>{t("new.scoring.total")}</Text>
 				<Text style={[styles.value, styles.totalText]}>{scoring.total_score}</Text>
+				<Text style={[styles.value, styles.totalText]}>{""}</Text>
 			</View>
 
 			{scoring.notes && (

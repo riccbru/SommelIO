@@ -18,8 +18,10 @@ export default function SettingsBottomSheet({ bottomSheetRef }: Props) {
 				snapPoints={["85%"]}
 				ref={bottomSheetRef}
 				enablePanDownToClose={true}
-				backgroundStyle={{ backgroundColor: theme.colors.background }}
 				handleIndicatorStyle={{ backgroundColor: theme.colors.primary }}
+				backgroundStyle={{
+					backgroundColor: theme.dark ? theme.colors.card : theme.colors.background,
+				}}
 				backdropComponent={props => (
 					<BottomSheetBackdrop
 						{...props}

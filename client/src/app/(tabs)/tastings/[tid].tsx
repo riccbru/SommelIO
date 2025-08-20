@@ -90,7 +90,7 @@ export default function TastingDetail() {
 		},
 		card: {
 			borderWidth: 2,
-			marginBottom: 16,
+			marginBottom: 30,
 			borderColor: theme.colors.primary,
 		},
 		title: {

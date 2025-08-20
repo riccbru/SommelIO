@@ -147,7 +147,7 @@ export default function Profile() {
 			>
 				<Animated.View style={{ opacity: fadeAnim }}>
 					{/* User Profile Card */}
-					<UserProfile user={user} stats={stats} />
+					<UserProfile userData={user} userStats={stats} />
 				</Animated.View>
 			</ScrollView>
 

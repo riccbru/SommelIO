@@ -35,9 +35,9 @@ export default function Settings() {
 			height: 80,
 			marginTop: 10,
 			marginBottom: 10,
-			paddingHorizontal: 15,
 			alignItems: "center",
 			flexDirection: "row",
+			paddingHorizontal: 15,
 
 			borderWidth: 1,
 			elevation: 5,
@@ -45,7 +45,7 @@ export default function Settings() {
 			borderColor: theme.colors.primary,
 
 			justifyContent: "space-between",
-			backgroundColor: theme.colors.card,
+			backgroundColor: theme.dark ? theme.colors.background : theme.colors.card,
 		},
 		rowLabel: {
 			fontSize: 16,

@@ -38,7 +38,7 @@ export default function TabsLayout() {
 									fontSize: 12,
 									paddingTop: 5,
 									color: focused ? theme.colors.amber : theme.colors.primary,
-									fontFamily: focused ? "Epilogue-Bold" : "Epilogue-Regular",
+									fontFamily: "Epilogue-Regular",
 								}}
 							>
 								{config?.title}

@@ -2,9 +2,9 @@ import i18n from "@/src/locales/i18n";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { List, useTheme } from "react-native-paper";
+import { FileTextIcon } from "phosphor-react-native";
 import { capitalizeFirst, formatDescription } from "@/src/utils/utils";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { FileMagnifyingGlassIcon, FileTextIcon } from "phosphor-react-native";
 
 type Tasting = {
 	tid: string;
@@ -107,7 +107,6 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
 							onPress={() => handlePress(tasting)}
 						>
 							<FileTextIcon size={32} />
-							{/* <FileMagnifyingGlassIcon size={32} /> */}
 						</TouchableOpacity>
 
 						<View style={styles.accordionTrigger}>

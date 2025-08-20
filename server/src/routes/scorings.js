@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { formatCoefficients } from "../utils/scorings.js";
 import { PrismaClient } from "../generated/prisma/index.js";
 import { ScoringSchema } from "../validators/scoringSchema.js";
 import { formatScoringEvaluation } from "../utils/tastings.js";
@@ -8,18 +9,30 @@ const prisma = new PrismaClient();
 
 async function validateTastingOwnership(tid, uid, res) {
 	if (!tid || tid.length !== 36) {
-		res.status(400).json({ error: `URL parameter 'tasting_uuid' is an invalid UUID-32` });
-		return null;
+		return res.status(400).json({ error: `URL parameter 'tasting_uuid' is an invalid UUID-32` });
 	}
 
 	const tasting = await prisma.tastings.findUnique({ where: { tid, uid } });
 	if (!tasting) {
-		res.status(404).json({ error: `Tasting ${tid} not found for user ${uid}` });
-		return null;
+		return res.status(404).json({ error: `Tasting ${tid} not found for user ${uid}` });
 	}
 
 	return tasting;
 }
+
+// GET /api/v1/scoring/coefficients
+router.get("/coefficients", async (_req, res) => {
+	try {
+		const coefficients = await prisma.corrective_coefficients.findMany();
+		if (coefficients.length === 0) {
+			return res.status(404).json({ error: `Scoring coefficients not found` });
+		}
+		return res.json(formatCoefficients(coefficients));
+	} catch (err) {
+		console.error(err);
+		return res.status(500).json({ error: `Error getting scoring coefficients` });
+	}
+});
 
 // GET /api/v1/scoring/:tid
 router.get("/:tid", async (req, res) => {

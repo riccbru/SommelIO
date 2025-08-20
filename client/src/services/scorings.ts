@@ -20,9 +20,20 @@ async function updateScoring(tid: string, data: any) {
 	}
 }
 
+async function fetchCoefficients() {
+	try {
+		const response = await axiosClient.get("/scoring/coefficients");
+		return response;
+	} catch (error: any) {
+		console.error(error);
+		throw new Error(error.response?.data?.message || `Unable to fetch coefficients: ${error}`);
+	}
+}
+
 const ScoringsAPI = {
 	createScoring,
 	updateScoring,
+	fetchCoefficients,
 };
 
 export default ScoringsAPI;
