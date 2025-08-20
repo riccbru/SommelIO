@@ -28,7 +28,7 @@
         <key>CFBundleURLSchemes</key>
         <array>
           <string>sommelio</string>
-          <string>com.riccbru.client</string>
+          <string>com.riccbru.sommelio</string>
         </array>
       </dict>
     </array>

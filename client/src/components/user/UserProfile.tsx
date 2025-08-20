@@ -1,9 +1,10 @@
+import { useTranslation } from "react-i18next";
 import Stats from "@/src/components/user/Stats";
 import { useTheme } from "@/src/hooks/useTheme";
 import { getInitials } from "@/src/utils/utils";
-import { DevToLogoIcon, SealCheckIcon } from "phosphor-react-native";
-import { StyleSheet, Text, View } from "react-native";
 import { Avatar, Card, Divider } from "react-native-paper";
+import { Share, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { DevToLogoIcon, ExportIcon, SealCheckIcon } from "phosphor-react-native";
 
 type UserInfo = {
 	admin: boolean;
@@ -11,6 +12,7 @@ type UserInfo = {
 	username: string;
 	email: string;
 	full_name: string;
+	uid: string;
 };
 
 type UserStats = {
@@ -26,6 +28,7 @@ type Props = {
 
 export default function UserProfile({ user, stats }: Props) {
 	const theme = useTheme();
+	const { t } = useTranslation();
 	const styles = StyleSheet.create({
 		profileCard: {
 			elevation: 4,
@@ -68,12 +71,46 @@ export default function UserProfile({ user, stats }: Props) {
 			marginBottom: 16,
 			backgroundColor: theme.colors.primary,
 		},
+		devLogo: {
+			top: 5,
+			right: 10,
+			position: "absolute",
+		},
+		shareButton: {
+			top: 10,
+			left: 10,
+			position: "absolute",
+		},
 	});
+
+	const handleShare = async () => {
+		try {
+			const result = await Share.share({
+				message: `${t("shareMex")}\nhttps://google.com/`,
+			});
+			if (result.action === Share.sharedAction) {
+				if (result.activityType) {
+					// shared with activity type of result.activityType
+				} else {
+					// shared
+				}
+			} else if (result.action === Share.dismissedAction) {
+				// dismissed
+			}
+		} catch (error: any) {
+			console.log(error.message);
+		}
+	};
 
 	return (
 		<Card style={styles.profileCard}>
+			{/* Share Button (Top-right of card) */}
+			<TouchableOpacity style={styles.shareButton} onPress={handleShare}>
+				<ExportIcon size={24} color={theme.colors.primary} />
+			</TouchableOpacity>
+
 			{!user?.admin ? null : (
-				<View style={{ position: "absolute", marginLeft: 10, marginTop: 5 }}>
+				<View style={styles.devLogo}>
 					<DevToLogoIcon size={28} weight='fill' color={theme.colors.primary} />
 				</View>
 			)}

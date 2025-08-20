@@ -10,7 +10,7 @@
 		"newArchEnabled": true,
 		"ios": {
 			"supportsTablet": true,
-			"bundleIdentifier": "com.riccbru.client",
+			"bundleIdentifier": "com.riccbru.sommelio",
 			"statusBarHidden": true,
 			"infoPlist": {
 				"UIViewControllerBasedStatusBarAppearance": false
@@ -22,7 +22,7 @@
 				"backgroundColor": "#ffffff"
 			},
 			"edgeToEdgeEnabled": true,
-			"package": "com.riccbru.client",
+			"package": "com.riccbru.sommelio",
 			"statusBar": {
 				"barStyle": "light-content",
 				"backgroundColor": "#ffffff",

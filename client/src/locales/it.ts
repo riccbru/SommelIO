@@ -2,6 +2,8 @@ export default {
 	tasting_name: "degustazione",
 	tastings_name: "degustazioni",
 	todrink: "Lista ToDrink",
+	shareMex:
+		"Ciao! Ho appena completato una degustazione su SommelIO. Dai un'occhiata al mio profilo e alle mie valutazioni!",
 	index: {
 		welcome: "Benvenuto in",
 	},

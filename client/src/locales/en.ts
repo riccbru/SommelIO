@@ -2,6 +2,7 @@ export default {
 	tasting_name: "tasting",
 	tastings_name: "tastings",
 	todrink: "ToDrink List",
+	shareMex: "Hi! I just completed a tasting on SommelIO. Check out my profile and ratings!",
 	index: {
 		welcome: "Welcome to",
 	},
