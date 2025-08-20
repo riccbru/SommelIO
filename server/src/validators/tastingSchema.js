@@ -41,7 +41,7 @@ const TastingSchema = z.object({
 		})
 		.int()
 		.gte(1000, "Vintage must be a 4-digit number")
-		.lte(9999, "Vintage must be a 4-digit number"),
+		.lte(2025, "Vintage must be a 4-digit number"),
 	wine_temperature: z
 		.string({
 			required_error: "Wine temperature is required",

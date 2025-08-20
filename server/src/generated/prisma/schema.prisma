@@ -27,6 +27,7 @@ model users {
   colleagues_colleagues_requester_idTousers colleagues[]         @relation("colleagues_requester_idTousers")
   scoring_evaluation                        scoring_evaluation[]
   tastings                                  tastings[]
+  to_drink                                  to_drink[]
 }
 
 model wine_categories {
@@ -179,4 +180,14 @@ model colleagues {
   @@index([requester_id], map: "idx_colleagues_requester")
   @@index([status], map: "idx_colleagues_status")
   @@index([requester_id, addressee_id], map: "idx_colleagues_users")
+}
+
+model to_drink {
+  id           Int    @id @default(autoincrement())
+  wid          String @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  uid          String @db.Uuid
+  denomination String
+  winemaker    String
+  vintage      Int
+  users        users  @relation(fields: [uid], references: [uid], onDelete: Cascade, onUpdate: NoAction)
 }

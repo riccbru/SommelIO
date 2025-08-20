@@ -20,9 +20,9 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "denomination": "",
-    "winemaker": "",
-    "vintage": 
+    "denomination": "Cerasuolo DOC",
+    "winemaker": "Rocca Ventosa",
+    "vintage": 2025
 }
 
 ### DELETE WINE BY ID
@@ -36,8 +36,8 @@ POST http://{{HOSTNAME}}:{{PORT}}/api/v1/auth/login
 Content-Type: application/json
 
 {
-    "username": "ciclarimpo",
-    "password": "ciclarimpo_pwd"
+    "username": "riccbru",
+    "password": "The hangover01!"
 }
 
 ### REFRESH TOKEN

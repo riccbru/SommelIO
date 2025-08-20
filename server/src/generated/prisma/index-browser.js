@@ -256,6 +256,15 @@ exports.Prisma.ColleaguesScalarFieldEnum = {
 	updated_at: "updated_at",
 };
 
+exports.Prisma.To_drinkScalarFieldEnum = {
+	id: "id",
+	wid: "wid",
+	uid: "uid",
+	denomination: "denomination",
+	winemaker: "winemaker",
+	vintage: "vintage",
+};
+
 exports.Prisma.SortOrder = {
 	asc: "asc",
 	desc: "desc",
@@ -282,6 +291,7 @@ exports.Prisma.ModelName = {
 	corrective_coefficients: "corrective_coefficients",
 	scoring_evaluation: "scoring_evaluation",
 	colleagues: "colleagues",
+	to_drink: "to_drink",
 };
 
 /**

@@ -62,6 +62,11 @@ export type scoring_evaluation = $Result.DefaultSelection<Prisma.$scoring_evalua
  * This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
  */
 export type colleagues = $Result.DefaultSelection<Prisma.$colleaguesPayload>;
+/**
+ * Model to_drink
+ *
+ */
+export type to_drink = $Result.DefaultSelection<Prisma.$to_drinkPayload>;
 
 /**
  * ##  Prisma Client ʲˢ
@@ -309,6 +314,16 @@ export class PrismaClient<
 	 * ```
 	 */
 	get colleagues(): Prisma.colleaguesDelegate<ExtArgs, ClientOptions>;
+
+	/**
+	 * `prisma.to_drink`: Exposes CRUD operations for the **to_drink** model.
+	 * Example usage:
+	 * ```ts
+	 * // Fetch zero or more To_drinks
+	 * const to_drinks = await prisma.to_drink.findMany()
+	 * ```
+	 */
+	get to_drink(): Prisma.to_drinkDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -753,6 +768,7 @@ export namespace Prisma {
 		corrective_coefficients: "corrective_coefficients";
 		scoring_evaluation: "scoring_evaluation";
 		colleagues: "colleagues";
+		to_drink: "to_drink";
 	};
 
 	export type ModelName = (typeof ModelName)[keyof typeof ModelName];
@@ -787,7 +803,8 @@ export namespace Prisma {
 				| "final_considerations"
 				| "corrective_coefficients"
 				| "scoring_evaluation"
-				| "colleagues";
+				| "colleagues"
+				| "to_drink";
 			txIsolationLevel: Prisma.TransactionIsolationLevel;
 		};
 		model: {
@@ -1531,6 +1548,80 @@ export namespace Prisma {
 					};
 				};
 			};
+			to_drink: {
+				payload: Prisma.$to_drinkPayload<ExtArgs>;
+				fields: Prisma.to_drinkFieldRefs;
+				operations: {
+					findUnique: {
+						args: Prisma.to_drinkFindUniqueArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$to_drinkPayload> | null;
+					};
+					findUniqueOrThrow: {
+						args: Prisma.to_drinkFindUniqueOrThrowArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$to_drinkPayload>;
+					};
+					findFirst: {
+						args: Prisma.to_drinkFindFirstArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$to_drinkPayload> | null;
+					};
+					findFirstOrThrow: {
+						args: Prisma.to_drinkFindFirstOrThrowArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$to_drinkPayload>;
+					};
+					findMany: {
+						args: Prisma.to_drinkFindManyArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$to_drinkPayload>[];
+					};
+					create: {
+						args: Prisma.to_drinkCreateArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$to_drinkPayload>;
+					};
+					createMany: {
+						args: Prisma.to_drinkCreateManyArgs<ExtArgs>;
+						result: BatchPayload;
+					};
+					createManyAndReturn: {
+						args: Prisma.to_drinkCreateManyAndReturnArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$to_drinkPayload>[];
+					};
+					delete: {
+						args: Prisma.to_drinkDeleteArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$to_drinkPayload>;
+					};
+					update: {
+						args: Prisma.to_drinkUpdateArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$to_drinkPayload>;
+					};
+					deleteMany: {
+						args: Prisma.to_drinkDeleteManyArgs<ExtArgs>;
+						result: BatchPayload;
+					};
+					updateMany: {
+						args: Prisma.to_drinkUpdateManyArgs<ExtArgs>;
+						result: BatchPayload;
+					};
+					updateManyAndReturn: {
+						args: Prisma.to_drinkUpdateManyAndReturnArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$to_drinkPayload>[];
+					};
+					upsert: {
+						args: Prisma.to_drinkUpsertArgs<ExtArgs>;
+						result: $Utils.PayloadToResult<Prisma.$to_drinkPayload>;
+					};
+					aggregate: {
+						args: Prisma.To_drinkAggregateArgs<ExtArgs>;
+						result: $Utils.Optional<AggregateTo_drink>;
+					};
+					groupBy: {
+						args: Prisma.to_drinkGroupByArgs<ExtArgs>;
+						result: $Utils.Optional<To_drinkGroupByOutputType>[];
+					};
+					count: {
+						args: Prisma.to_drinkCountArgs<ExtArgs>;
+						result: $Utils.Optional<To_drinkCountAggregateOutputType> | number;
+					};
+				};
+			};
 		};
 	} & {
 		other: {
@@ -1637,6 +1728,7 @@ export namespace Prisma {
 		corrective_coefficients?: corrective_coefficientsOmit;
 		scoring_evaluation?: scoring_evaluationOmit;
 		colleagues?: colleaguesOmit;
+		to_drink?: to_drinkOmit;
 	};
 
 	/* Types for Logging */
@@ -1716,6 +1808,7 @@ export namespace Prisma {
 		colleagues_colleagues_requester_idTousers: number;
 		scoring_evaluation: number;
 		tastings: number;
+		to_drink: number;
 	};
 
 	export type UsersCountOutputTypeSelect<
@@ -1729,6 +1822,7 @@ export namespace Prisma {
 			| UsersCountOutputTypeCountColleagues_colleagues_requester_idTousersArgs;
 		scoring_evaluation?: boolean | UsersCountOutputTypeCountScoring_evaluationArgs;
 		tastings?: boolean | UsersCountOutputTypeCountTastingsArgs;
+		to_drink?: boolean | UsersCountOutputTypeCountTo_drinkArgs;
 	};
 
 	// Custom InputTypes
@@ -1778,6 +1872,15 @@ export namespace Prisma {
 		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
 	> = {
 		where?: tastingsWhereInput;
+	};
+
+	/**
+	 * UsersCountOutputType without action
+	 */
+	export type UsersCountOutputTypeCountTo_drinkArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		where?: to_drinkWhereInput;
 	};
 
 	/**
@@ -2098,6 +2201,7 @@ export namespace Prisma {
 					| users$colleagues_colleagues_requester_idTousersArgs<ExtArgs>;
 				scoring_evaluation?: boolean | users$scoring_evaluationArgs<ExtArgs>;
 				tastings?: boolean | users$tastingsArgs<ExtArgs>;
+				to_drink?: boolean | users$to_drinkArgs<ExtArgs>;
 				_count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>;
 			},
 			ExtArgs["result"]["users"]
@@ -2191,6 +2295,7 @@ export namespace Prisma {
 			| users$colleagues_colleagues_requester_idTousersArgs<ExtArgs>;
 		scoring_evaluation?: boolean | users$scoring_evaluationArgs<ExtArgs>;
 		tastings?: boolean | users$tastingsArgs<ExtArgs>;
+		to_drink?: boolean | users$to_drinkArgs<ExtArgs>;
 		_count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>;
 	};
 	export type usersIncludeCreateManyAndReturn<
@@ -2207,6 +2312,7 @@ export namespace Prisma {
 			colleagues_colleagues_requester_idTousers: Prisma.$colleaguesPayload<ExtArgs>[];
 			scoring_evaluation: Prisma.$scoring_evaluationPayload<ExtArgs>[];
 			tastings: Prisma.$tastingsPayload<ExtArgs>[];
+			to_drink: Prisma.$to_drinkPayload<ExtArgs>[];
 		};
 		scalars: $Extensions.GetPayloadResult<
 			{
@@ -2751,6 +2857,12 @@ export namespace Prisma {
 			args?: Subset<T, users$tastingsArgs<ExtArgs>>,
 		): Prisma.PrismaPromise<
 			| $Result.GetResult<Prisma.$tastingsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>
+			| Null
+		>;
+		to_drink<T extends users$to_drinkArgs<ExtArgs> = {}>(
+			args?: Subset<T, users$to_drinkArgs<ExtArgs>>,
+		): Prisma.PrismaPromise<
+			| $Result.GetResult<Prisma.$to_drinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>
 			| Null
 		>;
 		/**
@@ -3312,6 +3424,32 @@ export namespace Prisma {
 		take?: number;
 		skip?: number;
 		distinct?: TastingsScalarFieldEnum | TastingsScalarFieldEnum[];
+	};
+
+	/**
+	 * users.to_drink
+	 */
+	export type users$to_drinkArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the to_drink
+		 */
+		select?: to_drinkSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the to_drink
+		 */
+		omit?: to_drinkOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: to_drinkInclude<ExtArgs> | null;
+		where?: to_drinkWhereInput;
+		orderBy?: to_drinkOrderByWithRelationInput | to_drinkOrderByWithRelationInput[];
+		cursor?: to_drinkWhereUniqueInput;
+		take?: number;
+		skip?: number;
+		distinct?: To_drinkScalarFieldEnum | To_drinkScalarFieldEnum[];
 	};
 
 	/**
@@ -15997,6 +16135,1295 @@ export namespace Prisma {
 	};
 
 	/**
+	 * Model to_drink
+	 */
+
+	export type AggregateTo_drink = {
+		_count: To_drinkCountAggregateOutputType | null;
+		_avg: To_drinkAvgAggregateOutputType | null;
+		_sum: To_drinkSumAggregateOutputType | null;
+		_min: To_drinkMinAggregateOutputType | null;
+		_max: To_drinkMaxAggregateOutputType | null;
+	};
+
+	export type To_drinkAvgAggregateOutputType = {
+		id: number | null;
+		vintage: number | null;
+	};
+
+	export type To_drinkSumAggregateOutputType = {
+		id: number | null;
+		vintage: number | null;
+	};
+
+	export type To_drinkMinAggregateOutputType = {
+		id: number | null;
+		wid: string | null;
+		uid: string | null;
+		denomination: string | null;
+		winemaker: string | null;
+		vintage: number | null;
+	};
+
+	export type To_drinkMaxAggregateOutputType = {
+		id: number | null;
+		wid: string | null;
+		uid: string | null;
+		denomination: string | null;
+		winemaker: string | null;
+		vintage: number | null;
+	};
+
+	export type To_drinkCountAggregateOutputType = {
+		id: number;
+		wid: number;
+		uid: number;
+		denomination: number;
+		winemaker: number;
+		vintage: number;
+		_all: number;
+	};
+
+	export type To_drinkAvgAggregateInputType = {
+		id?: true;
+		vintage?: true;
+	};
+
+	export type To_drinkSumAggregateInputType = {
+		id?: true;
+		vintage?: true;
+	};
+
+	export type To_drinkMinAggregateInputType = {
+		id?: true;
+		wid?: true;
+		uid?: true;
+		denomination?: true;
+		winemaker?: true;
+		vintage?: true;
+	};
+
+	export type To_drinkMaxAggregateInputType = {
+		id?: true;
+		wid?: true;
+		uid?: true;
+		denomination?: true;
+		winemaker?: true;
+		vintage?: true;
+	};
+
+	export type To_drinkCountAggregateInputType = {
+		id?: true;
+		wid?: true;
+		uid?: true;
+		denomination?: true;
+		winemaker?: true;
+		vintage?: true;
+		_all?: true;
+	};
+
+	export type To_drinkAggregateArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Filter which to_drink to aggregate.
+		 */
+		where?: to_drinkWhereInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+		 *
+		 * Determine the order of to_drinks to fetch.
+		 */
+		orderBy?: to_drinkOrderByWithRelationInput | to_drinkOrderByWithRelationInput[];
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+		 *
+		 * Sets the start position
+		 */
+		cursor?: to_drinkWhereUniqueInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Take `±n` to_drinks from the position of the cursor.
+		 */
+		take?: number;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Skip the first `n` to_drinks.
+		 */
+		skip?: number;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+		 *
+		 * Count returned to_drinks
+		 **/
+		_count?: true | To_drinkCountAggregateInputType;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+		 *
+		 * Select which fields to average
+		 **/
+		_avg?: To_drinkAvgAggregateInputType;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+		 *
+		 * Select which fields to sum
+		 **/
+		_sum?: To_drinkSumAggregateInputType;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+		 *
+		 * Select which fields to find the minimum value
+		 **/
+		_min?: To_drinkMinAggregateInputType;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+		 *
+		 * Select which fields to find the maximum value
+		 **/
+		_max?: To_drinkMaxAggregateInputType;
+	};
+
+	export type GetTo_drinkAggregateType<T extends To_drinkAggregateArgs> = {
+		[P in keyof T & keyof AggregateTo_drink]: P extends "_count" | "count"
+			? T[P] extends true
+				? number
+				: GetScalarType<T[P], AggregateTo_drink[P]>
+			: GetScalarType<T[P], AggregateTo_drink[P]>;
+	};
+
+	export type to_drinkGroupByArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		where?: to_drinkWhereInput;
+		orderBy?: to_drinkOrderByWithAggregationInput | to_drinkOrderByWithAggregationInput[];
+		by: To_drinkScalarFieldEnum[] | To_drinkScalarFieldEnum;
+		having?: to_drinkScalarWhereWithAggregatesInput;
+		take?: number;
+		skip?: number;
+		_count?: To_drinkCountAggregateInputType | true;
+		_avg?: To_drinkAvgAggregateInputType;
+		_sum?: To_drinkSumAggregateInputType;
+		_min?: To_drinkMinAggregateInputType;
+		_max?: To_drinkMaxAggregateInputType;
+	};
+
+	export type To_drinkGroupByOutputType = {
+		id: number;
+		wid: string;
+		uid: string;
+		denomination: string;
+		winemaker: string;
+		vintage: number;
+		_count: To_drinkCountAggregateOutputType | null;
+		_avg: To_drinkAvgAggregateOutputType | null;
+		_sum: To_drinkSumAggregateOutputType | null;
+		_min: To_drinkMinAggregateOutputType | null;
+		_max: To_drinkMaxAggregateOutputType | null;
+	};
+
+	type GetTo_drinkGroupByPayload<T extends to_drinkGroupByArgs> = Prisma.PrismaPromise<
+		Array<
+			PickEnumerable<To_drinkGroupByOutputType, T["by"]> & {
+				[P in keyof T & keyof To_drinkGroupByOutputType]: P extends "_count"
+					? T[P] extends boolean
+						? number
+						: GetScalarType<T[P], To_drinkGroupByOutputType[P]>
+					: GetScalarType<T[P], To_drinkGroupByOutputType[P]>;
+			}
+		>
+	>;
+
+	export type to_drinkSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+		$Extensions.GetSelect<
+			{
+				id?: boolean;
+				wid?: boolean;
+				uid?: boolean;
+				denomination?: boolean;
+				winemaker?: boolean;
+				vintage?: boolean;
+				users?: boolean | usersDefaultArgs<ExtArgs>;
+			},
+			ExtArgs["result"]["to_drink"]
+		>;
+
+	export type to_drinkSelectCreateManyAndReturn<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = $Extensions.GetSelect<
+		{
+			id?: boolean;
+			wid?: boolean;
+			uid?: boolean;
+			denomination?: boolean;
+			winemaker?: boolean;
+			vintage?: boolean;
+			users?: boolean | usersDefaultArgs<ExtArgs>;
+		},
+		ExtArgs["result"]["to_drink"]
+	>;
+
+	export type to_drinkSelectUpdateManyAndReturn<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = $Extensions.GetSelect<
+		{
+			id?: boolean;
+			wid?: boolean;
+			uid?: boolean;
+			denomination?: boolean;
+			winemaker?: boolean;
+			vintage?: boolean;
+			users?: boolean | usersDefaultArgs<ExtArgs>;
+		},
+		ExtArgs["result"]["to_drink"]
+	>;
+
+	export type to_drinkSelectScalar = {
+		id?: boolean;
+		wid?: boolean;
+		uid?: boolean;
+		denomination?: boolean;
+		winemaker?: boolean;
+		vintage?: boolean;
+	};
+
+	export type to_drinkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+		$Extensions.GetOmit<
+			"id" | "wid" | "uid" | "denomination" | "winemaker" | "vintage",
+			ExtArgs["result"]["to_drink"]
+		>;
+	export type to_drinkInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+		{
+			users?: boolean | usersDefaultArgs<ExtArgs>;
+		};
+	export type to_drinkIncludeCreateManyAndReturn<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		users?: boolean | usersDefaultArgs<ExtArgs>;
+	};
+	export type to_drinkIncludeUpdateManyAndReturn<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		users?: boolean | usersDefaultArgs<ExtArgs>;
+	};
+
+	export type $to_drinkPayload<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		name: "to_drink";
+		objects: {
+			users: Prisma.$usersPayload<ExtArgs>;
+		};
+		scalars: $Extensions.GetPayloadResult<
+			{
+				id: number;
+				wid: string;
+				uid: string;
+				denomination: string;
+				winemaker: string;
+				vintage: number;
+			},
+			ExtArgs["result"]["to_drink"]
+		>;
+		composites: {};
+	};
+
+	type to_drinkGetPayload<S extends boolean | null | undefined | to_drinkDefaultArgs> =
+		$Result.GetResult<Prisma.$to_drinkPayload, S>;
+
+	type to_drinkCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+		Omit<to_drinkFindManyArgs, "select" | "include" | "distinct" | "omit"> & {
+			select?: To_drinkCountAggregateInputType | true;
+		};
+
+	export interface to_drinkDelegate<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+		GlobalOmitOptions = {},
+	> {
+		[K: symbol]: {
+			types: Prisma.TypeMap<ExtArgs>["model"]["to_drink"];
+			meta: { name: "to_drink" };
+		};
+		/**
+		 * Find zero or one To_drink that matches the filter.
+		 * @param {to_drinkFindUniqueArgs} args - Arguments to find a To_drink
+		 * @example
+		 * // Get one To_drink
+		 * const to_drink = await prisma.to_drink.findUnique({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   }
+		 * })
+		 */
+		findUnique<T extends to_drinkFindUniqueArgs>(
+			args: SelectSubset<T, to_drinkFindUniqueArgs<ExtArgs>>,
+		): Prisma__to_drinkClient<
+			$Result.GetResult<
+				Prisma.$to_drinkPayload<ExtArgs>,
+				T,
+				"findUnique",
+				GlobalOmitOptions
+			> | null,
+			null,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Find one To_drink that matches the filter or throw an error with `error.code='P2025'`
+		 * if no matches were found.
+		 * @param {to_drinkFindUniqueOrThrowArgs} args - Arguments to find a To_drink
+		 * @example
+		 * // Get one To_drink
+		 * const to_drink = await prisma.to_drink.findUniqueOrThrow({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   }
+		 * })
+		 */
+		findUniqueOrThrow<T extends to_drinkFindUniqueOrThrowArgs>(
+			args: SelectSubset<T, to_drinkFindUniqueOrThrowArgs<ExtArgs>>,
+		): Prisma__to_drinkClient<
+			$Result.GetResult<
+				Prisma.$to_drinkPayload<ExtArgs>,
+				T,
+				"findUniqueOrThrow",
+				GlobalOmitOptions
+			>,
+			never,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Find the first To_drink that matches the filter.
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 * @param {to_drinkFindFirstArgs} args - Arguments to find a To_drink
+		 * @example
+		 * // Get one To_drink
+		 * const to_drink = await prisma.to_drink.findFirst({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   }
+		 * })
+		 */
+		findFirst<T extends to_drinkFindFirstArgs>(
+			args?: SelectSubset<T, to_drinkFindFirstArgs<ExtArgs>>,
+		): Prisma__to_drinkClient<
+			$Result.GetResult<
+				Prisma.$to_drinkPayload<ExtArgs>,
+				T,
+				"findFirst",
+				GlobalOmitOptions
+			> | null,
+			null,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Find the first To_drink that matches the filter or
+		 * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 * @param {to_drinkFindFirstOrThrowArgs} args - Arguments to find a To_drink
+		 * @example
+		 * // Get one To_drink
+		 * const to_drink = await prisma.to_drink.findFirstOrThrow({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   }
+		 * })
+		 */
+		findFirstOrThrow<T extends to_drinkFindFirstOrThrowArgs>(
+			args?: SelectSubset<T, to_drinkFindFirstOrThrowArgs<ExtArgs>>,
+		): Prisma__to_drinkClient<
+			$Result.GetResult<
+				Prisma.$to_drinkPayload<ExtArgs>,
+				T,
+				"findFirstOrThrow",
+				GlobalOmitOptions
+			>,
+			never,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Find zero or more To_drinks that matches the filter.
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 * @param {to_drinkFindManyArgs} args - Arguments to filter and select certain fields only.
+		 * @example
+		 * // Get all To_drinks
+		 * const to_drinks = await prisma.to_drink.findMany()
+		 *
+		 * // Get first 10 To_drinks
+		 * const to_drinks = await prisma.to_drink.findMany({ take: 10 })
+		 *
+		 * // Only select the `id`
+		 * const to_drinkWithIdOnly = await prisma.to_drink.findMany({ select: { id: true } })
+		 *
+		 */
+		findMany<T extends to_drinkFindManyArgs>(
+			args?: SelectSubset<T, to_drinkFindManyArgs<ExtArgs>>,
+		): Prisma.PrismaPromise<
+			$Result.GetResult<Prisma.$to_drinkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>
+		>;
+
+		/**
+		 * Create a To_drink.
+		 * @param {to_drinkCreateArgs} args - Arguments to create a To_drink.
+		 * @example
+		 * // Create one To_drink
+		 * const To_drink = await prisma.to_drink.create({
+		 *   data: {
+		 *     // ... data to create a To_drink
+		 *   }
+		 * })
+		 *
+		 */
+		create<T extends to_drinkCreateArgs>(
+			args: SelectSubset<T, to_drinkCreateArgs<ExtArgs>>,
+		): Prisma__to_drinkClient<
+			$Result.GetResult<Prisma.$to_drinkPayload<ExtArgs>, T, "create", GlobalOmitOptions>,
+			never,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Create many To_drinks.
+		 * @param {to_drinkCreateManyArgs} args - Arguments to create many To_drinks.
+		 * @example
+		 * // Create many To_drinks
+		 * const to_drink = await prisma.to_drink.createMany({
+		 *   data: [
+		 *     // ... provide data here
+		 *   ]
+		 * })
+		 *
+		 */
+		createMany<T extends to_drinkCreateManyArgs>(
+			args?: SelectSubset<T, to_drinkCreateManyArgs<ExtArgs>>,
+		): Prisma.PrismaPromise<BatchPayload>;
+
+		/**
+		 * Create many To_drinks and returns the data saved in the database.
+		 * @param {to_drinkCreateManyAndReturnArgs} args - Arguments to create many To_drinks.
+		 * @example
+		 * // Create many To_drinks
+		 * const to_drink = await prisma.to_drink.createManyAndReturn({
+		 *   data: [
+		 *     // ... provide data here
+		 *   ]
+		 * })
+		 *
+		 * // Create many To_drinks and only return the `id`
+		 * const to_drinkWithIdOnly = await prisma.to_drink.createManyAndReturn({
+		 *   select: { id: true },
+		 *   data: [
+		 *     // ... provide data here
+		 *   ]
+		 * })
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 *
+		 */
+		createManyAndReturn<T extends to_drinkCreateManyAndReturnArgs>(
+			args?: SelectSubset<T, to_drinkCreateManyAndReturnArgs<ExtArgs>>,
+		): Prisma.PrismaPromise<
+			$Result.GetResult<
+				Prisma.$to_drinkPayload<ExtArgs>,
+				T,
+				"createManyAndReturn",
+				GlobalOmitOptions
+			>
+		>;
+
+		/**
+		 * Delete a To_drink.
+		 * @param {to_drinkDeleteArgs} args - Arguments to delete one To_drink.
+		 * @example
+		 * // Delete one To_drink
+		 * const To_drink = await prisma.to_drink.delete({
+		 *   where: {
+		 *     // ... filter to delete one To_drink
+		 *   }
+		 * })
+		 *
+		 */
+		delete<T extends to_drinkDeleteArgs>(
+			args: SelectSubset<T, to_drinkDeleteArgs<ExtArgs>>,
+		): Prisma__to_drinkClient<
+			$Result.GetResult<Prisma.$to_drinkPayload<ExtArgs>, T, "delete", GlobalOmitOptions>,
+			never,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Update one To_drink.
+		 * @param {to_drinkUpdateArgs} args - Arguments to update one To_drink.
+		 * @example
+		 * // Update one To_drink
+		 * const to_drink = await prisma.to_drink.update({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   },
+		 *   data: {
+		 *     // ... provide data here
+		 *   }
+		 * })
+		 *
+		 */
+		update<T extends to_drinkUpdateArgs>(
+			args: SelectSubset<T, to_drinkUpdateArgs<ExtArgs>>,
+		): Prisma__to_drinkClient<
+			$Result.GetResult<Prisma.$to_drinkPayload<ExtArgs>, T, "update", GlobalOmitOptions>,
+			never,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Delete zero or more To_drinks.
+		 * @param {to_drinkDeleteManyArgs} args - Arguments to filter To_drinks to delete.
+		 * @example
+		 * // Delete a few To_drinks
+		 * const { count } = await prisma.to_drink.deleteMany({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   }
+		 * })
+		 *
+		 */
+		deleteMany<T extends to_drinkDeleteManyArgs>(
+			args?: SelectSubset<T, to_drinkDeleteManyArgs<ExtArgs>>,
+		): Prisma.PrismaPromise<BatchPayload>;
+
+		/**
+		 * Update zero or more To_drinks.
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 * @param {to_drinkUpdateManyArgs} args - Arguments to update one or more rows.
+		 * @example
+		 * // Update many To_drinks
+		 * const to_drink = await prisma.to_drink.updateMany({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   },
+		 *   data: {
+		 *     // ... provide data here
+		 *   }
+		 * })
+		 *
+		 */
+		updateMany<T extends to_drinkUpdateManyArgs>(
+			args: SelectSubset<T, to_drinkUpdateManyArgs<ExtArgs>>,
+		): Prisma.PrismaPromise<BatchPayload>;
+
+		/**
+		 * Update zero or more To_drinks and returns the data updated in the database.
+		 * @param {to_drinkUpdateManyAndReturnArgs} args - Arguments to update many To_drinks.
+		 * @example
+		 * // Update many To_drinks
+		 * const to_drink = await prisma.to_drink.updateManyAndReturn({
+		 *   where: {
+		 *     // ... provide filter here
+		 *   },
+		 *   data: [
+		 *     // ... provide data here
+		 *   ]
+		 * })
+		 *
+		 * // Update zero or more To_drinks and only return the `id`
+		 * const to_drinkWithIdOnly = await prisma.to_drink.updateManyAndReturn({
+		 *   select: { id: true },
+		 *   where: {
+		 *     // ... provide filter here
+		 *   },
+		 *   data: [
+		 *     // ... provide data here
+		 *   ]
+		 * })
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 *
+		 */
+		updateManyAndReturn<T extends to_drinkUpdateManyAndReturnArgs>(
+			args: SelectSubset<T, to_drinkUpdateManyAndReturnArgs<ExtArgs>>,
+		): Prisma.PrismaPromise<
+			$Result.GetResult<
+				Prisma.$to_drinkPayload<ExtArgs>,
+				T,
+				"updateManyAndReturn",
+				GlobalOmitOptions
+			>
+		>;
+
+		/**
+		 * Create or update one To_drink.
+		 * @param {to_drinkUpsertArgs} args - Arguments to update or create a To_drink.
+		 * @example
+		 * // Update or create a To_drink
+		 * const to_drink = await prisma.to_drink.upsert({
+		 *   create: {
+		 *     // ... data to create a To_drink
+		 *   },
+		 *   update: {
+		 *     // ... in case it already exists, update
+		 *   },
+		 *   where: {
+		 *     // ... the filter for the To_drink we want to update
+		 *   }
+		 * })
+		 */
+		upsert<T extends to_drinkUpsertArgs>(
+			args: SelectSubset<T, to_drinkUpsertArgs<ExtArgs>>,
+		): Prisma__to_drinkClient<
+			$Result.GetResult<Prisma.$to_drinkPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>,
+			never,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+
+		/**
+		 * Count the number of To_drinks.
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 * @param {to_drinkCountArgs} args - Arguments to filter To_drinks to count.
+		 * @example
+		 * // Count the number of To_drinks
+		 * const count = await prisma.to_drink.count({
+		 *   where: {
+		 *     // ... the filter for the To_drinks we want to count
+		 *   }
+		 * })
+		 **/
+		count<T extends to_drinkCountArgs>(
+			args?: Subset<T, to_drinkCountArgs>,
+		): Prisma.PrismaPromise<
+			T extends $Utils.Record<"select", any>
+				? T["select"] extends true
+					? number
+					: GetScalarType<T["select"], To_drinkCountAggregateOutputType>
+				: number
+		>;
+
+		/**
+		 * Allows you to perform aggregations operations on a To_drink.
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 * @param {To_drinkAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+		 * @example
+		 * // Ordered by age ascending
+		 * // Where email contains prisma.io
+		 * // Limited to the 10 users
+		 * const aggregations = await prisma.user.aggregate({
+		 *   _avg: {
+		 *     age: true,
+		 *   },
+		 *   where: {
+		 *     email: {
+		 *       contains: "prisma.io",
+		 *     },
+		 *   },
+		 *   orderBy: {
+		 *     age: "asc",
+		 *   },
+		 *   take: 10,
+		 * })
+		 **/
+		aggregate<T extends To_drinkAggregateArgs>(
+			args: Subset<T, To_drinkAggregateArgs>,
+		): Prisma.PrismaPromise<GetTo_drinkAggregateType<T>>;
+
+		/**
+		 * Group by To_drink.
+		 * Note, that providing `undefined` is treated as the value not being there.
+		 * Read more here: https://pris.ly/d/null-undefined
+		 * @param {to_drinkGroupByArgs} args - Group by arguments.
+		 * @example
+		 * // Group by city, order by createdAt, get count
+		 * const result = await prisma.user.groupBy({
+		 *   by: ['city', 'createdAt'],
+		 *   orderBy: {
+		 *     createdAt: true
+		 *   },
+		 *   _count: {
+		 *     _all: true
+		 *   },
+		 * })
+		 *
+		 **/
+		groupBy<
+			T extends to_drinkGroupByArgs,
+			HasSelectOrTake extends Or<Extends<"skip", Keys<T>>, Extends<"take", Keys<T>>>,
+			OrderByArg extends True extends HasSelectOrTake
+				? { orderBy: to_drinkGroupByArgs["orderBy"] }
+				: { orderBy?: to_drinkGroupByArgs["orderBy"] },
+			OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T["orderBy"]>>>,
+			ByFields extends MaybeTupleToUnion<T["by"]>,
+			ByValid extends Has<ByFields, OrderFields>,
+			HavingFields extends GetHavingFields<T["having"]>,
+			HavingValid extends Has<ByFields, HavingFields>,
+			ByEmpty extends T["by"] extends never[] ? True : False,
+			InputErrors extends ByEmpty extends True
+				? `Error: "by" must not be empty.`
+				: HavingValid extends False
+					? {
+							[P in HavingFields]: P extends ByFields
+								? never
+								: P extends string
+									? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+									: [Error, "Field ", P, ` in "having" needs to be provided in "by"`];
+						}[HavingFields]
+					: "take" extends Keys<T>
+						? "orderBy" extends Keys<T>
+							? ByValid extends True
+								? {}
+								: {
+										[P in OrderFields]: P extends ByFields
+											? never
+											: `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+									}[OrderFields]
+							: 'Error: If you provide "take", you also need to provide "orderBy"'
+						: "skip" extends Keys<T>
+							? "orderBy" extends Keys<T>
+								? ByValid extends True
+									? {}
+									: {
+											[P in OrderFields]: P extends ByFields
+												? never
+												: `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+										}[OrderFields]
+								: 'Error: If you provide "skip", you also need to provide "orderBy"'
+							: ByValid extends True
+								? {}
+								: {
+										[P in OrderFields]: P extends ByFields
+											? never
+											: `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+									}[OrderFields],
+		>(
+			args: SubsetIntersection<T, to_drinkGroupByArgs, OrderByArg> & InputErrors,
+		): {} extends InputErrors ? GetTo_drinkGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
+		/**
+		 * Fields of the to_drink model
+		 */
+		readonly fields: to_drinkFieldRefs;
+	}
+
+	/**
+	 * The delegate class that acts as a "Promise-like" for to_drink.
+	 * Why is this prefixed with `Prisma__`?
+	 * Because we want to prevent naming conflicts as mentioned in
+	 * https://github.com/prisma/prisma-client-js/issues/707
+	 */
+	export interface Prisma__to_drinkClient<
+		T,
+		Null = never,
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+		GlobalOmitOptions = {},
+	> extends Prisma.PrismaPromise<T> {
+		readonly [Symbol.toStringTag]: "PrismaPromise";
+		users<T extends usersDefaultArgs<ExtArgs> = {}>(
+			args?: Subset<T, usersDefaultArgs<ExtArgs>>,
+		): Prisma__usersClient<
+			| $Result.GetResult<
+					Prisma.$usersPayload<ExtArgs>,
+					T,
+					"findUniqueOrThrow",
+					GlobalOmitOptions
+			  >
+			| Null,
+			Null,
+			ExtArgs,
+			GlobalOmitOptions
+		>;
+		/**
+		 * Attaches callbacks for the resolution and/or rejection of the Promise.
+		 * @param onfulfilled The callback to execute when the Promise is resolved.
+		 * @param onrejected The callback to execute when the Promise is rejected.
+		 * @returns A Promise for the completion of which ever callback is executed.
+		 */
+		then<TResult1 = T, TResult2 = never>(
+			onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
+			onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
+		): $Utils.JsPromise<TResult1 | TResult2>;
+		/**
+		 * Attaches a callback for only the rejection of the Promise.
+		 * @param onrejected The callback to execute when the Promise is rejected.
+		 * @returns A Promise for the completion of the callback.
+		 */
+		catch<TResult = never>(
+			onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
+		): $Utils.JsPromise<T | TResult>;
+		/**
+		 * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+		 * resolved value cannot be modified from the callback.
+		 * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+		 * @returns A Promise for the completion of the callback.
+		 */
+		finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+	}
+
+	/**
+	 * Fields of the to_drink model
+	 */
+	interface to_drinkFieldRefs {
+		readonly id: FieldRef<"to_drink", "Int">;
+		readonly wid: FieldRef<"to_drink", "String">;
+		readonly uid: FieldRef<"to_drink", "String">;
+		readonly denomination: FieldRef<"to_drink", "String">;
+		readonly winemaker: FieldRef<"to_drink", "String">;
+		readonly vintage: FieldRef<"to_drink", "Int">;
+	}
+
+	// Custom InputTypes
+	/**
+	 * to_drink findUnique
+	 */
+	export type to_drinkFindUniqueArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the to_drink
+		 */
+		select?: to_drinkSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the to_drink
+		 */
+		omit?: to_drinkOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: to_drinkInclude<ExtArgs> | null;
+		/**
+		 * Filter, which to_drink to fetch.
+		 */
+		where: to_drinkWhereUniqueInput;
+	};
+
+	/**
+	 * to_drink findUniqueOrThrow
+	 */
+	export type to_drinkFindUniqueOrThrowArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the to_drink
+		 */
+		select?: to_drinkSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the to_drink
+		 */
+		omit?: to_drinkOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: to_drinkInclude<ExtArgs> | null;
+		/**
+		 * Filter, which to_drink to fetch.
+		 */
+		where: to_drinkWhereUniqueInput;
+	};
+
+	/**
+	 * to_drink findFirst
+	 */
+	export type to_drinkFindFirstArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the to_drink
+		 */
+		select?: to_drinkSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the to_drink
+		 */
+		omit?: to_drinkOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: to_drinkInclude<ExtArgs> | null;
+		/**
+		 * Filter, which to_drink to fetch.
+		 */
+		where?: to_drinkWhereInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+		 *
+		 * Determine the order of to_drinks to fetch.
+		 */
+		orderBy?: to_drinkOrderByWithRelationInput | to_drinkOrderByWithRelationInput[];
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+		 *
+		 * Sets the position for searching for to_drinks.
+		 */
+		cursor?: to_drinkWhereUniqueInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Take `±n` to_drinks from the position of the cursor.
+		 */
+		take?: number;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Skip the first `n` to_drinks.
+		 */
+		skip?: number;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+		 *
+		 * Filter by unique combinations of to_drinks.
+		 */
+		distinct?: To_drinkScalarFieldEnum | To_drinkScalarFieldEnum[];
+	};
+
+	/**
+	 * to_drink findFirstOrThrow
+	 */
+	export type to_drinkFindFirstOrThrowArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the to_drink
+		 */
+		select?: to_drinkSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the to_drink
+		 */
+		omit?: to_drinkOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: to_drinkInclude<ExtArgs> | null;
+		/**
+		 * Filter, which to_drink to fetch.
+		 */
+		where?: to_drinkWhereInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+		 *
+		 * Determine the order of to_drinks to fetch.
+		 */
+		orderBy?: to_drinkOrderByWithRelationInput | to_drinkOrderByWithRelationInput[];
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+		 *
+		 * Sets the position for searching for to_drinks.
+		 */
+		cursor?: to_drinkWhereUniqueInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Take `±n` to_drinks from the position of the cursor.
+		 */
+		take?: number;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Skip the first `n` to_drinks.
+		 */
+		skip?: number;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+		 *
+		 * Filter by unique combinations of to_drinks.
+		 */
+		distinct?: To_drinkScalarFieldEnum | To_drinkScalarFieldEnum[];
+	};
+
+	/**
+	 * to_drink findMany
+	 */
+	export type to_drinkFindManyArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the to_drink
+		 */
+		select?: to_drinkSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the to_drink
+		 */
+		omit?: to_drinkOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: to_drinkInclude<ExtArgs> | null;
+		/**
+		 * Filter, which to_drinks to fetch.
+		 */
+		where?: to_drinkWhereInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+		 *
+		 * Determine the order of to_drinks to fetch.
+		 */
+		orderBy?: to_drinkOrderByWithRelationInput | to_drinkOrderByWithRelationInput[];
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+		 *
+		 * Sets the position for listing to_drinks.
+		 */
+		cursor?: to_drinkWhereUniqueInput;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Take `±n` to_drinks from the position of the cursor.
+		 */
+		take?: number;
+		/**
+		 * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+		 *
+		 * Skip the first `n` to_drinks.
+		 */
+		skip?: number;
+		distinct?: To_drinkScalarFieldEnum | To_drinkScalarFieldEnum[];
+	};
+
+	/**
+	 * to_drink create
+	 */
+	export type to_drinkCreateArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the to_drink
+		 */
+		select?: to_drinkSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the to_drink
+		 */
+		omit?: to_drinkOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: to_drinkInclude<ExtArgs> | null;
+		/**
+		 * The data needed to create a to_drink.
+		 */
+		data: XOR<to_drinkCreateInput, to_drinkUncheckedCreateInput>;
+	};
+
+	/**
+	 * to_drink createMany
+	 */
+	export type to_drinkCreateManyArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * The data used to create many to_drinks.
+		 */
+		data: to_drinkCreateManyInput | to_drinkCreateManyInput[];
+		skipDuplicates?: boolean;
+	};
+
+	/**
+	 * to_drink createManyAndReturn
+	 */
+	export type to_drinkCreateManyAndReturnArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the to_drink
+		 */
+		select?: to_drinkSelectCreateManyAndReturn<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the to_drink
+		 */
+		omit?: to_drinkOmit<ExtArgs> | null;
+		/**
+		 * The data used to create many to_drinks.
+		 */
+		data: to_drinkCreateManyInput | to_drinkCreateManyInput[];
+		skipDuplicates?: boolean;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: to_drinkIncludeCreateManyAndReturn<ExtArgs> | null;
+	};
+
+	/**
+	 * to_drink update
+	 */
+	export type to_drinkUpdateArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the to_drink
+		 */
+		select?: to_drinkSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the to_drink
+		 */
+		omit?: to_drinkOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: to_drinkInclude<ExtArgs> | null;
+		/**
+		 * The data needed to update a to_drink.
+		 */
+		data: XOR<to_drinkUpdateInput, to_drinkUncheckedUpdateInput>;
+		/**
+		 * Choose, which to_drink to update.
+		 */
+		where: to_drinkWhereUniqueInput;
+	};
+
+	/**
+	 * to_drink updateMany
+	 */
+	export type to_drinkUpdateManyArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * The data used to update to_drinks.
+		 */
+		data: XOR<to_drinkUpdateManyMutationInput, to_drinkUncheckedUpdateManyInput>;
+		/**
+		 * Filter which to_drinks to update
+		 */
+		where?: to_drinkWhereInput;
+		/**
+		 * Limit how many to_drinks to update.
+		 */
+		limit?: number;
+	};
+
+	/**
+	 * to_drink updateManyAndReturn
+	 */
+	export type to_drinkUpdateManyAndReturnArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the to_drink
+		 */
+		select?: to_drinkSelectUpdateManyAndReturn<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the to_drink
+		 */
+		omit?: to_drinkOmit<ExtArgs> | null;
+		/**
+		 * The data used to update to_drinks.
+		 */
+		data: XOR<to_drinkUpdateManyMutationInput, to_drinkUncheckedUpdateManyInput>;
+		/**
+		 * Filter which to_drinks to update
+		 */
+		where?: to_drinkWhereInput;
+		/**
+		 * Limit how many to_drinks to update.
+		 */
+		limit?: number;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: to_drinkIncludeUpdateManyAndReturn<ExtArgs> | null;
+	};
+
+	/**
+	 * to_drink upsert
+	 */
+	export type to_drinkUpsertArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the to_drink
+		 */
+		select?: to_drinkSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the to_drink
+		 */
+		omit?: to_drinkOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: to_drinkInclude<ExtArgs> | null;
+		/**
+		 * The filter to search for the to_drink to update in case it exists.
+		 */
+		where: to_drinkWhereUniqueInput;
+		/**
+		 * In case the to_drink found by the `where` argument doesn't exist, create a new to_drink with this data.
+		 */
+		create: XOR<to_drinkCreateInput, to_drinkUncheckedCreateInput>;
+		/**
+		 * In case the to_drink was found with the provided `where` argument, update it with this data.
+		 */
+		update: XOR<to_drinkUpdateInput, to_drinkUncheckedUpdateInput>;
+	};
+
+	/**
+	 * to_drink delete
+	 */
+	export type to_drinkDeleteArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the to_drink
+		 */
+		select?: to_drinkSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the to_drink
+		 */
+		omit?: to_drinkOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: to_drinkInclude<ExtArgs> | null;
+		/**
+		 * Filter which to_drink to delete.
+		 */
+		where: to_drinkWhereUniqueInput;
+	};
+
+	/**
+	 * to_drink deleteMany
+	 */
+	export type to_drinkDeleteManyArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Filter which to_drinks to delete
+		 */
+		where?: to_drinkWhereInput;
+		/**
+		 * Limit how many to_drinks to delete.
+		 */
+		limit?: number;
+	};
+
+	/**
+	 * to_drink without action
+	 */
+	export type to_drinkDefaultArgs<
+		ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+	> = {
+		/**
+		 * Select specific fields to fetch from the to_drink
+		 */
+		select?: to_drinkSelect<ExtArgs> | null;
+		/**
+		 * Omit specific fields from the to_drink
+		 */
+		omit?: to_drinkOmit<ExtArgs> | null;
+		/**
+		 * Choose, which related nodes to fetch as well
+		 */
+		include?: to_drinkInclude<ExtArgs> | null;
+	};
+
+	/**
 	 * Enums
 	 */
 
@@ -16180,6 +17607,18 @@ export namespace Prisma {
 	export type ColleaguesScalarFieldEnum =
 		(typeof ColleaguesScalarFieldEnum)[keyof typeof ColleaguesScalarFieldEnum];
 
+	export const To_drinkScalarFieldEnum: {
+		id: "id";
+		wid: "wid";
+		uid: "uid";
+		denomination: "denomination";
+		winemaker: "winemaker";
+		vintage: "vintage";
+	};
+
+	export type To_drinkScalarFieldEnum =
+		(typeof To_drinkScalarFieldEnum)[keyof typeof To_drinkScalarFieldEnum];
+
 	export const SortOrder: {
 		asc: "asc";
 		desc: "desc";
@@ -16292,6 +17731,7 @@ export namespace Prisma {
 		colleagues_colleagues_requester_idTousers?: ColleaguesListRelationFilter;
 		scoring_evaluation?: Scoring_evaluationListRelationFilter;
 		tastings?: TastingsListRelationFilter;
+		to_drink?: To_drinkListRelationFilter;
 	};
 
 	export type usersOrderByWithRelationInput = {
@@ -16313,6 +17753,7 @@ export namespace Prisma {
 		colleagues_colleagues_requester_idTousers?: colleaguesOrderByRelationAggregateInput;
 		scoring_evaluation?: scoring_evaluationOrderByRelationAggregateInput;
 		tastings?: tastingsOrderByRelationAggregateInput;
+		to_drink?: to_drinkOrderByRelationAggregateInput;
 	};
 
 	export type usersWhereUniqueInput = Prisma.AtLeast<
@@ -16338,6 +17779,7 @@ export namespace Prisma {
 			colleagues_colleagues_requester_idTousers?: ColleaguesListRelationFilter;
 			scoring_evaluation?: Scoring_evaluationListRelationFilter;
 			tastings?: TastingsListRelationFilter;
+			to_drink?: To_drinkListRelationFilter;
 		},
 		"id" | "uid" | "username" | "email" | "google_id" | "facebook_id" | "apple_id"
 	>;
@@ -17284,6 +18726,71 @@ export namespace Prisma {
 		updated_at?: DateTimeNullableWithAggregatesFilter<"colleagues"> | Date | string | null;
 	};
 
+	export type to_drinkWhereInput = {
+		AND?: to_drinkWhereInput | to_drinkWhereInput[];
+		OR?: to_drinkWhereInput[];
+		NOT?: to_drinkWhereInput | to_drinkWhereInput[];
+		id?: IntFilter<"to_drink"> | number;
+		wid?: UuidFilter<"to_drink"> | string;
+		uid?: UuidFilter<"to_drink"> | string;
+		denomination?: StringFilter<"to_drink"> | string;
+		winemaker?: StringFilter<"to_drink"> | string;
+		vintage?: IntFilter<"to_drink"> | number;
+		users?: XOR<UsersScalarRelationFilter, usersWhereInput>;
+	};
+
+	export type to_drinkOrderByWithRelationInput = {
+		id?: SortOrder;
+		wid?: SortOrder;
+		uid?: SortOrder;
+		denomination?: SortOrder;
+		winemaker?: SortOrder;
+		vintage?: SortOrder;
+		users?: usersOrderByWithRelationInput;
+	};
+
+	export type to_drinkWhereUniqueInput = Prisma.AtLeast<
+		{
+			id?: number;
+			wid?: string;
+			AND?: to_drinkWhereInput | to_drinkWhereInput[];
+			OR?: to_drinkWhereInput[];
+			NOT?: to_drinkWhereInput | to_drinkWhereInput[];
+			uid?: UuidFilter<"to_drink"> | string;
+			denomination?: StringFilter<"to_drink"> | string;
+			winemaker?: StringFilter<"to_drink"> | string;
+			vintage?: IntFilter<"to_drink"> | number;
+			users?: XOR<UsersScalarRelationFilter, usersWhereInput>;
+		},
+		"id" | "wid"
+	>;
+
+	export type to_drinkOrderByWithAggregationInput = {
+		id?: SortOrder;
+		wid?: SortOrder;
+		uid?: SortOrder;
+		denomination?: SortOrder;
+		winemaker?: SortOrder;
+		vintage?: SortOrder;
+		_count?: to_drinkCountOrderByAggregateInput;
+		_avg?: to_drinkAvgOrderByAggregateInput;
+		_max?: to_drinkMaxOrderByAggregateInput;
+		_min?: to_drinkMinOrderByAggregateInput;
+		_sum?: to_drinkSumOrderByAggregateInput;
+	};
+
+	export type to_drinkScalarWhereWithAggregatesInput = {
+		AND?: to_drinkScalarWhereWithAggregatesInput | to_drinkScalarWhereWithAggregatesInput[];
+		OR?: to_drinkScalarWhereWithAggregatesInput[];
+		NOT?: to_drinkScalarWhereWithAggregatesInput | to_drinkScalarWhereWithAggregatesInput[];
+		id?: IntWithAggregatesFilter<"to_drink"> | number;
+		wid?: UuidWithAggregatesFilter<"to_drink"> | string;
+		uid?: UuidWithAggregatesFilter<"to_drink"> | string;
+		denomination?: StringWithAggregatesFilter<"to_drink"> | string;
+		winemaker?: StringWithAggregatesFilter<"to_drink"> | string;
+		vintage?: IntWithAggregatesFilter<"to_drink"> | number;
+	};
+
 	export type usersCreateInput = {
 		uid?: string;
 		username?: string | null;
@@ -17302,6 +18809,7 @@ export namespace Prisma {
 		colleagues_colleagues_requester_idTousers?: colleaguesCreateNestedManyWithoutUsers_colleagues_requester_idTousersInput;
 		scoring_evaluation?: scoring_evaluationCreateNestedManyWithoutUsersInput;
 		tastings?: tastingsCreateNestedManyWithoutUsersInput;
+		to_drink?: to_drinkCreateNestedManyWithoutUsersInput;
 	};
 
 	export type usersUncheckedCreateInput = {
@@ -17323,6 +18831,7 @@ export namespace Prisma {
 		colleagues_colleagues_requester_idTousers?: colleaguesUncheckedCreateNestedManyWithoutUsers_colleagues_requester_idTousersInput;
 		scoring_evaluation?: scoring_evaluationUncheckedCreateNestedManyWithoutUsersInput;
 		tastings?: tastingsUncheckedCreateNestedManyWithoutUsersInput;
+		to_drink?: to_drinkUncheckedCreateNestedManyWithoutUsersInput;
 	};
 
 	export type usersUpdateInput = {
@@ -17343,6 +18852,7 @@ export namespace Prisma {
 		colleagues_colleagues_requester_idTousers?: colleaguesUpdateManyWithoutUsers_colleagues_requester_idTousersNestedInput;
 		scoring_evaluation?: scoring_evaluationUpdateManyWithoutUsersNestedInput;
 		tastings?: tastingsUpdateManyWithoutUsersNestedInput;
+		to_drink?: to_drinkUpdateManyWithoutUsersNestedInput;
 	};
 
 	export type usersUncheckedUpdateInput = {
@@ -17364,6 +18874,7 @@ export namespace Prisma {
 		colleagues_colleagues_requester_idTousers?: colleaguesUncheckedUpdateManyWithoutUsers_colleagues_requester_idTousersNestedInput;
 		scoring_evaluation?: scoring_evaluationUncheckedUpdateManyWithoutUsersNestedInput;
 		tastings?: tastingsUncheckedUpdateManyWithoutUsersNestedInput;
+		to_drink?: to_drinkUncheckedUpdateManyWithoutUsersNestedInput;
 	};
 
 	export type usersCreateManyInput = {
@@ -18328,6 +19839,65 @@ export namespace Prisma {
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 	};
 
+	export type to_drinkCreateInput = {
+		wid?: string;
+		denomination: string;
+		winemaker: string;
+		vintage: number;
+		users: usersCreateNestedOneWithoutTo_drinkInput;
+	};
+
+	export type to_drinkUncheckedCreateInput = {
+		id?: number;
+		wid?: string;
+		uid: string;
+		denomination: string;
+		winemaker: string;
+		vintage: number;
+	};
+
+	export type to_drinkUpdateInput = {
+		wid?: StringFieldUpdateOperationsInput | string;
+		denomination?: StringFieldUpdateOperationsInput | string;
+		winemaker?: StringFieldUpdateOperationsInput | string;
+		vintage?: IntFieldUpdateOperationsInput | number;
+		users?: usersUpdateOneRequiredWithoutTo_drinkNestedInput;
+	};
+
+	export type to_drinkUncheckedUpdateInput = {
+		id?: IntFieldUpdateOperationsInput | number;
+		wid?: StringFieldUpdateOperationsInput | string;
+		uid?: StringFieldUpdateOperationsInput | string;
+		denomination?: StringFieldUpdateOperationsInput | string;
+		winemaker?: StringFieldUpdateOperationsInput | string;
+		vintage?: IntFieldUpdateOperationsInput | number;
+	};
+
+	export type to_drinkCreateManyInput = {
+		id?: number;
+		wid?: string;
+		uid: string;
+		denomination: string;
+		winemaker: string;
+		vintage: number;
+	};
+
+	export type to_drinkUpdateManyMutationInput = {
+		wid?: StringFieldUpdateOperationsInput | string;
+		denomination?: StringFieldUpdateOperationsInput | string;
+		winemaker?: StringFieldUpdateOperationsInput | string;
+		vintage?: IntFieldUpdateOperationsInput | number;
+	};
+
+	export type to_drinkUncheckedUpdateManyInput = {
+		id?: IntFieldUpdateOperationsInput | number;
+		wid?: StringFieldUpdateOperationsInput | string;
+		uid?: StringFieldUpdateOperationsInput | string;
+		denomination?: StringFieldUpdateOperationsInput | string;
+		winemaker?: StringFieldUpdateOperationsInput | string;
+		vintage?: IntFieldUpdateOperationsInput | number;
+	};
+
 	export type IntFilter<$PrismaModel = never> = {
 		equals?: number | IntFieldRefInput<$PrismaModel>;
 		in?: number[] | ListIntFieldRefInput<$PrismaModel>;
@@ -18400,6 +19970,12 @@ export namespace Prisma {
 		none?: tastingsWhereInput;
 	};
 
+	export type To_drinkListRelationFilter = {
+		every?: to_drinkWhereInput;
+		some?: to_drinkWhereInput;
+		none?: to_drinkWhereInput;
+	};
+
 	export type SortOrderInput = {
 		sort: SortOrder;
 		nulls?: NullsOrder;
@@ -18414,6 +19990,10 @@ export namespace Prisma {
 	};
 
 	export type tastingsOrderByRelationAggregateInput = {
+		_count?: SortOrder;
+	};
+
+	export type to_drinkOrderByRelationAggregateInput = {
 		_count?: SortOrder;
 	};
 
@@ -19294,6 +20874,43 @@ export namespace Prisma {
 		id?: SortOrder;
 	};
 
+	export type to_drinkCountOrderByAggregateInput = {
+		id?: SortOrder;
+		wid?: SortOrder;
+		uid?: SortOrder;
+		denomination?: SortOrder;
+		winemaker?: SortOrder;
+		vintage?: SortOrder;
+	};
+
+	export type to_drinkAvgOrderByAggregateInput = {
+		id?: SortOrder;
+		vintage?: SortOrder;
+	};
+
+	export type to_drinkMaxOrderByAggregateInput = {
+		id?: SortOrder;
+		wid?: SortOrder;
+		uid?: SortOrder;
+		denomination?: SortOrder;
+		winemaker?: SortOrder;
+		vintage?: SortOrder;
+	};
+
+	export type to_drinkMinOrderByAggregateInput = {
+		id?: SortOrder;
+		wid?: SortOrder;
+		uid?: SortOrder;
+		denomination?: SortOrder;
+		winemaker?: SortOrder;
+		vintage?: SortOrder;
+	};
+
+	export type to_drinkSumOrderByAggregateInput = {
+		id?: SortOrder;
+		vintage?: SortOrder;
+	};
+
 	export type colleaguesCreateNestedManyWithoutUsers_colleagues_addressee_idTousersInput = {
 		create?:
 			| XOR<
@@ -19349,6 +20966,18 @@ export namespace Prisma {
 			| tastingsCreateOrConnectWithoutUsersInput[];
 		createMany?: tastingsCreateManyUsersInputEnvelope;
 		connect?: tastingsWhereUniqueInput | tastingsWhereUniqueInput[];
+	};
+
+	export type to_drinkCreateNestedManyWithoutUsersInput = {
+		create?:
+			| XOR<to_drinkCreateWithoutUsersInput, to_drinkUncheckedCreateWithoutUsersInput>
+			| to_drinkCreateWithoutUsersInput[]
+			| to_drinkUncheckedCreateWithoutUsersInput[];
+		connectOrCreate?:
+			| to_drinkCreateOrConnectWithoutUsersInput
+			| to_drinkCreateOrConnectWithoutUsersInput[];
+		createMany?: to_drinkCreateManyUsersInputEnvelope;
+		connect?: to_drinkWhereUniqueInput | to_drinkWhereUniqueInput[];
 	};
 
 	export type colleaguesUncheckedCreateNestedManyWithoutUsers_colleagues_addressee_idTousersInput =
@@ -19408,6 +21037,18 @@ export namespace Prisma {
 			| tastingsCreateOrConnectWithoutUsersInput[];
 		createMany?: tastingsCreateManyUsersInputEnvelope;
 		connect?: tastingsWhereUniqueInput | tastingsWhereUniqueInput[];
+	};
+
+	export type to_drinkUncheckedCreateNestedManyWithoutUsersInput = {
+		create?:
+			| XOR<to_drinkCreateWithoutUsersInput, to_drinkUncheckedCreateWithoutUsersInput>
+			| to_drinkCreateWithoutUsersInput[]
+			| to_drinkUncheckedCreateWithoutUsersInput[];
+		connectOrCreate?:
+			| to_drinkCreateOrConnectWithoutUsersInput
+			| to_drinkCreateOrConnectWithoutUsersInput[];
+		createMany?: to_drinkCreateManyUsersInputEnvelope;
+		connect?: to_drinkWhereUniqueInput | to_drinkWhereUniqueInput[];
 	};
 
 	export type StringFieldUpdateOperationsInput = {
@@ -19535,6 +21176,31 @@ export namespace Prisma {
 		deleteMany?: tastingsScalarWhereInput | tastingsScalarWhereInput[];
 	};
 
+	export type to_drinkUpdateManyWithoutUsersNestedInput = {
+		create?:
+			| XOR<to_drinkCreateWithoutUsersInput, to_drinkUncheckedCreateWithoutUsersInput>
+			| to_drinkCreateWithoutUsersInput[]
+			| to_drinkUncheckedCreateWithoutUsersInput[];
+		connectOrCreate?:
+			| to_drinkCreateOrConnectWithoutUsersInput
+			| to_drinkCreateOrConnectWithoutUsersInput[];
+		upsert?:
+			| to_drinkUpsertWithWhereUniqueWithoutUsersInput
+			| to_drinkUpsertWithWhereUniqueWithoutUsersInput[];
+		createMany?: to_drinkCreateManyUsersInputEnvelope;
+		set?: to_drinkWhereUniqueInput | to_drinkWhereUniqueInput[];
+		disconnect?: to_drinkWhereUniqueInput | to_drinkWhereUniqueInput[];
+		delete?: to_drinkWhereUniqueInput | to_drinkWhereUniqueInput[];
+		connect?: to_drinkWhereUniqueInput | to_drinkWhereUniqueInput[];
+		update?:
+			| to_drinkUpdateWithWhereUniqueWithoutUsersInput
+			| to_drinkUpdateWithWhereUniqueWithoutUsersInput[];
+		updateMany?:
+			| to_drinkUpdateManyWithWhereWithoutUsersInput
+			| to_drinkUpdateManyWithWhereWithoutUsersInput[];
+		deleteMany?: to_drinkScalarWhereInput | to_drinkScalarWhereInput[];
+	};
+
 	export type IntFieldUpdateOperationsInput = {
 		set?: number;
 		increment?: number;
@@ -19652,6 +21318,31 @@ export namespace Prisma {
 			| tastingsUpdateManyWithWhereWithoutUsersInput
 			| tastingsUpdateManyWithWhereWithoutUsersInput[];
 		deleteMany?: tastingsScalarWhereInput | tastingsScalarWhereInput[];
+	};
+
+	export type to_drinkUncheckedUpdateManyWithoutUsersNestedInput = {
+		create?:
+			| XOR<to_drinkCreateWithoutUsersInput, to_drinkUncheckedCreateWithoutUsersInput>
+			| to_drinkCreateWithoutUsersInput[]
+			| to_drinkUncheckedCreateWithoutUsersInput[];
+		connectOrCreate?:
+			| to_drinkCreateOrConnectWithoutUsersInput
+			| to_drinkCreateOrConnectWithoutUsersInput[];
+		upsert?:
+			| to_drinkUpsertWithWhereUniqueWithoutUsersInput
+			| to_drinkUpsertWithWhereUniqueWithoutUsersInput[];
+		createMany?: to_drinkCreateManyUsersInputEnvelope;
+		set?: to_drinkWhereUniqueInput | to_drinkWhereUniqueInput[];
+		disconnect?: to_drinkWhereUniqueInput | to_drinkWhereUniqueInput[];
+		delete?: to_drinkWhereUniqueInput | to_drinkWhereUniqueInput[];
+		connect?: to_drinkWhereUniqueInput | to_drinkWhereUniqueInput[];
+		update?:
+			| to_drinkUpdateWithWhereUniqueWithoutUsersInput
+			| to_drinkUpdateWithWhereUniqueWithoutUsersInput[];
+		updateMany?:
+			| to_drinkUpdateManyWithWhereWithoutUsersInput
+			| to_drinkUpdateManyWithWhereWithoutUsersInput[];
+		deleteMany?: to_drinkScalarWhereInput | to_drinkScalarWhereInput[];
 	};
 
 	export type tastingsCreateNestedManyWithoutWine_categoriesInput = {
@@ -20303,6 +21994,23 @@ export namespace Prisma {
 		>;
 	};
 
+	export type usersCreateNestedOneWithoutTo_drinkInput = {
+		create?: XOR<usersCreateWithoutTo_drinkInput, usersUncheckedCreateWithoutTo_drinkInput>;
+		connectOrCreate?: usersCreateOrConnectWithoutTo_drinkInput;
+		connect?: usersWhereUniqueInput;
+	};
+
+	export type usersUpdateOneRequiredWithoutTo_drinkNestedInput = {
+		create?: XOR<usersCreateWithoutTo_drinkInput, usersUncheckedCreateWithoutTo_drinkInput>;
+		connectOrCreate?: usersCreateOrConnectWithoutTo_drinkInput;
+		upsert?: usersUpsertWithoutTo_drinkInput;
+		connect?: usersWhereUniqueInput;
+		update?: XOR<
+			XOR<usersUpdateToOneWithWhereWithoutTo_drinkInput, usersUpdateWithoutTo_drinkInput>,
+			usersUncheckedUpdateWithoutTo_drinkInput
+		>;
+	};
+
 	export type NestedIntFilter<$PrismaModel = never> = {
 		equals?: number | IntFieldRefInput<$PrismaModel>;
 		in?: number[] | ListIntFieldRefInput<$PrismaModel>;
@@ -20840,6 +22548,31 @@ export namespace Prisma {
 		skipDuplicates?: boolean;
 	};
 
+	export type to_drinkCreateWithoutUsersInput = {
+		wid?: string;
+		denomination: string;
+		winemaker: string;
+		vintage: number;
+	};
+
+	export type to_drinkUncheckedCreateWithoutUsersInput = {
+		id?: number;
+		wid?: string;
+		denomination: string;
+		winemaker: string;
+		vintage: number;
+	};
+
+	export type to_drinkCreateOrConnectWithoutUsersInput = {
+		where: to_drinkWhereUniqueInput;
+		create: XOR<to_drinkCreateWithoutUsersInput, to_drinkUncheckedCreateWithoutUsersInput>;
+	};
+
+	export type to_drinkCreateManyUsersInputEnvelope = {
+		data: to_drinkCreateManyUsersInput | to_drinkCreateManyUsersInput[];
+		skipDuplicates?: boolean;
+	};
+
 	export type colleaguesUpsertWithWhereUniqueWithoutUsers_colleagues_addressee_idTousersInput = {
 		where: colleaguesWhereUniqueInput;
 		update: XOR<
@@ -21003,6 +22736,34 @@ export namespace Prisma {
 		tasting_location?: StringFilter<"tastings"> | string;
 		created_at?: DateTimeNullableFilter<"tastings"> | Date | string | null;
 		updated_at?: DateTimeNullableFilter<"tastings"> | Date | string | null;
+	};
+
+	export type to_drinkUpsertWithWhereUniqueWithoutUsersInput = {
+		where: to_drinkWhereUniqueInput;
+		update: XOR<to_drinkUpdateWithoutUsersInput, to_drinkUncheckedUpdateWithoutUsersInput>;
+		create: XOR<to_drinkCreateWithoutUsersInput, to_drinkUncheckedCreateWithoutUsersInput>;
+	};
+
+	export type to_drinkUpdateWithWhereUniqueWithoutUsersInput = {
+		where: to_drinkWhereUniqueInput;
+		data: XOR<to_drinkUpdateWithoutUsersInput, to_drinkUncheckedUpdateWithoutUsersInput>;
+	};
+
+	export type to_drinkUpdateManyWithWhereWithoutUsersInput = {
+		where: to_drinkScalarWhereInput;
+		data: XOR<to_drinkUpdateManyMutationInput, to_drinkUncheckedUpdateManyWithoutUsersInput>;
+	};
+
+	export type to_drinkScalarWhereInput = {
+		AND?: to_drinkScalarWhereInput | to_drinkScalarWhereInput[];
+		OR?: to_drinkScalarWhereInput[];
+		NOT?: to_drinkScalarWhereInput | to_drinkScalarWhereInput[];
+		id?: IntFilter<"to_drink"> | number;
+		wid?: UuidFilter<"to_drink"> | string;
+		uid?: UuidFilter<"to_drink"> | string;
+		denomination?: StringFilter<"to_drink"> | string;
+		winemaker?: StringFilter<"to_drink"> | string;
+		vintage?: IntFilter<"to_drink"> | number;
 	};
 
 	export type tastingsCreateWithoutWine_categoriesInput = {
@@ -21266,6 +23027,7 @@ export namespace Prisma {
 		colleagues_colleagues_addressee_idTousers?: colleaguesCreateNestedManyWithoutUsers_colleagues_addressee_idTousersInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesCreateNestedManyWithoutUsers_colleagues_requester_idTousersInput;
 		scoring_evaluation?: scoring_evaluationCreateNestedManyWithoutUsersInput;
+		to_drink?: to_drinkCreateNestedManyWithoutUsersInput;
 	};
 
 	export type usersUncheckedCreateWithoutTastingsInput = {
@@ -21286,6 +23048,7 @@ export namespace Prisma {
 		colleagues_colleagues_addressee_idTousers?: colleaguesUncheckedCreateNestedManyWithoutUsers_colleagues_addressee_idTousersInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesUncheckedCreateNestedManyWithoutUsers_colleagues_requester_idTousersInput;
 		scoring_evaluation?: scoring_evaluationUncheckedCreateNestedManyWithoutUsersInput;
+		to_drink?: to_drinkUncheckedCreateNestedManyWithoutUsersInput;
 	};
 
 	export type usersCreateOrConnectWithoutTastingsInput = {
@@ -21575,6 +23338,7 @@ export namespace Prisma {
 		colleagues_colleagues_addressee_idTousers?: colleaguesUpdateManyWithoutUsers_colleagues_addressee_idTousersNestedInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesUpdateManyWithoutUsers_colleagues_requester_idTousersNestedInput;
 		scoring_evaluation?: scoring_evaluationUpdateManyWithoutUsersNestedInput;
+		to_drink?: to_drinkUpdateManyWithoutUsersNestedInput;
 	};
 
 	export type usersUncheckedUpdateWithoutTastingsInput = {
@@ -21595,6 +23359,7 @@ export namespace Prisma {
 		colleagues_colleagues_addressee_idTousers?: colleaguesUncheckedUpdateManyWithoutUsers_colleagues_addressee_idTousersNestedInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesUncheckedUpdateManyWithoutUsers_colleagues_requester_idTousersNestedInput;
 		scoring_evaluation?: scoring_evaluationUncheckedUpdateManyWithoutUsersNestedInput;
+		to_drink?: to_drinkUncheckedUpdateManyWithoutUsersNestedInput;
 	};
 
 	export type wine_categoriesUpsertWithoutTastingsInput = {
@@ -22359,6 +24124,7 @@ export namespace Prisma {
 		colleagues_colleagues_addressee_idTousers?: colleaguesCreateNestedManyWithoutUsers_colleagues_addressee_idTousersInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesCreateNestedManyWithoutUsers_colleagues_requester_idTousersInput;
 		tastings?: tastingsCreateNestedManyWithoutUsersInput;
+		to_drink?: to_drinkCreateNestedManyWithoutUsersInput;
 	};
 
 	export type usersUncheckedCreateWithoutScoring_evaluationInput = {
@@ -22379,6 +24145,7 @@ export namespace Prisma {
 		colleagues_colleagues_addressee_idTousers?: colleaguesUncheckedCreateNestedManyWithoutUsers_colleagues_addressee_idTousersInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesUncheckedCreateNestedManyWithoutUsers_colleagues_requester_idTousersInput;
 		tastings?: tastingsUncheckedCreateNestedManyWithoutUsersInput;
+		to_drink?: to_drinkUncheckedCreateNestedManyWithoutUsersInput;
 	};
 
 	export type usersCreateOrConnectWithoutScoring_evaluationInput = {
@@ -22525,6 +24292,7 @@ export namespace Prisma {
 		colleagues_colleagues_addressee_idTousers?: colleaguesUpdateManyWithoutUsers_colleagues_addressee_idTousersNestedInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesUpdateManyWithoutUsers_colleagues_requester_idTousersNestedInput;
 		tastings?: tastingsUpdateManyWithoutUsersNestedInput;
+		to_drink?: to_drinkUpdateManyWithoutUsersNestedInput;
 	};
 
 	export type usersUncheckedUpdateWithoutScoring_evaluationInput = {
@@ -22545,6 +24313,7 @@ export namespace Prisma {
 		colleagues_colleagues_addressee_idTousers?: colleaguesUncheckedUpdateManyWithoutUsers_colleagues_addressee_idTousersNestedInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesUncheckedUpdateManyWithoutUsers_colleagues_requester_idTousersNestedInput;
 		tastings?: tastingsUncheckedUpdateManyWithoutUsersNestedInput;
+		to_drink?: to_drinkUncheckedUpdateManyWithoutUsersNestedInput;
 	};
 
 	export type usersCreateWithoutColleagues_colleagues_addressee_idTousersInput = {
@@ -22564,6 +24333,7 @@ export namespace Prisma {
 		colleagues_colleagues_requester_idTousers?: colleaguesCreateNestedManyWithoutUsers_colleagues_requester_idTousersInput;
 		scoring_evaluation?: scoring_evaluationCreateNestedManyWithoutUsersInput;
 		tastings?: tastingsCreateNestedManyWithoutUsersInput;
+		to_drink?: to_drinkCreateNestedManyWithoutUsersInput;
 	};
 
 	export type usersUncheckedCreateWithoutColleagues_colleagues_addressee_idTousersInput = {
@@ -22584,6 +24354,7 @@ export namespace Prisma {
 		colleagues_colleagues_requester_idTousers?: colleaguesUncheckedCreateNestedManyWithoutUsers_colleagues_requester_idTousersInput;
 		scoring_evaluation?: scoring_evaluationUncheckedCreateNestedManyWithoutUsersInput;
 		tastings?: tastingsUncheckedCreateNestedManyWithoutUsersInput;
+		to_drink?: to_drinkUncheckedCreateNestedManyWithoutUsersInput;
 	};
 
 	export type usersCreateOrConnectWithoutColleagues_colleagues_addressee_idTousersInput = {
@@ -22611,6 +24382,7 @@ export namespace Prisma {
 		colleagues_colleagues_addressee_idTousers?: colleaguesCreateNestedManyWithoutUsers_colleagues_addressee_idTousersInput;
 		scoring_evaluation?: scoring_evaluationCreateNestedManyWithoutUsersInput;
 		tastings?: tastingsCreateNestedManyWithoutUsersInput;
+		to_drink?: to_drinkCreateNestedManyWithoutUsersInput;
 	};
 
 	export type usersUncheckedCreateWithoutColleagues_colleagues_requester_idTousersInput = {
@@ -22631,6 +24403,7 @@ export namespace Prisma {
 		colleagues_colleagues_addressee_idTousers?: colleaguesUncheckedCreateNestedManyWithoutUsers_colleagues_addressee_idTousersInput;
 		scoring_evaluation?: scoring_evaluationUncheckedCreateNestedManyWithoutUsersInput;
 		tastings?: tastingsUncheckedCreateNestedManyWithoutUsersInput;
+		to_drink?: to_drinkUncheckedCreateNestedManyWithoutUsersInput;
 	};
 
 	export type usersCreateOrConnectWithoutColleagues_colleagues_requester_idTousersInput = {
@@ -22678,6 +24451,7 @@ export namespace Prisma {
 		colleagues_colleagues_requester_idTousers?: colleaguesUpdateManyWithoutUsers_colleagues_requester_idTousersNestedInput;
 		scoring_evaluation?: scoring_evaluationUpdateManyWithoutUsersNestedInput;
 		tastings?: tastingsUpdateManyWithoutUsersNestedInput;
+		to_drink?: to_drinkUpdateManyWithoutUsersNestedInput;
 	};
 
 	export type usersUncheckedUpdateWithoutColleagues_colleagues_addressee_idTousersInput = {
@@ -22698,6 +24472,7 @@ export namespace Prisma {
 		colleagues_colleagues_requester_idTousers?: colleaguesUncheckedUpdateManyWithoutUsers_colleagues_requester_idTousersNestedInput;
 		scoring_evaluation?: scoring_evaluationUncheckedUpdateManyWithoutUsersNestedInput;
 		tastings?: tastingsUncheckedUpdateManyWithoutUsersNestedInput;
+		to_drink?: to_drinkUncheckedUpdateManyWithoutUsersNestedInput;
 	};
 
 	export type usersUpsertWithoutColleagues_colleagues_requester_idTousersInput = {
@@ -22737,6 +24512,7 @@ export namespace Prisma {
 		colleagues_colleagues_addressee_idTousers?: colleaguesUpdateManyWithoutUsers_colleagues_addressee_idTousersNestedInput;
 		scoring_evaluation?: scoring_evaluationUpdateManyWithoutUsersNestedInput;
 		tastings?: tastingsUpdateManyWithoutUsersNestedInput;
+		to_drink?: to_drinkUpdateManyWithoutUsersNestedInput;
 	};
 
 	export type usersUncheckedUpdateWithoutColleagues_colleagues_requester_idTousersInput = {
@@ -22755,6 +24531,105 @@ export namespace Prisma {
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		colleagues_colleagues_addressee_idTousers?: colleaguesUncheckedUpdateManyWithoutUsers_colleagues_addressee_idTousersNestedInput;
+		scoring_evaluation?: scoring_evaluationUncheckedUpdateManyWithoutUsersNestedInput;
+		tastings?: tastingsUncheckedUpdateManyWithoutUsersNestedInput;
+		to_drink?: to_drinkUncheckedUpdateManyWithoutUsersNestedInput;
+	};
+
+	export type usersCreateWithoutTo_drinkInput = {
+		uid?: string;
+		username?: string | null;
+		full_name?: string | null;
+		birthdate?: Date | string | null;
+		email?: string | null;
+		password_hash?: string | null;
+		admin?: boolean | null;
+		premium?: boolean | null;
+		google_id?: string | null;
+		facebook_id?: string | null;
+		apple_id?: string | null;
+		created_at?: Date | string | null;
+		updated_at?: Date | string | null;
+		colleagues_colleagues_addressee_idTousers?: colleaguesCreateNestedManyWithoutUsers_colleagues_addressee_idTousersInput;
+		colleagues_colleagues_requester_idTousers?: colleaguesCreateNestedManyWithoutUsers_colleagues_requester_idTousersInput;
+		scoring_evaluation?: scoring_evaluationCreateNestedManyWithoutUsersInput;
+		tastings?: tastingsCreateNestedManyWithoutUsersInput;
+	};
+
+	export type usersUncheckedCreateWithoutTo_drinkInput = {
+		id?: number;
+		uid?: string;
+		username?: string | null;
+		full_name?: string | null;
+		birthdate?: Date | string | null;
+		email?: string | null;
+		password_hash?: string | null;
+		admin?: boolean | null;
+		premium?: boolean | null;
+		google_id?: string | null;
+		facebook_id?: string | null;
+		apple_id?: string | null;
+		created_at?: Date | string | null;
+		updated_at?: Date | string | null;
+		colleagues_colleagues_addressee_idTousers?: colleaguesUncheckedCreateNestedManyWithoutUsers_colleagues_addressee_idTousersInput;
+		colleagues_colleagues_requester_idTousers?: colleaguesUncheckedCreateNestedManyWithoutUsers_colleagues_requester_idTousersInput;
+		scoring_evaluation?: scoring_evaluationUncheckedCreateNestedManyWithoutUsersInput;
+		tastings?: tastingsUncheckedCreateNestedManyWithoutUsersInput;
+	};
+
+	export type usersCreateOrConnectWithoutTo_drinkInput = {
+		where: usersWhereUniqueInput;
+		create: XOR<usersCreateWithoutTo_drinkInput, usersUncheckedCreateWithoutTo_drinkInput>;
+	};
+
+	export type usersUpsertWithoutTo_drinkInput = {
+		update: XOR<usersUpdateWithoutTo_drinkInput, usersUncheckedUpdateWithoutTo_drinkInput>;
+		create: XOR<usersCreateWithoutTo_drinkInput, usersUncheckedCreateWithoutTo_drinkInput>;
+		where?: usersWhereInput;
+	};
+
+	export type usersUpdateToOneWithWhereWithoutTo_drinkInput = {
+		where?: usersWhereInput;
+		data: XOR<usersUpdateWithoutTo_drinkInput, usersUncheckedUpdateWithoutTo_drinkInput>;
+	};
+
+	export type usersUpdateWithoutTo_drinkInput = {
+		uid?: StringFieldUpdateOperationsInput | string;
+		username?: NullableStringFieldUpdateOperationsInput | string | null;
+		full_name?: NullableStringFieldUpdateOperationsInput | string | null;
+		birthdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		email?: NullableStringFieldUpdateOperationsInput | string | null;
+		password_hash?: NullableStringFieldUpdateOperationsInput | string | null;
+		admin?: NullableBoolFieldUpdateOperationsInput | boolean | null;
+		premium?: NullableBoolFieldUpdateOperationsInput | boolean | null;
+		google_id?: NullableStringFieldUpdateOperationsInput | string | null;
+		facebook_id?: NullableStringFieldUpdateOperationsInput | string | null;
+		apple_id?: NullableStringFieldUpdateOperationsInput | string | null;
+		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		colleagues_colleagues_addressee_idTousers?: colleaguesUpdateManyWithoutUsers_colleagues_addressee_idTousersNestedInput;
+		colleagues_colleagues_requester_idTousers?: colleaguesUpdateManyWithoutUsers_colleagues_requester_idTousersNestedInput;
+		scoring_evaluation?: scoring_evaluationUpdateManyWithoutUsersNestedInput;
+		tastings?: tastingsUpdateManyWithoutUsersNestedInput;
+	};
+
+	export type usersUncheckedUpdateWithoutTo_drinkInput = {
+		id?: IntFieldUpdateOperationsInput | number;
+		uid?: StringFieldUpdateOperationsInput | string;
+		username?: NullableStringFieldUpdateOperationsInput | string | null;
+		full_name?: NullableStringFieldUpdateOperationsInput | string | null;
+		birthdate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		email?: NullableStringFieldUpdateOperationsInput | string | null;
+		password_hash?: NullableStringFieldUpdateOperationsInput | string | null;
+		admin?: NullableBoolFieldUpdateOperationsInput | boolean | null;
+		premium?: NullableBoolFieldUpdateOperationsInput | boolean | null;
+		google_id?: NullableStringFieldUpdateOperationsInput | string | null;
+		facebook_id?: NullableStringFieldUpdateOperationsInput | string | null;
+		apple_id?: NullableStringFieldUpdateOperationsInput | string | null;
+		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		colleagues_colleagues_addressee_idTousers?: colleaguesUncheckedUpdateManyWithoutUsers_colleagues_addressee_idTousersNestedInput;
+		colleagues_colleagues_requester_idTousers?: colleaguesUncheckedUpdateManyWithoutUsers_colleagues_requester_idTousersNestedInput;
 		scoring_evaluation?: scoring_evaluationUncheckedUpdateManyWithoutUsersNestedInput;
 		tastings?: tastingsUncheckedUpdateManyWithoutUsersNestedInput;
 	};
@@ -22813,6 +24688,14 @@ export namespace Prisma {
 		tasting_location: string;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
+	};
+
+	export type to_drinkCreateManyUsersInput = {
+		id?: number;
+		wid?: string;
+		denomination: string;
+		winemaker: string;
+		vintage: number;
 	};
 
 	export type colleaguesUpdateWithoutUsers_colleagues_addressee_idTousersInput = {
@@ -23035,6 +24918,29 @@ export namespace Prisma {
 		tasting_location?: StringFieldUpdateOperationsInput | string;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+	};
+
+	export type to_drinkUpdateWithoutUsersInput = {
+		wid?: StringFieldUpdateOperationsInput | string;
+		denomination?: StringFieldUpdateOperationsInput | string;
+		winemaker?: StringFieldUpdateOperationsInput | string;
+		vintage?: IntFieldUpdateOperationsInput | number;
+	};
+
+	export type to_drinkUncheckedUpdateWithoutUsersInput = {
+		id?: IntFieldUpdateOperationsInput | number;
+		wid?: StringFieldUpdateOperationsInput | string;
+		denomination?: StringFieldUpdateOperationsInput | string;
+		winemaker?: StringFieldUpdateOperationsInput | string;
+		vintage?: IntFieldUpdateOperationsInput | number;
+	};
+
+	export type to_drinkUncheckedUpdateManyWithoutUsersInput = {
+		id?: IntFieldUpdateOperationsInput | number;
+		wid?: StringFieldUpdateOperationsInput | string;
+		denomination?: StringFieldUpdateOperationsInput | string;
+		winemaker?: StringFieldUpdateOperationsInput | string;
+		vintage?: IntFieldUpdateOperationsInput | number;
 	};
 
 	export type tastingsCreateManyWine_categoriesInput = {
