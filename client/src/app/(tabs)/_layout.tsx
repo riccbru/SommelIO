@@ -7,7 +7,9 @@ import AnimatedTabButton from "@/src/components/navigation/AnimatedTabButton";
 export default function TabsLayout() {
 	const theme = useTheme();
 	const iconColor = (focused: boolean) => (!focused ? theme.colors.primary : theme.colors.amber);
-	const iconWeight = (base: "regular" | "light", focused: boolean) => (!focused ? base : "fill");
+	const iconWeight = (title: string, focused: boolean) => {
+		return !title || focused ? "fill" : "regular";
+	};
 
 	return (
 		<Tabs
@@ -24,10 +26,10 @@ export default function TabsLayout() {
 						paddingTop: 5,
 						backgroundColor: theme.colors.background,
 					},
-					tabBarLabelStyle: ({ focused }) => ({
+					tabBarLabelStyle: ({ focused }: { focused: boolean }) => ({
 						paddingTop: 5,
-						color: focused ? theme.colors.amber : theme.colors.primary,
 						fontFamily: "Epilogue-Regular",
+						color: focused ? theme.colors.amber : theme.colors.primary,
 					}),
 					tabBarLabel: ({ focused }) =>
 						!config.title.length ? (
@@ -47,14 +49,14 @@ export default function TabsLayout() {
 					tabBarIcon: ({ focused }) => (
 						<Icon
 							color={iconColor(focused)}
-							size={!config.title.length ? 45 : 32}
-							weight={iconWeight(!config.title.length ? "light" : "regular", focused)}
+							size={!config.title.length ? 40 : 28}
+							weight={iconWeight(config.title, focused)}
 						/>
 					),
 					tabBarIconStyle: {
 						marginTop: !config.title.length ? 5 : 0,
 					},
-					tabBarButton: props => <AnimatedTabButton {...props} />,
+					tabBarButton: (props: any) => <AnimatedTabButton {...props} />,
 				};
 			}}
 		>

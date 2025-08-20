@@ -1,7 +1,13 @@
-import { useRef } from "react";
-import { Animated, Pressable } from "react-native";
+import { ReactNode, useRef } from "react";
+import { Animated, GestureResponderEvent, Pressable, StyleProp, ViewStyle } from "react-native";
 
-export default function AnimatedTabButton({ children, onPress, style }) {
+type Props = {
+	children: ReactNode;
+	style?: StyleProp<ViewStyle>;
+	onPress?: (event: GestureResponderEvent) => void;
+};
+
+export default function AnimatedTabButton({ children, onPress, style }: Props) {
 	const scale = useRef(new Animated.Value(1)).current;
 
 	const handlePressIn = () => {
