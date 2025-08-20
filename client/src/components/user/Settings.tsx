@@ -1,17 +1,16 @@
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import { useLanguage } from "@/src/hooks/useLanguage";
+import { View, Text, StyleSheet, Switch, TouchableOpacity } from "react-native";
+import SegmentedControl from "@react-native-segmented-control/segmented-control";
 import {
 	ArrowUpRightIcon,
 	ChatCircleIcon,
 	InfoIcon,
 	LockKeyIcon,
 	MoonIcon,
-	SunIcon,
 	TranslateIcon,
 } from "phosphor-react-native";
-import { View, Text, StyleSheet, Switch, TouchableOpacity } from "react-native";
-import SegmentedControl from "@react-native-segmented-control/segmented-control";
 
 type Language = "en" | "it" | "fr";
 
@@ -73,7 +72,6 @@ export default function Settings() {
 			{/* Language Segmented Control */}
 			<View style={styles.row}>
 				<View style={{ alignItems: "center", flexDirection: "row" }}>
-					{/* <GlobeIcon size={28} weight="bold" color={theme.colors.primary} /> */}
 					<TranslateIcon size={28} weight='bold' color={theme.colors.primary} />
 					<View style={{ marginLeft: 5, marginRight: 5 }} />
 					<View style={{ flexDirection: "column" }}>
@@ -81,11 +79,11 @@ export default function Settings() {
 						<View style={{ marginTop: 5, marginBottom: 5 }} />
 						<SegmentedControl
 							values={labels}
+							tintColor={theme.colors.primary}
 							selectedIndex={langs.indexOf(language)}
 							style={{ width: 300, borderRadius: 10 }}
-							tintColor={theme.dark ? "#fff" : "#000"}
 							fontStyle={{ fontSize: 28, color: theme.colors.primary }}
-							activeFontStyle={{ fontSize: 28, color: theme.dark ? "#000" : "#fff" }}
+							activeFontStyle={{ fontSize: 28, color: theme.colors.background }}
 							onChange={e => {
 								const i = e.nativeEvent.selectedSegmentIndex;
 								setLanguage(langs[i]);
@@ -102,7 +100,11 @@ export default function Settings() {
 			>
 				<View style={styles.row}>
 					<View style={{ alignItems: "center", flexDirection: "row" }}>
-						<LockKeyIcon size={28} weight='bold' color={theme.colors.primary} />
+						<LockKeyIcon
+							size={28}
+							weight={theme.dark ? "fill" : "bold"}
+							color={theme.colors.primary}
+						/>
 						<View style={{ marginLeft: 5, marginRight: 5 }} />
 						<Text style={styles.rowLabel}>{t("profile.secpriv")}</Text>
 					</View>
@@ -114,7 +116,11 @@ export default function Settings() {
 			<TouchableOpacity activeOpacity={0.7} onPress={() => console.log("clicked Information")}>
 				<View style={styles.row}>
 					<View style={{ alignItems: "center", flexDirection: "row" }}>
-						<InfoIcon size={28} weight='bold' color={theme.colors.primary} />
+						<InfoIcon
+							size={28}
+							weight={theme.dark ? "fill" : "bold"}
+							color={theme.colors.primary}
+						/>
 						<View style={{ marginLeft: 5, marginRight: 5 }} />
 						<Text style={styles.rowLabel}>{t("profile.info")}</Text>
 					</View>
@@ -126,7 +132,11 @@ export default function Settings() {
 			<TouchableOpacity activeOpacity={0.7} onPress={() => console.log("clicked Contact Us")}>
 				<View style={styles.row}>
 					<View style={{ alignItems: "center", flexDirection: "row" }}>
-						<ChatCircleIcon size={28} weight='bold' color={theme.colors.primary} />
+						<ChatCircleIcon
+							size={28}
+							weight={theme.dark ? "fill" : "bold"}
+							color={theme.colors.primary}
+						/>
 						<View style={{ marginLeft: 5, marginRight: 5 }} />
 						<Text style={styles.rowLabel}>{t("profile.contactus")}</Text>
 					</View>

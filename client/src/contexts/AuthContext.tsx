@@ -112,15 +112,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 		} catch (error) {
 			throw error;
 		} finally {
+			updateCachedToken(null);
 			await SecureStore.deleteItemAsync("accessToken");
 			await SecureStore.deleteItemAsync("refreshToken");
-			updateCachedToken(null);
+			setAuthStatus({ isReady: true, isLoggedIn: false });
 			setAuthData({
 				accessToken: null,
 				refreshToken: null,
 				user: null,
 			});
-			setAuthStatus({ isReady: true, isLoggedIn: false });
 		}
 	};
 

@@ -44,7 +44,11 @@ export default function Profile() {
 						bottomSheetRef.current?.expand();
 					}}
 				>
-					<GearIcon size={32} color={theme.colors.primary} />
+					<GearIcon
+						size={32}
+						weight={theme.dark ? "fill" : "regular"}
+						color={theme.colors.primary}
+					/>
 				</TouchableOpacity>
 			),
 			headerRight: () => (

@@ -1,9 +1,10 @@
+import { useState } from "react";
+import FormField from "./FormField";
 import WinesAPI from "@/src/services/wines";
 import { XIcon } from "phosphor-react-native";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Modal, Portal, Text, Divider, useTheme } from "react-native-paper";
 import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
-import { Modal, Portal, Text, TextInput, Divider, useTheme, HelperText } from "react-native-paper";
 
 type NewWine = {
 	denomination: string;
@@ -14,7 +15,7 @@ type NewWine = {
 const defaultNewWine: NewWine = {
 	denomination: "",
 	winemaker: "",
-	vintage: 2025,
+	vintage: 0,
 };
 
 type Props = {
@@ -40,13 +41,13 @@ export default function NewWineModal({ visible, wines, onDismiss, setRefresh }: 
 			backgroundColor: theme.colors.card,
 		},
 		divider: {
-			marginTop: 5,
-			marginBottom: 20,
+			marginTop: 10,
+			marginBottom: 10,
 			backgroundColor: theme.colors.primary,
 		},
 		addButton: {
 			height: 40,
-			marginTop: 20,
+			marginTop: 10,
 			borderRadius: 15,
 			marginBottom: 10,
 			alignItems: "center",
@@ -84,6 +85,12 @@ export default function NewWineModal({ visible, wines, onDismiss, setRefresh }: 
 		return Object.keys(newErrors).length === 0;
 	};
 
+	const handleDismiss = () => {
+		onDismiss();
+		setFormData(defaultNewWine);
+		setErrors({});
+	};
+
 	const handleAdd = async () => {
 		if (!validateForm()) return;
 		try {
@@ -108,63 +115,32 @@ export default function NewWineModal({ visible, wines, onDismiss, setRefresh }: 
 		<Portal>
 			<Modal
 				visible={visible}
-				onDismiss={onDismiss}
+				onDismiss={handleDismiss}
 				contentContainerStyle={styles.modalContainer}
 			>
-				<TextInput
-					mode='outlined'
+				<FormField
+					keyboardType='default'
+					error={errors.denomination}
 					value={formData.denomination}
-					style={{ marginBottom: 5 }}
 					label={t("new.tasting.denomination")}
 					onChangeText={text => setFormData({ ...formData, denomination: text })}
 				/>
-				{!errors.denomination ? null : (
-					<HelperText
-						type='error'
-						visible={!!errors.denomination}
-						theme={theme.colors.red}
-						style={{ fontFamily: "Epilogue-Bold" }}
-					>
-						{errors.denomination}
-					</HelperText>
-				)}
 
-				<TextInput
-					mode='outlined'
+				<FormField
+					keyboardType='default'
+					error={errors.winemaker}
 					value={formData.winemaker}
-					style={{ marginBottom: 10 }}
 					label={t("new.tasting.winemaker")}
 					onChangeText={text => setFormData({ ...formData, winemaker: text })}
 				/>
-				{!errors.winemaker ? null : (
-					<HelperText
-						type='error'
-						visible={!!errors.winemaker}
-						theme={theme.colors.red}
-						style={{ fontFamily: "Epilogue-Bold" }}
-					>
-						{errors.winemaker}
-					</HelperText>
-				)}
 
-				<TextInput
-					mode='outlined'
+				<FormField
 					keyboardType='numeric'
-					value={formData.vintage.toString()}
-					style={{ marginBottom: 10 }}
-					label={t("new.tasting.vintage")}
-					onChangeText={text => setFormData({ ...formData, vintage: Number(text) })} // Ensure vintage is always a string
+					error={errors.vintage}
+					value={formData.vintage !== 0 ? `${formData.vintage}` : ""}
+					label={`${t("new.tasting.vintage")} (YYYY)`}
+					onChangeText={text => setFormData({ ...formData, vintage: Number(text) })}
 				/>
-				{!errors.vintage ? null : (
-					<HelperText
-						type='error'
-						visible={!!errors.vintage}
-						theme={theme.colors.red}
-						style={{ fontFamily: "Epilogue-Bold" }}
-					>
-						{errors.vintage}
-					</HelperText>
-				)}
 
 				<TouchableOpacity style={styles.addButton} onPress={handleAdd}>
 					<Text style={{ fontFamily: "Epilogue-Regular", fontSize: 20 }}>

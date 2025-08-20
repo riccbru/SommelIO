@@ -17,12 +17,12 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 	const setLanguage = async (lang: Language) => {
 		i18n.changeLanguage(lang);
 		setLanguageState(lang);
-		await AsyncStorage.setItem("language", lang);
+		await AsyncStorage.setItem("@language", lang);
 	};
 
 	useEffect(() => {
 		const loadLanguage = async () => {
-			const saved = await AsyncStorage.getItem("language");
+			const saved = await AsyncStorage.getItem("@language");
 			if (saved === "en" || saved === "it" || saved === "fr") {
 				setLanguage(saved as Language);
 				return;

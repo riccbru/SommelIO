@@ -1,4 +1,5 @@
 import Settings from "./Settings";
+import { Text, View } from "react-native";
 import { useTheme } from "@/src/hooks/useTheme";
 import { BottomSheetMethods } from "@gorhom/bottom-sheet/lib/typescript/types";
 import BottomSheet, { BottomSheetBackdrop, BottomSheetView } from "@gorhom/bottom-sheet";
@@ -14,7 +15,7 @@ export default function SettingsBottomSheet({ bottomSheetRef }: Props) {
 		<>
 			<BottomSheet
 				index={-1}
-				snapPoints={["80%"]}
+				snapPoints={["85%"]}
 				ref={bottomSheetRef}
 				enablePanDownToClose={true}
 				backgroundStyle={{ backgroundColor: theme.colors.background }}
@@ -29,6 +30,17 @@ export default function SettingsBottomSheet({ bottomSheetRef }: Props) {
 				)}
 			>
 				<BottomSheetView style={{ paddingHorizontal: 15 }}>
+					<View style={{ alignItems: "center", marginTop: 10, marginBottom: 10 }}>
+						<Text
+							style={{
+								fontSize: 18,
+								color: theme.colors.primary,
+								fontFamily: "Epilogue-Bold",
+							}}
+						>
+							Settings
+						</Text>
+					</View>
 					<Settings />
 				</BottomSheetView>
 			</BottomSheet>
