@@ -8,6 +8,7 @@ const customColors = {
 	gray: "#808080",
 	green: "#67ce67",
 	pearl: "#d3d5cb",
+	premium: "#4193ef",
 	red: "#cc4b4b",
 	white: "#ffffff",
 };

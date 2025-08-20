@@ -1,6 +1,7 @@
 export default {
 	tasting_name: "dégustation",
 	tastings_name: "dégustations",
+	todrink: "Liste ToDrink",
 	index: {
 		welcome: "Bienvenue sur",
 	},

@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
 				final_considerations: true,
 				scoring_evaluation: true,
 			},
-			orderBy: { id: "desc" },
+			orderBy: { tasting_timestamp: "desc" },
 		});
 
 		const tastings = result.map(t => formatTasting(t));

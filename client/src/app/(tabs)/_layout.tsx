@@ -1,4 +1,5 @@
 import { Tabs } from "expo-router";
+import { Text } from "react-native";
 import { useTheme } from "react-native-paper";
 import { TAB_CONFIG } from "@/src/constants/tabConfig";
 import AnimatedTabButton from "@/src/components/navigation/AnimatedTabButton";
@@ -23,38 +24,36 @@ export default function TabsLayout() {
 						paddingTop: 5,
 						backgroundColor: theme.colors.background,
 					},
-					tabBarLabel: "",
-					// tabBarLabelStyle: ({focused}) => ({
-					// 	paddingTop: 5,
-					// 	color: focused ? theme.colors.amber : theme.colors.primary,
-					// 	fontFamily: "Epilogue-Regular"
-					// }),
-					// tabBarLabel: ({ focused }) =>
-					// 	!config.title.length ? (
-					// 		<></>
-					// 	) : (
-					// 		<Text
-					// 			style={{
-					// 				fontSize: 12,
-					// 				paddingTop: 5,
-					// 				color: focused ? theme.colors.amber : theme.colors.primary,
-					// 				fontFamily: focused ? "Epilogue-Bold" : "Epilogue-Regular",
-					// 			}}
-					// 		>
-					// 			{config?.title}
-					// 		</Text>
-					// 	),
+					tabBarLabelStyle: ({ focused }) => ({
+						paddingTop: 5,
+						color: focused ? theme.colors.amber : theme.colors.primary,
+						fontFamily: "Epilogue-Regular",
+					}),
+					tabBarLabel: ({ focused }) =>
+						!config.title.length ? (
+							<></>
+						) : (
+							<Text
+								style={{
+									fontSize: 12,
+									paddingTop: 5,
+									color: focused ? theme.colors.amber : theme.colors.primary,
+									fontFamily: focused ? "Epilogue-Bold" : "Epilogue-Regular",
+								}}
+							>
+								{config?.title}
+							</Text>
+						),
 					tabBarIcon: ({ focused }) => (
 						<Icon
 							color={iconColor(focused)}
 							size={!config.title.length ? 45 : 32}
 							weight={iconWeight(!config.title.length ? "light" : "regular", focused)}
-							// weight={iconWeight("regular", focused)}
 						/>
 					),
-					// tabBarIconStyle: {
-					// 	marginTop: !config.title.length ? 5 : 0,
-					// },
+					tabBarIconStyle: {
+						marginTop: !config.title.length ? 5 : 0,
+					},
 					tabBarButton: props => <AnimatedTabButton {...props} />,
 				};
 			}}

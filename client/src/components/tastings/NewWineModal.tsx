@@ -4,7 +4,7 @@ import WinesAPI from "@/src/services/wines";
 import { XIcon } from "phosphor-react-native";
 import { useTranslation } from "react-i18next";
 import { Modal, Portal, Text, Divider, useTheme } from "react-native-paper";
-import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { RefreshControl, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 
 type NewWine = {
 	denomination: string;
@@ -118,6 +118,16 @@ export default function NewWineModal({ visible, wines, onDismiss, setRefresh }: 
 				onDismiss={handleDismiss}
 				contentContainerStyle={styles.modalContainer}
 			>
+				<Text
+					style={{
+						fontSize: 22,
+						fontFamily: "Epilogue-Bold",
+						marginBottom: 16,
+						textAlign: "center",
+					}}
+				>
+					{t("todrink")}
+				</Text>
 				<FormField
 					keyboardType='default'
 					error={errors.denomination}
@@ -150,7 +160,12 @@ export default function NewWineModal({ visible, wines, onDismiss, setRefresh }: 
 
 				<Divider bold style={styles.divider} />
 
-				<ScrollView style={{ maxHeight: 300 }}>
+				<ScrollView
+					style={{ maxHeight: 300 }}
+					refreshControl={
+						<RefreshControl refreshing={false} onRefresh={() => setRefresh(prev => !prev)} />
+					}
+				>
 					{wines?.map((el, index) => (
 						<View key={index} style={styles.winesView}>
 							<View style={{ flexDirection: "row", alignItems: "center", flexShrink: 1 }}>

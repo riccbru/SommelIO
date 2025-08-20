@@ -1,12 +1,13 @@
 import Stats from "@/src/components/user/Stats";
 import { useTheme } from "@/src/hooks/useTheme";
 import { getInitials } from "@/src/utils/utils";
-import { DevToLogoIcon } from "phosphor-react-native";
+import { DevToLogoIcon, SealCheckIcon } from "phosphor-react-native";
 import { StyleSheet, Text, View } from "react-native";
 import { Avatar, Card, Divider } from "react-native-paper";
 
 type UserInfo = {
 	admin: boolean;
+	premium: boolean;
 	username: string;
 	email: string;
 	full_name: string;
@@ -93,7 +94,17 @@ export default function UserProfile({ user, stats }: Props) {
 					/>
 				</View>
 
-				<Text style={styles.userData}>{user?.username}</Text>
+				<View style={{ flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
+					<Text style={styles.userData}>{user?.username}</Text>
+					{!user?.premium ? null : (
+						<SealCheckIcon
+							size={28}
+							weight='fill'
+							color={theme.colors.premium}
+							style={{ marginLeft: 5, marginBottom: 10 }}
+						/>
+					)}
+				</View>
 				<Text style={styles.userEmail}>{user?.email}</Text>
 				<Text style={styles.userData}>{user?.full_name}</Text>
 

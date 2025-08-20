@@ -1,6 +1,7 @@
 export default {
 	tasting_name: "tasting",
 	tastings_name: "tastings",
+	todrink: "ToDrink List",
 	index: {
 		welcome: "Welcome to",
 	},
