@@ -6,6 +6,7 @@ import { PrismaClient } from "../generated/prisma/index.js";
 const router = Router();
 const prisma = new PrismaClient();
 
+// GET /api/v1/wines
 router.get("/", async (req, res) => {
 	const uid = req.user.uid;
 	try {
@@ -23,6 +24,7 @@ router.get("/", async (req, res) => {
 	}
 });
 
+// GET /api/v1/wines/:wid
 router.get("/:wid", async (req, res) => {
 	const uid = req.user.uid;
 	const { wid } = req.params;
@@ -47,6 +49,7 @@ router.get("/:wid", async (req, res) => {
 	}
 });
 
+// POST /api/v1/wines
 router.post("/", async (req, res) => {
 	const uid = req.user.uid;
 
@@ -72,13 +75,14 @@ router.post("/", async (req, res) => {
 
 		const newWine = formatWine(result);
 
-		res.json(newWine);
+		res.status(201).json(newWine);
 	} catch (err) {
 		console.error(err);
 		res.status(500).json(err);
 	}
 });
 
+// DELETE /api/v1/wines/:wid
 router.delete("/:wid", async (req, res) => {
 	const { uid } = req.user;
 	const { wid } = req.params;

@@ -1084,9 +1084,9 @@ Endpoint: `PUT /api/v1/scoring/:tasting_uuid`.
       }
       ```
 
-##
+## GET WINES (drinklist)
 
-Endpoint: ``.
+Endpoint: `GET /api/v1/wines`.
 
 ### REQUEST
 
@@ -1101,12 +1101,128 @@ Endpoint: ``.
 
 ### RESPONSE
 
-- ``
+- `200 OK`
    - Header
       -
       -
    - Body
       -
       ```json
-      {}
+      {
+         "wines": [
+            {...},
+            {...},
+            ...,
+            {...}
+         ]
+      }
+      ```
+
+## GET WINE (drinklist) BY ID
+
+Endpoint: `GET /api/v1/wines/:wid`.
+
+### REQUEST
+
+- Header
+   -
+   -
+- Body
+   -
+   ```json
+   {}
+   ```
+
+### RESPONSE
+
+- `200 OK`
+   - Header
+      -
+      -
+   - Body
+      -
+      ```json
+      {
+         "wid": <UUID-32>,
+         "denomination": <TEXT>,
+         "winemaker": <TEXT>,
+         "vintage": <YYYY>
+      }
+      ```
+
+## CREATE WINE (drinklist)
+
+Endpoint: `POST /api/v1/wines`.
+
+### REQUEST
+
+- Header
+   -
+   -
+- Body
+   -
+   ```json
+   {
+      "denomination": <TEXT>,
+      "winemaker": <TEXT>,
+      "vintage": <YYYY>
+   }
+   ```
+
+### RESPONSE
+
+- `201 Created`
+   - Header
+      -
+      -
+   - Body
+      -
+      ```json
+      {
+         "wid": <UUID-32>,
+         "denomination": <TEXT>,
+         "winemaker": <TEXT>,
+         "vintage": <YYYY>
+      }
+      ```
+
+## DELETE WINE (drinklist)
+
+Endpoint: `DELETE /api/v1/wines/:wid`.
+
+### REQUEST
+
+- Header
+   -
+   -
+- Body
+   -
+   ```json
+   {}
+   ```
+
+### RESPONSE
+
+- `200 OK`
+   - Header
+      -
+      -
+   - Body
+      -
+      ```json
+      {
+      	"success": "Wine <UUID-32> successfully deleted"
+      }
+      ```
+
+- `404 Not Found`
+   - Header
+      -
+      -
+   - Body
+      -
+      ```json
+      {
+      	"error": "Wine not found"
+      }
       ```
