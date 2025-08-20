@@ -7,13 +7,15 @@ import NewWineModal from "@/src/components/tastings/NewWineModal";
 import TastingsList from "@/src/components/tastings/TastingsList";
 import { useTheme, Searchbar, Text, FAB } from "react-native-paper";
 import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
+import WinesAPI from "@/src/services/wines";
 
 type Exam = Record<string, any>;
 
-type newWine = {
+type Wine = {
+	wid: string;
 	denomination: string;
 	winemaker: string;
-	vintage: string;
+	vintage: number;
 };
 
 type Tasting = {
@@ -39,20 +41,15 @@ type Tasting = {
 	final_considerations: Exam;
 };
 
-const defaultNewWine: newWine = {
-	denomination: "",
-	winemaker: "",
-	vintage: "",
-};
-
 export default function Tastings() {
 	const theme = useTheme();
 	const { t } = useTranslation();
 	const [modal, setModal] = useState(false);
 	const [loading, setLoading] = useState(true);
+	const [wines, setWines] = useState<Wine[]>([]);
 	const [searchQuery, setSearchQuery] = useState("");
+	const [refresh, setRefresh] = useState<boolean>(false);
 	const [tastings, setTastings] = useState<Tasting[]>([]);
-	const [newWine, setNewWine] = useState<newWine>(defaultNewWine);
 
 	const styles = StyleSheet.create({
 		container: {
@@ -116,9 +113,25 @@ export default function Tastings() {
 		}
 	}, []);
 
+	const fetchWines = useCallback(async () => {
+		const delay = new Promise(resolve => setTimeout(resolve, 650));
+		try {
+			const [data] = await Promise.all([WinesAPI.fetchWines(), delay]);
+			setWines(data.wines || []);
+		} catch (error: any) {
+			console.log(error);
+		} finally {
+			setLoading(false);
+		}
+	}, []);
+
 	useEffect(() => {
 		fetchTastings();
 	}, [fetchTastings]);
+
+	useEffect(() => {
+		fetchWines();
+	}, [refresh, fetchWines]);
 
 	if (loading) {
 		return <LoadingSpinner text={t("tastings.loading_tastings")} />;
@@ -161,10 +174,9 @@ export default function Tastings() {
 			/>
 
 			<NewWineModal
+				wines={wines}
 				visible={modal}
-				newWine={newWine}
-				tastings={tastings}
-				setNewWine={setNewWine}
+				setRefresh={setRefresh}
 				onDismiss={() => setModal(false)}
 			/>
 		</>
