@@ -12,6 +12,7 @@ import { isAuthZ } from "./src/middlewares/auth.js";
 import scoringRoutes from "./src/routes/scorings.js";
 import tastingsRoutes from "./src/routes/tastings.js";
 import colleaguesRoutes from "./src/routes/colleagues.js";
+import winesRoutes from "./src/routes/wines.js";
 
 const app = express();
 
@@ -37,3 +38,4 @@ app.use("/api/v1/tastings", isAuthZ, tastingsRoutes);
 app.use("/api/v1/exams", isAuthZ, examsRoutes);
 app.use("/api/v1/scoring", isAuthZ, scoringRoutes);
 app.use("/api/v1/colleagues", isAuthZ, colleaguesRoutes);
+app.use("/api/v1/wines", isAuthZ, winesRoutes);
