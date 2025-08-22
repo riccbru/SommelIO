@@ -17,8 +17,8 @@ type Language = "en" | "it" | "fr";
 export default function Settings() {
 	const theme = useTheme();
 	const { t } = useTranslation();
-	const labels = ["🇬🇧", "🇮🇹", "🇫🇷"];
-	const langs: Language[] = ["en", "it", "fr"];
+	const labels = ["🇮🇹", "🇬🇧", "🇫🇷"];
+	const langs: Language[] = ["it", "en", "fr"];
 	const { language, setLanguage } = useLanguage();
 
 	const styles = StyleSheet.create({
@@ -81,7 +81,7 @@ export default function Settings() {
 							values={labels}
 							tintColor={theme.colors.primary}
 							selectedIndex={langs.indexOf(language)}
-							style={{ width: 300, borderRadius: 10 }}
+							style={{ width: 300, borderRadius: 10, paddingRight: 10 }}
 							fontStyle={{ fontSize: 28, color: theme.colors.primary }}
 							activeFontStyle={{ fontSize: 28, color: theme.colors.background }}
 							onChange={e => {
@@ -95,7 +95,7 @@ export default function Settings() {
 
 			{/* Security & Privacy */}
 			<TouchableOpacity
-				activeOpacity={0.7}
+				activeOpacity={0.5}
 				onPress={() => console.log("clicked Security & Privacy")}
 			>
 				<View style={styles.row}>
@@ -113,8 +113,11 @@ export default function Settings() {
 			</TouchableOpacity>
 
 			{/* Information */}
-			<TouchableOpacity activeOpacity={0.7} onPress={() => console.log("clicked Information")}>
-				<View style={styles.row}>
+			<TouchableOpacity
+				activeOpacity={0.5}
+				onPress={() => console.log("clicked Information")}>
+				<View style={styles.row}
+			>
 					<View style={{ alignItems: "center", flexDirection: "row" }}>
 						<InfoIcon
 							size={28}
@@ -129,7 +132,10 @@ export default function Settings() {
 			</TouchableOpacity>
 
 			{/* Contact Us */}
-			<TouchableOpacity activeOpacity={0.7} onPress={() => console.log("clicked Contact Us")}>
+			<TouchableOpacity
+				activeOpacity={0.5}
+				onPress={() => console.log("clicked Contact Us")}
+			>
 				<View style={styles.row}>
 					<View style={{ alignItems: "center", flexDirection: "row" }}>
 						<ChatCircleIcon

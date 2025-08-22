@@ -34,7 +34,6 @@ type EditModeShape = {
 
 type Props = {
 	tasting: Tasting;
-	setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
 	setEditMode: React.Dispatch<React.SetStateAction<EditModeShape>>;
 };
 

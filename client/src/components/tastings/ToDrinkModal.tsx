@@ -44,6 +44,7 @@ export default function ToDrinkModal({ visible, wines, onDismiss, setRefresh }: 
 		},
 		text: {
 			fontSize: 16,
+			marginTop: 50,
 			textAlign: "center",
 			fontFamily: "Epilogue-Regular",
 		},
@@ -69,7 +70,7 @@ export default function ToDrinkModal({ visible, wines, onDismiss, setRefresh }: 
 				onDismiss={handleDismiss}
 				contentContainerStyle={styles.modalContainer}
 			>
-				<Text style={styles.title}>{t("todrink")}</Text>
+				<Text style={styles.title}>ToDrink</Text>
 
 				<Divider bold style={styles.divider} />
 

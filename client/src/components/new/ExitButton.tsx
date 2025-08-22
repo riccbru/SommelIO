@@ -3,6 +3,7 @@ import { View, Text } from "react-native";
 import { XCircleIcon } from "phosphor-react-native";
 import { Button, useTheme } from "react-native-paper";
 import { useTranslation } from "react-i18next";
+import { useRefresh } from "@/src/hooks/useRefresh";
 
 type Props<T> = {
 	defaultFormData: T;
@@ -14,10 +15,12 @@ export default function ExitButton({ defaultFormData, setFormData, setErrors }: 
 	const theme = useTheme();
 	const router = useRouter();
 	const { t } = useTranslation();
+	const { setRefresh } = useRefresh();
 
 	const text = t("new.exit_exam");
 	const handlePress = () => {
 		setErrors({});
+		setRefresh(prev => !prev);
 		setFormData(defaultFormData);
 		router.replace("/(tabs)/new");
 		router.replace("/(tabs)/tastings");

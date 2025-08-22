@@ -13,6 +13,7 @@ import {
 	TouchableWithoutFeedback,
 	View,
 } from "react-native";
+import { useRefresh } from "@/src/hooks/useRefresh";
 
 type NewWine = {
 	denomination: string;
@@ -30,6 +31,7 @@ export default function ToDrink() {
 	const theme = useTheme();
 	const router = useRouter();
 	const { t } = useTranslation();
+	const { setRefresh} = useRefresh();
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<NewWine>(defaultFormData);
 
@@ -97,6 +99,7 @@ export default function ToDrink() {
 		try {
 			await WinesAPI.createWine(formData);
 			setFormData(defaultFormData);
+			setRefresh(prev => !prev);
 			router.replace("/(tabs)/new");
 			router.replace("/(tabs)/tastings");
 		} catch (error) {

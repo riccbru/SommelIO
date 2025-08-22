@@ -4,10 +4,11 @@ import { ListIcon } from "phosphor-react-native";
 import TastingsAPI from "@/src/services/tastings";
 import { useCallback, useEffect, useState } from "react";
 import LoadingSpinner from "@/src/components/LoadingSpinner";
-import NewWineModal from "@/src/components/tastings/ToDrinkModal";
+import ToDrinkModal from "@/src/components/tastings/ToDrinkModal";
 import TastingsList from "@/src/components/tastings/TastingsList";
 import { useTheme, Searchbar, Text, FAB } from "react-native-paper";
-import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
+import { RefreshControl, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { useRefresh } from "@/src/hooks/useRefresh";
 
 type Exam = Record<string, any>;
 
@@ -45,10 +46,10 @@ export default function Tastings() {
 	const theme = useTheme();
 	const { t } = useTranslation();
 	const [modal, setModal] = useState(false);
+	const { refresh, setRefresh } = useRefresh();
 	const [loading, setLoading] = useState(true);
 	const [wines, setWines] = useState<Wine[]>([]);
 	const [searchQuery, setSearchQuery] = useState("");
-	const [refresh, setRefresh] = useState<boolean>(false);
 	const [tastings, setTastings] = useState<Tasting[]>([]);
 
 	const styles = StyleSheet.create({
@@ -78,11 +79,11 @@ export default function Tastings() {
 		},
 		fab: {
 			right: 0,
-			width: 70,
+			width: 55,
 			bottom: 0,
 			margin: 15,
 			height: 55,
-			borderRadius: 20,
+			borderRadius: 30,
 			position: "absolute",
 			alignItems: "center",
 			justifyContent: "center",
@@ -128,12 +129,9 @@ export default function Tastings() {
 	}, []);
 
 	useEffect(() => {
-		fetchTastings();
-	}, [fetchTastings]);
-
-	useEffect(() => {
 		fetchWines();
-	}, [refresh, fetchWines]);
+		fetchTastings();
+	}, [refresh, fetchWines, fetchTastings]);
 
 	if (loading) {
 		return <LoadingSpinner text={t("tastings.loading_tastings")} />;
@@ -173,20 +171,14 @@ export default function Tastings() {
 				onPress={() => setModal(true)}
 				color={theme.colors.background}
 				icon={() => (
-					<View
-						style={{
-							alignItems: "center",
-							flexDirection: "column",
-							justifyContent: "center",
-						}}
-					>
-						<ListIcon size={24} color={theme.colors.black} />
-						<Text style={{ color: theme.colors.black }}>ToDrink</Text>
+					<View style={{ alignItems: "center" }}>
+						<ListIcon size={22} color={theme.colors.black} />
+						<Text style={{ fontSize: 12, color: theme.colors.black }}>ToDrink</Text>
 					</View>
 				)}
 			/>
 
-			<NewWineModal
+			<ToDrinkModal
 				wines={wines}
 				visible={modal}
 				setRefresh={setRefresh}

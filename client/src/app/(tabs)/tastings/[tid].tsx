@@ -23,6 +23,7 @@ import VisualUpdate from "@/src/components/tastings/update/VisualUpdate";
 import ScoringUpdate from "@/src/components/tastings/update/ScoringUpdate";
 import TastingUpdate from "@/src/components/tastings/update/TastingUpdate";
 import OlfactoryUpdate from "@/src/components/tastings/update/OlfactoryUpdate";
+import { useRefresh } from "@/src/hooks/useRefresh";
 
 type EditModeShape = {
 	tasting: boolean;
@@ -63,7 +64,7 @@ export default function TastingDetail() {
 	const { t } = useTranslation();
 	const navigation = useNavigation();
 	const [loading, setLoading] = useState(true);
-	const [refresh, setRefresh] = useState(false);
+	const { refresh, setRefresh } = useRefresh();
 	const [favorite, setFavorite] = useState(false);
 	const { tid } = useLocalSearchParams<{ tid: string }>();
 	const [tasting, setTasting] = useState<Tasting | null>(null);

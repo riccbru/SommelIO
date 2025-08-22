@@ -5,6 +5,7 @@ import { I18nextProvider } from "react-i18next";
 import { AuthProvider } from "@/src/contexts/AuthContext";
 import { ThemeProvider } from "../contexts/ThemeContext";
 import { LanguageProvider } from "../contexts/LanguageContext";
+import { RefreshProvider } from "../contexts/RefreshContext";
 
 export default function RootLayout() {
 	return (
@@ -12,8 +13,10 @@ export default function RootLayout() {
 			<ThemeProvider>
 				<LanguageProvider>
 					<AuthProvider>
-						<StatusBar style='auto' />
-						<Slot />
+						<RefreshProvider>
+							<StatusBar style='auto' />
+							<Slot />
+						</RefreshProvider>
 					</AuthProvider>
 				</LanguageProvider>
 			</ThemeProvider>

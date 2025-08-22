@@ -20,7 +20,6 @@ export default function NewLayout() {
 		>
 			<Stack.Screen name='index' options={{ title: t("new.name") }} />
 			<Stack.Screen name='todrink' options={{ title: "ToDrink" }} />
-			<Slot />
 		</Stack>
 	);
 }

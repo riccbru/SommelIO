@@ -3,6 +3,7 @@ import { LinkProps, useRouter } from "expo-router";
 import { Button, useTheme } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ArrowCircleRightIcon, CheckCircleIcon } from "phosphor-react-native";
+import { useRefresh } from "@/src/hooks/useRefresh";
 
 type Props = {
 	path: LinkProps["href"];
@@ -23,6 +24,7 @@ export default function NextButton({
 }: Props) {
 	const theme = useTheme();
 	const router = useRouter();
+	const { setRefresh } = useRefresh();
 
 	const handlePress = async () => {
 		const isValid = validation();
@@ -38,6 +40,7 @@ export default function NextButton({
 					await action(tid, formData);
 				}
 				router.push(path);
+				setRefresh(prev => !prev);
 			} catch (error) {
 				console.log(`NextButton: ${error}`);
 			}
