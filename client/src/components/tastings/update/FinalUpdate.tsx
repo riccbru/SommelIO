@@ -17,8 +17,8 @@ const defaultFinalExam: FinalExam = {
 	evolutionary_state: "",
 	harmony: "",
 	pairings: "",
-	notes: ""
-}
+	notes: "",
+};
 
 type EditModeShape = {
 	tasting: boolean;

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useData } from "@/src/hooks/useData";
 import { useTranslation } from "react-i18next";
 import TastingsAPI from "@/src/services/tastings";
 import { Card, useTheme } from "react-native-paper";

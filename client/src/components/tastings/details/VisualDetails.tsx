@@ -117,10 +117,10 @@ export default function VisualDetails({ exam }: Props) {
 				</View>
 			))}
 
-				<View style={styles.notesRow}>
-					<Text style={styles.notesTitle}>Notes</Text>
-					<Text style={styles.notesText}>{exam.notes || "-"}</Text>
-				</View>
+			<View style={styles.notesRow}>
+				<Text style={styles.notesTitle}>Notes</Text>
+				<Text style={styles.notesText}>{exam.notes || "-"}</Text>
+			</View>
 		</View>
 	);
 }

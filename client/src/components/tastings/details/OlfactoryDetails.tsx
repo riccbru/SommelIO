@@ -114,19 +114,25 @@ export default function OlfactoryDetails({ exam }: Props) {
 			<View style={styles.row}>
 				<Text style={styles.label}>{t("new.intensity")}</Text>
 				<Text style={styles.value}>
-					{!Object.keys(exam).length ? "-" : t(`new.olfactory.values.intensity.${exam?.intensity}`).toUpperCase()}
+					{!Object.keys(exam).length
+						? "-"
+						: t(`new.olfactory.values.intensity.${exam?.intensity}`).toUpperCase()}
 				</Text>
 			</View>
 			<View style={styles.row}>
 				<Text style={styles.label}>{t("new.olfactory.complexity")}</Text>
 				<Text style={styles.value}>
-					{!Object.keys(exam).length ? "-" : t(`new.olfactory.values.complexity.${exam?.complexity}`).toUpperCase()}
+					{!Object.keys(exam).length
+						? "-"
+						: t(`new.olfactory.values.complexity.${exam?.complexity}`).toUpperCase()}
 				</Text>
 			</View>
 			<View style={styles.row}>
 				<Text style={styles.label}>{t("new.quality")}</Text>
 				<Text style={styles.value}>
-					{!Object.keys(exam).length ? "-" : t(`new.olfactory.values.quality.${exam?.quality}`).toUpperCase()}
+					{!Object.keys(exam).length
+						? "-"
+						: t(`new.olfactory.values.quality.${exam?.quality}`).toUpperCase()}
 				</Text>
 			</View>
 
@@ -138,10 +144,10 @@ export default function OlfactoryDetails({ exam }: Props) {
 				</View>
 			))}
 
-				<View style={styles.notesRow}>
-					<Text style={styles.notesTitle}>{t("new.notes")}</Text>
-					<Text style={styles.notesText}>{exam.notes || "-"}</Text>
-				</View>
+			<View style={styles.notesRow}>
+				<Text style={styles.notesTitle}>{t("new.notes")}</Text>
+				<Text style={styles.notesText}>{exam.notes || "-"}</Text>
+			</View>
 		</View>
 	);
 }

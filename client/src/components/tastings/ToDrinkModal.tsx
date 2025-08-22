@@ -77,9 +77,7 @@ export default function ToDrinkModal({ visible, wines, onDismiss }: Props) {
 
 				<ScrollView
 					style={{ maxHeight: 300 }}
-					refreshControl={
-						<RefreshControl refreshing={false} onRefresh={refreshWines} />
-					}
+					refreshControl={<RefreshControl refreshing={false} onRefresh={refreshWines} />}
 				>
 					{!wines.length ? (
 						<Text style={styles.text}>{t("todrink_notFound")}</Text>

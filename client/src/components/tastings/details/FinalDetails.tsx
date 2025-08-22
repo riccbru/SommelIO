@@ -81,14 +81,14 @@ export default function FinalDetails({ exam }: Props) {
 			))}
 
 			<View style={styles.notesRow}>
-					<Text style={styles.notesTitle}>{t("new.final.pairings")}</Text>
-					<Text style={styles.notesText}>{exam.pairings || "-"}</Text>
-				</View>
+				<Text style={styles.notesTitle}>{t("new.final.pairings")}</Text>
+				<Text style={styles.notesText}>{exam.pairings || "-"}</Text>
+			</View>
 
-				<View style={styles.notes}>
-					<Text style={styles.notesTitle}>{t("new.notes")}</Text>
-					<Text style={styles.notesText}>{exam.notes || "-"}</Text>
-				</View>
+			<View style={styles.notes}>
+				<Text style={styles.notesTitle}>{t("new.notes")}</Text>
+				<Text style={styles.notesText}>{exam.notes || "-"}</Text>
+			</View>
 		</View>
 	);
 }

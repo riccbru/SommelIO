@@ -93,11 +93,15 @@ export default function Final() {
 		const newErrors: Record<string, string> = {};
 
 		if (!evolutionaryStateOptions.includes(formData.evolutionary_state)) {
-			newErrors.evolutionary_state = "Invalid evolution state value";
+			newErrors.evolutionary_state = `${t("new.final.evolution")} ${t("new.required")}`;
 		}
 
 		if (!harmonyOptions.includes(formData.harmony)) {
-			newErrors.harmony = "Invalid harmony value";
+			newErrors.harmony = `${t("new.harmony")} ${t("new.required")}`;
+		}
+
+		if (!formData.pairings?.trim()) {
+			newErrors.harmony = `${t("new.final.pairings")} ${t("new.required")}`;
 		}
 
 		setErrors(newErrors);

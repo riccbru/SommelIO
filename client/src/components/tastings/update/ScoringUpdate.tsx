@@ -81,7 +81,7 @@ export default function ScoringUpdate({ tid, scoring, setRefresh, setEditMode }:
 		});
 
 		if (formData.notes === null) {
-			setFormData((prev) => ({ ...prev, notes: ""}));
+			setFormData(prev => ({ ...prev, notes: "" }));
 		}
 
 		setErrors(newErrors);

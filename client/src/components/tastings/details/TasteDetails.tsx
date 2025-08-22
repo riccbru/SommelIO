@@ -123,10 +123,10 @@ export default function TasteDetails({ exam }: Props) {
 				</View>
 			))}
 
-				<View style={styles.notesRow}>
-					<Text style={styles.notesTitle}>{t("new.notes")}</Text>
-					<Text style={styles.notesText}>{exam.notes || "-"}</Text>
-				</View>
+			<View style={styles.notesRow}>
+				<Text style={styles.notesTitle}>{t("new.notes")}</Text>
+				<Text style={styles.notesText}>{exam.notes || "-"}</Text>
+			</View>
 		</View>
 	);
 }

@@ -3,7 +3,14 @@ import { StarIcon } from "phosphor-react-native";
 import { Text, Card, useTheme } from "react-native-paper";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
-import { View, ScrollView, StyleSheet, TouchableOpacity, RefreshControl } from "react-native";
+import {
+	View,
+	ScrollView,
+	StyleSheet,
+	TouchableOpacity,
+	RefreshControl,
+	KeyboardAvoidingView,
+} from "react-native";
 
 import TastingsAPI from "@/src/services/tastings";
 import LoadingSpinner from "@/src/components/LoadingSpinner";
@@ -183,156 +190,162 @@ export default function TastingDetail() {
 	}
 
 	return (
-		<ScrollView
-			style={styles.container}
-			refreshControl={
-				<RefreshControl refreshing={loading} onRefresh={() => setRefresh(!refresh)} />
-			}
+		<KeyboardAvoidingView
+			keyboardVerticalOffset={140}
+			behavior={Platform.OS === "ios" ? "padding" : "height"}
+			style={{ flex: 1, backgroundColor: theme.colors.background }}
 		>
-			<View style={{ flexDirection: "column", justifyContent: "flex-start" }}>
-				<View style={{ marginTop: 20 }} />
-				<ActionButton action='download' tid={tasting.tid} />
-				<View style={{ paddingVertical: 5 }} />
-				<ActionButton
-					action='delete'
-					tid={tasting.tid}
-					name={tasting.wine_denomination}
-					winemaker={tasting.winemaker}
-				/>
-				<View style={{ marginBottom: 20 }} />
-			</View>
-
-			<Card style={styles.card}>
-				<Card.Content>
-					<TastingCard
-						name={"tasting"}
-						uuid={tasting.tid}
-						editMode={editMode}
-						setEditMode={setEditMode}
-						subtitle={t("new.tasting.title")}
+			<ScrollView
+				style={styles.container}
+				refreshControl={
+					<RefreshControl refreshing={loading} onRefresh={() => setRefresh(!refresh)} />
+				}
+			>
+				<View style={{ flexDirection: "column", justifyContent: "flex-start" }}>
+					<View style={{ marginTop: 20 }} />
+					<ActionButton action='download' tid={tasting.tid} />
+					<View style={{ paddingVertical: 5 }} />
+					<ActionButton
+						action='delete'
+						tid={tasting.tid}
+						name={tasting.wine_denomination}
+						winemaker={tasting.winemaker}
 					/>
-					{!editMode["tasting"] ? (
-						<TastingDetails tasting={tasting} />
-					) : (
-						<TastingUpdate
-							tasting={tasting}
-							setEditMode={setEditMode}
-							setRefresh={setRefresh}
-						/>
-					)}
-				</Card.Content>
-			</Card>
+					<View style={{ marginBottom: 20 }} />
+				</View>
 
-			<Card style={styles.card}>
-				<Card.Content>
-					<TastingCard
-						name={"visual"}
-						uuid={tasting.visual_exam.eid}
-						editMode={editMode}
-						setEditMode={setEditMode}
-						subtitle={t("new.visual.title")}
-					/>
-					{!editMode["visual"] ? (
-						<VisualDetails exam={tasting.visual_exam} />
-					) : (
-						<VisualUpdate
-							tid={tasting.tid}
-							sparkling={tasting.wine_category_name === "sparkling"}
-							exam={tasting.visual_exam}
+				<Card style={styles.card}>
+					<Card.Content>
+						<TastingCard
+							name={"tasting"}
+							uuid={tasting.tid}
+							editMode={editMode}
 							setEditMode={setEditMode}
-							setRefresh={setRefresh}
+							subtitle={t("new.tasting.title")}
 						/>
-					)}
-				</Card.Content>
-			</Card>
+						{!editMode["tasting"] ? (
+							<TastingDetails tasting={tasting} />
+						) : (
+							<TastingUpdate
+								tasting={tasting}
+								setEditMode={setEditMode}
+								setRefresh={setRefresh}
+							/>
+						)}
+					</Card.Content>
+				</Card>
 
-			<Card style={styles.card}>
-				<Card.Content>
-					<TastingCard
-						name={"olfactory"}
-						uuid={tasting.olfactory_exam.eid}
-						editMode={editMode}
-						setEditMode={setEditMode}
-						subtitle={t("new.olfactory.title")}
-					/>
-					{!editMode["olfactory"] ? (
-						<OlfactoryDetails exam={tasting.olfactory_exam} />
-					) : (
-						<OlfactoryUpdate
-							tid={tasting.tid}
-							exam={tasting.olfactory_exam}
+				<Card style={styles.card}>
+					<Card.Content>
+						<TastingCard
+							name={"visual"}
+							uuid={tasting.visual_exam.eid}
+							editMode={editMode}
 							setEditMode={setEditMode}
-							setRefresh={setRefresh}
+							subtitle={t("new.visual.title")}
 						/>
-					)}
-				</Card.Content>
-			</Card>
+						{!editMode["visual"] ? (
+							<VisualDetails exam={tasting.visual_exam} />
+						) : (
+							<VisualUpdate
+								tid={tasting.tid}
+								sparkling={tasting.wine_category_name === "sparkling"}
+								exam={tasting.visual_exam}
+								setEditMode={setEditMode}
+								setRefresh={setRefresh}
+							/>
+						)}
+					</Card.Content>
+				</Card>
 
-			<Card style={styles.card}>
-				<Card.Content>
-					<TastingCard
-						name={"taste"}
-						uuid={tasting.taste_olfactory_exam.eid}
-						editMode={editMode}
-						setEditMode={setEditMode}
-						subtitle={t("new.taste.title")}
-					/>
-					{!editMode["taste"] ? (
-						<TasteDetails exam={tasting.taste_olfactory_exam} />
-					) : (
-						<TasteUpdate
-							tid={tasting.tid}
-							exam={tasting.taste_olfactory_exam}
+				<Card style={styles.card}>
+					<Card.Content>
+						<TastingCard
+							name={"olfactory"}
+							uuid={tasting.olfactory_exam.eid}
+							editMode={editMode}
 							setEditMode={setEditMode}
-							setRefresh={setRefresh}
+							subtitle={t("new.olfactory.title")}
 						/>
-					)}
-				</Card.Content>
-			</Card>
+						{!editMode["olfactory"] ? (
+							<OlfactoryDetails exam={tasting.olfactory_exam} />
+						) : (
+							<OlfactoryUpdate
+								tid={tasting.tid}
+								exam={tasting.olfactory_exam}
+								setEditMode={setEditMode}
+								setRefresh={setRefresh}
+							/>
+						)}
+					</Card.Content>
+				</Card>
 
-			<Card style={styles.card}>
-				<Card.Content>
-					<TastingCard
-						name={"final"}
-						uuid={tasting.final_considerations.eid}
-						editMode={editMode}
-						setEditMode={setEditMode}
-						subtitle={t("new.final.title")}
-					/>
-					{!editMode["final"] ? (
-						<FinalDetails exam={tasting.final_considerations} />
-					) : (
-						<FinalUpdate
-							tid={tasting.tid}
-							exam={tasting.final_considerations}
+				<Card style={styles.card}>
+					<Card.Content>
+						<TastingCard
+							name={"taste"}
+							uuid={tasting.taste_olfactory_exam.eid}
+							editMode={editMode}
 							setEditMode={setEditMode}
-							setRefresh={setRefresh}
+							subtitle={t("new.taste.title")}
 						/>
-					)}
-				</Card.Content>
-			</Card>
+						{!editMode["taste"] ? (
+							<TasteDetails exam={tasting.taste_olfactory_exam} />
+						) : (
+							<TasteUpdate
+								tid={tasting.tid}
+								exam={tasting.taste_olfactory_exam}
+								setEditMode={setEditMode}
+								setRefresh={setRefresh}
+							/>
+						)}
+					</Card.Content>
+				</Card>
 
-			<Card style={styles.card}>
-				<Card.Content>
-					<TastingCard
-						name={"scoring"}
-						uuid={tasting.scoring_evaluation.sid}
-						editMode={editMode}
-						setEditMode={setEditMode}
-						subtitle={t("new.scoring.title")}
-					/>
-					{!editMode["scoring"] ? (
-						<ScoringDetails scoring={tasting.scoring_evaluation} />
-					) : (
-						<ScoringUpdate
-							tid={tasting.tid}
-							scoring={tasting.scoring_evaluation}
+				<Card style={styles.card}>
+					<Card.Content>
+						<TastingCard
+							name={"final"}
+							uuid={tasting.final_considerations.eid}
+							editMode={editMode}
 							setEditMode={setEditMode}
-							setRefresh={setRefresh}
+							subtitle={t("new.final.title")}
 						/>
-					)}
-				</Card.Content>
-			</Card>
-		</ScrollView>
+						{!editMode["final"] ? (
+							<FinalDetails exam={tasting.final_considerations} />
+						) : (
+							<FinalUpdate
+								tid={tasting.tid}
+								exam={tasting.final_considerations}
+								setEditMode={setEditMode}
+								setRefresh={setRefresh}
+							/>
+						)}
+					</Card.Content>
+				</Card>
+
+				<Card style={styles.card}>
+					<Card.Content>
+						<TastingCard
+							name={"scoring"}
+							uuid={tasting.scoring_evaluation.sid}
+							editMode={editMode}
+							setEditMode={setEditMode}
+							subtitle={t("new.scoring.title")}
+						/>
+						{!editMode["scoring"] ? (
+							<ScoringDetails scoring={tasting.scoring_evaluation} />
+						) : (
+							<ScoringUpdate
+								tid={tasting.tid}
+								scoring={tasting.scoring_evaluation}
+								setEditMode={setEditMode}
+								setRefresh={setRefresh}
+							/>
+						)}
+					</Card.Content>
+				</Card>
+			</ScrollView>
+		</KeyboardAvoidingView>
 	);
 }

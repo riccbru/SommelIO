@@ -122,8 +122,8 @@ export default function Scoring() {
 		<>
 			<KeyboardAvoidingView
 				keyboardVerticalOffset={140}
-				style={{ flex: 1, backgroundColor: theme.colors.background }}
 				behavior={Platform.OS === "ios" ? "padding" : "height"}
+				style={{ flex: 1, backgroundColor: theme.colors.background }}
 			>
 				<ScrollView style={styles.container} keyboardShouldPersistTaps='handled'>
 					<Card style={styles.card}>

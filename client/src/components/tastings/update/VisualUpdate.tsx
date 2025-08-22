@@ -34,8 +34,8 @@ const defaultVisualExam: VisualExam = {
 	bubble_size: "",
 	bubble_number: "",
 	bubble_persistence: "",
-	notes: ""
-}
+	notes: "",
+};
 
 type Props = {
 	tid: string;
@@ -48,8 +48,8 @@ type Props = {
 export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEditMode }: Props) {
 	const { t } = useTranslation();
 	const i18nextPath = "new.visual.values";
-	const [formData, setFormData] = useState<VisualExam>(exam || defaultVisualExam);
 	const [errors, setErrors] = useState<Record<string, string>>({});
+	const [formData, setFormData] = useState<VisualExam>(exam || defaultVisualExam);
 
 	const updateFormData = (field: keyof VisualExam, value: string) => {
 		setFormData(prev => ({ ...prev, [field]: value }));
@@ -105,8 +105,7 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 
 		if (!formData.consistency?.trim()) {
 			newErrors.consistency = `${t("new.visual.consistency")} ${t("new.required")}`;
-		}
-		if (!consistencyOptions.includes(formData.consistency)) {
+		} else if (!consistencyOptions.includes(formData.consistency)) {
 			newErrors.consistency = `${t("new.visual.consistency")} ${t("new.invalid")}`;
 		}
 
@@ -131,16 +130,14 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 			if (!bubblePersistenceOptions.includes(formData.bubble_persistence)) {
 				newErrors.bubble_persistence = `${t("new.visual.bubble_persistence")} ${t("new.invalid")}`;
 			}
-		}
-		
-		if (!sparkling) {
-			setFormData((prev) => ({ ...prev, bubble_size: "" }));
-			setFormData((prev) => ({ ...prev, bubble_number: "" }));
-			setFormData((prev) => ({ ...prev, bubble_persistence: "" }));
+		} else {
+			setFormData(prev => ({ ...prev, bubble_size: "" }));
+			setFormData(prev => ({ ...prev, bubble_number: "" }));
+			setFormData(prev => ({ ...prev, bubble_persistence: "" }));
 		}
 
 		if (!formData.notes) {
-			setFormData((prev) => ({ ...prev, notes: "" }));
+			setFormData(prev => ({ ...prev, notes: "" }));
 		}
 
 		setErrors(newErrors);
@@ -149,6 +146,8 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 
 	const handlePress = async () => {
 		if (!validateForm()) return;
+		const res = validateForm();
+		if (!res) console.log("∫ƒ(π)dπ");
 		try {
 			if (!Object.keys(exam).length) {
 				await ExamsAPI.createVisual(tid, formData);
