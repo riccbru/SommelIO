@@ -1,9 +1,9 @@
 import { useRouter } from "expo-router";
 import { View, Text } from "react-native";
+import { useData } from "@/src/hooks/useData";
+import { useTranslation } from "react-i18next";
 import { XCircleIcon } from "phosphor-react-native";
 import { Button, useTheme } from "react-native-paper";
-import { useTranslation } from "react-i18next";
-import { useRefresh } from "@/src/hooks/useRefresh";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type Props<T> = {
@@ -16,12 +16,12 @@ export default function ExitButton({ defaultFormData, setFormData, setErrors }: 
 	const theme = useTheme();
 	const router = useRouter();
 	const { t } = useTranslation();
-	const { setRefresh } = useRefresh();
+	const { refreshTastings } = useData();
 
 	const text = t("new.exit_exam");
 	const handlePress = async () => {
 		setErrors({});
-		setRefresh(prev => !prev);
+		refreshTastings();
 		setFormData(defaultFormData);
 		router.replace("/(tabs)/new");
 		router.replace("/(tabs)/tastings");

@@ -94,7 +94,7 @@ type DataContextType = {
 export const DataContext = createContext<DataContextType | undefined>(undefined);
 
 export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-	const { accessToken } = useAuth();
+	const { accessToken, refreshToken } = useAuth();
 	const [loading, setLoading] = useState(false);
 	const [wines, setWines] = useState<Wine[]>([]);
 	const [tastings, setTastings] = useState<Tasting[]>([]);
@@ -113,7 +113,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 		} finally {
 			setLoading(false);
 		}
-	}, [accessToken]);
+	}, [refreshToken]);
 
 	const refreshTastings = useCallback(async () => {
 		if (!accessToken) return;
@@ -128,7 +128,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 		} finally {
 			setLoading(false);
 		}
-	}, [accessToken]);
+	}, [refreshToken]);
 
 	const refreshCoefficients = useCallback(async () => {
 		if (!accessToken) return;
@@ -139,7 +139,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 			setCoefficients(defaultCoefficients);
 			console.error("Error fetching coefficients:", err);
 		}
-	}, [accessToken]);
+	}, [refreshToken]);
 
 	const refreshWines = useCallback(async () => {
 		if (!accessToken) return;
@@ -154,7 +154,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 		} finally {
 			setLoading(false);
 		}
-	}, [accessToken]);
+	}, [refreshToken]);
 
 	const refreshData = useCallback(async () => {
 		setLoading(true);

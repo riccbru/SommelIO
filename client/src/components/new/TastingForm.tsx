@@ -90,7 +90,6 @@ export default function TastingForm({
 }: TastingFormProps) {
 	const theme = useTheme();
 	const { t } = useTranslation();
-	const { refreshTastings } = useData();
 	const [errors, setErrors] = useState<Record<string, string>>({});
 
 	const i18nextPath = "new.tasting.values";
@@ -244,7 +243,6 @@ export default function TastingForm({
 		if (onSave) {
 			try {
 				await onSave(formData);
-				refreshTastings();
 			} catch (error) {
 				console.error("Save failed:", error);
 			}

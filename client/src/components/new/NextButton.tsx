@@ -1,9 +1,9 @@
 import { View, Text } from "react-native";
+import { useData } from "@/src/hooks/useData";
 import { LinkProps, useRouter } from "expo-router";
 import { Button, useTheme } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ArrowCircleRightIcon, CheckCircleIcon } from "phosphor-react-native";
-import { useRefresh } from "@/src/hooks/useRefresh";
 
 type Props = {
 	path: LinkProps["href"];
@@ -24,7 +24,7 @@ export default function NextButton({
 }: Props) {
 	const theme = useTheme();
 	const router = useRouter();
-	const { setRefresh } = useRefresh();
+	const { refreshTastings, refreshWines } = useData();
 
 	const handlePress = async () => {
 		const isValid = validation();
@@ -39,8 +39,11 @@ export default function NextButton({
 					if (!tid) throw new Error("No tasting ID found");
 					await action(tid, formData);
 				}
+				if (path.toString().includes("/new/tasting/visual")) {
+					refreshTastings();
+					refreshWines();
+				}
 				router.push(path);
-				setRefresh(prev => !prev);
 			} catch (error) {
 				console.log(`NextButton: ${error}`);
 			}
