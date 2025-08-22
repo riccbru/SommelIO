@@ -2,7 +2,7 @@ import { useLayoutEffect } from "react";
 import { useNavigation } from "expo-router";
 import { useTheme } from "react-native-paper";
 import { useTranslation } from "react-i18next";
-import { UserPlusIcon } from "phosphor-react-native";
+import { BellIcon, UserPlusIcon } from "phosphor-react-native";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Colleagues() {
@@ -19,6 +19,15 @@ export default function Colleagues() {
 					style={{ marginTop: 10, marginBottom: 10, marginLeft: 20 }}
 				>
 					<UserPlusIcon size={32} color={theme.colors.primary} />
+				</TouchableOpacity>
+			),
+			headerRight: () => (
+				<TouchableOpacity
+					activeOpacity={0.7}
+					onPress={() => console.log("add colleague")}
+					style={{ marginTop: 10, marginBottom: 10, marginRight: 20 }}
+				>
+					<BellIcon size={32} color={theme.colors.primary} />
 				</TouchableOpacity>
 			),
 		});

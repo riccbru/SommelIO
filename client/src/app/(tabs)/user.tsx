@@ -22,7 +22,7 @@ const defaultStats: UserStats = {
 	ratedTastings: 0,
 };
 
-export default function Profile() {
+export default function User() {
 	const theme = useTheme();
 	const router = useRouter();
 	const navigation = useNavigation();

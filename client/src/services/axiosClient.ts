@@ -5,7 +5,7 @@ import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from "ax
 
 const axiosClient = axios.create({
 	baseURL: `http://${config.HOSTNAME}:${config.PORT}/api/v1`,
-	withCredentials: true, // Ensures cookies (including refresh token) are sent with requests
+	withCredentials: true,
 });
 
 let isRefreshing = false;

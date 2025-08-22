@@ -1,25 +1,26 @@
-import { useTheme } from "react-native-paper";
+import { HelperText, useTheme } from "react-native-paper";
 import { StyleSheet, TextInput } from "react-native";
 
 type Props = {
 	value: string;
+	error: string;
 	onChangeText: (text: string) => void;
 };
 
-export default function DateInput({ value, onChangeText }: Props) {
+export default function DateInput({ value, error, onChangeText }: Props) {
 	const theme = useTheme();
 
 	const styles = StyleSheet.create({
 		input: {
 			padding: 16,
 			borderRadius: 12,
-			marginBottom: 16,
 			color: "#000000",
 			backgroundColor: theme.colors.pearl,
 		},
 	});
 
 	return (
+		<>
 		<TextInput
 			value={value}
 			style={styles.input}
@@ -28,5 +29,9 @@ export default function DateInput({ value, onChangeText }: Props) {
 			keyboardType='numbers-and-punctuation'
 			placeholderTextColor={theme.colors.gray}
 		/>
+		<HelperText type="error" visible={!!error} theme={theme.colors.red} style={{ fontFamily: "Epilogue-Bold" }}>
+			{error}
+		</HelperText>
+		</>
 	);
 }

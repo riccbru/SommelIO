@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useTheme } from "react-native-paper";
+import { HelperText, useTheme } from "react-native-paper";
 import { EyeIcon, EyeSlashIcon } from "phosphor-react-native";
 import { View, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 
@@ -11,10 +11,11 @@ type LoginData = {
 type PasswordInputProps = {
 	loginData: LoginData;
 	onSubmit?: () => void;
+	error: string;
 	setLoginData: React.Dispatch<React.SetStateAction<LoginData>>;
 };
 
-export default function PasswordInput({ loginData, setLoginData, onSubmit }: PasswordInputProps) {
+export default function PasswordInput({ loginData, setLoginData, error, onSubmit }: PasswordInputProps) {
 	const theme = useTheme();
 	const [showPassword, setShowPassword] = useState(false);
 	const Icon = showPassword ? EyeIcon : EyeSlashIcon;
@@ -23,7 +24,6 @@ export default function PasswordInput({ loginData, setLoginData, onSubmit }: Pas
 		container: {
 			paddingLeft: 16,
 			paddingRight: 12,
-			marginBottom: 16,
 			borderRadius: 12,
 			flexDirection: "row",
 			alignItems: "center",
@@ -42,24 +42,29 @@ export default function PasswordInput({ loginData, setLoginData, onSubmit }: Pas
 	});
 
 	return (
-		<View style={styles.container}>
-			<TextInput
-				returnKeyType='done'
-				style={styles.input}
-				placeholder='Password'
-				value={loginData.password}
-				onSubmitEditing={onSubmit}
-				placeholderTextColor='#808080'
-				secureTextEntry={!showPassword}
-				onChangeText={text => setLoginData(prev => ({ ...prev, password: text }))}
-			/>
-			<TouchableOpacity
-				activeOpacity={0.7}
-				style={styles.iconButton}
-				onPress={() => setShowPassword(prev => !prev)}
-			>
-				<Icon size={24} color={theme.colors.gray} />
-			</TouchableOpacity>
-		</View>
+		<>
+			<View style={styles.container}>
+				<TextInput
+					returnKeyType='done'
+					style={styles.input}
+					placeholder='Password'
+					value={loginData.password}
+					onSubmitEditing={onSubmit}
+					secureTextEntry={!showPassword}
+					placeholderTextColor={theme.colors.gray}
+					onChangeText={text => setLoginData(prev => ({ ...prev, password: text }))}
+					/>
+				<TouchableOpacity
+					activeOpacity={0.7}
+					style={styles.iconButton}
+					onPress={() => setShowPassword(prev => !prev)}
+					>
+					<Icon size={24} color={theme.colors.gray} />
+				</TouchableOpacity>
+			</View>
+			<HelperText type="error" visible={!!error} theme={theme.colors.red} style={{ fontFamily: "Epilogue-Bold" }}>
+				{error}
+			</HelperText>
+		</>
 	);
 }

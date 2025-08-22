@@ -28,7 +28,7 @@ export function AppleButton() {
 
 	return (
 		<View style={styles.container}>
-			<TouchableOpacity activeOpacity={0.7} style={styles.button} onPress={handlePress}>
+			<TouchableOpacity activeOpacity={0.5} style={styles.button} onPress={handlePress}>
 				<Image style={styles.image} source={iconSource} />
 			</TouchableOpacity>
 		</View>

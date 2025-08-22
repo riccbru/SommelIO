@@ -1,9 +1,8 @@
-import { useTheme } from "react-native-paper";
+import { useTheme } from "@/src/hooks/useTheme";
 import { Image, Platform, StyleSheet, TouchableOpacity, View } from "react-native";
 
 export function GoogleButton() {
 	const theme = useTheme();
-
 	const iconSource = Platform.select({
 		ios: theme.dark
 			? require("@/assets/images/google/ios/dark/continue.png")
@@ -34,7 +33,7 @@ export function GoogleButton() {
 
 	return (
 		<View style={styles.container}>
-			<TouchableOpacity activeOpacity={0.7} style={styles.button} onPress={handlePress}>
+			<TouchableOpacity activeOpacity={0.5} style={styles.button} onPress={handlePress}>
 				<Image style={styles.image} source={iconSource} />
 			</TouchableOpacity>
 		</View>

@@ -125,7 +125,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 				refreshToken: null,
 				user: null,
 			});
-			await AsyncStorage.removeItem("newTid");
 		}
 	};
 

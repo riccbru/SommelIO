@@ -3,6 +3,7 @@ import { router } from "expo-router";
 import Title from "@/src/components/Title";
 import { useAuth } from "@/src/hooks/useAuth";
 import { useTheme } from "react-native-paper";
+import { useTranslation } from "react-i18next";
 import { showAlert } from "@/src/utils/showAlert";
 import AuthInput from "@/src/components/auth/AuthInput";
 import AuthButton from "@/src/components/auth/AuthButton";
@@ -13,13 +14,21 @@ import { LoginFooter } from "@/src/components/auth/login/LoginFooter";
 import { FacebookButton } from "@/src/components/auth/FacebookButton";
 import PasswordInput from "@/src/components/auth/login/PasswordInput";
 import { BiometricButton } from "@/src/components/auth/login/BiometricButton";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import ProviderSSO from "@/src/components/auth/ProviderSSO";
+
+const defaultLoginData = {
+	username: "",
+	password: "",
+}
 
 export default function LoginLayout() {
 	const theme = useTheme();
+	const { t } = useTranslation();
 	const { isReady, login } = useAuth();
 	const [loading, setLoading] = useState(false);
-	const [loginData, setLoginData] = useState({ username: "", password: "" });
+	const [loginData, setLoginData] = useState(defaultLoginData);
+	const [errors, setErrors] = useState<Record<string, string>>({});
 
 	const styles = StyleSheet.create({
 		container: {
@@ -30,17 +39,30 @@ export default function LoginLayout() {
 		},
 	});
 
+	const validateForm = (): boolean => {
+		const newErrors: Record<string, string> = {};
+
+		if (!loginData.username.trim()) {
+			newErrors.username = `Username ${t("new.required")}`;
+		}
+
+		if (!loginData.password.trim()) {
+			newErrors.password = `Password ${t("new.required")}`;
+		} else if (loginData.password.length < 8) {
+			newErrors.password = `Password ${t("new.invalid")}`;
+		}
+
+		setErrors(newErrors);
+		return Object.keys(newErrors).length === 0;
+	};
+
 	const handleLogin = async () => {
+		if (!validateForm()) return;
 		try {
 			await login(loginData.username, loginData.password);
 			router.replace("/(tabs)");
 		} catch (err: any) {
-			showAlert({
-				confirmText: "OK",
-				cancelText: "Close",
-				title: "Login Error",
-				message: err.message || "Unknown login error",
-			});
+			console.log(err.message);
 		}
 	};
 
@@ -62,12 +84,14 @@ export default function LoginLayout() {
 				<AuthInput
 					holder='Username'
 					value={loginData.username}
+					error={errors.username}
 					onSubmit={handleLogin}
 					onChangeText={text => setLoginData(prev => ({ ...prev, username: text }))}
 				/>
 
 				<PasswordInput
 					loginData={loginData}
+					error={errors.password}
 					onSubmit={handleLogin}
 					setLoginData={setLoginData}
 				/>
@@ -81,15 +105,28 @@ export default function LoginLayout() {
 							disabled={!isReady || loading}
 						/>
 					</View>
-					<BiometricButton />
 				</View>
 
 				<LineSeparator />
-				<GoogleButton></GoogleButton>
-				<AppleButton></AppleButton>
-				<FacebookButton></FacebookButton>
+
+				{/* <GoogleButton /> */}
+				{/* <AppleButton /> */}
+				{/* <FacebookButton /> */}
+{/*  */}
+				<ProviderSSO />
 
 				<LoginFooter />
+
+				<View style={{ alignItems: "center", justifyContent: "center", marginTop: 10}}>
+					<View style={{ flexDirection: "row" }}>
+						<TouchableOpacity activeOpacity={0.7} onPress={() => router.replace("/forgot")}>
+							<Text style={{ color: theme.colors.gray, fontFamily: "Epilogue-Regular", textDecorationLine: "underline" }}>
+								Forgot password?
+							</Text>
+						</TouchableOpacity>
+					</View>
+				</View>
+
 			</ScrollView>
 		</KeyboardAvoidingView>
 	);

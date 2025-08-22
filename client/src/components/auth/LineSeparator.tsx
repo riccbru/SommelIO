@@ -6,7 +6,8 @@ export function LineSeparator() {
 
 	const styles = StyleSheet.create({
 		container: {
-			marginVertical: 24,
+			marginTop: 25,
+			marginBottom: 25,
 			flexDirection: "row",
 			alignItems: "center",
 		},
@@ -26,7 +27,7 @@ export function LineSeparator() {
 	return (
 		<View style={styles.container}>
 			<View style={styles.lines} />
-			<Text style={styles.lineText}>OR</Text>
+			<Text style={styles.lineText}>OR CONTINUE WITH</Text>
 			<View style={styles.lines} />
 		</View>
 	);

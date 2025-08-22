@@ -6,6 +6,10 @@ export default {
 	todrink_title: "Nuoveau vin",
 	todrink_description: "Ajouter un vin à votre liste ToDrink",
 	todrink_notFound: "La liste est vide",
+	signup: {
+		full_name: "Nom Complet",
+		birthdate: "Date de Naissance",
+	},
 	shareMex:
 		"Salut! Je viens de terminer une dégustation sur SommelIO. Consultez mon profil et mes évaluations:",
 	index: {
