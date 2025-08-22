@@ -5,6 +5,7 @@ import TastingsAPI from "@/src/services/tastings";
 import { Button, useTheme } from "react-native-paper";
 import { FilePdfIcon, TrashIcon } from "phosphor-react-native";
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useData } from "@/src/hooks/useData";
 
 type Props = {
 	tid: string;
@@ -17,6 +18,7 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 	const theme = useTheme();
 	const router = useRouter();
 	const { t } = useTranslation();
+	const { refreshTastings } = useData();
 	const [modal, setModal] = useState(false);
 	const Icon = action.toLowerCase() === "delete" ? TrashIcon : FilePdfIcon;
 
@@ -43,6 +45,7 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 		try {
 			await TastingsAPI.deleteTasting(tid);
 			hideModal();
+			refreshTastings();
 			router.replace("/(tabs)/tastings");
 		} catch (error: any) {
 			console.log(`[ActionButton-delete]: ${error}`);

@@ -23,7 +23,6 @@ import VisualUpdate from "@/src/components/tastings/update/VisualUpdate";
 import ScoringUpdate from "@/src/components/tastings/update/ScoringUpdate";
 import TastingUpdate from "@/src/components/tastings/update/TastingUpdate";
 import OlfactoryUpdate from "@/src/components/tastings/update/OlfactoryUpdate";
-import { useRefresh } from "@/src/hooks/useRefresh";
 
 type EditModeShape = {
 	tasting: boolean;
@@ -32,6 +31,15 @@ type EditModeShape = {
 	taste: boolean;
 	final: boolean;
 	scoring: boolean;
+};
+
+const defaultEditMode = {
+	tasting: false,
+	visual: false,
+	olfactory: false,
+	taste: false,
+	final: false,
+	scoring: false,
 };
 
 type Tasting = {
@@ -64,18 +72,11 @@ export default function TastingDetail() {
 	const { t } = useTranslation();
 	const navigation = useNavigation();
 	const [loading, setLoading] = useState(true);
-	const { refresh, setRefresh } = useRefresh();
+	const [refresh, setRefresh] = useState(false);
 	const [favorite, setFavorite] = useState(false);
 	const { tid } = useLocalSearchParams<{ tid: string }>();
 	const [tasting, setTasting] = useState<Tasting | null>(null);
-	const [editMode, setEditMode] = useState<EditModeShape>({
-		tasting: false,
-		visual: false,
-		olfactory: false,
-		taste: false,
-		final: false,
-		scoring: false,
-	});
+	const [editMode, setEditMode] = useState<EditModeShape>(defaultEditMode);
 
 	const styles = StyleSheet.create({
 		container: {
@@ -167,7 +168,7 @@ export default function TastingDetail() {
 		if (tid) {
 			fetchTasting();
 		}
-	}, [tid, refresh]);
+	}, [refresh, tid]);
 
 	if (loading) {
 		return <LoadingSpinner text={t("tastings.loading_details")} />;

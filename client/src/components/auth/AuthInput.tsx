@@ -10,7 +10,14 @@ type Props = {
 	onChangeText: (text: string) => void;
 };
 
-export default function AuthInput({ value, holder, isEmail, error, onSubmit, onChangeText }: Props) {
+export default function AuthInput({
+	value,
+	holder,
+	isEmail,
+	error,
+	onSubmit,
+	onChangeText,
+}: Props) {
 	const theme = useTheme();
 
 	const styles = StyleSheet.create({
@@ -35,7 +42,12 @@ export default function AuthInput({ value, holder, isEmail, error, onSubmit, onC
 				keyboardType={isEmail ? "email-address" : "default"}
 				placeholderTextColor={theme.colors.gray}
 			/>
-			<HelperText type="error" visible={!!error} theme={theme.colors.red} style={{ fontFamily: "Epilogue-Bold" }}>
+			<HelperText
+				type='error'
+				visible={!!error}
+				theme={theme.colors.red}
+				style={{ fontFamily: "Epilogue-Bold" }}
+			>
 				{error}
 			</HelperText>
 		</>

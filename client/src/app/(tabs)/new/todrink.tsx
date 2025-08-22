@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "expo-router";
 import WinesAPI from "@/src/services/wines";
+import { useData } from "@/src/hooks/useData";
 import { useTranslation } from "react-i18next";
 import { Text, useTheme, Card } from "react-native-paper";
 import FormField from "@/src/components/tastings/FormField";
@@ -13,7 +14,6 @@ import {
 	TouchableWithoutFeedback,
 	View,
 } from "react-native";
-import { useRefresh } from "@/src/hooks/useRefresh";
 
 type NewWine = {
 	denomination: string;
@@ -31,7 +31,7 @@ export default function ToDrink() {
 	const theme = useTheme();
 	const router = useRouter();
 	const { t } = useTranslation();
-	const { setRefresh} = useRefresh();
+	const { refreshWines } = useData();
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<NewWine>(defaultFormData);
 
@@ -98,8 +98,8 @@ export default function ToDrink() {
 		if (!validateForm()) return;
 		try {
 			await WinesAPI.createWine(formData);
+			refreshWines();
 			setFormData(defaultFormData);
-			setRefresh(prev => !prev);
 			router.replace("/(tabs)/new");
 			router.replace("/(tabs)/tastings");
 		} catch (error) {

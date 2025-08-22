@@ -3,17 +3,18 @@ import { XIcon } from "phosphor-react-native";
 import { useTranslation } from "react-i18next";
 import { Divider, Modal, Portal, Text, useTheme } from "react-native-paper";
 import { RefreshControl, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { useData } from "@/src/hooks/useData";
 
 type Props = {
 	visible: boolean;
 	wines: any[];
 	onDismiss: () => void;
-	setRefresh: (refresh: boolean) => void;
 };
 
-export default function ToDrinkModal({ visible, wines, onDismiss, setRefresh }: Props) {
+export default function ToDrinkModal({ visible, wines, onDismiss }: Props) {
 	const theme = useTheme();
 	const { t } = useTranslation();
+	const { refreshWines } = useData();
 
 	const styles = StyleSheet.create({
 		modalContainer: {
@@ -57,7 +58,7 @@ export default function ToDrinkModal({ visible, wines, onDismiss, setRefresh }: 
 	const handleDelete = async (wid: string) => {
 		try {
 			await WinesAPI.deleteWine(wid);
-			setRefresh(prev => !prev);
+			refreshWines();
 		} catch (error) {
 			console.error(`Delete failed: ${error}`);
 		}
@@ -77,7 +78,7 @@ export default function ToDrinkModal({ visible, wines, onDismiss, setRefresh }: 
 				<ScrollView
 					style={{ maxHeight: 300 }}
 					refreshControl={
-						<RefreshControl refreshing={false} onRefresh={() => setRefresh(prev => !prev)} />
+						<RefreshControl refreshing={false} onRefresh={refreshWines} />
 					}
 				>
 					{!wines.length ? (

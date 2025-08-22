@@ -1,7 +1,7 @@
 import { useTheme } from "react-native-paper";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
-import { coefficients } from "@/src/constants/coefficients";
+import { useData } from "@/src/hooks/useData";
 
 type ScoringEvaluation = {
 	sid: string;
@@ -27,6 +27,7 @@ type Props = {
 export default function ScoringDetails({ scoring }: Props) {
 	const theme = useTheme();
 	const { t } = useTranslation();
+	const { coefficients } = useData();
 
 	const styles = StyleSheet.create({
 		row: {

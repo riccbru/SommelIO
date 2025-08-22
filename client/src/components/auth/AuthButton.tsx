@@ -12,6 +12,7 @@ export default function AuthButton({ action, loading, onPress, disabled }: Props
 	const theme = useTheme();
 	const styles = StyleSheet.create({
 		button: {
+			height: 50,
 			padding: 16,
 			borderRadius: 12,
 			alignItems: "center",

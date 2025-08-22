@@ -113,11 +113,8 @@ export default function Settings() {
 			</TouchableOpacity>
 
 			{/* Information */}
-			<TouchableOpacity
-				activeOpacity={0.5}
-				onPress={() => console.log("clicked Information")}>
-				<View style={styles.row}
-			>
+			<TouchableOpacity activeOpacity={0.5} onPress={() => console.log("clicked Information")}>
+				<View style={styles.row}>
 					<View style={{ alignItems: "center", flexDirection: "row" }}>
 						<InfoIcon
 							size={28}
@@ -132,10 +129,7 @@ export default function Settings() {
 			</TouchableOpacity>
 
 			{/* Contact Us */}
-			<TouchableOpacity
-				activeOpacity={0.5}
-				onPress={() => console.log("clicked Contact Us")}
-			>
+			<TouchableOpacity activeOpacity={0.5} onPress={() => console.log("clicked Contact Us")}>
 				<View style={styles.row}>
 					<View style={{ alignItems: "center", flexDirection: "row" }}>
 						<ChatCircleIcon

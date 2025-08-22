@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useData } from "@/src/hooks/useData";
 import { useTranslation } from "react-i18next";
 import TastingsAPI from "@/src/services/tastings";
 import { Card, useTheme } from "react-native-paper";
@@ -9,7 +10,6 @@ import ExitButton from "@/src/components/new/ExitButton";
 import FormSwitch from "@/src/components/new/FormSwitch";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
-import { useRefresh } from "@/src/hooks/useRefresh";
 
 type Tasting = {
 	wine_denomination: string;
@@ -90,9 +90,10 @@ export default function TastingForm({
 }: TastingFormProps) {
 	const theme = useTheme();
 	const { t } = useTranslation();
-	const i18nextPath = "new.tasting.values";
-	const { setRefresh } = useRefresh();
+	const { refreshTastings } = useData();
 	const [errors, setErrors] = useState<Record<string, string>>({});
+
+	const i18nextPath = "new.tasting.values";
 
 	const getInitialFormData = (): Tasting => {
 		if (mode === "update" && initialData) {
@@ -243,7 +244,7 @@ export default function TastingForm({
 		if (onSave) {
 			try {
 				await onSave(formData);
-				setRefresh(prev => !prev);
+				refreshTastings();
 			} catch (error) {
 				console.error("Save failed:", error);
 			}

@@ -18,7 +18,12 @@ type PasswordInputProps = {
 	setSignupData: React.Dispatch<React.SetStateAction<SignupData>>;
 };
 
-export default function PasswordInput({ signupData, setSignupData, error, onSubmit }: PasswordInputProps) {
+export default function PasswordInput({
+	signupData,
+	setSignupData,
+	error,
+	onSubmit,
+}: PasswordInputProps) {
 	const theme = useTheme();
 	const [showPassword, setShowPassword] = useState(false);
 	const Icon = showPassword ? EyeIcon : EyeSlashIcon;
@@ -56,16 +61,21 @@ export default function PasswordInput({ signupData, setSignupData, error, onSubm
 					secureTextEntry={!showPassword}
 					placeholderTextColor={theme.colors.gray}
 					onChangeText={text => setSignupData(prev => ({ ...prev, password: text }))}
-					/>
+				/>
 				<TouchableOpacity
 					activeOpacity={0.7}
 					style={styles.iconButton}
 					onPress={() => setShowPassword(prev => !prev)}
-					>
+				>
 					<Icon size={24} color={theme.colors.gray} />
 				</TouchableOpacity>
 			</View>
-			<HelperText type="error" visible={!!error} theme={theme.colors.red} style={{ fontFamily: "Epilogue-Bold" }}>
+			<HelperText
+				type='error'
+				visible={!!error}
+				theme={theme.colors.red}
+				style={{ fontFamily: "Epilogue-Bold" }}
+			>
 				{error}
 			</HelperText>
 		</>

@@ -22,7 +22,6 @@ const defaultSignupData = {
 };
 
 export default function SignupLayout() {
-
 	const theme = useTheme();
 	const { t } = useTranslation();
 	const { isReady, signup } = useAuth();
@@ -50,7 +49,7 @@ export default function SignupLayout() {
 		if (!signupData.full_name.trim()) {
 			newErrors.full_name = `${t("signup.full_name")} ${t("new.required")}`;
 		}
-		
+
 		if (!signupData.username.trim()) {
 			newErrors.username = `Username ${t("new.required")}`;
 		}
@@ -78,7 +77,6 @@ export default function SignupLayout() {
 	};
 
 	const handleSignup = async () => {
-		if (!validateForm()) return;
 		try {
 			await signup(signupData);
 			setModal(true);
@@ -88,6 +86,7 @@ export default function SignupLayout() {
 	};
 
 	const handlePress = () => {
+		if (!validateForm()) return;
 		setLoading(true);
 		setTimeout(() => {
 			handleSignup().finally(() => setLoading(false));

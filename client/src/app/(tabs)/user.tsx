@@ -1,38 +1,23 @@
-import UserAPI from "@/src/services/user";
 import { useAuth } from "@/src/hooks/useAuth";
+import { useData } from "@/src/hooks/useData";
 import { useTheme } from "@/src/hooks/useTheme";
 import { useNavigation, useRouter } from "expo-router";
 import UserProfile from "@/src/components/user/UserData";
 import { GearIcon, SignOutIcon } from "phosphor-react-native";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import SettingsBottomSheet from "@/src/components/user/SettingsBottomSheet";
 import { BottomSheetMethods } from "@gorhom/bottom-sheet/lib/typescript/types";
 import { Animated, RefreshControl, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 
-type UserStats = {
-	totalTastings: number;
-	favoriteTastings: number;
-	ratedTastings: number;
-};
-
-const defaultStats: UserStats = {
-	totalTastings: 0,
-	favoriteTastings: 0,
-	ratedTastings: 0,
-};
-
 export default function User() {
 	const theme = useTheme();
 	const router = useRouter();
 	const navigation = useNavigation();
-	const { accessToken, user, logout } = useAuth();
-
-	const [refresh, setRefresh] = useState(false);
-	const [loading, setLoading] = useState(false);
-	const bottomSheetRef = useRef<BottomSheetMethods>(null);
+	const { user, logout } = useAuth();
+	const { loading, stats, refreshStats } = useData();
 	const [fadeAnim] = useState(new Animated.Value(0));
-	const [stats, setStats] = useState<UserStats>(defaultStats);
+	const bottomSheetRef = useRef<BottomSheetMethods>(null);
 
 	useLayoutEffect(() => {
 		navigation.setOptions({
@@ -121,29 +106,12 @@ export default function User() {
 		},
 	});
 
-	useEffect(() => {
-		const fetchStats = async () => {
-			setLoading(true);
-			try {
-				const response = await UserAPI.getStats(accessToken);
-				setStats(response.stats);
-			} catch (err) {
-				console.log(err);
-			} finally {
-				setLoading(false);
-			}
-		};
-		fetchStats();
-	}, [accessToken, refresh]);
-
 	return (
 		<GestureHandlerRootView style={styles.container}>
 			<ScrollView
 				style={styles.container}
 				showsVerticalScrollIndicator={false}
-				refreshControl={
-					<RefreshControl refreshing={loading} onRefresh={() => setRefresh(!refresh)} />
-				}
+				refreshControl={<RefreshControl refreshing={loading} onRefresh={refreshStats} />}
 			>
 				<Animated.View style={{ opacity: fadeAnim }}>
 					{/* User Profile Card */}

@@ -21,17 +21,22 @@ export default function DateInput({ value, error, onChangeText }: Props) {
 
 	return (
 		<>
-		<TextInput
-			value={value}
-			style={styles.input}
-			placeholder='YYYY-MM-DD'
-			onChangeText={onChangeText}
-			keyboardType='numbers-and-punctuation'
-			placeholderTextColor={theme.colors.gray}
-		/>
-		<HelperText type="error" visible={!!error} theme={theme.colors.red} style={{ fontFamily: "Epilogue-Bold" }}>
-			{error}
-		</HelperText>
+			<TextInput
+				value={value}
+				style={styles.input}
+				placeholder='YYYY-MM-DD'
+				onChangeText={onChangeText}
+				keyboardType='numbers-and-punctuation'
+				placeholderTextColor={theme.colors.gray}
+			/>
+			<HelperText
+				type='error'
+				visible={!!error}
+				theme={theme.colors.red}
+				style={{ fontFamily: "Epilogue-Bold" }}
+			>
+				{error}
+			</HelperText>
 		</>
 	);
 }

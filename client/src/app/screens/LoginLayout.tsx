@@ -9,13 +9,21 @@ import AuthButton from "@/src/components/auth/AuthButton";
 import { LineSeparator } from "@/src/components/auth/LineSeparator";
 import { LoginFooter } from "@/src/components/auth/login/LoginFooter";
 import PasswordInput from "@/src/components/auth/login/PasswordInput";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+	KeyboardAvoidingView,
+	Platform,
+	ScrollView,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from "react-native";
 import ProviderSSO from "@/src/components/auth/ProviderSSO";
 
 const defaultLoginData = {
 	username: "",
 	password: "",
-}
+};
 
 export default function LoginLayout() {
 	const theme = useTheme();
@@ -52,7 +60,6 @@ export default function LoginLayout() {
 	};
 
 	const handleLogin = async () => {
-		if (!validateForm()) return;
 		try {
 			await login(loginData.username, loginData.password);
 			router.replace("/(tabs)");
@@ -62,6 +69,7 @@ export default function LoginLayout() {
 	};
 
 	const handlePress = () => {
+		if (!validateForm()) return;
 		setLoading(true);
 		setTimeout(() => {
 			handleLogin().finally(() => setLoading(false));
@@ -108,16 +116,21 @@ export default function LoginLayout() {
 
 				<LoginFooter />
 
-				<View style={{ alignItems: "center", justifyContent: "center", marginTop: 10}}>
+				<View style={{ alignItems: "center", justifyContent: "center", marginTop: 10 }}>
 					<View style={{ flexDirection: "row" }}>
 						<TouchableOpacity activeOpacity={0.7} onPress={() => router.replace("/forgot")}>
-							<Text style={{ color: theme.colors.gray, fontFamily: "Epilogue-Regular", textDecorationLine: "underline" }}>
+							<Text
+								style={{
+									color: theme.colors.gray,
+									fontFamily: "Epilogue-Regular",
+									textDecorationLine: "underline",
+								}}
+							>
 								Forgot password?
 							</Text>
 						</TouchableOpacity>
 					</View>
 				</View>
-
 			</ScrollView>
 		</KeyboardAvoidingView>
 	);
