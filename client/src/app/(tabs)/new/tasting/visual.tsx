@@ -292,7 +292,7 @@ export default function Visual() {
 						/>
 						<NextButton
 							requiresTid
-							path='/new/olfactory'
+							path='/new/tasting/olfactory'
 							text={t("new.olfactory.short")}
 							formData={formData}
 							validation={validateForm}

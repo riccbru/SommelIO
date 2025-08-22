@@ -24,7 +24,7 @@ export default function FormScore({ label, value, error, onChange }: Props) {
 			</Text>
 			<View style={{ alignItems: "center" }}>
 				<SegmentedButtons
-					style={{ marginLeft: 2, marginRight: 2 }}
+					style={{ marginLeft: 2, marginRight: 2, padding: 3 }}
 					value={value.toString()}
 					onValueChange={v => onChange(Number(v))}
 					buttons={[

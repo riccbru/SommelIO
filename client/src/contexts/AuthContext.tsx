@@ -3,6 +3,7 @@ import UserAPI from "@/src/services/user";
 import * as SecureStore from "expo-secure-store";
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { updateCachedToken, setCallback } from "@/src/services/axiosClient";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export type User = {
 	admin: boolean;
@@ -82,6 +83,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 			} catch (error) {
 				console.log("checkAuth:", error);
 				await logout();
+			} finally {
+				const as_keys = await AsyncStorage.getAllKeys();
+				console.log(`AsyncStorage keys: ${as_keys.join(", ")}`);
 			}
 			setAuthStatus({ isReady: true, isLoggedIn: false });
 		};

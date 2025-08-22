@@ -1,9 +1,13 @@
 export default {
-	tasting_name: "degustazione",
-	tastings_name: "degustazioni",
+	tasting_name: "Degustazione",
+	tastings_name: "Degustazioni",
+	tasting_name_description: "Aggiungi una nuova degustazione",
 	todrink: "Lista ToDrink",
+	todrink_title: "Nuovo vino",
+	todrink_description: "Aggiungi un vino alla tua lista ToDrink",
+	todrink_notFound: "La lista è vuota",
 	shareMex:
-		"Ciao! Ho appena completato una degustazione su SommelIO. Dai un'occhiata al mio profilo e alle mie valutazioni!",
+		"Ciao! Ho appena completato una degustazione su SommelIO. Dai un'occhiata al mio profilo e alle mie valutazioni:",
 	index: {
 		welcome: "Benvenuto in",
 	},
@@ -11,6 +15,7 @@ export default {
 		title: "Colleghi",
 	},
 	new: {
+		name: "Nuovo",
 		required: "è obbligatorio",
 		invalid: "non è valido",
 		number: "deve essere un numero",
@@ -23,7 +28,7 @@ export default {
 		add_wine: "AGGIUNGI",
 		tasting: {
 			short: "DESCRIZIONE",
-			title: "Dettagli degustazione",
+			title: "Dettagli",
 			denomination: "Denominazione",
 			winemaker: "Produttore",
 			category: "Categoria",

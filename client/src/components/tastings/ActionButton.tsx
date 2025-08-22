@@ -116,6 +116,7 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 									{t("tastings.cancel")}
 								</Text>
 							</Button>
+							<View style={{ width: 30 }} />
 							<Button
 								mode='contained'
 								onPress={handleDelete}

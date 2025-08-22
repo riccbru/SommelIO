@@ -1,13 +1,13 @@
+import WinesAPI from "@/src/services/wines";
 import { useTranslation } from "react-i18next";
+import { ListIcon } from "phosphor-react-native";
 import TastingsAPI from "@/src/services/tastings";
-import { ListPlusIcon } from "phosphor-react-native";
 import { useCallback, useEffect, useState } from "react";
 import LoadingSpinner from "@/src/components/LoadingSpinner";
-import NewWineModal from "@/src/components/tastings/NewWineModal";
+import NewWineModal from "@/src/components/tastings/ToDrinkModal";
 import TastingsList from "@/src/components/tastings/TastingsList";
 import { useTheme, Searchbar, Text, FAB } from "react-native-paper";
 import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
-import WinesAPI from "@/src/services/wines";
 
 type Exam = Record<string, any>;
 
@@ -78,12 +78,14 @@ export default function Tastings() {
 		},
 		fab: {
 			right: 0,
-			width: 55,
+			width: 70,
 			bottom: 0,
 			margin: 15,
 			height: 55,
-			borderRadius: 30,
+			borderRadius: 20,
 			position: "absolute",
+			alignItems: "center",
+			justifyContent: "center",
 			backgroundColor: theme.dark ? theme.colors.notCard : theme.colors.pearl,
 		},
 		modalContainer: {
@@ -170,7 +172,18 @@ export default function Tastings() {
 				style={styles.fab}
 				onPress={() => setModal(true)}
 				color={theme.colors.background}
-				icon={() => <ListPlusIcon size={24} />}
+				icon={() => (
+					<View
+						style={{
+							alignItems: "center",
+							flexDirection: "column",
+							justifyContent: "center",
+						}}
+					>
+						<ListIcon size={24} color={theme.colors.black} />
+						<Text style={{ color: theme.colors.black }}>ToDrink</Text>
+					</View>
+				)}
 			/>
 
 			<NewWineModal

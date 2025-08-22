@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { StarIcon } from "phosphor-react-native";
 import { Text, Card, useTheme } from "react-native-paper";
 import { useLocalSearchParams, useNavigation } from "expo-router";
@@ -22,7 +23,6 @@ import VisualUpdate from "@/src/components/tastings/update/VisualUpdate";
 import ScoringUpdate from "@/src/components/tastings/update/ScoringUpdate";
 import TastingUpdate from "@/src/components/tastings/update/TastingUpdate";
 import OlfactoryUpdate from "@/src/components/tastings/update/OlfactoryUpdate";
-import { useTranslation } from "react-i18next";
 
 type EditModeShape = {
 	tasting: boolean;

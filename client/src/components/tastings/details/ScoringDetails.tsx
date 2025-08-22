@@ -1,36 +1,7 @@
-import ScoringsAPI from "@/src/services/scorings";
-import { useEffect, useState } from "react";
+import { useTheme } from "react-native-paper";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
-import { useTheme } from "react-native-paper";
-
-type ScoringCoefficients = {
-	visual_appearance: number;
-	visual_color: number;
-	olfactory_intensity: number;
-	olfactory_complexity: number;
-	olfactory_quality: number;
-	taste_structure: number;
-	taste_balance: number;
-	taste_intensity: number;
-	taste_persistence: number;
-	taste_quality: number;
-	harmony: number;
-};
-
-const defaultCoefficients: ScoringCoefficients = {
-	visual_appearance: 0,
-	visual_color: 0,
-	olfactory_intensity: 0,
-	olfactory_complexity: 0,
-	olfactory_quality: 0,
-	taste_structure: 0,
-	taste_balance: 0,
-	taste_intensity: 0,
-	taste_persistence: 0,
-	taste_quality: 0,
-	harmony: 0,
-};
+import { coefficients } from "@/src/constants/coefficients";
 
 type ScoringEvaluation = {
 	sid: string;
@@ -56,19 +27,6 @@ type Props = {
 export default function ScoringDetails({ scoring }: Props) {
 	const theme = useTheme();
 	const { t } = useTranslation();
-	const [coefficients, setCoefficients] = useState<ScoringCoefficients>(defaultCoefficients);
-
-	useEffect(() => {
-		const fetchCoefficients = async () => {
-			try {
-				const response = await ScoringsAPI.fetchCoefficients();
-				setCoefficients(response.data);
-			} catch (error) {
-				console.error(`Error fetching scoring coefficients: ${error}`);
-			}
-		};
-		fetchCoefficients();
-	}, []);
 
 	const styles = StyleSheet.create({
 		row: {

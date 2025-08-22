@@ -1,81 +1,26 @@
-import { capitalizeFirst } from "@/src/utils/utils";
-import { Stack } from "expo-router";
+import { Slot, Stack } from "expo-router";
 import { useTranslation } from "react-i18next";
-import { useTheme } from "react-native-paper";
+import { useTheme } from "@/src/hooks/useTheme";
 
-export default function TastingsLayout() {
+export default function NewLayout() {
 	const theme = useTheme();
 	const { t } = useTranslation();
-
 	return (
-		<Stack>
-			<Stack.Screen
-				name='index'
-				options={{
-					headerShown: false,
-					title: "New tasting",
-				}}
-			/>
-			<Stack.Screen
-				name='visual'
-				options={{
-					headerShown: true,
-					presentation: "card",
-					headerBackTitle: capitalizeFirst(t("new.tasting.short").toLowerCase()),
-					title: "",
-					headerStyle: {
-						backgroundColor: theme.colors.background,
-					},
-				}}
-			/>
-			<Stack.Screen
-				name='olfactory'
-				options={{
-					headerShown: true,
-					presentation: "card",
-					headerBackTitle: capitalizeFirst(t("new.visual.short").toLowerCase()),
-					title: "",
-					headerStyle: {
-						backgroundColor: theme.colors.background,
-					},
-				}}
-			/>
-			<Stack.Screen
-				name='taste'
-				options={{
-					headerShown: true,
-					presentation: "card",
-					headerBackTitle: capitalizeFirst(t("new.olfactory.short").toLowerCase()),
-					title: "",
-					headerStyle: {
-						backgroundColor: theme.colors.background,
-					},
-				}}
-			/>
-			<Stack.Screen
-				name='final'
-				options={{
-					headerShown: true,
-					presentation: "card",
-					headerBackTitle: capitalizeFirst(t("new.taste.short").toLowerCase()),
-					title: "",
-					headerStyle: {
-						backgroundColor: theme.colors.background,
-					},
-				}}
-			/>
-			<Stack.Screen
-				name='scoring'
-				options={{
-					headerShown: true,
-					presentation: "card",
-					headerBackTitle: capitalizeFirst(t("new.final.short").toLowerCase()),
-					title: "",
-					headerStyle: {
-						backgroundColor: theme.colors.background,
-					},
-				}}
-			/>
+		<Stack
+			screenOptions={{
+				title: t("tasting_name"),
+				headerShown: true,
+				headerStyle: { backgroundColor: theme.colors.background },
+				headerTitleStyle: {
+					fontSize: 20,
+					color: theme.colors.primary,
+					fontFamily: "Epilogue-Bold",
+				},
+			}}
+		>
+			<Stack.Screen name='index' options={{ title: t("new.name") }} />
+			<Stack.Screen name='todrink' options={{ title: "ToDrink" }} />
+			<Slot />
 		</Stack>
 	);
 }

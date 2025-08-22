@@ -29,9 +29,6 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 				}
 			} catch (error) {
 				console.log(`Error loading theme preference: ${error}`);
-			} finally {
-				const keys = await AsyncStorage.getAllKeys();
-				console.log(`AsyncStorage keys: ${keys}`);
 			}
 		};
 

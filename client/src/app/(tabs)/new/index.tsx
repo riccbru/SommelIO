@@ -1,14 +1,33 @@
-import TastingForm from "@/src/components/new/TastingForm";
+import NewOption from "./NewOption";
+import { useTheme } from "@/src/hooks/useTheme";
+import { FlatList, StyleSheet, View } from "react-native";
 
 export default function New() {
+	const theme = useTheme();
+
+	const styles = StyleSheet.create({
+		container: {
+			flex: 1,
+			padding: 10,
+			backgroundColor: theme.colors.background,
+		},
+		item: {
+			color: theme.colors.primary,
+			fontFamily: "Epilogue-Regular",
+		},
+	});
+
+	const data = [
+		{ label: "tasting_name", path: "/new/tasting" },
+		{ label: "todrink", path: "/new/todrink" },
+	];
+
 	return (
-		<TastingForm
-			mode='create'
-			nextPath='/new/visual'
-			nextButtonText='VISUAL'
-			title='Wine description'
-			showExitButton={true}
-			showCancelButton={true}
-		/>
+		<View style={styles.container}>
+			<FlatList
+				data={data}
+				renderItem={({ item }) => <NewOption title={item.label} path={item.path} />}
+			/>
+		</View>
 	);
 }

@@ -349,7 +349,7 @@ export default function Taste() {
 						/>
 						<NextButton
 							requiresTid
-							path='/new/final'
+							path='/new/tasting/final'
 							text={t("new.final.short")}
 							formData={formData}
 							validation={validateForm}

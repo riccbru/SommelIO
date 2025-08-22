@@ -231,7 +231,7 @@ export default function Olfactory() {
 						/>
 						<NextButton
 							requiresTid
-							path='/new/taste'
+							path='/new/tasting/taste'
 							text={t("new.taste.short")}
 							formData={formData}
 							validation={validateForm}

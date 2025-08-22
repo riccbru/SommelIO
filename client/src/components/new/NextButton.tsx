@@ -59,13 +59,19 @@ export default function NextButton({
 						alignItems: "center",
 					}}
 				>
-					<Text style={{ marginTop: 3, fontFamily: "Epilogue-Bold", color: "#000000" }}>
+					<Text
+						style={{ marginTop: 3, fontFamily: "Epilogue-Bold", color: theme.colors.black }}
+					>
 						{text}
 					</Text>
 					{text === "SAVE" ? (
-						<CheckCircleIcon size={24} style={{ marginLeft: 5 }} color={"#000000"} />
+						<CheckCircleIcon size={24} style={{ marginLeft: 5 }} color={theme.colors.black} />
 					) : (
-						<ArrowCircleRightIcon size={24} style={{ marginLeft: 5 }} color={"#000000"} />
+						<ArrowCircleRightIcon
+							size={24}
+							style={{ marginLeft: 5 }}
+							color={theme.colors.black}
+						/>
 					)}
 				</View>
 			</Button>

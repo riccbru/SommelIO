@@ -169,7 +169,7 @@ export default function Final() {
 						/>
 						<NextButton
 							requiresTid
-							path='/new/scoring'
+							path='/new/tasting/scoring'
 							text={t("new.scoring.short")}
 							formData={formData}
 							validation={validateForm}
