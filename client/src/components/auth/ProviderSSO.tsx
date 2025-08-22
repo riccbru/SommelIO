@@ -2,49 +2,49 @@ import { useTheme } from "@/src/hooks/useTheme";
 import { Image, Platform, StyleSheet, TouchableOpacity, View } from "react-native";
 
 export default function ProviderSSO() {
-  const theme = useTheme();
-  const isDark = theme.dark;
+    const theme = useTheme();
+    const isDark = theme.dark;
 
-  const iconSource = {
-    google:
-      Platform.OS === "ios"
-        ? isDark
-          ? require("@/assets/images/google/ios/dark/logo@1x.png")
-          : require("@/assets/images/google/ios/light/logo@1x.png")
-        : isDark
-        ? require("@/assets/images/google/android/dark/logo@1x.png")
-        : require("@/assets/images/google/android/light/logo@1x.png"),
-    apple: isDark
-      ? require("@/assets/images/apple/dark/continue.png")
-      : require("@/assets/images/apple/light/continue.png"),
-    facebook: require("@/assets/images/facebook/logo.png"),
-  };
+    const styles = StyleSheet.create({
+        container: {
+            flexDirection: "row",
+            justifyContent: "space-around",
+            alignItems: "center",
+        },
+        icon: {
+            width: 48,
+            height: 48,
+        },
+    });
 
-  const providers = [
-    { key: "google", src: iconSource.google },
-    { key: "apple", src: iconSource.apple },
-    { key: "facebook", src: iconSource.facebook },
-  ];
+    const iconSource = {
+        google:
+            Platform.OS === "ios"
+                ? isDark
+                    ? require("@/assets/images/google/ios/light/logo.png")
+                    : require("@/assets/images/google/ios/dark/logo.png")
+                : isDark
+                    ? require("@/assets/images/google/android/light/logo.png")
+                    : require("@/assets/images/google/android/dark/logo.png"),
+        apple: isDark
+            ? require("@/assets/images/apple/light/logo.png")
+            : require("@/assets/images/apple/dark/logo.png"),
+        facebook: require("@/assets/images/facebook/logo.png")
+    };
 
-  return (
-    <View style={styles.container}>
-      {providers.map(p => (
-        <TouchableOpacity key={p.key} activeOpacity={0.6}>
-          <Image source={p.src} style={styles.icon} resizeMode="contain" />
-        </TouchableOpacity>
-      ))}
-    </View>
-  );
+    const providers = [
+        { key: "apple", src: iconSource.apple },
+        { key: "facebook", src: iconSource.facebook },
+        { key: "google", src: iconSource.google },
+    ];
+
+    return (
+        <View style={styles.container}>
+            {providers.map((el, index) => (
+                <TouchableOpacity key={index} activeOpacity={0.6} onPress={() => console.log(`${el.key} SSO`)}>
+                    <Image source={el.src} style={styles.icon} resizeMode="contain" />
+                </TouchableOpacity>
+            ))}
+        </View>
+    );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-  },
-  icon: {
-    width: 48,
-    height: 48,
-  },
-});

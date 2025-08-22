@@ -3,15 +3,12 @@ import Title from "@/src/components/Title";
 import { useAuth } from "@/src/hooks/useAuth";
 import { useTheme } from "react-native-paper";
 import { useTranslation } from "react-i18next";
-import { showAlert } from "@/src/utils/showAlert";
 import AuthInput from "@/src/components/auth/AuthInput";
 import AuthButton from "@/src/components/auth/AuthButton";
+import ProviderSSO from "@/src/components/auth/ProviderSSO";
 import DateInput from "@/src/components/auth/signup/DateInput";
 import UserModal from "@/src/components/auth/signup/UserModal";
-import { AppleButton } from "@/src/components/auth/AppleButton";
-import { GoogleButton } from "@/src/components/auth/GoogleButton";
 import { LineSeparator } from "@/src/components/auth/LineSeparator";
-import { FacebookButton } from "@/src/components/auth/FacebookButton";
 import PasswordInput from "@/src/components/auth/signup/PasswordInput";
 import { SignupFooter } from "@/src/components/auth/signup/SignupFooter";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet } from "react-native";
@@ -42,7 +39,7 @@ export default function SignupLayout() {
 			backgroundColor: theme.colors.background,
 		},
 		text: {
-			color: "#ffffff",
+			color: theme.colors.white,
 			fontFamily: "Epilogue-Regular",
 		},
 	});
@@ -60,6 +57,8 @@ export default function SignupLayout() {
 
 		if (!signupData.email.trim()) {
 			newErrors.email = `Email ${t("new.required")}`;
+		} else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(signupData.email)) {
+			newErrors.email = `Email ${t("new.invalid")}`;
 		}
 
 		if (!signupData.birthdate.trim()) {
@@ -146,9 +145,7 @@ export default function SignupLayout() {
 
 				<LineSeparator />
 
-				<GoogleButton />
-				<AppleButton />
-				<FacebookButton />
+				<ProviderSSO />
 
 				<SignupFooter />
 
