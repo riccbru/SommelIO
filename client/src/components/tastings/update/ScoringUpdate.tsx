@@ -80,6 +80,10 @@ export default function ScoringUpdate({ tid, scoring, setRefresh, setEditMode }:
 			}
 		});
 
+		if (formData.notes === null) {
+			setFormData((prev) => ({ ...prev, notes: ""}));
+		}
+
 		setErrors(newErrors);
 		return Object.keys(newErrors).length === 0;
 	};
@@ -87,6 +91,9 @@ export default function ScoringUpdate({ tid, scoring, setRefresh, setEditMode }:
 	const handlePress = async () => {
 		if (!validateForm()) return;
 		try {
+			if (!Object.keys(scoring).length) {
+				await ScoringsAPI.createScoring(tid, formData);
+			}
 			await ScoringsAPI.updateScoring(tid, formData);
 			setRefresh(prev => !prev);
 			setEditMode(prev => ({ ...prev, scoring: !prev.scoring }));

@@ -66,7 +66,7 @@ export default function TastingDetails({ tasting }: Props) {
 			{tastingFields.map(({ label, value }) => (
 				<View key={label} style={styles.row}>
 					<Text style={styles.label}>{label}</Text>
-					<Text style={styles.value}>{value}</Text>
+					<Text style={styles.value}>{!Object.keys(tasting).length ? "-" : value}</Text>
 				</View>
 			))}
 		</View>

@@ -131,16 +131,12 @@ export default function ScoringDetails({ scoring }: Props) {
 		{ label: t("new.harmony"), value: scoring.harmony, coefficient: coefficients.harmony },
 	];
 
-	if (!scoring || Object.keys(scoring).length === 0) {
-		return <Text>{}</Text>;
-	}
-
 	return (
 		<View>
 			{scoringFields.map(({ label, value, coefficient }) => (
 				<View key={label} style={styles.row}>
 					<Text style={styles.label}>{label}</Text>
-					<Text style={styles.value}>{value}</Text>
+					<Text style={styles.value}>{value ?? "-"}</Text>
 					<Text
 						style={[styles.value, { color: theme.colors.gray, fontFamily: "Epilogue-Bold" }]}
 					>
@@ -151,16 +147,14 @@ export default function ScoringDetails({ scoring }: Props) {
 
 			<View style={[styles.row, { marginTop: 8 }]}>
 				<Text style={[styles.label, styles.totalText]}>{t("new.scoring.total")}</Text>
-				<Text style={[styles.value, styles.totalText]}>{scoring.total_score}</Text>
+				<Text style={[styles.value, styles.totalText]}>{scoring.total_score || "?"}</Text>
 				<Text style={[styles.value, styles.totalText]}>{""}</Text>
 			</View>
 
-			{scoring.notes && (
-				<View style={styles.notesRow}>
-					<Text style={styles.notesTitle}>{t("new.notes")}</Text>
-					<Text style={styles.notesText}>{scoring.notes}</Text>
-				</View>
-			)}
+			<View style={styles.notesRow}>
+				<Text style={styles.notesTitle}>{t("new.notes")}</Text>
+				<Text style={styles.notesText}>{scoring.notes || "-"}</Text>
+			</View>
 		</View>
 	);
 }

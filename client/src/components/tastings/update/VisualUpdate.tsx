@@ -26,6 +26,17 @@ type EditModeShape = {
 	scoring: boolean;
 };
 
+const defaultVisualExam: VisualExam = {
+	limpidity: "",
+	color_family: "",
+	color_shade: "",
+	consistency: "",
+	bubble_size: "",
+	bubble_number: "",
+	bubble_persistence: "",
+	notes: ""
+}
+
 type Props = {
 	tid: string;
 	sparkling: boolean;
@@ -37,7 +48,7 @@ type Props = {
 export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEditMode }: Props) {
 	const { t } = useTranslation();
 	const i18nextPath = "new.visual.values";
-	const [formData, setFormData] = useState<VisualExam>(exam);
+	const [formData, setFormData] = useState<VisualExam>(exam || defaultVisualExam);
 	const [errors, setErrors] = useState<Record<string, string>>({});
 
 	const updateFormData = (field: keyof VisualExam, value: string) => {
@@ -72,19 +83,19 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 	const validateForm = (): boolean => {
 		const newErrors: Record<string, string> = {};
 
-		if (!formData.limpidity.trim()) {
+		if (!formData.limpidity?.trim()) {
 			newErrors.limpidity = `${t("new.visual.limpidity")} ${t("new.required")}`;
 		} else if (!limpidityOptions.includes(formData.limpidity)) {
 			newErrors.limpidity = `${t("new.visual.limpidity")} ${t("new.invalid")}`;
 		}
 
-		if (!formData.color_family.trim()) {
+		if (!formData.color_family?.trim()) {
 			newErrors.color_family = `${t("new.visual.color")} ${t("new.required")}`;
 		} else if (!colorFamilyOptions.includes(formData.color_family)) {
 			newErrors.color_family = `${t("new.visual.color")} ${t("new.invalid")}`;
 		}
 
-		if (!formData.color_shade.trim()) {
+		if (!formData.color_shade?.trim()) {
 			newErrors.color_shade = `${t("new.visual.shade")} ${t("new.required")}`;
 		}
 		const validShades = colorShadesOptions[formData.color_family] || [];
@@ -92,30 +103,44 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 			newErrors.color_shade = `${t("new.visual.shade")} ${t("new.invalid")}`;
 		}
 
-		if (!formData.consistency.trim()) {
+		if (!formData.consistency?.trim()) {
 			newErrors.consistency = `${t("new.visual.consistency")} ${t("new.required")}`;
-		} else if (!consistencyOptions.includes(formData.consistency)) {
+		}
+		if (!consistencyOptions.includes(formData.consistency)) {
 			newErrors.consistency = `${t("new.visual.consistency")} ${t("new.invalid")}`;
 		}
 
 		if (sparkling) {
-			if (!formData.bubble_size.trim()) {
+			if (!formData.bubble_size?.trim()) {
 				newErrors.bubble_size = `${t("new.visual.bubble_size")} ${t("new.required")}`;
-			} else if (!bubblesizeOptions.includes(formData.bubble_size)) {
+			}
+			if (!bubblesizeOptions.includes(formData.bubble_size)) {
 				newErrors.bubble_size = `${t("new.visual.bubble_size")} ${t("new.invalid")}`;
 			}
 
-			if (!formData.bubble_number.trim()) {
+			if (!formData.bubble_number?.trim()) {
 				newErrors.bubble_number = `${t("new.visual.bubble_number")} ${t("new.required")}`;
-			} else if (!bubbleNumberOptions.includes(formData.bubble_number)) {
+			}
+			if (!bubbleNumberOptions.includes(formData.bubble_number)) {
 				newErrors.bubble_number = `${t("new.visual.bubble_number")} ${t("new.invalid")}`;
 			}
 
-			if (!formData.bubble_persistence.trim()) {
+			if (!formData.bubble_persistence?.trim()) {
 				newErrors.bubble_persistence = `${t("new.visual.bubble_persistence")} ${t("new.required")}`;
-			} else if (!bubblePersistenceOptions.includes(formData.bubble_persistence)) {
+			}
+			if (!bubblePersistenceOptions.includes(formData.bubble_persistence)) {
 				newErrors.bubble_persistence = `${t("new.visual.bubble_persistence")} ${t("new.invalid")}`;
 			}
+		}
+		
+		if (!sparkling) {
+			setFormData((prev) => ({ ...prev, bubble_size: "" }));
+			setFormData((prev) => ({ ...prev, bubble_number: "" }));
+			setFormData((prev) => ({ ...prev, bubble_persistence: "" }));
+		}
+
+		if (!formData.notes) {
+			setFormData((prev) => ({ ...prev, notes: "" }));
 		}
 
 		setErrors(newErrors);
@@ -125,11 +150,14 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 	const handlePress = async () => {
 		if (!validateForm()) return;
 		try {
+			if (!Object.keys(exam).length) {
+				await ExamsAPI.createVisual(tid, formData);
+			}
 			await ExamsAPI.updateExam(tid, formData, "visual");
 			setRefresh(prev => !prev);
 			setEditMode(prev => ({ ...prev, visual: !prev.visual }));
-		} catch (error) {
-			console.error(`Failed updating: ${error}`);
+		} catch (error: any) {
+			console.error(`Failed updating: ${error.message}`);
 		}
 	};
 

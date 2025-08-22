@@ -35,6 +35,7 @@ type EditModeShape = {
 type Props = {
 	tasting: Tasting;
 	setEditMode: React.Dispatch<React.SetStateAction<EditModeShape>>;
+	setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function TastingUpdate({ tasting, setEditMode, setRefresh }: Props) {
@@ -130,6 +131,9 @@ export default function TastingUpdate({ tasting, setEditMode, setRefresh }: Prop
 	const handlePress = async () => {
 		if (!validateForm()) return;
 		try {
+			if (!Object.keys(tasting).length) {
+				await TastingsAPI.createTasting(formData);
+			}
 			await TastingsAPI.updateTasting(tasting.tid, formData);
 			setRefresh(prev => !prev);
 			setEditMode(prev => ({ ...prev, tasting: !prev.tasting }));

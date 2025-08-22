@@ -81,67 +81,67 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 	const validateForm = (): boolean => {
 		const newErrors: Record<string, string> = {};
 
-		if (!formData.sweetness.trim()) {
+		if (!formData.sweetness?.trim()) {
 			newErrors.sweetness = `${t("new.taste.")} ${t("new.required")}`;
 		} else if (!sweetnessOptions.includes(formData.sweetness)) {
 			newErrors.sweetness = `${t("new.taste.")} ${t("new.invalid")}`;
 		}
 
-		if (!formData.alcohols.trim()) {
+		if (!formData.alcohols?.trim()) {
 			newErrors.alcohols = `${t("new.taste.alcohols")} ${t("new.required")}`;
 		} else if (!alcoholsOptions.includes(formData.alcohols)) {
 			newErrors.alcohols = `${t("new.taste.alcohols")} ${t("new.invalid")}`;
 		}
 
-		if (!formData.softness.trim()) {
+		if (!formData.softness?.trim()) {
 			newErrors.softness = `${t("new.taste.softness")} ${t("new.required")}`;
 		} else if (!softnessOptions.includes(formData.softness)) {
 			newErrors.softness = `${t("new.taste.softness")} ${t("new.invalid")}`;
 		}
 
-		if (!formData.acidity.trim()) {
+		if (!formData.acidity?.trim()) {
 			newErrors.acidity = `${t("new.taste.acidity")} ${t("new.required")}`;
 		} else if (!acidityOptions.includes(formData.acidity)) {
 			newErrors.acidity = `${t("new.taste.acidity")} ${t("new.invalid")}`;
 		}
 
-		if (!formData.tannicity.trim()) {
+		if (!formData.tannicity?.trim()) {
 			newErrors.tannicity = `${t("new.taste.tannicity")} ${t("new.required")}`;
 		} else if (!tannicityOptions.includes(formData.tannicity)) {
 			newErrors.tannicity = `${t("new.taste.tannicity")} ${t("new.invalid")}`;
 		}
 
-		if (!formData.saltiness.trim()) {
+		if (!formData.saltiness?.trim()) {
 			newErrors.saltiness = `${t("new.taste.saltiness")} ${t("new.required")}`;
 		} else if (!saltinessOptions.includes(formData.saltiness)) {
 			newErrors.saltiness = `${t("new.taste.saltiness")} ${t("new.invalid")}`;
 		}
 
-		if (!formData.balance.trim()) {
+		if (!formData.balance?.trim()) {
 			newErrors.balance = `${t("new.taste.balance")} ${t("new.required")}`;
 		} else if (!balanceOptions.includes(formData.balance)) {
 			newErrors.balance = `${t("new.taste.balance")} ${t("new.invalid")}`;
 		}
 
-		if (!formData.intensity.trim()) {
+		if (!formData.intensity?.trim()) {
 			newErrors.intensity = `${t("new.intensity")} ${t("new.required")}`;
 		} else if (!intensityOptions.includes(formData.intensity)) {
 			newErrors.intensity = `${t("new.intensity")} ${t("new.invalid")}`;
 		}
 
-		if (!formData.persistence.trim()) {
+		if (!formData.persistence?.trim()) {
 			newErrors.persistence = `${t("new.taste.persistence")} ${t("new.required")}`;
 		} else if (!persistenceOptions.includes(formData.persistence)) {
 			newErrors.persistence = `${t("new.taste.persistence")} ${t("new.invalid")}`;
 		}
 
-		if (!formData.quality.trim()) {
+		if (!formData.quality?.trim()) {
 			newErrors.quality = `${t("new.quality")} ${t("new.required")}`;
 		} else if (!qualityOptions.includes(formData.quality)) {
 			newErrors.quality = `${t("new.quality")} ${t("new.invalid")}`;
 		}
 
-		if (!formData.structure.trim()) {
+		if (!formData.structure?.trim()) {
 			newErrors.structure = `${t("new.taste.structure")} ${t("new.required")}`;
 		} else if (!structureOptions.includes(formData.structure)) {
 			newErrors.structure = `${t("new.taste.structure")} ${t("new.invalid")}`;
@@ -154,6 +154,9 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 	const handlePress = async () => {
 		if (!validateForm()) return;
 		try {
+			if (!Object.keys(exam).length) {
+				await ExamsAPI.createTaste(tid, formData);
+			}
 			await ExamsAPI.updateExam(tid, formData, "taste");
 			setRefresh(prev => !prev);
 			setEditMode(prev => ({ ...prev, taste: !prev.taste }));

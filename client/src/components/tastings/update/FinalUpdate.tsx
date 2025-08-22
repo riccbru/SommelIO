@@ -13,6 +13,13 @@ type FinalExam = {
 	notes: string;
 };
 
+const defaultFinalExam: FinalExam = {
+	evolutionary_state: "",
+	harmony: "",
+	pairings: "",
+	notes: ""
+}
+
 type EditModeShape = {
 	tasting: boolean;
 	visual: boolean;
@@ -32,7 +39,7 @@ type Props = {
 export default function FinalUpdate({ tid, exam, setRefresh, setEditMode }: Props) {
 	const { t } = useTranslation();
 	const i18nextPath = "new.final.values";
-	const [formData, setFormData] = useState<FinalExam>(exam);
+	const [formData, setFormData] = useState<FinalExam>(exam || defaultFinalExam);
 	const [errors, setErrors] = useState<Record<string, string>>({});
 
 	const updateFormData = (field: keyof FinalExam, value: string) => {
@@ -51,12 +58,20 @@ export default function FinalUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 	const validateForm = (): boolean => {
 		const newErrors: Record<string, string> = {};
 
-		if (!evolutionaryStateOptions.includes(formData.evolutionary_state)) {
-			newErrors.evolutionary_state = "Invalid evolution state value";
+		if (!formData.evolutionary_state?.trim()) {
+			newErrors.evolutionary_state = `${t("new.final.evolution")} ${t("new.required")}`;
+		} else if (!evolutionaryStateOptions.includes(formData.evolutionary_state)) {
+			newErrors.evolutionary_state = `${t("new.final.evolution")} ${t("new.invalid")}`;
 		}
 
-		if (!harmonyOptions.includes(formData.harmony)) {
-			newErrors.harmony = "Invalid harmony value";
+		if (!formData.harmony?.trim()) {
+			newErrors.harmony = `${t("new.harmony")} ${t("new.required")}`;
+		} else if (!harmonyOptions.includes(formData.harmony)) {
+			newErrors.harmony = `${t("new.harmony")} ${t("new.invalid")}`;
+		}
+
+		if (!formData.pairings?.trim()) {
+			newErrors.pairings = `${t("new.final.pairings")} ${t("new.required")}`;
 		}
 
 		setErrors(newErrors);
@@ -66,6 +81,9 @@ export default function FinalUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 	const handlePress = async () => {
 		if (!validateForm()) return;
 		try {
+			if (!Object.keys(exam).length) {
+				await ExamsAPI.createFinal(tid, formData);
+			}
 			await ExamsAPI.updateExam(tid, formData, "final");
 			setRefresh(prev => !prev);
 			setEditMode(prev => ({ ...prev, final: !prev.final }));

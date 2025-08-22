@@ -20,9 +20,6 @@ type Props = {
 export default function VisualDetails({ exam }: Props) {
 	const theme = useTheme();
 	const { t } = useTranslation();
-	if (!exam || Object.keys(exam).length === 0) {
-		return <Text>{}</Text>;
-	}
 
 	const styles = StyleSheet.create({
 		row: {
@@ -116,16 +113,14 @@ export default function VisualDetails({ exam }: Props) {
 			{visualFields.map(({ label, value }) => (
 				<View key={label} style={styles.row}>
 					<Text style={styles.label}>{label}</Text>
-					<Text style={styles.value}>{value}</Text>
+					<Text style={styles.value}>{!Object.keys(exam).length ? "-" : value}</Text>
 				</View>
 			))}
 
-			{exam.notes && (
 				<View style={styles.notesRow}>
 					<Text style={styles.notesTitle}>Notes</Text>
-					<Text style={styles.notesText}>{exam.notes}</Text>
+					<Text style={styles.notesText}>{exam.notes || "-"}</Text>
 				</View>
-			)}
 		</View>
 	);
 }

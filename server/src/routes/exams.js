@@ -147,7 +147,8 @@ router.put("/:tid/:exam", async (req, res) => {
 
 	const parsed = examTypes[exam].schema.safeParse(req.body);
 	if (!parsed.success) {
-		return res.status(400).json({ error: parsed.error.issues[0]?.message });
+		const error = parsed.error.issues[0]?.message;
+		return res.status(400).json({ error: error });
 	}
 
 	const body = parsed.data;
@@ -274,7 +275,8 @@ router.post("/:tid/:exam", async (req, res) => {
 
 	const parsed = examTypes[exam].schema.safeParse(req.body);
 	if (!parsed.success) {
-		return res.status(400).json({ error: parsed.error.issues[0]?.message });
+		const error = parsed.error.issues[0]?.message;
+		return res.status(400).json({ error: error });
 	}
 
 	const body = parsed.data;

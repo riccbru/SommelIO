@@ -64,20 +64,20 @@ export default function OlfactoryUpdate({ tid, exam, setRefresh, setEditMode }: 
 	const i18nextPath = "new.olfactory.values";
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<OlfactoryExamBody>({
-		intensity: exam.intensity,
-		complexity: exam.complexity,
-		quality: exam.quality,
-		aromatic: exam.description.aromatic,
-		vinous: exam.description.vinous,
-		floral: exam.description.floral,
-		fruity: exam.description.fruity,
-		grassy: exam.description.grassy,
-		mineral: exam.description.mineral,
-		fragrant: exam.description.fragrant,
-		spicy: exam.description.spicy,
-		toasted: exam.description.toasted,
-		ethereal: exam.description.ethereal,
-		notes: exam.notes,
+		intensity: exam?.intensity,
+		complexity: exam?.complexity,
+		quality: exam?.quality,
+		aromatic: exam.description?.aromatic || false,
+		vinous: exam?.description?.vinous || false,
+		floral: exam?.description?.floral || false,
+		fruity: exam?.description?.fruity || false,
+		grassy: exam?.description?.grassy || false,
+		mineral: exam?.description?.mineral || false,
+		fragrant: exam?.description?.fragrant || false,
+		spicy: exam?.description?.spicy || false,
+		toasted: exam?.description?.toasted || false,
+		ethereal: exam?.description?.ethereal || false,
+		notes: exam?.notes || "",
 	});
 
 	const updateFormData = (field: keyof OlfactoryExam, value: string) => {
@@ -115,19 +115,19 @@ export default function OlfactoryUpdate({ tid, exam, setRefresh, setEditMode }: 
 	const validateForm = (): boolean => {
 		const newErrors: Record<string, string> = {};
 
-		if (!formData.intensity.trim()) {
+		if (!formData.intensity?.trim()) {
 			newErrors.intensity = `${t("new.intensity")} ${t("new.required")}`;
 		} else if (!intensityOptions.includes(formData.intensity)) {
 			newErrors.intensity = `${t("new.intensity")} ${t("new.invalid")}`;
 		}
 
-		if (!formData.complexity.trim()) {
+		if (!formData.complexity?.trim()) {
 			newErrors.complexity = `${t("new.olfactory.complexity")} ${t("new.required")}`;
 		} else if (!complexityOptions.includes(formData.complexity)) {
 			newErrors.complexity = `${t("new.olfactory.complexity")} ${t("new.invalid")}`;
 		}
 
-		if (!formData.quality.trim()) {
+		if (!formData.quality?.trim()) {
 			newErrors.quality = `${t("new.quality")} ${t("new.required")}`;
 		} else if (!qualityOptions.includes(formData.quality)) {
 			newErrors.quality = `${t("new.quality")} ${t("new.invalid")}`;
@@ -140,6 +140,9 @@ export default function OlfactoryUpdate({ tid, exam, setRefresh, setEditMode }: 
 	const handlePress = async () => {
 		if (!validateForm()) return;
 		try {
+			if (!Object.keys(exam).length) {
+				await ExamsAPI.createOlfactory(tid, formData);
+			}
 			await ExamsAPI.updateExam(tid, formData, "olfactory");
 			setRefresh(prev => !prev);
 			setEditMode(prev => ({ ...prev, olfactory: !prev.olfactory }));

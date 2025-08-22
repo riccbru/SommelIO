@@ -29,9 +29,6 @@ type Props = {
 export default function OlfactoryDetails({ exam }: Props) {
 	const theme = useTheme();
 	const { t } = useTranslation();
-	if (!exam || Object.keys(exam).length === 0) {
-		return <Text>{}</Text>;
-	}
 
 	const styles = StyleSheet.create({
 		row: {
@@ -100,16 +97,16 @@ export default function OlfactoryDetails({ exam }: Props) {
 	});
 
 	const booleanFields = [
-		{ label: t("new.olfactory.aromatic"), value: exam.description.aromatic },
-		{ label: t("new.olfactory.vinous"), value: exam.description.vinous },
-		{ label: t("new.olfactory.floral"), value: exam.description.floral },
-		{ label: t("new.olfactory.fruity"), value: exam.description.fruity },
-		{ label: t("new.olfactory.grassy"), value: exam.description.grassy },
-		{ label: t("new.olfactory.mineral"), value: exam.description.mineral },
-		{ label: t("new.olfactory.fragrant"), value: exam.description.fragrant },
-		{ label: t("new.olfactory.spicy"), value: exam.description.spicy },
-		{ label: t("new.olfactory.toasted"), value: exam.description.toasted },
-		{ label: t("new.olfactory.ethereal"), value: exam.description.ethereal },
+		{ label: t("new.olfactory.aromatic"), value: exam?.description?.aromatic },
+		{ label: t("new.olfactory.vinous"), value: exam?.description?.vinous },
+		{ label: t("new.olfactory.floral"), value: exam?.description?.floral },
+		{ label: t("new.olfactory.fruity"), value: exam?.description?.fruity },
+		{ label: t("new.olfactory.grassy"), value: exam?.description?.grassy },
+		{ label: t("new.olfactory.mineral"), value: exam?.description?.mineral },
+		{ label: t("new.olfactory.fragrant"), value: exam?.description?.fragrant },
+		{ label: t("new.olfactory.spicy"), value: exam?.description?.spicy },
+		{ label: t("new.olfactory.toasted"), value: exam?.description?.toasted },
+		{ label: t("new.olfactory.ethereal"), value: exam?.description?.ethereal },
 	];
 
 	return (
@@ -117,19 +114,19 @@ export default function OlfactoryDetails({ exam }: Props) {
 			<View style={styles.row}>
 				<Text style={styles.label}>{t("new.intensity")}</Text>
 				<Text style={styles.value}>
-					{t(`new.olfactory.values.intensity.${exam.intensity}`).toUpperCase()}
+					{!Object.keys(exam).length ? "-" : t(`new.olfactory.values.intensity.${exam?.intensity}`).toUpperCase()}
 				</Text>
 			</View>
 			<View style={styles.row}>
 				<Text style={styles.label}>{t("new.olfactory.complexity")}</Text>
 				<Text style={styles.value}>
-					{t(`new.olfactory.values.complexity.${exam.complexity}`).toUpperCase()}
+					{!Object.keys(exam).length ? "-" : t(`new.olfactory.values.complexity.${exam?.complexity}`).toUpperCase()}
 				</Text>
 			</View>
 			<View style={styles.row}>
 				<Text style={styles.label}>{t("new.quality")}</Text>
 				<Text style={styles.value}>
-					{t(`new.olfactory.values.quality.${exam.quality}`).toUpperCase()}
+					{!Object.keys(exam).length ? "-" : t(`new.olfactory.values.quality.${exam?.quality}`).toUpperCase()}
 				</Text>
 			</View>
 
@@ -141,12 +138,10 @@ export default function OlfactoryDetails({ exam }: Props) {
 				</View>
 			))}
 
-			{exam.notes && (
 				<View style={styles.notesRow}>
 					<Text style={styles.notesTitle}>{t("new.notes")}</Text>
-					<Text style={styles.notesText}>{exam.notes}</Text>
+					<Text style={styles.notesText}>{exam.notes || "-"}</Text>
 				</View>
-			)}
 		</View>
 	);
 }
