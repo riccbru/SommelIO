@@ -1,19 +1,16 @@
 import { useState } from "react";
 import { useData } from "@/src/hooks/useData";
 import { useTranslation } from "react-i18next";
-import { ListIcon } from "phosphor-react-native";
 import LoadingSpinner from "@/src/components/LoadingSpinner";
+import { useTheme, Searchbar, Text } from "react-native-paper";
 import TastingsList from "@/src/components/tastings/TastingsList";
-import ToDrinkModal from "@/src/components/tastings/ToDrinkModal";
-import { useTheme, Searchbar, Text, FAB } from "react-native-paper";
 import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
 
 export default function Tastings() {
 	const theme = useTheme();
 	const { t } = useTranslation();
-	const [modal, setModal] = useState(false);
 	const [searchQuery, setSearchQuery] = useState("");
-	const { loading, tastings, wines, refreshTastings } = useData();
+	const { loading, tastings, refreshTastings } = useData();
 
 	const styles = StyleSheet.create({
 		container: {
@@ -28,6 +25,7 @@ export default function Tastings() {
 		searchBarContainer: {
 			marginLeft: 5,
 			marginRight: 5,
+			marginTop: 10,
 			backgroundColor: theme.colors.background,
 		},
 		tastingsContainer: {
@@ -82,10 +80,10 @@ export default function Tastings() {
 					<View style={styles.container}>
 						<View style={styles.searchBarContainer}>
 							<Searchbar
-								style={{ marginTop: 5 }}
 								value={searchQuery}
 								onChangeText={setSearchQuery}
 								placeholder={t("tastings.searchbar")}
+								style={{ marginTop: 5, marginBottom: 5 }}
 							/>
 						</View>
 					</View>
@@ -96,20 +94,10 @@ export default function Tastings() {
 							<RefreshControl refreshing={loading} onRefresh={refreshTastings} />
 						}
 					>
-						<TastingsList searchQuery={searchQuery} tastings={tastings} />
+						<TastingsList tastings={tastings} searchQuery={searchQuery} />
 					</ScrollView>
 				</>
 			)}
-
-			<FAB
-				animated={false}
-				style={styles.fab}
-				onPress={() => setModal(true)}
-				color={theme.colors.background}
-				icon={() => <ListIcon size={24} color={theme.colors.black} />}
-			/>
-
-			<ToDrinkModal wines={wines} visible={modal} onDismiss={() => setModal(false)} />
 		</>
 	);
 }

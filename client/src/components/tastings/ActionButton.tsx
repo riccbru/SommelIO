@@ -46,7 +46,7 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 			await TastingsAPI.deleteTasting(tid);
 			hideModal();
 			refreshTastings();
-			router.replace("/(tabs)/tastings");
+			router.replace("/(tabs)/wines?tab=tastings");
 		} catch (error: any) {
 			console.log(`[ActionButton-delete]: ${error}`);
 		}

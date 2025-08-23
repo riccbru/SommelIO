@@ -4,9 +4,10 @@ export default {
 	loading: "Loading...",
 	tasting_name_description: "Add a new tasting",
 	todrink: "ToDrink List",
-	todrink_title: "Nuovo vino",
+	todrink_title: "New wine",
 	todrink_description: "Add a wine to your ToDrink list",
 	todrink_notFound: "List is empty",
+	wine_notFound: "No results",
 	signup: {
 		full_name: "Full Name",
 		birthdate: "Birthdate",
@@ -293,6 +294,7 @@ export default {
 		cancel: "Cancel",
 	},
 	profile: {
+		title: "Settings",
 		dark: "Dark Theme",
 		lang: "Language",
 		info: "Information",

@@ -32,11 +32,11 @@ type Tasting = {
 };
 
 type Props = {
-	searchQuery: string;
 	tastings: Tasting[];
+	searchQuery: string;
 };
 
-export default function TastingsList({ searchQuery, tastings }: Props) {
+export default function TastingsList({ tastings, searchQuery }: Props) {
 	const theme = useTheme();
 	const router = useRouter();
 	const { t } = useTranslation();
@@ -83,76 +83,85 @@ export default function TastingsList({ searchQuery, tastings }: Props) {
 			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
+		emptyText: {
+			fontSize: 16,
+			marginTop: 50,
+			textAlign: "center",
+			color: theme.colors.primary,
+			fontFamily: "Epilogue-Regular",
+		},
 	});
 
+	const filteredTastings = tastings.filter(tasting => {
+		const query = searchQuery.toLowerCase();
+		return (
+			tasting.winemaker.toLowerCase().includes(query) ||
+			tasting.wine_denomination.toLowerCase().includes(query)
+		);
+	});
+
+	if (!filteredTastings.length) {
+		return <Text style={styles.emptyText}>{t("wine_notFound")}</Text>;
+	}
+
 	const handlePress = (tasting: Tasting) => {
-		router.push(`/tastings/${tasting.tid}`);
+		router.push(`/wines/${tasting.tid}`);
 	};
 
 	return (
 		<List.Section>
-			{tastings
-				.filter(tasting => {
-					const query = searchQuery.toLowerCase();
-					return (
-						tasting.winemaker.toLowerCase().includes(query) ||
-						tasting.wine_denomination.toLowerCase().includes(query)
-					);
-				})
-				.map((tasting, index) => (
-					<View key={index} style={styles.row}>
-						<TouchableOpacity
-							activeOpacity={0.7}
-							style={styles.iconContainer}
-							onPress={() => handlePress(tasting)}
-						>
-							<FileTextIcon size={32} />
-						</TouchableOpacity>
+			{tastings.map((tasting, index) => (
+				<View key={index} style={styles.row}>
+					<TouchableOpacity
+						activeOpacity={0.7}
+						style={styles.iconContainer}
+						onPress={() => handlePress(tasting)}
+					>
+						<FileTextIcon size={32} />
+					</TouchableOpacity>
 
-						<View style={styles.accordionTrigger}>
-							<List.Accordion
-								title={
-									<Text style={{ fontFamily: "Epilogue-Regular" }}>
-										{`${capitalizeFirst(tasting.winemaker)} - ${tasting.wine_denomination.toUpperCase()}`}
-									</Text>
-								}
-								description={formatDescription(
-									i18n.language,
-									tasting.tasting_date,
-									tasting.tasting_time,
-									tasting.tasting_location
-								)}
-							>
-								<View style={styles.accordionBody}>
-									<View style={styles.accordionRow}>
-										<Text style={styles.textLabel}>{t("new.tasting.vintage")}</Text>
-										<Text style={styles.textValue}>{tasting.vintage}</Text>
-									</View>
-									<View style={styles.accordionRow}>
-										<Text style={styles.textLabel}>{t("new.tasting.sample")}</Text>
-										<Text style={styles.textValue}>{tasting.sample_number ?? "-"}</Text>
-									</View>
-									<View style={styles.accordionRow}>
-										<Text style={styles.textLabel}>{t("new.tasting.alcohol")}</Text>
-										<Text style={styles.textValue}>{tasting.alcohol_content}</Text>
-									</View>
-									<View style={styles.accordionRow}>
-										<Text style={styles.textLabel}>
-											{t("new.tasting.wine_temperature")}
-										</Text>
-										<Text style={styles.textValue}>{tasting.wine_temperature}</Text>
-									</View>
-									<View style={styles.accordionRow}>
-										<Text style={styles.textLabel}>
-											{t("new.tasting.ambient_temperature")}
-										</Text>
-										<Text style={styles.textValue}>{tasting.ambient_temperature}</Text>
-									</View>
+					<View style={styles.accordionTrigger}>
+						<List.Accordion
+							title={
+								<Text style={{ fontFamily: "Epilogue-Regular" }}>
+									{`${capitalizeFirst(tasting.winemaker)} - ${tasting.wine_denomination.toUpperCase()}`}
+								</Text>
+							}
+							description={formatDescription(
+								i18n.language,
+								tasting.tasting_date,
+								tasting.tasting_time,
+								tasting.tasting_location
+							)}
+						>
+							<View style={styles.accordionBody}>
+								<View style={styles.accordionRow}>
+									<Text style={styles.textLabel}>{t("new.tasting.vintage")}</Text>
+									<Text style={styles.textValue}>{tasting.vintage}</Text>
 								</View>
-							</List.Accordion>
-						</View>
+								<View style={styles.accordionRow}>
+									<Text style={styles.textLabel}>{t("new.tasting.sample")}</Text>
+									<Text style={styles.textValue}>{tasting.sample_number ?? "-"}</Text>
+								</View>
+								<View style={styles.accordionRow}>
+									<Text style={styles.textLabel}>{t("new.tasting.alcohol")}</Text>
+									<Text style={styles.textValue}>{tasting.alcohol_content}</Text>
+								</View>
+								<View style={styles.accordionRow}>
+									<Text style={styles.textLabel}>{t("new.tasting.wine_temperature")}</Text>
+									<Text style={styles.textValue}>{tasting.wine_temperature}</Text>
+								</View>
+								<View style={styles.accordionRow}>
+									<Text style={styles.textLabel}>
+										{t("new.tasting.ambient_temperature")}
+									</Text>
+									<Text style={styles.textValue}>{tasting.ambient_temperature}</Text>
+								</View>
+							</View>
+						</List.Accordion>
 					</View>
-				))}
+				</View>
+			))}
 		</List.Section>
 	);
 }

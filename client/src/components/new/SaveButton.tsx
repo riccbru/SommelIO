@@ -23,7 +23,7 @@ export default function SaveButton({ text, formData, validation, action }: Props
 				if (!tid) throw new Error("No tasting ID found");
 				await action(tid, formData);
 				router.replace("/(tabs)/new");
-				router.replace("/(tabs)/tastings");
+				router.replace("/(tabs)/wines?tab=tastings");
 				await AsyncStorage.removeItem("newTid");
 			} catch (error) {
 				console.log(`NextButton: ${error}`);

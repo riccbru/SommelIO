@@ -17,7 +17,7 @@ export default function TabsLayout() {
 				const config = TAB_CONFIG[route.name as keyof typeof TAB_CONFIG];
 				const Icon = config?.icon;
 				return {
-					headerTitle: "",
+					headerTitle: config.title,
 					headerStyle: {
 						backgroundColor: theme.colors.background,
 					},
@@ -31,6 +31,7 @@ export default function TabsLayout() {
 						fontFamily: "Epilogue-Regular",
 						color: focused ? theme.colors.amber : theme.colors.primary,
 					}),
+					// tabBarLabel: "",
 					tabBarLabel: ({ focused }) =>
 						!config.title.length ? (
 							<></>
@@ -39,8 +40,8 @@ export default function TabsLayout() {
 								style={{
 									fontSize: 12,
 									paddingTop: 5,
-									color: focused ? theme.colors.amber : theme.colors.primary,
 									fontFamily: "Epilogue-Regular",
+									color: focused ? theme.colors.amber : theme.colors.primary,
 								}}
 							>
 								{config?.title}
@@ -49,12 +50,12 @@ export default function TabsLayout() {
 					tabBarIcon: ({ focused }) => (
 						<Icon
 							color={iconColor(focused)}
-							size={!config.title.length ? 40 : 28}
+							size={!config.title.length ? 46 : 32}
 							weight={iconWeight(config.title, focused)}
 						/>
 					),
 					tabBarIconStyle: {
-						marginTop: !config.title.length ? 5 : 0,
+						marginTop: !config.title.length ? 5 : 3,
 					},
 					tabBarButton: (props: any) => <AnimatedTabButton {...props} />,
 				};

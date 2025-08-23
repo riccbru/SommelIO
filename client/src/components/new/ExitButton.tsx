@@ -24,7 +24,7 @@ export default function ExitButton({ defaultFormData, setFormData, setErrors }: 
 		refreshTastings();
 		setFormData(defaultFormData);
 		router.replace("/(tabs)/new");
-		router.replace("/(tabs)/tastings");
+		router.replace("/(tabs)/wines?tab=tastings");
 		await AsyncStorage.removeItem("newTid");
 	};
 

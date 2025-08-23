@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
 	try {
 		const result = await prisma.to_drink.findMany({
 			where: { uid: uid },
-			orderBy: { id: "desc" },
+			orderBy: { id: "asc" },
 		});
 
 		const wines = result.map(w => formatWine(w));

@@ -938,6 +938,7 @@ Endpoint: `GET /api/v1/scoring/coefficients`.
       	"error": "Scoring coefficients not found"
       }
       ```
+
    ```
 
    ```

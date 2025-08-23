@@ -101,7 +101,7 @@ export default function ToDrink() {
 			refreshWines();
 			setFormData(defaultFormData);
 			router.replace("/(tabs)/new");
-			router.replace("/(tabs)/tastings");
+			router.replace("/(tabs)/wines?tab=todrink");
 		} catch (error) {
 			console.error(`Add failed: ${error}`);
 		}

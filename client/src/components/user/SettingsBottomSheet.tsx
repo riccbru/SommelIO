@@ -3,6 +3,7 @@ import { Text, View } from "react-native";
 import { useTheme } from "@/src/hooks/useTheme";
 import { BottomSheetMethods } from "@gorhom/bottom-sheet/lib/typescript/types";
 import BottomSheet, { BottomSheetBackdrop, BottomSheetView } from "@gorhom/bottom-sheet";
+import { useTranslation } from "react-i18next";
 
 type Props = {
 	bottomSheetRef: React.RefObject<BottomSheetMethods | null>;
@@ -10,6 +11,7 @@ type Props = {
 
 export default function SettingsBottomSheet({ bottomSheetRef }: Props) {
 	const theme = useTheme();
+	const { t } = useTranslation();
 
 	return (
 		<>
@@ -40,7 +42,7 @@ export default function SettingsBottomSheet({ bottomSheetRef }: Props) {
 								fontFamily: "Epilogue-Bold",
 							}}
 						>
-							Settings
+							{t("profile.title")}
 						</Text>
 					</View>
 					<Settings />

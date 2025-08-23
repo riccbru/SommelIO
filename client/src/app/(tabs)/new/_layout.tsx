@@ -8,8 +8,8 @@ export default function NewLayout() {
 	return (
 		<Stack
 			screenOptions={{
-				title: t("tasting_name"),
 				headerShown: true,
+				title: t("tasting_name"),
 				headerStyle: { backgroundColor: theme.colors.background },
 				headerTitleStyle: {
 					fontSize: 20,

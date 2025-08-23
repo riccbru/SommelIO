@@ -13,8 +13,8 @@ export const TAB_CONFIG = {
 		title: "",
 		icon: FilePlusIcon,
 	},
-	tastings: {
-		title: "Tastings",
+	wines: {
+		title: "Wines",
 		icon: WineIcon,
 	},
 	user: {

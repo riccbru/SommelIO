@@ -74,14 +74,15 @@ export default function Settings() {
 				<View style={{ alignItems: "center", flexDirection: "row" }}>
 					<TranslateIcon size={28} weight='bold' color={theme.colors.primary} />
 					<View style={{ marginLeft: 5, marginRight: 5 }} />
-					<View style={{ flexDirection: "column" }}>
+					<View style={{ flexDirection: "column", marginLeft: 0 }}>
 						<Text style={styles.rowLabel}>{t("profile.lang")}</Text>
 						<View style={{ marginTop: 5, marginBottom: 5 }} />
 						<SegmentedControl
 							values={labels}
-							tintColor={theme.colors.primary}
+							tintColor={theme.colors.white}
+							backgroundColor={theme.colors.card}
 							selectedIndex={langs.indexOf(language)}
-							style={{ width: 300, borderRadius: 10, paddingRight: 10 }}
+							style={{ width: 290, borderRadius: 10 }}
 							fontStyle={{ fontSize: 28, color: theme.colors.primary }}
 							activeFontStyle={{ fontSize: 28, color: theme.colors.background }}
 							onChange={e => {

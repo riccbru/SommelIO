@@ -7,6 +7,7 @@ export default {
 	todrink_title: "Nuoveau vin",
 	todrink_description: "Ajouter un vin à votre liste ToDrink",
 	todrink_notFound: "La liste est vide",
+	wine_notFound: "Aucun résultat",
 	signup: {
 		full_name: "Nom Complet",
 		birthdate: "Date de Naissance",
@@ -294,6 +295,7 @@ export default {
 		cancel: "Annule",
 	},
 	profile: {
+		title: "Paramètres",
 		dark: "Thème Sombre",
 		lang: "Langue",
 		info: "Informacion",
