@@ -34,18 +34,19 @@ export default function Scoring() {
 	const styles = StyleSheet.create({
 		container: {
 			flex: 1,
-			padding: 5,
-			flexDirection: "column",
 			backgroundColor: theme.colors.background,
 		},
 		card: {
+			margin: 20,
+			padding: 5,
 			borderWidth: 2,
+			borderRadius: 15,
 			borderColor: theme.colors.primary,
+			backgroundColor: theme.colors.card,
 		},
 		cardHeader: {
-			flex: 1,
-			alignItems: "center",
 			flexDirection: "row",
+			alignItems: "center",
 			alignContent: "center",
 			justifyContent: "space-between",
 		},

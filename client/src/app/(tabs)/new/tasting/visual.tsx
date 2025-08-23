@@ -44,16 +44,17 @@ export default function Visual() {
 	const styles = StyleSheet.create({
 		container: {
 			flex: 1,
-			padding: 5,
-			flexDirection: "column",
 			backgroundColor: theme.colors.background,
 		},
 		card: {
+			margin: 20,
+			padding: 5,
 			borderWidth: 2,
+			borderRadius: 15,
 			borderColor: theme.colors.primary,
+			backgroundColor: theme.colors.card,
 		},
 		cardHeader: {
-			flex: 1,
 			flexDirection: "row",
 			alignItems: "center",
 			alignContent: "center",
@@ -67,14 +68,13 @@ export default function Visual() {
 		},
 		text: {
 			fontSize: 30,
-			fontWeight: 300,
-			fontFamily: "Epilogue-Regular",
 			color: theme.colors.primary,
+			fontFamily: "Epilogue-Regular",
 		},
 		loadingContainer: {
 			flex: 1,
-			justifyContent: "center",
 			alignItems: "center",
+			justifyContent: "center",
 			backgroundColor: theme.colors.background,
 		},
 		buttonContainer: {
