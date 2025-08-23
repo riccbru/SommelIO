@@ -1,6 +1,7 @@
 export default {
 	tasting_name: "Tasting",
 	tastings_name: "Tastings",
+	loading: "Loading...",
 	tasting_name_description: "Add a new tasting",
 	todrink: "ToDrink List",
 	todrink_title: "Nuovo vino",
@@ -281,7 +282,6 @@ export default {
 		},
 	},
 	tastings: {
-		loading_tastings: "Loading tastings...",
 		loading_details: "Loading details...",
 		searchbar: "Search wine...",
 		notFound: "Tasting not found",

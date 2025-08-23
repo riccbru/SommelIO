@@ -1,6 +1,7 @@
 export default {
 	tasting_name: "Dégustation",
 	tastings_name: "Dégustations",
+	loading: "Chargement...",
 	tasting_name_description: "Ajouter une nouvelle dégustation",
 	todrink: "Liste ToDrink",
 	todrink_title: "Nuoveau vin",
@@ -282,7 +283,6 @@ export default {
 		},
 	},
 	tastings: {
-		loading_tastings: "Chargement dégustations...",
 		loading_details: "Chargement détails...",
 		searchbar: "Recherche vin...",
 		notFound: "Dégustation non trouvée",

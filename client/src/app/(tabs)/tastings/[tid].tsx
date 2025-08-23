@@ -4,12 +4,13 @@ import { Text, Card, useTheme } from "react-native-paper";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import {
-	View,
+	KeyboardAvoidingView,
+	Platform,
+	RefreshControl,
 	ScrollView,
 	StyleSheet,
 	TouchableOpacity,
-	RefreshControl,
-	KeyboardAvoidingView,
+	View,
 } from "react-native";
 
 import TastingsAPI from "@/src/services/tastings";

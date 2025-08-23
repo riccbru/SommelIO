@@ -3,8 +3,8 @@ import { useData } from "@/src/hooks/useData";
 import { useTranslation } from "react-i18next";
 import { ListIcon } from "phosphor-react-native";
 import LoadingSpinner from "@/src/components/LoadingSpinner";
-import ToDrinkModal from "@/src/components/tastings/ToDrinkModal";
 import TastingsList from "@/src/components/tastings/TastingsList";
+import ToDrinkModal from "@/src/components/tastings/ToDrinkModal";
 import { useTheme, Searchbar, Text, FAB } from "react-native-paper";
 import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
 
@@ -68,7 +68,7 @@ export default function Tastings() {
 	});
 
 	if (loading) {
-		return <LoadingSpinner text={t("tastings.loading_tastings")} />;
+		return <LoadingSpinner text={t("loading")} />;
 	}
 
 	return (
