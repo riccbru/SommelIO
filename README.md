@@ -35,41 +35,71 @@
 ---
 
 ## Table of Contents
+
 - [Overview](#overview)
 - [Installation](#installation)
 
 ---
 
 ## Overview
+
 **Author:** [riccbru](https://github.com/riccbru)
 
 React Native project for tracking all wines and beers I tasted, in accordance with the tasting guidelines of [Associazione Italiana Sommelier](https://aisitalia.it).
 
 ## Installation
 
-First, install `node_modules` via `npm install` in `SommelIO/server` and `SommelIO/client`.
+- Install dependencies
+```bash
+npm run install:all
+```
 
 #### DEVELOPMENT
-- Start `Postgres DB` (in **SommelIO/**)
-    - Start
-        ```bash
-        docker compose up
-        ```
-    - Stop
-        ```bash
-        docker compose down -v
-        ```
-- Start `Backend server` (in **SommelIO/server**)
-```bash
-nodemon .
-```
 
-- Start `Expo client` (in **SommelIO/client**)
+- `Postgres DB`
 ```bash
-npx expo start --clear
+cd SommelIO
 ```
+   - Start
+      ```bash
+      docker compose up
+      ```
+   - Stop
+      ```bash
+      docker compose down -v
+      ```
+
+- Start `Backend server`
+ ```bash
+ cd server; nodemon .
+ ```
+- Start `Expo client`
+ ```bash
+ cd client; npx expo start --clear
+ ```
 
 #### BUILD
 
+- Build fresh native projects:
+   ```bash
+   cd client;
+   npx expo prebuild --clean
+   ```
 
+- **iOS**
+   - Run on XCode simulator:
+   ```bash
+   npx expo run:ios
+   ```
 
+   - Run on physical iPhone (build project on XCode):
+   ```bash
+   xed ios/*.xcworkspace
+   ```
+
+   - Build on XCode and start the Metro JS bundler using:
+   ```bash
+   npx expo start --dev-client
+   ```
+
+- **Android**
