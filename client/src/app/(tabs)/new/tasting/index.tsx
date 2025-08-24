@@ -203,107 +203,107 @@ export default function New() {
 							</View>
 
 							<FormInput
-											label={t("new.tasting.denomination")}
-											field='wine_denomination'
-											value={formData.wine_denomination}
-											error={errors.wine_denomination}
-											onChange={updateFormData}
-										/>
-							
-										<FormInput
-											label={t("new.tasting.winemaker")}
-											field='winemaker'
-											value={formData.winemaker}
-											error={errors.winemaker}
-											onChange={updateFormData}
-										/>
-							
-										<FormSelect
-											label={t("new.tasting.category")}
-											field='wine_category_name'
-											value={formData.wine_category_name}
-											error={errors.wine_category_name}
-											onChange={updateFormData}
-											options={allowedCategories}
-											i18nPath={`${i18nextPath}.category`}
-										/>
-							
-										<FormSwitch
-											label={t("new.tasting.favorite")}
-											name='favorite'
-											formData={formData}
-											setFormData={setFormData}
-										/>
-							
-										<FormInput
-											label={t("new.tasting.sample")}
-											field='sample_number'
-											value={formData.sample_number}
-											error={errors.sample_number}
-											onChange={updateFormData}
-										/>
-							
-										<FormInput
-											label={`${t("new.tasting.vintage")} (YYYY)`}
-											field='vintage'
-											value={formData.vintage}
-											error={errors.vintage}
-											keyboardType='numeric'
-											onChange={updateFormData}
-										/>
-							
-										<FormInput
-											label={`${t("new.tasting.alcohol")} (%)`}
-											field='alcohol_content'
-											value={formData.alcohol_content}
-											error={errors.alcohol_content}
-											keyboardType='numeric'
-											onChange={updateFormData}
-										/>
-							
-										<FormInput
-											label={`${t("new.tasting.wine_temperature")} (°C)`}
-											field='wine_temperature'
-											value={formData.wine_temperature}
-											error={errors.wine_temperature}
-											keyboardType='numeric'
-											onChange={updateFormData}
-										/>
-							
-										<FormInput
-											label={`${t("new.tasting.ambient_temperature")} (°C)`}
-											field='ambient_temperature'
-											value={formData.ambient_temperature}
-											error={errors.ambient_temperature}
-											keyboardType='numeric'
-											onChange={updateFormData}
-										/>
-							
-										<FormInput
-											label={`${t("new.tasting.date")} (YYYY-MM-DD)`}
-											field='tasting_date'
-											value={formData.tasting_date}
-											error={errors.tasting_date}
-											keyboardType='numbers-and-punctuation'
-											onChange={updateFormData}
-										/>
-							
-										<FormInput
-											label={`${t("new.tasting.time")} (HH:mm)`}
-											field='tasting_time'
-											value={formData.tasting_time}
-											error={errors.tasting_time}
-											keyboardType='numbers-and-punctuation'
-											onChange={updateFormData}
-										/>
-							
-										<FormInput
-											label={t("new.tasting.location")}
-											field='tasting_location'
-											value={formData.tasting_location}
-											error={errors.tasting_location}
-											onChange={updateFormData}
-										/>
+								label={t("new.tasting.denomination")}
+								field='wine_denomination'
+								value={formData.wine_denomination}
+								error={errors.wine_denomination}
+								onChange={updateFormData}
+							/>
+
+							<FormInput
+								label={t("new.tasting.winemaker")}
+								field='winemaker'
+								value={formData.winemaker}
+								error={errors.winemaker}
+								onChange={updateFormData}
+							/>
+
+							<FormSelect
+								label={t("new.tasting.category")}
+								field='wine_category_name'
+								value={formData.wine_category_name}
+								error={errors.wine_category_name}
+								onChange={updateFormData}
+								options={allowedCategories}
+								i18nPath={`${i18nextPath}.category`}
+							/>
+
+							<FormSwitch
+								label={t("new.tasting.favorite")}
+								name='favorite'
+								formData={formData}
+								setFormData={setFormData}
+							/>
+
+							<FormInput
+								label={t("new.tasting.sample")}
+								field='sample_number'
+								value={formData.sample_number}
+								error={errors.sample_number}
+								onChange={updateFormData}
+							/>
+
+							<FormInput
+								label={`${t("new.tasting.vintage")} (YYYY)`}
+								field='vintage'
+								value={formData.vintage}
+								error={errors.vintage}
+								keyboardType='numeric'
+								onChange={updateFormData}
+							/>
+
+							<FormInput
+								label={`${t("new.tasting.alcohol")} (%)`}
+								field='alcohol_content'
+								value={formData.alcohol_content}
+								error={errors.alcohol_content}
+								keyboardType='numeric'
+								onChange={updateFormData}
+							/>
+
+							<FormInput
+								label={`${t("new.tasting.wine_temperature")} (°C)`}
+								field='wine_temperature'
+								value={formData.wine_temperature}
+								error={errors.wine_temperature}
+								keyboardType='numeric'
+								onChange={updateFormData}
+							/>
+
+							<FormInput
+								label={`${t("new.tasting.ambient_temperature")} (°C)`}
+								field='ambient_temperature'
+								value={formData.ambient_temperature}
+								error={errors.ambient_temperature}
+								keyboardType='numeric'
+								onChange={updateFormData}
+							/>
+
+							<FormInput
+								label={`${t("new.tasting.date")} (YYYY-MM-DD)`}
+								field='tasting_date'
+								value={formData.tasting_date}
+								error={errors.tasting_date}
+								keyboardType='numbers-and-punctuation'
+								onChange={updateFormData}
+							/>
+
+							<FormInput
+								label={`${t("new.tasting.time")} (HH:mm)`}
+								field='tasting_time'
+								value={formData.tasting_time}
+								error={errors.tasting_time}
+								keyboardType='numbers-and-punctuation'
+								onChange={updateFormData}
+							/>
+
+							<FormInput
+								label={t("new.tasting.location")}
+								field='tasting_location'
+								value={formData.tasting_location}
+								error={errors.tasting_location}
+								onChange={updateFormData}
+							/>
 						</Card.Content>
 					</Card>
 

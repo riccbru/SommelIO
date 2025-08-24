@@ -3,13 +3,14 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import { formatOption } from "@/src/utils/utils";
 import { HelperText, Text, Card } from "react-native-paper";
-import { CaretDownIcon, CaretUpIcon } from "phosphor-react-native";
+import { CaretDownIcon, CaretUpIcon, InfoIcon } from "phosphor-react-native";
 import { View, TouchableOpacity, Modal, FlatList, StyleSheet } from "react-native";
 
 type Props<T> = {
 	label: string;
 	field: keyof T;
 	value: string;
+	description?: string;
 	error?: string;
 	options: string[];
 	onChange: (field: keyof T, value: string) => void;
@@ -20,6 +21,7 @@ export default function FormSelect<T>({
 	label,
 	field,
 	value,
+	description,
 	error,
 	options,
 	onChange,
@@ -27,6 +29,7 @@ export default function FormSelect<T>({
 }: Props<T>) {
 	const theme = useTheme();
 	const { t } = useTranslation();
+	const [modal, setModal] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 	const [isFocused, setIsFocused] = useState(false);
 
@@ -93,6 +96,19 @@ export default function FormSelect<T>({
 
 	return (
 		<View>
+
+			
+			{description && (
+				<View style={{ flexDirection: "row", alignItems: "center", marginBottom: 4 }}>
+					<TouchableOpacity onPress={() => setModal(true)} style={{ marginLeft: 6, marginBottom: 5, flexDirection: "row" }}>
+						<InfoIcon size={18} color={theme.colors.primary} />
+						<Text style={{ marginTop: 3, marginLeft: 5, fontFamily: "Epilogue-Bold", fontSize: 14, color: theme.colors.primary }}>
+							{label}
+						</Text>
+					</TouchableOpacity>
+				</View>
+			)}
+
 			<TouchableOpacity
 				activeOpacity={0.7}
 				onPress={() => {
@@ -127,7 +143,8 @@ export default function FormSelect<T>({
 						},
 					]}
 				>
-					{label}
+					{t("no_formSelect")}
+					{/* {label} */}
 				</Text>
 
 				{/* Selected Value */}

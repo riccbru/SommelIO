@@ -194,6 +194,7 @@ export default function Visual() {
 								label={t("new.visual.limpidity")}
 								field='limpidity'
 								value={formData.limpidity}
+								description={t("description.visual.limpidity.descr")}
 								error={errors.limpidity}
 								onChange={updateFormData}
 								options={limpidityOptions}
@@ -201,9 +202,10 @@ export default function Visual() {
 							/>
 
 							<FormSelect
-								label={t("new.visual.color")}
+								label={t("new.visual.color.descr")}
 								field='color_family'
 								value={formData.color_family}
+								description={t("description.visual.color.descr")}
 								error={errors.color_family}
 								onChange={(field, value) => {
 									updateFormData(field, value);
@@ -217,6 +219,7 @@ export default function Visual() {
 								label={t("new.visual.shade")}
 								field='color_shade'
 								value={formData.color_shade}
+								description={t("description.visual.color.descr")}
 								error={errors.color_shade}
 								onChange={updateFormData}
 								options={colorShadesOptions[formData.color_family]}
@@ -227,6 +230,7 @@ export default function Visual() {
 								label={t("new.visual.consistency")}
 								field='consistency'
 								value={formData.consistency}
+								description={t("description.visual.consistency.descr")}
 								error={errors.consistency}
 								onChange={updateFormData}
 								options={consistencyOptions}
@@ -238,6 +242,7 @@ export default function Visual() {
 									label={t("new.visual.bubble_size")}
 									field='bubble_size'
 									value={formData.bubble_size}
+									description={t("description.visual.effervescence.bubble_size")}
 									error={errors.bubble_size}
 									onChange={updateFormData}
 									options={bubblesizeOptions}
@@ -252,6 +257,7 @@ export default function Visual() {
 									label={t("new.visual.bubble_number")}
 									field='bubble_number'
 									value={formData.bubble_number}
+									description={t("description.visual.effervescence.bubble_number")}
 									error={errors.bubble_number}
 									onChange={updateFormData}
 									options={bubbleNumberOptions}
@@ -266,6 +272,7 @@ export default function Visual() {
 									label={t("new.visual.bubble_persistence")}
 									field='bubble_persistence'
 									value={formData.bubble_persistence}
+									description={t("description.visual.effervescence.bubble_persistence")}
 									error={errors.bubble_persistence}
 									onChange={updateFormData}
 									options={bubblePersistenceOptions}

@@ -8,6 +8,7 @@ export default {
 	todrink_description: "Ajouter un vin à votre liste ToDrink",
 	todrink_notFound: "La liste est vide",
 	wine_notFound: "Aucun résultat",
+	no_formSelect: "Aucun valeur...",
 	signup: {
 		full_name: "Nom Complet",
 		birthdate: "Date de Naissance",
