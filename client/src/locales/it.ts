@@ -307,4 +307,172 @@ export default {
 			rated: "Valutate",
 		},
 	},
+	description: {
+		visual: {
+			limpidity: {
+				descr: "La limpidezza di un vino può essere definita come l'assenza di particelle in sospensione, anche se in alcuni casi (vini invecchiati, non filtrati o imbottigliati sui lieviti) una loro presenza limitata può essere accettabile.",
+				veiled: "È un vino che presenta accentuata opalescenza e forte torbidità, dovute alla presenza di numerose particelle in sospensione. In genere si tratta di vini nei quali si sono verifica-te alterazioni, fermentazioni sgradite, un'eventuale fermen- tazione malolattica o altro ancora. È una situazione inac-cettabile.",
+				quite_limpid: "È un vino con qualche particella in sospensione, che può non com-prometterne la qualità. Le cause possono essere il lungo affina-mento in bottiglia di alcuni vini rossi, l'imbottigliamento senza filtrazione soprattutto di vini rossi ricchi di estratto e materia colorante oppure di bianchi, biologici o biodinamici non fil- trati, l'imbottigliamento con i lieviti con conseguenti rifer-mentazioni, spesso in vini bianchi e aromatici. In questi casi la manipolazione della bottiglia durante la mescita deve essere realizzata con estrema cura. In tutti gli altri casi la presenza di alcune particelle deve destare qualche sospetto.",
+				limpid: "È un vino privo di particelle in sospensione e che quindi non presenta alcun deposito. Un modo pratico per valutare la limpidezza del vino consiste nell'inclinare il bicchiere al di sopra di una scritta e verificare che le lettere presentino contorni perfettamente nitidi, sempre che il vino sia dotato di una buona trasparen- za. La maggior parte dei vini rossi può essere definita con questo termine.",
+				crystal_clear: "È un vino totalmente privo di particelle in sospensione e che presenta una propria intensa luminosità. La maggior parte dei vini bianchi e rosati in commercio, ma anche alcuni rossi dotati di grande trasparenza, può essere definita con questo termine.",
+				brilliant: "È un vino che presenta una bellissima lucentezza e che riflette con vivacità i raggi luminosi che lo investono. Questa situazione è favorita dalla presenza delle bollicine di anidride carbonica che rifrangono i raggi di luce, quindi è più frequente nei vini frizzanti e ancora di più negli spumanti. Ma non è l'unico caso. Nonostante l'assenza di bollicine, alcuni vini bianchi importanti, passiti e liquorosi, presentano una spettacolare luminosità, grazie a un colore particolarmente splendente, che permette di definirli con il termine brillante."
+			},
+			color: {
+				descr: "",
+				greenish_yellow: "",
+				straw_yellow: "",
+				golden_yellow: "",
+				amber: "",
+				purple_red: "",
+				ruby_red: "",
+				garnet: "",
+				orange_red: "",
+				soft_rosé: "",
+				cherry_red: "",
+				dark_rosé: "",
+			},
+			consistency: {
+				descr: "",
+				flowing: "",
+				scarcely_consistent: "",
+				quite_consistent: "",
+				consistent: "",
+				oily: ""
+			},
+			effervescence: {
+				descr: "",
+				bubble_size: "",
+				bubble_number: "",
+				bubble_persistence: "",
+			}
+		},
+		olfactory: {
+			intensity: {
+				lacking: "",
+				scarcely_intense: "",
+				quite_intense: "",
+				intense: "",
+				very_intense: "",
+			},
+			complexity: {
+				lacking: "",
+				scarcely_complex: "",
+				quite_complex: "",
+				complex: "",
+				ample: "",
+			},
+			quality: {
+				coarse: "",
+				scarcely_fine: "",
+				quite_fine: "",
+				fine: "",
+				excellent: "",
+			},
+			descriptors: {
+				aromatic: "",
+				vinous: "",
+				floral: "",
+				fruity: "",
+				grassy: "",
+				mineral: "",
+				fragrant: "",
+				spicy: "",
+				toasted: "",
+				ethereal: "",
+			}
+		},
+		taste: {
+			sweetness: {
+				dry: "",
+				medium_dry: "",
+				medium_sweet: "",
+				sweet: "",
+				excessively_sweet: "",
+			},
+			alcohols: {
+				light: "",
+				lightly_warm: "",
+				medium_warm: "",
+				warm: "",
+				alcoholic: "",
+			},
+			softness: {
+				sharp: "",
+				scarcely_soft: "",
+				quite_soft: "",
+				soft: "",
+				velvety: "",
+			},
+			acidity: {
+				flat: "",
+				scarcely_fresh: "",
+				quite_fresh: "",
+				fresh: "",
+				acidulous: "",
+			},
+			tannicity: {
+				flabby: "",
+				scarcely_tannic: "",
+				quite_tannic: "",
+				tannic: "",
+				astringent: "",
+			},
+			saltiness: {
+				tasteless: "",
+				scarcely_tasty: "",
+				quite_tasty: "",
+				tasty: "",
+				salty: "",
+			},
+			balance: {
+				unbalanced: "",
+				quite_balanced: "",
+				balanced: "",
+			},
+			intensity: {
+				lacking: "",
+				scarcely_intense: "",
+				quite_intense: "",
+				intense: "",
+				very_intense: "",
+			},
+			persistence: {
+				short: "",
+				scarcely_persistent: "",
+				quite_persistent: "",
+				persistent: "",
+				very_persistent: "",
+			},
+			quality: {
+				coarse: "",
+				scarcely_fine: "",
+				quite_fine: "",
+				fine: "",
+				excellent: "",
+			},
+			structure: {
+				thin: "",
+				weak: "",
+				full: "",
+				vigorous: "",
+				heavy: "",
+			},
+		},
+		final: {
+			evolution: {
+				descr: "",
+				immature: "",
+				young: "",
+				ready: "",
+				mature: "",
+				old: ""
+			},
+			harmony: {
+				descr: "",
+				disharmonious: "",
+				quite_harmonious: "",
+				harmonious: "",
+			}
+		}
+	}
 };

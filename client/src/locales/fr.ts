@@ -307,4 +307,172 @@ export default {
 			rated: "Notées",
 		},
 	},
+	description: {
+		visual: {
+			limpidity: {
+				descr: "La limpidité d'un vin peut être définie comme l'absence de particules en suspension même si dans certains cas (vins vieillis, non filtrés ou mis en bouteille sur les levures) une leur présence limitée peut être acceptée.",
+				veiled: "C'est un vin qui présente une opalescence accentuée et une forte turbidité, dues à la présence considérable de particules en suspension. Normalement il s'agit de vins dans lesquels se sont vérifiées des fermentations désagréables, une éventuelle fermentation malolactique et d'autres encore. Il s'agit toujours d'une situation inacceptable.",
+				quite_limpid: "C'est un vin avec quelques particules en suspension qui peuvent ne compromettre pas la qualité. Les causes peuvent être le longue affinement en bouteille de certains vins rouges, la mise en bouteille avec les levures avec des conséquentes réfermentation, souvent pour les vins blancs et aromatiques, la mise en bouteille sans filtration de vins rouges riches en extrait et matière colorante. Dans ces cas, lorsque l'on sert le vin, il faut manipuler la bouteille avec un soin extrême. Dans tous les autres cas la présence de certaines particules doit susciter des suspects.",
+				limpid: "C'est un vin dé pourvu de toute particule en suspension et qui ne présente donc des dépôts d'aucune nature. Une manière pratique pour évaluer la limpidité du vin consiste à mettre un verre au-dessus d'une inscription et à vérifier que les lettres présentent des contours parfaitement nets.",
+				crystal_clear: "C'est un vin complètement dépourvu des particules en suspension et qui présente une luminosité intense propre. La plus grande partie de vins blancs et rosés en commerce, mais aussi certains vins rouges doués de grande transparence, peuvent être définis avec ce terme.",
+				brilliant: "C'est un vin qui présente un éclat très beau et qui reflète avec vivacité les rayons lumineux qui le traversent. Cette situation est favorisée par la présence de bulles d'anhydride carbonique qui ont la propriété de réfracter les rayons de la lumière, donc il est plus fréquent dans les vins pétillants et plus encore dans les vins mousseux. Mais ce n'est pas un cas unique. Malgré l'absence de bulles, certains vins blancs importants (vins de paille et liquoreux) présentent une luminosité spectaculaire grâce à une couleur particulièrement éclatante qui permet de définir les vins avec le mot brillant."
+			},
+			color: {
+				descr: "La couleur d'un vin dépend du milieu pédoclimatique, du cépage, des techniques d'élaboration et de l'évolution. Son évaluation sert à établir la typologie du vin (blanc, rosé et rouge) et elle doit considérer l'intensité, la tonalité ou les nuances et la vivacité.",
+				greenish_yellow: "",
+				straw_yellow: "",
+				golden_yellow: "",
+				amber: "",
+				purple_red: "",
+				ruby_red: "",
+				garnet: "",
+				orange_red: "",
+				soft_rosé: "",
+				cherry_red: "",
+				dark_rosé: "",
+			},
+			consistency: {
+				descr: "",
+				flowing: "",
+				scarcely_consistent: "",
+				quite_consistent: "",
+				consistent: "",
+				oily: ""
+			},
+			effervescence: {
+				descr: "",
+				bubble_size: "",
+				bubble_number: "",
+				bubble_persistence: "",
+			}
+		},
+		olfactory: {
+			intensity: {
+				lacking: "",
+				scarcely_intense: "",
+				quite_intense: "",
+				intense: "",
+				very_intense: "",
+			},
+			complexity: {
+				lacking: "",
+				scarcely_complex: "",
+				quite_complex: "",
+				complex: "",
+				ample: "",
+			},
+			quality: {
+				coarse: "",
+				scarcely_fine: "",
+				quite_fine: "",
+				fine: "",
+				excellent: "",
+			},
+			descriptors: {
+				aromatic: "",
+				vinous: "",
+				floral: "",
+				fruity: "",
+				grassy: "",
+				mineral: "",
+				fragrant: "",
+				spicy: "",
+				toasted: "",
+				ethereal: "",
+			}
+		},
+		taste: {
+			sweetness: {
+				dry: "",
+				medium_dry: "",
+				medium_sweet: "",
+				sweet: "",
+				excessively_sweet: "",
+			},
+			alcohols: {
+				light: "",
+				lightly_warm: "",
+				medium_warm: "",
+				warm: "",
+				alcoholic: "",
+			},
+			softness: {
+				sharp: "",
+				scarcely_soft: "",
+				quite_soft: "",
+				soft: "",
+				velvety: "",
+			},
+			acidity: {
+				flat: "",
+				scarcely_fresh: "",
+				quite_fresh: "",
+				fresh: "",
+				acidulous: "",
+			},
+			tannicity: {
+				flabby: "",
+				scarcely_tannic: "",
+				quite_tannic: "",
+				tannic: "",
+				astringent: "",
+			},
+			saltiness: {
+				tasteless: "",
+				scarcely_tasty: "",
+				quite_tasty: "",
+				tasty: "",
+				salty: "",
+			},
+			balance: {
+				unbalanced: "",
+				quite_balanced: "",
+				balanced: "",
+			},
+			intensity: {
+				lacking: "",
+				scarcely_intense: "",
+				quite_intense: "",
+				intense: "",
+				very_intense: "",
+			},
+			persistence: {
+				short: "",
+				scarcely_persistent: "",
+				quite_persistent: "",
+				persistent: "",
+				very_persistent: "",
+			},
+			quality: {
+				coarse: "",
+				scarcely_fine: "",
+				quite_fine: "",
+				fine: "",
+				excellent: "",
+			},
+			structure: {
+				thin: "",
+				weak: "",
+				full: "",
+				vigorous: "",
+				heavy: "",
+			},
+		},
+		final: {
+			evolution: {
+				descr: "",
+				immature: "",
+				young: "",
+				ready: "",
+				mature: "",
+				old: ""
+			},
+			harmony: {
+				descr: "",
+				disharmonious: "",
+				quite_harmonious: "",
+				harmonious: "",
+			}
+		}
+	}
 };

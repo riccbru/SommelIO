@@ -19,7 +19,7 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 	const theme = useTheme();
 	const router = useRouter();
 	const { t } = useTranslation();
-	const { refreshTastings } = useData();
+	const { refreshStats, refreshTastings } = useData();
 	const [modal, setModal] = useState(false);
 	const Icon = action.toLowerCase() === "delete" ? TrashIcon : FilePdfIcon;
 
@@ -46,6 +46,7 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 		try {
 			await TastingsAPI.deleteTasting(tid);
 			hideModal();
+			refreshStats();
 			refreshTastings();
 			router.replace("/(tabs)/wines?tab=tastings");
 		} catch (error: any) {

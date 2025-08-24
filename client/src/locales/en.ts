@@ -306,4 +306,177 @@ export default {
 			rated: "Evaluated",
 		},
 	},
+	description: {
+		visual: {
+			limpidity: {
+				descr: "Limpidity in a wine corresponds to absence of suspended particles, even if in some cases (aged wines, non-filtered wines or wines bottled on yeast), a limited presence can be acceptable.",
+				veiled:
+					"A wine with a strong opalescence (opacity) and strong cloudiness, due to the presence of numerous suspended particles. Generally this occurs in wines in which undesired fermentation occurred, such as malolactic fermentation as well as other processes. This is always an unacceptable situation.",
+				quite_limpid:
+					"A wine with some suspended particles, which do not necessarily compromise its quality. Causes may vary from a long ageing in bottle for some reds, bottling with yeast and consequent refermentation, often in white aromatic wines, bottling without filtration of reds rich in extract and colouring matter. In these cases the bottle must be handled with particular care while pouring the wine. In all other cases the presence of some particles should arouse some doubt.",
+				limpid:
+					"A wine free from any suspended particles, which consequently does not have any sediment. You can easily verify limpidity by tilting the glass of wine above an inscription and checking if the outlines of the letters are perfectly sharp.",
+				crystal_clear:
+					"A wine totally free from suspended particles, having a peculiar intense brightness. The term may be applied to most white and rosé wines on the market, but also to some highly transparent reds.",
+				brilliant:
+					"A wine with a wonderful brightness, which vividly reflects the rays of light reaching it. This is favoured by the presence of carbon dioxide bubbles which refract rays of light, therefore it is more frequent in semi-sparkling wines and most of all of sparkling wines. But this is not the only case. In spite of the absence of bubbles, some excellent white wines, passito wines (straw wines) and liqueur wines, present a spectacular brightness, thanks to a vivid colour, for which they deserve the term brilliant.",
+			},
+			color: {
+				descr: "The colour of wine depends on soil and weather condition, grape varieties, wine-making processing and evolution. Colour evaluation is fundamental to define wine types and to classify them into the categories white, rosé and red. It must evaluate intensity, shade or nuances and liveliness.",
+				greenish_yellow: "",
+				straw_yellow: "",
+				golden_yellow: "",
+				amber: "",
+				purple_red: "",
+				ruby_red: "",
+				garnet: "",
+				orange_red: "",
+				soft_rosé: "",
+				cherry_red: "",
+				dark_rosé: "",
+			},
+			consistency: {
+				descr: "",
+				flowing: "",
+				scarcely_consistent: "",
+				quite_consistent: "",
+				consistent: "",
+				oily: ""
+			},
+			effervescence: {
+				descr: "",
+				bubble_size: "",
+				bubble_number: "",
+				bubble_persistence: "",
+			}
+		},
+		olfactory: {
+			intensity: {
+				lacking: "",
+				scarcely_intense: "",
+				quite_intense: "",
+				intense: "",
+				very_intense: "",
+			},
+			complexity: {
+				lacking: "",
+				scarcely_complex: "",
+				quite_complex: "",
+				complex: "",
+				ample: "",
+			},
+			quality: {
+				coarse: "",
+				scarcely_fine: "",
+				quite_fine: "",
+				fine: "",
+				excellent: "",
+			},
+			descriptors: {
+				aromatic: "",
+				vinous: "",
+				floral: "",
+				fruity: "",
+				grassy: "",
+				mineral: "",
+				fragrant: "",
+				spicy: "",
+				toasted: "",
+				ethereal: "",
+			}
+		},
+		taste: {
+			sweetness: {
+				dry: "",
+				medium_dry: "",
+				medium_sweet: "",
+				sweet: "",
+				excessively_sweet: "",
+			},
+			alcohols: {
+				light: "",
+				lightly_warm: "",
+				medium_warm: "",
+				warm: "",
+				alcoholic: "",
+			},
+			softness: {
+				sharp: "",
+				scarcely_soft: "",
+				quite_soft: "",
+				soft: "",
+				velvety: "",
+			},
+			acidity: {
+				flat: "",
+				scarcely_fresh: "",
+				quite_fresh: "",
+				fresh: "",
+				acidulous: "",
+			},
+			tannicity: {
+				flabby: "",
+				scarcely_tannic: "",
+				quite_tannic: "",
+				tannic: "",
+				astringent: "",
+			},
+			saltiness: {
+				tasteless: "",
+				scarcely_tasty: "",
+				quite_tasty: "",
+				tasty: "",
+				salty: "",
+			},
+			balance: {
+				unbalanced: "",
+				quite_balanced: "",
+				balanced: "",
+			},
+			intensity: {
+				lacking: "",
+				scarcely_intense: "",
+				quite_intense: "",
+				intense: "",
+				very_intense: "",
+			},
+			persistence: {
+				short: "",
+				scarcely_persistent: "",
+				quite_persistent: "",
+				persistent: "",
+				very_persistent: "",
+			},
+			quality: {
+				coarse: "",
+				scarcely_fine: "",
+				quite_fine: "",
+				fine: "",
+				excellent: "",
+			},
+			structure: {
+				thin: "",
+				weak: "",
+				full: "",
+				vigorous: "",
+				heavy: "",
+			},
+		},
+		final: {
+			evolution: {
+				descr: "",
+				immature: "",
+				young: "",
+				ready: "",
+				mature: "",
+				old: ""
+			},
+			harmony: {
+				descr: "",
+				disharmonious: "",
+				quite_harmonious: "",
+				harmonious: "",
+			}
+		}
+	}
 };
