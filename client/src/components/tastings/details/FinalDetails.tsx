@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@/src/hooks/useTheme";
 import { StyleSheet, Text, View } from "react-native";
-import { useTheme } from "react-native-paper";
 
 type FinalExam = {
 	evolutionary_state: string;

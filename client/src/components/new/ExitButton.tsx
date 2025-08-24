@@ -1,9 +1,10 @@
 import { useRouter } from "expo-router";
 import { View, Text } from "react-native";
+import { Button } from "react-native-paper";
 import { useData } from "@/src/hooks/useData";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@/src/hooks/useTheme";
 import { XCircleIcon } from "phosphor-react-native";
-import { Button, useTheme } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type Props<T> = {

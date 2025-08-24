@@ -1,6 +1,6 @@
 import React from "react";
+import { useTheme } from "@/src/hooks/useTheme";
 import { Switch, Text, View } from "react-native";
-import { useTheme } from "react-native-paper";
 
 type Props<T> = {
 	label: string;

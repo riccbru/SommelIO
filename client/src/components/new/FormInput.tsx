@@ -1,5 +1,6 @@
 import { Text, View } from "react-native";
-import { HelperText, TextInput, useTheme } from "react-native-paper";
+import { useTheme } from "@/src/hooks/useTheme";
+import { HelperText, TextInput } from "react-native-paper";
 
 type Props<T> = {
 	label: string;

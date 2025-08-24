@@ -1,6 +1,6 @@
 import { Stack } from "expo-router";
-import { useTheme } from "react-native-paper";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@/src/hooks/useTheme";
 import { capitalizeFirst } from "@/src/utils/utils";
 
 export default function NewTastingLayout() {

@@ -1,4 +1,4 @@
-import { useTheme } from "react-native-paper";
+import { useTheme } from "@/src/hooks/useTheme";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 export function AppleButton() {

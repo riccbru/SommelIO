@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@/src/hooks/useTheme";
 import { PencilSimpleIcon } from "phosphor-react-native";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useTheme } from "react-native-paper";
 
 type Props = {
 	onPress: () => void;

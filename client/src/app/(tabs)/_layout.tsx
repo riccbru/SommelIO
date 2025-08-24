@@ -1,6 +1,6 @@
 import { Tabs } from "expo-router";
 import { Text } from "react-native";
-import { useTheme } from "react-native-paper";
+import { useTheme } from "@/src/hooks/useTheme";
 import { TAB_CONFIG } from "@/src/constants/tabConfig";
 import AnimatedTabButton from "@/src/components/navigation/AnimatedTabButton";
 

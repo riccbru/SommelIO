@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useData } from "@/src/hooks/useData";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@/src/hooks/useTheme";
+import { Searchbar, Text } from "react-native-paper";
 import LoadingSpinner from "@/src/components/LoadingSpinner";
-import { useTheme, Searchbar, Text } from "react-native-paper";
 import ToDrinkList from "@/src/components/tastings/ToDrinkList";
 import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
 

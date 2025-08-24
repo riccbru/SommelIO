@@ -1,6 +1,6 @@
 import Title from "@/src/components/Title";
-import { useTheme } from "react-native-paper";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@/src/hooks/useTheme";
 import { Linking, StyleSheet, Pressable, Text, View } from "react-native";
 
 export default function Index() {

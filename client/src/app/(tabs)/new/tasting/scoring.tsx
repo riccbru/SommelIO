@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { Card } from "react-native-paper";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@/src/hooks/useTheme";
 import { isRightRange } from "@/src/utils/utils";
 import ScoringsAPI from "@/src/services/scorings";
-import { Card, useTheme } from "react-native-paper";
 import FormInput from "@/src/components/new/FormInput";
 import FormScore from "@/src/components/new/FormScore";
 import ExitButton from "@/src/components/new/ExitButton";

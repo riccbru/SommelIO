@@ -1,7 +1,8 @@
+import { useState } from "react";
+import { Card } from "react-native-paper";
 import { useTranslation } from "react-i18next";
-import { useState, useTransition } from "react";
+import { useTheme } from "@/src/hooks/useTheme";
 import TastingsAPI from "@/src/services/tastings";
-import { Card, useTheme } from "react-native-paper";
 import FormInput from "@/src/components/new/FormInput";
 import NextButton from "@/src/components/new/NextButton";
 import FormSelect from "@/src/components/new/FormSelect";
@@ -314,7 +315,7 @@ export default function New() {
 						/>
 						<NextButton
 							// path="/new/visual"
-							path={`/new/visual?wine_category_name=${encodeURIComponent(formData.wine_category_name)}`}
+							path={`/new/tasting/visual?wine_category_name=${encodeURIComponent(formData.wine_category_name)}`}
 							text='VISUAL'
 							validation={validateForm}
 							formData={{ ...formData, vintage: Number(formData.vintage) }}

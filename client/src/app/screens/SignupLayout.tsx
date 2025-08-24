@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Title from "@/src/components/Title";
 import { useAuth } from "@/src/hooks/useAuth";
-import { useTheme } from "react-native-paper";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@/src/hooks/useTheme";
 import AuthInput from "@/src/components/auth/AuthInput";
 import AuthButton from "@/src/components/auth/AuthButton";
 import ProviderSSO from "@/src/components/auth/ProviderSSO";

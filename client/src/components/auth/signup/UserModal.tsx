@@ -1,7 +1,7 @@
-import { useAuth } from "@/src/hooks/useAuth";
 import { useRouter } from "expo-router";
+import { useAuth } from "@/src/hooks/useAuth";
+import { useTheme } from "@/src/hooks/useTheme";
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useTheme } from "react-native-paper";
 
 interface UserModalProps {
 	modal: boolean;

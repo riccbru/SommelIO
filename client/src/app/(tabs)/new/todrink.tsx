@@ -3,7 +3,8 @@ import { useRouter } from "expo-router";
 import WinesAPI from "@/src/services/wines";
 import { useData } from "@/src/hooks/useData";
 import { useTranslation } from "react-i18next";
-import { Text, useTheme, Card } from "react-native-paper";
+import { useTheme } from "@/src/hooks/useTheme";
+import { Text, Card } from "react-native-paper";
 import FormField from "@/src/components/tastings/FormField";
 import CancelButton from "@/src/components/new/CancelButton";
 import {

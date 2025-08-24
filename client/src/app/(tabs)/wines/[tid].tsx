@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@/src/hooks/useTheme";
+import { Text, Card } from "react-native-paper";
 import { StarIcon } from "phosphor-react-native";
-import { Text, Card, useTheme } from "react-native-paper";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import {

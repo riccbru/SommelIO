@@ -1,6 +1,7 @@
 import { View } from "react-native";
+import { Button } from "react-native-paper";
+import { useTheme } from "@/src/hooks/useTheme";
 import { TrashIcon } from "phosphor-react-native";
-import { Button, useTheme } from "react-native-paper";
 
 type Props<T> = {
 	defaultFormData: T;

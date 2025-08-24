@@ -1,5 +1,6 @@
+import { useTheme } from "@/src/hooks/useTheme";
+import { ActivityIndicator } from "react-native-paper";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import { useTheme, ActivityIndicator } from "react-native-paper";
 
 type Props = {
 	loading: boolean;

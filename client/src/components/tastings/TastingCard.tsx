@@ -1,6 +1,6 @@
-import { useTheme } from "react-native-paper";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useTheme } from "@/src/hooks/useTheme";
 import { NotePencilIcon, XCircleIcon } from "phosphor-react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 type EditModeShape = {
 	tasting: boolean;

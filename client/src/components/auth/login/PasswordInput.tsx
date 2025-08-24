@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { HelperText, useTheme } from "react-native-paper";
+import { useTheme } from "@/src/hooks/useTheme";
+import { HelperText } from "react-native-paper";
 import { EyeIcon, EyeSlashIcon } from "phosphor-react-native";
 import { View, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 

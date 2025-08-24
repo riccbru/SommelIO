@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import { useTheme } from "react-native-paper";
+import { useTheme } from "@/src/hooks/useTheme";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export function LoginFooter() {

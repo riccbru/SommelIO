@@ -1,11 +1,11 @@
+import { useAuth } from "@/src/hooks/useAuth";
 import { useTranslation } from "react-i18next";
-import Stats from "@/src/components/user/UserStats";
 import { useTheme } from "@/src/hooks/useTheme";
 import { getInitials } from "@/src/utils/utils";
+import Stats from "@/src/components/user/UserStats";
 import { Avatar, Card, Divider } from "react-native-paper";
 import { Share, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { DevToLogoIcon, ExportIcon, SealCheckIcon } from "phosphor-react-native";
-import { useAuth } from "@/src/hooks/useAuth";
 
 type UserInfo = {
 	admin: boolean;

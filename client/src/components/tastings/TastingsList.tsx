@@ -1,7 +1,8 @@
 import i18n from "@/src/locales/i18n";
 import { useRouter } from "expo-router";
+import { List } from "react-native-paper";
 import { useTranslation } from "react-i18next";
-import { List, useTheme } from "react-native-paper";
+import { useTheme } from "@/src/hooks/useTheme";
 import { FileTextIcon } from "phosphor-react-native";
 import { capitalizeFirst, formatDescription } from "@/src/utils/utils";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";

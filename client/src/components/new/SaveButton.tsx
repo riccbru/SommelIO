@@ -1,6 +1,7 @@
 import { useRouter } from "expo-router";
 import { View, Text } from "react-native";
-import { Button, useTheme } from "react-native-paper";
+import { Button } from "react-native-paper";
+import { useTheme } from "@/src/hooks/useTheme";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ArrowCircleRightIcon, CheckCircleIcon } from "phosphor-react-native";
 

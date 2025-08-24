@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useRouter } from "expo-router";
+import { Button } from "react-native-paper";
+import { useData } from "@/src/hooks/useData";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@/src/hooks/useTheme";
 import TastingsAPI from "@/src/services/tastings";
-import { Button, useTheme } from "react-native-paper";
 import { FilePdfIcon, TrashIcon } from "phosphor-react-native";
 import { Modal, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useData } from "@/src/hooks/useData";
 
 type Props = {
 	tid: string;

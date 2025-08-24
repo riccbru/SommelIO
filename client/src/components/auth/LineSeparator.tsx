@@ -1,5 +1,6 @@
+import { Text } from "react-native-paper";
+import { useTheme } from "@/src/hooks/useTheme";
 import { StyleSheet, View } from "react-native";
-import { Text, useTheme } from "react-native-paper";
 
 export function LineSeparator() {
 	const theme = useTheme();

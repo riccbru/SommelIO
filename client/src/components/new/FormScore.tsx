@@ -1,5 +1,6 @@
-import { Text, View } from "react-native";
-import { HelperText, SegmentedButtons, useTheme } from "react-native-paper";
+import { useTheme } from "@/src/hooks/useTheme";
+import { HelperText } from "react-native-paper";
+import { Text, TouchableOpacity, View } from "react-native";
 
 type Props = {
 	label: string;
@@ -22,19 +23,33 @@ export default function FormScore({ label, value, error, onChange }: Props) {
 			>
 				{label}
 			</Text>
-			<View style={{ alignItems: "center" }}>
-				<SegmentedButtons
-					style={{ marginLeft: 2, marginRight: 2, padding: 3 }}
-					value={value?.toString()}
-					onValueChange={v => onChange(Number(v))}
-					buttons={[
-						{ value: "1", label: "1" },
-						{ value: "2", label: "2" },
-						{ value: "3", label: "3" },
-						{ value: "4", label: "4" },
-						{ value: "5", label: "5" },
-					]}
-				/>
+			<View style={{ flex: 1, flexDirection: "row", justifyContent: "space-around" }}>
+				{[1, 2, 3, 4, 5].map(num => (
+					<TouchableOpacity
+						key={num}
+						onPress={() => onChange(num)}
+						style={{
+							width: 45, 
+							height: 45,
+							padding: 10,
+							borderWidth: 2, 
+							borderRadius: 6,
+							marginHorizontal: 3,
+							borderColor: theme.colors.gray,
+							backgroundColor: value === num ? theme.colors.primary : theme.colors.surface,
+						}}
+					>
+						<Text
+							style={{
+								fontSize: 18,
+								alignSelf: "center",
+								color: value === num ? theme.colors.onPrimary : theme.colors.primary,
+							}}
+						>
+							{num}
+						</Text>
+					</TouchableOpacity>
+				))}
 			</View>
 			<HelperText
 				type='error'

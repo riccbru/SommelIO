@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { Card } from "react-native-paper";
 import ExamsAPI from "@/src/services/exams";
 import { useTranslation } from "react-i18next";
-import { Card, useTheme } from "react-native-paper";
+import { useTheme } from "@/src/hooks/useTheme";
 import FormInput from "@/src/components/new/FormInput";
 import ExitButton from "@/src/components/new/ExitButton";
 import FormSelect from "@/src/components/new/FormSelect";

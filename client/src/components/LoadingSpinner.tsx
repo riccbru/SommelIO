@@ -1,5 +1,6 @@
+import { useTheme } from "@/src/hooks/useTheme";
 import { StyleSheet, Text, View } from "react-native";
-import { ActivityIndicator, useTheme } from "react-native-paper";
+import { ActivityIndicator } from "react-native-paper";
 
 type Props = {
 	text: string;

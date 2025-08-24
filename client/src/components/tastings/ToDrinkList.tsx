@@ -1,10 +1,10 @@
-import i18n from "@/src/locales/i18n";
-import { useTranslation } from "react-i18next";
-import { List, useTheme } from "react-native-paper";
-import { XIcon } from "phosphor-react-native";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { List } from "react-native-paper";
 import WinesAPI from "@/src/services/wines";
+import { XIcon } from "phosphor-react-native";
 import { useData } from "@/src/hooks/useData";
+import { useTranslation } from "react-i18next";
+import { useTheme } from "@/src/hooks/useTheme";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 type Wine = {
 	wid: string;

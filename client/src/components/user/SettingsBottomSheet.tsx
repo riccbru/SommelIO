@@ -1,9 +1,9 @@
 import Settings from "./Settings";
 import { Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import { BottomSheetMethods } from "@gorhom/bottom-sheet/lib/typescript/types";
 import BottomSheet, { BottomSheetBackdrop, BottomSheetView } from "@gorhom/bottom-sheet";
-import { useTranslation } from "react-i18next";
 
 type Props = {
 	bottomSheetRef: React.RefObject<BottomSheetMethods | null>;

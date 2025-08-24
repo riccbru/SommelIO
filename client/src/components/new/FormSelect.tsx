@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { CaretDownIcon, CaretUpIcon } from "phosphor-react-native";
-import { HelperText, Text, Card, useTheme } from "react-native-paper";
-import { View, TouchableOpacity, Modal, FlatList, StyleSheet } from "react-native";
-import { formatOption } from "@/src/utils/utils";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@/src/hooks/useTheme";
+import { formatOption } from "@/src/utils/utils";
+import { HelperText, Text, Card } from "react-native-paper";
+import { CaretDownIcon, CaretUpIcon } from "phosphor-react-native";
+import { View, TouchableOpacity, Modal, FlatList, StyleSheet } from "react-native";
 
 type Props<T> = {
 	label: string;

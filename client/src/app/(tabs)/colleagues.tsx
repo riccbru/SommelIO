@@ -1,7 +1,7 @@
 import { useLayoutEffect } from "react";
 import { useNavigation } from "expo-router";
-import { useTheme } from "react-native-paper";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@/src/hooks/useTheme";
 import { BellIcon, UserPlusIcon } from "phosphor-react-native";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 

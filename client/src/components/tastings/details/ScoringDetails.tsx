@@ -1,7 +1,7 @@
-import { useTheme } from "react-native-paper";
-import { useTranslation } from "react-i18next";
-import { StyleSheet, Text, View } from "react-native";
 import { useData } from "@/src/hooks/useData";
+import { useTranslation } from "react-i18next";
+import { useTheme } from "@/src/hooks/useTheme";
+import { StyleSheet, Text, View } from "react-native";
 
 type ScoringEvaluation = {
 	sid: string;
