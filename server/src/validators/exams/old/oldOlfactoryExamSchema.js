@@ -10,7 +10,7 @@ const intensityOptions = [
 const complexityOptions = ["lacking", "scarcely_complex", "quite_complex", "complex", "ample"];
 const qualityOptions = ["coarse", "scarcely_fine", "quite_fine", "fine", "excellent"];
 
-const OlfactoryExamSchema = z.object({
+const OldOlfactoryExamSchema = z.object({
 	intensity: z.string().refine(val => intensityOptions.includes(val), {
 		message: `Intensity must be ${intensityOptions.join("/")}`,
 	}),
@@ -33,4 +33,4 @@ const OlfactoryExamSchema = z.object({
 	notes: z.string().optional(),
 });
 
-export { OlfactoryExamSchema };
+export { OldOlfactoryExamSchema };

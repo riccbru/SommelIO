@@ -21,16 +21,12 @@ export default function AnimatedTabButton({ children, onPress, style }: Props) {
 				toValue: 1,
 				duration: 200,
 				useNativeDriver: true,
-			})
+			}),
 		]).start();
 	};
 
 	return (
-		<Pressable
-			style={style}
-			onPress={onPress}
-			onPressOut={handlePressOut}
-		>
+		<Pressable style={style} onPress={onPress} onPressOut={handlePressOut}>
 			<Animated.View style={{ alignItems: "center", transform: [{ scale }] }}>
 				{children}
 			</Animated.View>

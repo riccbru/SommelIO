@@ -54,87 +54,18 @@ model tastings {
   tasting_location          String
   created_at                DateTime?                  @default(now()) @db.Timestamptz(6)
   updated_at                DateTime?                  @default(now()) @db.Timestamptz(6)
-  final_considerations      final_considerations?
+  new                       Boolean                    @default(false)
   final_considerations_new  final_considerations_new?
-  olfactory_exams           olfactory_exams?
+  final_considerations_old  final_considerations_old?
   olfactory_exams_new       olfactory_exams_new?
+  olfactory_exams_old       olfactory_exams_old?
   scoring_evaluation        scoring_evaluation?
-  taste_olfactory_exams     taste_olfactory_exams?
   taste_olfactory_exams_new taste_olfactory_exams_new?
+  taste_olfactory_exams_old taste_olfactory_exams_old?
   users                     users                      @relation(fields: [uid], references: [uid], onDelete: Cascade, onUpdate: NoAction)
   wine_categories           wine_categories            @relation(fields: [wine_category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  visual_exams              visual_exams?
   visual_exams_new          visual_exams_new?
-}
-
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
-model olfactory_exams {
-  id         Int      @id @default(autoincrement())
-  tid        String   @unique @db.Uuid
-  eid        String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  intensity  String
-  complexity String
-  quality    String
-  aromatic   Boolean? @default(false)
-  vinous     Boolean? @default(false)
-  floral     Boolean? @default(false)
-  fruity     Boolean? @default(false)
-  grassy     Boolean? @default(false)
-  mineral    Boolean? @default(false)
-  fragrant   Boolean? @default(false)
-  spicy      Boolean? @default(false)
-  toasted    Boolean? @default(false)
-  ethereal   Boolean? @default(false)
-  notes      String?
-  tastings   tastings @relation(fields: [tid], references: [tid], onDelete: Cascade, onUpdate: NoAction)
-}
-
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
-model taste_olfactory_exams {
-  id          Int      @id @default(autoincrement())
-  tid         String   @unique @db.Uuid
-  eid         String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  sweetness   String
-  alcohols    String
-  softness    String
-  acidity     String
-  tannicity   String
-  saltiness   String
-  intensity   String
-  persistence String
-  quality     String
-  structure   String
-  balance     String
-  notes       String?
-  tastings    tastings @relation(fields: [tid], references: [tid], onDelete: Cascade, onUpdate: NoAction)
-}
-
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
-model visual_exams {
-  id                 Int      @id @default(autoincrement())
-  tid                String   @unique @db.Uuid
-  eid                String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  limpidity          String?
-  color_family       String
-  color_shade        String
-  consistency        String
-  bubble_size        String?
-  bubble_number      String?
-  bubble_persistence String?
-  notes              String?
-  tastings           tastings @relation(fields: [tid], references: [tid], onDelete: Cascade, onUpdate: NoAction)
-}
-
-/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
-model final_considerations {
-  id                 Int      @id @default(autoincrement())
-  tid                String   @unique @db.Uuid
-  eid                String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  evolutionary_state String
-  harmony            String
-  pairings           String
-  notes              String?
-  tastings           tastings @relation(fields: [tid], references: [tid], onDelete: Cascade, onUpdate: NoAction)
+  visual_exams_old          visual_exams_old?
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -199,8 +130,9 @@ model to_drink {
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model final_considerations_new {
   id                 Int      @id @default(autoincrement())
-  tid                String   @unique @db.Uuid
+  new                Boolean  @default(true)
   eid                String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tid                String   @unique @db.Uuid
   evolutionary_state String
   harmony            String
   quality            String
@@ -212,8 +144,9 @@ model final_considerations_new {
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model olfactory_exams_new {
   id           Int      @id @default(autoincrement())
-  tid          String   @unique @db.Uuid
+  new          Boolean  @default(true)
   eid          String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tid          String   @unique @db.Uuid
   intensity    String
   complexity   String
   aromatic     Boolean? @default(false)
@@ -233,8 +166,9 @@ model olfactory_exams_new {
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model taste_olfactory_exams_new {
   id            Int      @id @default(autoincrement())
-  tid           String   @unique @db.Uuid
+  new           Boolean  @default(true)
   eid           String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tid           String   @unique @db.Uuid
   sweetness     String
   acidity       String
   alcohols      String
@@ -254,8 +188,9 @@ model taste_olfactory_exams_new {
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model visual_exams_new {
   id                 Int      @id @default(autoincrement())
-  tid                String   @unique @db.Uuid
+  new                Boolean  @default(true)
   eid                String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tid                String   @unique @db.Uuid
   limpidity          String?
   color_family       String
   color_shade        String
@@ -263,6 +198,76 @@ model visual_exams_new {
   chains_number      String?
   rise_speed         String?
   bubble_size        String?
+  bubble_persistence String?
+  notes              String?
+  tastings           tastings @relation(fields: [tid], references: [tid], onDelete: Cascade, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model final_considerations_old {
+  id                 Int      @id @default(autoincrement())
+  tid                String   @unique @db.Uuid
+  eid                String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  evolutionary_state String
+  harmony            String
+  pairings           String
+  notes              String?
+  tastings           tastings @relation(fields: [tid], references: [tid], onDelete: Cascade, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model olfactory_exams_old {
+  id         Int      @id @default(autoincrement())
+  tid        String   @unique @db.Uuid
+  eid        String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  intensity  String
+  complexity String
+  quality    String
+  aromatic   Boolean? @default(false)
+  vinous     Boolean? @default(false)
+  floral     Boolean? @default(false)
+  fruity     Boolean? @default(false)
+  grassy     Boolean? @default(false)
+  mineral    Boolean? @default(false)
+  fragrant   Boolean? @default(false)
+  spicy      Boolean? @default(false)
+  toasted    Boolean? @default(false)
+  ethereal   Boolean? @default(false)
+  notes      String?
+  tastings   tastings @relation(fields: [tid], references: [tid], onDelete: Cascade, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model taste_olfactory_exams_old {
+  id          Int      @id @default(autoincrement())
+  tid         String   @unique @db.Uuid
+  eid         String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  sweetness   String
+  alcohols    String
+  softness    String
+  acidity     String
+  tannicity   String
+  saltiness   String
+  intensity   String
+  persistence String
+  quality     String
+  structure   String
+  balance     String
+  notes       String?
+  tastings    tastings @relation(fields: [tid], references: [tid], onDelete: Cascade, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model visual_exams_old {
+  id                 Int      @id @default(autoincrement())
+  tid                String   @unique @db.Uuid
+  eid                String   @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  limpidity          String?
+  color_family       String
+  color_shade        String
+  consistency        String
+  bubble_size        String?
+  bubble_number      String?
   bubble_persistence String?
   notes              String?
   tastings           tastings @relation(fields: [tid], references: [tid], onDelete: Cascade, onUpdate: NoAction)

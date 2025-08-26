@@ -24,7 +24,7 @@ type FormData = {
 	taste_quality: number;
 	harmony: number;
 	notes: string;
-}
+};
 
 const defaultFormData = {
 	visual_appearance: 0,

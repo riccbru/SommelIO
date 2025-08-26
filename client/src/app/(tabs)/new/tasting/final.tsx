@@ -138,7 +138,12 @@ export default function Final() {
 								options={evolutionaryStateOptions}
 								value={formData.evolutionary_state}
 								i18nPath={`${i18nextPath}.evolution`}
-								description={setDescription(t, 'final', 'evolution', formData.evolutionary_state)}
+								description={setDescription(
+									t,
+									"final",
+									"evolution",
+									formData.evolutionary_state
+								)}
 							/>
 
 							<FormSelect
@@ -149,7 +154,7 @@ export default function Final() {
 								options={harmonyOptions}
 								onChange={updateFormData}
 								i18nPath={`${i18nextPath}.harmony`}
-								description={setDescription(t, 'final', 'harmony', formData.harmony)}
+								description={setDescription(t, "final", "harmony", formData.harmony)}
 							/>
 
 							<FormInput

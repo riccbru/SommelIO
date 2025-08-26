@@ -2,11 +2,7 @@ import { PrismaClient } from "../generated/prisma/index.js";
 
 const prisma = new PrismaClient();
 
-const getPreferredLanguage = req => {
-	return req.headers["accept-language"]?.split(",")[0]?.split("-")[0] || "en";
-};
-
-const formatOlfactoryExam = data => {
+const formatOldOlfactoryExam = data => {
 	const exam = {
 		eid: data?.eid,
 		intensity: data.intensity,
@@ -23,6 +19,28 @@ const formatOlfactoryExam = data => {
 			spicy: data.spicy,
 			toasted: data.toasted,
 			ethereal: data.ethereal,
+		},
+		notes: data.notes,
+	};
+	return exam;
+};
+
+const formatNewOlfactoryExam = data => {
+	const exam = {
+		eid: data?.eid,
+		intensity: data.intensity,
+		complexity: data.complexity,
+		quality: data.quality,
+		description: {
+			aromatic: data.aromatic,
+			floral: data.floral,
+			spicy: data.spicy,
+			varietal: data.varietal,
+			vegetal: data.vegetal,
+			baking: data.baking,
+			fruity: data.fruity,
+			fragrant: data.fragrant,
+			empyreumatic: data.empyreumatic,
 		},
 		notes: data.notes,
 	};
@@ -50,21 +68,29 @@ const formatScoringEvaluation = data => {
 };
 
 const formatTasting = data => {
-	if (data.visual_exams) {
-		delete data.visual_exams?.id;
-		delete data.visual_exams?.tid;
+	if (data.visual_exams_old || data.visual_exams_new) {
+		delete data.visual_exams_old?.id;
+		delete data.visual_exams_new?.id;
+		delete data.visual_exams_old?.tid;
+		delete data.visual_exams_new?.tid;
 	}
-	if (data.olfactory_exams) {
-		delete data.olfactory_exams?.id;
-		delete data.olfactory_exams?.tid;
+	if (data.olfactory_exams_old || data.olfactory_exams_new) {
+		delete data.olfactory_exams_old?.id;
+		delete data.olfactory_exams_new?.id;
+		delete data.olfactory_exams_old?.tid;
+		delete data.olfactory_exams_new?.tid;
 	}
-	if (data.taste_olfactory_exams) {
-		delete data.taste_olfactory_exams?.id;
-		delete data.taste_olfactory_exams?.tid;
+	if (data.taste_olfactory_exams_old || data.taste_olfactory_exams_new) {
+		delete data.taste_olfactory_exams_old?.id;
+		delete data.taste_olfactory_exams_new?.id;
+		delete data.taste_olfactory_exams_old?.tid;
+		delete data.taste_olfactory_exams_new?.tid;
 	}
-	if (data.final_considerations) {
-		delete data.final_considerations?.id;
-		delete data.final_considerations?.tid;
+	if (data.final_considerations_old || data.final_considerations_new) {
+		delete data.final_considerations_old?.id;
+		delete data.final_considerations_new?.id;
+		delete data.final_considerations_old?.tid;
+		delete data.final_considerations_new?.tid;
 	}
 	const tasting = {
 		tid: data.tid,
@@ -83,14 +109,19 @@ const formatTasting = data => {
 		tasting_location: data.tasting_location,
 		created_at: data.created_at,
 		updated_at: data.updated_at,
-		visual_exam: data.visual_exams || {},
-		olfactory_exam: data.olfactory_exams ? formatOlfactoryExam(data.olfactory_exams) : {},
-		taste_olfactory_exam: data.taste_olfactory_exams || {},
-		final_considerations: data.final_considerations || {},
+		new: data.new,
+		visual_exam: data.visual_exams_old || data.visual_exams_new || {},
+		olfactory_exam:
+			(data.olfactory_exams_old && formatOldOlfactoryExam(data.olfactory_exams_old)) ||
+			(data.olfactory_exams_new && formatNewOlfactoryExam(data.olfactory_exams_new)) ||
+			{},
+		taste_olfactory_exam: data.taste_olfactory_exams_old || data.taste_olfactory_exams_new || {},
+		final_considerations: data.final_considerations_old || data.final_considerations_new || {},
 		scoring_evaluation: data.scoring_evaluation
 			? formatScoringEvaluation(data.scoring_evaluation)
 			: {},
 	};
+
 	return tasting;
 };
 
@@ -103,9 +134,9 @@ const findWineCategoryId = async code => {
 };
 
 export {
-	getPreferredLanguage,
 	formatTasting,
-	formatOlfactoryExam,
-	formatScoringEvaluation,
 	findWineCategoryId,
+	formatOldOlfactoryExam,
+	formatNewOlfactoryExam,
+	formatScoringEvaluation,
 };

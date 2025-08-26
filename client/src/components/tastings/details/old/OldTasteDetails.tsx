@@ -21,7 +21,7 @@ type Props = {
 	exam: TasteExam;
 };
 
-export default function TasteDetails({ exam }: Props) {
+export default function OldTasteDetails({ exam }: Props) {
 	const theme = useTheme();
 	const { t } = useTranslation();
 

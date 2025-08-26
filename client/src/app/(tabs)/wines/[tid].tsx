@@ -19,19 +19,31 @@ import LoadingSpinner from "@/src/components/LoadingSpinner";
 import TastingCard from "@/src/components/tastings/TastingCard";
 import ActionButton from "@/src/components/tastings/ActionButton";
 
-import FinalDetails from "@/src/components/tastings/details/FinalDetails";
-import TasteDetails from "@/src/components/tastings/details/TasteDetails";
-import VisualDetails from "@/src/components/tastings/details/VisualDetails";
 import TastingDetails from "@/src/components/tastings/details/TastingDetails";
-import ScoringDetails from "@/src/components/tastings/details/ScoringDetails";
-import OlfactoryDetails from "@/src/components/tastings/details/OlfactoryDetails";
-
-import FinalUpdate from "@/src/components/tastings/update/FinalUpdate";
-import TasteUpdate from "@/src/components/tastings/update/TasteUpdate";
-import VisualUpdate from "@/src/components/tastings/update/VisualUpdate";
-import ScoringUpdate from "@/src/components/tastings/update/ScoringUpdate";
 import TastingUpdate from "@/src/components/tastings/update/TastingUpdate";
-import OlfactoryUpdate from "@/src/components/tastings/update/OlfactoryUpdate";
+
+import OldVisualDetails from "@/src/components/tastings/details/old/OldVisualDetails";
+import NewVisualDetails from "@/src/components/tastings/details/new/NewVisualDetails";
+import OldVisualUpdate from "@/src/components/tastings/update/old/OldVisualUpdate";
+import NewVisualUpdate from "@/src/components/tastings/update/new/NewVisualUpdate";
+
+import OldOlfactoryDetails from "@/src/components/tastings/details/old/OldOlfactoryDetails";
+import NewOlfactoryDetails from "@/src/components/tastings/details/new/NewOlfactoryDetails";
+import OldOlfactoryUpdate from "@/src/components/tastings/update/old/OldOlfactoryUpdate";
+import NewOlfactoryUpdate from "@/src/components/tastings/update/new/NewOlfactoryUpdate";
+
+import OldTasteDetails from "@/src/components/tastings/details/old/OldTasteDetails";
+import NewTasteDetails from "@/src/components/tastings/details/new/NewTasteDetails";
+import OldTasteUpdate from "@/src/components/tastings/update/old/OldTasteUpdate";
+import NewTasteUpdate from "@/src/components/tastings/update/new/NewTasteUpdate";
+
+import OldFinalDetails from "@/src/components/tastings/details/old/OldFinalDetails";
+import NewFinalDetails from "@/src/components/tastings/details/new/NewFinalDetails";
+import OldFinalUpdate from "@/src/components/tastings/update/old/OldFinalUpdate";
+import NewFinalUpdate from "@/src/components/tastings/update/new/NewFinalUpdate";
+
+import ScoringDetails from "@/src/components/tastings/details/ScoringDetails";
+import ScoringUpdate from "@/src/components/tastings/update/ScoringUpdate";
 
 type EditModeShape = {
 	tasting: boolean;
@@ -74,6 +86,7 @@ type Tasting = {
 	taste_olfactory_exam: Record<string, any>;
 	final_considerations: Record<string, any>;
 	scoring_evaluation: Record<string, any>;
+	new: boolean;
 };
 
 export default function TastingDetail() {
@@ -246,10 +259,17 @@ export default function TastingDetail() {
 							setEditMode={setEditMode}
 							subtitle={t("new.visual.title")}
 						/>
+
 						{!editMode["visual"] ? (
-							<VisualDetails exam={tasting.visual_exam} />
+							tasting.new ? (
+								<NewVisualDetails exam={tasting.visual_exam} />
+							) : (
+								<OldVisualDetails exam={tasting.visual_exam} />
+							)
+						) : tasting.new ? (
+							<NewVisualUpdate />
 						) : (
-							<VisualUpdate
+							<OldVisualUpdate
 								tid={tasting.tid}
 								sparkling={tasting.wine_category_name === "sparkling"}
 								exam={tasting.visual_exam}
@@ -270,9 +290,15 @@ export default function TastingDetail() {
 							subtitle={t("new.olfactory.title")}
 						/>
 						{!editMode["olfactory"] ? (
-							<OlfactoryDetails exam={tasting.olfactory_exam} />
+							tasting.new ? (
+								<NewOlfactoryDetails exam={tasting.olfactory_exam} />
+							) : (
+								<OldOlfactoryDetails exam={tasting.olfactory_exam} />
+							)
+						) : tasting.new ? (
+							<NewOlfactoryUpdate />
 						) : (
-							<OlfactoryUpdate
+							<OldOlfactoryUpdate
 								tid={tasting.tid}
 								exam={tasting.olfactory_exam}
 								setEditMode={setEditMode}
@@ -292,9 +318,15 @@ export default function TastingDetail() {
 							subtitle={t("new.taste.title")}
 						/>
 						{!editMode["taste"] ? (
-							<TasteDetails exam={tasting.taste_olfactory_exam} />
+							tasting.new ? (
+								<NewTasteDetails exam={tasting.taste_olfactory_exam} />
+							) : (
+								<OldTasteDetails exam={tasting.taste_olfactory_exam} />
+							)
+						) : tasting.new ? (
+							<NewTasteUpdate />
 						) : (
-							<TasteUpdate
+							<OldTasteUpdate
 								tid={tasting.tid}
 								exam={tasting.taste_olfactory_exam}
 								setEditMode={setEditMode}
@@ -314,9 +346,15 @@ export default function TastingDetail() {
 							subtitle={t("new.final.title")}
 						/>
 						{!editMode["final"] ? (
-							<FinalDetails exam={tasting.final_considerations} />
+							tasting.new ? (
+								<NewFinalDetails exam={tasting.final_considerations} />
+							) : (
+								<OldFinalDetails exam={tasting.final_considerations} />
+							)
+						) : tasting.new ? (
+							<NewFinalUpdate />
 						) : (
-							<FinalUpdate
+							<OldFinalUpdate
 								tid={tasting.tid}
 								exam={tasting.final_considerations}
 								setEditMode={setEditMode}

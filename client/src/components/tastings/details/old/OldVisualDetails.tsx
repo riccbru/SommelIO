@@ -17,7 +17,7 @@ type Props = {
 	exam: VisualExam;
 };
 
-export default function VisualDetails({ exam }: Props) {
+export default function OldVisualDetails({ exam }: Props) {
 	const theme = useTheme();
 	const { t } = useTranslation();
 

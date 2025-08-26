@@ -26,7 +26,7 @@ type Props = {
 	exam: OlfactoryExam;
 };
 
-export default function OlfactoryDetails({ exam }: Props) {
+export default function OldOlfactoryDetails({ exam }: Props) {
 	const theme = useTheme();
 	const { t } = useTranslation();
 

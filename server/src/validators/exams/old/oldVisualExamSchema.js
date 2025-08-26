@@ -18,7 +18,7 @@ const bubblesizeOptions = ["", "large", "quite_fine", "fine"];
 const bubbleNumberOptions = ["", "very_few", "quite_numerous", "numerous"];
 const bubblePersistenceOptions = ["", "fading", "quite_persistent", "persistent"];
 
-const VisualExamSchema = z
+const OldVisualExamSchema = z
 	.object({
 		color_family: z.string().refine(val => colorFamilyOptions.includes(val), {
 			message: `Color family must be ${colorFamilyOptions.join("/")}`,
@@ -61,4 +61,4 @@ const VisualExamSchema = z
 		}
 	});
 
-export { VisualExamSchema };
+export { OldVisualExamSchema };

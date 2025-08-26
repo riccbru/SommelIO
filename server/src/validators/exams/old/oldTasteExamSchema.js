@@ -24,7 +24,7 @@ const persistenceOptions = [
 const qualityOptions = ["coarse", "scarcely_fine", "quite_fine", "fine", "excellent"];
 const structureOptions = ["thin", "weak", "full", "vigorous", "heavy"];
 
-const TasteExamSchema = z.object({
+const OldTasteExamSchema = z.object({
 	sweetness: z.string().refine(val => sweetnessOptions.includes(val), {
 		message: `Sweetness must be ${sweetnessOptions.join("/")}`,
 	}),
@@ -61,4 +61,4 @@ const TasteExamSchema = z.object({
 	notes: z.string().optional(),
 });
 
-export { TasteExamSchema };
+export { OldTasteExamSchema };

@@ -29,10 +29,10 @@ export default function FormScore({ label, value, error, onChange }: Props) {
 						key={num}
 						onPress={() => onChange(num)}
 						style={{
-							width: 45, 
+							width: 45,
 							height: 45,
 							padding: 10,
-							borderWidth: 2, 
+							borderWidth: 2,
 							borderRadius: 6,
 							marginHorizontal: 3,
 							borderColor: theme.colors.gray,

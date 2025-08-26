@@ -50,6 +50,6 @@ export function isRightRange(num: number, MIN: number, MAX: number): boolean {
 	return num >= MIN && num <= MAX;
 }
 
-export function setDescription(t: TFunction,exam: string, field: string, state: string): string {
+export function setDescription(t: TFunction, exam: string, field: string, state: string): string {
 	return t(`description.${exam}.${field}.${!state ? "descr" : state}`);
-};
+}

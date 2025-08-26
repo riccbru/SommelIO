@@ -11,7 +11,7 @@ export default {
 	no_formSelect: "",
 	signup: {
 		full_name: "",
-		birthdate: ""
+		birthdate: "",
 	},
 	shareMex: "",
 	tabs: {
@@ -19,13 +19,13 @@ export default {
 		colleagues: "",
 		new: "",
 		wines: "",
-		profile: ""
+		profile: "",
 	},
 	index: {
-		welcome: ""
+		welcome: "",
 	},
 	colleagues: {
-		title: ""
+		title: "",
 	},
 	new: {
 		name: "",

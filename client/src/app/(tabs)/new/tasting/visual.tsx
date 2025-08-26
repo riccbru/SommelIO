@@ -208,7 +208,7 @@ export default function Visual() {
 								options={limpidityOptions}
 								label={t("new.visual.limpidity")}
 								i18nPath={`${i18nextPath}.limpidity`}
-								description={setDescription(t, 'visual', 'limpidity', formData.limpidity)}
+								description={setDescription(t, "visual", "limpidity", formData.limpidity)}
 							/>
 
 							<FormSelect
@@ -232,7 +232,7 @@ export default function Visual() {
 								label={t("new.visual.shade")}
 								i18nPath={`${i18nextPath}.shade`}
 								options={colorShadesOptions[formData.color_family]}
-								description={setDescription(t, 'visual', 'color', formData.color_shade)}
+								description={setDescription(t, "visual", "color", formData.color_shade)}
 							/>
 
 							<FormSelect
@@ -243,7 +243,12 @@ export default function Visual() {
 								options={consistencyOptions}
 								label={t("new.visual.consistency")}
 								i18nPath={`${i18nextPath}.consistency`}
-								description={setDescription(t, 'visual', 'consistency', formData.consistency)}
+								description={setDescription(
+									t,
+									"visual",
+									"consistency",
+									formData.consistency
+								)}
 							/>
 
 							{category !== "sparkling" ? (
@@ -255,7 +260,12 @@ export default function Visual() {
 									value={formData.bubble_size}
 									label={t("new.visual.bubble_size")}
 									i18nPath={`${i18nextPath}.bubble_size`}
-									description={setDescription(t, 'visual', 'effervescence', formData.bubble_size)}
+									description={setDescription(
+										t,
+										"visual",
+										"effervescence",
+										formData.bubble_size
+									)}
 								/>
 							) : (
 								<></>
@@ -270,7 +280,12 @@ export default function Visual() {
 									value={formData.bubble_number}
 									label={t("new.visual.bubble_number")}
 									i18nPath={`${i18nextPath}.bubble_number`}
-									description={setDescription(t, 'visual', 'effervescence', formData.bubble_number)}
+									description={setDescription(
+										t,
+										"visual",
+										"effervescence",
+										formData.bubble_number
+									)}
 								/>
 							) : (
 								<></>
@@ -285,7 +300,12 @@ export default function Visual() {
 									value={formData.bubble_persistence}
 									label={t("new.visual.bubble_persistence")}
 									i18nPath={`${i18nextPath}.bubble_persistence`}
-									description={setDescription(t, 'visual', 'effervescence', formData.bubble_persistence)}
+									description={setDescription(
+										t,
+										"visual",
+										"effervescence",
+										formData.bubble_persistence
+									)}
 								/>
 							) : (
 								<></>

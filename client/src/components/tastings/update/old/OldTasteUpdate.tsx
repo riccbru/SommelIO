@@ -1,11 +1,11 @@
 import { View } from "react-native";
 import React, { useState } from "react";
-import UpdateButton from "../UpdateButton";
 import ExamsAPI from "@/src/services/exams";
-import FormInput from "../../new/FormInput";
-import FormSelect from "../../new/FormSelect";
+import UpdateButton from "../../UpdateButton";
 import { useTranslation } from "react-i18next";
 import { setDescription } from "@/src/utils/utils";
+import FormInput from "@/src/components/new/FormInput";
+import FormSelect from "@/src/components/new/FormSelect";
 
 type TasteExam = {
 	sweetness: string;
@@ -38,7 +38,7 @@ type Props = {
 	setEditMode: React.Dispatch<React.SetStateAction<EditModeShape>>;
 };
 
-export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Props) {
+export default function OldTasteUpdate({ tid, exam, setRefresh, setEditMode }: Props) {
 	const { t } = useTranslation();
 	const i18nextPath = "new.taste.values";
 	const [formData, setFormData] = useState<TasteExam>(exam);
@@ -176,7 +176,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				value={formData.sweetness}
 				label={t("new.taste.sweetness")}
 				i18nPath={`${i18nextPath}.sweetness`}
-				description={setDescription(t, 'taste', 'sweetness', formData.sweetness)}
+				description={setDescription(t, "taste", "sweetness", formData.sweetness)}
 			/>
 
 			<FormSelect
@@ -187,7 +187,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				value={formData.alcohols}
 				label={t("new.taste.alcohols")}
 				i18nPath={`${i18nextPath}.alcohols`}
-				description={setDescription(t, 'taste', 'alcohols', formData.alcohols)}
+				description={setDescription(t, "taste", "alcohols", formData.alcohols)}
 			/>
 
 			<FormSelect
@@ -198,7 +198,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				value={formData.softness}
 				label={t("new.taste.softness")}
 				i18nPath={`${i18nextPath}.softness`}
-				description={setDescription(t, 'taste', 'softness', formData.softness)}
+				description={setDescription(t, "taste", "softness", formData.softness)}
 			/>
 
 			<FormSelect
@@ -209,7 +209,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				onChange={updateFormData}
 				label={t("new.taste.acidity")}
 				i18nPath={`${i18nextPath}.acidity`}
-				description={setDescription(t, 'taste', 'acidity', formData.acidity)}
+				description={setDescription(t, "taste", "acidity", formData.acidity)}
 			/>
 
 			<FormSelect
@@ -220,7 +220,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				value={formData.tannicity}
 				label={t("new.taste.tannicity")}
 				i18nPath={`${i18nextPath}.tannicity`}
-				description={setDescription(t, 'taste', 'tannicity', formData.tannicity)}
+				description={setDescription(t, "taste", "tannicity", formData.tannicity)}
 			/>
 
 			<FormSelect
@@ -231,7 +231,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				value={formData.saltiness}
 				label={t("new.taste.saltiness")}
 				i18nPath={`${i18nextPath}.saltiness`}
-				description={setDescription(t, 'taste', 'saltiness', formData.saltiness)}
+				description={setDescription(t, "taste", "saltiness", formData.saltiness)}
 			/>
 
 			<FormSelect
@@ -242,7 +242,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				onChange={updateFormData}
 				label={t("new.taste.balance")}
 				i18nPath={`${i18nextPath}.balance`}
-				description={setDescription(t, 'taste', 'balance', formData.balance)}
+				description={setDescription(t, "taste", "balance", formData.balance)}
 			/>
 
 			<FormSelect
@@ -253,7 +253,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				options={intensityOptions}
 				value={formData.intensity}
 				i18nPath={`${i18nextPath}.intensity`}
-				description={setDescription(t, 'taste', 'intensity', formData.intensity)}
+				description={setDescription(t, "taste", "intensity", formData.intensity)}
 			/>
 
 			<FormSelect
@@ -264,7 +264,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				value={formData.persistence}
 				label={t("new.taste.persistence")}
 				i18nPath={`${i18nextPath}.persistence`}
-				description={setDescription(t, 'taste', 'persistence', formData.persistence)}
+				description={setDescription(t, "taste", "persistence", formData.persistence)}
 			/>
 
 			<FormSelect
@@ -275,7 +275,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				value={formData.quality}
 				onChange={updateFormData}
 				i18nPath={`${i18nextPath}.quality`}
-				description={setDescription(t, 'taste', 'quality', formData.quality)}
+				description={setDescription(t, "taste", "quality", formData.quality)}
 			/>
 
 			<FormSelect
@@ -286,7 +286,7 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				value={formData.structure}
 				label={t("new.taste.structure")}
 				i18nPath={`${i18nextPath}.structure`}
-				description={setDescription(t, 'taste', 'structure', formData.structure)}
+				description={setDescription(t, "taste", "structure", formData.structure)}
 			/>
 
 			<FormInput

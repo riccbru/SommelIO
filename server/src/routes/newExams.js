@@ -1,30 +1,30 @@
 import { Router } from "express";
-import { formatOlfactoryExam } from "../utils/tastings.js";
 import { PrismaClient } from "../generated/prisma/index.js";
-import { TasteExamSchema } from "../validators/tasteExamSchema.js";
-import { FinalExamSchema } from "../validators/finalExamSchema.js";
-import { VisualExamSchema } from "../validators/visualExamSchema.js";
-import { OlfactoryExamSchema } from "../validators/olfactoryExamSchema.js";
+import { formatNewOlfactoryExam } from "../utils/tastings.js";
+import { NewTasteExamSchema } from "../validators/exams/new/newTasteExamSchema.js";
+import { NewFinalExamSchema } from "../validators/exams/new/newFinalExamSchema.js";
+import { NewVisualExamSchema } from "../validators/exams/new/newVisualExamSchema.js";
+import { NewOlfactoryExamSchema } from "../validators/exams/new/newOlfactoryExamSchema.js";
 
 const router = Router();
 const prisma = new PrismaClient();
 
 const examTypes = {
 	visual: {
-		model: prisma.visual_exams,
-		schema: VisualExamSchema,
+		model: prisma.visual_exams_new,
+		schema: NewVisualExamSchema,
 	},
 	olfactory: {
-		model: prisma.olfactory_exams,
-		schema: OlfactoryExamSchema,
+		model: prisma.olfactory_exams_new,
+		schema: NewOlfactoryExamSchema,
 	},
 	taste: {
-		model: prisma.taste_olfactory_exams,
-		schema: TasteExamSchema,
+		model: prisma.taste_olfactory_exams_new,
+		schema: NewTasteExamSchema,
 	},
 	final: {
-		model: prisma.final_considerations,
-		schema: FinalExamSchema,
+		model: prisma.final_considerations_new,
+		schema: NewFinalExamSchema,
 	},
 };
 
@@ -50,12 +50,12 @@ async function validateTastingOwnership(tid, uid, res) {
 	return tasting;
 }
 
-// GET /api/v1/exams
+// GET /api/v2/exams
 router.get("/", (req, res) => {
 	res.status(400).json({ error: `URL parameter 'tasting_uuid' is ${req.params.tid}` });
 });
 
-// GET /api/v1/exams/:tid
+// GET /api/v2/exams/:tid
 router.get("/:tid", async (req, res) => {
 	const { tid } = req.params;
 	const uid = req.user.uid;
@@ -85,7 +85,7 @@ router.get("/:tid", async (req, res) => {
 			tasting_uuid: tid,
 			exams: {
 				visual_exam: visualExam[0] ?? {},
-				olfactory_exam: olfactoryExam[0] ? formatOlfactoryExam(olfactoryExam[0]) : {},
+				olfactory_exam: olfactoryExam[0] ? formatNewOlfactoryExam(olfactoryExam[0]) : {},
 				taste_olfactory_exam: tasteOlfactoryExam[0] ?? {},
 				final_considerations: finalConsiderations[0] ?? {},
 			},
@@ -96,7 +96,7 @@ router.get("/:tid", async (req, res) => {
 	}
 });
 
-// GET /api/v1/exams/:tid/:exam
+// GET /api/v2/exams/:tid/:exam
 router.get("/:tid/:exam", async (req, res) => {
 	const { tid, exam } = req.params;
 	const uid = req.user.uid;
@@ -120,7 +120,7 @@ router.get("/:tid/:exam", async (req, res) => {
 		let formattedData = examData[0];
 
 		if (exam === "olfactory") {
-			formattedData = formatOlfactoryExam(formattedData);
+			formattedData = formatNewOlfactoryExam(formattedData);
 		}
 
 		res.json({
@@ -133,7 +133,7 @@ router.get("/:tid/:exam", async (req, res) => {
 	}
 });
 
-// PUT /api/v1/exams/:tid/:exam
+// PUT /api/v2/exams/:tid/:exam
 router.put("/:tid/:exam", async (req, res) => {
 	const { tid, exam } = req.params;
 	const uid = req.user.uid;
@@ -169,7 +169,7 @@ router.put("/:tid/:exam", async (req, res) => {
 		delete formattedData.id;
 		delete formattedData.tid;
 		if (exam === "olfactory") {
-			formattedData = formatOlfactoryExam(updatedExam);
+			formattedData = formatNewOlfactoryExam(updatedExam);
 		}
 
 		res.status(200).json(formattedData);
@@ -179,7 +179,7 @@ router.put("/:tid/:exam", async (req, res) => {
 	}
 });
 
-// POST /api/v1/exams/:tid
+// POST /api/v2/exams/:tid
 router.post("/:tid", async (req, res) => {
 	const { tid } = req.params;
 	const uid = req.user.uid;
@@ -187,10 +187,10 @@ router.post("/:tid", async (req, res) => {
 	const tasting = await validateTastingOwnership(tid, uid, res);
 	if (!tasting) return;
 
-	const parsedVisual = VisualExamSchema.safeParse(req.body.visual_exam);
-	const parsedOlfactory = OlfactoryExamSchema.safeParse(req.body.olfactory_exam);
-	const parsedTaste = TasteExamSchema.safeParse(req.body.taste_olfactory_exam);
-	const parsedFinal = FinalExamSchema.safeParse(req.body.final_considerations);
+	const parsedVisual = NewVisualExamSchema.safeParse(req.body.visual_exam);
+	const parsedOlfactory = NewOlfactoryExamSchema.safeParse(req.body.olfactory_exam);
+	const parsedTaste = NewTasteExamSchema.safeParse(req.body.taste_olfactory_exam);
+	const parsedFinal = NewFinalExamSchema.safeParse(req.body.final_considerations);
 
 	if (
 		!parsedVisual.success ||
@@ -247,7 +247,7 @@ router.post("/:tid", async (req, res) => {
 			tasting_uuid: tid,
 			exams: {
 				visual_exam: omitIdTid(results[0]),
-				olfactory_exam: formatOlfactoryExam(omitIdTid(results[1])),
+				olfactory_exam: formatNewOlfactoryExam(omitIdTid(results[1])),
 				taste_olfactory_exam: omitIdTid(results[2]),
 				final_considerations: omitIdTid(results[3]),
 			},
@@ -261,7 +261,7 @@ router.post("/:tid", async (req, res) => {
 	}
 });
 
-// POST /api/v1/exams/:tid/:exam
+// POST /api/v2/exams/:tid/:exam
 router.post("/:tid/:exam", async (req, res) => {
 	const { tid, exam } = req.params;
 	const uid = req.user.uid;
@@ -294,7 +294,7 @@ router.post("/:tid/:exam", async (req, res) => {
 
 		let formattedData = newExam;
 		if (exam === "olfactory" && newExam) {
-			formattedData = formatOlfactoryExam(newExam);
+			formattedData = formatNewOlfactoryExam(newExam);
 		}
 		res.status(201).json(formattedData);
 	} catch (err) {

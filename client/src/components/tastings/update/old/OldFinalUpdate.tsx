@@ -1,11 +1,11 @@
 import { View } from "react-native";
 import React, { useState } from "react";
-import UpdateButton from "../UpdateButton";
 import ExamsAPI from "@/src/services/exams";
-import FormInput from "../../new/FormInput";
-import FormSelect from "../../new/FormSelect";
+import UpdateButton from "../../UpdateButton";
 import { useTranslation } from "react-i18next";
 import { setDescription } from "@/src/utils/utils";
+import FormInput from "@/src/components/new/FormInput";
+import FormSelect from "@/src/components/new/FormSelect";
 
 type FinalExam = {
 	evolutionary_state: string;
@@ -37,7 +37,7 @@ type Props = {
 	setEditMode: React.Dispatch<React.SetStateAction<EditModeShape>>;
 };
 
-export default function FinalUpdate({ tid, exam, setRefresh, setEditMode }: Props) {
+export default function OldFinalUpdate({ tid, exam, setRefresh, setEditMode }: Props) {
 	const { t } = useTranslation();
 	const i18nextPath = "new.final.values";
 	const [formData, setFormData] = useState<FinalExam>(exam || defaultFinalExam);
@@ -103,7 +103,7 @@ export default function FinalUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				options={evolutionaryStateOptions}
 				value={formData.evolutionary_state}
 				i18nPath={`${i18nextPath}.evolution`}
-				description={setDescription(t, 'final', 'evolution', formData.evolutionary_state)}
+				description={setDescription(t, "final", "evolution", formData.evolutionary_state)}
 			/>
 
 			<FormSelect
@@ -114,7 +114,7 @@ export default function FinalUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 				value={formData.harmony}
 				onChange={updateFormData}
 				i18nPath={`${i18nextPath}.harmony`}
-				description={setDescription(t, 'final', 'harmony', formData.harmony)}
+				description={setDescription(t, "final", "harmony", formData.harmony)}
 			/>
 
 			<FormInput

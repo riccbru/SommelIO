@@ -184,7 +184,12 @@ export default function Olfactory() {
 								value={formData.intensity}
 								options={intensityOptions}
 								i18nPath={`${i18nextPath}.intensity`}
-								description={setDescription(t, 'olfactory', 'intensity', formData.intensity)}
+								description={setDescription(
+									t,
+									"olfactory",
+									"intensity",
+									formData.intensity
+								)}
 							/>
 
 							<FormSelect
@@ -195,7 +200,12 @@ export default function Olfactory() {
 								options={complexityOptions}
 								label={t("new.olfactory.complexity")}
 								i18nPath={`${i18nextPath}.complexity`}
-								description={setDescription(t, 'olfactory', 'complexity', formData.complexity)}
+								description={setDescription(
+									t,
+									"olfactory",
+									"complexity",
+									formData.complexity
+								)}
 							/>
 
 							<FormSelect
@@ -206,7 +216,7 @@ export default function Olfactory() {
 								options={qualityOptions}
 								onChange={updateFormData}
 								i18nPath={`${i18nextPath}.quality`}
-								description={setDescription(t, 'olfactory', 'quality', formData.quality)}
+								description={setDescription(t, "olfactory", "quality", formData.quality)}
 							/>
 
 							{descriptors.map((el, index) => (
@@ -216,7 +226,7 @@ export default function Olfactory() {
 									setFormData={setFormData}
 									label={t(`new.olfactory.${el}`)}
 									name={el as keyof OlfactoryExam}
-									description={setDescription(t, 'olfactory', 'descriptors', el)}
+									description={setDescription(t, "olfactory", "descriptors", el)}
 								/>
 							))}
 

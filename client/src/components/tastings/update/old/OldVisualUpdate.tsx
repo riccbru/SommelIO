@@ -1,11 +1,11 @@
 import { View } from "react-native";
 import React, { useState } from "react";
-import UpdateButton from "../UpdateButton";
 import ExamsAPI from "@/src/services/exams";
-import FormInput from "../../new/FormInput";
-import FormSelect from "../../new/FormSelect";
+import UpdateButton from "../../UpdateButton";
 import { useTranslation } from "react-i18next";
 import { setDescription } from "@/src/utils/utils";
+import FormInput from "@/src/components/new/FormInput";
+import FormSelect from "@/src/components/new/FormSelect";
 
 type VisualExam = {
 	limpidity: string;
@@ -46,7 +46,7 @@ type Props = {
 	setEditMode: React.Dispatch<React.SetStateAction<EditModeShape>>;
 };
 
-export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEditMode }: Props) {
+export default function OldVisualUpdate({ tid, sparkling, exam, setRefresh, setEditMode }: Props) {
 	const { t } = useTranslation();
 	const i18nextPath = "new.visual.values";
 	const [errors, setErrors] = useState<Record<string, string>>({});
@@ -171,7 +171,7 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 				options={limpidityOptions}
 				label={t("new.visual.limpidity")}
 				i18nPath={`${i18nextPath}.limpidity`}
-				description={setDescription(t, 'visual', 'limpidity', formData.limpidity)}
+				description={setDescription(t, "visual", "limpidity", formData.limpidity)}
 			/>
 
 			<FormSelect
@@ -195,7 +195,7 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 				label={t("new.visual.shade")}
 				i18nPath={`${i18nextPath}.shade`}
 				options={colorShadesOptions[formData.color_family]}
-				description={setDescription(t, 'visual', 'color', formData.color_shade)}
+				description={setDescription(t, "visual", "color", formData.color_shade)}
 			/>
 
 			<FormSelect
@@ -206,7 +206,7 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 				options={consistencyOptions}
 				label={t("new.visual.consistency")}
 				i18nPath={`${i18nextPath}.consistency`}
-				description={setDescription(t, 'visual', 'consistency', formData.consistency)}
+				description={setDescription(t, "visual", "consistency", formData.consistency)}
 			/>
 
 			{sparkling ? (
@@ -218,7 +218,7 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 					value={formData.bubble_size}
 					label={t("new.visual.bubble_size")}
 					i18nPath={`${i18nextPath}.bubble_size`}
-					description={setDescription(t, 'visual', 'effervescence', formData.bubble_size)}
+					description={setDescription(t, "visual", "effervescence", formData.bubble_size)}
 				/>
 			) : (
 				<></>
@@ -233,7 +233,7 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 					value={formData.bubble_number}
 					label={t("new.visual.bubble_number")}
 					i18nPath={`${i18nextPath}.bubble_number`}
-					description={setDescription(t, 'visual', 'effervescence', formData.bubble_number)}
+					description={setDescription(t, "visual", "effervescence", formData.bubble_number)}
 				/>
 			) : (
 				<></>
@@ -248,7 +248,12 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 					value={formData.bubble_persistence}
 					label={t("new.visual.bubble_persistence")}
 					i18nPath={`${i18nextPath}.bubble_persistence`}
-					description={setDescription(t, 'visual', 'effervescence', formData.bubble_persistence)}
+					description={setDescription(
+						t,
+						"visual",
+						"effervescence",
+						formData.bubble_persistence
+					)}
 				/>
 			) : (
 				<></>

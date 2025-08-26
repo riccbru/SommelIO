@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { formatTasting, findWineCategoryId } from "../utils/tastings.js";
 import { PrismaClient } from "../generated/prisma/index.js";
 import { TastingSchema } from "../validators/tastingSchema.js";
+import { formatTasting, findWineCategoryId } from "../utils/tastings.js";
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -11,20 +11,38 @@ router.get("/", async (req, res) => {
 	const uid = req.user.uid;
 
 	try {
-		const result = await prisma.tastings.findMany({
-			where: { uid: uid },
+		const results_old = await prisma.tastings.findMany({
+			where: { uid: uid, new: false },
 			include: {
 				wine_categories: true,
-				visual_exams: true,
-				olfactory_exams: true,
-				taste_olfactory_exams: true,
-				final_considerations: true,
+				visual_exams_old: true,
+				olfactory_exams_old: true,
+				taste_olfactory_exams_old: true,
+				final_considerations_old: true,
 				scoring_evaluation: true,
 			},
-			orderBy: { tasting_timestamp: "desc" },
+		});
+		const results_new = await prisma.tastings.findMany({
+			where: { uid: uid, new: true },
+			include: {
+				wine_categories: true,
+				visual_exams_new: true,
+				olfactory_exams_new: true,
+				taste_olfactory_exams_new: true,
+				final_considerations_new: true,
+				scoring_evaluation: true,
+			},
 		});
 
-		const tastings = result.map(t => formatTasting(t));
+		console.log(JSON.stringify(results_old, null, 3));
+		console.log(JSON.stringify(results_new, null, 3));
+
+		const tastings_old = results_old.map(t => formatTasting(t));
+		const tastings_new = results_new.map(t => formatTasting(t));
+
+		const tastings = [...tastings_old, ...tastings_new].sort(
+			(a, b) => new Date(b.tasting_date) - new Date(a.tasting_date),
+		);
 
 		res.json({ tastings: tastings });
 	} catch (err) {
@@ -38,27 +56,43 @@ router.get("/:tid", async (req, res) => {
 	const uid = req.user.uid;
 	const tid = req.params.tid;
 	try {
-		const result = await prisma.tastings.findUnique({
+		const result_old = await prisma.tastings.findUnique({
 			where: {
 				tid: tid,
 				uid: uid,
+				new: false,
 			},
 			include: {
 				wine_categories: true,
-				visual_exams: true,
-				olfactory_exams: true,
-				taste_olfactory_exams: true,
-				final_considerations: true,
+				visual_exams_old: true,
+				olfactory_exams_old: true,
+				taste_olfactory_exams_old: true,
+				final_considerations_old: true,
+				scoring_evaluation: true,
+			},
+		});
+		const result_new = await prisma.tastings.findUnique({
+			where: {
+				tid: tid,
+				uid: uid,
+				new: true,
+			},
+			include: {
+				wine_categories: true,
+				visual_exams_new: true,
+				olfactory_exams_new: true,
+				taste_olfactory_exams_new: true,
+				final_considerations_new: true,
 				scoring_evaluation: true,
 			},
 		});
 
-		if (!result) {
+		if (!result_old && !result_new) {
 			res.status(404).json({ error: `Tasting ${tid} not found` });
 			return;
 		}
 
-		const tasting = formatTasting(result);
+		const tasting = formatTasting(result_old || result_new);
 		res.json(tasting);
 	} catch (err) {
 		console.log(err);

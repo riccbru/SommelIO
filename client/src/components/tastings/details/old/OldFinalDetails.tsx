@@ -13,7 +13,7 @@ type Props = {
 	exam: FinalExam;
 };
 
-export default function FinalDetails({ exam }: Props) {
+export default function OldFinalDetails({ exam }: Props) {
 	const theme = useTheme();
 	const { t } = useTranslation();
 

@@ -45,7 +45,9 @@ export default function ExitButton({ defaultFormData, setFormData, setErrors }: 
 					}}
 				>
 					<XCircleIcon size={24} style={{ marginRight: 5 }} color={theme.colors.black} />
-					<Text style={{ marginTop: 3, color: theme.colors.black, fontFamily: "Epilogue-Bold" }}>
+					<Text
+						style={{ marginTop: 3, color: theme.colors.black, fontFamily: "Epilogue-Bold" }}
+					>
 						{text}
 					</Text>
 				</View>

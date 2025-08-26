@@ -5,14 +5,15 @@ import express from "express";
 import cookieParser from "cookie-parser";
 
 import loginRoutes from "./src/routes/auth.js";
-import examsRoutes from "./src/routes/exams.js";
+import winesRoutes from "./src/routes/wines.js";
 import usersRoutes from "./src/routes/users.js";
 import welcomeRoute from "./src/routes/welcome.js";
 import { isAuthZ } from "./src/middlewares/auth.js";
 import scoringRoutes from "./src/routes/scorings.js";
+import oldExamsRoutes from "./src/routes/oldExams.js";
+import newExamsRoutes from "./src/routes/newExams.js";
 import tastingsRoutes from "./src/routes/tastings.js";
 import colleaguesRoutes from "./src/routes/colleagues.js";
-import winesRoutes from "./src/routes/wines.js";
 
 const app = express();
 
@@ -35,7 +36,8 @@ app.use("/api/v1/auth", loginRoutes);
 app.use("/api/v1/users", isAuthZ, usersRoutes);
 app.use("/api/v1/welcome", isAuthZ, welcomeRoute);
 app.use("/api/v1/tastings", isAuthZ, tastingsRoutes);
-app.use("/api/v1/exams", isAuthZ, examsRoutes);
+app.use("/api/v1/exams", isAuthZ, oldExamsRoutes);
+app.use("/api/v2/exams", isAuthZ, newExamsRoutes);
 app.use("/api/v1/scoring", isAuthZ, scoringRoutes);
 app.use("/api/v1/colleagues", isAuthZ, colleaguesRoutes);
 app.use("/api/v1/wines", isAuthZ, winesRoutes);

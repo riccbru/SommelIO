@@ -1,12 +1,12 @@
 import { View } from "react-native";
 import React, { useState } from "react";
-import UpdateButton from "../UpdateButton";
 import ExamsAPI from "@/src/services/exams";
-import FormInput from "../../new/FormInput";
-import FormSwitch from "../../new/FormSwitch";
-import FormSelect from "../../new/FormSelect";
+import UpdateButton from "../../UpdateButton";
 import { useTranslation } from "react-i18next";
 import { setDescription } from "@/src/utils/utils";
+import FormInput from "@/src/components/new/FormInput";
+import FormSelect from "@/src/components/new/FormSelect";
+import FormSwitch from "@/src/components/new/FormSwitch";
 
 type OlfactoryExam = {
 	intensity: string;
@@ -60,7 +60,7 @@ type Props = {
 	setEditMode: React.Dispatch<React.SetStateAction<EditModeShape>>;
 };
 
-export default function OlfactoryUpdate({ tid, exam, setRefresh, setEditMode }: Props) {
+export default function OldOlfactoryUpdate({ tid, exam, setRefresh, setEditMode }: Props) {
 	const { t } = useTranslation();
 	const i18nextPath = "new.olfactory.values";
 	const [errors, setErrors] = useState<Record<string, string>>({});
@@ -162,7 +162,7 @@ export default function OlfactoryUpdate({ tid, exam, setRefresh, setEditMode }: 
 				options={intensityOptions}
 				value={formData.intensity}
 				i18nPath={`${i18nextPath}.intensity`}
-				description={setDescription(t, 'olfactory', 'intensity', formData.intensity)}
+				description={setDescription(t, "olfactory", "intensity", formData.intensity)}
 			/>
 
 			<FormSelect
@@ -173,7 +173,7 @@ export default function OlfactoryUpdate({ tid, exam, setRefresh, setEditMode }: 
 				onChange={updateFormData}
 				options={complexityOptions}
 				i18nPath={`${i18nextPath}.complexity`}
-				description={setDescription(t, 'olfactory', 'complexity', formData.complexity)}
+				description={setDescription(t, "olfactory", "complexity", formData.complexity)}
 			/>
 
 			<FormSelect
@@ -184,7 +184,7 @@ export default function OlfactoryUpdate({ tid, exam, setRefresh, setEditMode }: 
 				onChange={updateFormData}
 				options={qualityOptions}
 				i18nPath={`${i18nextPath}.quality`}
-				description={setDescription(t, 'olfactory', 'quality', formData.quality)}
+				description={setDescription(t, "olfactory", "quality", formData.quality)}
 			/>
 
 			{descriptors.map((el, index) => (
@@ -194,7 +194,7 @@ export default function OlfactoryUpdate({ tid, exam, setRefresh, setEditMode }: 
 					setFormData={setFormData}
 					label={t(`new.olfactory.${el}`)}
 					name={el as keyof OlfactoryExamBody}
-					description={setDescription(t, 'olfactory', 'descriptors', el)}
+					description={setDescription(t, "olfactory", "descriptors", el)}
 				/>
 			))}
 

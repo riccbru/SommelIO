@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
-import { capitalizeFirst, formatOption } from "@/src/utils/utils";
 import { HelperText, Text, Card } from "react-native-paper";
+import { capitalizeFirst, formatOption } from "@/src/utils/utils";
 import { CaretDownIcon, CaretUpIcon, InfoIcon } from "phosphor-react-native";
 import { View, TouchableOpacity, Modal, FlatList, StyleSheet } from "react-native";
 
@@ -34,7 +34,6 @@ export default function FormSelect<T>({
 	const [isFocused, setIsFocused] = useState(false);
 
 	const hasValue = value && value.trim() !== "";
-	const shouldFloatLabel = hasValue || isFocused;
 	const ArrowIcon = isOpen ? CaretUpIcon : CaretDownIcon;
 
 	const styles = StyleSheet.create({
@@ -104,38 +103,44 @@ export default function FormSelect<T>({
 			alignItems: "center",
 			justifyContent: "center",
 			backgroundColor: "rgba(0,0,0,0.7)",
-		}
+		},
 	});
 
 	return (
 		<View>
-
-				<View style={{ flexDirection: "row", alignItems: "center", marginBottom: 6 }}>
+			<View style={{ flexDirection: "row", alignItems: "center", marginBottom: 6 }}>
 				{description ? (
-					<TouchableOpacity onPress={() => setModal(true)} style={{ marginLeft: 6, marginBottom: 5, flexDirection: "row" }}>
+					<TouchableOpacity
+						onPress={() => setModal(true)}
+						style={{ marginLeft: 6, marginBottom: 5, flexDirection: "row" }}
+					>
 						<InfoIcon size={18} color={theme.colors.primary} />
-						<Text style={{
-							fontSize: 14,
-							marginTop: 3,
-							marginLeft: 5,
-							fontFamily: "Epilogue-Bold",
-							color: error ? theme.colors.error : theme.colors.primary
-						}}>
+						<Text
+							style={{
+								fontSize: 14,
+								marginTop: 3,
+								marginLeft: 5,
+								fontFamily: "Epilogue-Bold",
+								color: error ? theme.colors.error : theme.colors.primary,
+							}}
+						>
 							{label}
 						</Text>
 					</TouchableOpacity>
 				) : (
-					<Text style={{
-						marginTop: 3,
-						marginLeft: 5,
-						fontFamily: "Epilogue-Bold",
-						fontSize: 14,
-						color: error ? theme.colors.error : theme.colors.primary
-					}}>
+					<Text
+						style={{
+							marginTop: 3,
+							marginLeft: 5,
+							fontFamily: "Epilogue-Bold",
+							fontSize: 14,
+							color: error ? theme.colors.error : theme.colors.primary,
+						}}
+					>
 						{label}
 					</Text>
 				)}
-				</View>
+			</View>
 
 			<TouchableOpacity
 				activeOpacity={0.7}
@@ -172,7 +177,9 @@ export default function FormSelect<T>({
 
 				{/* Selected Value */}
 				{hasValue && (
-					<Text style={[styles.selectedText, { marginBottom: 5, color: theme.colors.primary }]}>
+					<Text
+						style={[styles.selectedText, { marginBottom: 5, color: theme.colors.primary }]}
+					>
 						{formatOption(t(`${i18nPath}.${value}`))}
 					</Text>
 				)}
@@ -228,7 +235,12 @@ export default function FormSelect<T>({
 											style={[
 												styles.optionText,
 												value === item && { fontWeight: "600" },
-												{ color: value === item ? theme.colors.black : theme.colors.primary },
+												{
+													color:
+														value === item
+															? theme.colors.black
+															: theme.colors.primary,
+												},
 											]}
 										>
 											{formatOption(t(`${i18nPath}.${item}`))}
@@ -250,27 +262,47 @@ export default function FormSelect<T>({
 				{error}
 			</HelperText>
 
-			{description && <Modal
-				transparent
-				visible={modal}
-				animationType="fade"
-				onRequestClose={() => setModal(false)}
-			>
-				<TouchableOpacity
-					activeOpacity={1}
-					style={styles.modalDescrOverlay}
-					onPressOut={() => setModal(false)}
+			{description && (
+				<Modal
+					transparent
+					visible={modal}
+					animationType='fade'
+					onRequestClose={() => setModal(false)}
 				>
-					<View style={[styles.modalDescription, { backgroundColor: theme.colors.surface, padding: 20, borderRadius: 8 }]}>
-						<Text style={{ fontSize: 20, fontFamily: "Epilogue-Bold", color: theme.colors.primary, marginBottom: 5 }}>
-							{!hasValue ? label : capitalizeFirst(t(`${i18nPath}.${value}`))}
-						</Text>
-						<Text style={{ fontSize: 16, fontFamily: "Epilogue-Regular", color: theme.colors.primary }}>
-							{description}
-						</Text>
-					</View>
-				</TouchableOpacity>
-			</Modal>}
+					<TouchableOpacity
+						activeOpacity={1}
+						style={styles.modalDescrOverlay}
+						onPressOut={() => setModal(false)}
+					>
+						<View
+							style={[
+								styles.modalDescription,
+								{ backgroundColor: theme.colors.surface, padding: 20, borderRadius: 8 },
+							]}
+						>
+							<Text
+								style={{
+									fontSize: 20,
+									fontFamily: "Epilogue-Bold",
+									color: theme.colors.primary,
+									marginBottom: 5,
+								}}
+							>
+								{!hasValue ? label : capitalizeFirst(t(`${i18nPath}.${value}`))}
+							</Text>
+							<Text
+								style={{
+									fontSize: 16,
+									fontFamily: "Epilogue-Regular",
+									color: theme.colors.primary,
+								}}
+							>
+								{description}
+							</Text>
+						</View>
+					</TouchableOpacity>
+				</Modal>
+			)}
 		</View>
 	);
 }

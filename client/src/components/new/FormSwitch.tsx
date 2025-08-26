@@ -16,7 +16,7 @@ export default function FormSwitch<T extends Record<string, any>>({
 	name,
 	formData,
 	setFormData,
-	description
+	description,
 }: Props<T>) {
 	const theme = useTheme();
 	const isChecked = !!formData[name];
@@ -35,7 +35,7 @@ export default function FormSwitch<T extends Record<string, any>>({
 		info: {
 			alignItems: "center",
 			flexDirection: "row",
-			justifyContent: "flex-start"
+			justifyContent: "flex-start",
 		},
 		text: {
 			fontSize: 18,
@@ -56,7 +56,7 @@ export default function FormSwitch<T extends Record<string, any>>({
 			alignItems: "center",
 			justifyContent: "center",
 			backgroundColor: "rgba(0,0,0,0.7)",
-		}
+		},
 	});
 
 	return (
@@ -65,8 +65,8 @@ export default function FormSwitch<T extends Record<string, any>>({
 				{!description ? (
 					<Text style={styles.text}>{label}</Text>
 				) : (
-					<TouchableOpacity activeOpacity={0.5} onPress = { () => setModal(true) }>
-						<View style = {styles.info}>
+					<TouchableOpacity activeOpacity={0.5} onPress={() => setModal(true)}>
+						<View style={styles.info}>
 							<InfoIcon size={28} color={theme.colors.primary} />
 							<Text style={styles.text}>{label}</Text>
 						</View>
@@ -75,27 +75,47 @@ export default function FormSwitch<T extends Record<string, any>>({
 				<Switch value={isChecked} onChange={toggle} />
 			</View>
 
-			{description && <Modal	
-				transparent
-				visible={modal}
-				animationType="fade"
-				onRequestClose={() => setModal(false)}
-			>
-				<TouchableOpacity
-					activeOpacity={1}
-					style={styles.modalDescrOverlay}
-					onPressOut={() => setModal(false)}
+			{description && (
+				<Modal
+					transparent
+					visible={modal}
+					animationType='fade'
+					onRequestClose={() => setModal(false)}
 				>
-					<View style={[styles.modalDescription, { backgroundColor: theme.colors.surface, padding: 20, borderRadius: 8 }]}>
-						<Text style={{ fontSize: 20, fontFamily: "Epilogue-Bold", color: theme.colors.primary, marginBottom: 5 }}>
-							{label}
-						</Text>
-						<Text style={{ fontSize: 16, fontFamily: "Epilogue-Regular", color: theme.colors.primary }}>
-							{description}
-						</Text>
-					</View>
-				</TouchableOpacity>
-			</Modal>}
+					<TouchableOpacity
+						activeOpacity={1}
+						style={styles.modalDescrOverlay}
+						onPressOut={() => setModal(false)}
+					>
+						<View
+							style={[
+								styles.modalDescription,
+								{ backgroundColor: theme.colors.surface, padding: 20, borderRadius: 8 },
+							]}
+						>
+							<Text
+								style={{
+									fontSize: 20,
+									fontFamily: "Epilogue-Bold",
+									color: theme.colors.primary,
+									marginBottom: 5,
+								}}
+							>
+								{label}
+							</Text>
+							<Text
+								style={{
+									fontSize: 16,
+									fontFamily: "Epilogue-Regular",
+									color: theme.colors.primary,
+								}}
+							>
+								{description}
+							</Text>
+						</View>
+					</TouchableOpacity>
+				</Modal>
+			)}
 		</View>
 	);
 }
