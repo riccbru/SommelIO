@@ -9,10 +9,24 @@ export default {
 	todrink_notFound: "",
 	wine_notFound: "",
 	no_formSelect: "",
-	signup: { full_name: "", birthdate: "" },
+	signup: {
+		full_name: "",
+		birthdate: ""
+	},
 	shareMex: "",
-	index: { welcome: "" },
-	colleagues: { title: "" },
+	tabs: {
+		index: "",
+		colleagues: "",
+		new: "",
+		wines: "",
+		profile: ""
+	},
+	index: {
+		welcome: ""
+	},
+	colleagues: {
+		title: ""
+	},
 	new: {
 		name: "",
 		required: "",

@@ -13,12 +13,11 @@ export default {
 		full_name: "Nom Complet",
 		birthdate: "Date de Naissance",
 	},
-	shareMex:
-		"Salut! Je viens de terminer une dégustation sur SommelIO. Consultez mon profil et mes évaluations:",
+	shareMex: "Salut! Je viens de terminer une dégustation sur SommelIO. Consultez mon profil et mes évaluations:",
 	tabs: {
 		index: "Home",
 		colleagues: "Collègues",
-		new: "Nouveau",
+		new: "",
 		wines: "Vins",
 		profile: "Profil"
 	},

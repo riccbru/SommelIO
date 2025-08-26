@@ -1,5 +1,4 @@
 export default {
-	
 	tasting_name: "Degustazione",
 	tastings_name: "Degustazioni",
 	loading: "Caricamento...",
