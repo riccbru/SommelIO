@@ -5,6 +5,7 @@ import ExamsAPI from "@/src/services/exams";
 import FormInput from "../../new/FormInput";
 import FormSelect from "../../new/FormSelect";
 import { useTranslation } from "react-i18next";
+import { setDescription } from "@/src/utils/utils";
 
 type VisualExam = {
 	limpidity: string;
@@ -163,26 +164,28 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 	return (
 		<View>
 			<FormSelect
-				label={t("new.visual.limpidity")}
 				field='limpidity'
-				value={formData.limpidity}
 				error={errors.limpidity}
 				onChange={updateFormData}
+				value={formData.limpidity}
 				options={limpidityOptions}
+				label={t("new.visual.limpidity")}
 				i18nPath={`${i18nextPath}.limpidity`}
+				description={setDescription(t, 'visual', 'limpidity', formData.limpidity)}
 			/>
 
 			<FormSelect
-				label={t("new.visual.color")}
 				field='color_family'
-				value={formData.color_family}
 				error={errors.color_family}
+				options={colorFamilyOptions}
+				value={formData.color_family}
+				label={t("new.visual.color")}
+				i18nPath={`${i18nextPath}.color`}
 				onChange={(field, value) => {
 					updateFormData(field, value);
 					updateFormData("color_shade", "");
 				}}
-				options={colorFamilyOptions}
-				i18nPath={`${i18nextPath}.color`}
+				description={setDescription(t, 'visual', 'color', formData.color_family)}
 			/>
 
 			<FormSelect

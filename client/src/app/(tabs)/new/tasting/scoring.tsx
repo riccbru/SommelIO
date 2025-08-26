@@ -111,7 +111,7 @@ export default function Scoring() {
 		const newErrors: Record<string, string> = {};
 
 		scoreFields.forEach(({ key, label }) => {
-			if (!isRightRange(formData[key] as number, MIN, MAX)) {
+			if (!isRightRange(Number(formData[key]), MIN, MAX)) {
 				newErrors[key] = `${label} ${errMsg}`;
 			}
 		});

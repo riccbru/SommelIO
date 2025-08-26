@@ -1,3 +1,5 @@
+import { TFunction } from "i18next";
+
 export function capitalizeFirst(input: string): string {
 	return input
 		.split(" ")
@@ -47,3 +49,7 @@ export function getInitials(name: string) {
 export function isRightRange(num: number, MIN: number, MAX: number): boolean {
 	return num >= MIN && num <= MAX;
 }
+
+export function setDescription(t: TFunction,exam: string, field: string, state: string): string {
+	return t(`description.${exam}.${field}.${!state ? "descr" : state}`);
+};

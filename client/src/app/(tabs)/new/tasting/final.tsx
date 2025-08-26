@@ -9,6 +9,7 @@ import FormSelect from "@/src/components/new/FormSelect";
 import NextButton from "@/src/components/new/NextButton";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import { setDescription } from "@/src/utils/utils";
 
 type FinalExam = {
 	evolutionary_state: string;
@@ -130,23 +131,25 @@ export default function Final() {
 							</View>
 
 							<FormSelect
-								label={t("new.final.evolution")}
-								field='evolutionary_state'
-								value={formData.evolutionary_state}
-								error={errors.evolutionary_state}
 								onChange={updateFormData}
+								field='evolutionary_state'
+								label={t("new.final.evolution")}
+								error={errors.evolutionary_state}
 								options={evolutionaryStateOptions}
+								value={formData.evolutionary_state}
 								i18nPath={`${i18nextPath}.evolution`}
+								description={setDescription(t, 'final', 'evolution', formData.evolutionary_state)}
 							/>
 
 							<FormSelect
-								label={t("new.harmony")}
 								field='harmony'
-								value={formData.harmony}
 								error={errors.harmony}
-								onChange={updateFormData}
+								label={t("new.harmony")}
+								value={formData.harmony}
 								options={harmonyOptions}
+								onChange={updateFormData}
 								i18nPath={`${i18nextPath}.harmony`}
+								description={setDescription(t, 'final', 'harmony', formData.harmony)}
 							/>
 
 							<FormInput

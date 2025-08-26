@@ -39,13 +39,13 @@ export default function ExitButton({ defaultFormData, setFormData, setErrors }: 
 				<View
 					style={{
 						flex: 1,
+						alignItems: "center",
 						flexDirection: "row",
 						justifyContent: "center",
-						alignItems: "center",
 					}}
 				>
-					<XCircleIcon size={24} style={{ marginRight: 5 }} color={"#000000"} />
-					<Text style={{ marginTop: 3, color: "#000000", fontFamily: "Epilogue-Bold" }}>
+					<XCircleIcon size={24} style={{ marginRight: 5 }} color={theme.colors.black} />
+					<Text style={{ marginTop: 3, color: theme.colors.black, fontFamily: "Epilogue-Bold" }}>
 						{text}
 					</Text>
 				</View>

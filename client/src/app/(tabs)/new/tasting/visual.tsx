@@ -10,6 +10,7 @@ import ExitButton from "@/src/components/new/ExitButton";
 import FormSelect from "@/src/components/new/FormSelect";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import { setDescription } from "@/src/utils/utils";
 
 type VisualExam = {
 	limpidity: string;
@@ -38,9 +39,22 @@ export default function Visual() {
 	const { t } = useTranslation();
 	const i18nextPath = "new.visual.values";
 	const [errors, setErrors] = useState<Record<string, string>>({});
-	const [formData, setFormData] = useState<VisualExam>(defaultFormData);
 	const { wine_category_name } = useLocalSearchParams();
 	const category = (wine_category_name || "").toString().toLowerCase();
+	const categoryToColorFamily: Record<string, string> = {
+		white: "yellow",
+		red: "red",
+		rosé: "rosé",
+	};
+
+	// const setDescription = (exam: string, field: string, state: string): string => {
+	// 	return t(`description.${exam}.${field}.${!state ? 'descr' : state}`);
+	// }
+
+	const [formData, setFormData] = useState<VisualExam>({
+		...defaultFormData,
+		color_family: categoryToColorFamily[category] || defaultFormData.color_family,
+	});
 
 	const styles = StyleSheet.create({
 		container: {
@@ -191,92 +205,92 @@ export default function Visual() {
 							</View>
 
 							<FormSelect
-								label={t("new.visual.limpidity")}
 								field='limpidity'
-								value={formData.limpidity}
-								description={t("description.visual.limpidity.descr")}
 								error={errors.limpidity}
 								onChange={updateFormData}
+								value={formData.limpidity}
 								options={limpidityOptions}
+								label={t("new.visual.limpidity")}
 								i18nPath={`${i18nextPath}.limpidity`}
+								description={setDescription(t, 'visual', 'limpidity', formData.limpidity)}
 							/>
 
 							<FormSelect
-								label={t("new.visual.color.descr")}
 								field='color_family'
+								options={colorFamilyOptions}
+								label={t("new.visual.color")}
 								value={formData.color_family}
-								description={t("description.visual.color.descr")}
 								error={errors.color_family}
 								onChange={(field, value) => {
 									updateFormData(field, value);
 									updateFormData("color_shade", "");
 								}}
-								options={colorFamilyOptions}
 								i18nPath={`${i18nextPath}.color`}
+								description={setDescription(t, 'visual', 'color', formData.color_family)}
 							/>
 
 							<FormSelect
-								label={t("new.visual.shade")}
 								field='color_shade'
-								value={formData.color_shade}
-								description={t("description.visual.color.descr")}
-								error={errors.color_shade}
 								onChange={updateFormData}
-								options={colorShadesOptions[formData.color_family]}
+								error={errors.color_shade}
+								value={formData.color_shade}
+								label={t("new.visual.shade")}
 								i18nPath={`${i18nextPath}.shade`}
+								options={colorShadesOptions[formData.color_family]}
+								description={setDescription(t, 'visual', 'color', formData.color_shade)}
 							/>
 
 							<FormSelect
-								label={t("new.visual.consistency")}
 								field='consistency'
-								value={formData.consistency}
-								description={t("description.visual.consistency.descr")}
-								error={errors.consistency}
 								onChange={updateFormData}
+								error={errors.consistency}
+								value={formData.consistency}
 								options={consistencyOptions}
+								label={t("new.visual.consistency")}
 								i18nPath={`${i18nextPath}.consistency`}
+								description={setDescription(t, 'visual', 'consistency', formData.consistency)}
 							/>
 
-							{category === "sparkling" ? (
+							{category !== "sparkling" ? (
 								<FormSelect
-									label={t("new.visual.bubble_size")}
 									field='bubble_size'
-									value={formData.bubble_size}
-									description={t("description.visual.effervescence.bubble_size")}
+									onChange={updateFormData}
 									error={errors.bubble_size}
-									onChange={updateFormData}
 									options={bubblesizeOptions}
+									value={formData.bubble_size}
+									label={t("new.visual.bubble_size")}
 									i18nPath={`${i18nextPath}.bubble_size`}
+									description={setDescription(t, 'visual', 'effervescence', formData.bubble_size)}
 								/>
 							) : (
 								<></>
 							)}
 
-							{category === "sparkling" ? (
+							{category !== "sparkling" ? (
 								<FormSelect
-									label={t("new.visual.bubble_number")}
 									field='bubble_number'
-									value={formData.bubble_number}
-									description={t("description.visual.effervescence.bubble_number")}
-									error={errors.bubble_number}
 									onChange={updateFormData}
+									error={errors.bubble_number}
 									options={bubbleNumberOptions}
+									value={formData.bubble_number}
+									label={t("new.visual.bubble_number")}
 									i18nPath={`${i18nextPath}.bubble_number`}
+									description={setDescription(t, 'visual', 'effervescence', formData.bubble_number)}
 								/>
 							) : (
 								<></>
 							)}
 
-							{category === "sparkling" ? (
+							{category !== "sparkling" ? (
 								<FormSelect
-									label={t("new.visual.bubble_persistence")}
-									field='bubble_persistence'
-									value={formData.bubble_persistence}
-									description={t("description.visual.effervescence.bubble_persistence")}
-									error={errors.bubble_persistence}
 									onChange={updateFormData}
+									field='bubble_persistence'
+									error={errors.bubble_persistence}
 									options={bubblePersistenceOptions}
+									value={formData.bubble_persistence}
+									label={t("new.visual.bubble_persistence")}
 									i18nPath={`${i18nextPath}.bubble_persistence`}
+									description={setDescription(t, 'visual', 'effervescence', formData.bubble_persistence)}
 								/>
 							) : (
 								<></>

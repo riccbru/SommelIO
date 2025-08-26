@@ -77,7 +77,7 @@ export default function FormSelect<T>({
 			borderWidth: 2,
 			shadowRadius: 8,
 			shadowOpacity: 0.25,
-			shadowColor: "#000000",
+			shadowColor: theme.colors.black,
 			borderColor: theme.colors.primary,
 			shadowOffset: { width: 0, height: 2 },
 		},
@@ -92,22 +92,50 @@ export default function FormSelect<T>({
 			fontSize: 16,
 			fontFamily: "Epilogue-Regular",
 		},
+		modalDescription: {
+			width: "80%",
+			maxWidth: 300,
+			borderWidth: 3,
+			borderRadius: 15,
+			borderColor: theme.colors.amber,
+		},
+		modalDescrOverlay: {
+			flex: 1,
+			alignItems: "center",
+			justifyContent: "center",
+			backgroundColor: "rgba(0,0,0,0.7)",
+		}
 	});
 
 	return (
 		<View>
 
-			
-			{description && (
-				<View style={{ flexDirection: "row", alignItems: "center", marginBottom: 4 }}>
+				<View style={{ flexDirection: "row", alignItems: "center", marginBottom: 6 }}>
+				{description ? (
 					<TouchableOpacity onPress={() => setModal(true)} style={{ marginLeft: 6, marginBottom: 5, flexDirection: "row" }}>
 						<InfoIcon size={18} color={theme.colors.primary} />
-						<Text style={{ marginTop: 3, marginLeft: 5, fontFamily: "Epilogue-Bold", fontSize: 14, color: theme.colors.primary }}>
+						<Text style={{
+							fontSize: 14,
+							marginTop: 3,
+							marginLeft: 5,
+							fontFamily: "Epilogue-Bold",
+							color: error ? theme.colors.error : theme.colors.primary
+						}}>
 							{label}
 						</Text>
 					</TouchableOpacity>
+				) : (
+					<Text style={{
+						marginTop: 3,
+						marginLeft: 5,
+						fontFamily: "Epilogue-Bold",
+						fontSize: 14,
+						color: error ? theme.colors.error : theme.colors.primary
+					}}>
+						{label}
+					</Text>
+				)}
 				</View>
-			)}
 
 			<TouchableOpacity
 				activeOpacity={0.7}
@@ -134,23 +162,17 @@ export default function FormSelect<T>({
 					style={[
 						styles.label,
 						{
-							fontFamily: "Epilogue-Regular",
-							top: shouldFloatLabel ? -8 : 16,
-							fontSize: shouldFloatLabel ? 12 : 16,
-							paddingHorizontal: shouldFloatLabel ? 4 : 0,
+							fontSize: hasValue ? 0 : 16,
 							color: error ? theme.colors.error : theme.dark ? "#c9c4cf" : "#565656",
-							backgroundColor: shouldFloatLabel ? theme.colors.surface : "transparent",
 						},
 					]}
 				>
 					{t("no_formSelect")}
-					{/* {label} */}
 				</Text>
 
 				{/* Selected Value */}
 				{hasValue && (
-					<Text style={[styles.selectedText, { color: theme.colors.primary }]}>
-						{/* {formatOption(value)} */}
+					<Text style={[styles.selectedText, { marginBottom: 5, color: theme.colors.primary }]}>
 						{formatOption(t(`${i18nPath}.${value}`))}
 					</Text>
 				)}
@@ -163,8 +185,8 @@ export default function FormSelect<T>({
 
 			{/* Dropdown Modal */}
 			<Modal
-				visible={isOpen}
 				transparent
+				visible={isOpen}
 				animationType='fade'
 				onRequestClose={() => {
 					setIsOpen(false);
@@ -206,7 +228,7 @@ export default function FormSelect<T>({
 											style={[
 												styles.optionText,
 												value === item && { fontWeight: "600" },
-												{ color: value === item ? "#000000" : theme.colors.primary },
+												{ color: value === item ? theme.colors.black : theme.colors.primary },
 											]}
 										>
 											{formatOption(t(`${i18nPath}.${item}`))}
@@ -227,6 +249,28 @@ export default function FormSelect<T>({
 			>
 				{error}
 			</HelperText>
+
+			{description && <Modal
+				transparent
+				visible={modal}
+				animationType="fade"
+				onRequestClose={() => setModal(false)}
+			>
+				<TouchableOpacity
+					activeOpacity={1}
+					style={styles.modalDescrOverlay}
+					onPressOut={() => setModal(false)}
+				>
+					<View style={[styles.modalDescription, { backgroundColor: theme.colors.surface, padding: 20, borderRadius: 8 }]}>
+						<Text style={{ fontSize: 20, fontFamily: "Epilogue-Bold", color: theme.colors.primary, marginBottom: 5 }}>
+							{!hasValue ? label : formatOption(value)}
+						</Text>
+						<Text style={{ fontSize: 16, fontFamily: "Epilogue-Regular", color: theme.colors.primary }}>
+							{description}
+						</Text>
+					</View>
+				</TouchableOpacity>
+			</Modal>}
 		</View>
 	);
 }

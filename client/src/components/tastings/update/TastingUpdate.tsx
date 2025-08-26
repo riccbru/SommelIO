@@ -85,9 +85,9 @@ export default function TastingUpdate({ tasting, setEditMode, setRefresh }: Prop
 		if (!formData.vintage.toString().trim()) {
 			newErrors.vintage = `${t("new.tasting.vintage")} ${t("new.required")}`;
 		} else if (!/^\d{4}$/.test(formData.vintage.toString().trim())) {
-			newErrors.vintage = `${t("new.tasting.vintage")} must be 4 digits (YYYY)`;
+			newErrors.vintage = `${t("new.tasting.vintage")} ${t("new.tasting.vintage_dig_err")}`;
 		} else if (parseInt(formData.vintage, 10) < 1000 || parseInt(formData.vintage, 10) > 2025) {
-			newErrors.vintage = `Vintage year must be in a reasonable range`;
+			newErrors.vintage = `${t("new.tasting.vintage")} ${t("new.tasting.vintage_range_err")}`;
 		}
 
 		if (!formData.alcohol_content.trim()) {

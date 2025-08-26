@@ -10,6 +10,7 @@ import NextButton from "@/src/components/new/NextButton";
 import FormSwitch from "@/src/components/new/FormSwitch";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import { setDescription } from "@/src/utils/utils";
 
 type OlfactoryExam = {
 	intensity: string;
@@ -176,42 +177,46 @@ export default function Olfactory() {
 							</View>
 
 							<FormSelect
-								label={t("new.intensity")}
 								field='intensity'
-								value={formData.intensity}
 								error={errors.intensity}
 								onChange={updateFormData}
+								label={t("new.intensity")}
+								value={formData.intensity}
 								options={intensityOptions}
 								i18nPath={`${i18nextPath}.intensity`}
+								description={setDescription(t, 'olfactory', 'intensity', formData.intensity)}
 							/>
 
 							<FormSelect
-								label={t("new.olfactory.complexity")}
 								field='complexity'
-								value={formData.complexity}
 								error={errors.complexity}
 								onChange={updateFormData}
+								value={formData.complexity}
 								options={complexityOptions}
+								label={t("new.olfactory.complexity")}
 								i18nPath={`${i18nextPath}.complexity`}
+								description={setDescription(t, 'olfactory', 'complexity', formData.complexity)}
 							/>
 
 							<FormSelect
-								label={t("new.quality")}
 								field='quality'
-								value={formData.quality}
 								error={errors.quality}
-								onChange={updateFormData}
+								label={t("new.quality")}
+								value={formData.quality}
 								options={qualityOptions}
+								onChange={updateFormData}
 								i18nPath={`${i18nextPath}.quality`}
+								description={setDescription(t, 'olfactory', 'quality', formData.quality)}
 							/>
 
 							{descriptors.map((el, index) => (
 								<FormSwitch
 									key={index}
-									label={t(`new.olfactory.${el}`)}
-									name={el}
 									formData={formData}
 									setFormData={setFormData}
+									label={t(`new.olfactory.${el}`)}
+									name={el as keyof OlfactoryExam}
+									description={setDescription(t, 'olfactory', 'descriptors', el)}
 								/>
 							))}
 
