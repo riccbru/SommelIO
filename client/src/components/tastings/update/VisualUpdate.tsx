@@ -185,38 +185,40 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 					updateFormData(field, value);
 					updateFormData("color_shade", "");
 				}}
-				description={setDescription(t, 'visual', 'color', formData.color_family)}
 			/>
 
 			<FormSelect
-				label={t("new.visual.shade")}
 				field='color_shade'
-				value={formData.color_shade}
-				error={errors.color_shade}
 				onChange={updateFormData}
-				options={colorShadesOptions[formData.color_family]}
+				error={errors.color_shade}
+				value={formData.color_shade}
+				label={t("new.visual.shade")}
 				i18nPath={`${i18nextPath}.shade`}
+				options={colorShadesOptions[formData.color_family]}
+				description={setDescription(t, 'visual', 'color', formData.color_shade)}
 			/>
 
 			<FormSelect
-				label={t("new.visual.consistency")}
 				field='consistency'
-				value={formData.consistency}
-				error={errors.consistency}
 				onChange={updateFormData}
+				error={errors.consistency}
+				value={formData.consistency}
 				options={consistencyOptions}
+				label={t("new.visual.consistency")}
 				i18nPath={`${i18nextPath}.consistency`}
+				description={setDescription(t, 'visual', 'consistency', formData.consistency)}
 			/>
 
 			{sparkling ? (
 				<FormSelect
-					label={t("new.visual.bubble_size")}
 					field='bubble_size'
-					value={formData.bubble_size}
+					onChange={updateFormData}
 					error={errors.bubble_size}
-					onChange={updateFormData}
 					options={bubblesizeOptions}
+					value={formData.bubble_size}
+					label={t("new.visual.bubble_size")}
 					i18nPath={`${i18nextPath}.bubble_size`}
+					description={setDescription(t, 'visual', 'effervescence', formData.bubble_size)}
 				/>
 			) : (
 				<></>
@@ -224,13 +226,14 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 
 			{sparkling ? (
 				<FormSelect
-					label={t("new.visual.bubble_number")}
 					field='bubble_number'
-					value={formData.bubble_number}
-					error={errors.bubble_number}
 					onChange={updateFormData}
+					error={errors.bubble_number}
 					options={bubbleNumberOptions}
+					value={formData.bubble_number}
+					label={t("new.visual.bubble_number")}
 					i18nPath={`${i18nextPath}.bubble_number`}
+					description={setDescription(t, 'visual', 'effervescence', formData.bubble_number)}
 				/>
 			) : (
 				<></>
@@ -238,13 +241,14 @@ export default function VisualUpdate({ tid, sparkling, exam, setRefresh, setEdit
 
 			{sparkling ? (
 				<FormSelect
-					label={t("new.visual.bubble_persistence")}
 					field='bubble_persistence'
-					value={formData.bubble_persistence}
-					error={errors.bubble_persistence}
 					onChange={updateFormData}
+					error={errors.bubble_persistence}
 					options={bubblePersistenceOptions}
+					value={formData.bubble_persistence}
+					label={t("new.visual.bubble_persistence")}
 					i18nPath={`${i18nextPath}.bubble_persistence`}
+					description={setDescription(t, 'visual', 'effervescence', formData.bubble_persistence)}
 				/>
 			) : (
 				<></>

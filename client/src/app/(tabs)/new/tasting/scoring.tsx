@@ -11,6 +11,21 @@ import SaveButton from "@/src/components/new/SaveButton";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 
+type FormData = {
+	visual_appearance: number;
+	visual_color: number;
+	olfactory_intensity: number;
+	olfactory_complexity: number;
+	olfactory_quality: number;
+	taste_structure: number;
+	taste_balance: number;
+	taste_intensity: number;
+	taste_persistence: number;
+	taste_quality: number;
+	harmony: number;
+	notes: string;
+}
+
 const defaultFormData = {
 	visual_appearance: 0,
 	visual_color: 0,
@@ -30,7 +45,7 @@ export default function Scoring() {
 	const theme = useTheme();
 	const { t } = useTranslation();
 	const [errors, setErrors] = useState<Record<string, string>>({});
-	const [formData, setFormData] = useState<Record<string, string>>(defaultFormData);
+	const [formData, setFormData] = useState<FormData>(defaultFormData);
 
 	const styles = StyleSheet.create({
 		container: {
@@ -143,17 +158,17 @@ export default function Scoring() {
 								<FormScore
 									key={key}
 									label={label}
-									value={formData[key]}
+									value={Number(formData[key])}
 									error={errors[key]}
 									onChange={v => updateFormData(key, v)}
 								/>
 							))}
 
 							<FormInput
-								label={t("new.notes")}
 								field='notes'
-								value={formData.notes}
 								error={errors.notes}
+								label={t("new.notes")}
+								value={formData.notes}
 								onChange={updateFormData}
 							/>
 						</Card.Content>

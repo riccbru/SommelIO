@@ -5,6 +5,7 @@ import ExamsAPI from "@/src/services/exams";
 import FormInput from "../../new/FormInput";
 import FormSelect from "../../new/FormSelect";
 import { useTranslation } from "react-i18next";
+import { setDescription } from "@/src/utils/utils";
 
 type TasteExam = {
 	sweetness: string;
@@ -168,113 +169,124 @@ export default function TasteUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 	return (
 		<View>
 			<FormSelect
-				label={t("new.taste.sweetness")}
 				field='sweetness'
-				value={formData.sweetness}
 				error={errors.sweetness}
 				onChange={updateFormData}
 				options={sweetnessOptions}
+				value={formData.sweetness}
+				label={t("new.taste.sweetness")}
 				i18nPath={`${i18nextPath}.sweetness`}
+				description={setDescription(t, 'taste', 'sweetness', formData.sweetness)}
 			/>
 
 			<FormSelect
-				label={t("new.taste.alcohols")}
 				field='alcohols'
-				value={formData.alcohols}
 				error={errors.alcohols}
 				onChange={updateFormData}
 				options={alcoholsOptions}
+				value={formData.alcohols}
+				label={t("new.taste.alcohols")}
 				i18nPath={`${i18nextPath}.alcohols`}
+				description={setDescription(t, 'taste', 'alcohols', formData.alcohols)}
 			/>
 
 			<FormSelect
-				label={t("new.taste.softness")}
 				field='softness'
-				value={formData.softness}
 				error={errors.softness}
 				onChange={updateFormData}
 				options={softnessOptions}
+				value={formData.softness}
+				label={t("new.taste.softness")}
 				i18nPath={`${i18nextPath}.softness`}
+				description={setDescription(t, 'taste', 'softness', formData.softness)}
 			/>
 
 			<FormSelect
-				label={t("new.taste.acidity")}
 				field='acidity'
-				value={formData.acidity}
 				error={errors.acidity}
-				onChange={updateFormData}
 				options={acidityOptions}
+				value={formData.acidity}
+				onChange={updateFormData}
+				label={t("new.taste.acidity")}
 				i18nPath={`${i18nextPath}.acidity`}
+				description={setDescription(t, 'taste', 'acidity', formData.acidity)}
 			/>
 
 			<FormSelect
-				label={t("new.taste.tannicity")}
 				field='tannicity'
-				value={formData.tannicity}
 				error={errors.tannicity}
 				onChange={updateFormData}
 				options={tannicityOptions}
+				value={formData.tannicity}
+				label={t("new.taste.tannicity")}
 				i18nPath={`${i18nextPath}.tannicity`}
+				description={setDescription(t, 'taste', 'tannicity', formData.tannicity)}
 			/>
 
 			<FormSelect
-				label={t("new.taste.saltiness")}
 				field='saltiness'
-				value={formData.saltiness}
 				error={errors.saltiness}
 				onChange={updateFormData}
 				options={saltinessOptions}
+				value={formData.saltiness}
+				label={t("new.taste.saltiness")}
 				i18nPath={`${i18nextPath}.saltiness`}
+				description={setDescription(t, 'taste', 'saltiness', formData.saltiness)}
 			/>
 
 			<FormSelect
-				label={t("new.taste.balance")}
 				field='balance'
-				value={formData.balance}
 				error={errors.balance}
-				onChange={updateFormData}
 				options={balanceOptions}
+				value={formData.balance}
+				onChange={updateFormData}
+				label={t("new.taste.balance")}
 				i18nPath={`${i18nextPath}.balance`}
+				description={setDescription(t, 'taste', 'balance', formData.balance)}
 			/>
 
 			<FormSelect
-				label={t("new.intensity")}
 				field='intensity'
-				value={formData.intensity}
 				error={errors.intensity}
 				onChange={updateFormData}
+				label={t("new.intensity")}
 				options={intensityOptions}
+				value={formData.intensity}
 				i18nPath={`${i18nextPath}.intensity`}
+				description={setDescription(t, 'taste', 'intensity', formData.intensity)}
 			/>
 
 			<FormSelect
-				label={t("new.taste.persistence")}
 				field='persistence'
-				value={formData.persistence}
+				onChange={updateFormData}
 				error={errors.persistence}
-				onChange={updateFormData}
 				options={persistenceOptions}
+				value={formData.persistence}
+				label={t("new.taste.persistence")}
 				i18nPath={`${i18nextPath}.persistence`}
+				description={setDescription(t, 'taste', 'persistence', formData.persistence)}
 			/>
 
 			<FormSelect
-				label={t("new.quality")}
 				field='quality'
-				value={formData.quality}
 				error={errors.quality}
-				onChange={updateFormData}
+				label={t("new.quality")}
 				options={qualityOptions}
+				value={formData.quality}
+				onChange={updateFormData}
 				i18nPath={`${i18nextPath}.quality`}
+				description={setDescription(t, 'taste', 'quality', formData.quality)}
 			/>
 
 			<FormSelect
-				label={t("new.taste.structure")}
 				field='structure'
-				value={formData.structure}
 				error={errors.structure}
 				onChange={updateFormData}
 				options={structureOptions}
+				value={formData.structure}
+				label={t("new.taste.structure")}
 				i18nPath={`${i18nextPath}.structure`}
+				description={setDescription(t, 'taste', 'structure', formData.structure)}
 			/>
 
 			<FormInput

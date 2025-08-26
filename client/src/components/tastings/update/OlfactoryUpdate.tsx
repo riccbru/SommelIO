@@ -6,6 +6,7 @@ import FormInput from "../../new/FormInput";
 import FormSwitch from "../../new/FormSwitch";
 import FormSelect from "../../new/FormSelect";
 import { useTranslation } from "react-i18next";
+import { setDescription } from "@/src/utils/utils";
 
 type OlfactoryExam = {
 	intensity: string;
@@ -154,13 +155,14 @@ export default function OlfactoryUpdate({ tid, exam, setRefresh, setEditMode }: 
 	return (
 		<View>
 			<FormSelect
-				label={t("new.intensity")}
 				field='intensity'
-				value={formData.intensity}
 				error={errors.intensity}
 				onChange={updateFormData}
+				label={t("new.intensity")}
 				options={intensityOptions}
+				value={formData.intensity}
 				i18nPath={`${i18nextPath}.intensity`}
+				description={setDescription(t, 'olfactory', 'intensity', formData.intensity)}
 			/>
 
 			<FormSelect
@@ -171,6 +173,7 @@ export default function OlfactoryUpdate({ tid, exam, setRefresh, setEditMode }: 
 				onChange={updateFormData}
 				options={complexityOptions}
 				i18nPath={`${i18nextPath}.complexity`}
+				description={setDescription(t, 'olfactory', 'complexity', formData.complexity)}
 			/>
 
 			<FormSelect
@@ -181,15 +184,17 @@ export default function OlfactoryUpdate({ tid, exam, setRefresh, setEditMode }: 
 				onChange={updateFormData}
 				options={qualityOptions}
 				i18nPath={`${i18nextPath}.quality`}
+				description={setDescription(t, 'olfactory', 'quality', formData.quality)}
 			/>
 
 			{descriptors.map((el, index) => (
 				<FormSwitch
 					key={index}
-					label={t(`new.olfactory.${el}`)}
-					name={el}
 					formData={formData}
 					setFormData={setFormData}
+					label={t(`new.olfactory.${el}`)}
+					name={el as keyof OlfactoryExamBody}
+					description={setDescription(t, 'olfactory', 'descriptors', el)}
 				/>
 			))}
 

@@ -5,6 +5,7 @@ import ExamsAPI from "@/src/services/exams";
 import FormInput from "../../new/FormInput";
 import FormSelect from "../../new/FormSelect";
 import { useTranslation } from "react-i18next";
+import { setDescription } from "@/src/utils/utils";
 
 type FinalExam = {
 	evolutionary_state: string;
@@ -95,23 +96,25 @@ export default function FinalUpdate({ tid, exam, setRefresh, setEditMode }: Prop
 	return (
 		<View>
 			<FormSelect
-				label={t("new.final.evolution")}
 				field='evolutionary_state'
-				value={formData.evolutionary_state}
-				error={errors.evolutionary_state}
 				onChange={updateFormData}
+				label={t("new.final.evolution")}
+				error={errors.evolutionary_state}
 				options={evolutionaryStateOptions}
+				value={formData.evolutionary_state}
 				i18nPath={`${i18nextPath}.evolution`}
+				description={setDescription(t, 'final', 'evolution', formData.evolutionary_state)}
 			/>
 
 			<FormSelect
-				label={t("new.harmony")}
 				field='harmony'
-				value={formData.harmony}
 				error={errors.harmony}
-				onChange={updateFormData}
+				label={t("new.harmony")}
 				options={harmonyOptions}
+				value={formData.harmony}
+				onChange={updateFormData}
 				i18nPath={`${i18nextPath}.harmony`}
+				description={setDescription(t, 'final', 'harmony', formData.harmony)}
 			/>
 
 			<FormInput

@@ -47,10 +47,6 @@ export default function Visual() {
 		rosé: "rosé",
 	};
 
-	// const setDescription = (exam: string, field: string, state: string): string => {
-	// 	return t(`description.${exam}.${field}.${!state ? 'descr' : state}`);
-	// }
-
 	const [formData, setFormData] = useState<VisualExam>({
 		...defaultFormData,
 		color_family: categoryToColorFamily[category] || defaultFormData.color_family,
@@ -217,16 +213,15 @@ export default function Visual() {
 
 							<FormSelect
 								field='color_family'
+								error={errors.color_family}
 								options={colorFamilyOptions}
 								label={t("new.visual.color")}
 								value={formData.color_family}
-								error={errors.color_family}
 								onChange={(field, value) => {
 									updateFormData(field, value);
 									updateFormData("color_shade", "");
 								}}
 								i18nPath={`${i18nextPath}.color`}
-								description={setDescription(t, 'visual', 'color', formData.color_family)}
 							/>
 
 							<FormSelect
