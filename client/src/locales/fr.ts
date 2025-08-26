@@ -296,6 +296,7 @@ export default {
 		confirm_mex: "Êtes-vous sûr de vouloir supprimer",
 		delete_confirm: "Supprimer",
 		cancel: "Annule",
+		back: "Retourner"
 	},
 	profile: {
 		title: "Paramètres",
@@ -325,7 +326,7 @@ export default {
 				greenish_yellow: "C'est une tonalité qu'on trouve habituellement dans les vins blancs très jeunes, légers et frais. Ces vins ont un rapport moelleux/acidité résolument en faveur de la seconde. Normalement il s'agit de vins obtenus par une vinification rigoureuse en blanc de raisins qui, souvent, ont été cueillis en avance ou qui peuvent avoir subi des pratiques œnologiques (clarification, filtrations) répétées. On peut décrire cette teinte comme un jaune très faible sur lequel prévalent de forts reflets verts. Les reflets verts tendent à diminuer après la première année de vie.",
 				straw_yellow: "C'est une tonalité qu'on trouve dans la plus grande partie des vins blanes encore plutôt jeunes avec un rapport moelleux-acidité assez équilibré. Ces vins sont, en général, obtenus par la vinification en blanc de raisins cueillis en pleine maturation physiologique et qui présentent donc un bon rapport aci- des/sucres. On peut décrire cette teinte comme une couleur semblable à celle de la paille. La présence d'une plus grande ou d'une plus petite intensité de jaune et des correspondants reflets vert pâle ou doré, dépend du milieu pédoclimatique, du cépage, des techniques d'élaboration appliquées et de l'âge du vin",
 				golden_yellow: "C'est une tonalité qu'on trouve dans les vins blancs plus mûrs qui ont un rapport moelleux-acidité en faveur du premier. Ces vins sont en général issus de raisins parfaitement mûrs ou légèrement plus mûrs avec une éventuelle brève macération avant la vinification et avec une fermentation et/ou maturation en tonneaux de bois. Cette tonalité, chaude et dorée, rappelle la couleur de l'or jaune. Le jaune doré, s'il est dépourvu de vivacité, peut indiquer une évolution négative des caractéristiques du vin, résultant d'une oxydation déjà en état avancé.",
-				amber: "C'est une teinte qu'on trouve dans les vins blancs de paille ou liquoreux et qui ont un rapport aci- dité/moelleux résolument en faveur du second. Cette teinte rappelle celle de l'ambre et de la topaze. Dans ce cas aussi si le jaune ambré se présente sombre et sans lumière il représente une situation négative. Celle-ci c'est une caractéristique de vins qui, ne rentrant pas dans les catégories de vins deja mentionnées, présentent une oxydation accentuée de la matière colorante.",
+				amber: "C'est une teinte qu'on trouve dans les vins blancs de paille ou liquoreux et qui ont un rapport acidité/moelleux résolument en faveur du second. Cette teinte rappelle celle de l'ambre et de la topaze. Dans ce cas aussi si le jaune ambré se présente sombre et sans lumière il représente une situation négative. Celle-ci c'est une caractéristique de vins qui, ne rentrant pas dans les catégories de vins deja mentionnées, présentent une oxydation accentuée de la matière colorante.",
 				soft_rosé: "C'est une teinte qu'on trouve dans les vins rosés qui présentent une couleur semblable aux pétales des fleurs du pêcher ou de la rose de la couleur du même nom. Ces vins en général sont obtenus de raisins à la baie noir soumis à une macération avec un contact limité entre le mare et la partie liquide du moût. Si cette teinte contient des reflets violacés, cela signifie que le vin est jeune. Par contre si cette teinte contient des reflets cuivrés, qui rappellent la couleur du cuivre ou de la pelure d'oignon, on peut supposer que le vin en question a été obtenu par la vinification en blanc de raisins qui contiennent une matière colorante délicate, comme par exemple le pinot gris.",
 				cherry_red: "C'est une teinte qu'on trouve dans les vins rosés qui présentent une couleur plus intense de la précédente, semblable à celle de certaines cerises, comme par exemple le Moretta de Cesena ou le Durone de Vignola. Ces vins en général sont obtenus avec une macération un peu plus longue par rapport au cas précédent.",
 				dark_rosé: "C'est une teinte qu'on trouve dans les vins rosés qui présentent une couleur semblable à celle des vins rouges (on peut aussi la définir rouge rubis très déchargé). En général, ces vins sont obtenus avec une macération encore plus longue par rapport aux deux cas précédents.",
@@ -367,8 +368,8 @@ export default {
 			complexity: {
 				descr: "La complexité olfactive est la gamme des parfums du vin perçus en succession après des inspirations répétées.",
 				lacking: "Se dit d'un vin qui possède une gamme de nuances odorantes très insuffisante. Il s'agit toujours d'une situation inacceptable.",
-				scarcely_complex: "Se dit un vin qui possède une gamme de nuances odorantes insuffisante dont le numéro reste inchangé aussi après de nombreuses inspi- rations; celle-ci peut-être une situation qu'on trouve dans les vins jeunes et simples, obtenus à partir des cépages pauvres en substances aromatiques.",
-				quite_complex: "Se dit d'un vin qui possède une gamme de nuances odorantes suffisante ou modérée qui se dégagent en succession après plusieurs inspi- rations; celle-ci c'est une situation qui se trouve fréquemment dans les vins jeunes ou dans les vins qui ont eu un mûrissement bref.",
+				scarcely_complex: "Se dit un vin qui possède une gamme de nuances odorantes insuffisante dont le numéro reste inchangé aussi après de nombreuses inspirations; celle-ci peut-être une situation qu'on trouve dans les vins jeunes et simples, obtenus à partir des cépages pauvres en substances aromatiques.",
+				quite_complex: "Se dit d'un vin qui possède une gamme de nuances odorantes suffisante ou modérée qui se dégagent en succession après plusieurs inspirations; celle-ci c'est une situation qui se trouve fréquemment dans les vins jeunes ou dans les vins qui ont eu un mûrissement bref.",
 				complex: "Se dit d'un vin qui possede de nombreuses nuances odorantes qui s'articulent parmi celles de différents groupes de partums et qui sont perçues de manière nette et définie; celle-ci c'est une situation qu'on peut trouver dans les vins mûrs, blancs ou rouges, mais aussi dans les vins plutôt jeunes s'ils sont obtenus à partir des cépages qui ont une personnalité olfactive accentuée.",
 				ample: "Se dit d'un vin qui possède de très nombreuses nuances odorantes qui sont",
 			},
@@ -445,7 +446,7 @@ export default {
 			},
 			structure: {
 				descr: "La structure - ou corp - est liée à la présence de toutes les substances solides présentes dans le vin.",
-				thin: "Se dit d'un vin dans lequel on relève une structure anormale et insuffisante. Normalement, il s'agit de vins issus de raisins très abîmés par des attaques fongiques, favoris des persistantes pluies autom-nales ou soumis à des procédés œnologiques excessifs. C'est une situation inacceptable.",
+				thin: "Se dit d'un vin dans lequel on relève une structure anormale et insuffisante. Normalement, il s'agit de vins issus de raisins très abîmés par des attaques fongiques, favoris des persistantes pluies automnales ou soumis à des procédés œnologiques excessifs. C'est une situation inacceptable.",
 				weak: "Se dit d'un vin dans lequel on relève une structure modérée due à la présence d'une quantité limitée de substances extractives. Normalement, il s'agit de vins simples et abreuvoirs qui doivent être consommés jeunes.",
 				full: "Se dit d'un vin dans lequel on relève une structure bonne. Normalement, il s'agit de vins issus de raisins qui ont atteint un degré optimal de maturité, plutôt riches en substances extractives.",
 				vigorous: "Se dit d'un vin doué d'une très bonne structure. Normalement, il s'agit de grands vins, surtout rouges, vin de paille, liquoreux ou d'autres obtenus de raisins traités avec le botrytis dans lesquels le sucre est un élément qui renforce encore plus la structure.",
@@ -466,7 +467,7 @@ export default {
 				very_intense: "se dit d'un vin dans lequel on perçoit des sensations gustatives, tactiles et gusto-olfactives profondes. Normalement il s'agit de vins de structure très bonne et particulièrement riches en substances extractives.",
 			},
 			persistence: {
-				descr: "La persistance gusto-olfactive est liée à la complexité et à la richesse du goût du vin, à l'ensemble des sensations gustatives, tactiles et surtout gusto-olfactives ou rétronasales. La persistance gusto-olfactive ou persistance aromatique intense (PAI) est évaluée en secondes à partir de la dégluti-tion et de l'expiration.",
+				descr: "La persistance gusto-olfactive est liée à la complexité et à la richesse du goût du vin, à l'ensemble des sensations gustatives, tactiles et surtout gusto-olfactives ou rétronasales. La persistance gusto-olfactive ou persistance aromatique intense (PAI) est évaluée en secondes à partir de la déglutition et de l'expiration.",
 				short: "Se dit d'un vin dans lequel on remarque une persistance gusto-olfactive inférieure à 3 secondes. C'est une situation inacceptable.",
 				scarcely_persistent: "Se dit d'un vin dans lequel on remarque une persistance gusto-olfactive de 3-5 secondes. Normalement il s'agit de vins simples.",
 				quite_persistent: "Se dit d'un vin dans lequel on remarque une persistance gusto-olfactive de 5-8 secondes. Normalement il s'agit de vins de structure et complexité moyenne.",
@@ -479,7 +480,7 @@ export default {
 				scarcely_fine: "Se dit d'un vin dont la qualité gusto-olfactive est médiocre et avec un goût final peu agréable.",
 				quite_fine: "Se dit d'un vin dont la qualité gusto-olfactive est suffisante ou discrète, avec un bon équilibre et un goût final agréable.",
 				fine: "Se dit un vin d'une bonne qualité gusto-olfactive, parfois aussi très bonne, avec un équilibre très bon et goût final élégant.",
-				excellent: "Se dit d'un vin dont la qualité gusto-olfactive est particulièrement distincte, parfaitement équilibré et avec un goût final riche en personna-lité, classe et complexité.",
+				excellent: "Se dit d'un vin dont la qualité gusto-olfactive est particulièrement distincte, parfaitement équilibré et avec un goût final riche en personnalité, classe et complexité.",
 			},
 		},
 		final: {
@@ -489,7 +490,7 @@ export default {
 				young: "Se dit d'un vin qui ne présente pas encore un bon équilibre gustatif à cause d'une légère prédominance des duretés mais qu'il évidence, soit à niveau olfactif soit à niveau gustatif, des caractéristiques de fragrance, fraîcheur et potentialité en ce qui concerne l'affinage. Il peut s'agir de vins à consommer jeunes, donc près à leur expression la plus haute, ou de vins rouges particulièrement structurés et destinés à une évolution ultérieure.",
 				ready: "Se dit d'un vin doué d'un bon équilibre qui lui permet d'être consommé et apprécié mais auquel on accorde encore un marge d'amélioration.",
 				mature: "Se dit d'un vin qui, indépendamment de l'âge, présente un équilibre et une harmonie optimal, par conséquent toutes les caractéristiques organoleptiques ont atteint un stade optimal d'appréciation.",
-				old: "Se dit d'un vin dans lequel on relève des signes évidents de fléchissement d'une ou plusieurs caractéristiques organoleptiques qui se manifestent par des variations de couleur, une réduction des arô-mes avec une apparition éven-tuelle d'odeurs oxydées et un aplatissement du goût. C'est une situation inacceptable. Il ne faut absolument pas confondre ce terme avec celui de vieilli, qui, au contraire, identifie un vin qui a reposé longtemps dans un tonneau et/ou bouteille. Un vin vieilli longtemps peut être aussi pas vieux, pendant que un vin peut être vieux après seulement deux années."
+				old: "Se dit d'un vin dans lequel on relève des signes évidents de fléchissement d'une ou plusieurs caractéristiques organoleptiques qui se manifestent par des variations de couleur, une réduction des arômes avec une apparition éventuelle d'odeurs oxydées et un aplatissement du goût. C'est une situation inacceptable. Il ne faut absolument pas confondre ce terme avec celui de vieilli, qui, au contraire, identifie un vin qui a reposé longtemps dans un tonneau et/ou bouteille. Un vin vieilli longtemps peut être aussi pas vieux, pendant que un vin peut être vieux après seulement deux années."
 			},
 			harmony: {
 				descr: "L'harmonie représente la synthèse de toutes les caractéristiques du vin évaluées pendant les trois phases de la dégustation et elle est liée à deux paramètres: la cohérence entre les observations et leur niveau qualitatif.",

@@ -4,7 +4,7 @@
 		"slug": "sommelio",
 		"version": "1.0.0",
 		"orientation": "portrait",
-		"icon": "./assets/images/icon/ios/first.png",
+		"icon": "./assets/images/icon/ios/simple_black.png",
 		"scheme": "sommelio",
 		"userInterfaceStyle": "automatic",
 		"newArchEnabled": true,
@@ -18,7 +18,7 @@
 		},
 		"android": {
 			"adaptiveIcon": {
-				"foregroundImage": "./assets/images/icon/android/first.png",
+				"foregroundImage": "./assets/images/icon/android/simple_black.png",
 				"backgroundColor": "#ffffff"
 			},
 			"edgeToEdgeEnabled": true,

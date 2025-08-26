@@ -295,6 +295,7 @@ export default {
 		confirm_mex: "Are you sure you want to delete",
 		delete_confirm: "Delete",
 		cancel: "Cancel",
+		back: "Back"
 	},
 	profile: {
 		title: "Settings",
