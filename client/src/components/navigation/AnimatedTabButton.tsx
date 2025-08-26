@@ -10,27 +10,25 @@ type Props = {
 export default function AnimatedTabButton({ children, onPress, style }: Props) {
 	const scale = useRef(new Animated.Value(1)).current;
 
-	const handlePressIn = () => {
-		Animated.timing(scale, {
-			toValue: 1.1,
-			duration: 150,
-			useNativeDriver: true,
-		}).start();
-	};
-
 	const handlePressOut = () => {
-		Animated.timing(scale, {
-			toValue: 1,
-			duration: 150,
-			useNativeDriver: true,
-		}).start();
+		Animated.sequence([
+			Animated.timing(scale, {
+				toValue: 1.15,
+				duration: 225,
+				useNativeDriver: true,
+			}),
+			Animated.timing(scale, {
+				toValue: 1,
+				duration: 200,
+				useNativeDriver: true,
+			})
+		]).start();
 	};
 
 	return (
 		<Pressable
 			style={style}
 			onPress={onPress}
-			onPressIn={handlePressIn}
 			onPressOut={handlePressOut}
 		>
 			<Animated.View style={{ alignItems: "center", transform: [{ scale }] }}>

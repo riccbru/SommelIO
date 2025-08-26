@@ -31,7 +31,6 @@ export default function TabsLayout() {
 						fontFamily: "Epilogue-Regular",
 						color: focused ? theme.colors.amber : theme.colors.primary,
 					}),
-					// tabBarLabel: "",
 					tabBarLabel: ({ focused }) =>
 						!config.title.length ? (
 							<></>

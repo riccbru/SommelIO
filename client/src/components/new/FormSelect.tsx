@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
-import { formatOption } from "@/src/utils/utils";
+import { capitalizeFirst, formatOption } from "@/src/utils/utils";
 import { HelperText, Text, Card } from "react-native-paper";
 import { CaretDownIcon, CaretUpIcon, InfoIcon } from "phosphor-react-native";
 import { View, TouchableOpacity, Modal, FlatList, StyleSheet } from "react-native";
@@ -263,7 +263,7 @@ export default function FormSelect<T>({
 				>
 					<View style={[styles.modalDescription, { backgroundColor: theme.colors.surface, padding: 20, borderRadius: 8 }]}>
 						<Text style={{ fontSize: 20, fontFamily: "Epilogue-Bold", color: theme.colors.primary, marginBottom: 5 }}>
-							{!hasValue ? label : formatOption(value)}
+							{!hasValue ? label : capitalizeFirst(t(`${i18nPath}.${value}`))}
 						</Text>
 						<Text style={{ fontSize: 16, fontFamily: "Epilogue-Regular", color: theme.colors.primary }}>
 							{description}
