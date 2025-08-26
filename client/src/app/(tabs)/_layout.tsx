@@ -1,15 +1,19 @@
 import { Tabs } from "expo-router";
 import { Text } from "react-native";
+import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import { TAB_CONFIG } from "@/src/constants/tabConfig";
 import AnimatedTabButton from "@/src/components/navigation/AnimatedTabButton";
 
 export default function TabsLayout() {
 	const theme = useTheme();
+	const { t } = useTranslation();
 	const iconColor = (focused: boolean) => (!focused ? theme.colors.primary : theme.colors.amber);
 	const iconWeight = (title: string, focused: boolean) => {
 		return !title || focused ? "fill" : "regular";
 	};
+
+	const getTitle = (key: string) => t(key);
 
 	return (
 		<Tabs
@@ -43,13 +47,13 @@ export default function TabsLayout() {
 									color: focused ? theme.colors.amber : theme.colors.primary,
 								}}
 							>
-								{config?.title}
+								{getTitle(config?.title)}
 							</Text>
 						),
 					tabBarIcon: ({ focused }) => (
 						<Icon
 							color={iconColor(focused)}
-							size={!config.title.length ? 46 : 32}
+							size={!getTitle(config.title).length ? 46 : 32}
 							weight={iconWeight(config.title, focused)}
 						/>
 					),

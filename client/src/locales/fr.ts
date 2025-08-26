@@ -15,6 +15,13 @@ export default {
 	},
 	shareMex:
 		"Salut! Je viens de terminer une dégustation sur SommelIO. Consultez mon profil et mes évaluations:",
+	tabs: {
+		index: "Home",
+		colleagues: "Collègues",
+		new: "Nouveau",
+		wines: "Vins",
+		profile: "Profil"
+	},
 	index: {
 		welcome: "Bienvenue sur",
 	},

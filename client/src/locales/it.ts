@@ -1,4 +1,5 @@
 export default {
+	
 	tasting_name: "Degustazione",
 	tastings_name: "Degustazioni",
 	loading: "Caricamento...",
@@ -13,8 +14,14 @@ export default {
 		full_name: "Nome e Cognome",
 		birthdate: "Data di Nascita",
 	},
-	shareMex:
-		"Ciao! Ho appena completato una degustazione su SommelIO. Dai un'occhiata al mio profilo e alle mie valutazioni:",
+	shareMex: "Ciao! Ho appena completato una degustazione su SommelIO. Dai un'occhiata al mio profilo e alle mie valutazioni:",
+	tabs: {
+		index: "Home",
+		colleagues: "Colleghi",
+		new: "",
+		wines: "Vini",
+		profile: "Profilo"
+	},
 	index: {
 		welcome: "Benvenuto in",
 	},

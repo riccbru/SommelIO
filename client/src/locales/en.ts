@@ -14,6 +14,13 @@ export default {
 		birthdate: "Birthdate",
 	},
 	shareMex: "Hi! I just completed a tasting on SommelIO. Check out my profile and ratings:",
+	tabs: {
+		index: "Home",
+		colleagues: "Colleagues",
+		new: "",
+		wines: "Wines",
+		profile: "Profile"
+	},
 	index: {
 		welcome: "Welcome to",
 	},
