@@ -1,5 +1,6 @@
 import NewOption from "./NewOption";
 import { useTheme } from "@/src/hooks/useTheme";
+import { LinkProps } from "expo-router";
 import { FlatList, StyleSheet, View } from "react-native";
 
 export default function New() {
@@ -18,8 +19,8 @@ export default function New() {
 	});
 
 	const data = [
-		{ label: "tasting_name", path: "/new/tasting" },
-		{ label: "todrink", path: "/new/todrink" },
+		{ label: "tasting_name", path: "/new/tasting" as LinkProps["href"] },
+		{ label: "todrink", path: "/new/todrink" as LinkProps["href"] },
 	];
 
 	return (

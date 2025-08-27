@@ -1,12 +1,12 @@
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
+import { LinkProps, useRouter } from "expo-router";
 import { CaretRightIcon } from "phosphor-react-native";
-import { RelativePathString, useRouter } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 type Props = {
 	title: string;
-	path: RelativePathString;
+	path: LinkProps["href"];
 };
 
 export default function NewOption({ title, path }: Props) {
