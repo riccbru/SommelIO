@@ -2,7 +2,7 @@ import axiosClient from "./axiosClient";
 
 async function fetchWines() {
 	try {
-		const response = await axiosClient.get("/wines");
+		const response = await axiosClient.get("/v1/wines");
 		return response.data;
 	} catch (error: any) {
 		console.error(error);
@@ -12,7 +12,7 @@ async function fetchWines() {
 
 async function fetchWineById(wid: string) {
 	try {
-		const response = await axiosClient.get(`/wines/${wid}`);
+		const response = await axiosClient.get(`/v1/wines/${wid}`);
 		return response;
 	} catch (error: any) {
 		console.error(error);
@@ -22,7 +22,7 @@ async function fetchWineById(wid: string) {
 
 async function createWine(data: any) {
 	try {
-		const response = axiosClient.post("/wines", data);
+		const response = axiosClient.post("/v1/wines", data);
 		return response;
 	} catch (error: any) {
 		console.log(error);
@@ -32,7 +32,7 @@ async function createWine(data: any) {
 
 async function deleteWine(wid: string) {
 	try {
-		const response = axiosClient.delete(`/wines/${wid}`);
+		const response = axiosClient.delete(`/v1/wines/${wid}`);
 		return response;
 	} catch (error: any) {
 		console.error(error);

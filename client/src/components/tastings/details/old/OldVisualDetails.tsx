@@ -118,7 +118,7 @@ export default function OldVisualDetails({ exam }: Props) {
 			))}
 
 			<View style={styles.notesRow}>
-				<Text style={styles.notesTitle}>Notes</Text>
+				<Text style={styles.notesTitle}>{t("new.notes")}</Text>
 				<Text style={styles.notesText}>{exam.notes || "-"}</Text>
 			</View>
 		</View>

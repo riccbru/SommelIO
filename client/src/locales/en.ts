@@ -73,6 +73,8 @@ export default {
 			color: "Color",
 			shade: "Shade",
 			consistency: "Consistency",
+			chains_number: "Chains Number",
+			rise_speed: "Rise Speed",
 			bubble_size: "Bubble Size",
 			bubble_number: "Bubble Number",
 			bubble_persistence: "Perlage Persistence",
@@ -101,6 +103,15 @@ export default {
 					soft_rosé: "soft rosé",
 					cherry_red: "cherry red",
 					dark_rosé: "dark rosé",
+					// NEW
+					mogan: "",
+					pink_peach: "pink peach blossom",
+					copper_red: "copper red",
+					salmon_pink: "salmon pink",
+					coral_pink: "coral pink",
+					peony_rosé: "peony rosé",
+					amaranth_red: "amaranth red",
+					carmine_red: "carmine red",
 				},
 				consistency: {
 					flowing: "flowing",
@@ -108,6 +119,16 @@ export default {
 					quite_consistent: "quite consistent",
 					consistent: "consistent",
 					oily: "oily",
+				},
+				chains_number: {
+					very_few: "very few",
+					quite_numerous: "quite numerous",
+					numerous: "numerous",
+				},
+				rise_speed: {
+					rapid: "rapid",
+					average: "average",
+					slow: "slow",
 				},
 				bubble_size: {
 					large: "large",
@@ -141,6 +162,11 @@ export default {
 			spicy: "Spicy",
 			toasted: "Toasted",
 			ethereal: "Ethereal",
+			// NEW
+			varietal: "Varietal",
+			vegetal: "Vegetal",
+			baking: "Baking",
+			empyreumatic: "Empyreumatic",
 			values: {
 				intensity: {
 					lacking: "lacking",
@@ -162,6 +188,11 @@ export default {
 					quite_fine: "quite fine",
 					fine: "fine",
 					excellent: "excellent",
+					// NEW
+					acceptable: "Acceptable",
+					good: "Good",
+					distinguished: "Distinguishe",
+					very_good: "Very Good",
 				},
 			},
 		},
@@ -174,6 +205,7 @@ export default {
 			acidity: "Acidity",
 			tannicity: "Tannicity",
 			saltiness: "Saltiness",
+			effervescence: "Effervescence",
 			balance: "Balance",
 			persistence: "Persistence",
 			structure: "Structure or Body",
@@ -191,6 +223,7 @@ export default {
 					medium_warm: "medium warm",
 					warm: "warm",
 					alcoholic: "alcoholic",
+					very_warm: "very warm",
 				},
 				softness: {
 					sharp: "sharp",
@@ -198,6 +231,7 @@ export default {
 					quite_soft: "quite soft",
 					soft: "soft",
 					velvety: "velvety",
+					mellow: "mellow",
 				},
 				acidity: {
 					flat: "flat",
@@ -205,6 +239,7 @@ export default {
 					quite_fresh: "quite fresh",
 					fresh: "fresh",
 					acidulous: "acidulous",
+					vibrant: "vibrant",
 				},
 				tannicity: {
 					flabby: "flabby",
@@ -212,6 +247,7 @@ export default {
 					quite_tannic: "quite tannic",
 					tannic: "tannic",
 					astringent: "astringent",
+					tenacious: "tenacious",
 				},
 				saltiness: {
 					tasteless: "tasteless",
@@ -219,6 +255,14 @@ export default {
 					quite_tasty: "quite tasty",
 					tasty: "tasty",
 					salty: "salty",
+					savory: "savory",
+				},
+				effervescence: {
+					delicate: "delicate",
+					moderate: "moderate",
+					lively: "lively",
+					exuberant: "exuberant",
+					vivid: "vivid",
 				},
 				balance: {
 					unbalanced: "unbalanced",
@@ -245,6 +289,11 @@ export default {
 					quite_fine: "quite fine",
 					fine: "fine",
 					excellent: "excellent",
+					// NEW
+					acceptable: "acceptable",
+					good: "good",
+					distinguished: "distinguished",
+					very_good: "very_good",
 				},
 				structure: {
 					thin: "thin",
@@ -252,6 +301,7 @@ export default {
 					full: "full",
 					vigorous: "vigorous",
 					heavy: "heavy",
+					medium: "medium",
 				},
 			},
 		},
@@ -272,6 +322,14 @@ export default {
 					disharmonious: "disharmonious",
 					quite_harmonious: "quite harmonious",
 					harmonious: "harmonious",
+				},
+				// NEW
+				quality: {
+					acceptable: "acceptable",
+					good: "good",
+					distinguished: "distinguished",
+					very_good: "very good",
+					excellent: "excellent",
 				},
 			},
 		},
@@ -355,6 +413,15 @@ export default {
 					"This shade usually occurs in more mature red wines, in which softness slightly prevails over roughness. This shade may vary in intensity: it is compared to blood red when it is intense (deep) and to pomegranate seeds when the colour is more transparent.",
 				orange_red:
 					"This shade is normally used to define red wines, which have undergone a long ageing period and with a ratio softness/roughness in favour of the first one. This shade resembles the colour of bricks, with nuances ranging from tawny to orange. If this shade is dull or present in younger wines it is a negative factor, because it betrays an early ageing or, even worse, oxidation which caused a decaying stage.",
+				// NEW
+				mogan: "",
+				pink_peach: "",
+				copper_red: "",
+				salmon_pink: "",
+				coral_pink: "",
+				peony_rosé: "",
+				amaranth_red: "",
+				carmine_red: "",
 			},
 			consistency: {
 				descr: "Consistency depends on the presence of ethyl alcohol in wine, as well as on all other substances which contribute in enriching its structure.",

@@ -2,7 +2,7 @@ import axiosClient from "./axiosClient";
 
 async function getCurrentUser(accessToken: string | null) {
 	try {
-		const response = await axiosClient.get("/users/me", {
+		const response = await axiosClient.get("/v1/users/me", {
 			headers: {
 				Authorization: `Bearer ${accessToken}`,
 			},
@@ -16,7 +16,7 @@ async function getCurrentUser(accessToken: string | null) {
 
 async function getStats(accessToken: string | null) {
 	try {
-		const response = await axiosClient.get("/users/me/stats", {
+		const response = await axiosClient.get("/v1/users/me/stats", {
 			headers: {
 				Authorization: `Bearer ${accessToken}`,
 			},

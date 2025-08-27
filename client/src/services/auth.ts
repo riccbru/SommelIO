@@ -13,7 +13,7 @@ async function login(
 	password: string
 ): Promise<{ newAccessToken: string; newRefreshToken: string }> {
 	try {
-		const response = await axiosClient.post("/auth/login", { username, password });
+		const response = await axiosClient.post("/v1/auth/login", { username, password });
 
 		const newAccessToken = response.data.token;
 		const newRefreshToken = response.headers["set-cookie"]
@@ -39,7 +39,7 @@ async function login(
 
 async function logout() {
 	try {
-		const response = await axiosClient.post("/auth/logout", {});
+		const response = await axiosClient.post("/v1/auth/logout", {});
 		return response;
 	} catch (error: any) {
 		throw new Error(error.response?.data?.error || `[services/auth.ts] Signup failed: ${error}`);
@@ -48,7 +48,7 @@ async function logout() {
 
 async function signup(data: SignupData) {
 	try {
-		const response = await axiosClient.post("/auth/signup", data);
+		const response = await axiosClient.post("/v1/auth/signup", data);
 		return response.data;
 	} catch (error: any) {
 		throw new Error(error.response?.data?.error || `[services/auth.ts] Signup failed: ${error}`);

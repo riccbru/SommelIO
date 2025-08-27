@@ -34,9 +34,6 @@ router.get("/", async (req, res) => {
 			},
 		});
 
-		console.log(JSON.stringify(results_old, null, 3));
-		console.log(JSON.stringify(results_new, null, 3));
-
 		const tastings_old = results_old.map(t => formatTasting(t));
 		const tastings_new = results_new.map(t => formatTasting(t));
 

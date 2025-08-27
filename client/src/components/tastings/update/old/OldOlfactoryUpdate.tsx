@@ -113,6 +113,7 @@ export default function OldOlfactoryUpdate({ tid, exam, setRefresh, setEditMode 
 		"toasted",
 		"ethereal",
 	];
+
 	const validateForm = (): boolean => {
 		const newErrors: Record<string, string> = {};
 

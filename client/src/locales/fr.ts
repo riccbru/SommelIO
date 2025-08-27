@@ -74,6 +74,8 @@ export default {
 			color: "Couleur",
 			shade: "Teinte",
 			consistency: "Consistance",
+			chains_number: "Nombre de Chaînette",
+			rise_speed: "Vitesse d'Ascension",
 			bubble_size: "Grain des Bulles",
 			bubble_number: "Nombre des Bulles",
 			bubble_persistence: "Persistance du Perlage",
@@ -102,6 +104,15 @@ export default {
 					soft_rosé: "rose faible",
 					cherry_red: "rose cerise",
 					dark_rosé: "rose clairet",
+					// NEW
+					mogan: "jaune acajou",
+					pink_peach: "fleur de pêcher rose",
+					copper_red: "rose cuivré",
+					salmon_pink: "rose saumon",
+					coral_pink: "rose corail",
+					peony_rosé: "rose pivoine",
+					amaranth_red: "rouge amaranth",
+					carmine_red: "rouge carmin",
 				},
 				consistency: {
 					flowing: "fluide",
@@ -109,6 +120,16 @@ export default {
 					quite_consistent: "assez consistant",
 					consistent: "consistant",
 					oily: "visqueux",
+				},
+				chains_number: {
+					very_few: "peu nombreuses",
+					quite_numerous: "assez nombreuses",
+					numerous: "nombreuses",
+				},
+				rise_speed: {
+					rapid: "rapide",
+					average: "moyenne",
+					slow: "lente",
 				},
 				bubble_size: {
 					large: "grossières",
@@ -141,7 +162,12 @@ export default {
 			fragrant: "Fragrant",
 			spicy: "Épicé",
 			toasted: "Toasté",
-			ethereal: "éthéré",
+			ethereal: "Éthéré",
+			// NEW
+			varietal: "Variétal",
+			vegetal: "Végétal",
+			baking: "Cuisson",
+			empyreumatic: "Empyreumatique",
 			values: {
 				intensity: {
 					lacking: "dépourvu d'intensité",
@@ -163,6 +189,11 @@ export default {
 					quite_fine: "assez fin",
 					fine: "fin",
 					excellent: "excellent",
+					// NEW
+					acceptable: "Acceptable",
+					good: "Bonne",
+					distinguished: "Distincte",
+					very_good: "Très Bonne",
 				},
 			},
 		},
@@ -175,6 +206,7 @@ export default {
 			acidity: "Acidité",
 			tannicity: "Teneur en Tannins",
 			saltiness: "Sapidité",
+			effervescence: "Effervescence",
 			balance: "Équilibre",
 			persistence: "Persistance",
 			structure: "Structure ou Corp",
@@ -192,13 +224,15 @@ export default {
 					medium_warm: "assez chaud",
 					warm: "chaud",
 					alcoholic: "alcoolique",
+					very_warm: "très chaud",
 				},
 				softness: {
 					sharp: "anguleux",
 					scarcely_soft: "peu moelleux",
 					quite_soft: "assez moelleux",
 					soft: "moelleux",
-					velvety: "pâteux",
+					velvety: "pâteux/onctueuse",
+					mellow: "onctueuse",
 				},
 				acidity: {
 					flat: "plat",
@@ -206,6 +240,7 @@ export default {
 					quite_fresh: "assez frais",
 					fresh: "frais",
 					acidulous: "acidulé",
+					vibrant: "vibrante",
 				},
 				tannicity: {
 					flabby: "mou",
@@ -213,6 +248,7 @@ export default {
 					quite_tannic: "assez tannique",
 					tannic: "tannique",
 					astringent: "astringent",
+					tenacious: "tenace",
 				},
 				saltiness: {
 					tasteless: "insipide",
@@ -220,6 +256,14 @@ export default {
 					quite_tasty: "assez savoureux",
 					tasty: "savoureux",
 					salty: "salé",
+					savory: "savoureuse",
+				},
+				effervescence: {
+					delicate: "délicate",
+					moderate: "modérée",
+					lively: "vive",
+					exuberant: "exubérante",
+					vivid: "incisive",
 				},
 				balance: {
 					unbalanced: "peu équilibré",
@@ -246,6 +290,11 @@ export default {
 					quite_fine: "assez fin",
 					fine: "fin",
 					excellent: "excellent",
+					// NEW
+					acceptable: "acceptable",
+					good: "bonne",
+					distinguished: "distincte",
+					very_good: "très bonne",
 				},
 				structure: {
 					thin: "mince",
@@ -253,6 +302,7 @@ export default {
 					full: "corsé",
 					vigorous: "robuste",
 					heavy: "lourd",
+					medium: "moyennement",
 				},
 			},
 		},
@@ -273,6 +323,14 @@ export default {
 					disharmonious: "peu harmonieux",
 					quite_harmonious: "assez harmonieux",
 					harmonious: "harmonieux",
+				},
+				// NEW
+				quality: {
+					acceptable: "acceptable",
+					good: "bonne",
+					distinguished: "distincte",
+					very_good: "très bonne",
+					excellent: "excellent",
 				},
 			},
 		},
@@ -356,6 +414,15 @@ export default {
 					"C'est une teinte qu'on trouve dans les vins rouges plus mûrs et qui possède un rapport moelleux/dureté légèrement en faveur du premier. Cette teinte peut être plus ou moins profonde: si elle est compacte elle rappelle le rouge du sang, si elle est plus transparente elle rappelle la couleur du grenadier.",
 				orange_red:
 					"C'est une teinte qu'on trouve dans les vins rouges qui ont subi un long vieillissement et avec un rapport moelleux/dureté en faveur du premier. Cette teinte est comparable à celle des briques, avec des reflets qui vont du brun à l'orangé. Cependant, on considère cette même teinte comme un aspect négatif, si elle est sans lumière ou elle se presente dans les vins plus jeunes car elle indique un état précoce d'évolution du produit ou, encore pire, des oxydations qui ont causées la dégradation.",
+				// NEW
+				mogan: "",
+				pink_peach: "",
+				copper_red: "",
+				salmon_pink: "",
+				coral_pink: "",
+				peony_rosé: "",
+				amaranth_red: "",
+				carmine_red: "",
 			},
 			consistency: {
 				descr: "La consistance est liée à la présence d'alcool éthylique dans le vin et à toutes les autres sub stances qui contribuent à enrichir la structure.",

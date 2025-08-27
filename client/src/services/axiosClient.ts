@@ -4,7 +4,7 @@ import * as SecureStore from "expo-secure-store";
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
 const axiosClient = axios.create({
-	baseURL: `http://${config.HOSTNAME}:${config.PORT}/api/v1`,
+	baseURL: `http://${config.HOSTNAME}:${config.PORT}/api`,
 	withCredentials: true,
 });
 

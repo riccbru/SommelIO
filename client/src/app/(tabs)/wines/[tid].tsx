@@ -100,6 +100,18 @@ export default function TastingDetail() {
 	const [tasting, setTasting] = useState<Tasting | null>(null);
 	const [editMode, setEditMode] = useState<EditModeShape>(defaultEditMode);
 
+	const VisualDetails = !tasting?.new ? OldVisualDetails : NewVisualDetails;
+	const VisualUpdate = !tasting?.new ? OldVisualUpdate : NewVisualUpdate;
+
+	const OlfactoryDetails = !tasting?.new ? OldOlfactoryDetails : NewOlfactoryDetails;
+	const OlfactoryUpdate = !tasting?.new ? OldOlfactoryUpdate : NewOlfactoryUpdate;
+
+	const TasteDetails = !tasting?.new ? OldTasteDetails : NewTasteDetails;
+	const TasteUpdate = !tasting?.new ? OldTasteUpdate : NewTasteUpdate;
+
+	const FinalDetails = !tasting?.new ? OldFinalDetails : NewFinalDetails;
+	const FinalUpdate = !tasting?.new ? OldFinalUpdate : NewFinalUpdate;
+
 	const styles = StyleSheet.create({
 		container: {
 			flex: 1,
@@ -254,27 +266,21 @@ export default function TastingDetail() {
 					<Card.Content>
 						<TastingCard
 							name={"visual"}
-							uuid={tasting.visual_exam.eid}
 							editMode={editMode}
 							setEditMode={setEditMode}
+							uuid={tasting.visual_exam.eid}
 							subtitle={t("new.visual.title")}
 						/>
 
 						{!editMode["visual"] ? (
-							tasting.new ? (
-								<NewVisualDetails exam={tasting.visual_exam} />
-							) : (
-								<OldVisualDetails exam={tasting.visual_exam} />
-							)
-						) : tasting.new ? (
-							<NewVisualUpdate />
+							<VisualDetails exam={tasting.visual_exam} />
 						) : (
-							<OldVisualUpdate
+							<VisualUpdate
 								tid={tasting.tid}
-								sparkling={tasting.wine_category_name === "sparkling"}
-								exam={tasting.visual_exam}
-								setEditMode={setEditMode}
 								setRefresh={setRefresh}
+								setEditMode={setEditMode}
+								exam={tasting.visual_exam}
+								sparkling={tasting.wine_category_name === "sparkling"}
 							/>
 						)}
 					</Card.Content>
@@ -284,25 +290,19 @@ export default function TastingDetail() {
 					<Card.Content>
 						<TastingCard
 							name={"olfactory"}
-							uuid={tasting.olfactory_exam.eid}
 							editMode={editMode}
 							setEditMode={setEditMode}
+							uuid={tasting.olfactory_exam.eid}
 							subtitle={t("new.olfactory.title")}
 						/>
 						{!editMode["olfactory"] ? (
-							tasting.new ? (
-								<NewOlfactoryDetails exam={tasting.olfactory_exam} />
-							) : (
-								<OldOlfactoryDetails exam={tasting.olfactory_exam} />
-							)
-						) : tasting.new ? (
-							<NewOlfactoryUpdate />
+							<OlfactoryDetails exam={tasting.olfactory_exam} />
 						) : (
-							<OldOlfactoryUpdate
+							<OlfactoryUpdate
 								tid={tasting.tid}
-								exam={tasting.olfactory_exam}
-								setEditMode={setEditMode}
 								setRefresh={setRefresh}
+								setEditMode={setEditMode}
+								exam={tasting.olfactory_exam}
 							/>
 						)}
 					</Card.Content>
@@ -312,25 +312,20 @@ export default function TastingDetail() {
 					<Card.Content>
 						<TastingCard
 							name={"taste"}
-							uuid={tasting.taste_olfactory_exam.eid}
 							editMode={editMode}
 							setEditMode={setEditMode}
 							subtitle={t("new.taste.title")}
+							uuid={tasting.taste_olfactory_exam.eid}
 						/>
 						{!editMode["taste"] ? (
-							tasting.new ? (
-								<NewTasteDetails exam={tasting.taste_olfactory_exam} />
-							) : (
-								<OldTasteDetails exam={tasting.taste_olfactory_exam} />
-							)
-						) : tasting.new ? (
-							<NewTasteUpdate />
+							<TasteDetails exam={tasting.taste_olfactory_exam} />
 						) : (
-							<OldTasteUpdate
+							<TasteUpdate
 								tid={tasting.tid}
-								exam={tasting.taste_olfactory_exam}
-								setEditMode={setEditMode}
 								setRefresh={setRefresh}
+								setEditMode={setEditMode}
+								exam={tasting.taste_olfactory_exam}
+								sparkling={tasting.wine_category_name === "sparkling"}
 							/>
 						)}
 					</Card.Content>
@@ -340,25 +335,19 @@ export default function TastingDetail() {
 					<Card.Content>
 						<TastingCard
 							name={"final"}
-							uuid={tasting.final_considerations.eid}
 							editMode={editMode}
 							setEditMode={setEditMode}
 							subtitle={t("new.final.title")}
+							uuid={tasting.final_considerations.eid}
 						/>
 						{!editMode["final"] ? (
-							tasting.new ? (
-								<NewFinalDetails exam={tasting.final_considerations} />
-							) : (
-								<OldFinalDetails exam={tasting.final_considerations} />
-							)
-						) : tasting.new ? (
-							<NewFinalUpdate />
+							<FinalDetails exam={tasting.final_considerations} />
 						) : (
-							<OldFinalUpdate
+							<FinalUpdate
 								tid={tasting.tid}
-								exam={tasting.final_considerations}
-								setEditMode={setEditMode}
 								setRefresh={setRefresh}
+								setEditMode={setEditMode}
+								exam={tasting.final_considerations}
 							/>
 						)}
 					</Card.Content>
@@ -368,19 +357,19 @@ export default function TastingDetail() {
 					<Card.Content>
 						<TastingCard
 							name={"scoring"}
-							uuid={tasting.scoring_evaluation.sid}
 							editMode={editMode}
 							setEditMode={setEditMode}
 							subtitle={t("new.scoring.title")}
+							uuid={tasting.scoring_evaluation.sid}
 						/>
 						{!editMode["scoring"] ? (
 							<ScoringDetails scoring={tasting.scoring_evaluation} />
 						) : (
 							<ScoringUpdate
 								tid={tasting.tid}
-								scoring={tasting.scoring_evaluation}
-								setEditMode={setEditMode}
 								setRefresh={setRefresh}
+								setEditMode={setEditMode}
+								scoring={tasting.scoring_evaluation}
 							/>
 						)}
 					</Card.Content>

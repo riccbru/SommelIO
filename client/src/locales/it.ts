@@ -74,6 +74,8 @@ export default {
 			color: "Colore",
 			shade: "Sfumatura",
 			consistency: "Consistenza",
+			chains_number: "Numero Catenelle",
+			rise_speed: "Velocità Ascesa",
 			bubble_size: "Grana Bollicine",
 			bubble_number: "Numero Bollicine",
 			bubble_persistence: "Persistenza Perlage",
@@ -102,6 +104,15 @@ export default {
 					soft_rosé: "rosa tenue",
 					cherry_red: "rosa cerasuolo",
 					dark_rosé: "rosa chiaretto",
+					// NEW
+					mogan: "mogano",
+					pink_peach: "rosa fiore di pesco",
+					copper_red: "rosa ramato",
+					salmon_pink: "rosa salmone",
+					coral_pink: "rosa corallo",
+					peony_rosé: "rosa peonia",
+					amaranth_red: "rosso amaranto",
+					carmine_red: "rosso carminio",
 				},
 				consistency: {
 					flowing: "fluido",
@@ -109,6 +120,16 @@ export default {
 					quite_consistent: "abbastanza consistente",
 					consistent: "consistente",
 					oily: "viscoso",
+				},
+				chains_number: {
+					very_few: "scarse",
+					quite_numerous: "mediamente numerose",
+					numerous: "numerose",
+				},
+				rise_speed: {
+					rapid: "rapida",
+					average: "media",
+					slow: "lenta",
 				},
 				bubble_size: {
 					large: "grossolane",
@@ -142,6 +163,11 @@ export default {
 			spicy: "Speziato",
 			toasted: "Tostato",
 			ethereal: "Etereo",
+			// NEW
+			varietal: "Varietale",
+			vegetal: "Vegetale",
+			baking: "Pasticceria/Panificazione",
+			empyreumatic: "Empireumatico",
 			values: {
 				intensity: {
 					lacking: "carente",
@@ -163,6 +189,11 @@ export default {
 					quite_fine: "abbastanza fine",
 					fine: "fine",
 					excellent: "eccellente",
+					// NEW
+					acceptable: "Accettabile",
+					good: "Buono",
+					distinguished: "Distinto",
+					very_good: "Ottimo",
 				},
 			},
 		},
@@ -175,6 +206,7 @@ export default {
 			acidity: "Acidità",
 			tannicity: "Tannicità",
 			saltiness: "Sapidità",
+			effervescence: "Effervescenza",
 			balance: "Equilibrio",
 			persistence: "Persistenza",
 			structure: "Struttura o Corpo",
@@ -192,13 +224,15 @@ export default {
 					medium_warm: "abbastanza caldo",
 					warm: "caldo",
 					alcoholic: "alcolico",
+					very_warm: "molto caldo",
 				},
 				softness: {
 					sharp: "spigoloso",
 					scarcely_soft: "poco morbido",
 					quite_soft: "abbastanza morbido",
 					soft: "morbido",
-					velvety: "pastoso",
+					velvety: "vellutato/pastoso",
+					mellow: "pastoso",
 				},
 				acidity: {
 					flat: "piatto",
@@ -206,6 +240,7 @@ export default {
 					quite_fresh: "abbastanza fresco",
 					fresh: "fresco",
 					acidulous: "acidulo",
+					vibrant: "vibrante",
 				},
 				tannicity: {
 					flabby: "molle",
@@ -213,6 +248,7 @@ export default {
 					quite_tannic: "abbastanza tannico",
 					tannic: "tannico",
 					astringent: "astringente",
+					tenacious: "tenace",
 				},
 				saltiness: {
 					tasteless: "scipito",
@@ -220,6 +256,14 @@ export default {
 					quite_tasty: "abbastanza sapido",
 					tasty: "sapido",
 					salty: "salato",
+					savory: "saporito",
+				},
+				effervescence: {
+					delicate: "delicata",
+					moderate: "moderata",
+					lively: "vivace",
+					exuberant: "esuberante",
+					vivid: "incisiva",
 				},
 				balance: {
 					unbalanced: "poco equilibrato",
@@ -246,13 +290,20 @@ export default {
 					quite_fine: "abbastanza fine",
 					fine: "fine",
 					excellent: "eccellente",
+					// NEW
+					acceptable: "accettabile",
+					good: "buono",
+					distinguished: "distinto",
+					very_good: "ottimo",
 				},
 				structure: {
 					thin: "magro",
 					weak: "debole",
-					full: "di corpo",
+					full: "di corpo pieno",
 					vigorous: "robusto",
 					heavy: "pesante",
+					// NEW
+					medium: "di corpo medio",
 				},
 			},
 		},
@@ -273,6 +324,14 @@ export default {
 					disharmonious: "poco armonico",
 					quite_harmonious: "abbastanza armonico",
 					harmonious: "armonico",
+				},
+				// NEW
+				quality: {
+					acceptable: "accettabile",
+					good: "buono",
+					distinguished: "distinto",
+					very_good: "ottimo",
+					excellent: "eccellente",
 				},
 			},
 		},
@@ -356,6 +415,15 @@ export default {
 					"È una tonalità che si riscontra nei vini rossi più evoluti, con un rapporto morbidezza/durezza in genere leggermente a favore della prima. Questo colore può essere più o meno profondo: se è compatto ricorda quello del sangue, mentre se è più trasparente ricorda quello della melagrana.",
 				orange_red:
 					"È una tonalità che si riscontra in vini rossi che abbiano subito un lungo invecchiamento, con un rapporto morbidezza/durezza a favore della prima. Questo colore riporta a quello dei mattoni, con riflessi che vanno dal bruno all'aranciato. Se questa tonalità è spenta o si presenta in vini più giovani, si deve considerare negativa, perché indica una loro precoce evoluzione o, ancora peggio, ossidazioni che ne hanno causato la degradazione.",
+				// NEW
+				mogan: "",
+				pink_peach: "",
+				copper_red: "",
+				salmon_pink: "",
+				coral_pink: "",
+				peony_rosé: "",
+				amaranth_red: "",
+				carmine_red: "",
 			},
 			consistency: {
 				descr: "La consistenza è legata alla presenza di alcol etilico nel vino, oltre che di tutte le altre sostanze che contribuiscono ad arricchirne la struttura.",

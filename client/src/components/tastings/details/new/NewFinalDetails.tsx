@@ -1,3 +1,7 @@
+import { useTranslation } from "react-i18next";
+import { useTheme } from "@/src/hooks/useTheme";
+import { StyleSheet, Text, View } from "react-native";
+
 type FinalExam = {
 	evolutionary_state: string;
 	harmony: string;
@@ -11,5 +15,85 @@ type Props = {
 };
 
 export default function NewFinalDetails({ exam }: Props) {
-	return <></>;
+	const theme = useTheme();
+	const { t } = useTranslation();
+
+	const styles = StyleSheet.create({
+		row: {
+			marginBottom: 5,
+			flexDirection: "row",
+			alignItems: "center",
+		},
+		label: {
+			flex: 1,
+			marginLeft: 10,
+			color: theme.colors.primary,
+			fontFamily: "Epilogue-Bold",
+		},
+		value: {
+			flex: 1,
+			textAlign: "center",
+			color: theme.colors.primary,
+			fontFamily: "Epilogue-Regular",
+		},
+		notes: {
+			marginTop: 10,
+			color: theme.colors.primary,
+		},
+		notesRow: {
+			marginTop: 8,
+			paddingTop: 5,
+			borderTopWidth: 1,
+			borderTopColor: theme.colors.gray,
+		},
+		notesTitle: {
+			marginTop: 10,
+			marginBottom: 4,
+			marginLeft: 10,
+			color: theme.colors.primary,
+			fontFamily: "Epilogue-Bold",
+		},
+		notesText: {
+			lineHeight: 20,
+			marginLeft: 15,
+			color: theme.colors.primary,
+			fontFamily: "Epilogue-Regular",
+		},
+	});
+
+	const finalFields = [
+		{
+			label: t("new.final.evolution"),
+			value: t(`new.final.values.evolution.${exam.evolutionary_state}`).toUpperCase(),
+		},
+		{
+			label: t("new.harmony"),
+			value: t(`new.final.values.harmony.${exam.harmony}`).toUpperCase(),
+		},
+		{
+			label: t("new.quality"),
+			value: t(`new.final.values.quality.${exam.quality}`).toUpperCase(),
+		},
+	];
+
+	return (
+		<View>
+			{finalFields.map(({ label, value }) => (
+				<View key={label} style={styles.row}>
+					<Text style={styles.label}>{label}</Text>
+					<Text style={styles.value}>{!Object.keys(exam).length ? "-" : value}</Text>
+				</View>
+			))}
+
+			<View style={styles.notesRow}>
+				<Text style={styles.notesTitle}>{t("new.final.pairings")}</Text>
+				<Text style={styles.notesText}>{exam.pairings || "-"}</Text>
+			</View>
+
+			<View style={styles.notes}>
+				<Text style={styles.notesTitle}>{t("new.notes")}</Text>
+				<Text style={styles.notesText}>{exam.notes || "-"}</Text>
+			</View>
+		</View>
+	);
 }

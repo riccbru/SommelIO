@@ -2,7 +2,7 @@ import axiosClient from "./axiosClient";
 
 async function createScoring(tid: string, data: any) {
 	try {
-		const response = await axiosClient.post(`/scoring/${tid}`, data);
+		const response = await axiosClient.post(`/v1/scoring/${tid}`, data);
 		return response;
 	} catch (error: any) {
 		console.error(error);
@@ -22,7 +22,7 @@ async function updateScoring(tid: string, data: any) {
 
 async function fetchCoefficients() {
 	try {
-		const response = await axiosClient.get("/scoring/coefficients");
+		const response = await axiosClient.get("/v1/scoring/coefficients");
 		return response;
 	} catch (error: any) {
 		console.error(error);
