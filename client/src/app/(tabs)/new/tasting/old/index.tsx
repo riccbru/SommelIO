@@ -314,11 +314,11 @@ export default function New() {
 							defaultFormData={defaultFormData}
 						/>
 						<NextButton
-							path={`/new/tasting/visual?wine_category_name=${encodeURIComponent(formData.wine_category_name)}`}
 							text='VISUAL'
 							validation={validateForm}
-							formData={{ ...formData, vintage: Number(formData.vintage) }}
 							action={TastingsAPI.createTasting}
+							formData={{ ...formData, vintage: Number(formData.vintage) }}
+							path={`/(tabs)/new/tasting/old/visual?wine_category_name=${encodeURIComponent(formData.wine_category_name)}`}
 						/>
 					</View>
 				</ScrollView>

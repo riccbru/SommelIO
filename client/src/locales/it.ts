@@ -2,7 +2,8 @@ export default {
 	tasting_name: "Degustazione",
 	tastings_name: "Degustazioni",
 	loading: "Caricamento...",
-	tasting_name_description: "Aggiungi una nuova degustazione",
+	old_tasting_name_description: "Vecchia scheda AIS",
+	new_tasting_name_description: "Nuova scheda AIS",
 	todrink: "Lista ToDrink",
 	todrink_title: "Nuovo vino",
 	todrink_description: "Aggiungi un vino alla tua lista ToDrink",
@@ -166,7 +167,7 @@ export default {
 			// NEW
 			varietal: "Varietale",
 			vegetal: "Vegetale",
-			baking: "Pasticceria/Panificazione",
+			baking: "Panificazione",
 			empyreumatic: "Empireumatico",
 			values: {
 				intensity: {

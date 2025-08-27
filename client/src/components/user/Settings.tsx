@@ -12,13 +12,13 @@ import {
 	TranslateIcon,
 } from "phosphor-react-native";
 
-type Language = "en" | "it" | "fr";
+type Language = "it" | "fr" | "en";
 
 export default function Settings() {
 	const theme = useTheme();
 	const { t } = useTranslation();
-	const labels = ["🇮🇹", "🇬🇧", "🇫🇷"];
-	const langs: Language[] = ["it", "en", "fr"];
+	const labels = ["🇮🇹", "🇫🇷", "🇬🇧"];
+	const langs: Language[] = ["it", "fr", "en"];
 	const { language, setLanguage } = useLanguage();
 
 	const styles = StyleSheet.create({

@@ -1,7 +1,7 @@
-import NewOption from "./NewOption";
-import { useTheme } from "@/src/hooks/useTheme";
 import { LinkProps } from "expo-router";
+import { useTheme } from "@/src/hooks/useTheme";
 import { FlatList, StyleSheet, View } from "react-native";
+import NewOption from "@/src/components/navigation/NewOption";
 
 export default function New() {
 	const theme = useTheme();
@@ -19,15 +19,26 @@ export default function New() {
 	});
 
 	const data = [
-		{ label: "tasting_name", path: "/new/tasting" as LinkProps["href"] },
-		{ label: "todrink", path: "/new/todrink" as LinkProps["href"] },
+		{ label: "todrink", descr: "todrink_description", path: "/new/todrink" as LinkProps["href"] },
+		{
+			label: "tasting_name",
+			descr: "new_tasting_name_description",
+			path: "/new/tasting/new" as LinkProps["href"],
+		},
+		{
+			label: "tasting_name",
+			descr: "old_tasting_name_description",
+			path: "/new/tasting/old" as LinkProps["href"],
+		},
 	];
 
 	return (
 		<View style={styles.container}>
 			<FlatList
 				data={data}
-				renderItem={({ item }) => <NewOption title={item.label} path={item.path} />}
+				renderItem={({ item }) => (
+					<NewOption title={item.label} descr={item.descr} path={item.path} />
+				)}
 			/>
 		</View>
 	);

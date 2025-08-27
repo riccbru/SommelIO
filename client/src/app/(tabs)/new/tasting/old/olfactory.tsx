@@ -168,7 +168,7 @@ export default function Olfactory() {
 					<Card style={styles.card}>
 						<Card.Content>
 							<View style={styles.cardHeader}>
-								<Text style={styles.sectionTitle}>Olfactory Exam</Text>
+								<Text style={styles.sectionTitle}>{t("new.olfactory.title")}</Text>
 								<CancelButton
 									setErrors={setErrors}
 									setFormData={setFormData}
@@ -248,11 +248,11 @@ export default function Olfactory() {
 						/>
 						<NextButton
 							requiresTid
-							path='/new/tasting/taste'
-							text={t("new.taste.short")}
 							formData={formData}
 							validation={validateForm}
+							text={t("new.taste.short")}
 							action={ExamsAPI.createOlfactory}
+							path='/(tabs)/new/tasting/old/taste'
 						/>
 					</View>
 				</ScrollView>

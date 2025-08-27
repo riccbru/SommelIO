@@ -77,6 +77,7 @@ const TastingSchema = z.object({
 			invalid_type_error: "Tasting location must be a string",
 		})
 		.min(1, "Tasting location is required"),
+	new: z.boolean().optional(),
 	notes: z.string().optional(),
 });
 

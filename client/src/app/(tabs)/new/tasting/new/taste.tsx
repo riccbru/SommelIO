@@ -3,41 +3,49 @@ import { Card } from "react-native-paper";
 import ExamsAPI from "@/src/services/exams";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
+import { setDescription } from "@/src/utils/utils";
+import { useLocalSearchParams } from "expo-router";
 import FormInput from "@/src/components/new/FormInput";
 import ExitButton from "@/src/components/new/ExitButton";
 import FormSelect from "@/src/components/new/FormSelect";
 import NextButton from "@/src/components/new/NextButton";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
-import { setDescription } from "@/src/utils/utils";
 
 type TasteExam = {
 	sweetness: string;
-	alcohols: string;
-	softness: string;
 	acidity: string;
+
+	alcohols: string;
 	tannicity: string;
+
+	softness: string;
 	saltiness: string;
-	balance: string;
+
+	effervescence: string;
+
 	intensity: string;
+	structure: string;
+	balance: string;
 	persistence: string;
 	quality: string;
-	structure: string;
+
 	notes: string;
 };
 
 const defaultFormData = {
 	sweetness: "",
-	alcohols: "",
-	softness: "",
 	acidity: "",
+	alcohols: "",
 	tannicity: "",
+	softness: "",
 	saltiness: "",
-	balance: "",
+	effervescence: "",
 	intensity: "",
+	structure: "",
+	balance: "",
 	persistence: "",
 	quality: "",
-	structure: "",
 	notes: "",
 };
 
@@ -45,6 +53,7 @@ export default function Taste() {
 	const theme = useTheme();
 	const { t } = useTranslation();
 	const i18nextPath = "new.taste.values";
+	const { sparkling } = useLocalSearchParams();
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<TasteExam>(defaultFormData);
 
@@ -107,28 +116,23 @@ export default function Taste() {
 	};
 
 	const sweetnessOptions = ["dry", "medium_dry", "medium_sweet", "sweet", "excessively_sweet"];
-	const alcoholsOptions = ["light", "lightly_warm", "medium_warm", "warm", "alcoholic"];
-	const softnessOptions = ["sharp", "scarcely_soft", "quite_soft", "soft", "velvety"];
-	const acidityOptions = ["flat", "scarcely_fresh", "quite_fresh", "fresh", "acidulous"];
-	const tannicityOptions = ["flabby", "scarcely_tannic", "quite_tannic", "tannic", "astringent"];
-	const saltinessOptions = ["tasteless", "scarcely_tasty", "quite_tasty", "tasty", "salty"];
+	const acidityOptions = ["scarcely_fresh", "quite_fresh", "fresh", "vibrant", "acidulous"];
+	const alcoholsOptions = ["lightly_warm", "medium_warm", "warm", "very_warm", "alcoholic"];
+	const tannicityOptions = [
+		"scarcely_tannic",
+		"quite_tannic",
+		"tannic",
+		"tenacious",
+		"astringent",
+	];
+	const softnessOptions = ["scarcely_soft", "quite_soft", "soft", "velvety", "mellow"];
+	const saltinessOptions = ["scarcely_tasty", "quite_tasty", "tasty", "savory", "salty"];
+	const effervescenceOptions = ["delicate", "moderate", "lively", "exuberant", "vivid"];
+	const intensityOptions = ["quite_intense", "intense", "very_intense"];
+	const structureOptions = ["medium", "full", "vigorous"];
 	const balanceOptions = ["unbalanced", "quite_balanced", "balanced"];
-	const intensityOptions = [
-		"lacking",
-		"scarcely_intense",
-		"quite_intense",
-		"intense",
-		"very_intense",
-	];
-	const persistenceOptions = [
-		"short",
-		"scarcely_persistent",
-		"quite_persistent",
-		"persistent",
-		"very_persistent",
-	];
-	const qualityOptions = ["coarse", "scarcely_fine", "quite_fine", "fine", "excellent"];
-	const structureOptions = ["thin", "weak", "full", "vigorous", "heavy"];
+	const persistenceOptions = ["quite_persistent", "persistent", "very_persistent"];
+	const qualityOptions = ["acceptable", "good", "distinguished", "very_good", "excellent"];
 
 	const validateForm = (): boolean => {
 		const newErrors: Record<string, string> = {};
@@ -137,18 +141,6 @@ export default function Taste() {
 			newErrors.sweetness = `${t("new.taste.")} ${t("new.required")}`;
 		} else if (!sweetnessOptions.includes(formData.sweetness)) {
 			newErrors.sweetness = `${t("new.taste.")} ${t("new.invalid")}`;
-		}
-
-		if (!formData.alcohols.trim()) {
-			newErrors.alcohols = `${t("new.taste.alcohols")} ${t("new.required")}`;
-		} else if (!alcoholsOptions.includes(formData.alcohols)) {
-			newErrors.alcohols = `${t("new.taste.alcohols")} ${t("new.invalid")}`;
-		}
-
-		if (!formData.softness.trim()) {
-			newErrors.softness = `${t("new.taste.softness")} ${t("new.required")}`;
-		} else if (!softnessOptions.includes(formData.softness)) {
-			newErrors.softness = `${t("new.taste.softness")} ${t("new.invalid")}`;
 		}
 
 		if (!formData.acidity.trim()) {
@@ -163,22 +155,48 @@ export default function Taste() {
 			newErrors.tannicity = `${t("new.taste.tannicity")} ${t("new.invalid")}`;
 		}
 
+		if (!formData.alcohols.trim()) {
+			newErrors.alcohols = `${t("new.taste.alcohols")} ${t("new.required")}`;
+		} else if (!alcoholsOptions.includes(formData.alcohols)) {
+			newErrors.alcohols = `${t("new.taste.alcohols")} ${t("new.invalid")}`;
+		}
+
+		if (!formData.softness.trim()) {
+			newErrors.softness = `${t("new.taste.softness")} ${t("new.required")}`;
+		} else if (!softnessOptions.includes(formData.softness)) {
+			newErrors.softness = `${t("new.taste.softness")} ${t("new.invalid")}`;
+		}
+
 		if (!formData.saltiness.trim()) {
 			newErrors.saltiness = `${t("new.taste.saltiness")} ${t("new.required")}`;
 		} else if (!saltinessOptions.includes(formData.saltiness)) {
 			newErrors.saltiness = `${t("new.taste.saltiness")} ${t("new.invalid")}`;
 		}
 
-		if (!formData.balance.trim()) {
-			newErrors.balance = `${t("new.taste.balance")} ${t("new.required")}`;
-		} else if (!balanceOptions.includes(formData.balance)) {
-			newErrors.balance = `${t("new.taste.balance")} ${t("new.invalid")}`;
+		if (sparkling) {
+			if (!formData.effervescence.trim()) {
+				newErrors.effervescence = `${t("new.effervescence")} ${t("new.required")}`;
+			} else if (!effervescenceOptions.includes(formData.effervescence)) {
+				newErrors.effervescence = `${t("new.effervescence")} ${t("new.invalid")}`;
+			}
 		}
 
 		if (!formData.intensity.trim()) {
 			newErrors.intensity = `${t("new.intensity")} ${t("new.required")}`;
 		} else if (!intensityOptions.includes(formData.intensity)) {
 			newErrors.intensity = `${t("new.intensity")} ${t("new.invalid")}`;
+		}
+
+		if (!formData.structure.trim()) {
+			newErrors.structure = `${t("new.taste.structure")} ${t("new.required")}`;
+		} else if (!structureOptions.includes(formData.structure)) {
+			newErrors.structure = `${t("new.taste.structure")} ${t("new.invalid")}`;
+		}
+
+		if (!formData.balance.trim()) {
+			newErrors.balance = `${t("new.taste.balance")} ${t("new.required")}`;
+		} else if (!balanceOptions.includes(formData.balance)) {
+			newErrors.balance = `${t("new.taste.balance")} ${t("new.invalid")}`;
 		}
 
 		if (!formData.persistence.trim()) {
@@ -192,14 +210,6 @@ export default function Taste() {
 		} else if (!qualityOptions.includes(formData.quality)) {
 			newErrors.quality = `${t("new.quality")} ${t("new.invalid")}`;
 		}
-
-		if (!formData.structure.trim()) {
-			newErrors.structure = `${t("new.taste.structure")} ${t("new.required")}`;
-		} else if (!structureOptions.includes(formData.structure)) {
-			newErrors.structure = `${t("new.taste.structure")} ${t("new.invalid")}`;
-		}
-
-		// Notes is optional — no validation
 
 		setErrors(newErrors);
 		return Object.keys(newErrors).length === 0;
@@ -216,7 +226,7 @@ export default function Taste() {
 					<Card style={styles.card}>
 						<Card.Content>
 							<View style={styles.cardHeader}>
-								<Text style={styles.sectionTitle}>Taste-Olfactory Exam</Text>
+								<Text style={styles.sectionTitle}>{t("new.taste.title")}</Text>
 								<CancelButton
 									setErrors={setErrors}
 									setFormData={setFormData}
@@ -289,6 +299,26 @@ export default function Taste() {
 								i18nPath={`${i18nextPath}.saltiness`}
 								description={setDescription(t, "taste", "saltiness", formData.saltiness)}
 							/>
+
+							{sparkling ? (
+								<FormSelect
+									field='effervescence'
+									error={errors.effervescence}
+									value={formData.effervescence}
+									options={effervescenceOptions}
+									onChange={updateFormData}
+									label={t("new.taste.effervescence")}
+									i18nPath={`${i18nextPath}.effervescence`}
+									description={setDescription(
+										t,
+										"taste",
+										"effervescence",
+										formData.effervescence
+									)}
+								/>
+							) : (
+								<></>
+							)}
 
 							<FormSelect
 								field='balance'
@@ -368,11 +398,11 @@ export default function Taste() {
 						/>
 						<NextButton
 							requiresTid
-							path='/new/tasting/final'
-							text={t("new.final.short")}
 							formData={formData}
 							validation={validateForm}
-							action={ExamsAPI.createTaste}
+							text={t("new.final.short")}
+							action={ExamsAPI.createNewTaste}
+							path='/(tabs)/new/tasting/new/final'
 						/>
 					</View>
 				</ScrollView>

@@ -6,10 +6,11 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 type Props = {
 	title: string;
+	descr: string;
 	path: LinkProps["href"];
 };
 
-export default function NewOption({ title, path }: Props) {
+export default function NewOption({ title, descr, path }: Props) {
 	const theme = useTheme();
 	const router = useRouter();
 	const { t } = useTranslation();
@@ -63,7 +64,7 @@ export default function NewOption({ title, path }: Props) {
 				<View style={{ flexDirection: "column" }}>
 					<Text style={styles.rowLabel}>{t(title)}</Text>
 					<View style={{ height: 10 }} />
-					<Text style={styles.rowDescription}>{t(`${title}_description`)}</Text>
+					<Text style={styles.rowDescription}>{t(descr)}</Text>
 				</View>
 				<CaretRightIcon size={24} color={theme.colors.primary} />
 			</View>

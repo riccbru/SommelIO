@@ -1,51 +1,36 @@
 import { useState } from "react";
 import { Card } from "react-native-paper";
+import ExamsAPI from "@/src/services/exams";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
-import { isRightRange } from "@/src/utils/utils";
-import ScoringsAPI from "@/src/services/scorings";
 import FormInput from "@/src/components/new/FormInput";
-import FormScore from "@/src/components/new/FormScore";
 import ExitButton from "@/src/components/new/ExitButton";
-import SaveButton from "@/src/components/new/SaveButton";
+import FormSelect from "@/src/components/new/FormSelect";
+import NextButton from "@/src/components/new/NextButton";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import { setDescription } from "@/src/utils/utils";
 
-type FormData = {
-	visual_appearance: number;
-	visual_color: number;
-	olfactory_intensity: number;
-	olfactory_complexity: number;
-	olfactory_quality: number;
-	taste_structure: number;
-	taste_balance: number;
-	taste_intensity: number;
-	taste_persistence: number;
-	taste_quality: number;
-	harmony: number;
+type FinalExam = {
+	evolutionary_state: string;
+	harmony: string;
+	pairings: string;
 	notes: string;
 };
 
 const defaultFormData = {
-	visual_appearance: 0,
-	visual_color: 0,
-	olfactory_intensity: 0,
-	olfactory_complexity: 0,
-	olfactory_quality: 0,
-	taste_structure: 0,
-	taste_balance: 0,
-	taste_intensity: 0,
-	taste_persistence: 0,
-	taste_quality: 0,
-	harmony: 0,
+	evolutionary_state: "",
+	harmony: "",
+	pairings: "",
 	notes: "",
 };
 
-export default function Scoring() {
+export default function Final() {
 	const theme = useTheme();
 	const { t } = useTranslation();
+	const i18nextPath = "new.final.values";
 	const [errors, setErrors] = useState<Record<string, string>>({});
-	const [formData, setFormData] = useState<FormData>(defaultFormData);
+	const [formData, setFormData] = useState<FinalExam>(defaultFormData);
 
 	const styles = StyleSheet.create({
 		container: {
@@ -94,21 +79,7 @@ export default function Scoring() {
 		},
 	});
 
-	const scoreFields: { key: keyof typeof defaultFormData; label: string }[] = [
-		{ key: "visual_appearance", label: t("new.scoring.Vappearance") },
-		{ key: "visual_color", label: t("new.scoring.Vcolor") },
-		{ key: "olfactory_intensity", label: t("new.scoring.Ointensity") },
-		{ key: "olfactory_complexity", label: t("new.scoring.Ocomplexity") },
-		{ key: "olfactory_quality", label: t("new.scoring.Oquality") },
-		{ key: "taste_structure", label: t("new.scoring.Tstructure") },
-		{ key: "taste_balance", label: t("new.scoring.Tbalance") },
-		{ key: "taste_intensity", label: t("new.scoring.Tintensity") },
-		{ key: "taste_persistence", label: t("new.scoring.Tpersistence") },
-		{ key: "taste_quality", label: t("new.scoring.Tquality") },
-		{ key: "harmony", label: t("new.harmony") },
-	];
-
-	const updateFormData = (field: keyof typeof formData, value: string) => {
+	const updateFormData = (field: keyof FinalExam, value: string) => {
 		setFormData(prev => ({ ...prev, [field]: value }));
 		if (errors[field]) {
 			setErrors(prev => {
@@ -119,17 +90,22 @@ export default function Scoring() {
 		}
 	};
 
+	const evolutionaryStateOptions = ["immature", "young", "ready", "mature", "old"];
+	const harmonyOptions = ["disharmonious", "quite_harmonious", "harmonious"];
 	const validateForm = (): boolean => {
-		const MIN = 1;
-		const MAX = 5;
-		const errMsg = t("new.scoring.error");
 		const newErrors: Record<string, string> = {};
 
-		scoreFields.forEach(({ key, label }) => {
-			if (!isRightRange(Number(formData[key]), MIN, MAX)) {
-				newErrors[key] = `${label} ${errMsg}`;
-			}
-		});
+		if (!evolutionaryStateOptions.includes(formData.evolutionary_state)) {
+			newErrors.evolutionary_state = `${t("new.final.evolution")} ${t("new.required")}`;
+		}
+
+		if (!harmonyOptions.includes(formData.harmony)) {
+			newErrors.harmony = `${t("new.harmony")} ${t("new.required")}`;
+		}
+
+		if (!formData.pairings?.trim()) {
+			newErrors.pairings = `${t("new.final.pairings")} ${t("new.required")}`;
+		}
 
 		setErrors(newErrors);
 		return Object.keys(newErrors).length === 0;
@@ -138,7 +114,7 @@ export default function Scoring() {
 	return (
 		<>
 			<KeyboardAvoidingView
-				keyboardVerticalOffset={140}
+				keyboardVerticalOffset={90}
 				behavior={Platform.OS === "ios" ? "padding" : "height"}
 				style={{ flex: 1, backgroundColor: theme.colors.background }}
 			>
@@ -146,7 +122,7 @@ export default function Scoring() {
 					<Card style={styles.card}>
 						<Card.Content>
 							<View style={styles.cardHeader}>
-								<Text style={styles.sectionTitle}>{t("new.scoring.title")}</Text>
+								<Text style={styles.sectionTitle}>{t("new.final.title")}</Text>
 								<CancelButton
 									setErrors={setErrors}
 									setFormData={setFormData}
@@ -154,21 +130,46 @@ export default function Scoring() {
 								/>
 							</View>
 
-							{scoreFields.map(({ key, label }) => (
-								<FormScore
-									key={key}
-									label={label}
-									value={Number(formData[key])}
-									error={errors[key]}
-									onChange={v => updateFormData(key, v)}
-								/>
-							))}
+							<FormSelect
+								onChange={updateFormData}
+								field='evolutionary_state'
+								label={t("new.final.evolution")}
+								error={errors.evolutionary_state}
+								options={evolutionaryStateOptions}
+								value={formData.evolutionary_state}
+								i18nPath={`${i18nextPath}.evolution`}
+								description={setDescription(
+									t,
+									"final",
+									"evolution",
+									formData.evolutionary_state
+								)}
+							/>
+
+							<FormSelect
+								field='harmony'
+								error={errors.harmony}
+								label={t("new.harmony")}
+								value={formData.harmony}
+								options={harmonyOptions}
+								onChange={updateFormData}
+								i18nPath={`${i18nextPath}.harmony`}
+								description={setDescription(t, "final", "harmony", formData.harmony)}
+							/>
 
 							<FormInput
-								field='notes'
-								error={errors.notes}
+								label={t("new.final.pairings")}
+								field='pairings'
+								value={formData.pairings}
+								error={errors.pairings}
+								onChange={updateFormData}
+							/>
+
+							<FormInput
 								label={t("new.notes")}
+								field='notes'
 								value={formData.notes}
+								error={errors.notes}
 								onChange={updateFormData}
 							/>
 						</Card.Content>
@@ -180,11 +181,13 @@ export default function Scoring() {
 							setFormData={setFormData}
 							defaultFormData={defaultFormData}
 						/>
-						<SaveButton
-							text={t("new.save_exam")}
+						<NextButton
+							requiresTid
 							formData={formData}
 							validation={validateForm}
-							action={ScoringsAPI.createScoring}
+							text={t("new.scoring.short")}
+							action={ExamsAPI.createFinal}
+							path='/(tabs)/new/tasting/old/scoring'
 						/>
 					</View>
 				</ScrollView>

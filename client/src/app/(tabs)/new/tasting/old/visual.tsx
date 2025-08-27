@@ -192,7 +192,7 @@ export default function Visual() {
 					<Card style={styles.card}>
 						<Card.Content>
 							<View style={styles.cardHeader}>
-								<Text style={styles.sectionTitle}>Visual Exam</Text>
+								<Text style={styles.sectionTitle}>{t("new.visual.title")}</Text>
 								<CancelButton
 									setErrors={setErrors}
 									setFormData={setFormData}
@@ -251,7 +251,7 @@ export default function Visual() {
 								)}
 							/>
 
-							{category !== "sparkling" ? (
+							{category === "sparkling" ? (
 								<FormSelect
 									field='bubble_size'
 									onChange={updateFormData}
@@ -271,7 +271,7 @@ export default function Visual() {
 								<></>
 							)}
 
-							{category !== "sparkling" ? (
+							{category === "sparkling" ? (
 								<FormSelect
 									field='bubble_number'
 									onChange={updateFormData}
@@ -291,7 +291,7 @@ export default function Visual() {
 								<></>
 							)}
 
-							{category !== "sparkling" ? (
+							{category === "sparkling" ? (
 								<FormSelect
 									onChange={updateFormData}
 									field='bubble_persistence'
@@ -329,11 +329,11 @@ export default function Visual() {
 						/>
 						<NextButton
 							requiresTid
-							path='/new/tasting/olfactory'
-							text={t("new.olfactory.short")}
 							formData={formData}
 							validation={validateForm}
 							action={ExamsAPI.createVisual}
+							text={t("new.olfactory.short")}
+							path='/(tabs)/new/tasting/old/olfactory'
 						/>
 					</View>
 				</ScrollView>

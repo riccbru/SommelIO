@@ -133,31 +133,39 @@ router.post("/", async (req, res) => {
 			});
 		}
 
+		const tastingData = {
+			uid,
+			full_name,
+			wine_category_id,
+			favorite,
+			sample_number,
+			wine_denomination,
+			winemaker,
+			alcohol_content: parseFloat(alcohol_content),
+			vintage,
+			wine_temperature: parseFloat(wine_temperature),
+			ambient_temperature: parseFloat(ambient_temperature),
+			tasting_timestamp: new Date(
+				Date.UTC(
+					...tasting_date
+						.split("-")
+						.map(Number)
+						.map((v, i) => (i === 1 ? v - 1 : v)),
+					...tasting_time.split(":").map(Number),
+					0,
+				),
+			).toISOString(),
+			tasting_location,
+		};
+
+		if (req.body.new) {
+			tastingData.new = true;
+		} else {
+			tastingData.new = false;
+		}
+
 		const newTasting = await prisma.tastings.create({
-			data: {
-				uid,
-				full_name,
-				wine_category_id,
-				favorite,
-				sample_number,
-				wine_denomination,
-				winemaker,
-				alcohol_content: parseFloat(alcohol_content),
-				vintage,
-				wine_temperature: parseFloat(wine_temperature),
-				ambient_temperature: parseFloat(ambient_temperature),
-				tasting_timestamp: new Date(
-					Date.UTC(
-						...tasting_date
-							.split("-")
-							.map(Number)
-							.map((v, i) => (i === 1 ? v - 1 : v)),
-						...tasting_time.split(":").map(Number),
-						0,
-					),
-				).toISOString(),
-				tasting_location,
-			},
+			data: tastingData,
 			include: {
 				wine_categories: true,
 			},
