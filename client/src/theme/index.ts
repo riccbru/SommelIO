@@ -11,7 +11,7 @@ const customColors = {
 	premium: "#4193ef",
 	red: "#cc4b4b",
 	white: "#ffffff",
-	purple: "#c62f7c"
+	purple: "#c62f7c",
 };
 
 export const LightTheme = {

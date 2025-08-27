@@ -18,7 +18,7 @@ export default {
 	signup: {
 		full_name: "Nom Complet",
 		birthdate: "Date de Naissance",
-		noSignup: "Vous avez déjà un compte?"
+		noSignup: "Vous avez déjà un compte?",
 	},
 	shareMex:
 		"Salut! Je viens de terminer une dégustation sur SommelIO. Consultez mon profil et mes évaluations:",
@@ -34,6 +34,8 @@ export default {
 	},
 	colleagues: {
 		title: "Collègues",
+		searchbar: "Recherche user...",
+		notFound: "Collègue non trouvée",
 	},
 	new: {
 		name: "Nouveau",

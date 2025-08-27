@@ -87,7 +87,9 @@ export default function LoginLayout() {
 				<Title />
 
 				<View style={{ justifyContent: "center", alignItems: "center", marginBottom: 10 }}>
-					<Text style={{ fontSize: 16, color: theme.colors.red, fontFamily: "Epilogue-Bold"}}>{loginError}</Text>
+					<Text style={{ fontSize: 16, color: theme.colors.red, fontFamily: "Epilogue-Bold" }}>
+						{loginError}
+					</Text>
 				</View>
 
 				<AuthInput

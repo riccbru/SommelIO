@@ -24,7 +24,7 @@ type UserStats = {
 
 type Props = {
 	userData: UserInfo | null;
-	userStats: UserStats;
+	userStats: UserStats | null;
 };
 
 export default function UserData({ userData, userStats }: Props) {

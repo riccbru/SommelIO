@@ -18,7 +18,7 @@ export default {
 	signup: {
 		full_name: "Full Name",
 		birthdate: "Birthdate",
-		noSignup: "Already have an account?"
+		noSignup: "Already have an account?",
 	},
 	shareMex: "Hi! I just completed a tasting on SommelIO. Check out my profile and ratings:",
 	tabs: {
@@ -33,6 +33,8 @@ export default {
 	},
 	colleagues: {
 		title: "Colleagues",
+		searchbar: "Search user...",
+		notFound: "Colleague not found",
 	},
 	new: {
 		name: "New",

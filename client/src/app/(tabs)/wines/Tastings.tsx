@@ -39,31 +39,6 @@ export default function Tastings() {
 			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
-		fab: {
-			right: 0,
-			width: 55,
-			bottom: 0,
-			margin: 15,
-			height: 55,
-			borderRadius: 30,
-			position: "absolute",
-			alignItems: "center",
-			justifyContent: "center",
-			backgroundColor: theme.dark ? theme.colors.notCard : theme.colors.pearl,
-		},
-		modalContainer: {
-			margin: 20,
-			padding: 20,
-			borderWidth: 2,
-			borderRadius: 15,
-			borderColor: theme.colors.primary,
-			backgroundColor: theme.colors.card,
-		},
-		divider: {
-			marginTop: 5,
-			marginBottom: 20,
-			backgroundColor: theme.colors.primary,
-		},
 	});
 
 	if (loading) {

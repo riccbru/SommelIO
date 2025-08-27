@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { PrismaClient } from "../generated/prisma/index.js";
 import formatRelationship from "../utils/colleagues.js";
+import { PrismaClient } from "../generated/prisma/index.js";
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
 	try {
 		const uid = req.user.uid;
 
-		const colleagues = await prisma.colleagues.findMany({
+		const result = await prisma.colleagues.findMany({
 			where: {
 				OR: [{ requester_id: uid }, { addressee_id: uid }],
 				status: "accepted",
@@ -39,8 +39,8 @@ router.get("/", async (req, res) => {
 			},
 		});
 
-		const colleaguesList = colleagues.map(r => formatRelationship(uid, r));
-		res.json(colleaguesList);
+		const colleagues = result.map(r => formatRelationship(uid, r));
+		res.json({ colleagues: colleagues });
 	} catch (error) {
 		console.error("Error fetching colleagues:", error);
 		res.status(500).json({ error: "Failed to fetch colleagues" });
