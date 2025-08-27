@@ -88,7 +88,7 @@ export default function UserData({ userData, userStats }: Props) {
 	const handleShare = async () => {
 		try {
 			const result = await Share.share({
-				message: `${t("shareMex")}\nhttps://google.com/`,
+				message: `${t("shareMex")}\nhttps://google.com`,
 			});
 			if (result.action === Share.sharedAction) {
 				if (result.activityType) {

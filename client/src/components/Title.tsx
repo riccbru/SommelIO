@@ -12,7 +12,7 @@ export default function Title() {
 						<Stop offset='1' stopColor='#ff0000' stopOpacity='1' />
 					</LinearGradient>
 				</Defs>
-				<SvgText x='0' y='40' fontSize='32' fill='url(#grad)' fontWeight='bold'>
+				<SvgText x='10' y='30' fontSize='32' fill='url(#grad)' fontWeight='bold'>
 					SommelIO 🍷
 				</SvgText>
 			</Svg>

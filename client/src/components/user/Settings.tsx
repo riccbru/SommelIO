@@ -4,7 +4,7 @@ import { useLanguage } from "@/src/hooks/useLanguage";
 import { View, Text, StyleSheet, Switch, TouchableOpacity } from "react-native";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 import {
-	ArrowUpRightIcon,
+	ArrowSquareOutIcon,
 	ChatCircleIcon,
 	InfoIcon,
 	LockKeyIcon,
@@ -109,7 +109,7 @@ export default function Settings() {
 						<View style={{ marginLeft: 5, marginRight: 5 }} />
 						<Text style={styles.rowLabel}>{t("profile.secpriv")}</Text>
 					</View>
-					<ArrowUpRightIcon size={24} weight='bold' color={theme.colors.primary} />
+					<ArrowSquareOutIcon size={24} weight='bold' color={theme.colors.primary} />
 				</View>
 			</TouchableOpacity>
 
@@ -125,7 +125,7 @@ export default function Settings() {
 						<View style={{ marginLeft: 5, marginRight: 5 }} />
 						<Text style={styles.rowLabel}>{t("profile.info")}</Text>
 					</View>
-					<ArrowUpRightIcon size={24} weight='bold' color={theme.colors.primary} />
+					<ArrowSquareOutIcon size={24} weight='bold' color={theme.colors.primary} />
 				</View>
 			</TouchableOpacity>
 
@@ -141,7 +141,7 @@ export default function Settings() {
 						<View style={{ marginLeft: 5, marginRight: 5 }} />
 						<Text style={styles.rowLabel}>{t("profile.contactus")}</Text>
 					</View>
-					<ArrowUpRightIcon size={24} weight='bold' color={theme.colors.primary} />
+					<ArrowSquareOutIcon size={24} weight='bold' color={theme.colors.primary} />
 				</View>
 			</TouchableOpacity>
 		</>

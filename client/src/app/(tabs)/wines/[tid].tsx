@@ -15,7 +15,6 @@ import {
 } from "react-native";
 
 import TastingsAPI from "@/src/services/tastings";
-import LoadingSpinner from "@/src/components/LoadingSpinner";
 import TastingCard from "@/src/components/tastings/TastingCard";
 import ActionButton from "@/src/components/tastings/ActionButton";
 
@@ -167,8 +166,8 @@ export default function TastingDetail() {
 		navigation.setOptions({
 			title: `${tasting?.wine_denomination} - ${tasting?.winemaker}`,
 			headerTitleStyle: {
+				color: theme.colors.primary,
 				fontFamily: "Epilogue-Regular",
-				color: theme.dark ? "#ffffff" : "#000000",
 			},
 			headerRight: () => (
 				<TouchableOpacity
@@ -179,7 +178,7 @@ export default function TastingDetail() {
 					<StarIcon
 						size={32}
 						weight={favorite ? "fill" : "regular"}
-						color={favorite ? theme.colors.amber : theme.dark ? "#ffffff" : "#000000"}
+						color={favorite ? theme.colors.amber : theme.colors.primary}
 					/>
 				</TouchableOpacity>
 			),
@@ -203,10 +202,6 @@ export default function TastingDetail() {
 			fetchTasting();
 		}
 	}, [refresh, tid]);
-
-	if (loading) {
-		return <LoadingSpinner text={t("tastings.loading_details")} />;
-	}
 
 	if (!tasting) {
 		return (

@@ -88,9 +88,9 @@ router.get("/:uid", async (req, res) => {
 		}
 
 		const payload = {
-			uid: user?.uid,
 			username: user?.username,
 			full_name: user?.full_name,
+			uid: user?.uid,
 		};
 
 		res.json(payload);
@@ -99,5 +99,70 @@ router.get("/:uid", async (req, res) => {
 		res.status(500).json({ error: error?.meta?.message || "Internal server error" });
 	}
 });
+
+// GET /api/v1/users/:uid/stats
+router.get("/:uid/stats", async (req, res) => {
+	try {
+		const requesterUid = req.user.uid;
+		const targetUid = req.params.uid;
+
+		if (requesterUid === targetUid) {
+			return res.status(400).json({ error: "Use /me/stats for your own stats" });
+		}
+
+		const targetUser = await prisma.users.findUnique({ where: { uid: targetUid } });
+		if (!targetUser) {
+			return res.status(404).json({ error: `User ${targetUid} not found` });
+		}
+
+		const relation = await prisma.colleagues.findFirst({
+			where: {
+				status: "accepted",
+				OR: [
+					{ requester_id: requesterUid, addressee_id: targetUid },
+					{ requester_id: targetUid, addressee_id: requesterUid },
+				],
+			},
+		});
+
+		if (!relation) {
+			return res.status(403).json({ error: `You and user ${targetUid} are not colleagues` });
+		}
+
+		const totalTastings = await prisma.tastings.count({
+			where: { uid: targetUid },
+		});
+
+		const favoriteTastings = await prisma.tastings.count({
+			where: { uid: targetUid, favorite: true },
+		});
+
+		const ratedTastings = await prisma.tastings.count({
+			where: { uid: targetUid },
+		});
+
+		const payload = {
+			user: {
+				admin: targetUser.admin,
+				premium: targetUser.premium,
+				username: targetUser.username,
+				full_name: targetUser.full_name,
+				email: targetUser.email,
+				uid: targetUser.uid
+			},
+			stats: {
+				totalTastings,
+				ratedTastings,
+				favoriteTastings,
+			},
+		};
+
+		res.json(payload);
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ error: error?.meta?.message || "Internal server error" });
+	}
+});
+
 
 export default router;

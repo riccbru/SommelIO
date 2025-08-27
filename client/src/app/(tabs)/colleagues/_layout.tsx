@@ -1,6 +1,6 @@
 import { Stack } from "expo-router";
-import { useTheme } from "@/src/hooks/useTheme";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "@/src/hooks/useTheme";
 
 export default function ColleaguesLayout() {
 	const theme = useTheme();
@@ -22,7 +22,7 @@ export default function ColleaguesLayout() {
 				name='[cid]'
 				options={{
 					title: "",
-					headerShown: false,
+					headerShown: true,
 					presentation: "card",
 					headerBackTitle: t("tastings.back"),
 					headerStyle: {

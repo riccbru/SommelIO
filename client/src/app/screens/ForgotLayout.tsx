@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { router } from "expo-router";
+import Title from "@/src/components/Title";
 import { useAuth } from "@/src/hooks/useAuth";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
@@ -60,6 +61,7 @@ export default function ForgotLayout() {
 
 	return (
 		<View style={styles.container}>
+			<Title />
 			<View style={{ width: 260 }}>
 				<AuthInput
 					holder='Email'
