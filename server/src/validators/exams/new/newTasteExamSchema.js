@@ -9,13 +9,13 @@ const tannicityOptions = ["scarcely_tannic", "quite_tannic", "tannic", "tenaciou
 const softnessOptions = ["scarcely_soft", "quite_soft", "soft", "velvety", "mellow"];
 const saltinessOptions = ["scarcely_tasty", "quite_tasty", "tasty", "savory", "salty"];
 
-const effervesceOptions = ["delicate", "moderate", "lively", "exuberant", "vivid"];
+const effervesceOptions = ["", "delicate", "moderate", "lively", "exuberant", "vivid"];
 
 const intensityOptions = ["quite_intense", "intense", "very_intense"];
 const structureOptions = ["medium", "full", "vigorous"];
 const balanceOptions = ["unbalanced", "quite_balanced", "balanced"];
 const persistenceOptions = ["quite_persistent", "persistent", "very_persistent"];
-const qualityOptions = ["acceptable", "good", "distinguished", "really_good", "excellent"];
+const qualityOptions = ["acceptable", "good", "distinguished", "very_good", "excellent"];
 
 const NewTasteExamSchema = z.object({
 	sweetness: z.string().refine(val => sweetnessOptions.includes(val), {
@@ -36,9 +36,12 @@ const NewTasteExamSchema = z.object({
 	saltiness: z.string().refine(val => saltinessOptions.includes(val), {
 		message: `Saltiness must be ${saltinessOptions.join("/")}`,
 	}),
-	effervescence: z.string().refine(val => effervesceOptions.includes(val), {
-		message: `Effervescence must be ${effervesceOptions.join("/")}`,
-	}),
+	effervescence: z
+		.string()
+		.refine(val => effervesceOptions.includes(val), {
+			message: `Effervescence must be ${effervesceOptions.join("/")}`,
+		})
+		.optional(),
 	intensity: z.string().refine(val => intensityOptions.includes(val), {
 		message: `Intensity must be ${intensityOptions.join("/")}`,
 	}),

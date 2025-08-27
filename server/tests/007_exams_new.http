@@ -1,11 +1,9 @@
 @PORT = 3001
 @HOSTNAME = localhost
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI5YmRhMDRlNS1hZmZlLTQyZWMtYWQxNy1kMWIwMjY3ODhkNTciLCJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJyaWNjYnJ1IiwiZnVsbF9uYW1lIjoiUmljY2FyZG8gQnJ1bm8iLCJlbWFpbCI6InJpY2NicnVAc29tbWVsLmlvIiwiaWF0IjoxNzU2MjQ4NjYzLCJleHAiOjE3NTYyNDk1NjN9.kZX5hnj1E1pN4Uj4Tc-8DSk0WXq2ujdvzK9kM6Lgucg
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1NjdhNjIzNi00YjJlLTQ0N2UtOGYyMC0zOTdkNDUyZDE0MTIiLCJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJiYW5raWNoIiwiZnVsbF9uYW1lIjoiQmFua2ljaCBBZG1pbiIsImVtYWlsIjoiYmFua2ljaEBzb21tZWwuaW8iLCJpYXQiOjE3NTYyNTI3NDksImV4cCI6MTc1NjI1MzY0OX0.F5rPTj-_TPTIGrTUg_tpZg4CQ1jqI3O3RPKIfUGU1eE
 
-@tid = f4c66137-a0fb-48a6-864f-1dd37f2ff5f3
-# @tid = 417b4f1c-5a45-4803-9051-06bb692e68c9
-# @tid = 686085f0-d691-4309-88bb-3661a3ee53a0
-# @tid = 03ca692e-6fc7-4325-90b1-98ea0086b852
+@tid = 7ca42e90-822e-47ef-9d22-5f8ac5c6ea0c
+# @tid = e843ea9d-2d81-48dd-a66d-3725a8cd60c4
 
 ### GET TASTINGS
 
@@ -14,7 +12,7 @@ Authorization: Bearer {{token}}
 
 ### GET TASTINGS BY ID
 
-GET http://{{HOSTNAME}}:{{PORT}}/api/v1/tastings/{{tid}} HTTP/1.1
+GET http://{{HOSTNAME}}:{{PORT}}/api/v2/tastings/{{tid}} HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### GET EXAMS BY ID
@@ -22,88 +20,34 @@ Authorization: Bearer {{token}}
 GET http://{{HOSTNAME}}:{{PORT}}/api/v2/exams/{{tid}} HTTP/1.1
 Authorization: Bearer {{token}}
 
-### POST EXAMS
-
-POST http://{{HOSTNAME}}:{{PORT}}/api/v1/exams/{{tid}} HTTP/1.1
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
-{
-    "visual_exam": {
-        "limpidity": "quite_limpid",
-        "color_family": "rosé",
-        "color_shade": "cherry_red",
-        "consistency": "flowing",
-        "bubble_size": "",
-        "bubble_number": "",
-        "bubble_persistence": "",
-        "notes": "some visual examination note"
-    },
-    "olfactory_exam": {
-        "intensity": "intense",
-        "complexity": "complex",
-        "quality": "quite_fine",
-        "aromatic": false,
-        "vinous": false,
-        "floral": true,
-        "fruity": true,
-        "grassy": false,
-        "mineral": true,
-        "fragrant": true,
-        "spicy": false,
-        "toasted": false,
-        "ethereal": false,
-        "notes": "some olfactory examination note"
-    },
-    "taste_olfactory_exam": {
-        "sweetness": "dry",
-        "alcohols": "light",
-        "softness": "sharp",
-        "acidity": "flat",
-        "tannicity": "flabby",
-        "saltiness": "tasteless",
-        "intensity": "intense",
-        "persistence": "persistent",
-        "quality": "quite_fine",
-        "structure": "full",
-        "balance": "quite_balanced",
-        "notes": "some taste-olfactory examination note"
-    },
-    "final_considerations": {
-        "evolutionary_state": "ready",
-        "harmony": "quite_harmonious",
-        "pairings": "red meat, fish, cheese",
-        "notes": "some final consideration note"
-    }
-}
-
 ### POST VISUAL EXAM
 
-POST http://{{HOSTNAME}}:{{PORT}}/api/v1/exams/{{tid}}/visual HTTP/1.1
+POST http://{{HOSTNAME}}:{{PORT}}/api/v2/exams/{{tid}}/visual HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
     "limpidity": "quite_limpid",
     "color_family": "rosé",
-    "color_shade": "cherry_red",
+    "color_shade": "salmon_pink",
     "consistency": "flowing",
+    "chains_number": "",
+    "rise_speed": "",
     "bubble_size": "",
-    "bubble_number": "",
     "bubble_persistence": "", 
     "notes": "some visual examination note"
 }
 ### PUT VISUAL EXAM
 
-PUT http://{{HOSTNAME}}:{{PORT}}/api/v1/exams/{{tid}}/visual HTTP/1.1
+PUT http://{{HOSTNAME}}:{{PORT}}/api/v2/exams/{{tid}}/visual HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
     "limpidity": "quite_limpid",
     "color_family": "rosé",
-    "color_shade": "cherry_red",
-    "consistency": "flowing",
+    "color_shade": "pink_peach",
+    "consistency": "oily",
     "bubble_size": "",
     "bubble_number": "",
     "bubble_persistence": "", 
@@ -112,115 +56,175 @@ Authorization: Bearer {{token}}
 
 ### POST OLFACTORY EXAM
 
-POST http://{{HOSTNAME}}:{{PORT}}/api/v1/exams/{{tid}}/olfactory HTTP/1.1
+POST http://{{HOSTNAME}}:{{PORT}}/api/v2/exams/{{tid}}/olfactory HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
     "intensity": "intense",
     "complexity": "complex",
-    "quality": "quite_fine",
+    "quality": "distinguished",
     "aromatic": false,
-    "vinous": false,
-    "floral": true,
-    "fruity": true,
-    "grassy": false,
-    "mineral": true,
-    "fragrant": true,
+    "floral": false,
     "spicy": false,
-    "toasted": false,
-    "ethereal": false,
+    "varietal": false,
+    "vegetal": false,
+    "baking": false,
+    "fruity": false,
+    "fragrant": false,
+    "empyreumatic": false,
     "notes": "some olfactory examination note"
 }
+
 ### PUT OLFACTORY EXAM
 
-PUT http://{{HOSTNAME}}:{{PORT}}/api/v1/exams/{{tid}}/olfactory HTTP/1.1
+PUT http://{{HOSTNAME}}:{{PORT}}/api/v2/exams/{{tid}}/olfactory HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
     "intensity": "intense",
     "complexity": "complex",
-    "quality": "quite_fine",
-    "aromatic": false,
-    "vinous": false,
-    "floral": true,
+    "quality": "excellent",
+    "aromatic": true,
+    "floral": false,
+    "spicy": true,
+    "varietal": false,
+    "vegetal": true,
+    "baking": false,
     "fruity": true,
-    "grassy": false,
-    "mineral": true,
-    "fragrant": true,
-    "spicy": false,
-    "toasted": false,
-    "ethereal": false,
+    "fragrant": false,
+    "empyreumatic": true,
     "notes": "some olfactory examination note"
 }
 
 ### POST TASTE-OLFACTORY EXAM
 
-POST http://{{HOSTNAME}}:{{PORT}}/api/v1/exams/{{tid}}/taste HTTP/1.1
+POST http://{{HOSTNAME}}:{{PORT}}/api/v2/exams/{{tid}}/taste HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
     "sweetness": "dry",
-    "alcohols": "light",
-    "softness": "sharp",
-    "acidity": "flat",
-    "tannicity": "flabby",
-    "saltiness": "tasteless",
+    "acidity": "fresh",
+    "alcohols": "warm",
+    "tannicity": "tannic",
+    "softness": "quite_soft",
+    "saltiness": "quite_tasty",
+    "effervescence": "",
     "intensity": "intense",
-    "persistence": "persistent",
-    "quality": "quite_fine",
     "structure": "full",
     "balance": "quite_balanced",
+    "persistence": "persistent",
+    "quality": "good",
     "notes": "some taste-olfactory examination note"
 }
 
 ### PUT TASTE-OLFACTORY EXAM
 
-PUT http://{{HOSTNAME}}:{{PORT}}/api/v1/exams/{{tid}}/taste HTTP/1.1
+PUT http://{{HOSTNAME}}:{{PORT}}/api/v2/exams/{{tid}}/taste HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "sweetness": "dry",
-    "alcohols": "light",
-    "softness": "sharp",
-    "acidity": "flat",
-    "tannicity": "flabby",
-    "saltiness": "tasteless",
-    "intensity": "intense",
-    "persistence": "persistent",
-    "quality": "quite_fine",
-    "structure": "full",
+    "sweetness": "medium_dry",
+    "acidity": "fresh",
+    "alcohols": "lightly_warm",
+    "tannicity": "quite_tannic",
+    "softness": "quite_soft",
+    "saltiness": "salty",
+    "effervescence": "",
+    "intensity": "quite_intense",
+    "structure": "vigorous",
     "balance": "quite_balanced",
+    "persistence": "quite_persistent",
+    "quality": "excellent",
     "notes": "some taste-olfactory examination note"
 }
 
 ### POST FINAL-CONSIDERATIONS EXAM
 
-POST http://{{HOSTNAME}}:{{PORT}}/api/v1/exams/{{tid}}/final HTTP/1.1
+POST http://{{HOSTNAME}}:{{PORT}}/api/v2/exams/{{tid}}/final HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
     "evolutionary_state": "ready",
     "harmony": "quite_harmonious",
+    "quality": "excellent",
     "pairings": "red meat, fish, cheese",
     "notes": "some final consideration note"
 }
 
 ### PUT FINAL-CONSIDERATIONS EXAM
 
-PUT http://{{HOSTNAME}}:{{PORT}}/api/v1/exams/{{tid}}/final HTTP/1.1
+PUT http://{{HOSTNAME}}:{{PORT}}/api/v2/exams/{{tid}}/final HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "evolutionary_state": "ready",
-    "harmony": "quite_harmonious",
+    "evolutionary_state": "mature",
+    "harmony": "harmonious",
+    "quality": "excellent",
     "pairings": "red meat, fish, cheese",
     "notes": "some final consideration note"
+}
+
+### POST EXAMS
+
+POST http://{{HOSTNAME}}:{{PORT}}/api/v2/exams/{{tid}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "visual_exam": {
+        "limpidity": "quite_limpid",
+        "color_family": "rosé",
+        "color_shade": "salmon_pink",
+        "consistency": "flowing",
+        "chains_number": "",
+        "rise_speed": "",
+        "bubble_size": "",
+        "bubble_persistence": "",
+        "notes": "some visual examination note"
+    },
+    "olfactory_exam": {
+        "intensity": "intense",
+        "complexity": "complex",
+        "quality": "distinguished",
+        "aromatic": true,
+        "floral": false,
+        "spicy": true,
+        "varietal": false,
+        "vegetal": true,
+        "baking": false,
+        "fruity": true,
+        "fragrant": false,
+        "empyreumatic": true,
+        "notes": "some olfactory examination note"
+    },
+    "taste_olfactory_exam": {
+        "sweetness": "dry",
+        "acidity": "quite_fresh",
+        "alcohols": "warm",
+        "tannicity": "tenacious",
+        "softness": "velvety",
+        "saltiness": "tasty",
+        "effervescence": "",
+        "intensity": "intense",
+        "structure": "full",
+        "balance": "quite_balanced",
+        "persistence": "persistent",
+        "quality": "very_good",
+        "notes": "some taste-olfactory examination note"
+    },
+    "final_considerations": {
+        "evolutionary_state": "ready",
+        "harmony": "quite_harmonious",
+        "quality": "very_good",
+        "pairings": "red meat, fish, cheese",
+        "notes": "some final consideration note"
+    }
 }
 
 ### LOGIN + TOKEN

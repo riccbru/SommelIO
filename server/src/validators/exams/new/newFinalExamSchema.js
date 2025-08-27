@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const evolutionaryStateOptions = ["ready", "mature"];
 const harmonyOptions = ["disharmonious", "quite_harmonious", "harmonious"];
-const qualityOptions = ["acceptable", "good", "distinguished", "really_good", "excellent"];
+const qualityOptions = ["acceptable", "good", "distinguished", "very_good", "excellent"];
 
 const NewFinalExamSchema = z.object({
 	evolutionary_state: z.string().refine(val => evolutionaryStateOptions.includes(val), {
