@@ -1,4 +1,9 @@
-import axiosClient from "./axiosClient";
+import axios from "axios";
+import config from "./config";
+
+const axiosClient = axios.create({
+	baseURL: `http://${config.HOSTNAME}:${config.PORT}/api/v1/auth`,
+});
 
 export type SignupData = {
 	full_name: string;
@@ -13,7 +18,7 @@ async function login(
 	password: string
 ): Promise<{ newAccessToken: string; newRefreshToken: string }> {
 	try {
-		const response = await axiosClient.post("/v1/auth/login", { username, password });
+		const response = await axiosClient.post("/login", { username, password });
 
 		const newAccessToken = response.data.token;
 		const newRefreshToken = response.headers["set-cookie"]
@@ -39,7 +44,7 @@ async function login(
 
 async function logout() {
 	try {
-		const response = await axiosClient.post("/v1/auth/logout", {});
+		const response = await axiosClient.post("/logout", {});
 		return response;
 	} catch (error: any) {
 		throw new Error(error.response?.data?.error || `[services/auth.ts] Signup failed: ${error}`);
@@ -48,7 +53,7 @@ async function logout() {
 
 async function signup(data: SignupData) {
 	try {
-		const response = await axiosClient.post("/v1/auth/signup", data);
+		const response = await axiosClient.post("/signup", data);
 		return response.data;
 	} catch (error: any) {
 		throw new Error(error.response?.data?.error || `[services/auth.ts] Signup failed: ${error}`);

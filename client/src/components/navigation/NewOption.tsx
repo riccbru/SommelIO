@@ -45,12 +45,12 @@ export default function NewOption({ title, descr, path }: Props) {
 		rowLabel: {
 			fontSize: 19,
 			fontFamily: "Epilogue-Bold",
-			color: theme.colors.primary,
+			color: theme.colors.purple,
 		},
 		rowDescription: {
 			fontSize: 16,
 			fontFamily: "Epilogue-Regular",
-			color: theme.colors.gray,
+			color: theme.colors.primary,
 		},
 	});
 

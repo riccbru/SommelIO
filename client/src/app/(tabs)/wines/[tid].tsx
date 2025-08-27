@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import { Text, Card } from "react-native-paper";
-import { StarIcon } from "phosphor-react-native";
+import { GavelIcon, SealIcon, StarIcon } from "phosphor-react-native";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import {
@@ -229,7 +229,18 @@ export default function TastingDetail() {
 				}
 			>
 				<View style={{ flexDirection: "column", justifyContent: "flex-start" }}>
-					<View style={{ marginTop: 20 }} />
+					<View style={{ marginTop: 10 }} />
+					{!tasting.new ? (<></>) : (
+						<>
+							<View style={{ flexDirection: "row", alignItems: "center", justifyContent: "flex-start" }}>
+								<GavelIcon size={32} weight="fill" color={theme.colors.purple} style={{ marginLeft: 10, marginRight: 10 }} />
+								<Text style={{ fontSize: 20, marginTop: 5, color: theme.colors.primary, fontFamily: "Epilogue-Regular" }}>
+									{t("new_tasting_name_description")}
+								</Text>
+							</View>
+							<View style={{ paddingVertical: 5 }} />
+						</>
+					)}
 					<ActionButton action='download' tid={tasting.tid} />
 					<View style={{ paddingVertical: 5 }} />
 					<ActionButton

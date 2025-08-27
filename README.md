@@ -10,13 +10,12 @@
   <img src="https://img.shields.io/github/languages/count/riccbru/SommelIO" />
 </p>
 
-<p align="center"><em>Built with the tools and technologies:</em></p>
-
 <p align="center">
   <a href="https://www.docker.com/"><img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white" /></a>
   <a href="https://www.postgresql.org/"><img src="https://img.shields.io/badge/PostgreSQL-316192?style=flat&logo=postgresql&logoColor=white" /></a>
   <a href="https://www.prisma.io/"><img src="https://img.shields.io/badge/Prisma-2D3748?style=flat&logo=prisma" /></a>
   <a href="https://www.npmjs.com/"><img src="https://img.shields.io/badge/npm-CB3837?style=flat&logo=npm&logoColor=white" /></a>
+  <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-43853D?style=flat&logo=node.js&logoColor=white" /></a>
   <a href="https://nodemon.io/"><img src="https://img.shields.io/badge/Nodemon-76D04B?style=flat&logo=nodemon" /></a>
   <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black" /></a>
   <a href="https://expressjs.com/"><img src="https://img.shields.io/badge/Express-black?style=flat&logo=express" /></a>
@@ -24,6 +23,7 @@
   <a href="https://www.dotenv.org/docs/"><img src="https://img.shields.io/badge/.ENV-ECD53F?style=flat&logo=dotenv&logoColor=black" /></a>
   <a href="https://typestrong.org/ts-node/docs/"><img src="https://img.shields.io/badge/ts-node-3178C6?style=flat&logo=ts-node&logoColor=white" /></a>
   <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white" /></a>
+  <a href="https://react.i18next.com/"><img src="https://img.shields.io/badge/i18n-26A69A?style=flat&logo=i18next&logoColor=white" /></a>
   <a href="https://expo.dev/"><img src="https://img.shields.io/badge/Expo-000020?style=flat&logo=expo&logoColor=white" /></a>
   <a href="https://reactnative.dev/"><img src="https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB" /></a>
   <a href="https://axios-http.com/docs/intro"><img src="https://img.shields.io/badge/Axios-5A29E4?style=flat&logo=axios&logoColor=white" /></a>

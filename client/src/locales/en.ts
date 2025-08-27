@@ -10,9 +10,15 @@ export default {
 	todrink_notFound: "List is empty",
 	wine_notFound: "No results",
 	no_formSelect: "No value...",
+	signin: {
+		continueSSO: "OR CONTINUE WITH",
+		noAccount: "Don't have an account?",
+		lostPasswd: "Forgot password?",
+	},
 	signup: {
 		full_name: "Full Name",
 		birthdate: "Birthdate",
+		noSignup: "Already have an account?"
 	},
 	shareMex: "Hi! I just completed a tasting on SommelIO. Check out my profile and ratings:",
 	tabs: {

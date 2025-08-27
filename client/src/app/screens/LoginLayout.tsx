@@ -30,6 +30,7 @@ export default function LoginLayout() {
 	const { t } = useTranslation();
 	const { isReady, login } = useAuth();
 	const [loading, setLoading] = useState(false);
+	const [loginError, setLoginError] = useState<string>("");
 	const [loginData, setLoginData] = useState(defaultLoginData);
 	const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -64,11 +65,12 @@ export default function LoginLayout() {
 			await login(loginData.username, loginData.password);
 			router.replace("/(tabs)");
 		} catch (err: any) {
-			console.log(err.message);
+			setLoginError(err.message);
 		}
 	};
 
 	const handlePress = () => {
+		setLoginError("");
 		if (!validateForm()) return;
 		setLoading(true);
 		setTimeout(() => {
@@ -83,6 +85,10 @@ export default function LoginLayout() {
 		>
 			<ScrollView keyboardShouldPersistTaps='handled' contentContainerStyle={styles.container}>
 				<Title />
+
+				<View style={{ justifyContent: "center", alignItems: "center", marginBottom: 10 }}>
+					<Text style={{ fontSize: 16, color: theme.colors.red, fontFamily: "Epilogue-Bold"}}>{loginError}</Text>
+				</View>
 
 				<AuthInput
 					holder='Username'
@@ -126,7 +132,7 @@ export default function LoginLayout() {
 									textDecorationLine: "underline",
 								}}
 							>
-								Forgot password?
+								{t("signin.lostPasswd")}
 							</Text>
 						</TouchableOpacity>
 					</View>
