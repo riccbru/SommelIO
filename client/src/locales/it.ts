@@ -34,8 +34,10 @@ export default {
 	},
 	colleagues: {
 		title: "Colleghi",
-		searchbar: "Cerca utente...",
+		searchbar: "Cerca collega...",
 		notFound: "Collega non trovato",
+		add_searchbar: "Nome o username...",
+		addModal: "Ricerca e aggiungi collega",
 	},
 	new: {
 		name: "Nuovo",

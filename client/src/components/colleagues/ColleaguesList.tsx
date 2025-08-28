@@ -40,7 +40,7 @@ export default function ColleaguesList({ colleagues, searchQuery }: Props) {
 			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
-		fullname: {
+		fullName: {
 			fontSize: 16,
 			color: theme.colors.gray,
 			fontFamily: "Epilogue-Regular",
@@ -77,14 +77,14 @@ export default function ColleaguesList({ colleagues, searchQuery }: Props) {
 				<TouchableOpacity key={index} activeOpacity={0.5} onPress={() => handlePress(relation)}>
 					<List.Item
 						title={<Text style={styles.username}>{relation.colleague.username}</Text>}
-						description={<Text style={styles.fullname}>{relation.colleague.full_name}</Text>}
+						description={<Text style={styles.fullName}>{relation.colleague.full_name}</Text>}
 						left={props => <Image source={{ uri: "" }} style={styles.image} />}
 						right={props => (
 							<CaretRightIcon
 								size={24}
 								weight='regular'
-								color={theme.colors.primary}
 								style={{ marginTop: 13 }}
+								color={theme.colors.primary}
 							/>
 						)}
 					/>

@@ -148,7 +148,7 @@ router.get("/:uid/stats", async (req, res) => {
 				username: targetUser.username,
 				full_name: targetUser.full_name,
 				email: targetUser.email,
-				uid: targetUser.uid
+				uid: targetUser.uid,
 			},
 			stats: {
 				totalTastings,
@@ -163,6 +163,5 @@ router.get("/:uid/stats", async (req, res) => {
 		res.status(500).json({ error: error?.meta?.message || "Internal server error" });
 	}
 });
-
 
 export default router;

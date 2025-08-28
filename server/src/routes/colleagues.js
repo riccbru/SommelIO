@@ -526,7 +526,7 @@ router.get("/search", async (req, res) => {
 					{ full_name: { contains: name, mode: "insensitive" } },
 				],
 			},
-			select: { premium: true, username: true, full_name: true, uid: true },
+			select: { username: true, full_name: true, uid: true },
 			take: 20,
 		});
 

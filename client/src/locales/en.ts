@@ -33,8 +33,10 @@ export default {
 	},
 	colleagues: {
 		title: "Colleagues",
-		searchbar: "Search user...",
+		searchbar: "Search colleague...",
 		notFound: "Colleague not found",
+		add_searchbar: "Name or username...",
+		addModal: "Research and add colleague",
 	},
 	new: {
 		name: "New",

@@ -10,9 +10,32 @@ async function fetchColleagues() {
 	}
 }
 
+async function searchColleague(q: string) {
+	try {
+		const response = await axiosClient.get(`/v1/colleagues/search?q=${q}`);
+		return response.data;
+	} catch (error: any) {
+		console.error(error);
+		throw new Error(error.response?.data?.message || `Unable to search colleague: ${error}`);
+	}
+}
+
+async function sendRequest(cuid: string) {
+	try {
+		const response = await axiosClient.post(`/v1/colleagues/${cuid}`);
+		console.log(`services: ${response.data}`);
+		return response;
+	} catch (error: any) {
+		console.error(error);
+		throw new Error(
+			error.response?.data?.message || `Unable to fetch pending requests: ${error}`
+		);
+	}
+}
+
 async function getPendingRequests() {
 	try {
-		const response = await axiosClient.get(`/colleagues/requests`);
+		const response = await axiosClient.get(`/v1/colleagues/requests`);
 		return response;
 	} catch (error: any) {
 		console.error(error);
@@ -24,7 +47,7 @@ async function getPendingRequests() {
 
 async function acceptRequest(rid: string) {
 	try {
-		const response = await axiosClient.put(`/colleagues/accept/${rid}`);
+		const response = await axiosClient.put(`/v1/colleagues/accept/${rid}`);
 		return response;
 	} catch (error: any) {
 		console.error(error);
@@ -36,19 +59,7 @@ async function acceptRequest(rid: string) {
 
 async function declineRequest(rid: string) {
 	try {
-		const response = await axiosClient.put(`/colleagues/decline/${rid}`);
-		return response;
-	} catch (error: any) {
-		console.error(error);
-		throw new Error(
-			error.response?.data?.message || `Unable to fetch pending requests: ${error}`
-		);
-	}
-}
-
-async function sendRequest(cuid: string) {
-	try {
-		const response = await axiosClient.post(`/colleagues/${cuid}`);
+		const response = await axiosClient.put(`/v1/colleagues/decline/${rid}`);
 		return response;
 	} catch (error: any) {
 		console.error(error);
@@ -60,7 +71,7 @@ async function sendRequest(cuid: string) {
 
 async function blockColleague(cuid: string) {
 	try {
-		const response = await axiosClient.put(`/colleagues/block/${cuid}`);
+		const response = await axiosClient.put(`/v1/colleagues/block/${cuid}`);
 		return response;
 	} catch (error: any) {
 		console.error(error);
@@ -72,7 +83,7 @@ async function blockColleague(cuid: string) {
 
 async function unblockColleague(rid: string) {
 	try {
-		const response = await axiosClient.put(`/colleagues/unblock/${rid}`);
+		const response = await axiosClient.put(`/v1/colleagues/unblock/${rid}`);
 		return response;
 	} catch (error: any) {
 		console.error(error);
@@ -84,7 +95,7 @@ async function unblockColleague(rid: string) {
 
 async function getBlockedColleagues() {
 	try {
-		const response = await axiosClient.get(`/colleagues/blocked`);
+		const response = await axiosClient.get(`/v1/colleagues/blocked`);
 		return response;
 	} catch (error: any) {
 		console.error(error);
@@ -96,19 +107,7 @@ async function getBlockedColleagues() {
 
 async function deleteColleague(rid: string) {
 	try {
-		const response = await axiosClient.delete(`/colleagues/${rid}`);
-		return response;
-	} catch (error: any) {
-		console.error(error);
-		throw new Error(
-			error.response?.data?.message || `Unable to fetch pending requests: ${error}`
-		);
-	}
-}
-
-async function searchColleague(q: string) {
-	try {
-		const response = await axiosClient.get(`/colleagues/search?q=${q}`);
+		const response = await axiosClient.delete(`/v1/colleagues/${rid}`);
 		return response;
 	} catch (error: any) {
 		console.error(error);
