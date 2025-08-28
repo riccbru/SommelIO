@@ -1,10 +1,10 @@
-import { useNavigation } from "expo-router";
 import { useData } from "@/src/hooks/useData";
 import { Searchbar } from "react-native-paper";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import { BellIcon } from "phosphor-react-native";
 import ColleaguesAPI from "@/src/services/colleagues";
+import { useNavigation, useRouter } from "expo-router";
 import { useLayoutEffect, useState, useMemo } from "react";
 import ColleagueItem from "@/src/components/colleagues/ColleagueItem";
 import ColleaguesList from "@/src/components/colleagues/ColleaguesList";
@@ -18,6 +18,7 @@ type Result = {
 
 export default function Colleagues() {
 	const theme = useTheme();
+	const router = useRouter();
 	const { t } = useTranslation();
 	const navigation = useNavigation();
 	const [searchQuery, setSearchQuery] = useState("");
@@ -61,13 +62,13 @@ export default function Colleagues() {
 			headerRight: () => (
 				<TouchableOpacity
 					activeOpacity={0.5}
-					onPress={() => console.log("Check notifications")}
+					onPress={() => router.push("/(tabs)/colleagues/notifications")}
 				>
 					<BellIcon size={32} color={theme.colors.primary} />
 				</TouchableOpacity>
 			),
 		});
-	}, [navigation, theme]);
+	}, [navigation, router, theme]);
 
 	const filteredColleagues = useMemo(() => {
 		const query = searchQuery.trim().toLowerCase();

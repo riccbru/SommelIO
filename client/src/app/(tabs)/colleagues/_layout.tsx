@@ -6,31 +6,42 @@ export default function ColleaguesLayout() {
 	const theme = useTheme();
 	const { t } = useTranslation();
 
+	const screenOptions = {
+		headerShown: true,
+		headerStyle: {
+			backgroundColor: theme.colors.background,
+		},
+		headerTitleStyle: {
+			color: theme.colors.primary,
+			fontFamily: "Epilogue-Regular",
+		},
+	};
+
 	return (
 		<Stack>
 			<Stack.Screen
 				name='index'
 				options={{
 					title: "",
-					headerShown: true,
-					headerStyle: {
-						backgroundColor: theme.colors.background,
-					},
+					...screenOptions,
 				}}
 			/>
 			<Stack.Screen
 				name='[cid]'
 				options={{
 					title: "",
-					headerShown: true,
 					presentation: "card",
 					headerBackTitle: t("tastings.back"),
-					headerStyle: {
-						backgroundColor: theme.colors.background,
-					},
-					headerTitleStyle: {
-						fontFamily: "Epilogue-Regular",
-					},
+					...screenOptions,
+				}}
+			/>
+			<Stack.Screen
+				name='notifications'
+				options={{
+					title: t("colleagues.notifications.title"),
+					presentation: "card",
+					headerBackTitle: t("tastings.back"),
+					...screenOptions,
 				}}
 			/>
 		</Stack>

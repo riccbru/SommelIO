@@ -12,7 +12,7 @@ const renderScene = SceneMap({
 	tastings: Tastings,
 });
 
-export default function TabViewExample() {
+export default function TabViewWines() {
 	const theme = useTheme();
 	const { t } = useTranslation();
 	const layout = useWindowDimensions();

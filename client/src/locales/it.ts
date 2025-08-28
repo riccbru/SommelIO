@@ -36,8 +36,9 @@ export default {
 		title: "Colleghi",
 		searchbar: "Cerca collega (Invio)...",
 		notFound: "Collega non trovato",
-		add_searchbar: "Nome o username...",
-		addModal: "Ricerca e aggiungi collega",
+		notifications: {
+			title: "Notifiche",
+		},
 	},
 	new: {
 		name: "Nuovo",
