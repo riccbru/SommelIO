@@ -36,6 +36,10 @@ export default {
 		title: "Colleghi",
 		searchbar: "Cerca collega (Invio)...",
 		notFound: "Collega non trovato",
+		actions: "",
+		block: "BLOCCA",
+		remove: "RIMUOVI",
+		confirm: "CONFERMI?",
 		notifications: {
 			title: "Notifiche",
 		},

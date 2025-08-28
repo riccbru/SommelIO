@@ -1,17 +1,21 @@
 import UserAPI from "@/src/services/user";
 import { useTheme } from "@/src/hooks/useTheme";
+import { ProhibitIcon, TrashIcon, WarningIcon } from "phosphor-react-native";
+import { Button, Divider, Modal, Portal } from "react-native-paper";
 import UserProfile from "@/src/components/user/UserData";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { ProhibitIcon, TrashIcon } from "phosphor-react-native";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import {
 	Animated,
 	RefreshControl,
 	ScrollView,
 	StyleSheet,
+	Text,
 	TouchableOpacity,
 	View,
 } from "react-native";
+import { useTranslation } from "react-i18next";
+import ConfirmButton from "@/src/components/colleagues/ConfirmActionButton";
 
 type UserInfoType = {
 	admin: boolean;
@@ -45,7 +49,9 @@ const defaultUserStats: UserStatsType = {
 
 export default function ColleagueDetail() {
 	const theme = useTheme();
+	const { t } = useTranslation();
 	const navigation = useNavigation();
+	const [modal, setModal] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const [refresh, setRefresh] = useState(false);
 	const [fadeAnim] = useState(new Animated.Value(0));
@@ -71,6 +77,41 @@ export default function ColleagueDetail() {
 			fontFamily: "Epilogue-Bold",
 			color: theme.colors.primary,
 		},
+		modalContent: {
+			margin: 30,
+			padding: 25,
+			borderWidth: 5,
+			borderRadius: 50,
+			borderColor: theme.colors.yellow,
+			backgroundColor: theme.colors.background,
+		},
+		modalContainer: {
+			gap: 15,
+			alignItems: "center",
+			flexDirection: "column",
+		},
+		modalTitle: {
+			fontSize: 20,
+			color: theme.colors.primary,
+			fontFamily: "Epilogue-Regular",
+		},
+		touchables: {
+			width: 150,
+			borderRadius: 15,
+			paddingVertical: 10,
+			paddingHorizontal: 15,
+		},
+		buttonsLayout: {
+			alignItems: "center",
+			flexDirection: "row",
+			justifyContent: "center",
+		},
+		buttonsText: {
+			fontSize: 18,
+			marginTop: 3,
+			marginLeft: 3,
+			fontFamily: "Epilogue-Bold",
+		}
 	});
 
 	useLayoutEffect(() => {
@@ -82,21 +123,12 @@ export default function ColleagueDetail() {
 				fontFamily: "Epilogue-Regular",
 			},
 			headerRight: () => (
-				<View style={{ flexDirection: "row", justifyContent: "center" }}>
-					<TouchableOpacity
-						activeOpacity={0.3}
-						onPress={() => console.log(`block colleague ${user.username}`)}
-					>
-						<ProhibitIcon size={32} weight='bold' color={theme.colors.primary} />
-					</TouchableOpacity>
-					<View style={{ marginRight: 10 }} />
-					<TouchableOpacity
-						activeOpacity={0.3}
-						onPress={() => console.log(`remove colleague ${user.username}`)}
-					>
-						<TrashIcon size={32} weight='bold' color={theme.colors.red} />
-					</TouchableOpacity>
-				</View>
+				<TouchableOpacity
+					activeOpacity={0.3}
+					onPress={() => setModal(true)}
+				>
+					<WarningIcon size={32} weight='fill' color={theme.colors.yellow} />
+				</TouchableOpacity>
 			),
 		});
 		Animated.timing(fadeAnim, {
@@ -109,8 +141,7 @@ export default function ColleagueDetail() {
 	useEffect(() => {
 		const fetchUserStats = async () => {
 			try {
-				const delay = new Promise(resolve => setTimeout(resolve, 500));
-				const [response] = await Promise.all([UserAPI.fetchUserStats(cid), delay]);
+				const response = await UserAPI.fetchUserStats(cid)
 				setUser(response.user);
 				setStats(response.stats);
 			} catch (error) {
@@ -124,18 +155,62 @@ export default function ColleagueDetail() {
 		}
 	}, [cid, refresh]);
 
-	return (
-		<ScrollView
-			style={styles.scrollview}
-			refreshControl={
-				<RefreshControl refreshing={loading} onRefresh={() => setRefresh(!refresh)} />
-			}
-		>
-			<Animated.View style={{ opacity: fadeAnim }}>
-				<UserProfile userData={user} userStats={stats} />
-			</Animated.View>
+	const handleConfirm = async (action: 'block' | 'remove') => {
+		if (action === 'block') {
+			console.log(`blocked ${user.username}`);
+		} else {
+			console.log(`removed ${user.username}`);
+		}
+	}
 
-			<View style={{ flexDirection: "column", justifyContent: "center" }}></View>
-		</ScrollView>
+	return (
+		<>
+			<ScrollView
+				style={styles.scrollview}
+				refreshControl={
+					<RefreshControl refreshing={loading} onRefresh={() => setRefresh(!refresh)} />
+				}
+			>
+				<Animated.View style={{ opacity: fadeAnim }}>
+					<UserProfile userData={user} userStats={stats} />
+				</Animated.View>
+
+				<View style={{ flexDirection: "column", justifyContent: "center" }}></View>
+
+			</ScrollView>
+			<Portal>
+				<Modal
+					dismissable
+					visible={modal}
+					onDismiss={() => setModal(false)}
+					contentContainerStyle={styles.modalContent}>
+					<View style={styles.modalContainer}>
+						<Text style={styles.modalTitle}>{t("colleagues.actions")}<Text style={{ fontFamily: "Epilogue-Bold" }}>{user.username}</Text></Text>
+						<Divider bold style={{ marginBottom: 10, width: "95%" }} />
+
+						<ConfirmButton
+							Icon={ProhibitIcon}
+							bgColor={theme.colors.yellow}
+							label={t("colleagues.block")}
+							onConfirm={() => handleConfirm('block')}
+							confirmLabel={t("colleagues.confirm")}
+							textColor={theme.dark ? theme.colors.gray : theme.colors.primary}
+							iconColor={theme.dark ? theme.colors.gray : theme.colors.primary}
+						/>
+
+						<ConfirmButton
+							Icon={TrashIcon}
+							bgColor={theme.colors.red}
+							label={t("colleagues.block")}
+							iconColor={theme.colors.primary}
+							textColor={theme.colors.primary}
+							onConfirm={() => handleConfirm('remove')}
+							confirmLabel={t("colleagues.confirm")}
+						/>
+
+					</View>
+				</Modal>
+			</Portal>
+		</>
 	);
 }

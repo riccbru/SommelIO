@@ -8,10 +8,12 @@ const customColors = {
 	gray: "#808080",
 	green: "#67ce67",
 	pearl: "#d3d5cb",
+	purple: "#c62f7c",
 	premium: "#4193ef",
 	red: "#cc4b4b",
 	white: "#ffffff",
-	purple: "#c62f7c",
+	yellow: "#e9d502",
+
 };
 
 export const LightTheme = {

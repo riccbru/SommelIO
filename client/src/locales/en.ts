@@ -35,6 +35,10 @@ export default {
 		title: "Colleagues",
 		searchbar: "Search colleague (Enter)...",
 		notFound: "Colleague not found",
+		actions: "",
+		block: "BLOCK",
+		remove: "REMOVE",
+		confirm: "CONFIRM?",
 		notifications: {
 			title: "Notifications",
 		},
