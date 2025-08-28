@@ -1,11 +1,12 @@
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import { useLanguage } from "@/src/hooks/useLanguage";
-import { View, Text, StyleSheet, Switch, TouchableOpacity } from "react-native";
+import SettingRow from "@/src/components/user/SettingRow";
+import { View, Text, StyleSheet, Switch } from "react-native";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 import {
-	ArrowSquareOutIcon,
 	ChatCircleIcon,
+	HandHeartIcon,
 	InfoIcon,
 	LockKeyIcon,
 	MoonIcon,
@@ -21,6 +22,13 @@ export default function Settings() {
 	const langs: Language[] = ["it", "fr", "en"];
 	const { language, setLanguage } = useLanguage();
 
+	const settingsRow = [
+		{ Icon: LockKeyIcon, label: t("profile.secpriv") },
+		{ Icon: InfoIcon, label: t("profile.info") },
+		{ Icon: ChatCircleIcon, label: t("profile.contactus") },
+		{ Icon: HandHeartIcon, label: t("profile.contribute") },
+	];
+	
 	const styles = StyleSheet.create({
 		card: {
 			elevation: 4,
@@ -56,6 +64,8 @@ export default function Settings() {
 
 	return (
 		<>
+
+			{/* Dark Theme Switch */}
 			<View style={styles.row}>
 				<View style={{ alignItems: "center", flexDirection: "row" }}>
 					<MoonIcon
@@ -94,56 +104,10 @@ export default function Settings() {
 				</View>
 			</View>
 
-			{/* Security & Privacy */}
-			<TouchableOpacity
-				activeOpacity={0.5}
-				onPress={() => console.log("clicked Security & Privacy")}
-			>
-				<View style={styles.row}>
-					<View style={{ alignItems: "center", flexDirection: "row" }}>
-						<LockKeyIcon
-							size={28}
-							weight={theme.dark ? "fill" : "bold"}
-							color={theme.colors.primary}
-						/>
-						<View style={{ marginLeft: 5, marginRight: 5 }} />
-						<Text style={styles.rowLabel}>{t("profile.secpriv")}</Text>
-					</View>
-					<ArrowSquareOutIcon size={24} weight='bold' color={theme.colors.primary} />
-				</View>
-			</TouchableOpacity>
-
-			{/* Information */}
-			<TouchableOpacity activeOpacity={0.5} onPress={() => console.log("clicked Information")}>
-				<View style={styles.row}>
-					<View style={{ alignItems: "center", flexDirection: "row" }}>
-						<InfoIcon
-							size={28}
-							weight={theme.dark ? "fill" : "bold"}
-							color={theme.colors.primary}
-						/>
-						<View style={{ marginLeft: 5, marginRight: 5 }} />
-						<Text style={styles.rowLabel}>{t("profile.info")}</Text>
-					</View>
-					<ArrowSquareOutIcon size={24} weight='bold' color={theme.colors.primary} />
-				</View>
-			</TouchableOpacity>
-
-			{/* Contact Us */}
-			<TouchableOpacity activeOpacity={0.5} onPress={() => console.log("clicked Contact Us")}>
-				<View style={styles.row}>
-					<View style={{ alignItems: "center", flexDirection: "row" }}>
-						<ChatCircleIcon
-							size={28}
-							weight={theme.dark ? "fill" : "bold"}
-							color={theme.colors.primary}
-						/>
-						<View style={{ marginLeft: 5, marginRight: 5 }} />
-						<Text style={styles.rowLabel}>{t("profile.contactus")}</Text>
-					</View>
-					<ArrowSquareOutIcon size={24} weight='bold' color={theme.colors.primary} />
-				</View>
-			</TouchableOpacity>
+			{settingsRow.map((el, index) => (
+				<SettingRow key={index} Icon={el.Icon} label={el.label} />
+			))}
+			
 		</>
 	);
 }

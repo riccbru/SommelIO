@@ -387,6 +387,7 @@ export default {
 		info: "Informazioni",
 		secpriv: "Sicurezza & Privacy",
 		contactus: "Contattaci",
+		contribute: "Contribuisci",
 		tastings: {
 			total: "Totali",
 			favorite: "Preferite",
