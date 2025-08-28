@@ -3,28 +3,28 @@ import { Icon } from "phosphor-react-native";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 type ConfirmButtonProps = {
-  Icon: Icon;
-  iconColor: string;
-  bgColor: string;
-  textColor: string;
-  label: string;
-  confirmLabel: string;
-  onConfirm: () => void;
+	Icon: Icon;
+	iconColor: string;
+	bgColor: string;
+	textColor: string;
+	label: string;
+	confirmLabel: string;
+	onConfirm: () => void;
 };
 
 export default function ConfirmButton({
-  Icon,
-  iconColor,
-  bgColor,
-  textColor,
-  label,
-  confirmLabel,
-  onConfirm,
+	Icon,
+	iconColor,
+	bgColor,
+	textColor,
+	label,
+	confirmLabel,
+	onConfirm,
 }: ConfirmButtonProps) {
-  const [confirm, setConfirm] = useState(false);
+	const [confirm, setConfirm] = useState(false);
 
-  const styles = StyleSheet.create({
-    touchables: {
+	const styles = StyleSheet.create({
+		touchables: {
 			width: 150,
 			borderRadius: 15,
 			paddingVertical: 10,
@@ -40,30 +40,30 @@ export default function ConfirmButton({
 			marginTop: 3,
 			marginLeft: 3,
 			fontFamily: "Epilogue-Bold",
+		},
+	});
+
+	const handlePress = () => {
+		if (confirm) {
+			onConfirm();
+			setConfirm(false);
+		} else {
+			setConfirm(true);
 		}
-  });
+	};
 
-  const handlePress = () => {
-    if (confirm) {
-      onConfirm();
-      setConfirm(false);
-    } else {
-      setConfirm(true);
-    }
-  };
-
-  return (
-    <TouchableOpacity
-      activeOpacity={0.5}
-      onPress={handlePress}
-      style={[styles.touchables, { backgroundColor: bgColor }]}
-    >
-      <View style={styles.buttonsLayout}>
-        <Icon size={28} weight="bold" color={iconColor} />
-        <Text style={[styles.buttonsText, { color: textColor }]}>
-          {confirm ? confirmLabel : label}
-        </Text>
-      </View>
-    </TouchableOpacity>
-  );
+	return (
+		<TouchableOpacity
+			activeOpacity={0.5}
+			onPress={handlePress}
+			style={[styles.touchables, { backgroundColor: bgColor }]}
+		>
+			<View style={styles.buttonsLayout}>
+				<Icon size={28} weight='bold' color={iconColor} />
+				<Text style={[styles.buttonsText, { color: textColor }]}>
+					{confirm ? confirmLabel : label}
+				</Text>
+			</View>
+		</TouchableOpacity>
+	);
 }

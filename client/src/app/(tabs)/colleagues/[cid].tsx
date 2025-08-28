@@ -1,9 +1,13 @@
 import UserAPI from "@/src/services/user";
+import { useData } from "@/src/hooks/useData";
+import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
-import { ProhibitIcon, TrashIcon, WarningIcon } from "phosphor-react-native";
-import { Button, Divider, Modal, Portal } from "react-native-paper";
+import ColleaguesAPI from "@/src/services/colleagues";
 import UserProfile from "@/src/components/user/UserData";
+import { Divider, Modal, Portal } from "react-native-paper";
 import { useEffect, useLayoutEffect, useState } from "react";
+import ConfirmButton from "@/src/components/colleagues/ConfirmActionButton";
+import { ProhibitIcon, TrashIcon, WarningIcon } from "phosphor-react-native";
 import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
 import {
 	Animated,
@@ -14,10 +18,6 @@ import {
 	TouchableOpacity,
 	View,
 } from "react-native";
-import { useTranslation } from "react-i18next";
-import ConfirmButton from "@/src/components/colleagues/ConfirmActionButton";
-import ColleaguesAPI from "@/src/services/colleagues";
-import { useData } from "@/src/hooks/useData";
 
 type UserInfoType = {
 	admin: boolean;
@@ -115,7 +115,7 @@ export default function ColleagueDetail() {
 			marginTop: 3,
 			marginLeft: 3,
 			fontFamily: "Epilogue-Bold",
-		}
+		},
 	});
 
 	useLayoutEffect(() => {
@@ -127,10 +127,7 @@ export default function ColleagueDetail() {
 				fontFamily: "Epilogue-Regular",
 			},
 			headerRight: () => (
-				<TouchableOpacity
-					activeOpacity={0.3}
-					onPress={() => setModal(true)}
-				>
+				<TouchableOpacity activeOpacity={0.3} onPress={() => setModal(true)}>
 					<WarningIcon size={32} weight='fill' color={theme.colors.yellow} />
 				</TouchableOpacity>
 			),
@@ -145,7 +142,7 @@ export default function ColleagueDetail() {
 	useEffect(() => {
 		const fetchUserStats = async () => {
 			try {
-				const response = await UserAPI.fetchUserStats(cid)
+				const response = await UserAPI.fetchUserStats(cid);
 				setUser(response.user);
 				setStats(response.stats);
 			} catch (error) {
@@ -159,17 +156,17 @@ export default function ColleagueDetail() {
 		}
 	}, [cid, refresh]);
 
-	const handleConfirm = async (action: 'block' | 'remove') => {
-		if (action.toLowerCase() === 'block') {
+	const handleConfirm = async (action: "block" | "remove") => {
+		if (action.toLowerCase() === "block") {
 			await ColleaguesAPI.blockColleague(cid);
-		} else if (action.toLowerCase() === 'remove') {
+		} else if (action.toLowerCase() === "remove") {
 			await ColleaguesAPI.removeColleague(cid);
 		} else {
 			console.log(`Action ${action} not supported`);
 		}
 		refreshColleagues();
 		router.back();
-	}
+	};
 
 	return (
 		<>
@@ -184,23 +181,26 @@ export default function ColleagueDetail() {
 				</Animated.View>
 
 				<View style={{ flexDirection: "column", justifyContent: "center" }}></View>
-
 			</ScrollView>
 			<Portal>
 				<Modal
 					dismissable
 					visible={modal}
 					onDismiss={() => setModal(false)}
-					contentContainerStyle={styles.modalContent}>
+					contentContainerStyle={styles.modalContent}
+				>
 					<View style={styles.modalContainer}>
-						<Text style={styles.modalTitle}>{t("colleagues.actions")}<Text style={{ fontFamily: "Epilogue-Bold" }}>{user.username}</Text></Text>
+						<Text style={styles.modalTitle}>
+							{t("colleagues.actions")}
+							<Text style={{ fontFamily: "Epilogue-Bold" }}>{user.username}</Text>
+						</Text>
 						<Divider bold style={{ marginBottom: 10, width: "95%" }} />
 
 						<ConfirmButton
 							Icon={ProhibitIcon}
 							bgColor={theme.colors.yellow}
 							label={t("colleagues.block")}
-							onConfirm={() => handleConfirm('block')}
+							onConfirm={() => handleConfirm("block")}
 							confirmLabel={t("colleagues.confirm")}
 							textColor={theme.dark ? theme.colors.gray : theme.colors.primary}
 							iconColor={theme.dark ? theme.colors.gray : theme.colors.primary}
@@ -212,10 +212,9 @@ export default function ColleagueDetail() {
 							label={t("colleagues.remove")}
 							iconColor={theme.colors.primary}
 							textColor={theme.colors.primary}
-							onConfirm={() => handleConfirm('remove')}
+							onConfirm={() => handleConfirm("remove")}
 							confirmLabel={t("colleagues.confirm")}
 						/>
-
 					</View>
 				</Modal>
 			</Portal>

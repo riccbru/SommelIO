@@ -28,7 +28,7 @@ export default function Settings() {
 		{ Icon: ChatCircleIcon, label: t("profile.contactus") },
 		{ Icon: HandHeartIcon, label: t("profile.contribute") },
 	];
-	
+
 	const styles = StyleSheet.create({
 		card: {
 			elevation: 4,
@@ -64,7 +64,6 @@ export default function Settings() {
 
 	return (
 		<>
-
 			{/* Dark Theme Switch */}
 			<View style={styles.row}>
 				<View style={{ alignItems: "center", flexDirection: "row" }}>
@@ -107,7 +106,6 @@ export default function Settings() {
 			{settingsRow.map((el, index) => (
 				<SettingRow key={index} Icon={el.Icon} label={el.label} />
 			))}
-			
 		</>
 	);
 }

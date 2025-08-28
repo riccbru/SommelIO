@@ -1,19 +1,17 @@
-import { useTranslation } from 'react-i18next';
-import { useTheme } from '@/src/hooks/useTheme';
-import { ArrowSquareOutIcon, Icon } from 'phosphor-react-native';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { useTheme } from "@/src/hooks/useTheme";
+import { ArrowSquareOutIcon, Icon } from "phosphor-react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 type Props = {
-    Icon: Icon;
-    label: string;
-}
+	Icon: Icon;
+	label: string;
+};
 
 export default function SettingRow({ Icon, label }: Props) {
-    const theme = useTheme();
-    const { t } = useTranslation();
+	const theme = useTheme();
 
-    const styles = StyleSheet.create({
-        row: {
+	const styles = StyleSheet.create({
+		row: {
 			height: 80,
 			marginTop: 10,
 			marginBottom: 10,
@@ -34,27 +32,24 @@ export default function SettingRow({ Icon, label }: Props) {
 			fontFamily: "Epilogue-Bold",
 			color: theme.colors.primary,
 		},
-    });
+	});
 
-    return (
-        <>
-            <TouchableOpacity
-                activeOpacity={0.7}
-                onPress={() => console.log(`clicked ${label}`)}
-            >
-                <View style={styles.row}>
-                    <View style={{ alignItems: "center", flexDirection: "row" }}>
-                        <Icon
-                            size={28}
-                            color={theme.colors.primary}
-                            weight={theme.dark ? "fill" : "bold"}
-                        />
-                        <View style={{ marginLeft: 5, marginRight: 5 }} />
-                        <Text style={styles.rowLabel}>{label}</Text>
-                    </View>
-                    <ArrowSquareOutIcon size={24} weight='bold' color={theme.colors.primary} />
-                </View>
-            </TouchableOpacity>
-        </>
-    )
+	return (
+		<>
+			<TouchableOpacity activeOpacity={0.7} onPress={() => console.log(`clicked ${label}`)}>
+				<View style={styles.row}>
+					<View style={{ alignItems: "center", flexDirection: "row" }}>
+						<Icon
+							size={28}
+							color={theme.colors.primary}
+							weight={theme.dark ? "fill" : "bold"}
+						/>
+						<View style={{ marginLeft: 5, marginRight: 5 }} />
+						<Text style={styles.rowLabel}>{label}</Text>
+					</View>
+					<ArrowSquareOutIcon size={24} weight='bold' color={theme.colors.primary} />
+				</View>
+			</TouchableOpacity>
+		</>
+	);
 }

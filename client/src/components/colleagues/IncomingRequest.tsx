@@ -108,14 +108,14 @@ export default function IncomingRequests({ requests }: Props) {
 								onPress={() => handleRequest(item.rid, "decline")}
 								style={[styles.iconButton, { backgroundColor: theme.colors.red }]}
 							>
-								<XCircleIcon size={24} weight="bold" color={theme.colors.white} />
+								<XCircleIcon size={24} weight='bold' color={theme.colors.white} />
 							</TouchableOpacity>
 							<TouchableOpacity
 								activeOpacity={0.7}
 								onPress={() => handleRequest(item.rid, "accept")}
 								style={[styles.iconButton, { backgroundColor: theme.colors.premium }]}
 							>
-								<CheckCircleIcon size={24} weight="bold" color={theme.colors.white} />
+								<CheckCircleIcon size={24} weight='bold' color={theme.colors.white} />
 							</TouchableOpacity>
 						</View>
 					</View>

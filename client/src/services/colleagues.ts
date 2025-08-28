@@ -74,9 +74,7 @@ async function blockColleague(cuid: string) {
 		return response;
 	} catch (error: any) {
 		console.error(error);
-		throw new Error(
-			error.response?.data?.message || `Unable to block colleague: ${error}`
-		);
+		throw new Error(error.response?.data?.message || `Unable to block colleague: ${error}`);
 	}
 }
 
@@ -110,9 +108,7 @@ async function removeColleague(cuid: string) {
 		return response;
 	} catch (error: any) {
 		console.error(error);
-		throw new Error(
-			error.response?.data?.message || `Unable to remove colleague: ${error}`
-		);
+		throw new Error(error.response?.data?.message || `Unable to remove colleague: ${error}`);
 	}
 }
 
