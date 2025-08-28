@@ -4,7 +4,7 @@ import { ProhibitIcon, TrashIcon, WarningIcon } from "phosphor-react-native";
 import { Button, Divider, Modal, Portal } from "react-native-paper";
 import UserProfile from "@/src/components/user/UserData";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { useLocalSearchParams, useNavigation } from "expo-router";
+import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
 import {
 	Animated,
 	RefreshControl,
@@ -16,6 +16,8 @@ import {
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import ConfirmButton from "@/src/components/colleagues/ConfirmActionButton";
+import ColleaguesAPI from "@/src/services/colleagues";
+import { useData } from "@/src/hooks/useData";
 
 type UserInfoType = {
 	admin: boolean;
@@ -49,9 +51,11 @@ const defaultUserStats: UserStatsType = {
 
 export default function ColleagueDetail() {
 	const theme = useTheme();
+	const router = useRouter();
 	const { t } = useTranslation();
 	const navigation = useNavigation();
 	const [modal, setModal] = useState(false);
+	const { refreshColleagues } = useData();
 	const [loading, setLoading] = useState(true);
 	const [refresh, setRefresh] = useState(false);
 	const [fadeAnim] = useState(new Animated.Value(0));
@@ -156,11 +160,15 @@ export default function ColleagueDetail() {
 	}, [cid, refresh]);
 
 	const handleConfirm = async (action: 'block' | 'remove') => {
-		if (action === 'block') {
-			console.log(`blocked ${user.username}`);
+		if (action.toLowerCase() === 'block') {
+			await ColleaguesAPI.blockColleague(cid);
+		} else if (action.toLowerCase() === 'remove') {
+			await ColleaguesAPI.removeColleague(cid);
 		} else {
-			console.log(`removed ${user.username}`);
+			console.log(`Action ${action} not supported`);
 		}
+		refreshColleagues();
+		router.back();
 	}
 
 	return (
@@ -201,7 +209,7 @@ export default function ColleagueDetail() {
 						<ConfirmButton
 							Icon={TrashIcon}
 							bgColor={theme.colors.red}
-							label={t("colleagues.block")}
+							label={t("colleagues.remove")}
 							iconColor={theme.colors.primary}
 							textColor={theme.colors.primary}
 							onConfirm={() => handleConfirm('remove')}

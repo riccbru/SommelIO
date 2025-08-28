@@ -51,7 +51,7 @@ async function acceptRequest(rid: string) {
 	} catch (error: any) {
 		console.error(error);
 		throw new Error(
-			error.response?.data?.message || `Unable to fetch pending requests: ${error}`
+			error.response?.data?.message || `Unable to accept pending requests: ${error}`
 		);
 	}
 }
@@ -63,7 +63,7 @@ async function declineRequest(rid: string) {
 	} catch (error: any) {
 		console.error(error);
 		throw new Error(
-			error.response?.data?.message || `Unable to fetch pending requests: ${error}`
+			error.response?.data?.message || `Unable to decline pending requests: ${error}`
 		);
 	}
 }
@@ -75,7 +75,7 @@ async function blockColleague(cuid: string) {
 	} catch (error: any) {
 		console.error(error);
 		throw new Error(
-			error.response?.data?.message || `Unable to fetch pending requests: ${error}`
+			error.response?.data?.message || `Unable to block colleague: ${error}`
 		);
 	}
 }
@@ -104,14 +104,14 @@ async function getBlockedColleagues() {
 	}
 }
 
-async function deleteColleague(rid: string) {
+async function removeColleague(cuid: string) {
 	try {
-		const response = await axiosClient.delete(`/v1/colleagues/${rid}`);
+		const response = await axiosClient.delete(`/v1/colleagues/${cuid}`);
 		return response;
 	} catch (error: any) {
 		console.error(error);
 		throw new Error(
-			error.response?.data?.message || `Unable to fetch pending requests: ${error}`
+			error.response?.data?.message || `Unable to remove colleague: ${error}`
 		);
 	}
 }
@@ -127,7 +127,7 @@ const ColleaguesAPI = {
 	blockColleague,
 	getBlockedColleagues,
 	unblockColleague,
-	deleteColleague,
+	removeColleague,
 };
 
 export default ColleaguesAPI;

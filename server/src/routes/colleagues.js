@@ -142,14 +142,22 @@ router.post("/:cuid", async (req, res) => {
 		const existingRelationship = await prisma.colleagues.findFirst({
 			where: {
 				OR: [
-					{ requester_id: requesterId, addressee_id: addresseeId },
-					{ requester_id: addresseeId, addressee_id: requesterId },
-					{ status: "blocked" },
+					{
+						requester_id: requesterId,
+						addressee_id: addresseeId,
+						status: { in: ["pending", "accepted", "blocked"] },
+					},
+					{
+						requester_id: addresseeId,
+						addressee_id: requesterId,
+						status: { in: ["pending", "accepted", "blocked"] },
+					},
 				],
 			},
 		});
 
 		if (existingRelationship) {
+			console.log(`Relationship already exists with status: ${existingRelationship.status}`);
 			return res.status(400).json({
 				error: `Relationship already exists with status: ${existingRelationship.status}`,
 			});
@@ -457,38 +465,39 @@ router.get("/blocked", async (req, res) => {
 	}
 });
 
-// DELETE /api/v1/colleagues/:rid
+// DELETE /api/v1/colleagues/:cuid
 // Remove colleague relationship
-router.delete("/:rid", async (req, res) => {
-	try {
-		const uid = req.user.uid;
-		const rid = req.params.rid;
+router.delete("/:cuid", async (req, res) => {
+  try {
+    const uid = req.user.uid;
+    const cuid = req.params.cuid;
 
-		// Find the relationship and verify the current user is involved
-		const relationship = await prisma.colleagues.findUnique({
-			where: { rid: rid, status: "accepted" },
-		});
+    // Check if accepted relationship exists
+    const relationship = await prisma.colleagues.findFirst({
+      where: {
+        OR: [
+          { requester_id: uid, addressee_id: cuid, status: "accepted" },
+          { requester_id: cuid, addressee_id: uid, status: "accepted" },
+        ],
+      },
+    });
 
-		if (!relationship) {
-			return res.status(404).json({ error: "Relationship not found" });
-		}
+    if (!relationship) {
+      return res.status(404).json({ error: "No existing relationship found" });
+    }
 
-		if (relationship.requester_id !== uid && relationship.addressee_id !== uid) {
-			return res.status(403).json({ error: "Not authorized to remove this relationship" });
-		}
+    // Delete the relationship
+    await prisma.colleagues.delete({
+      where: { rid: relationship.rid },
+    });
 
-		// Delete the relationship
-		await prisma.colleagues.delete({
-			where: { rid: rid },
-		});
-
-		res.status(200).json({
-			success: `Colleague ${relationship.addressee_id} removed successfully`,
-		});
-	} catch (error) {
-		console.error(`Error removing relationship: ${error}`);
-		res.status(500).json({ error: "Failed to remove colleague relationship" });
-	}
+    res.status(200).json({
+      success: `Colleague ${cuid} removed successfully`
+    });
+  } catch (error) {
+    console.error("Error removing relationship:", error);
+    res.status(500).json({ error: "Failed to remove colleague relationship" });
+  }
 });
 
 // GET /api/v1/colleagues/search?q=username
@@ -496,29 +505,40 @@ router.delete("/:rid", async (req, res) => {
 router.get("/search", async (req, res) => {
 	try {
 		const uid = req.user.uid;
-		const name = req.query.q.trim();
+		const name = req.query.q?.trim();
 
 		if (!uid) return res.status(401).json({ error: "Unauthorized" });
 
-		const existingRelationships = await prisma.colleagues.findMany({
+		const relationships = await prisma.colleagues.findMany({
 			where: {
-				OR: [
-					{ requester_id: uid },
-					{ addressee_id: uid },
-					{ status: "accepted" },
-					{ status: "blocked" },
-				],
+				OR: [{ requester_id: uid }, { addressee_id: uid }],
 			},
-			select: { requester_id: true, addressee_id: true },
+			select: { requester_id: true, addressee_id: true, status: true },
 		});
 
+		const userStatusMap = new Map();
 		const excludeIds = new Set([uid]);
-		existingRelationships.forEach(rel => {
+
+		relationships.forEach(rel => {
 			const otherId = rel.requester_id === uid ? rel.addressee_id : rel.requester_id;
-			excludeIds.add(otherId);
+
+			// Exclude accepted or blocked users
+			if (rel.status === "accepted" || rel.status === "blocked") {
+				excludeIds.add(otherId);
+			}
+
+			// Include pending only if caller is the requester
+			if (rel.status === "pending" && rel.requester_id === uid) {
+				userStatusMap.set(otherId, rel.status);
+			} else {
+				// All others will be excluded
+				excludeIds.add(otherId);
+			}
 		});
 
-		const users = await prisma.users.findMany({
+		// Fetch users not excluded
+		const result = await prisma.users.findMany({
+			take: 20,
 			where: {
 				uid: { notIn: [...excludeIds] },
 				OR: [
@@ -526,9 +546,14 @@ router.get("/search", async (req, res) => {
 					{ full_name: { contains: name, mode: "insensitive" } },
 				],
 			},
-			select: { username: true, full_name: true, uid: true },
-			take: 20,
+			select: { uid: true, username: true, full_name: true },
 		});
+
+		// Merge user info with status (null if no relationship)
+		const users = result.map(user => ({
+			status: userStatusMap.get(user.uid) || null,
+			...user,
+		}));
 
 		res.json(users);
 	} catch (error) {
