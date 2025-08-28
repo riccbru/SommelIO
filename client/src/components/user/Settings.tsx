@@ -47,8 +47,8 @@ export default function Settings() {
 			flexDirection: "row",
 			paddingHorizontal: 15,
 
-			borderWidth: 1,
 			elevation: 5,
+			borderWidth: 2,
 			borderRadius: 15,
 			borderColor: theme.colors.primary,
 

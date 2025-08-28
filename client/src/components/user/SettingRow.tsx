@@ -12,15 +12,15 @@ export default function SettingRow({ Icon, label }: Props) {
 
 	const styles = StyleSheet.create({
 		row: {
-			height: 80,
+			height: 55,
 			marginTop: 10,
 			marginBottom: 10,
 			alignItems: "center",
 			flexDirection: "row",
 			paddingHorizontal: 15,
 
-			borderWidth: 1,
 			elevation: 5,
+			borderWidth: 2,
 			borderRadius: 15,
 			borderColor: theme.colors.primary,
 
@@ -36,7 +36,7 @@ export default function SettingRow({ Icon, label }: Props) {
 
 	return (
 		<>
-			<TouchableOpacity activeOpacity={0.7} onPress={() => console.log(`clicked ${label}`)}>
+			<TouchableOpacity activeOpacity={0.5} onPress={() => console.log(`clicked ${label}`)}>
 				<View style={styles.row}>
 					<View style={{ alignItems: "center", flexDirection: "row" }}>
 						<Icon
