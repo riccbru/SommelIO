@@ -1,5 +1,4 @@
 import UserAPI from "@/src/services/user";
-import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import UserProfile from "@/src/components/user/UserData";
 import { useEffect, useLayoutEffect, useState } from "react";
@@ -46,7 +45,6 @@ const defaultUserStats: UserStatsType = {
 
 export default function ColleagueDetail() {
 	const theme = useTheme();
-	const { t } = useTranslation();
 	const navigation = useNavigation();
 	const [loading, setLoading] = useState(true);
 	const [refresh, setRefresh] = useState(false);

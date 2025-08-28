@@ -21,6 +21,7 @@ export default function OldTastingLayout() {
 						name={el}
 						key={index}
 						options={{
+							headerBackVisible: false,
 							headerBackTitle: capitalizeFirst(t(`new.${el}.short`).toLowerCase()),
 						}}
 					/>

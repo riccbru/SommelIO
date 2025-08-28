@@ -22,7 +22,7 @@ export default function ColleagueItem({ user }: Props) {
 
 	const styles = StyleSheet.create({
 		username: {
-			fontSize: 20,
+			fontSize: 18,
 			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
@@ -56,7 +56,6 @@ export default function ColleagueItem({ user }: Props) {
 						<Icon
 							size={32}
 							weight='bold'
-							style={{ marginTop: 3 }}
 							color={!sent ? theme.colors.gray : theme.colors.green}
 						/>
 					</TouchableOpacity>

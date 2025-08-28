@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import { CaretRightIcon } from "phosphor-react-native";
 import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { useMemo } from "react";
 
 type Colleague = {
 	status: string;
@@ -55,13 +56,14 @@ export default function ColleaguesList({ colleagues, searchQuery }: Props) {
 		},
 	});
 
-	const filteredColleagues = colleagues.filter(colleague => {
+	const filteredColleagues = useMemo(() => {
 		const query = searchQuery.toLowerCase();
-		return (
-			colleague.colleague.username.toLowerCase().includes(query) ||
-			colleague.colleague.full_name.toLowerCase().includes(query)
+		return colleagues.filter(
+			c =>
+				c.colleague.username.toLowerCase().includes(query) ||
+				c.colleague.full_name.toLowerCase().includes(query)
 		);
-	});
+	}, [colleagues, searchQuery]);
 
 	if (!filteredColleagues.length) {
 		return <Text style={styles.emptyText}>{t("wine_notFound")}</Text>;

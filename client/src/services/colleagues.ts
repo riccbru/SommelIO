@@ -23,7 +23,6 @@ async function searchColleague(q: string) {
 async function sendRequest(cuid: string) {
 	try {
 		const response = await axiosClient.post(`/v1/colleagues/${cuid}`);
-		console.log(`services: ${response.data}`);
 		return response;
 	} catch (error: any) {
 		console.error(error);
