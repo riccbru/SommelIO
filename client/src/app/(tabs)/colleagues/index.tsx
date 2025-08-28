@@ -11,6 +11,7 @@ import ColleaguesList from "@/src/components/colleagues/ColleaguesList";
 import { RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 type Result = {
+	status: string;
 	username: string;
 	full_name: string;
 	uid: string;
@@ -45,8 +46,9 @@ export default function Colleagues() {
 			justifyContent: "center",
 			backgroundColor: theme.colors.background,
 		},
-		text: {
-			fontSize: 22,
+		emptyText: {
+			fontSize: 20,
+			marginTop: 20,
 			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
@@ -121,7 +123,7 @@ export default function Colleagues() {
 			>
 				{!displayList.length ? (
 					<View style={styles.centeredContainer}>
-						<Text style={styles.text}>{t("wine_notFound")}</Text>
+						<Text style={styles.emptyText}>{t("wine_notFound")}</Text>
 					</View>
 				) : (
 					<>

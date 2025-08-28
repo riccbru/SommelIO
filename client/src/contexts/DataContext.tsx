@@ -92,6 +92,13 @@ type Colleague = {
 	};
 };
 
+type Request = {
+	username: string;
+	created_at: string;
+	rid: string;
+	uid: string;
+};
+
 type DataContextType = {
 	loading: boolean;
 	coefficients: Coefficients;
@@ -99,11 +106,13 @@ type DataContextType = {
 	tastings: Tasting[];
 	wines: Wine[];
 	colleagues: Colleague[];
+	requests: Request[];
 	refreshCoefficients: () => Promise<void>;
 	refreshStats: () => Promise<void>;
 	refreshTastings: () => Promise<void>;
 	refreshWines: () => Promise<void>;
 	refreshColleagues: () => Promise<void>;
+	refreshRequests: () => Promise<void>;
 };
 
 export const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -112,6 +121,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 	const { accessToken } = useAuth();
 	const [loading, setLoading] = useState(false);
 	const [wines, setWines] = useState<Wine[]>([]);
+	const [requests, setRequests] = useState<Request[]>([]);
 	const [tastings, setTastings] = useState<Tasting[]>([]);
 	const [stats, setStats] = useState<UserStats>(defaultStats);
 	const [colleagues, setColleagues] = useState<Colleague[]>([]);
@@ -134,9 +144,8 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 	const refreshTastings = useCallback(async () => {
 		if (!accessToken) return;
 		setLoading(true);
-		const delay = new Promise(resolve => setTimeout(resolve, 550));
 		try {
-			const [data] = await Promise.all([TastingsAPI.fetchTastings(), delay]);
+			const data = await TastingsAPI.fetchTastings();
 			setTastings(data.tastings || []);
 		} catch (err) {
 			setTastings([]);
@@ -160,9 +169,8 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 	const refreshWines = useCallback(async () => {
 		if (!accessToken) return;
 		setLoading(true);
-		const delay = new Promise(resolve => setTimeout(resolve, 550));
 		try {
-			const [data] = await Promise.all([WinesAPI.fetchWines(), delay]);
+			const data = await WinesAPI.fetchWines();
 			setWines(data.wines || []);
 		} catch (err) {
 			console.log(err);
@@ -175,12 +183,26 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 	const refreshColleagues = useCallback(async () => {
 		if (!accessToken) return;
 		setLoading(true);
-		const delay = new Promise(resolve => setTimeout(resolve, 550));
 		try {
-			const [data] = await Promise.all([ColleaguesAPI.fetchColleagues(), delay]);
+			const data = await ColleaguesAPI.fetchColleagues();
+			// console.log(JSON.stringify(data.colleagues, null, 3))
 			setColleagues(data.colleagues || []);
 		} catch (err) {
 			setColleagues([]);
+			console.log(err);
+		} finally {
+			setLoading(false);
+		}
+	}, [accessToken]);
+
+	const refreshRequests = useCallback(async () => {
+		if (!accessToken) return;
+		setLoading(true);
+		try {
+			const data = await ColleaguesAPI.getRequests();
+			setRequests(data.incoming || []);
+		} catch (err) {
+			setRequests([]);
 			console.log(err);
 		} finally {
 			setLoading(false);
@@ -195,11 +217,12 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 				refreshTastings(),
 				refreshWines(),
 				refreshColleagues(),
+				refreshRequests(),
 			]);
 		} finally {
 			setLoading(false);
 		}
-	}, [refreshStats, refreshTastings, refreshWines, refreshColleagues]);
+	}, [refreshStats, refreshTastings, refreshWines, refreshColleagues, refreshRequests]);
 
 	useEffect(() => {
 		refreshData();
@@ -213,11 +236,13 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 		tastings,
 		wines,
 		colleagues,
+		requests,
 		refreshCoefficients,
 		refreshStats,
 		refreshTastings,
 		refreshWines,
 		refreshColleagues,
+		refreshRequests,
 	};
 
 	return <DataContext.Provider value={values}>{children}</DataContext.Provider>;

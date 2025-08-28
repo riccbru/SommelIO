@@ -32,14 +32,14 @@ async function sendRequest(cuid: string) {
 	}
 }
 
-async function getPendingRequests() {
+async function getRequests() {
 	try {
 		const response = await axiosClient.get(`/v1/colleagues/requests`);
-		return response;
+		return response.data;
 	} catch (error: any) {
 		console.error(error);
 		throw new Error(
-			error.response?.data?.message || `Unable to fetch pending requests: ${error}`
+			error.response?.data?.message || `Unable to fetch all pending requests: ${error}`
 		);
 	}
 }
@@ -118,14 +118,15 @@ async function deleteColleague(rid: string) {
 
 const ColleaguesAPI = {
 	fetchColleagues,
-	getPendingRequests,
+	searchColleague,
+	sendRequest,
+	getRequests,
+
 	acceptRequest,
 	declineRequest,
-	sendRequest,
 	blockColleague,
 	getBlockedColleagues,
 	unblockColleague,
-	searchColleague,
 	deleteColleague,
 };
 

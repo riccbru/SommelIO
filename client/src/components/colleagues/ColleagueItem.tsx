@@ -1,14 +1,15 @@
+import { useState } from "react";
 import { List } from "react-native-paper";
 import { useTheme } from "@/src/hooks/useTheme";
+import ColleaguesAPI from "@/src/services/colleagues";
 import { CheckIcon, UserPlusIcon } from "phosphor-react-native";
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
-import { useState } from "react";
-import ColleaguesAPI from "@/src/services/colleagues";
 
 type User = {
-	uid: string;
+	status: string | null;
 	username: string;
 	full_name: string;
+	uid: string;
 };
 
 type Props = {
@@ -17,8 +18,8 @@ type Props = {
 
 export default function ColleagueItem({ user }: Props) {
 	const theme = useTheme();
-	const [sent, setSent] = useState(false);
-	const Icon = !sent ? UserPlusIcon : CheckIcon;
+	const [sent, setSent] = useState(user.status === "pending");
+	const Icon = sent ? CheckIcon : UserPlusIcon;
 
 	const styles = StyleSheet.create({
 		username: {
@@ -38,6 +39,7 @@ export default function ColleagueItem({ user }: Props) {
 			await ColleaguesAPI.sendRequest(uid);
 			setSent(true);
 		} catch (error: any) {
+			setSent(false);
 			console.log(error.message);
 		}
 	};
