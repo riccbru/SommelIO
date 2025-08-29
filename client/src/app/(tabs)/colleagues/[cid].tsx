@@ -57,11 +57,11 @@ export default function ColleagueDetail() {
 	const { t } = useTranslation();
 	const navigation = useNavigation();
 	const [modal, setModal] = useState(false);
-	const { refreshColleagues } = useData();
 	const [loading, setLoading] = useState(true);
 	const [refresh, setRefresh] = useState(false);
 	const [fadeAnim] = useState(new Animated.Value(0));
 	const { cid } = useLocalSearchParams<{ cid: string }>();
+	const { refreshColleagues, refreshBlocked } = useData();
 	const [user, setUser] = useState<UserInfoType>(defaultUserInfo);
 	const [stats, setStats] = useState<UserStatsType>(defaultUserStats);
 
@@ -166,6 +166,7 @@ export default function ColleagueDetail() {
 		} else {
 			console.log(`Action ${action} not supported`);
 		}
+		refreshBlocked();
 		refreshColleagues();
 		router.back();
 	};

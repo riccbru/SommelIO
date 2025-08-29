@@ -3,6 +3,7 @@ import { useData } from "@/src/hooks/useData";
 import { useTheme } from "@/src/hooks/useTheme";
 import { LockOpenIcon } from "phosphor-react-native";
 import ColleaguesAPI from "@/src/services/colleagues";
+import { blockedDescription } from "@/src/utils/utils";
 import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 type Blocked = {
@@ -30,12 +31,12 @@ export default function BlockedColleague({ blocked }: Props) {
 			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
-		username: {
+		title: {
 			fontSize: 20,
 			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
-		fullName: {
+		description: {
 			fontSize: 16,
 			color: theme.colors.gray,
 			fontFamily: "Epilogue-Regular",
@@ -44,6 +45,7 @@ export default function BlockedColleague({ blocked }: Props) {
 			width: 45,
 			height: 45,
 			marginLeft: 15,
+			marginTop: 5,
 			borderWidth: 1,
 			borderRadius: 30,
 			borderColor: theme.colors.primary,
@@ -62,9 +64,9 @@ export default function BlockedColleague({ blocked }: Props) {
 
 	return (
 		<List.Item
-			title={<Text style={styles.username}>{blocked.username}</Text>}
-			description={<Text style={styles.fullName}>{blocked.full_name}</Text>}
-			// blocked_at
+			title={<Text style={styles.title}>{blocked.username}</Text>}
+			descriptionStyle={{ marginTop: 5 }}
+			description={<Text style={styles.description}>{blockedDescription(blocked.full_name, blocked.blocked_at)}</Text>}
 			left={props => (
 				<Image style={styles.image} source={{ uri: blocked.image_url.replace(/\\/g, "") }} />
 			)}
@@ -73,7 +75,7 @@ export default function BlockedColleague({ blocked }: Props) {
 					<LockOpenIcon
 						size={32}
 						weight='regular'
-						style={{ marginTop: 3 }}
+						style={{ marginTop: 15 }}
 						color={theme.colors.yellow}
 					/>
 				</TouchableOpacity>

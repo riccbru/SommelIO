@@ -1,9 +1,9 @@
 import React from "react";
+import { useData } from "@/src/hooks/useData";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import BlockedColleague from "@/src/components/colleagues/BlockedColleague";
-import { useData } from "@/src/hooks/useData";
 
 export default function Blocked() {
 	const theme = useTheme();

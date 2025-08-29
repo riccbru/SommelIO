@@ -53,3 +53,8 @@ export function isRightRange(num: number, MIN: number, MAX: number): boolean {
 export function setDescription(t: TFunction, exam: string, field: string, state: string): string {
 	return t(`description.${exam}.${field}.${!state ? "descr" : state}`);
 }
+
+export function blockedDescription(name: string, date: string) {
+	return `${new Date(date).toLocaleDateString()}\n${name}`;
+	// return `${name}\n${new Date(date).toLocaleDateString()}`;
+}
