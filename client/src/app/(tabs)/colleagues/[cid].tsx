@@ -146,9 +146,7 @@ export default function ColleagueDetail() {
 			try {
 				const response = await UserAPI.fetchUserStats(cid);
 				setUser(response.user);
-				console.log(JSON.stringify(response.user, null, 3));
 				setStats(response.stats);
-				console.log(JSON.stringify(response.stats, null, 3));
 			} catch (error) {
 				console.error("Error fetching tasting:", error);
 			} finally {
