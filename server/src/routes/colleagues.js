@@ -23,6 +23,7 @@ router.get("/", async (req, res) => {
 						username: true,
 						full_name: true,
 						uid: true,
+						image_url: true,
 					},
 				},
 				users_colleagues_addressee_idTousers: {
@@ -31,6 +32,7 @@ router.get("/", async (req, res) => {
 						username: true,
 						full_name: true,
 						uid: true,
+						image_url: true,
 					},
 				},
 			},
@@ -66,6 +68,7 @@ router.get("/requests", async (req, res) => {
 						username: true,
 						full_name: true,
 						premium: true,
+						image_url: true,
 					},
 				},
 			},
@@ -87,6 +90,7 @@ router.get("/requests", async (req, res) => {
 						username: true,
 						full_name: true,
 						premium: true,
+						image_url: true,
 					},
 				},
 			},
@@ -101,12 +105,14 @@ router.get("/requests", async (req, res) => {
 				created_at: req.created_at,
 				rid: req.rid,
 				uid: req.requester_id,
+				image_url: req.users_colleagues_requester_idTousers.image_url,
 			})),
 			outgoing: outgoingRequests.map(req => ({
 				username: req.users_colleagues_addressee_idTousers.username,
 				created_at: req.created_at,
 				rid: req.rid,
 				uid: req.addressee_id,
+				image_url: req.users_colleagues_addressee_idTousers.image_url,
 			})),
 		});
 	} catch (error) {
@@ -444,6 +450,7 @@ router.get("/blocked", async (req, res) => {
 						username: true,
 						full_name: true,
 						uid: true,
+						image_url: true,
 					},
 				},
 			},
@@ -452,13 +459,16 @@ router.get("/blocked", async (req, res) => {
 			},
 		});
 
-		res.json({
-			blocked: blockedUsers.map(relationship => ({
-				rid: relationship.rid,
-				user: relationship.addressee_id,
-				blocked_at: relationship.updated_at,
-			})),
-		});
+		const blocked = blockedUsers.map(relationship => ({
+			username: relationship.users_colleagues_addressee_idTousers.username,
+			full_name: relationship.users_colleagues_addressee_idTousers.full_name,
+			blocked_at: relationship.updated_at,
+			rid: relationship.rid,
+			uid: relationship.addressee_id,
+			image_url: relationship.users_colleagues_addressee_idTousers.image_url,
+		}));
+
+		res.json({ blocked: blocked });
 	} catch (error) {
 		console.error(`Error fetching blocked users: ${error}`);
 		res.status(500).json({ error: "Failed fetching blocked users" });
@@ -468,36 +478,36 @@ router.get("/blocked", async (req, res) => {
 // DELETE /api/v1/colleagues/:cuid
 // Remove colleague relationship
 router.delete("/:cuid", async (req, res) => {
-  try {
-    const uid = req.user.uid;
-    const cuid = req.params.cuid;
+	try {
+		const uid = req.user.uid;
+		const cuid = req.params.cuid;
 
-    // Check if accepted relationship exists
-    const relationship = await prisma.colleagues.findFirst({
-      where: {
-        OR: [
-          { requester_id: uid, addressee_id: cuid, status: "accepted" },
-          { requester_id: cuid, addressee_id: uid, status: "accepted" },
-        ],
-      },
-    });
+		// Check if accepted relationship exists
+		const relationship = await prisma.colleagues.findFirst({
+			where: {
+				OR: [
+					{ requester_id: uid, addressee_id: cuid, status: "accepted" },
+					{ requester_id: cuid, addressee_id: uid, status: "accepted" },
+				],
+			},
+		});
 
-    if (!relationship) {
-      return res.status(404).json({ error: "No existing relationship found" });
-    }
+		if (!relationship) {
+			return res.status(404).json({ error: "No existing relationship found" });
+		}
 
-    // Delete the relationship
-    await prisma.colleagues.delete({
-      where: { rid: relationship.rid },
-    });
+		// Delete the relationship
+		await prisma.colleagues.delete({
+			where: { rid: relationship.rid },
+		});
 
-    res.status(200).json({
-      success: `Colleague ${cuid} removed successfully`
-    });
-  } catch (error) {
-    console.error("Error removing relationship:", error);
-    res.status(500).json({ error: "Failed to remove colleague relationship" });
-  }
+		res.status(200).json({
+			success: `Colleague ${cuid} removed successfully`,
+		});
+	} catch (error) {
+		console.error("Error removing relationship:", error);
+		res.status(500).json({ error: "Failed to remove colleague relationship" });
+	}
 });
 
 // GET /api/v1/colleagues/search?q=username
@@ -546,7 +556,7 @@ router.get("/search", async (req, res) => {
 					{ full_name: { contains: name, mode: "insensitive" } },
 				],
 			},
-			select: { uid: true, username: true, full_name: true },
+			select: { uid: true, username: true, full_name: true, image_url: true },
 		});
 
 		// Merge user info with status (null if no relationship)

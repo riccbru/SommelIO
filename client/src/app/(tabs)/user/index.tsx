@@ -1,18 +1,28 @@
 import { useAuth } from "@/src/hooks/useAuth";
 import { useData } from "@/src/hooks/useData";
+import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import { useNavigation, useRouter } from "expo-router";
 import UserProfile from "@/src/components/user/UserData";
-import { GearIcon, SignOutIcon } from "phosphor-react-native";
 import { useLayoutEffect, useRef, useState } from "react";
+import { CaretRightIcon, GearIcon, SignOutIcon } from "phosphor-react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import SettingsBottomSheet from "@/src/components/user/SettingsBottomSheet";
 import { BottomSheetMethods } from "@gorhom/bottom-sheet/lib/typescript/types";
-import { Animated, RefreshControl, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import {
+	Animated,
+	RefreshControl,
+	ScrollView,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from "react-native";
 
 export default function User() {
 	const theme = useTheme();
 	const router = useRouter();
+	const { t } = useTranslation();
 	const navigation = useNavigation();
 	const { user, logout } = useAuth();
 	const { loading, stats, refreshStats } = useData();
@@ -24,7 +34,6 @@ export default function User() {
 			headerLeft: () => (
 				<TouchableOpacity
 					activeOpacity={0.7}
-					style={{ marginTop: 10, marginBottom: 10, marginLeft: 20 }}
 					onPress={() => {
 						bottomSheetRef.current?.expand();
 					}}
@@ -39,7 +48,6 @@ export default function User() {
 			headerRight: () => (
 				<TouchableOpacity
 					activeOpacity={0.7}
-					style={{ marginTop: 10, marginBottom: 10, marginRight: 20 }}
 					onPress={() => {
 						logout();
 						router.replace("/login");
@@ -116,6 +124,33 @@ export default function User() {
 				<Animated.View style={{ opacity: fadeAnim }}>
 					{/* User Profile Card */}
 					<UserProfile userData={user} userStats={stats} />
+
+					<TouchableOpacity
+						activeOpacity={0.5}
+						onPress={() => router.push("/(tabs)/user/blocked")}
+					>
+						<View style={[styles.profileCard, { height: 60 }]}>
+							<View
+								style={{
+									padding: 15,
+									alignItems: "center",
+									flexDirection: "row",
+									justifyContent: "space-between",
+								}}
+							>
+								<Text
+									style={{
+										fontSize: 20,
+										fontFamily: "Epilogue-Regular",
+										color: theme.colors.primary,
+									}}
+								>
+									{t("profile.blocked")}
+								</Text>
+								<CaretRightIcon size={28} weight='bold' color={theme.colors.primary} />
+							</View>
+						</View>
+					</TouchableOpacity>
 				</Animated.View>
 			</ScrollView>
 

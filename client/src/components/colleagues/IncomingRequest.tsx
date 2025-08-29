@@ -3,13 +3,22 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import ColleaguesAPI from "@/src/services/colleagues";
 import { CheckCircleIcon, XCircleIcon } from "phosphor-react-native";
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, RefreshControl } from "react-native";
+import {
+	View,
+	Text,
+	FlatList,
+	StyleSheet,
+	TouchableOpacity,
+	RefreshControl,
+	Image,
+} from "react-native";
 
 type Request = {
 	username: string;
 	created_at: string;
 	rid: string;
 	uid: string;
+	image_url: string;
 };
 
 type Props = {
@@ -42,6 +51,15 @@ export default function IncomingRequests({ requests }: Props) {
 			alignItems: "center",
 			justifyContent: "space-between",
 			backgroundColor: theme.colors.primary,
+		},
+		image: {
+			width: 45,
+			height: 45,
+			marginLeft: 0,
+			borderWidth: 1,
+			borderRadius: 30,
+			backgroundColor: theme.colors.gray,
+			borderColor: theme.colors.background,
 		},
 		requestInfo: {
 			flexDirection: "column",
@@ -96,11 +114,17 @@ export default function IncomingRequests({ requests }: Props) {
 			refreshControl={<RefreshControl refreshing={loading} onRefresh={refreshRequests} />}
 			renderItem={({ item }) => (
 				<View style={styles.requestItem}>
-					<View style={styles.requestInfo}>
-						<Text style={styles.username}>{item.username}</Text>
-						<View style={{ height: 5 }} />
-						<Text style={styles.createdAt}>{new Date(item.created_at).toLocaleString()}</Text>
+					<View style={styles.requestActions}>
+						<Image style={styles.image} source={{ uri: item.image_url.replace(/\\/g, "") }} />
+						<View style={styles.requestInfo}>
+							<Text style={styles.username}>{item.username}</Text>
+							<View style={{ height: 5 }} />
+							<Text style={styles.createdAt}>
+								{new Date(item.created_at).toLocaleString()}
+							</Text>
+						</View>
 					</View>
+
 					<View style={styles.requestActions}>
 						<View style={styles.requestActions}>
 							<TouchableOpacity

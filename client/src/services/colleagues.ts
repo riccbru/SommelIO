@@ -93,7 +93,7 @@ async function unblockColleague(rid: string) {
 async function getBlockedColleagues() {
 	try {
 		const response = await axiosClient.get(`/v1/colleagues/blocked`);
-		return response;
+		return response.data;
 	} catch (error: any) {
 		console.error(error);
 		throw new Error(

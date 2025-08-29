@@ -20,6 +20,7 @@ router.get("/me", async (req, res) => {
 			full_name: user?.full_name,
 			email: user?.email,
 			uid: user?.uid,
+			image_url: user?.image_url,
 		};
 
 		res.json(payload);
@@ -91,6 +92,7 @@ router.get("/:uid", async (req, res) => {
 			username: user?.username,
 			full_name: user?.full_name,
 			uid: user?.uid,
+			image_url: user?.image_url,
 		};
 
 		res.json(payload);
@@ -149,6 +151,7 @@ router.get("/:uid/stats", async (req, res) => {
 				full_name: targetUser.full_name,
 				email: targetUser.email,
 				uid: targetUser.uid,
+				image_url: targetUser.image_url,
 			},
 			stats: {
 				totalTastings,

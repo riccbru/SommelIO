@@ -18,12 +18,12 @@ exports.Prisma = Prisma;
 exports.$Enums = {};
 
 /**
- * Prisma Client JS version: 6.14.0
- * Query Engine version: 717184b7b35ea05dfa71a3236b7af656013e1e49
+ * Prisma Client JS version: 6.15.0
+ * Query Engine version: 85179d7826409ee107a6ba334b5e305ae3fba9fb
  */
 Prisma.prismaVersion = {
-	client: "6.14.0",
-	engine: "717184b7b35ea05dfa71a3236b7af656013e1e49",
+	client: "6.15.0",
+	engine: "85179d7826409ee107a6ba334b5e305ae3fba9fb",
 };
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -131,6 +131,7 @@ exports.Prisma.UsersScalarFieldEnum = {
 	apple_id: "apple_id",
 	created_at: "created_at",
 	updated_at: "updated_at",
+	image_url: "image_url",
 };
 
 exports.Prisma.Wine_categoriesScalarFieldEnum = {
@@ -188,9 +189,9 @@ exports.Prisma.Scoring_evaluationScalarFieldEnum = {
 exports.Prisma.ColleaguesScalarFieldEnum = {
 	id: "id",
 	rid: "rid",
+	status: "status",
 	requester_id: "requester_id",
 	addressee_id: "addressee_id",
-	status: "status",
 	created_at: "created_at",
 	updated_at: "updated_at",
 };

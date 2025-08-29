@@ -450,8 +450,8 @@ export namespace Prisma {
 	export import Exact = $Public.Exact;
 
 	/**
-	 * Prisma Client JS version: 6.14.0
-	 * Query Engine version: 717184b7b35ea05dfa71a3236b7af656013e1e49
+	 * Prisma Client JS version: 6.15.0
+	 * Query Engine version: 85179d7826409ee107a6ba334b5e305ae3fba9fb
 	 */
 	export type PrismaVersion = {
 		client: string;
@@ -2344,6 +2344,7 @@ export namespace Prisma {
 		apple_id: string | null;
 		created_at: Date | null;
 		updated_at: Date | null;
+		image_url: string | null;
 	};
 
 	export type UsersMaxAggregateOutputType = {
@@ -2361,6 +2362,7 @@ export namespace Prisma {
 		apple_id: string | null;
 		created_at: Date | null;
 		updated_at: Date | null;
+		image_url: string | null;
 	};
 
 	export type UsersCountAggregateOutputType = {
@@ -2378,6 +2380,7 @@ export namespace Prisma {
 		apple_id: number;
 		created_at: number;
 		updated_at: number;
+		image_url: number;
 		_all: number;
 	};
 
@@ -2404,6 +2407,7 @@ export namespace Prisma {
 		apple_id?: true;
 		created_at?: true;
 		updated_at?: true;
+		image_url?: true;
 	};
 
 	export type UsersMaxAggregateInputType = {
@@ -2421,6 +2425,7 @@ export namespace Prisma {
 		apple_id?: true;
 		created_at?: true;
 		updated_at?: true;
+		image_url?: true;
 	};
 
 	export type UsersCountAggregateInputType = {
@@ -2438,6 +2443,7 @@ export namespace Prisma {
 		apple_id?: true;
 		created_at?: true;
 		updated_at?: true;
+		image_url?: true;
 		_all?: true;
 	};
 
@@ -2543,6 +2549,7 @@ export namespace Prisma {
 		apple_id: string | null;
 		created_at: Date | null;
 		updated_at: Date | null;
+		image_url: string | null;
 		_count: UsersCountAggregateOutputType | null;
 		_avg: UsersAvgAggregateOutputType | null;
 		_sum: UsersSumAggregateOutputType | null;
@@ -2579,6 +2586,7 @@ export namespace Prisma {
 				apple_id?: boolean;
 				created_at?: boolean;
 				updated_at?: boolean;
+				image_url?: boolean;
 				colleagues_colleagues_addressee_idTousers?:
 					| boolean
 					| users$colleagues_colleagues_addressee_idTousersArgs<ExtArgs>;
@@ -2611,6 +2619,7 @@ export namespace Prisma {
 			apple_id?: boolean;
 			created_at?: boolean;
 			updated_at?: boolean;
+			image_url?: boolean;
 		},
 		ExtArgs["result"]["users"]
 	>;
@@ -2633,6 +2642,7 @@ export namespace Prisma {
 			apple_id?: boolean;
 			created_at?: boolean;
 			updated_at?: boolean;
+			image_url?: boolean;
 		},
 		ExtArgs["result"]["users"]
 	>;
@@ -2652,6 +2662,7 @@ export namespace Prisma {
 		apple_id?: boolean;
 		created_at?: boolean;
 		updated_at?: boolean;
+		image_url?: boolean;
 	};
 
 	export type usersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
@@ -2669,7 +2680,8 @@ export namespace Prisma {
 			| "facebook_id"
 			| "apple_id"
 			| "created_at"
-			| "updated_at",
+			| "updated_at"
+			| "image_url",
 			ExtArgs["result"]["users"]
 		>;
 	export type usersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2716,6 +2728,7 @@ export namespace Prisma {
 				apple_id: string | null;
 				created_at: Date | null;
 				updated_at: Date | null;
+				image_url: string | null;
 			},
 			ExtArgs["result"]["users"]
 		>;
@@ -3296,6 +3309,7 @@ export namespace Prisma {
 		readonly apple_id: FieldRef<"users", "String">;
 		readonly created_at: FieldRef<"users", "DateTime">;
 		readonly updated_at: FieldRef<"users", "DateTime">;
+		readonly image_url: FieldRef<"users", "String">;
 	}
 
 	// Custom InputTypes
@@ -9745,9 +9759,9 @@ export namespace Prisma {
 	export type ColleaguesMinAggregateOutputType = {
 		id: number | null;
 		rid: string | null;
+		status: string | null;
 		requester_id: string | null;
 		addressee_id: string | null;
-		status: string | null;
 		created_at: Date | null;
 		updated_at: Date | null;
 	};
@@ -9755,9 +9769,9 @@ export namespace Prisma {
 	export type ColleaguesMaxAggregateOutputType = {
 		id: number | null;
 		rid: string | null;
+		status: string | null;
 		requester_id: string | null;
 		addressee_id: string | null;
-		status: string | null;
 		created_at: Date | null;
 		updated_at: Date | null;
 	};
@@ -9765,9 +9779,9 @@ export namespace Prisma {
 	export type ColleaguesCountAggregateOutputType = {
 		id: number;
 		rid: number;
+		status: number;
 		requester_id: number;
 		addressee_id: number;
-		status: number;
 		created_at: number;
 		updated_at: number;
 		_all: number;
@@ -9784,9 +9798,9 @@ export namespace Prisma {
 	export type ColleaguesMinAggregateInputType = {
 		id?: true;
 		rid?: true;
+		status?: true;
 		requester_id?: true;
 		addressee_id?: true;
-		status?: true;
 		created_at?: true;
 		updated_at?: true;
 	};
@@ -9794,9 +9808,9 @@ export namespace Prisma {
 	export type ColleaguesMaxAggregateInputType = {
 		id?: true;
 		rid?: true;
+		status?: true;
 		requester_id?: true;
 		addressee_id?: true;
-		status?: true;
 		created_at?: true;
 		updated_at?: true;
 	};
@@ -9804,9 +9818,9 @@ export namespace Prisma {
 	export type ColleaguesCountAggregateInputType = {
 		id?: true;
 		rid?: true;
+		status?: true;
 		requester_id?: true;
 		addressee_id?: true;
-		status?: true;
 		created_at?: true;
 		updated_at?: true;
 		_all?: true;
@@ -9902,9 +9916,9 @@ export namespace Prisma {
 	export type ColleaguesGroupByOutputType = {
 		id: number;
 		rid: string;
+		status: string;
 		requester_id: string;
 		addressee_id: string;
-		status: string;
 		created_at: Date | null;
 		updated_at: Date | null;
 		_count: ColleaguesCountAggregateOutputType | null;
@@ -9932,9 +9946,9 @@ export namespace Prisma {
 		{
 			id?: boolean;
 			rid?: boolean;
+			status?: boolean;
 			requester_id?: boolean;
 			addressee_id?: boolean;
-			status?: boolean;
 			created_at?: boolean;
 			updated_at?: boolean;
 			users_colleagues_addressee_idTousers?: boolean | usersDefaultArgs<ExtArgs>;
@@ -9949,9 +9963,9 @@ export namespace Prisma {
 		{
 			id?: boolean;
 			rid?: boolean;
+			status?: boolean;
 			requester_id?: boolean;
 			addressee_id?: boolean;
-			status?: boolean;
 			created_at?: boolean;
 			updated_at?: boolean;
 			users_colleagues_addressee_idTousers?: boolean | usersDefaultArgs<ExtArgs>;
@@ -9966,9 +9980,9 @@ export namespace Prisma {
 		{
 			id?: boolean;
 			rid?: boolean;
+			status?: boolean;
 			requester_id?: boolean;
 			addressee_id?: boolean;
-			status?: boolean;
 			created_at?: boolean;
 			updated_at?: boolean;
 			users_colleagues_addressee_idTousers?: boolean | usersDefaultArgs<ExtArgs>;
@@ -9980,16 +9994,16 @@ export namespace Prisma {
 	export type colleaguesSelectScalar = {
 		id?: boolean;
 		rid?: boolean;
+		status?: boolean;
 		requester_id?: boolean;
 		addressee_id?: boolean;
-		status?: boolean;
 		created_at?: boolean;
 		updated_at?: boolean;
 	};
 
 	export type colleaguesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
 		$Extensions.GetOmit<
-			"id" | "rid" | "requester_id" | "addressee_id" | "status" | "created_at" | "updated_at",
+			"id" | "rid" | "status" | "requester_id" | "addressee_id" | "created_at" | "updated_at",
 			ExtArgs["result"]["colleagues"]
 		>;
 	export type colleaguesInclude<
@@ -10023,9 +10037,9 @@ export namespace Prisma {
 			{
 				id: number;
 				rid: string;
+				status: string;
 				requester_id: string;
 				addressee_id: string;
-				status: string;
 				created_at: Date | null;
 				updated_at: Date | null;
 			},
@@ -10598,9 +10612,9 @@ export namespace Prisma {
 	interface colleaguesFieldRefs {
 		readonly id: FieldRef<"colleagues", "Int">;
 		readonly rid: FieldRef<"colleagues", "String">;
+		readonly status: FieldRef<"colleagues", "String">;
 		readonly requester_id: FieldRef<"colleagues", "String">;
 		readonly addressee_id: FieldRef<"colleagues", "String">;
-		readonly status: FieldRef<"colleagues", "String">;
 		readonly created_at: FieldRef<"colleagues", "DateTime">;
 		readonly updated_at: FieldRef<"colleagues", "DateTime">;
 	}
@@ -23939,6 +23953,7 @@ export namespace Prisma {
 		apple_id: "apple_id";
 		created_at: "created_at";
 		updated_at: "updated_at";
+		image_url: "image_url";
 	};
 
 	export type UsersScalarFieldEnum =
@@ -24011,9 +24026,9 @@ export namespace Prisma {
 	export const ColleaguesScalarFieldEnum: {
 		id: "id";
 		rid: "rid";
+		status: "status";
 		requester_id: "requester_id";
 		addressee_id: "addressee_id";
-		status: "status";
 		created_at: "created_at";
 		updated_at: "updated_at";
 	};
@@ -24295,6 +24310,7 @@ export namespace Prisma {
 		apple_id?: StringNullableFilter<"users"> | string | null;
 		created_at?: DateTimeNullableFilter<"users"> | Date | string | null;
 		updated_at?: DateTimeNullableFilter<"users"> | Date | string | null;
+		image_url?: StringNullableFilter<"users"> | string | null;
 		colleagues_colleagues_addressee_idTousers?: ColleaguesListRelationFilter;
 		colleagues_colleagues_requester_idTousers?: ColleaguesListRelationFilter;
 		scoring_evaluation?: Scoring_evaluationListRelationFilter;
@@ -24317,6 +24333,7 @@ export namespace Prisma {
 		apple_id?: SortOrderInput | SortOrder;
 		created_at?: SortOrderInput | SortOrder;
 		updated_at?: SortOrderInput | SortOrder;
+		image_url?: SortOrderInput | SortOrder;
 		colleagues_colleagues_addressee_idTousers?: colleaguesOrderByRelationAggregateInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesOrderByRelationAggregateInput;
 		scoring_evaluation?: scoring_evaluationOrderByRelationAggregateInput;
@@ -24343,6 +24360,7 @@ export namespace Prisma {
 			premium?: BoolNullableFilter<"users"> | boolean | null;
 			created_at?: DateTimeNullableFilter<"users"> | Date | string | null;
 			updated_at?: DateTimeNullableFilter<"users"> | Date | string | null;
+			image_url?: StringNullableFilter<"users"> | string | null;
 			colleagues_colleagues_addressee_idTousers?: ColleaguesListRelationFilter;
 			colleagues_colleagues_requester_idTousers?: ColleaguesListRelationFilter;
 			scoring_evaluation?: Scoring_evaluationListRelationFilter;
@@ -24367,6 +24385,7 @@ export namespace Prisma {
 		apple_id?: SortOrderInput | SortOrder;
 		created_at?: SortOrderInput | SortOrder;
 		updated_at?: SortOrderInput | SortOrder;
+		image_url?: SortOrderInput | SortOrder;
 		_count?: usersCountOrderByAggregateInput;
 		_avg?: usersAvgOrderByAggregateInput;
 		_max?: usersMaxOrderByAggregateInput;
@@ -24392,6 +24411,7 @@ export namespace Prisma {
 		apple_id?: StringNullableWithAggregatesFilter<"users"> | string | null;
 		created_at?: DateTimeNullableWithAggregatesFilter<"users"> | Date | string | null;
 		updated_at?: DateTimeNullableWithAggregatesFilter<"users"> | Date | string | null;
+		image_url?: StringNullableWithAggregatesFilter<"users"> | string | null;
 	};
 
 	export type wine_categoriesWhereInput = {
@@ -24864,9 +24884,9 @@ export namespace Prisma {
 		NOT?: colleaguesWhereInput | colleaguesWhereInput[];
 		id?: IntFilter<"colleagues"> | number;
 		rid?: UuidFilter<"colleagues"> | string;
+		status?: StringFilter<"colleagues"> | string;
 		requester_id?: UuidFilter<"colleagues"> | string;
 		addressee_id?: UuidFilter<"colleagues"> | string;
-		status?: StringFilter<"colleagues"> | string;
 		created_at?: DateTimeNullableFilter<"colleagues"> | Date | string | null;
 		updated_at?: DateTimeNullableFilter<"colleagues"> | Date | string | null;
 		users_colleagues_addressee_idTousers?: XOR<UsersScalarRelationFilter, usersWhereInput>;
@@ -24876,9 +24896,9 @@ export namespace Prisma {
 	export type colleaguesOrderByWithRelationInput = {
 		id?: SortOrder;
 		rid?: SortOrder;
+		status?: SortOrder;
 		requester_id?: SortOrder;
 		addressee_id?: SortOrder;
-		status?: SortOrder;
 		created_at?: SortOrderInput | SortOrder;
 		updated_at?: SortOrderInput | SortOrder;
 		users_colleagues_addressee_idTousers?: usersOrderByWithRelationInput;
@@ -24893,9 +24913,9 @@ export namespace Prisma {
 			AND?: colleaguesWhereInput | colleaguesWhereInput[];
 			OR?: colleaguesWhereInput[];
 			NOT?: colleaguesWhereInput | colleaguesWhereInput[];
+			status?: StringFilter<"colleagues"> | string;
 			requester_id?: UuidFilter<"colleagues"> | string;
 			addressee_id?: UuidFilter<"colleagues"> | string;
-			status?: StringFilter<"colleagues"> | string;
 			created_at?: DateTimeNullableFilter<"colleagues"> | Date | string | null;
 			updated_at?: DateTimeNullableFilter<"colleagues"> | Date | string | null;
 			users_colleagues_addressee_idTousers?: XOR<UsersScalarRelationFilter, usersWhereInput>;
@@ -24907,9 +24927,9 @@ export namespace Prisma {
 	export type colleaguesOrderByWithAggregationInput = {
 		id?: SortOrder;
 		rid?: SortOrder;
+		status?: SortOrder;
 		requester_id?: SortOrder;
 		addressee_id?: SortOrder;
-		status?: SortOrder;
 		created_at?: SortOrderInput | SortOrder;
 		updated_at?: SortOrderInput | SortOrder;
 		_count?: colleaguesCountOrderByAggregateInput;
@@ -24925,9 +24945,9 @@ export namespace Prisma {
 		NOT?: colleaguesScalarWhereWithAggregatesInput | colleaguesScalarWhereWithAggregatesInput[];
 		id?: IntWithAggregatesFilter<"colleagues"> | number;
 		rid?: UuidWithAggregatesFilter<"colleagues"> | string;
+		status?: StringWithAggregatesFilter<"colleagues"> | string;
 		requester_id?: UuidWithAggregatesFilter<"colleagues"> | string;
 		addressee_id?: UuidWithAggregatesFilter<"colleagues"> | string;
-		status?: StringWithAggregatesFilter<"colleagues"> | string;
 		created_at?: DateTimeNullableWithAggregatesFilter<"colleagues"> | Date | string | null;
 		updated_at?: DateTimeNullableWithAggregatesFilter<"colleagues"> | Date | string | null;
 	};
@@ -25853,6 +25873,7 @@ export namespace Prisma {
 		apple_id?: string | null;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
+		image_url?: string | null;
 		colleagues_colleagues_addressee_idTousers?: colleaguesCreateNestedManyWithoutUsers_colleagues_addressee_idTousersInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesCreateNestedManyWithoutUsers_colleagues_requester_idTousersInput;
 		scoring_evaluation?: scoring_evaluationCreateNestedManyWithoutUsersInput;
@@ -25875,6 +25896,7 @@ export namespace Prisma {
 		apple_id?: string | null;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
+		image_url?: string | null;
 		colleagues_colleagues_addressee_idTousers?: colleaguesUncheckedCreateNestedManyWithoutUsers_colleagues_addressee_idTousersInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesUncheckedCreateNestedManyWithoutUsers_colleagues_requester_idTousersInput;
 		scoring_evaluation?: scoring_evaluationUncheckedCreateNestedManyWithoutUsersInput;
@@ -25896,6 +25918,7 @@ export namespace Prisma {
 		apple_id?: NullableStringFieldUpdateOperationsInput | string | null;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		image_url?: NullableStringFieldUpdateOperationsInput | string | null;
 		colleagues_colleagues_addressee_idTousers?: colleaguesUpdateManyWithoutUsers_colleagues_addressee_idTousersNestedInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesUpdateManyWithoutUsers_colleagues_requester_idTousersNestedInput;
 		scoring_evaluation?: scoring_evaluationUpdateManyWithoutUsersNestedInput;
@@ -25918,6 +25941,7 @@ export namespace Prisma {
 		apple_id?: NullableStringFieldUpdateOperationsInput | string | null;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		image_url?: NullableStringFieldUpdateOperationsInput | string | null;
 		colleagues_colleagues_addressee_idTousers?: colleaguesUncheckedUpdateManyWithoutUsers_colleagues_addressee_idTousersNestedInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesUncheckedUpdateManyWithoutUsers_colleagues_requester_idTousersNestedInput;
 		scoring_evaluation?: scoring_evaluationUncheckedUpdateManyWithoutUsersNestedInput;
@@ -25940,6 +25964,7 @@ export namespace Prisma {
 		apple_id?: string | null;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
+		image_url?: string | null;
 	};
 
 	export type usersUpdateManyMutationInput = {
@@ -25956,6 +25981,7 @@ export namespace Prisma {
 		apple_id?: NullableStringFieldUpdateOperationsInput | string | null;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		image_url?: NullableStringFieldUpdateOperationsInput | string | null;
 	};
 
 	export type usersUncheckedUpdateManyInput = {
@@ -25973,6 +25999,7 @@ export namespace Prisma {
 		apple_id?: NullableStringFieldUpdateOperationsInput | string | null;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		image_url?: NullableStringFieldUpdateOperationsInput | string | null;
 	};
 
 	export type wine_categoriesCreateInput = {
@@ -26439,9 +26466,9 @@ export namespace Prisma {
 	export type colleaguesUncheckedCreateInput = {
 		id?: number;
 		rid?: string;
+		status?: string;
 		requester_id: string;
 		addressee_id: string;
-		status?: string;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
 	};
@@ -26458,9 +26485,9 @@ export namespace Prisma {
 	export type colleaguesUncheckedUpdateInput = {
 		id?: IntFieldUpdateOperationsInput | number;
 		rid?: StringFieldUpdateOperationsInput | string;
+		status?: StringFieldUpdateOperationsInput | string;
 		requester_id?: StringFieldUpdateOperationsInput | string;
 		addressee_id?: StringFieldUpdateOperationsInput | string;
-		status?: StringFieldUpdateOperationsInput | string;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 	};
@@ -26468,9 +26495,9 @@ export namespace Prisma {
 	export type colleaguesCreateManyInput = {
 		id?: number;
 		rid?: string;
+		status?: string;
 		requester_id: string;
 		addressee_id: string;
-		status?: string;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
 	};
@@ -26485,9 +26512,9 @@ export namespace Prisma {
 	export type colleaguesUncheckedUpdateManyInput = {
 		id?: IntFieldUpdateOperationsInput | number;
 		rid?: StringFieldUpdateOperationsInput | string;
+		status?: StringFieldUpdateOperationsInput | string;
 		requester_id?: StringFieldUpdateOperationsInput | string;
 		addressee_id?: StringFieldUpdateOperationsInput | string;
-		status?: StringFieldUpdateOperationsInput | string;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 	};
@@ -27543,6 +27570,7 @@ export namespace Prisma {
 		apple_id?: SortOrder;
 		created_at?: SortOrder;
 		updated_at?: SortOrder;
+		image_url?: SortOrder;
 	};
 
 	export type usersAvgOrderByAggregateInput = {
@@ -27564,6 +27592,7 @@ export namespace Prisma {
 		apple_id?: SortOrder;
 		created_at?: SortOrder;
 		updated_at?: SortOrder;
+		image_url?: SortOrder;
 	};
 
 	export type usersMinOrderByAggregateInput = {
@@ -27581,6 +27610,7 @@ export namespace Prisma {
 		apple_id?: SortOrder;
 		created_at?: SortOrder;
 		updated_at?: SortOrder;
+		image_url?: SortOrder;
 	};
 
 	export type usersSumOrderByAggregateInput = {
@@ -28175,9 +28205,9 @@ export namespace Prisma {
 	export type colleaguesCountOrderByAggregateInput = {
 		id?: SortOrder;
 		rid?: SortOrder;
+		status?: SortOrder;
 		requester_id?: SortOrder;
 		addressee_id?: SortOrder;
-		status?: SortOrder;
 		created_at?: SortOrder;
 		updated_at?: SortOrder;
 	};
@@ -28189,9 +28219,9 @@ export namespace Prisma {
 	export type colleaguesMaxOrderByAggregateInput = {
 		id?: SortOrder;
 		rid?: SortOrder;
+		status?: SortOrder;
 		requester_id?: SortOrder;
 		addressee_id?: SortOrder;
-		status?: SortOrder;
 		created_at?: SortOrder;
 		updated_at?: SortOrder;
 	};
@@ -28199,9 +28229,9 @@ export namespace Prisma {
 	export type colleaguesMinOrderByAggregateInput = {
 		id?: SortOrder;
 		rid?: SortOrder;
+		status?: SortOrder;
 		requester_id?: SortOrder;
 		addressee_id?: SortOrder;
-		status?: SortOrder;
 		created_at?: SortOrder;
 		updated_at?: SortOrder;
 	};
@@ -30506,8 +30536,8 @@ export namespace Prisma {
 	export type colleaguesUncheckedCreateWithoutUsers_colleagues_addressee_idTousersInput = {
 		id?: number;
 		rid?: string;
-		requester_id: string;
 		status?: string;
+		requester_id: string;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
 	};
@@ -30538,8 +30568,8 @@ export namespace Prisma {
 	export type colleaguesUncheckedCreateWithoutUsers_colleagues_requester_idTousersInput = {
 		id?: number;
 		rid?: string;
-		addressee_id: string;
 		status?: string;
+		addressee_id: string;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
 	};
@@ -30735,9 +30765,9 @@ export namespace Prisma {
 		NOT?: colleaguesScalarWhereInput | colleaguesScalarWhereInput[];
 		id?: IntFilter<"colleagues"> | number;
 		rid?: UuidFilter<"colleagues"> | string;
+		status?: StringFilter<"colleagues"> | string;
 		requester_id?: UuidFilter<"colleagues"> | string;
 		addressee_id?: UuidFilter<"colleagues"> | string;
-		status?: StringFilter<"colleagues"> | string;
 		created_at?: DateTimeNullableFilter<"colleagues"> | Date | string | null;
 		updated_at?: DateTimeNullableFilter<"colleagues"> | Date | string | null;
 	};
@@ -31282,6 +31312,7 @@ export namespace Prisma {
 		apple_id?: string | null;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
+		image_url?: string | null;
 		colleagues_colleagues_addressee_idTousers?: colleaguesCreateNestedManyWithoutUsers_colleagues_addressee_idTousersInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesCreateNestedManyWithoutUsers_colleagues_requester_idTousersInput;
 		scoring_evaluation?: scoring_evaluationCreateNestedManyWithoutUsersInput;
@@ -31303,6 +31334,7 @@ export namespace Prisma {
 		apple_id?: string | null;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
+		image_url?: string | null;
 		colleagues_colleagues_addressee_idTousers?: colleaguesUncheckedCreateNestedManyWithoutUsers_colleagues_addressee_idTousersInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesUncheckedCreateNestedManyWithoutUsers_colleagues_requester_idTousersInput;
 		scoring_evaluation?: scoring_evaluationUncheckedCreateNestedManyWithoutUsersInput;
@@ -31785,6 +31817,7 @@ export namespace Prisma {
 		apple_id?: NullableStringFieldUpdateOperationsInput | string | null;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		image_url?: NullableStringFieldUpdateOperationsInput | string | null;
 		colleagues_colleagues_addressee_idTousers?: colleaguesUpdateManyWithoutUsers_colleagues_addressee_idTousersNestedInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesUpdateManyWithoutUsers_colleagues_requester_idTousersNestedInput;
 		scoring_evaluation?: scoring_evaluationUpdateManyWithoutUsersNestedInput;
@@ -31806,6 +31839,7 @@ export namespace Prisma {
 		apple_id?: NullableStringFieldUpdateOperationsInput | string | null;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		image_url?: NullableStringFieldUpdateOperationsInput | string | null;
 		colleagues_colleagues_addressee_idTousers?: colleaguesUncheckedUpdateManyWithoutUsers_colleagues_addressee_idTousersNestedInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesUncheckedUpdateManyWithoutUsers_colleagues_requester_idTousersNestedInput;
 		scoring_evaluation?: scoring_evaluationUncheckedUpdateManyWithoutUsersNestedInput;
@@ -32014,6 +32048,7 @@ export namespace Prisma {
 		apple_id?: string | null;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
+		image_url?: string | null;
 		colleagues_colleagues_addressee_idTousers?: colleaguesCreateNestedManyWithoutUsers_colleagues_addressee_idTousersInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesCreateNestedManyWithoutUsers_colleagues_requester_idTousersInput;
 		tastings?: tastingsCreateNestedManyWithoutUsersInput;
@@ -32035,6 +32070,7 @@ export namespace Prisma {
 		apple_id?: string | null;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
+		image_url?: string | null;
 		colleagues_colleagues_addressee_idTousers?: colleaguesUncheckedCreateNestedManyWithoutUsers_colleagues_addressee_idTousersInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesUncheckedCreateNestedManyWithoutUsers_colleagues_requester_idTousersInput;
 		tastings?: tastingsUncheckedCreateNestedManyWithoutUsersInput;
@@ -32192,6 +32228,7 @@ export namespace Prisma {
 		apple_id?: NullableStringFieldUpdateOperationsInput | string | null;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		image_url?: NullableStringFieldUpdateOperationsInput | string | null;
 		colleagues_colleagues_addressee_idTousers?: colleaguesUpdateManyWithoutUsers_colleagues_addressee_idTousersNestedInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesUpdateManyWithoutUsers_colleagues_requester_idTousersNestedInput;
 		tastings?: tastingsUpdateManyWithoutUsersNestedInput;
@@ -32213,6 +32250,7 @@ export namespace Prisma {
 		apple_id?: NullableStringFieldUpdateOperationsInput | string | null;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		image_url?: NullableStringFieldUpdateOperationsInput | string | null;
 		colleagues_colleagues_addressee_idTousers?: colleaguesUncheckedUpdateManyWithoutUsers_colleagues_addressee_idTousersNestedInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesUncheckedUpdateManyWithoutUsers_colleagues_requester_idTousersNestedInput;
 		tastings?: tastingsUncheckedUpdateManyWithoutUsersNestedInput;
@@ -32233,6 +32271,7 @@ export namespace Prisma {
 		apple_id?: string | null;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
+		image_url?: string | null;
 		colleagues_colleagues_requester_idTousers?: colleaguesCreateNestedManyWithoutUsers_colleagues_requester_idTousersInput;
 		scoring_evaluation?: scoring_evaluationCreateNestedManyWithoutUsersInput;
 		tastings?: tastingsCreateNestedManyWithoutUsersInput;
@@ -32254,6 +32293,7 @@ export namespace Prisma {
 		apple_id?: string | null;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
+		image_url?: string | null;
 		colleagues_colleagues_requester_idTousers?: colleaguesUncheckedCreateNestedManyWithoutUsers_colleagues_requester_idTousersInput;
 		scoring_evaluation?: scoring_evaluationUncheckedCreateNestedManyWithoutUsersInput;
 		tastings?: tastingsUncheckedCreateNestedManyWithoutUsersInput;
@@ -32282,6 +32322,7 @@ export namespace Prisma {
 		apple_id?: string | null;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
+		image_url?: string | null;
 		colleagues_colleagues_addressee_idTousers?: colleaguesCreateNestedManyWithoutUsers_colleagues_addressee_idTousersInput;
 		scoring_evaluation?: scoring_evaluationCreateNestedManyWithoutUsersInput;
 		tastings?: tastingsCreateNestedManyWithoutUsersInput;
@@ -32303,6 +32344,7 @@ export namespace Prisma {
 		apple_id?: string | null;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
+		image_url?: string | null;
 		colleagues_colleagues_addressee_idTousers?: colleaguesUncheckedCreateNestedManyWithoutUsers_colleagues_addressee_idTousersInput;
 		scoring_evaluation?: scoring_evaluationUncheckedCreateNestedManyWithoutUsersInput;
 		tastings?: tastingsUncheckedCreateNestedManyWithoutUsersInput;
@@ -32351,6 +32393,7 @@ export namespace Prisma {
 		apple_id?: NullableStringFieldUpdateOperationsInput | string | null;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		image_url?: NullableStringFieldUpdateOperationsInput | string | null;
 		colleagues_colleagues_requester_idTousers?: colleaguesUpdateManyWithoutUsers_colleagues_requester_idTousersNestedInput;
 		scoring_evaluation?: scoring_evaluationUpdateManyWithoutUsersNestedInput;
 		tastings?: tastingsUpdateManyWithoutUsersNestedInput;
@@ -32372,6 +32415,7 @@ export namespace Prisma {
 		apple_id?: NullableStringFieldUpdateOperationsInput | string | null;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		image_url?: NullableStringFieldUpdateOperationsInput | string | null;
 		colleagues_colleagues_requester_idTousers?: colleaguesUncheckedUpdateManyWithoutUsers_colleagues_requester_idTousersNestedInput;
 		scoring_evaluation?: scoring_evaluationUncheckedUpdateManyWithoutUsersNestedInput;
 		tastings?: tastingsUncheckedUpdateManyWithoutUsersNestedInput;
@@ -32412,6 +32456,7 @@ export namespace Prisma {
 		apple_id?: NullableStringFieldUpdateOperationsInput | string | null;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		image_url?: NullableStringFieldUpdateOperationsInput | string | null;
 		colleagues_colleagues_addressee_idTousers?: colleaguesUpdateManyWithoutUsers_colleagues_addressee_idTousersNestedInput;
 		scoring_evaluation?: scoring_evaluationUpdateManyWithoutUsersNestedInput;
 		tastings?: tastingsUpdateManyWithoutUsersNestedInput;
@@ -32433,6 +32478,7 @@ export namespace Prisma {
 		apple_id?: NullableStringFieldUpdateOperationsInput | string | null;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		image_url?: NullableStringFieldUpdateOperationsInput | string | null;
 		colleagues_colleagues_addressee_idTousers?: colleaguesUncheckedUpdateManyWithoutUsers_colleagues_addressee_idTousersNestedInput;
 		scoring_evaluation?: scoring_evaluationUncheckedUpdateManyWithoutUsersNestedInput;
 		tastings?: tastingsUncheckedUpdateManyWithoutUsersNestedInput;
@@ -32453,6 +32499,7 @@ export namespace Prisma {
 		apple_id?: string | null;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
+		image_url?: string | null;
 		colleagues_colleagues_addressee_idTousers?: colleaguesCreateNestedManyWithoutUsers_colleagues_addressee_idTousersInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesCreateNestedManyWithoutUsers_colleagues_requester_idTousersInput;
 		scoring_evaluation?: scoring_evaluationCreateNestedManyWithoutUsersInput;
@@ -32474,6 +32521,7 @@ export namespace Prisma {
 		apple_id?: string | null;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
+		image_url?: string | null;
 		colleagues_colleagues_addressee_idTousers?: colleaguesUncheckedCreateNestedManyWithoutUsers_colleagues_addressee_idTousersInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesUncheckedCreateNestedManyWithoutUsers_colleagues_requester_idTousersInput;
 		scoring_evaluation?: scoring_evaluationUncheckedCreateNestedManyWithoutUsersInput;
@@ -32510,6 +32558,7 @@ export namespace Prisma {
 		apple_id?: NullableStringFieldUpdateOperationsInput | string | null;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		image_url?: NullableStringFieldUpdateOperationsInput | string | null;
 		colleagues_colleagues_addressee_idTousers?: colleaguesUpdateManyWithoutUsers_colleagues_addressee_idTousersNestedInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesUpdateManyWithoutUsers_colleagues_requester_idTousersNestedInput;
 		scoring_evaluation?: scoring_evaluationUpdateManyWithoutUsersNestedInput;
@@ -32531,6 +32580,7 @@ export namespace Prisma {
 		apple_id?: NullableStringFieldUpdateOperationsInput | string | null;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+		image_url?: NullableStringFieldUpdateOperationsInput | string | null;
 		colleagues_colleagues_addressee_idTousers?: colleaguesUncheckedUpdateManyWithoutUsers_colleagues_addressee_idTousersNestedInput;
 		colleagues_colleagues_requester_idTousers?: colleaguesUncheckedUpdateManyWithoutUsers_colleagues_requester_idTousersNestedInput;
 		scoring_evaluation?: scoring_evaluationUncheckedUpdateManyWithoutUsersNestedInput;
@@ -33932,8 +33982,8 @@ export namespace Prisma {
 	export type colleaguesCreateManyUsers_colleagues_addressee_idTousersInput = {
 		id?: number;
 		rid?: string;
-		requester_id: string;
 		status?: string;
+		requester_id: string;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
 	};
@@ -33941,8 +33991,8 @@ export namespace Prisma {
 	export type colleaguesCreateManyUsers_colleagues_requester_idTousersInput = {
 		id?: number;
 		rid?: string;
-		addressee_id: string;
 		status?: string;
+		addressee_id: string;
 		created_at?: Date | string | null;
 		updated_at?: Date | string | null;
 	};
@@ -34005,8 +34055,8 @@ export namespace Prisma {
 	export type colleaguesUncheckedUpdateWithoutUsers_colleagues_addressee_idTousersInput = {
 		id?: IntFieldUpdateOperationsInput | number;
 		rid?: StringFieldUpdateOperationsInput | string;
-		requester_id?: StringFieldUpdateOperationsInput | string;
 		status?: StringFieldUpdateOperationsInput | string;
+		requester_id?: StringFieldUpdateOperationsInput | string;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 	};
@@ -34014,8 +34064,8 @@ export namespace Prisma {
 	export type colleaguesUncheckedUpdateManyWithoutUsers_colleagues_addressee_idTousersInput = {
 		id?: IntFieldUpdateOperationsInput | number;
 		rid?: StringFieldUpdateOperationsInput | string;
-		requester_id?: StringFieldUpdateOperationsInput | string;
 		status?: StringFieldUpdateOperationsInput | string;
+		requester_id?: StringFieldUpdateOperationsInput | string;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 	};
@@ -34031,8 +34081,8 @@ export namespace Prisma {
 	export type colleaguesUncheckedUpdateWithoutUsers_colleagues_requester_idTousersInput = {
 		id?: IntFieldUpdateOperationsInput | number;
 		rid?: StringFieldUpdateOperationsInput | string;
-		addressee_id?: StringFieldUpdateOperationsInput | string;
 		status?: StringFieldUpdateOperationsInput | string;
+		addressee_id?: StringFieldUpdateOperationsInput | string;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 	};
@@ -34040,8 +34090,8 @@ export namespace Prisma {
 	export type colleaguesUncheckedUpdateManyWithoutUsers_colleagues_requester_idTousersInput = {
 		id?: IntFieldUpdateOperationsInput | number;
 		rid?: StringFieldUpdateOperationsInput | string;
-		addressee_id?: StringFieldUpdateOperationsInput | string;
 		status?: StringFieldUpdateOperationsInput | string;
+		addressee_id?: StringFieldUpdateOperationsInput | string;
 		created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 		updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
 	};

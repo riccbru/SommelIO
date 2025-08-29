@@ -14,6 +14,7 @@ type UserInfo = {
 	email: string;
 	full_name: string;
 	uid: string;
+	image_url: string;
 };
 
 type UserStats = {
@@ -121,18 +122,25 @@ export default function UserData({ userData, userStats }: Props) {
 
 			<View style={styles.profileHeader}>
 				<View style={styles.avatarContainer}>
-					<Avatar.Text
-						size={80}
-						label={getInitials(userData?.full_name || userData?.username || "U")}
-						style={{
-							backgroundColor: theme.colors.primary,
-						}}
-						labelStyle={{
-							color: theme.colors.surface,
-							fontSize: 28,
-							fontWeight: "700",
-						}}
-					/>
+					{userData?.image_url && userData.image_url.trim() !== "" ? (
+						<Avatar.Image
+							size={80}
+							source={{ uri: userData?.image_url.replace(/\\/g, "") }}
+						/>
+					) : (
+						<Avatar.Text
+							size={80}
+							label={getInitials(userData?.full_name || userData?.username || "U")}
+							style={{
+								backgroundColor: theme.colors.primary,
+							}}
+							labelStyle={{
+								color: theme.colors.surface,
+								fontSize: 28,
+								fontWeight: "700",
+							}}
+						/>
+					)}
 				</View>
 
 				<View style={{ flexDirection: "row", alignItems: "center", justifyContent: "center" }}>

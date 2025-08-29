@@ -15,6 +15,7 @@ type Result = {
 	username: string;
 	full_name: string;
 	uid: string;
+	image_url: string;
 };
 
 export default function Colleagues() {
@@ -96,6 +97,7 @@ export default function Colleagues() {
 		}
 		try {
 			const users = await ColleaguesAPI.searchColleague(searchQuery.trim());
+			console.log(`searched users:\n${JSON.stringify(users, null, 3)}`);
 			setApiResult(users);
 		} catch (err: any) {
 			console.log(err.message);

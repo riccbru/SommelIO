@@ -12,6 +12,7 @@ export type User = {
 	full_name: string;
 	email: string;
 	uid: string;
+	image_url: string;
 	stats: {
 		totalTastings: number;
 		favoriteTastings: number;

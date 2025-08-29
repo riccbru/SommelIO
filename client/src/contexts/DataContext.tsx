@@ -99,6 +99,15 @@ type Request = {
 	uid: string;
 };
 
+type Blocked = {
+	username: string;
+	full_name: string;
+	blocked_at: string;
+	rid: string;
+	uid: string;
+	image_url: string;
+};
+
 type DataContextType = {
 	loading: boolean;
 	coefficients: Coefficients;
@@ -107,12 +116,14 @@ type DataContextType = {
 	wines: Wine[];
 	colleagues: Colleague[];
 	requests: Request[];
+	blocked: Blocked[];
 	refreshCoefficients: () => Promise<void>;
 	refreshStats: () => Promise<void>;
 	refreshTastings: () => Promise<void>;
 	refreshWines: () => Promise<void>;
 	refreshColleagues: () => Promise<void>;
 	refreshRequests: () => Promise<void>;
+	refreshBlocked: () => Promise<void>;
 };
 
 export const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -121,6 +132,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 	const { accessToken } = useAuth();
 	const [loading, setLoading] = useState(false);
 	const [wines, setWines] = useState<Wine[]>([]);
+	const [blocked, setBlocked] = useState<Blocked[]>([]);
 	const [requests, setRequests] = useState<Request[]>([]);
 	const [tastings, setTastings] = useState<Tasting[]>([]);
 	const [stats, setStats] = useState<UserStats>(defaultStats);
@@ -185,7 +197,6 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 		setLoading(true);
 		try {
 			const data = await ColleaguesAPI.fetchColleagues();
-			// console.log(JSON.stringify(data.colleagues, null, 3))
 			setColleagues(data.colleagues || []);
 		} catch (err) {
 			setColleagues([]);
@@ -209,6 +220,20 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 		}
 	}, [accessToken]);
 
+	const refreshBlocked = useCallback(async () => {
+		if (!accessToken) return;
+		setLoading(true);
+		try {
+			const data = await ColleaguesAPI.getBlockedColleagues();
+			setBlocked(data.blocked || []);
+		} catch (err) {
+			setBlocked([]);
+			console.log(err);
+		} finally {
+			setLoading(false);
+		}
+	}, [accessToken]);
+
 	const refreshData = useCallback(async () => {
 		setLoading(true);
 		try {
@@ -218,11 +243,19 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 				refreshWines(),
 				refreshColleagues(),
 				refreshRequests(),
+				refreshBlocked(),
 			]);
 		} finally {
 			setLoading(false);
 		}
-	}, [refreshStats, refreshTastings, refreshWines, refreshColleagues, refreshRequests]);
+	}, [
+		refreshStats,
+		refreshTastings,
+		refreshWines,
+		refreshColleagues,
+		refreshRequests,
+		refreshBlocked,
+	]);
 
 	useEffect(() => {
 		refreshData();
@@ -237,12 +270,14 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 		wines,
 		colleagues,
 		requests,
+		blocked,
 		refreshCoefficients,
 		refreshStats,
 		refreshTastings,
 		refreshWines,
 		refreshColleagues,
 		refreshRequests,
+		refreshBlocked,
 	};
 
 	return <DataContext.Provider value={values}>{children}</DataContext.Provider>;

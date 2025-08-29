@@ -388,6 +388,7 @@ export default {
 		secpriv: "Sicurezza & Privacy",
 		contactus: "Contattaci",
 		contribute: "Contribuisci",
+		blocked: "Colleghi bloccati",
 		tastings: {
 			total: "Totali",
 			favorite: "Preferite",

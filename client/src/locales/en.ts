@@ -386,6 +386,7 @@ export default {
 		secpriv: "Security & Privacy",
 		contactus: "Contact us",
 		contribute: "Contribute",
+		blocked: "Blocked colleagues",
 		tastings: {
 			total: "Total",
 			favorite: "Favorite",

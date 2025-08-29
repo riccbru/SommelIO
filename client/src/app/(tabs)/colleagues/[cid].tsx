@@ -26,6 +26,7 @@ type UserInfoType = {
 	email: string;
 	full_name: string;
 	uid: string;
+	image_url: string;
 };
 
 const defaultUserInfo: UserInfoType = {
@@ -35,6 +36,7 @@ const defaultUserInfo: UserInfoType = {
 	full_name: "",
 	email: "",
 	uid: "",
+	image_url: "",
 };
 
 type UserStatsType = {
@@ -144,7 +146,9 @@ export default function ColleagueDetail() {
 			try {
 				const response = await UserAPI.fetchUserStats(cid);
 				setUser(response.user);
+				console.log(JSON.stringify(response.user, null, 3));
 				setStats(response.stats);
+				console.log(JSON.stringify(response.stats, null, 3));
 			} catch (error) {
 				console.error("Error fetching tasting:", error);
 			} finally {
@@ -200,8 +204,8 @@ export default function ColleagueDetail() {
 							Icon={ProhibitIcon}
 							bgColor={theme.colors.yellow}
 							label={t("colleagues.block")}
-							onConfirm={() => handleConfirm("block")}
 							confirmLabel={t("colleagues.confirm")}
+							onConfirm={() => handleConfirm("block")}
 							textColor={theme.dark ? theme.colors.gray : theme.colors.primary}
 							iconColor={theme.dark ? theme.colors.gray : theme.colors.primary}
 						/>

@@ -23,6 +23,7 @@ model users {
   apple_id                                  String?              @unique
   created_at                                DateTime?            @default(now()) @db.Timestamptz(6)
   updated_at                                DateTime?            @default(now()) @db.Timestamptz(6)
+  image_url                                 String?
   colleagues_colleagues_addressee_idTousers colleagues[]         @relation("colleagues_addressee_idTousers")
   colleagues_colleagues_requester_idTousers colleagues[]         @relation("colleagues_requester_idTousers")
   scoring_evaluation                        scoring_evaluation[]
@@ -102,9 +103,9 @@ model scoring_evaluation {
 model colleagues {
   id                                   Int       @id @default(autoincrement())
   rid                                  String    @unique @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  status                               String    @default("pending") @db.VarChar(20)
   requester_id                         String    @db.Uuid
   addressee_id                         String    @db.Uuid
-  status                               String    @default("pending") @db.VarChar(20)
   created_at                           DateTime? @default(now()) @db.Timestamptz(6)
   updated_at                           DateTime? @default(now()) @db.Timestamptz(6)
   users_colleagues_addressee_idTousers users     @relation("colleagues_addressee_idTousers", fields: [addressee_id], references: [uid], onDelete: Cascade, onUpdate: NoAction)

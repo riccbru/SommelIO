@@ -3,13 +3,14 @@ import { List } from "react-native-paper";
 import { useTheme } from "@/src/hooks/useTheme";
 import ColleaguesAPI from "@/src/services/colleagues";
 import { CheckIcon, UserPlusIcon } from "phosphor-react-native";
-import { StyleSheet, TouchableOpacity, Text } from "react-native";
+import { Image, StyleSheet, TouchableOpacity, Text } from "react-native";
 
 type User = {
 	status: string | null;
 	username: string;
 	full_name: string;
 	uid: string;
+	image_url: string;
 };
 
 type Props = {
@@ -32,6 +33,15 @@ export default function ColleagueItem({ user }: Props) {
 			color: theme.colors.gray,
 			fontFamily: "Epilogue-Regular",
 		},
+		image: {
+			width: 45,
+			height: 45,
+			marginLeft: 15,
+			borderWidth: 1,
+			borderRadius: 30,
+			borderColor: theme.colors.primary,
+			backgroundColor: theme.colors.gray,
+		},
 	});
 
 	const handleSendRequest = async (uid: string) => {
@@ -49,6 +59,9 @@ export default function ColleagueItem({ user }: Props) {
 			<List.Item
 				title={<Text style={styles.username}>{user.username}</Text>}
 				description={<Text style={styles.fullName}>{user.full_name}</Text>}
+				left={props => (
+					<Image source={{ uri: user.image_url.replace(/\\/g, "") }} style={styles.image} />
+				)}
 				right={props => (
 					<TouchableOpacity
 						disabled={sent}

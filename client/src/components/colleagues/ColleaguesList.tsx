@@ -15,6 +15,7 @@ type Colleague = {
 		username: string;
 		full_name: string;
 		uid: string;
+		image_url: string;
 	};
 };
 
@@ -53,6 +54,7 @@ export default function ColleaguesList({ colleagues, searchQuery }: Props) {
 			borderWidth: 1,
 			borderRadius: 30,
 			borderColor: theme.colors.primary,
+			backgroundColor: theme.colors.gray,
 		},
 	});
 
@@ -80,7 +82,12 @@ export default function ColleaguesList({ colleagues, searchQuery }: Props) {
 					<List.Item
 						title={<Text style={styles.username}>{relation.colleague.username}</Text>}
 						description={<Text style={styles.fullName}>{relation.colleague.full_name}</Text>}
-						left={props => <Image source={{ uri: "" }} style={styles.image} />}
+						left={props => (
+							<Image
+								source={{ uri: relation.colleague.image_url.replace(/\\/g, "") }}
+								style={styles.image}
+							/>
+						)}
 						right={props => (
 							<CaretRightIcon
 								size={24}
