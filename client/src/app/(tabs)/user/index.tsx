@@ -5,9 +5,9 @@ import { useTheme } from "@/src/hooks/useTheme";
 import { useNavigation, useRouter } from "expo-router";
 import UserProfile from "@/src/components/user/UserData";
 import { useLayoutEffect, useRef, useState } from "react";
-import { CaretRightIcon, GearIcon, SignOutIcon } from "phosphor-react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import SettingsBottomSheet from "@/src/components/user/SettingsBottomSheet";
+import { CaretRightIcon, GearIcon, SignOutIcon } from "phosphor-react-native";
 import { BottomSheetMethods } from "@gorhom/bottom-sheet/lib/typescript/types";
 import {
 	Animated,

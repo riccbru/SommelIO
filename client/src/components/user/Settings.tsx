@@ -3,7 +3,7 @@ import { useTheme } from "@/src/hooks/useTheme";
 import { useLanguage } from "@/src/hooks/useLanguage";
 import SettingRow from "@/src/components/user/SettingRow";
 import { View, Text, StyleSheet, Switch } from "react-native";
-import SegmentedControl from "@react-native-segmented-control/segmented-control";
+import LanguageSelect from "@/src/components/user/LanguageSelect";
 import {
 	ChatCircleIcon,
 	HandHeartIcon,
@@ -13,14 +13,16 @@ import {
 	TranslateIcon,
 } from "phosphor-react-native";
 
-type Language = "it" | "fr" | "en";
-
 export default function Settings() {
 	const theme = useTheme();
 	const { t } = useTranslation();
-	const labels = ["🇮🇹", "🇫🇷", "🇬🇧"];
-	const langs: Language[] = ["it", "fr", "en"];
 	const { language, setLanguage } = useLanguage();
+
+	const LANGS = [
+		{ code: "it", flag: "🇮🇹", name: "Italiano" },
+		{ code: "fr", flag: "🇫🇷", name: "Français" },
+		{ code: "en", flag: "🇬🇧", name: "English" },
+	];
 
 	const settingsRow = [
 		{ Icon: LockKeyIcon, label: t("profile.secpriv") },
@@ -78,29 +80,15 @@ export default function Settings() {
 				<Switch value={theme.isDark} onValueChange={theme.toggleTheme} />
 			</View>
 
-			{/* Language Segmented Control */}
+			{/* Language Select */}
 			<View style={styles.row}>
 				<View style={{ alignItems: "center", flexDirection: "row" }}>
 					<TranslateIcon size={28} weight='bold' color={theme.colors.primary} />
 					<View style={{ marginLeft: 5, marginRight: 5 }} />
-					<View style={{ flexDirection: "column", marginLeft: 0 }}>
-						<Text style={styles.rowLabel}>{t("profile.lang")}</Text>
-						<View style={{ marginTop: 5, marginBottom: 5 }} />
-						<SegmentedControl
-							values={labels}
-							tintColor={theme.colors.white}
-							backgroundColor={theme.colors.card}
-							selectedIndex={langs.indexOf(language)}
-							style={{ width: 290, borderRadius: 10 }}
-							fontStyle={{ fontSize: 28, color: theme.colors.primary }}
-							activeFontStyle={{ fontSize: 28, color: theme.colors.background }}
-							onChange={e => {
-								const i = e.nativeEvent.selectedSegmentIndex;
-								setLanguage(langs[i]);
-							}}
-						/>
-					</View>
+					<Text style={styles.rowLabel}>{t("profile.lang")}</Text>
+					<View style={{ marginTop: 5, marginBottom: 5 }} />
 				</View>
+				<LanguageSelect value={language} languages={LANGS} onChange={setLanguage} />
 			</View>
 
 			{settingsRow.map((el, index) => (
