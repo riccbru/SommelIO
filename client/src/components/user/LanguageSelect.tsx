@@ -76,7 +76,7 @@ export default function LanguageSelect({ value, languages, onChange }: Props) {
 			shadowOffset: { width: 0, height: 2 },
 		},
 		option: {
-			padding: 16,
+			padding: 10,
 			alignItems: "center",
 			flexDirection: "row",
 			borderBottomWidth: 1,
@@ -110,20 +110,20 @@ export default function LanguageSelect({ value, languages, onChange }: Props) {
 				style={[
 					styles.container,
 					{
-						borderColor: isFocused || isOpen ? theme.colors.primary : theme.colors.gray,
 						borderWidth: 1,
-						backgroundColor: theme.colors.surface,
+						backgroundColor: theme.dark ? theme.colors.card : theme.colors.surface,
+						borderColor: isFocused || isOpen ? theme.colors.primary : theme.colors.gray,
 					},
 				]}
 			>
 				<View style={styles.selectedContent}>
-					<Text style={styles.flag}>{selectedLanguage.flag}</Text>
+					<Text style={styles.flag}>{selectedLanguage?.flag}</Text>
 					<Text
 						style={[styles.selectedText, { color: theme.colors.primary }]}
 						numberOfLines={1}
 						ellipsizeMode='tail'
 					>
-						{selectedLanguage.code.toUpperCase()}
+						{selectedLanguage?.code.toUpperCase()}
 					</Text>
 				</View>
 
@@ -151,7 +151,7 @@ export default function LanguageSelect({ value, languages, onChange }: Props) {
 					}}
 				>
 					<View style={styles.modalContent}>
-						<Card style={[styles.dropdownCard, { backgroundColor: theme.colors.surface }]}>
+						<Card style={[styles.dropdownCard, { backgroundColor: theme.dark ? theme.colors.card : theme.colors.surface }]}>
 							<FlatList
 								data={languages}
 								keyExtractor={item => item.code}
@@ -168,7 +168,7 @@ export default function LanguageSelect({ value, languages, onChange }: Props) {
 											},
 										]}
 										onPress={() => {
-											onChange(item.code);
+											onChange(item.code as Language);
 											setIsOpen(false);
 											setIsFocused(false);
 										}}
