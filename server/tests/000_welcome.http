@@ -1,0 +1,9 @@
+@PORT = 3001
+@HOSTNAME = localhost
+
+### GET USER INFO
+
+GET http://{{HOSTNAME}}:{{PORT}}/ HTTP/1.1
+Accept: application/json
+
+### GET USER STATS
