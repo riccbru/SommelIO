@@ -62,7 +62,7 @@ export default function Tastings() {
 						style={styles.tastingsContainer}
 						keyboardShouldPersistTaps='handled'
 						refreshControl={
-							<RefreshControl refreshing={loading} onRefresh={refreshTastings} />
+							<RefreshControl refreshing={loading.tastings} onRefresh={refreshTastings} />
 						}
 					>
 						<TastingsList tastings={tastings} searchQuery={searchQuery} />

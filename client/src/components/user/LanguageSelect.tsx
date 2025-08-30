@@ -42,14 +42,14 @@ export default function LanguageSelect({ value, languages, onChange }: Props) {
 			alignItems: "center",
 		},
 		flag: {
-            marginTop: 1,
+			marginTop: 1,
 			fontSize: 24,
 			marginRight: 10,
 		},
 		selectedText: {
 			flex: 1,
 			fontSize: 18,
-            marginTop: 3,
+			marginTop: 3,
 			fontFamily: "Epilogue-Regular",
 		},
 		arrow: {
@@ -75,15 +75,15 @@ export default function LanguageSelect({ value, languages, onChange }: Props) {
 			borderColor: theme.colors.primary,
 			shadowOffset: { width: 0, height: 2 },
 		},
-        option: {
+		option: {
 			padding: 16,
 			alignItems: "center",
 			flexDirection: "row",
 			borderBottomWidth: 1,
-            borderTopLeftRadius: 10,
-            borderTopRightRadius: 10,
-            borderBottomLeftRadius: 10,
-            borderBottomRightRadius: 10,
+			borderTopLeftRadius: 10,
+			borderTopRightRadius: 10,
+			borderBottomLeftRadius: 10,
+			borderBottomRightRadius: 10,
 		},
 		lastOption: {
 			borderBottomWidth: 0,
@@ -118,17 +118,17 @@ export default function LanguageSelect({ value, languages, onChange }: Props) {
 			>
 				<View style={styles.selectedContent}>
 					<Text style={styles.flag}>{selectedLanguage.flag}</Text>
-					<Text 
+					<Text
 						style={[styles.selectedText, { color: theme.colors.primary }]}
 						numberOfLines={1}
-						ellipsizeMode="tail"
+						ellipsizeMode='tail'
 					>
 						{selectedLanguage.code.toUpperCase()}
 					</Text>
 				</View>
 
 				<View style={styles.arrow}>
-					<ArrowIcon size={24} weight="bold" color={theme.colors.gray} />
+					<ArrowIcon size={24} weight='bold' color={theme.colors.gray} />
 				</View>
 			</TouchableOpacity>
 

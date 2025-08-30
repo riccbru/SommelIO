@@ -9,9 +9,9 @@ import AuthButton from "@/src/components/auth/AuthButton";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function ForgotLayout() {
+	const theme = useTheme();
 	const { isReady } = useAuth();
 	const { t } = useTranslation();
-	const theme = useTheme();
 	const [loading, setLoading] = useState(false);
 	const [email, setEmail] = useState<string>("");
 	const [error, setError] = useState<string>("");
@@ -51,8 +51,10 @@ export default function ForgotLayout() {
 	};
 
 	const handleReset = async () => {
+		setLoading(true);
 		const res = validateForm();
 		console.log(res);
+		setLoading(false);
 	};
 
 	const handlePress = async () => {

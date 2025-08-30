@@ -119,7 +119,7 @@ export default function User() {
 			<ScrollView
 				style={styles.container}
 				showsVerticalScrollIndicator={false}
-				refreshControl={<RefreshControl refreshing={loading} onRefresh={refreshStats} />}
+				refreshControl={<RefreshControl refreshing={loading.stats} onRefresh={refreshStats} />}
 			>
 				<Animated.View style={{ opacity: fadeAnim }}>
 					{/* User Profile Card */}

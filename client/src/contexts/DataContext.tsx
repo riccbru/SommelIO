@@ -108,8 +108,30 @@ type Blocked = {
 	image_url: string;
 };
 
+type LoadingStates = {
+	stats: boolean;
+	tastings: boolean;
+	wines: boolean;
+	colleagues: boolean;
+	requests: boolean;
+	blocked: boolean;
+	coefficients: boolean;
+	general: boolean;
+};
+
+const defaultLoadingStates: LoadingStates = {
+	stats: false,
+	tastings: false,
+	wines: false,
+	colleagues: false,
+	requests: false,
+	blocked: false,
+	coefficients: false,
+	general: false,
+};
+
 type DataContextType = {
-	loading: boolean;
+	loading: LoadingStates;
 	coefficients: Coefficients;
 	stats: UserStats;
 	tastings: Tasting[];
@@ -130,18 +152,22 @@ export const DataContext = createContext<DataContextType | undefined>(undefined)
 
 export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 	const { accessToken } = useAuth();
-	const [loading, setLoading] = useState(false);
 	const [wines, setWines] = useState<Wine[]>([]);
 	const [blocked, setBlocked] = useState<Blocked[]>([]);
 	const [requests, setRequests] = useState<Request[]>([]);
 	const [tastings, setTastings] = useState<Tasting[]>([]);
 	const [stats, setStats] = useState<UserStats>(defaultStats);
 	const [colleagues, setColleagues] = useState<Colleague[]>([]);
+	const [loading, setLoading] = useState<LoadingStates>(defaultLoadingStates);
 	const [coefficients, setCoefficients] = useState<Coefficients>(defaultCoefficients);
+
+	const setSpecificLoading = useCallback((key: keyof LoadingStates, value: boolean) => {
+		setLoading(prev => ({ ...prev, [key]: value }));
+	}, []);
 
 	const refreshStats = useCallback(async () => {
 		if (!accessToken) return;
-		setLoading(true);
+		setSpecificLoading("stats", true);
 		try {
 			const response = await UserAPI.getStats(accessToken);
 			setStats(response.stats ?? defaultStats);
@@ -149,13 +175,13 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 			setStats(defaultStats);
 			console.error("Error fetching stats:", err);
 		} finally {
-			setLoading(false);
+			setSpecificLoading("stats", false);
 		}
-	}, [accessToken]);
+	}, [accessToken, setSpecificLoading]);
 
 	const refreshTastings = useCallback(async () => {
 		if (!accessToken) return;
-		setLoading(true);
+		setSpecificLoading("tastings", true);
 		try {
 			const data = await TastingsAPI.fetchTastings();
 			setTastings(data.tastings || []);
@@ -163,9 +189,9 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 			setTastings([]);
 			console.error("Error fetching tastings:", err);
 		} finally {
-			setLoading(false);
+			setSpecificLoading("tastings", false);
 		}
-	}, [accessToken]);
+	}, [accessToken, setSpecificLoading]);
 
 	const refreshCoefficients = useCallback(async () => {
 		if (!accessToken) return;
@@ -180,7 +206,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
 	const refreshWines = useCallback(async () => {
 		if (!accessToken) return;
-		setLoading(true);
+		setSpecificLoading("wines", true);
 		try {
 			const data = await WinesAPI.fetchWines();
 			setWines(data.wines || []);
@@ -188,13 +214,13 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 			console.log(err);
 			setWines([]);
 		} finally {
-			setLoading(false);
+			setSpecificLoading("wines", false);
 		}
-	}, [accessToken]);
+	}, [accessToken, setSpecificLoading]);
 
 	const refreshColleagues = useCallback(async () => {
 		if (!accessToken) return;
-		setLoading(true);
+		setSpecificLoading("colleagues", true);
 		try {
 			const data = await ColleaguesAPI.fetchColleagues();
 			setColleagues(data.colleagues || []);
@@ -202,13 +228,13 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 			setColleagues([]);
 			console.log(err);
 		} finally {
-			setLoading(false);
+			setSpecificLoading("colleagues", false);
 		}
-	}, [accessToken]);
+	}, [accessToken, setSpecificLoading]);
 
 	const refreshRequests = useCallback(async () => {
 		if (!accessToken) return;
-		setLoading(true);
+		setSpecificLoading("requests", true);
 		try {
 			const data = await ColleaguesAPI.getRequests();
 			setRequests(data.incoming || []);
@@ -216,13 +242,13 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 			setRequests([]);
 			console.log(err);
 		} finally {
-			setLoading(false);
+			setSpecificLoading("requests", false);
 		}
-	}, [accessToken]);
+	}, [accessToken, setSpecificLoading]);
 
 	const refreshBlocked = useCallback(async () => {
 		if (!accessToken) return;
-		setLoading(true);
+		setSpecificLoading("blocked", true);
 		try {
 			const data = await ColleaguesAPI.getBlockedColleagues();
 			setBlocked(data.blocked || []);
@@ -230,12 +256,12 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 			setBlocked([]);
 			console.log(err);
 		} finally {
-			setLoading(false);
+			setSpecificLoading("blocked", false);
 		}
-	}, [accessToken]);
+	}, [accessToken, setSpecificLoading]);
 
 	const refreshData = useCallback(async () => {
-		setLoading(true);
+		setSpecificLoading("general", true);
 		try {
 			await Promise.all([
 				refreshStats(),
@@ -246,7 +272,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 				refreshBlocked(),
 			]);
 		} finally {
-			setLoading(false);
+			setSpecificLoading("general", false);
 		}
 	}, [
 		refreshStats,
@@ -255,6 +281,7 @@ export const DataProvider: React.FC<{ children: React.ReactNode }> = ({ children
 		refreshColleagues,
 		refreshRequests,
 		refreshBlocked,
+		setSpecificLoading,
 	]);
 
 	useEffect(() => {

@@ -121,7 +121,9 @@ export default function Colleagues() {
 			<ScrollView
 				style={styles.colleaguesContainer}
 				keyboardShouldPersistTaps='handled'
-				refreshControl={<RefreshControl refreshing={loading} onRefresh={refreshColleagues} />}
+				refreshControl={
+					<RefreshControl refreshing={loading.colleagues} onRefresh={refreshColleagues} />
+				}
 			>
 				{!displayList.length ? (
 					<View style={styles.centeredContainer}>

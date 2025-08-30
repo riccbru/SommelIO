@@ -66,7 +66,11 @@ export default function BlockedColleague({ blocked }: Props) {
 		<List.Item
 			title={<Text style={styles.title}>{blocked.username}</Text>}
 			descriptionStyle={{ marginTop: 5 }}
-			description={<Text style={styles.description}>{blockedDescription(blocked.full_name, blocked.blocked_at)}</Text>}
+			description={
+				<Text style={styles.description}>
+					{blockedDescription(blocked.full_name, blocked.blocked_at)}
+				</Text>
+			}
 			left={props => (
 				<Image style={styles.image} source={{ uri: blocked.image_url.replace(/\\/g, "") }} />
 			)}

@@ -111,7 +111,9 @@ export default function IncomingRequests({ requests }: Props) {
 			data={requests}
 			style={styles.container}
 			keyExtractor={item => item.rid}
-			refreshControl={<RefreshControl refreshing={loading} onRefresh={refreshRequests} />}
+			refreshControl={
+				<RefreshControl refreshing={loading.requests} onRefresh={refreshRequests} />
+			}
 			renderItem={({ item }) => (
 				<View style={styles.requestItem}>
 					<View style={styles.requestActions}>

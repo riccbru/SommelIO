@@ -86,7 +86,9 @@ export default function ToDrink() {
 					<ScrollView
 						style={styles.tastingsContainer}
 						keyboardShouldPersistTaps='handled'
-						refreshControl={<RefreshControl refreshing={loading} onRefresh={refreshWines} />}
+						refreshControl={
+							<RefreshControl refreshing={loading.wines} onRefresh={refreshWines} />
+						}
 					>
 						<ToDrinkList wines={wines} searchQuery={searchQuery} />
 					</ScrollView>
