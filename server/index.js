@@ -22,7 +22,7 @@ dotenv.config({
 	override: true,
 });
 app.use(cors());
-app.use(morgan("dev"));
+// app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({ origin: "http://localhost:5173" }));
