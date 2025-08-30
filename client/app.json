@@ -1,67 +1,76 @@
 {
-	"expo": {
-		"name": "SommelIO",
-		"slug": "sommelio",
-		"version": "1.0.0",
-		"orientation": "portrait",
-		"icon": "./assets/images/icon/ios/simple_black.png",
-		"scheme": "sommelio",
-		"userInterfaceStyle": "automatic",
-		"newArchEnabled": true,
-		"ios": {
-			"supportsTablet": true,
-			"bundleIdentifier": "com.riccbru.sommelio",
-			"statusBarHidden": true,
-			"infoPlist": {
-				"UIViewControllerBasedStatusBarAppearance": false
-			}
-		},
-		"android": {
-			"adaptiveIcon": {
-				"foregroundImage": "./assets/images/icon/android/simple_black.png",
-				"backgroundColor": "#ffffff"
-			},
-			"edgeToEdgeEnabled": true,
-			"package": "com.riccbru.sommelio",
-			"statusBar": {
-				"barStyle": "light-content",
-				"backgroundColor": "#ffffff",
-				"hidden": true,
-				"translucent": false
-			}
-		},
-		"web": {
-			"bundler": "metro",
-			"output": "static",
-			"favicon": ""
-		},
-		"plugins": [
-			"expo-router",
-			"expo-secure-store",
-			[
-				"expo-font",
-				{
-					"fonts": ["./assets/fonts/Epilogue-Regular.ttf", "./assets/fonts/Epilogue-Bold.ttf"]
-				}
-			],
-			[
-				"expo-splash-screen",
-				{
-					"image": "./assets/images/title/title-nobg.png",
-					"imageWidth": 350,
-					"resizeMode": "contain",
-					"backgroundColor": "#ffffff",
-					"dark": {
-						"image": "./assets/images/title/title-nobg.png",
-						"imageWidth": 350,
-						"resizeMode": "contain",
-						"backgroundColor": "#000000"
-					}
-				}
-			]
-		],
-		"experiments": {
-			"typedRoutes": true
-		}
-	}
+  "expo": {
+    "name": "SommelIO",
+    "slug": "sommelio",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon/ios/simple_black.png",
+    "scheme": "sommelio",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.riccbru.sommelio",
+      "statusBarHidden": true,
+      "infoPlist": {
+        "UIViewControllerBasedStatusBarAppearance": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/icon/android/simple_black.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.riccbru.sommelio",
+      "statusBar": {
+        "barStyle": "light-content",
+        "backgroundColor": "#ffffff",
+        "hidden": true,
+        "translucent": false
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": ""
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Epilogue-Regular.ttf",
+            "./assets/fonts/Epilogue-Bold.ttf"
+          ]
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/title/title-nobg.png",
+          "imageWidth": 350,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff",
+          "dark": {
+            "image": "./assets/images/title/title-nobg.png",
+            "imageWidth": 350,
+            "resizeMode": "contain",
+            "backgroundColor": "#000000"
+          }
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "de7d0b78-784f-4888-9ffe-d74726288934"
+      }
+    }
+  }
 }

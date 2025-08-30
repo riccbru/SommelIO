@@ -2,7 +2,8 @@ import axios from "axios";
 import config from "./config";
 
 const axiosClient = axios.create({
-	baseURL: `http://${config.HOSTNAME}:${config.PORT}/api/v1/auth`,
+	// baseURL: `http://${config.HOSTNAME}:${config.PORT}/api/v1/auth`,
+	baseURL: "https://sommelio.vercel.app/api/v1/auth",
 });
 
 export type SignupData = {
@@ -47,7 +48,7 @@ async function logout() {
 		const response = await axiosClient.post("/logout", {});
 		return response;
 	} catch (error: any) {
-		throw new Error(error.response?.data?.error || `[services/auth.ts] Signup failed: ${error}`);
+		throw new Error(error.response?.data?.error || `[services/auth.ts] Logout failed: ${error}`);
 	}
 }
 

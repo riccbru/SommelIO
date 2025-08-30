@@ -12,7 +12,7 @@ async function createScoring(tid: string, data: any) {
 
 async function updateScoring(tid: string, data: any) {
 	try {
-		const response = await axiosClient.put(`/scoring/${tid}`, data);
+		const response = await axiosClient.put(`/v1/scoring/${tid}`, data);
 		return response;
 	} catch (error: any) {
 		console.error(error);

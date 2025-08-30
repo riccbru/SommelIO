@@ -4,7 +4,8 @@ import * as SecureStore from "expo-secure-store";
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
 const axiosClient = axios.create({
-	baseURL: `http://${config.HOSTNAME}:${config.PORT}/api`,
+	// baseURL: `http://${config.HOSTNAME}:${config.PORT}/api`,
+	baseURL: "https://sommelio.vercel.app/api",
 	withCredentials: true,
 });
 
