@@ -13,6 +13,8 @@ const customColors = {
 	red: "#cc4b4b",
 	white: "#ffffff",
 	yellow: "#e9d502",
+	skeleton: "#e1e9ee",
+	skeletonHighlight: "#f2f8fc",
 };
 
 export const LightTheme = {

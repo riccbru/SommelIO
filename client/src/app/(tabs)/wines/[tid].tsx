@@ -43,6 +43,7 @@ import NewFinalUpdate from "@/src/components/tastings/update/new/NewFinalUpdate"
 
 import ScoringDetails from "@/src/components/tastings/details/ScoringDetails";
 import ScoringUpdate from "@/src/components/tastings/update/ScoringUpdate";
+import LoadingSpinner from "@/src/components/LoadingSpinner";
 
 type EditModeShape = {
 	tasting: boolean;
@@ -188,8 +189,7 @@ export default function TastingDetail() {
 	useEffect(() => {
 		const fetchTasting = async () => {
 			try {
-				const delay = new Promise(resolve => setTimeout(resolve, 500));
-				const [response] = await Promise.all([TastingsAPI.fetchTastingById(tid), delay]);
+				const response = await TastingsAPI.fetchTastingById(tid);
 				setTasting(response.data);
 				setFavorite(response.data.favorite);
 			} catch (error) {
@@ -202,6 +202,14 @@ export default function TastingDetail() {
 			fetchTasting();
 		}
 	}, [refresh, tid]);
+
+	if (loading) {
+		return (
+			<View style={styles.loadingContainer}>
+				<LoadingSpinner text={t("loading")} />
+			</View>
+		);
+	}
 
 	if (!tasting) {
 		return (

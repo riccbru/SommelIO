@@ -2,12 +2,14 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import { PencilSimpleIcon } from "phosphor-react-native";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator } from "react-native-paper";
 
 type Props = {
+	loading: boolean;
 	onPress: () => void;
 };
 
-export default function UpdateButton({ onPress }: Props) {
+export default function UpdateButton({ loading, onPress }: Props) {
 	const theme = useTheme();
 	const { t } = useTranslation();
 
@@ -35,10 +37,16 @@ export default function UpdateButton({ onPress }: Props) {
 	});
 
 	return (
-		<TouchableOpacity activeOpacity={0.7} style={styles.button} onPress={onPress}>
+		<TouchableOpacity disabled={loading} activeOpacity={0.7} style={styles.button} onPress={onPress}>
 			<View style={styles.buttonView}>
-				<PencilSimpleIcon size={24} weight='bold' />
-				<Text style={styles.buttonText}>{t("tastings.edit")}</Text>
+				{loading ? (
+					<ActivityIndicator animating color={theme.colors.white} />
+				) : (
+					<>
+						<PencilSimpleIcon size={24} weight='bold' />
+						<Text style={styles.buttonText}>{t("tastings.edit")}</Text>
+					</>
+				)}
 			</View>
 		</TouchableOpacity>
 	);

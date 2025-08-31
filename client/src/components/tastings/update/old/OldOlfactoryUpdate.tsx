@@ -63,6 +63,7 @@ type Props = {
 export default function OldOlfactoryUpdate({ tid, exam, setRefresh, setEditMode }: Props) {
 	const { t } = useTranslation();
 	const i18nextPath = "new.olfactory.values";
+	const [loading, setLoading] = useState(false);
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<OlfactoryExamBody>({
 		intensity: exam?.intensity,
@@ -142,6 +143,7 @@ export default function OldOlfactoryUpdate({ tid, exam, setRefresh, setEditMode 
 	const handlePress = async () => {
 		if (!validateForm()) return;
 		try {
+			setLoading(true);
 			if (!Object.keys(exam).length) {
 				await ExamsAPI.createOlfactory(tid, formData);
 			}
@@ -150,6 +152,8 @@ export default function OldOlfactoryUpdate({ tid, exam, setRefresh, setEditMode 
 			setEditMode(prev => ({ ...prev, olfactory: !prev.olfactory }));
 		} catch (error) {
 			console.error(`Failed updating: ${error}`);
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -207,7 +211,7 @@ export default function OldOlfactoryUpdate({ tid, exam, setRefresh, setEditMode 
 				onChange={updateFormData}
 			/>
 
-			<UpdateButton onPress={handlePress} />
+			<UpdateButton loading={loading} onPress={handlePress} />
 		</View>
 	);
 }

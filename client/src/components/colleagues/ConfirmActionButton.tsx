@@ -39,7 +39,7 @@ export default function ConfirmButton({
 			fontSize: 18,
 			marginTop: 3,
 			marginLeft: 3,
-			fontFamily: "Epilogue-Bold",
+			fontFamily: "Epilogue-Regular",
 		},
 	});
 

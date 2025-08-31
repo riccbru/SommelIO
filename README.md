@@ -103,3 +103,8 @@ cd SommelIO
    ```
 
 - **Android**
+
+   - EAS Preview:
+      ```bash
+      eas build --platform android --profile preview
+      ```

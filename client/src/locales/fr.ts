@@ -37,9 +37,9 @@ export default {
 		searchbar: "Rechercher collègue (Entrée)...",
 		notFound: "Collègue non trouvée",
 		actions: "",
-		block: "BLOQUER",
-		remove: "SUPPRIMER",
-		confirm: "CONFIRMES?",
+		block: "Bloquer",
+		remove: "Supprimer",
+		confirm: "Confirmes?",
 		notifications: {
 			title: "Notifications",
 		},

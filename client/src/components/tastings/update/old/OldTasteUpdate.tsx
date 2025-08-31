@@ -42,6 +42,7 @@ type Props = {
 export default function OldTasteUpdate({ tid, exam, setRefresh, setEditMode }: Props) {
 	const { t } = useTranslation();
 	const i18nextPath = "new.taste.values";
+	const [loading, setLoading] = useState(false);
 	const [formData, setFormData] = useState<TasteExam>(exam);
 	const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -156,6 +157,7 @@ export default function OldTasteUpdate({ tid, exam, setRefresh, setEditMode }: P
 	const handlePress = async () => {
 		if (!validateForm()) return;
 		try {
+			setLoading(true);
 			if (!Object.keys(exam).length) {
 				await ExamsAPI.createTaste(tid, formData);
 			}
@@ -164,6 +166,8 @@ export default function OldTasteUpdate({ tid, exam, setRefresh, setEditMode }: P
 			setEditMode(prev => ({ ...prev, taste: !prev.taste }));
 		} catch (error) {
 			console.error(`Failed updating: ${error}`);
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -298,7 +302,7 @@ export default function OldTasteUpdate({ tid, exam, setRefresh, setEditMode }: P
 				onChange={updateFormData}
 			/>
 
-			<UpdateButton onPress={handlePress} />
+			<UpdateButton loading={loading} onPress={handlePress} />
 		</View>
 	);
 }

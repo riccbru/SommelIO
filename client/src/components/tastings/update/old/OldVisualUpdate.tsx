@@ -49,6 +49,7 @@ type Props = {
 export default function OldVisualUpdate({ tid, sparkling, exam, setRefresh, setEditMode }: Props) {
 	const { t } = useTranslation();
 	const i18nextPath = "new.visual.values";
+	const [loading, setLoading] = useState(false);
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<VisualExam>(exam || defaultVisualExam);
 
@@ -150,6 +151,7 @@ export default function OldVisualUpdate({ tid, sparkling, exam, setRefresh, setE
 		const res = validateForm();
 		if (!res) console.log("∫ƒ(π)dπ");
 		try {
+			setLoading(true);
 			if (!Object.keys(exam).length) {
 				await ExamsAPI.createVisual(tid, formData);
 			}
@@ -158,6 +160,8 @@ export default function OldVisualUpdate({ tid, sparkling, exam, setRefresh, setE
 			setEditMode(prev => ({ ...prev, visual: !prev.visual }));
 		} catch (error: any) {
 			console.error(`Failed updating: ${error.message}`);
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -267,7 +271,7 @@ export default function OldVisualUpdate({ tid, sparkling, exam, setRefresh, setE
 				onChange={updateFormData}
 			/>
 
-			<UpdateButton onPress={handlePress} />
+			<UpdateButton loading={loading} onPress={handlePress} />
 		</View>
 	);
 }

@@ -3,7 +3,7 @@ import { useData } from "@/src/hooks/useData";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import ColleaguesAPI from "@/src/services/colleagues";
-import UserProfile from "@/src/components/user/UserData";
+import UserProfile from "@/src/components/user/UserProfile";
 import { Divider, Modal, Portal } from "react-native-paper";
 import { useEffect, useLayoutEffect, useState } from "react";
 import ConfirmButton from "@/src/components/colleagues/ConfirmActionButton";
@@ -18,6 +18,8 @@ import {
 	TouchableOpacity,
 	View,
 } from "react-native";
+import UserSkeleton from "@/src/components/user/UserSkeleton";
+import LoadingSpinner from "@/src/components/LoadingSpinner";
 
 type UserInfoType = {
 	admin: boolean;
@@ -143,6 +145,7 @@ export default function ColleagueDetail() {
 
 	useEffect(() => {
 		const fetchUserStats = async () => {
+			setLoading(true);
 			try {
 				const response = await UserAPI.fetchUserStats(cid);
 				setUser(response.user);
@@ -179,9 +182,11 @@ export default function ColleagueDetail() {
 					<RefreshControl refreshing={loading} onRefresh={() => setRefresh(!refresh)} />
 				}
 			>
-				<Animated.View style={{ opacity: fadeAnim }}>
+				{loading ? (
+					<UserSkeleton />
+				) : (
 					<UserProfile userData={user} userStats={stats} />
-				</Animated.View>
+				)}
 
 				<View style={{ flexDirection: "column", justifyContent: "center" }}></View>
 			</ScrollView>

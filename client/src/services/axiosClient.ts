@@ -95,11 +95,12 @@ axiosClient.interceptors.response.use(
 
 			try {
 				const refreshAxios = axios.create({
-					baseURL: `http://${config.HOSTNAME}:${config.PORT}/api/v1`,
+					// baseURL: `http://${config.HOSTNAME}:${config.PORT}`,
+					baseURL: "https://sommelio.vercel.app",
 					withCredentials: true,
 				});
 
-				const response = await refreshAxios.post(`/auth/refresh`);
+				const response = await refreshAxios.post(`/api/v1/auth/refresh`);
 
 				const newAccessToken = response.data.token;
 

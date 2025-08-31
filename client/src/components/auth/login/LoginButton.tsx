@@ -23,8 +23,8 @@ export default function LoginButton({ loading, onPress, disabled }: Props) {
 		},
 		buttonText: {
 			fontSize: 16,
-			fontWeight: "600",
-			color: "#ffffff",
+			color: theme.colors.white,
+			fontFamily: "Epilogue-Bold",
 		},
 	});
 
@@ -36,7 +36,7 @@ export default function LoginButton({ loading, onPress, disabled }: Props) {
 			style={[styles.button, disabled && styles.buttonDisabled]}
 		>
 			{loading ? (
-				<ActivityIndicator animating={true} color='#ffffff' />
+				<ActivityIndicator animating={true} color={theme.colors.white} />
 			) : (
 				<Text style={styles.buttonText}>LOGIN</Text>
 			)}

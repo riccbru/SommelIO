@@ -50,6 +50,7 @@ export default function TastingUpdate({ tasting, setEditMode, setRefresh }: Prop
 	};
 
 	const { t } = useTranslation();
+	const [loading, setLoading] = useState(false);
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<Tasting>(format(tasting));
 
@@ -131,6 +132,7 @@ export default function TastingUpdate({ tasting, setEditMode, setRefresh }: Prop
 	const handlePress = async () => {
 		if (!validateForm()) return;
 		try {
+			setLoading(true);
 			if (!Object.keys(tasting).length) {
 				await TastingsAPI.createTasting(formData);
 			}
@@ -139,6 +141,8 @@ export default function TastingUpdate({ tasting, setEditMode, setRefresh }: Prop
 			setEditMode(prev => ({ ...prev, tasting: !prev.tasting }));
 		} catch (error) {
 			console.error(`Failed updating: ${error}`);
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -247,7 +251,7 @@ export default function TastingUpdate({ tasting, setEditMode, setRefresh }: Prop
 				onChange={updateFormData}
 			/>
 
-			<UpdateButton onPress={handlePress} />
+			<UpdateButton loading={loading} onPress={handlePress} />
 		</View>
 	);
 }

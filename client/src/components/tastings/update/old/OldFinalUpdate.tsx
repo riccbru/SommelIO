@@ -40,6 +40,7 @@ type Props = {
 export default function OldFinalUpdate({ tid, exam, setRefresh, setEditMode }: Props) {
 	const { t } = useTranslation();
 	const i18nextPath = "new.final.values";
+	const [loading, setLoading] = useState(false);
 	const [formData, setFormData] = useState<FinalExam>(exam || defaultFinalExam);
 	const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -82,6 +83,7 @@ export default function OldFinalUpdate({ tid, exam, setRefresh, setEditMode }: P
 	const handlePress = async () => {
 		if (!validateForm()) return;
 		try {
+			setLoading(true);
 			if (!Object.keys(exam).length) {
 				await ExamsAPI.createFinal(tid, formData);
 			}
@@ -90,6 +92,8 @@ export default function OldFinalUpdate({ tid, exam, setRefresh, setEditMode }: P
 			setEditMode(prev => ({ ...prev, final: !prev.final }));
 		} catch (error) {
 			console.error(`Failed updating: ${error}`);
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -133,7 +137,7 @@ export default function OldFinalUpdate({ tid, exam, setRefresh, setEditMode }: P
 				onChange={updateFormData}
 			/>
 
-			<UpdateButton onPress={handlePress} />
+			<UpdateButton loading={loading} onPress={handlePress} />
 		</View>
 	);
 }

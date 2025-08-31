@@ -62,20 +62,20 @@ export default function LoginLayout() {
 
 	const handleLogin = async () => {
 		try {
+			setLoading(true);
 			await login(loginData.username, loginData.password);
 			router.replace("/(tabs)");
 		} catch (err: any) {
 			setLoginError(err.message);
+		} finally {
+			setLoading(false);
 		}
 	};
 
 	const handlePress = () => {
 		setLoginError("");
 		if (!validateForm()) return;
-		setLoading(true);
-		setTimeout(() => {
-			handleLogin().finally(() => setLoading(false));
-		}, 550);
+		handleLogin();
 	};
 
 	return (
@@ -94,16 +94,16 @@ export default function LoginLayout() {
 
 				<AuthInput
 					holder='Username'
-					value={loginData.username}
-					error={errors.username}
 					onSubmit={handleLogin}
+					error={errors.username}
+					value={loginData.username}
 					onChangeText={text => setLoginData(prev => ({ ...prev, username: text }))}
 				/>
 
 				<PasswordInput
 					loginData={loginData}
-					error={errors.password}
 					onSubmit={handleLogin}
+					error={errors.password}
 					setLoginData={setLoginData}
 				/>
 

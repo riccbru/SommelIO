@@ -40,6 +40,7 @@ type Props = {
 
 export default function ScoringUpdate({ tid, scoring, setRefresh, setEditMode }: Props) {
 	const { t } = useTranslation();
+	const [loading, setLoading] = useState(false);
 	const [formData, setFormData] = useState<ScoringBody>(scoring);
 	const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -91,6 +92,7 @@ export default function ScoringUpdate({ tid, scoring, setRefresh, setEditMode }:
 	const handlePress = async () => {
 		if (!validateForm()) return;
 		try {
+			setLoading(true);
 			if (!Object.keys(scoring).length) {
 				await ScoringsAPI.createScoring(tid, formData);
 			}
@@ -99,6 +101,8 @@ export default function ScoringUpdate({ tid, scoring, setRefresh, setEditMode }:
 			setEditMode(prev => ({ ...prev, scoring: !prev.scoring }));
 		} catch (error) {
 			console.error(`Failed updating: ${error}`);
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -122,7 +126,7 @@ export default function ScoringUpdate({ tid, scoring, setRefresh, setEditMode }:
 				onChange={updateFormData}
 			/>
 
-			<UpdateButton onPress={handlePress} />
+			<UpdateButton loading={loading} onPress={handlePress} />
 		</View>
 	);
 }

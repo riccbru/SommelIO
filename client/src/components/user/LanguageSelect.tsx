@@ -151,7 +151,12 @@ export default function LanguageSelect({ value, languages, onChange }: Props) {
 					}}
 				>
 					<View style={styles.modalContent}>
-						<Card style={[styles.dropdownCard, { backgroundColor: theme.dark ? theme.colors.card : theme.colors.surface }]}>
+						<Card
+							style={[
+								styles.dropdownCard,
+								{ backgroundColor: theme.dark ? theme.colors.card : theme.colors.surface },
+							]}
+						>
 							<FlatList
 								data={languages}
 								keyExtractor={item => item.code}

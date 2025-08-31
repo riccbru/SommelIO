@@ -11,7 +11,7 @@ import UserModal from "@/src/components/auth/signup/UserModal";
 import { LineSeparator } from "@/src/components/auth/LineSeparator";
 import PasswordInput from "@/src/components/auth/signup/PasswordInput";
 import { SignupFooter } from "@/src/components/auth/signup/SignupFooter";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 
 const defaultSignupData = {
 	full_name: "",
@@ -27,6 +27,7 @@ export default function SignupLayout() {
 	const { isReady, signup } = useAuth();
 	const [modal, setModal] = useState(false);
 	const [loading, setLoading] = useState(false);
+	const [signupError, setSignupError] = useState<string>("");
 	const [signupData, setSignupData] = useState(defaultSignupData);
 	const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -78,19 +79,20 @@ export default function SignupLayout() {
 
 	const handleSignup = async () => {
 		try {
+			setLoading(true);
 			await signup(signupData);
 			setModal(true);
 		} catch (err: any) {
-			console.log(err);
+			setSignupError(err.message);
+		} finally {
+			setLoading(false);
 		}
 	};
 
 	const handlePress = () => {
+		setSignupError("");
 		if (!validateForm()) return;
-		setLoading(true);
-		setTimeout(() => {
-			handleSignup().finally(() => setLoading(false));
-		}, 550);
+		handleSignup();
 	};
 
 	return (
@@ -101,31 +103,37 @@ export default function SignupLayout() {
 			<ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps='handled'>
 				<Title />
 
+				<View style={{ justifyContent: "center", alignItems: "center", marginBottom: 10 }}>
+					<Text style={{ fontSize: 16, color: theme.colors.red, fontFamily: "Epilogue-Bold" }}>
+						{signupError}
+					</Text>
+				</View>
+
 				<AuthInput
 					holder='Full name'
-					value={signupData.full_name}
 					error={errors.full_name}
+					value={signupData.full_name}
 					onChangeText={text => setSignupData(prev => ({ ...prev, full_name: text }))}
 				/>
 
 				<AuthInput
 					holder='Email'
 					isEmail={true}
-					value={signupData.email}
 					error={errors.email}
+					value={signupData.email}
 					onChangeText={text => setSignupData(prev => ({ ...prev, email: text }))}
 				/>
 
 				<DateInput
-					value={signupData.birthdate}
 					error={errors.birthdate}
+					value={signupData.birthdate}
 					onChangeText={text => setSignupData(prev => ({ ...prev, birthdate: text }))}
 				/>
 
 				<AuthInput
 					holder='Username'
-					value={signupData.username}
 					error={errors.username}
+					value={signupData.username}
 					onChangeText={text => setSignupData(prev => ({ ...prev, username: text }))}
 				/>
 				<PasswordInput

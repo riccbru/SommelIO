@@ -64,6 +64,7 @@ type Props = {
 export default function NewTasteUpdate({ tid, exam, setRefresh, setEditMode, sparkling }: Props) {
 	const { t } = useTranslation();
 	const i18nextPath = "new.taste.values";
+	const [loading, setLoading] = useState(false);
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<TasteExam>(exam || defaultTasteExam);
 
@@ -183,6 +184,7 @@ export default function NewTasteUpdate({ tid, exam, setRefresh, setEditMode, spa
 	const handlePress = async () => {
 		if (!validateForm()) return;
 		try {
+			setLoading(true);
 			if (!Object.keys(exam).length) {
 				await ExamsAPI.createNewTaste(tid, formData);
 			}
@@ -191,6 +193,8 @@ export default function NewTasteUpdate({ tid, exam, setRefresh, setEditMode, spa
 			setEditMode(prev => ({ ...prev, taste: !prev.taste }));
 		} catch (error) {
 			console.error(`Failed updating: ${error}`);
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -340,7 +344,7 @@ export default function NewTasteUpdate({ tid, exam, setRefresh, setEditMode, spa
 				onChange={updateFormData}
 			/>
 
-			<UpdateButton onPress={handlePress} />
+			<UpdateButton loading={loading} onPress={handlePress} />
 		</View>
 	);
 }

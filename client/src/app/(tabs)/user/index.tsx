@@ -3,8 +3,9 @@ import { useData } from "@/src/hooks/useData";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import { useNavigation, useRouter } from "expo-router";
-import UserProfile from "@/src/components/user/UserData";
 import { useLayoutEffect, useRef, useState } from "react";
+import UserProfile from "@/src/components/user/UserProfile";
+import UserSkeleton from "@/src/components/user/UserSkeleton";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import SettingsBottomSheet from "@/src/components/user/SettingsBottomSheet";
 import { CaretRightIcon, GearIcon, SignOutIcon } from "phosphor-react-native";
@@ -123,7 +124,11 @@ export default function User() {
 			>
 				<Animated.View style={{ opacity: fadeAnim }}>
 					{/* User Profile Card */}
-					<UserProfile userData={user} userStats={stats} />
+					{loading.stats ? (
+						<UserSkeleton />
+					) : (
+						<UserProfile userData={user} userStats={stats} />
+					)}
 
 					<TouchableOpacity
 						activeOpacity={0.5}
