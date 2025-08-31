@@ -6,6 +6,7 @@ import ColleaguesAPI from "@/src/services/colleagues";
 import UserProfile from "@/src/components/user/UserProfile";
 import { Divider, Modal, Portal } from "react-native-paper";
 import { useEffect, useLayoutEffect, useState } from "react";
+import UserSkeleton from "@/src/components/user/UserSkeleton";
 import ConfirmButton from "@/src/components/colleagues/ConfirmActionButton";
 import { ProhibitIcon, TrashIcon, WarningIcon } from "phosphor-react-native";
 import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
@@ -18,8 +19,6 @@ import {
 	TouchableOpacity,
 	View,
 } from "react-native";
-import UserSkeleton from "@/src/components/user/UserSkeleton";
-import LoadingSpinner from "@/src/components/LoadingSpinner";
 
 type UserInfoType = {
 	admin: boolean;
@@ -182,11 +181,7 @@ export default function ColleagueDetail() {
 					<RefreshControl refreshing={loading} onRefresh={() => setRefresh(!refresh)} />
 				}
 			>
-				{loading ? (
-					<UserSkeleton />
-				) : (
-					<UserProfile userData={user} userStats={stats} />
-				)}
+				{loading ? <UserSkeleton /> : <UserProfile userData={user} userStats={stats} />}
 
 				<View style={{ flexDirection: "column", justifyContent: "center" }}></View>
 			</ScrollView>

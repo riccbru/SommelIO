@@ -1,17 +1,13 @@
-import React from "react";
 import { Redirect } from "expo-router";
-import { View, Text } from "react-native";
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "@/src/hooks/useAuth";
+import LoadingSpinner from "@/src/components/LoadingSpinner";
 
 export default function Index() {
 	const { isLoggedIn, isReady } = useAuth();
 
 	if (!isReady) {
-		return (
-			<View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-				<Text style={{ fontFamily: "Epilogue-Regular" }}>Checking session...</Text>
-			</View>
-		);
+		return <LoadingSpinner text='' />;
 	}
+
 	return <Redirect href={isLoggedIn ? "/(tabs)" : "/login"} />;
 }

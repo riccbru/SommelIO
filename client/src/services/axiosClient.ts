@@ -1,4 +1,4 @@
-import config from "./config";
+// import config from "./config";
 import { router } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from "axios";

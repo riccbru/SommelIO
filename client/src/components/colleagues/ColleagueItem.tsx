@@ -60,7 +60,7 @@ export default function ColleagueItem({ user }: Props) {
 				title={<Text style={styles.username}>{user.username}</Text>}
 				description={<Text style={styles.fullName}>{user.full_name}</Text>}
 				left={props => (
-					<Image source={{ uri: user.image_url.replace(/\\/g, "") }} style={styles.image} />
+					<Image source={{ uri: user.image_url?.replace(/\\/g, "") }} style={styles.image} />
 				)}
 				right={props => (
 					<TouchableOpacity

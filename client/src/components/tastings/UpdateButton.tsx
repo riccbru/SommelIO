@@ -37,7 +37,12 @@ export default function UpdateButton({ loading, onPress }: Props) {
 	});
 
 	return (
-		<TouchableOpacity disabled={loading} activeOpacity={0.7} style={styles.button} onPress={onPress}>
+		<TouchableOpacity
+			disabled={loading}
+			activeOpacity={0.7}
+			style={styles.button}
+			onPress={onPress}
+		>
 			<View style={styles.buttonView}>
 				{loading ? (
 					<ActivityIndicator animating color={theme.colors.white} />

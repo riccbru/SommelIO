@@ -32,7 +32,7 @@ export default function UserProfile({ userData, userStats }: Props) {
 	const theme = useTheme();
 	const { user } = useAuth();
 	const { t } = useTranslation();
-	
+
 	const styles = StyleSheet.create({
 		profileCard: {
 			elevation: 4,

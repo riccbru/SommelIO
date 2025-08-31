@@ -120,7 +120,7 @@ export default {
 					cherry_red: "cherry red",
 					dark_rosé: "dark rosé",
 					// NEW
-					mogan: "",
+					mogan: "mogan",
 					pink_peach: "pink peach blossom",
 					copper_red: "copper red",
 					salmon_pink: "salmon pink",

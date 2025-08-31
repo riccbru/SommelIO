@@ -2,22 +2,22 @@ import { useMemo } from "react";
 import { useTheme } from "@/src/hooks/useTheme";
 import { Image, Platform, StyleSheet, TouchableOpacity, View } from "react-native";
 
-import googleIosDark from "@/assets/images/google/ios/light/logo.png";
-import googleIosLight from "@/assets/images/google/ios/dark/logo.png";
-import googleAndroidDark from "@/assets/images/google/android/dark/logo.png";
-import googleAndroidLight from "@/assets/images/google/android/light/logo.png";
-import appleDark from "@/assets/images/apple/light/logo.png";
-import appleLight from "@/assets/images/apple/dark/logo.png";
-import facebookLogo from "@/assets/images/facebook/logo.png";
+import facebookLogo from "@/assets/images/fb_logo.png";
+import appleDark from "@/assets/images/apple_light_logo.png";
+import appleLight from "@/assets/images/apple_dark_logo.png";
+import googleIosDark from "@/assets/images/google_ios_light_logo.png";
+import googleIosLight from "@/assets/images/google_ios_dark_logo.png";
+import googleAndroidDark from "@/assets/images/google_android_dark_logo.png";
+import googleAndroidLight from "@/assets/images/google_android_light_logo.png";
 
 export default function ProviderSSO() {
 	const { dark: isDark } = useTheme();
 
 	const styles = StyleSheet.create({
 		container: {
+			alignItems: "center",
 			flexDirection: "row",
 			justifyContent: "space-around",
-			alignItems: "center",
 		},
 		icon: {
 			width: 48,

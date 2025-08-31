@@ -4,7 +4,7 @@
 		"slug": "sommelio",
 		"version": "1.0.0",
 		"orientation": "portrait",
-		"icon": "./assets/images/icon/ios/simple_black.png",
+		"icon": "./assets/images/app_icon.png",
 		"scheme": "sommelio",
 		"userInterfaceStyle": "automatic",
 		"newArchEnabled": true,
@@ -17,7 +17,7 @@
 		},
 		"android": {
 			"adaptiveIcon": {
-				"foregroundImage": "./assets/images/icon/android/simple_black.png",
+				"foregroundImage": "./assets/images/app_icon.png",
 				"backgroundColor": "#ffffff"
 			},
 			"edgeToEdgeEnabled": true,
@@ -40,10 +40,12 @@
 			[
 				"expo-splash-screen",
 				{
+					"width": 350,
 					"resizeMode": "contain",
 					"backgroundColor": "#ffffff",
 					"image": "./assets/images/title/title-nobg.png",
 					"dark": {
+						"width": 350,
 						"resizeMode": "contain",
 						"backgroundColor": "#000000",
 						"image": "./assets/images/title/title-nobg.png"

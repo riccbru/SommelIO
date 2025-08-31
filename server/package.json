@@ -6,7 +6,7 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"lint": "eslint '**/*.{js,mjs,cjs}' --ignore-pattern 'src/generated/*'",
-		"prettier": "prettier --write .",
+		"format": "prettier --write .",
 		"postinstall": "npx prisma generate"
 	},
 	"author": "",
