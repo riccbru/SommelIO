@@ -1,15 +1,18 @@
-import { useState } from "react";
 import { Card } from "react-native-paper";
+import { usePathname } from "expo-router";
+import { useNavigation } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import TastingsAPI from "@/src/services/tastings";
+import { TrashIcon } from "phosphor-react-native";
+import { useLayoutEffect, useState } from "react";
 import FormInput from "@/src/components/new/FormInput";
 import NextButton from "@/src/components/new/NextButton";
 import FormSelect from "@/src/components/new/FormSelect";
 import ExitButton from "@/src/components/new/ExitButton";
 import FormSwitch from "@/src/components/new/FormSwitch";
 import CancelButton from "@/src/components/new/CancelButton";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 type Tasting = {
 	wine_denomination: string;
@@ -49,10 +52,34 @@ const defaultFormData = {
 
 export default function New() {
 	const theme = useTheme();
+	const pathname = usePathname();
 	const { t } = useTranslation();
+	const navigation = useNavigation();
 	const i18nextPath = "new.tasting.values";
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<Tasting>(defaultFormData);
+
+	const handleTrash = async () => {
+		setErrors({});
+		setFormData(defaultFormData);
+	}
+	
+	useLayoutEffect(() => {
+		navigation.setOptions({
+			headerShown: true,
+			headerTitle: t("new_tasting_name_description"),
+			headerTitleStyle: {
+				fontSize: 18,
+				color: theme.colors.primary,
+				fontFamily: "Epilogue-Regular"
+			},
+			headerRight: () => (
+				<TouchableOpacity activeOpacity={0.5} onPress={handleTrash}>
+					<TrashIcon size={28} weight='fill' color={theme.colors.red} />
+				</TouchableOpacity>
+			)
+		});
+	}, [navigation]);
 
 	const styles = StyleSheet.create({
 		container: {
@@ -74,7 +101,7 @@ export default function New() {
 			justifyContent: "space-between",
 		},
 		sectionTitle: {
-			fontSize: 18,
+			fontSize: 22,
 			marginBottom: 15,
 			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
@@ -199,11 +226,11 @@ export default function New() {
 								}}
 							>
 								<Text style={styles.sectionTitle}>{t("new.tasting.title")}</Text>
-								<CancelButton
+								{/* <CancelButton
 									setErrors={setErrors}
 									setFormData={setFormData}
 									defaultFormData={defaultFormData}
-								/>
+								/> */}
 							</View>
 
 							<FormInput
@@ -313,12 +340,13 @@ export default function New() {
 
 					<View style={styles.buttonContainer}>
 						<ExitButton
+							path={pathname}
 							setErrors={setErrors}
 							setFormData={setFormData}
 							defaultFormData={defaultFormData}
 						/>
 						<NextButton
-							text='VISUAL'
+							text={t("new.visual.short")}
 							validation={validateForm}
 							action={TastingsAPI.createTasting}
 							formData={{ ...formData, vintage: Number(formData.vintage) }}

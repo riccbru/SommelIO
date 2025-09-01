@@ -1,9 +1,10 @@
 import { useRouter } from "expo-router";
 import { View, Text } from "react-native";
-import { Button } from "react-native-paper";
+import { ActivityIndicator, Button } from "react-native-paper";
 import { useTheme } from "@/src/hooks/useTheme";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ArrowCircleRightIcon, CheckCircleIcon } from "phosphor-react-native";
+import { useState } from "react";
 
 type Props = {
 	text: string;
@@ -15,19 +16,24 @@ type Props = {
 export default function SaveButton({ text, formData, validation, action }: Props) {
 	const theme = useTheme();
 	const router = useRouter();
+	const [loading, setLoading] = useState(false);
+	const Icon = text === "SAVE" ? CheckCircleIcon : ArrowCircleRightIcon
 
 	const handlePress = async () => {
 		const isValid = validation();
 		if (isValid) {
 			try {
+				setLoading(true);
 				const tid = await AsyncStorage.getItem("newTid");
 				if (!tid) throw new Error("No tasting ID found");
 				await action(tid, formData);
 				router.replace("/(tabs)/new");
-				router.replace("/(tabs)/wines?tab=tastings");
+				router.replace(`/(tabs)/wines/${tid}`);
 				await AsyncStorage.removeItem("newTid");
 			} catch (error) {
 				console.log(`NextButton: ${error}`);
+			} finally {
+				setLoading(false);
 			}
 		}
 	};
@@ -47,13 +53,15 @@ export default function SaveButton({ text, formData, validation, action }: Props
 						justifyContent: "center",
 					}}
 				>
-					<Text style={{ marginTop: 3, fontFamily: "Epilogue-Bold", color: "#000000" }}>
-						{text}
-					</Text>
-					{text === "SAVE" ? (
-						<CheckCircleIcon size={24} style={{ marginLeft: 5 }} color={"#000000"} />
+					{loading ? (
+						<ActivityIndicator animating color={theme.colors.white} />
 					) : (
-						<ArrowCircleRightIcon size={24} style={{ marginLeft: 5 }} color={"#000000"} />
+						<>
+							<Text style={{ marginTop: 3, fontFamily: "Epilogue-Bold", color: theme.colors.white }}>
+								{text}
+							</Text>
+							<Icon size={24} style={{ marginLeft: 5 }} color={theme.colors.white} />
+						</>
 					)}
 				</View>
 			</Button>

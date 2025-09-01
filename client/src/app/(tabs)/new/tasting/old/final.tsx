@@ -3,13 +3,14 @@ import { Card } from "react-native-paper";
 import ExamsAPI from "@/src/services/exams";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
+import { setDescription } from "@/src/utils/utils";
 import FormInput from "@/src/components/new/FormInput";
 import ExitButton from "@/src/components/new/ExitButton";
 import FormSelect from "@/src/components/new/FormSelect";
 import NextButton from "@/src/components/new/NextButton";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
-import { setDescription } from "@/src/utils/utils";
+import { usePathname } from "expo-router";
 
 type FinalExam = {
 	evolutionary_state: string;
@@ -28,6 +29,7 @@ const defaultFormData = {
 export default function Final() {
 	const theme = useTheme();
 	const { t } = useTranslation();
+	const pathname = usePathname();
 	const i18nextPath = "new.final.values";
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<FinalExam>(defaultFormData);
@@ -177,6 +179,7 @@ export default function Final() {
 
 					<View style={styles.buttonContainer}>
 						<ExitButton
+							path={pathname}
 							setErrors={setErrors}
 							setFormData={setFormData}
 							defaultFormData={defaultFormData}

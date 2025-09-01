@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Card } from "react-native-paper";
+import { usePathname } from "expo-router";
 import ExamsAPI from "@/src/services/exams";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
@@ -30,6 +31,7 @@ const defaultFormData = {
 export default function Final() {
 	const theme = useTheme();
 	const { t } = useTranslation();
+	const pathname = usePathname();
 	const i18nextPath = "new.final.values";
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<FinalExam>(defaultFormData);
@@ -195,6 +197,7 @@ export default function Final() {
 
 					<View style={styles.buttonContainer}>
 						<ExitButton
+							path={pathname}
 							setErrors={setErrors}
 							setFormData={setFormData}
 							defaultFormData={defaultFormData}

@@ -7,32 +7,34 @@ export default function ColleaguesLayout() {
 	const { t } = useTranslation();
 
 	const screenOptions = {
-		headerShown: true,
 		headerStyle: {
 			backgroundColor: theme.colors.background,
-		},
-		headerTitleStyle: {
-			color: theme.colors.primary,
-			fontFamily: "Epilogue-Regular",
-		},
+		}
 	};
 
 	return (
-		<Stack>
+		<Stack screenOptions={screenOptions}>
 			<Stack.Screen
 				name='index'
 				options={{
-					title: "",
-					...screenOptions,
+					title: t("tabs.profile"),
+					headerTitleStyle: {
+						fontSize: 18,
+						color: theme.colors.primary,
+						fontFamily: "Epilogue-Bold",
+					},
 				}}
 			/>
 			<Stack.Screen
 				name='blocked'
 				options={{
-					title: "",
-					presentation: "card",
+					title: t("profile.blocked"),
 					headerBackTitle: t("tastings.back"),
-					...screenOptions,
+					headerTitleStyle: {
+						fontSize: 18,
+						color: theme.colors.primary,
+						fontFamily: "Epilogue-Regular",
+					},
 				}}
 			/>
 		</Stack>

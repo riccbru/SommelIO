@@ -3,7 +3,7 @@ import { Card } from "react-native-paper";
 import ExamsAPI from "@/src/services/exams";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, usePathname } from "expo-router";
 import FormInput from "@/src/components/new/FormInput";
 import NextButton from "@/src/components/new/NextButton";
 import ExitButton from "@/src/components/new/ExitButton";
@@ -37,6 +37,7 @@ const defaultFormData = {
 export default function Visual() {
 	const theme = useTheme();
 	const { t } = useTranslation();
+	const pathname = usePathname();
 	const i18nextPath = "new.visual.values";
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const { wine_category_name } = useLocalSearchParams();
@@ -323,6 +324,7 @@ export default function Visual() {
 
 					<View style={styles.buttonContainer}>
 						<ExitButton
+							path={pathname}
 							setErrors={setErrors}
 							setFormData={setFormData}
 							defaultFormData={defaultFormData}

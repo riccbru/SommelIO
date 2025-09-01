@@ -25,7 +25,7 @@ export default {
 	tabs: {
 		index: "Home",
 		colleagues: "Collègues",
-		new: "",
+		new: "Nouveau",
 		wines: "Vins",
 		profile: "Profil",
 	},

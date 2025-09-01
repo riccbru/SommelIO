@@ -10,10 +10,15 @@ export default function TabsLayout() {
 	const { t } = useTranslation();
 	const iconColor = (focused: boolean) => (!focused ? theme.colors.primary : theme.colors.amber);
 	const iconWeight = (title: string, focused: boolean) => {
-		return !title || focused ? "fill" : "regular";
+		return !getLabel(title) || focused ? "fill" : "regular";
 	};
 
 	const getTitle = (key: string) => t(key);
+
+	const getLabel = (key: string) => {
+		if (key !== "tabs.new") { return t(key); }
+		else { return ""; }
+	}
 
 	return (
 		<Tabs
@@ -21,11 +26,12 @@ export default function TabsLayout() {
 				const config = TAB_CONFIG[route.name as keyof typeof TAB_CONFIG];
 				const Icon = config?.icon;
 				return {
-					headerTitle: getTitle(config?.title),
-					headerStyle: {
-						backgroundColor: theme.colors.background,
-					},
-					headerTintColor: theme.colors.primary,
+					headerShown: false,
+					// headerTitle: getTitle(config?.title),
+					// headerStyle: {
+					// 	backgroundColor: theme.colors.background,
+					// },
+					// headerTintColor: theme.colors.primary,
 					tabBarStyle: {
 						paddingTop: 5,
 						backgroundColor: theme.colors.background,
@@ -47,18 +53,18 @@ export default function TabsLayout() {
 									color: focused ? theme.colors.amber : theme.colors.primary,
 								}}
 							>
-								{getTitle(config?.title)}
+								{getLabel(config?.title)}
 							</Text>
 						),
 					tabBarIcon: ({ focused }) => (
 						<Icon
 							color={iconColor(focused)}
-							size={!getTitle(config.title).length ? 48 : 32}
+							size={!getLabel(config.title).length ? 48 : 32}
 							weight={iconWeight(config.title, focused)}
 						/>
 					),
 					tabBarIconStyle: {
-						marginTop: !config.title.length ? 8 : 1,
+						marginTop: !getLabel(config.title) ? 8 : 1,
 					},
 					tabBarButton: (props: any) => <AnimatedTabButton {...props} />,
 				};

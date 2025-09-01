@@ -39,7 +39,7 @@ export default function CancelButton({ defaultFormData, setFormData, setErrors }
 						marginRight: 5,
 					}}
 				>
-					<TrashIcon size={24} color={"#000000"} />
+					<TrashIcon size={24} color={theme.colors.white} />
 				</View>
 			</Button>
 		</View>

@@ -8,10 +8,11 @@ import UserProfile from "@/src/components/user/UserProfile";
 import UserSkeleton from "@/src/components/user/UserSkeleton";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import SettingsBottomSheet from "@/src/components/user/SettingsBottomSheet";
-import { CaretRightIcon, GearIcon, SignOutIcon } from "phosphor-react-native";
+import { CaretRightIcon, CheckIcon, GearIcon, SignOutIcon, TrashIcon } from "phosphor-react-native";
 import { BottomSheetMethods } from "@gorhom/bottom-sheet/lib/typescript/types";
 import {
 	Animated,
+	Platform,
 	RefreshControl,
 	ScrollView,
 	StyleSheet,
@@ -32,30 +33,51 @@ export default function User() {
 
 	useLayoutEffect(() => {
 		navigation.setOptions({
-			headerLeft: () => (
-				<TouchableOpacity
-					activeOpacity={0.7}
-					onPress={() => {
-						bottomSheetRef.current?.expand();
-					}}
-				>
-					<GearIcon
-						size={32}
-						weight={theme.dark ? "fill" : "regular"}
-						color={theme.colors.primary}
-					/>
-				</TouchableOpacity>
-			),
+			headerLeft: () => {
+				return Platform.OS !== 'ios' ? (<></>) : (
+					<TouchableOpacity
+						activeOpacity={0.7}
+						onPress={() => {
+							bottomSheetRef.current?.expand();
+						}}
+					>
+						<GearIcon
+							size={32}
+							weight={theme.dark ? "fill" : "regular"}
+							color={theme.colors.primary}
+						/>
+					</TouchableOpacity>
+				)
+			},
 			headerRight: () => (
-				<TouchableOpacity
-					activeOpacity={0.7}
-					onPress={() => {
-						logout();
-						router.replace("/login");
-					}}
-				>
-					<SignOutIcon size={30} color={theme.colors.primary} />
-				</TouchableOpacity>
+				<>
+					{Platform.OS === 'ios' ? (<></>) : (
+						<>
+							<TouchableOpacity
+								activeOpacity={0.7}
+								onPress={() => {
+									bottomSheetRef.current?.expand();
+								}}
+							>
+								<GearIcon
+									size={32}
+									weight={theme.dark ? "fill" : "regular"}
+									color={theme.colors.primary}
+								/>
+							</TouchableOpacity>
+							<View style={{ marginRight: 10 }} />
+						</>
+					)}
+					<TouchableOpacity
+						activeOpacity={0.7}
+						onPress={() => {
+							logout();
+							router.replace("/login");
+						}}
+					>
+						<SignOutIcon size={30} color={theme.colors.primary} />
+					</TouchableOpacity>
+				</>
 			),
 		});
 

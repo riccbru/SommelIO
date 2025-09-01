@@ -12,36 +12,27 @@ export default function ColleaguesLayout() {
 			backgroundColor: theme.colors.background,
 		},
 		headerTitleStyle: {
+			fontSize: 18,
 			color: theme.colors.primary,
-			fontFamily: "Epilogue-Regular",
+			fontFamily: "Epilogue-Bold",
 		},
 	};
 
 	return (
-		<Stack>
-			<Stack.Screen
-				name='index'
-				options={{
-					title: "",
-					...screenOptions,
-				}}
-			/>
+		<Stack screenOptions={screenOptions}>
+			<Stack.Screen name='index' options={{ title: t("tabs.colleagues") }} />
 			<Stack.Screen
 				name='[cid]'
 				options={{
 					title: "",
-					presentation: "card",
 					headerBackTitle: t("tastings.back"),
-					...screenOptions,
 				}}
 			/>
 			<Stack.Screen
 				name='notifications'
 				options={{
 					title: t("colleagues.notifications.title"),
-					presentation: "card",
 					headerBackTitle: t("tastings.back"),
-					...screenOptions,
 				}}
 			/>
 		</Stack>

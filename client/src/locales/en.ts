@@ -24,7 +24,7 @@ export default {
 	tabs: {
 		index: "Home",
 		colleagues: "Colleagues",
-		new: "",
+		new: "New",
 		wines: "Wines",
 		profile: "Profile",
 	},
@@ -207,7 +207,7 @@ export default {
 					// NEW
 					acceptable: "Acceptable",
 					good: "Good",
-					distinguished: "Distinguishe",
+					distinguished: "Distinguished",
 					very_good: "Very Good",
 				},
 			},

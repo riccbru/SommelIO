@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Card } from "react-native-paper";
+import { usePathname } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import { isRightRange } from "@/src/utils/utils";
@@ -44,6 +45,7 @@ const defaultFormData = {
 export default function Scoring() {
 	const theme = useTheme();
 	const { t } = useTranslation();
+	const pathname = usePathname();
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<FormData>(defaultFormData);
 
@@ -176,6 +178,7 @@ export default function Scoring() {
 
 					<View style={styles.buttonContainer}>
 						<ExitButton
+							path={pathname}
 							setErrors={setErrors}
 							setFormData={setFormData}
 							defaultFormData={defaultFormData}

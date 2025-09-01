@@ -10,6 +10,7 @@ import NextButton from "@/src/components/new/NextButton";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import { setDescription } from "@/src/utils/utils";
+import { usePathname } from "expo-router";
 
 type TasteExam = {
 	sweetness: string;
@@ -44,6 +45,7 @@ const defaultFormData = {
 export default function Taste() {
 	const theme = useTheme();
 	const { t } = useTranslation();
+	const pathname = usePathname();
 	const i18nextPath = "new.taste.values";
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<TasteExam>(defaultFormData);
@@ -362,6 +364,7 @@ export default function Taste() {
 
 					<View style={styles.buttonContainer}>
 						<ExitButton
+							path={pathname}
 							setErrors={setErrors}
 							setFormData={setFormData}
 							defaultFormData={defaultFormData}

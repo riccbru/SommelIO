@@ -18,7 +18,7 @@ export default function FormScore({ label, value, error, onChange }: Props) {
 				style={{
 					marginBottom: 10,
 					color: theme.colors.primary,
-					fontFamily: "Epilogue-Regular",
+					fontFamily: "Epilogue-Bold",
 				}}
 			>
 				{label}

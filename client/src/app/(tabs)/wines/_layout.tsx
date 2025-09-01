@@ -6,26 +6,33 @@ export default function TastingsLayout() {
 	const theme = useTheme();
 	const { t } = useTranslation();
 
+	const screenOptions = {
+		headerStyle: {
+			backgroundColor: theme.colors.background,
+		}
+	}
+
 	return (
-		<Stack>
+		<Stack screenOptions={screenOptions}>
 			<Stack.Screen
 				name='index'
 				options={{
-					title: "",
-					headerShown: false,
+					title: t("tabs.wines"),	
+					headerTitleStyle: {
+						fontSize: 18,
+						color: theme.colors.primary,
+						fontFamily: "Epilogue-Bold",
+					},
 				}}
 			/>
 			<Stack.Screen
 				name='[tid]'
 				options={{
 					title: "",
-					headerShown: true,
-					presentation: "card",
 					headerBackTitle: t("tastings.back"),
-					headerStyle: {
-						backgroundColor: theme.colors.background,
-					},
 					headerTitleStyle: {
+						fontSize: 18,
+						color: theme.colors.primary,
 						fontFamily: "Epilogue-Regular",
 					},
 				}}

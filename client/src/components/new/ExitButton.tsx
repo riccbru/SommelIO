@@ -8,12 +8,13 @@ import { XCircleIcon } from "phosphor-react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type Props<T> = {
+	path: string;
 	defaultFormData: T;
 	setFormData: React.Dispatch<React.SetStateAction<T>>;
 	setErrors: React.Dispatch<React.SetStateAction<Record<string, string>>>;
 };
 
-export default function ExitButton({ defaultFormData, setFormData, setErrors }: Props<T>) {
+export default function ExitButton({ path, defaultFormData, setFormData, setErrors }: Props<T>) {
 	const theme = useTheme();
 	const router = useRouter();
 	const { t } = useTranslation();
@@ -24,8 +25,17 @@ export default function ExitButton({ defaultFormData, setFormData, setErrors }: 
 		setErrors({});
 		refreshTastings();
 		setFormData(defaultFormData);
-		router.replace("/(tabs)/new");
-		router.replace("/(tabs)/wines?tab=tastings");
+		const tid = await AsyncStorage.getItem("newTid");
+		if (path === "/new/tasting/old" || path === "/new/tasting/new") {
+			router.back();
+		} else {
+			router.replace("/(tabs)/new");
+			if (tid) {
+				router.replace(`/(tabs)/wines/${tid}`);
+			} else {
+				router.replace("/(tabs)/wines?tab=tastings");
+			}
+		}
 		await AsyncStorage.removeItem("newTid");
 	};
 
@@ -44,10 +54,8 @@ export default function ExitButton({ defaultFormData, setFormData, setErrors }: 
 						justifyContent: "center",
 					}}
 				>
-					<XCircleIcon size={24} style={{ marginRight: 5 }} color={theme.colors.black} />
-					<Text
-						style={{ marginTop: 3, color: theme.colors.black, fontFamily: "Epilogue-Bold" }}
-					>
+					<XCircleIcon size={24} style={{ marginRight: 5 }} color={theme.colors.white} />
+					<Text style={{ marginTop: 3, color: theme.colors.white, fontFamily: "Epilogue-Bold" }}>
 						{text}
 					</Text>
 				</View>

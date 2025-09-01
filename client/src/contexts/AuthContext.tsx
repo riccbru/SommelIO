@@ -1,9 +1,10 @@
+import { Platform } from "react-native";
 import AuthAPI from "@/src/services/auth";
 import UserAPI from "@/src/services/user";
 import * as SecureStore from "expo-secure-store";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { updateCachedToken, setCallback } from "@/src/services/axiosClient";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export type User = {
 	admin: boolean;
@@ -86,7 +87,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 				await logout();
 			} finally {
 				const as_keys = await AsyncStorage.getAllKeys();
-				console.log(`AsyncStorage keys: ${as_keys.join(", ")}`);
+				console.log(`[${Platform.OS}] AsyncStorage keys: ${as_keys.join(", ")}`);
 			}
 			setAuthStatus({ isReady: true, isLoggedIn: false });
 		};

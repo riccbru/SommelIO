@@ -1,10 +1,11 @@
 import { View, Text } from "react-native";
-import { Button } from "react-native-paper";
+import { ActivityIndicator, Button } from "react-native-paper";
 import { useData } from "@/src/hooks/useData";
 import { useTheme } from "@/src/hooks/useTheme";
 import { LinkProps, useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ArrowCircleRightIcon, CheckCircleIcon } from "phosphor-react-native";
+import { useState } from "react";
 
 type Props = {
 	path: LinkProps["href"];
@@ -25,12 +26,15 @@ export default function NextButton({
 }: Props) {
 	const theme = useTheme();
 	const router = useRouter();
+	const [loading, setLoading] = useState(false);
 	const { refreshTastings, refreshWines } = useData();
+	const Icon = text === "SAVE" ? CheckCircleIcon : ArrowCircleRightIcon
 
 	const handlePress = async () => {
 		const isValid = validation();
 		if (isValid) {
 			try {
+				setLoading(true);
 				if (!requiresTid) {
 					const response = await action(formData);
 					const newTid = response?.data?.tid;
@@ -47,6 +51,8 @@ export default function NextButton({
 				router.push(path);
 			} catch (error) {
 				console.log(`NextButton: ${error}`);
+			} finally {
+				setLoading(false);
 			}
 		}
 	};
@@ -55,30 +61,27 @@ export default function NextButton({
 		<View style={{ alignItems: "center", backgroundColor: theme.colors.background }}>
 			<Button
 				mode='text'
+				disabled={loading}
 				onPress={handlePress}
 				style={{ width: 150, backgroundColor: theme.colors.green }}
 			>
 				<View
 					style={{
 						flex: 1,
+						alignItems: "center",
 						flexDirection: "row",
 						justifyContent: "center",
-						alignItems: "center",
 					}}
 				>
-					<Text
-						style={{ marginTop: 3, fontFamily: "Epilogue-Bold", color: theme.colors.black }}
-					>
-						{text}
-					</Text>
-					{text === "SAVE" ? (
-						<CheckCircleIcon size={24} style={{ marginLeft: 5 }} color={theme.colors.black} />
+					{loading ? (
+						<ActivityIndicator animating color={theme.colors.white} />
 					) : (
-						<ArrowCircleRightIcon
-							size={24}
-							style={{ marginLeft: 5 }}
-							color={theme.colors.black}
-						/>
+						<>
+							<Text style={{ marginTop: 3, fontFamily: "Epilogue-Bold", color: theme.colors.white }}>
+								{text}
+							</Text>
+							<Icon size={24} style={{ marginLeft: 5 }} color={theme.colors.white} />
+						</>
 					)}
 				</View>
 			</Button>

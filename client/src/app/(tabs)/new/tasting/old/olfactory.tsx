@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Card } from "react-native-paper";
+import { usePathname } from "expo-router";
 import ExamsAPI from "@/src/services/exams";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
+import { setDescription } from "@/src/utils/utils";
 import FormInput from "@/src/components/new/FormInput";
 import ExitButton from "@/src/components/new/ExitButton";
 import FormSelect from "@/src/components/new/FormSelect";
@@ -10,7 +12,6 @@ import NextButton from "@/src/components/new/NextButton";
 import FormSwitch from "@/src/components/new/FormSwitch";
 import CancelButton from "@/src/components/new/CancelButton";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
-import { setDescription } from "@/src/utils/utils";
 
 type OlfactoryExam = {
 	intensity: string;
@@ -49,6 +50,7 @@ const defaultFormData = {
 export default function Olfactory() {
 	const theme = useTheme();
 	const { t } = useTranslation();
+	const pathname = usePathname();
 	const i18nextPath = "new.olfactory.values";
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<OlfactoryExam>(defaultFormData);
@@ -242,6 +244,7 @@ export default function Olfactory() {
 
 					<View style={styles.buttonContainer}>
 						<ExitButton
+							path={pathname}
 							setErrors={setErrors}
 							setFormData={setFormData}
 							defaultFormData={defaultFormData}

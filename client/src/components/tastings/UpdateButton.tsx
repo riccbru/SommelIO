@@ -16,11 +16,12 @@ export default function UpdateButton({ loading, onPress }: Props) {
 	const styles = StyleSheet.create({
 		button: {
 			maxWidth: 250,
-			borderWidth: 1,
+			borderWidth: 2,
 			borderRadius: 15,
 			alignSelf: "center",
 			paddingVertical: 10,
 			paddingHorizontal: 15,
+			borderColor: theme.colors.darkGreen,
 			backgroundColor: theme.colors.green,
 		},
 		buttonView: {
@@ -32,6 +33,7 @@ export default function UpdateButton({ loading, onPress }: Props) {
 			fontSize: 20,
 			marginTop: 3,
 			marginLeft: 3,
+			color: theme.colors.white,
 			fontFamily: "Epilogue-Regular",
 		},
 	});
@@ -48,7 +50,7 @@ export default function UpdateButton({ loading, onPress }: Props) {
 					<ActivityIndicator animating color={theme.colors.white} />
 				) : (
 					<>
-						<PencilSimpleIcon size={24} weight='bold' />
+						<PencilSimpleIcon size={24} weight='bold' color={theme.colors.white} />
 						<Text style={styles.buttonText}>{t("tastings.edit")}</Text>
 					</>
 				)}

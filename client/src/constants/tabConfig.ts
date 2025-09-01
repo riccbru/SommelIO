@@ -10,7 +10,7 @@ export const TAB_CONFIG = {
 		icon: UsersIcon,
 	},
 	new: {
-		title: "",
+		title: "tabs.new",
 		icon: FilePlusIcon,
 	},
 	wines: {
