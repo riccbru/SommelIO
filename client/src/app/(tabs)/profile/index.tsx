@@ -8,7 +8,7 @@ import UserProfile from "@/src/components/user/UserProfile";
 import UserSkeleton from "@/src/components/user/UserSkeleton";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import SettingsBottomSheet from "@/src/components/user/SettingsBottomSheet";
-import { CaretRightIcon, CheckIcon, GearIcon, SignOutIcon, TrashIcon } from "phosphor-react-native";
+import { CaretRightIcon, GearIcon, SignOutIcon } from "phosphor-react-native";
 import { BottomSheetMethods } from "@gorhom/bottom-sheet/lib/typescript/types";
 import {
 	Animated,

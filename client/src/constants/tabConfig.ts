@@ -17,7 +17,7 @@ export const TAB_CONFIG = {
 		title: "tabs.wines",
 		icon: WineIcon,
 	},
-	user: {
+	profile: {
 		title: "tabs.profile",
 		icon: UserIcon,
 	},

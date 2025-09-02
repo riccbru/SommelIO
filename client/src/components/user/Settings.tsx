@@ -21,7 +21,7 @@ export default function Settings() {
 	const LANGS = [
 		{ code: "it", flag: "🇮🇹", name: "Italiano" },
 		{ code: "fr", flag: "🇫🇷", name: "Français" },
-		{ code: "en", flag: "🇬🇧", name: "English" },
+		{ code: "en", flag: "🇺🇸", name: "English" },
 	];
 
 	const settingsRow = [

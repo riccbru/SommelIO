@@ -209,7 +209,7 @@ export default function FormSelect<T>({
 					}}
 				>
 					<View style={styles.modalContent}>
-						<Card style={[styles.dropdownCard, { backgroundColor: theme.colors.surface }]}>
+						<Card style={[styles.dropdownCard, { backgroundColor: theme.colors.card }]}>
 							<FlatList
 								data={options}
 								keyExtractor={item => item}

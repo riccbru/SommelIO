@@ -119,7 +119,7 @@ router.get("/:uid/stats", async (req, res) => {
 
 		const relation = await prisma.colleagues.findFirst({
 			where: {
-				status: "accepted",
+				status: { not: "blocked" },
 				OR: [
 					{ requester_id: requesterUid, addressee_id: targetUid },
 					{ requester_id: targetUid, addressee_id: requesterUid },
@@ -128,7 +128,7 @@ router.get("/:uid/stats", async (req, res) => {
 		});
 
 		if (!relation) {
-			return res.status(403).json({ error: `You and user ${targetUid} are not colleagues` });
+			return res.status(403).json({ error: `This user is not available` });
 		}
 
 		const totalTastings = await prisma.tastings.count({

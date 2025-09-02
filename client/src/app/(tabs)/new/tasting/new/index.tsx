@@ -1,17 +1,16 @@
 import { Card } from "react-native-paper";
-import { usePathname } from "expo-router";
-import { useNavigation } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import TastingsAPI from "@/src/services/tastings";
 import { TrashIcon } from "phosphor-react-native";
 import { useLayoutEffect, useState } from "react";
+import { capitalizeFirst } from "@/src/utils/utils";
 import FormInput from "@/src/components/new/FormInput";
 import NextButton from "@/src/components/new/NextButton";
 import FormSelect from "@/src/components/new/FormSelect";
 import ExitButton from "@/src/components/new/ExitButton";
 import FormSwitch from "@/src/components/new/FormSwitch";
-import CancelButton from "@/src/components/new/CancelButton";
+import { useNavigation, usePathname } from "expo-router";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 type Tasting = {
@@ -79,7 +78,7 @@ export default function New() {
 				</TouchableOpacity>
 			)
 		});
-	}, [navigation]);
+	}, [navigation, t, theme]);
 
 	const styles = StyleSheet.create({
 		container: {
@@ -118,9 +117,8 @@ export default function New() {
 			backgroundColor: theme.colors.background,
 		},
 		buttonContainer: {
-			marginTop: 20,
-			marginLeft: 15,
-			marginRight: 15,
+			marginLeft: 25,
+			marginRight: 25,
 			marginBottom: 20,
 			flexDirection: "row",
 			alignItems: "center",
@@ -216,21 +214,8 @@ export default function New() {
 				<ScrollView style={styles.container} keyboardShouldPersistTaps='handled'>
 					<Card style={styles.card}>
 						<Card.Content>
-							<View
-								style={{
-									flex: 1,
-									flexDirection: "row",
-									alignItems: "center",
-									alignContent: "center",
-									justifyContent: "space-between",
-								}}
-							>
+							<View style={styles.cardHeader}>
 								<Text style={styles.sectionTitle}>{t("new.tasting.title")}</Text>
-								{/* <CancelButton
-									setErrors={setErrors}
-									setFormData={setFormData}
-									defaultFormData={defaultFormData}
-								/> */}
 							</View>
 
 							<FormInput
@@ -349,8 +334,8 @@ export default function New() {
 							text={t("new.visual.short")}
 							validation={validateForm}
 							action={TastingsAPI.createTasting}
-							formData={{ ...formData, vintage: Number(formData.vintage) }}
 							path={`/(tabs)/new/tasting/new/visual?wine_category_name=${encodeURIComponent(formData.wine_category_name)}`}
+							formData={{ ...formData, wine_denomination: capitalizeFirst(formData.wine_denomination),  winemaker: capitalizeFirst(formData.winemaker), vintage: Number(formData.vintage) }}
 						/>
 					</View>
 				</ScrollView>

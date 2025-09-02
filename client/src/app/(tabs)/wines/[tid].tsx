@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import { Text, Card } from "react-native-paper";
 import { GavelIcon, StarIcon } from "phosphor-react-native";
+import LoadingSpinner from "@/src/components/LoadingSpinner";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import {
@@ -43,7 +44,6 @@ import NewFinalUpdate from "@/src/components/tastings/update/new/NewFinalUpdate"
 
 import ScoringDetails from "@/src/components/tastings/details/ScoringDetails";
 import ScoringUpdate from "@/src/components/tastings/update/ScoringUpdate";
-import LoadingSpinner from "@/src/components/LoadingSpinner";
 
 type EditModeShape = {
 	tasting: boolean;

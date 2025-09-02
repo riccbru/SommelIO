@@ -5,18 +5,20 @@ import { useTheme } from "@/src/hooks/useTheme";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ArrowCircleRightIcon, CheckCircleIcon } from "phosphor-react-native";
 import { useState } from "react";
+import { useData } from "@/src/hooks/useData";
 
 type Props = {
 	text: string;
 	formData: any;
 	validation: () => boolean;
-	action: (tid: string, formData: any) => Promise<any>;
+	action: (formData: any, tid: string) => Promise<any>;
 };
 
 export default function SaveButton({ text, formData, validation, action }: Props) {
 	const theme = useTheme();
 	const router = useRouter();
 	const [loading, setLoading] = useState(false);
+	const { refreshTastings } = useData();
 	const Icon = text === "SAVE" ? CheckCircleIcon : ArrowCircleRightIcon
 
 	const handlePress = async () => {
@@ -26,9 +28,10 @@ export default function SaveButton({ text, formData, validation, action }: Props
 				setLoading(true);
 				const tid = await AsyncStorage.getItem("newTid");
 				if (!tid) throw new Error("No tasting ID found");
-				await action(tid, formData);
+				await action(formData, tid);
+				refreshTastings();
 				router.replace("/(tabs)/new");
-				router.replace(`/(tabs)/wines/${tid}`);
+				router.replace("/(tabs)/wines?tab=tastings");
 				await AsyncStorage.removeItem("newTid");
 			} catch (error) {
 				console.log(`NextButton: ${error}`);

@@ -13,8 +13,6 @@ export default function TabsLayout() {
 		return !getLabel(title) || focused ? "fill" : "regular";
 	};
 
-	const getTitle = (key: string) => t(key);
-
 	const getLabel = (key: string) => {
 		if (key !== "tabs.new") { return t(key); }
 		else { return ""; }
@@ -27,11 +25,6 @@ export default function TabsLayout() {
 				const Icon = config?.icon;
 				return {
 					headerShown: false,
-					// headerTitle: getTitle(config?.title),
-					// headerStyle: {
-					// 	backgroundColor: theme.colors.background,
-					// },
-					// headerTintColor: theme.colors.primary,
 					tabBarStyle: {
 						paddingTop: 5,
 						backgroundColor: theme.colors.background,

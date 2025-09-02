@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import { View, Text } from "react-native";
+import { View, Text, Platform } from "react-native";
 import { Button } from "react-native-paper";
 import { useData } from "@/src/hooks/useData";
 import { useTranslation } from "react-i18next";
@@ -30,10 +30,9 @@ export default function ExitButton({ path, defaultFormData, setFormData, setErro
 			router.back();
 		} else {
 			router.replace("/(tabs)/new");
+			router.replace("/(tabs)/wines?tab=tastings");
 			if (tid) {
-				router.replace(`/(tabs)/wines/${tid}`);
-			} else {
-				router.replace("/(tabs)/wines?tab=tastings");
+				router.push(`/(tabs)/wines/${tid}`);
 			}
 		}
 		await AsyncStorage.removeItem("newTid");
@@ -54,8 +53,8 @@ export default function ExitButton({ path, defaultFormData, setFormData, setErro
 						justifyContent: "center",
 					}}
 				>
-					<XCircleIcon size={24} style={{ marginRight: 5 }} color={theme.colors.white} />
-					<Text style={{ marginTop: 3, color: theme.colors.white, fontFamily: "Epilogue-Bold" }}>
+					<XCircleIcon size={24} style={{ marginRight: 3 }} color={theme.colors.white} />
+					<Text style={{ ...(Platform.OS === 'ios' ? { marginTop: 3 } : { marginBottom: 2 }), color: theme.colors.white, fontFamily: "Epilogue-Bold" }}>
 						{text}
 					</Text>
 				</View>

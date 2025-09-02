@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { Card } from "react-native-paper";
-import { usePathname } from "expo-router";
+import { useNavigation, usePathname } from "expo-router";
 import ExamsAPI from "@/src/services/exams";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
@@ -10,8 +10,8 @@ import ExitButton from "@/src/components/new/ExitButton";
 import FormSelect from "@/src/components/new/FormSelect";
 import NextButton from "@/src/components/new/NextButton";
 import FormSwitch from "@/src/components/new/FormSwitch";
-import CancelButton from "@/src/components/new/CancelButton";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { TrashIcon } from "phosphor-react-native";
 
 type OlfactoryExam = {
 	intensity: string;
@@ -51,9 +51,32 @@ export default function Olfactory() {
 	const theme = useTheme();
 	const { t } = useTranslation();
 	const pathname = usePathname();
+	const navigation = useNavigation();
 	const i18nextPath = "new.olfactory.values";
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<OlfactoryExam>(defaultFormData);
+
+	const handleTrash = async () => {
+		setErrors({});
+		setFormData(defaultFormData);
+	}
+
+	useLayoutEffect(() => {
+		navigation.setOptions({
+			headerShown: true,
+			headerTitle: t("old_tasting_name_description"),
+			headerTitleStyle: {
+				fontSize: 18,
+				color: theme.colors.primary,
+				fontFamily: "Epilogue-Regular"
+			},
+			headerRight: () => (
+				<TouchableOpacity activeOpacity={0.5} onPress={handleTrash}>
+					<TrashIcon size={28} weight='fill' color={theme.colors.red} />
+				</TouchableOpacity>
+			)
+		});
+	}, [navigation, t, theme]);
 
 	const styles = StyleSheet.create({
 		container: {
@@ -92,9 +115,8 @@ export default function Olfactory() {
 			backgroundColor: theme.colors.background,
 		},
 		buttonContainer: {
-			marginTop: 20,
-			marginLeft: 15,
-			marginRight: 15,
+			marginLeft: 25,
+			marginRight: 25,
 			marginBottom: 20,
 			flexDirection: "row",
 			alignItems: "center",
@@ -134,6 +156,7 @@ export default function Olfactory() {
 		"toasted",
 		"ethereal",
 	];
+	
 	const validateForm = (): boolean => {
 		const newErrors: Record<string, string> = {};
 
@@ -171,11 +194,6 @@ export default function Olfactory() {
 						<Card.Content>
 							<View style={styles.cardHeader}>
 								<Text style={styles.sectionTitle}>{t("new.olfactory.title")}</Text>
-								<CancelButton
-									setErrors={setErrors}
-									setFormData={setFormData}
-									defaultFormData={defaultFormData}
-								/>
 							</View>
 
 							<FormSelect

@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Platform } from "react-native";
 import { ActivityIndicator, Button } from "react-native-paper";
 import { useData } from "@/src/hooks/useData";
 import { useTheme } from "@/src/hooks/useTheme";
@@ -12,7 +12,7 @@ type Props = {
 	text: string;
 	validation: () => boolean;
 	formData: any;
-	action: (formData: any) => Promise<any>;
+	action: (formData: any, tid?: string) => Promise<any>;
 	requiresTid?: boolean;
 };
 
@@ -42,7 +42,7 @@ export default function NextButton({
 				} else {
 					const tid = await AsyncStorage.getItem("newTid");
 					if (!tid) throw new Error("No tasting ID found");
-					await action(tid, formData);
+					await action(formData, tid);
 				}
 				if (path.toString().includes("/new/tasting/visual")) {
 					refreshTastings();
@@ -77,10 +77,10 @@ export default function NextButton({
 						<ActivityIndicator animating color={theme.colors.white} />
 					) : (
 						<>
-							<Text style={{ marginTop: 3, fontFamily: "Epilogue-Bold", color: theme.colors.white }}>
+							<Text style={{ ...(Platform.OS === 'ios' ? { marginTop: 3 } : { marginBottom: 2 }), fontFamily: "Epilogue-Bold", color: theme.colors.white }}>
 								{text}
 							</Text>
-							<Icon size={24} style={{ marginLeft: 5 }} color={theme.colors.white} />
+							<Icon size={24} style={{ marginLeft: 3 }} color={theme.colors.white} />
 						</>
 					)}
 				</View>
