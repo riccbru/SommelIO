@@ -117,9 +117,9 @@ router.get("/:uid/stats", async (req, res) => {
 			return res.status(404).json({ error: `User ${targetUid} not found` });
 		}
 
-		const relation = await prisma.colleagues.findFirst({
+		const blockedRelationship = await prisma.colleagues.findFirst({
 			where: {
-				status: { not: "blocked" },
+				status: "blocked",
 				OR: [
 					{ requester_id: requesterUid, addressee_id: targetUid },
 					{ requester_id: targetUid, addressee_id: requesterUid },
@@ -127,7 +127,7 @@ router.get("/:uid/stats", async (req, res) => {
 			},
 		});
 
-		if (!relation) {
+		if (blockedRelationship) {
 			return res.status(403).json({ error: `This user is not available` });
 		}
 
