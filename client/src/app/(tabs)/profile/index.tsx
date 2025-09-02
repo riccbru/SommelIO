@@ -154,7 +154,7 @@ export default function User() {
 
 					<TouchableOpacity
 						activeOpacity={0.5}
-						onPress={() => router.push("/(tabs)/user/blocked")}
+						onPress={() => router.push("/(tabs)/profile/blocked")}
 					>
 						<View style={[styles.profileCard, { height: 60 }]}>
 							<View

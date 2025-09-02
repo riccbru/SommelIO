@@ -62,7 +62,7 @@ export default function ColleagueDetail() {
 	const [loading, setLoading] = useState(true);
 	const [refresh, setRefresh] = useState(false);
 	const [fadeAnim] = useState(new Animated.Value(0));
-	const { cid, public: isPublic } = useLocalSearchParams<{ cid: string, public?: string }>();
+	const { cid } = useLocalSearchParams<{ cid: string }>();
 	const { refreshColleagues, refreshBlocked } = useData();
 	const [user, setUser] = useState<UserInfoType>(defaultUserInfo);
 	const [stats, setStats] = useState<UserStatsType>(defaultUserStats);
