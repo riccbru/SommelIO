@@ -17,7 +17,7 @@ export default function SettingsBottomSheet({ bottomSheetRef }: Props) {
 		<>
 			<BottomSheet
 				index={-1}
-				snapPoints={["85%"]}
+				snapPoints={["75%"]}
 				ref={bottomSheetRef}
 				enablePanDownToClose={true}
 				handleIndicatorStyle={{ backgroundColor: theme.colors.primary }}

@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { useRouter } from "expo-router";
 import WinesAPI from "@/src/services/wines";
 import { useData } from "@/src/hooks/useData";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
-import { Text, Card } from "react-native-paper";
+import { TrashIcon } from "phosphor-react-native";
+import { useLayoutEffect, useState } from "react";
+import { useNavigation, useRouter } from "expo-router";
 import FormField from "@/src/components/tastings/FormField";
-import CancelButton from "@/src/components/new/CancelButton";
+import { ActivityIndicator, Card, Text } from "react-native-paper";
 import {
 	Keyboard,
 	KeyboardAvoidingView,
@@ -33,8 +33,31 @@ export default function ToDrink() {
 	const router = useRouter();
 	const { t } = useTranslation();
 	const { refreshWines } = useData();
+	const navigation = useNavigation();
+	const [loading, setLoading] = useState(false);
 	const [errors, setErrors] = useState<Record<string, string>>({});
 	const [formData, setFormData] = useState<NewWine>(defaultFormData);
+
+	const handleTrash = async () => {
+		setErrors({});
+		setFormData(defaultFormData);
+	};
+
+	useLayoutEffect(() => {
+		navigation.setOptions({
+			headerShown: true,
+			headerTitleStyle: {
+				fontSize: 18,
+				color: theme.colors.primary,
+				fontFamily: "Epilogue-Regular",
+			},
+			headerRight: () => (
+				<TouchableOpacity activeOpacity={0.5} onPress={handleTrash}>
+					<TrashIcon size={28} weight='fill' color={theme.colors.red} />
+				</TouchableOpacity>
+			),
+		});
+	}, [navigation, t, theme]);
 
 	const styles = StyleSheet.create({
 		container: {
@@ -86,9 +109,9 @@ export default function ToDrink() {
 		if (!formData.vintage) {
 			newErrors.vintage = `${t("new.tasting.vintage")} ${t("new.required")}`;
 		} else if (!/^\d{4}$/.test(formData.vintage.toString().trim())) {
-			newErrors.vintage = `${t("new.tasting.vintage")} must be 4 digits (YYYY)`;
+			newErrors.vintage = `${t("new.tasting.vintage")} ${t("new.tasting.vintage_dig_err")}`;
 		} else if (formData.vintage < 1000 || formData.vintage > 2025) {
-			newErrors.vintage = `Vintage year must be in a reasonable range`;
+			newErrors.vintage = `${t("new.tasting.vintage")} ${t("new.tasting.vintage_range_err")}`;
 		}
 
 		setErrors(newErrors);
@@ -98,6 +121,7 @@ export default function ToDrink() {
 	const handleAdd = async () => {
 		if (!validateForm()) return;
 		try {
+			setLoading(true);
 			await WinesAPI.createWine(formData);
 			refreshWines();
 			setFormData(defaultFormData);
@@ -105,6 +129,8 @@ export default function ToDrink() {
 			router.replace("/(tabs)/wines?tab=todrink");
 		} catch (error) {
 			console.error(`Add failed: ${error}`);
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -114,11 +140,6 @@ export default function ToDrink() {
 				<Card style={styles.card}>
 					<View style={styles.cardHeader}>
 						<Text style={styles.sectionTitle}>{t("todrink_title")}</Text>
-						<CancelButton
-							setErrors={setErrors}
-							setFormData={setFormData}
-							defaultFormData={defaultFormData}
-						/>
 					</View>
 					<FormField
 						keyboardType='default'
@@ -144,10 +165,25 @@ export default function ToDrink() {
 						onChangeText={text => setFormData({ ...formData, vintage: Number(text) })}
 					/>
 
-					<TouchableOpacity style={styles.addButton} onPress={handleAdd}>
-						<Text style={{ fontFamily: "Epilogue-Regular", fontSize: 20 }}>
-							{t("new.add_wine")}
-						</Text>
+					<TouchableOpacity
+						disabled={loading}
+						activeOpacity={0.5}
+						style={styles.addButton}
+						onPress={handleAdd}
+					>
+						{loading ? (
+							<ActivityIndicator animating color={theme.colors.white} />
+						) : (
+							<Text
+								style={{
+									color: theme.colors.white,
+									fontFamily: "Epilogue-Regular",
+									fontSize: 20,
+								}}
+							>
+								{t("new.add_wine")}
+							</Text>
+						)}
 					</TouchableOpacity>
 				</Card>
 			</TouchableWithoutFeedback>

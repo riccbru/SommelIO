@@ -11,7 +11,7 @@ type Props = {
 	text: string;
 	formData: any;
 	validation: () => boolean;
-	action: (formData: any, tid: string) => Promise<any>;
+	action: (tid: string, formData: any) => Promise<any>;
 };
 
 export default function SaveButton({ text, formData, validation, action }: Props) {
@@ -19,7 +19,7 @@ export default function SaveButton({ text, formData, validation, action }: Props
 	const router = useRouter();
 	const [loading, setLoading] = useState(false);
 	const { refreshTastings } = useData();
-	const Icon = text === "SAVE" ? CheckCircleIcon : ArrowCircleRightIcon
+	const Icon = text === "SAVE" ? CheckCircleIcon : ArrowCircleRightIcon;
 
 	const handlePress = async () => {
 		const isValid = validation();
@@ -28,11 +28,11 @@ export default function SaveButton({ text, formData, validation, action }: Props
 				setLoading(true);
 				const tid = await AsyncStorage.getItem("newTid");
 				if (!tid) throw new Error("No tasting ID found");
-				await action(formData, tid);
+				await action(tid, formData);
 				refreshTastings();
+				await AsyncStorage.removeItem("newTid");
 				router.replace("/(tabs)/new");
 				router.replace("/(tabs)/wines?tab=tastings");
-				await AsyncStorage.removeItem("newTid");
 			} catch (error) {
 				console.log(`NextButton: ${error}`);
 			} finally {
@@ -60,7 +60,13 @@ export default function SaveButton({ text, formData, validation, action }: Props
 						<ActivityIndicator animating color={theme.colors.white} />
 					) : (
 						<>
-							<Text style={{ marginTop: 3, fontFamily: "Epilogue-Bold", color: theme.colors.white }}>
+							<Text
+								style={{
+									marginTop: 3,
+									fontFamily: "Epilogue-Bold",
+									color: theme.colors.white,
+								}}
+							>
 								{text}
 							</Text>
 							<Icon size={24} style={{ marginLeft: 5 }} color={theme.colors.white} />

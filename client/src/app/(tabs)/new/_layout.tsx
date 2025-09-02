@@ -10,15 +10,15 @@ export default function NewLayout() {
 		headerShown: true,
 		title: t("tasting_name"),
 		headerStyle: {
-			backgroundColor: theme.colors.background
+			backgroundColor: theme.colors.background,
 		},
 		headerTitleStyle: {
 			fontSize: 18,
 			color: theme.colors.primary,
 			fontFamily: "Epilogue-Bold",
 		},
-		headerBackTitle: t("tastings.back")
-	}
+		headerBackTitle: t("tastings.back"),
+	};
 
 	return (
 		<Stack screenOptions={screenOptions}>

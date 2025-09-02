@@ -10,7 +10,15 @@ import ExitButton from "@/src/components/new/ExitButton";
 import FormSelect from "@/src/components/new/FormSelect";
 import NextButton from "@/src/components/new/NextButton";
 import FormSwitch from "@/src/components/new/FormSwitch";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+	KeyboardAvoidingView,
+	Platform,
+	ScrollView,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from "react-native";
 import { TrashIcon } from "phosphor-react-native";
 
 type OlfactoryExam = {
@@ -59,7 +67,7 @@ export default function Olfactory() {
 	const handleTrash = async () => {
 		setErrors({});
 		setFormData(defaultFormData);
-	}
+	};
 
 	useLayoutEffect(() => {
 		navigation.setOptions({
@@ -68,13 +76,13 @@ export default function Olfactory() {
 			headerTitleStyle: {
 				fontSize: 18,
 				color: theme.colors.primary,
-				fontFamily: "Epilogue-Regular"
+				fontFamily: "Epilogue-Regular",
 			},
 			headerRight: () => (
 				<TouchableOpacity activeOpacity={0.5} onPress={handleTrash}>
 					<TrashIcon size={28} weight='fill' color={theme.colors.red} />
 				</TouchableOpacity>
-			)
+			),
 		});
 	}, [navigation, t, theme]);
 
@@ -156,7 +164,7 @@ export default function Olfactory() {
 		"toasted",
 		"ethereal",
 	];
-	
+
 	const validateForm = (): boolean => {
 		const newErrors: Record<string, string> = {};
 

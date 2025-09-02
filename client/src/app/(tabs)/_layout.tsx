@@ -14,9 +14,12 @@ export default function TabsLayout() {
 	};
 
 	const getLabel = (key: string) => {
-		if (key !== "tabs.new") { return t(key); }
-		else { return ""; }
-	}
+		if (key !== "tabs.new") {
+			return t(key);
+		} else {
+			return "";
+		}
+	};
 
 	return (
 		<Tabs

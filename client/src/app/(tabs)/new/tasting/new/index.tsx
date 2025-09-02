@@ -11,7 +11,15 @@ import FormSelect from "@/src/components/new/FormSelect";
 import ExitButton from "@/src/components/new/ExitButton";
 import FormSwitch from "@/src/components/new/FormSwitch";
 import { useNavigation, usePathname } from "expo-router";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+	KeyboardAvoidingView,
+	Platform,
+	ScrollView,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from "react-native";
 
 type Tasting = {
 	wine_denomination: string;
@@ -61,8 +69,8 @@ export default function New() {
 	const handleTrash = async () => {
 		setErrors({});
 		setFormData(defaultFormData);
-	}
-	
+	};
+
 	useLayoutEffect(() => {
 		navigation.setOptions({
 			headerShown: true,
@@ -70,13 +78,13 @@ export default function New() {
 			headerTitleStyle: {
 				fontSize: 18,
 				color: theme.colors.primary,
-				fontFamily: "Epilogue-Regular"
+				fontFamily: "Epilogue-Regular",
 			},
 			headerRight: () => (
 				<TouchableOpacity activeOpacity={0.5} onPress={handleTrash}>
 					<TrashIcon size={28} weight='fill' color={theme.colors.red} />
 				</TouchableOpacity>
-			)
+			),
 		});
 	}, [navigation, t, theme]);
 
@@ -335,7 +343,12 @@ export default function New() {
 							validation={validateForm}
 							action={TastingsAPI.createTasting}
 							path={`/(tabs)/new/tasting/new/visual?wine_category_name=${encodeURIComponent(formData.wine_category_name)}`}
-							formData={{ ...formData, wine_denomination: capitalizeFirst(formData.wine_denomination),  winemaker: capitalizeFirst(formData.winemaker), vintage: Number(formData.vintage) }}
+							formData={{
+								...formData,
+								wine_denomination: capitalizeFirst(formData.wine_denomination),
+								winemaker: capitalizeFirst(formData.winemaker),
+								vintage: Number(formData.vintage),
+							}}
 						/>
 					</View>
 				</ScrollView>

@@ -1,10 +1,11 @@
-import { List } from "react-native-paper";
+import { ActivityIndicator, List } from "react-native-paper";
 import WinesAPI from "@/src/services/wines";
 import { XIcon } from "phosphor-react-native";
 import { useData } from "@/src/hooks/useData";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useState } from "react";
 
 type Wine = {
 	wid: string;
@@ -22,6 +23,7 @@ export default function ToDrinkList({ wines, searchQuery }: Props) {
 	const theme = useTheme();
 	const { t } = useTranslation();
 	const { refreshWines } = useData();
+	const [loading, setLoading] = useState<string | null>(null);
 
 	const styles = StyleSheet.create({
 		emptyText: {
@@ -35,10 +37,13 @@ export default function ToDrinkList({ wines, searchQuery }: Props) {
 
 	const handleDelete = async (wid: string) => {
 		try {
+			setLoading(wid);
 			await WinesAPI.deleteWine(wid);
 			refreshWines();
 		} catch (error) {
 			console.error(`Delete failed: ${error}`);
+		} finally {
+			setLoading("");
 		}
 	};
 
@@ -76,8 +81,16 @@ export default function ToDrinkList({ wines, searchQuery }: Props) {
 					)}
 					right={props => (
 						<View style={{ marginLeft: 0, marginTop: 5, marginRight: 0 }}>
-							<TouchableOpacity activeOpacity={0.7} onPress={() => handleDelete(wine.wid)}>
-								<XIcon size={32} color={theme.colors.red} />
+							<TouchableOpacity
+								disabled={loading === wine.wid}
+								activeOpacity={0.7}
+								onPress={() => handleDelete(wine.wid)}
+							>
+								{loading === wine.wid ? (
+									<ActivityIndicator animating color={theme.colors.red} />
+								) : (
+									<XIcon size={32} color={theme.colors.red} />
+								)}
 							</TouchableOpacity>
 						</View>
 					)}

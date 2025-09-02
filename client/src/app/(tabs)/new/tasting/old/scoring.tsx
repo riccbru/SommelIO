@@ -5,13 +5,20 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import { isRightRange } from "@/src/utils/utils";
 import ScoringsAPI from "@/src/services/scorings";
+import { TrashIcon } from "phosphor-react-native";
 import FormInput from "@/src/components/new/FormInput";
 import FormScore from "@/src/components/new/FormScore";
 import ExitButton from "@/src/components/new/ExitButton";
 import SaveButton from "@/src/components/new/SaveButton";
-import CancelButton from "@/src/components/new/CancelButton";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { TrashIcon } from "phosphor-react-native";
+import {
+	KeyboardAvoidingView,
+	Platform,
+	ScrollView,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from "react-native";
 
 type FormData = {
 	visual_appearance: number;
@@ -54,7 +61,7 @@ export default function Scoring() {
 	const handleTrash = async () => {
 		setErrors({});
 		setFormData(defaultFormData);
-	}
+	};
 
 	useLayoutEffect(() => {
 		navigation.setOptions({
@@ -63,13 +70,13 @@ export default function Scoring() {
 			headerTitleStyle: {
 				fontSize: 18,
 				color: theme.colors.primary,
-				fontFamily: "Epilogue-Regular"
+				fontFamily: "Epilogue-Regular",
 			},
 			headerRight: () => (
 				<TouchableOpacity activeOpacity={0.5} onPress={handleTrash}>
 					<TrashIcon size={28} weight='fill' color={theme.colors.red} />
 				</TouchableOpacity>
-			)
+			),
 		});
 	}, [navigation, t, theme]);
 

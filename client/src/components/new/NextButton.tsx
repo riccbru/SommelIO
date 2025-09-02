@@ -12,7 +12,7 @@ type Props = {
 	text: string;
 	validation: () => boolean;
 	formData: any;
-	action: (formData: any, tid?: string) => Promise<any>;
+	action: (tid?: string, formData: any) => Promise<any>;
 	requiresTid?: boolean;
 };
 
@@ -28,7 +28,7 @@ export default function NextButton({
 	const router = useRouter();
 	const [loading, setLoading] = useState(false);
 	const { refreshTastings, refreshWines } = useData();
-	const Icon = text === "SAVE" ? CheckCircleIcon : ArrowCircleRightIcon
+	const Icon = text === "SAVE" ? CheckCircleIcon : ArrowCircleRightIcon;
 
 	const handlePress = async () => {
 		const isValid = validation();
@@ -42,13 +42,14 @@ export default function NextButton({
 				} else {
 					const tid = await AsyncStorage.getItem("newTid");
 					if (!tid) throw new Error("No tasting ID found");
-					await action(formData, tid);
+					await action(tid, formData);
 				}
 				if (path.toString().includes("/new/tasting/visual")) {
 					refreshTastings();
 					refreshWines();
 				}
-				router.push(path);
+				// router.push(path);
+				router.replace(path);
 			} catch (error) {
 				console.log(`NextButton: ${error}`);
 			} finally {
@@ -77,7 +78,13 @@ export default function NextButton({
 						<ActivityIndicator animating color={theme.colors.white} />
 					) : (
 						<>
-							<Text style={{ ...(Platform.OS === 'ios' ? { marginTop: 3 } : { marginBottom: 2 }), fontFamily: "Epilogue-Bold", color: theme.colors.white }}>
+							<Text
+								style={{
+									...(Platform.OS === "ios" ? { marginTop: 3 } : { marginBottom: 2 }),
+									fontFamily: "Epilogue-Bold",
+									color: theme.colors.white,
+								}}
+							>
 								{text}
 							</Text>
 							<Icon size={24} style={{ marginLeft: 3 }} color={theme.colors.white} />

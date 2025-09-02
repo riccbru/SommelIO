@@ -10,7 +10,15 @@ import ExitButton from "@/src/components/new/ExitButton";
 import FormSelect from "@/src/components/new/FormSelect";
 import NextButton from "@/src/components/new/NextButton";
 import { useNavigation, usePathname } from "expo-router";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+	KeyboardAvoidingView,
+	Platform,
+	ScrollView,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from "react-native";
 
 type FinalExam = {
 	evolutionary_state: string;
@@ -38,7 +46,7 @@ export default function Final() {
 	const handleTrash = async () => {
 		setErrors({});
 		setFormData(defaultFormData);
-	}
+	};
 
 	useLayoutEffect(() => {
 		navigation.setOptions({
@@ -47,13 +55,13 @@ export default function Final() {
 			headerTitleStyle: {
 				fontSize: 18,
 				color: theme.colors.primary,
-				fontFamily: "Epilogue-Regular"
+				fontFamily: "Epilogue-Regular",
 			},
 			headerRight: () => (
 				<TouchableOpacity activeOpacity={0.5} onPress={handleTrash}>
 					<TrashIcon size={28} weight='fill' color={theme.colors.red} />
 				</TouchableOpacity>
-			)
+			),
 		});
 	}, [navigation, t, theme]);
 

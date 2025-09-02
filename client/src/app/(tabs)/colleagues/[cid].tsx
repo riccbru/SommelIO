@@ -9,7 +9,7 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import UserSkeleton from "@/src/components/user/UserSkeleton";
 import ConfirmButton from "@/src/components/colleagues/ConfirmActionButton";
 import { ProhibitIcon, TrashIcon, WarningIcon } from "phosphor-react-native";
-import { useLocalSearchParams, useNavigation, usePathname, useRouter } from "expo-router";
+import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
 import {
 	Animated,
 	RefreshControl,
@@ -57,7 +57,6 @@ export default function ColleagueDetail() {
 	const router = useRouter();
 	const { t } = useTranslation();
 	const navigation = useNavigation();
-	const pathname = usePathname();
 	const [modal, setModal] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const [refresh, setRefresh] = useState(false);
@@ -144,7 +143,6 @@ export default function ColleagueDetail() {
 	}, [fadeAnim, navigation, theme, user]);
 
 	useEffect(() => {
-		console.log(pathname);
 		const fetchUserStats = async () => {
 			setLoading(true);
 			try {

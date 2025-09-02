@@ -32,13 +32,12 @@ export default function UserProfile({ userData, userStats }: Props) {
 	const theme = useTheme();
 	const { user } = useAuth();
 	const { t } = useTranslation();
-	// const url = `sommelio://colleagues/${userData?.uid}`; // real url
-	// const url = `sommelio://colleagues/567a6236-4b2e-447e-8f20-397d452d1412`; // already friend - 200 OK
-	// const url = `sommelio://colleagues/9610f42d-17f1-4f19-807a-ed0c52f220b3`; // not friend - 403 Forbidden
-	// const url = `sommelio://colleagues/fbe2f752-8de2-47b5-bde2-f02a8526ac85`; // incoming req - 200 OK
-	// const url = `sommelio://colleagues/89a1340f-5abc-42c1-b004-3cead8207b1b`; // outgoing req - 200 OK
-
-
+	const url = `sommelio://colleagues/${userData?.uid}`; // real url
+	// const url = `sommelio://colleagues/567a6236-4b2e-447e-8f20-397d452d1412`; // accepted	(bankich) 	  	200 OK
+	// const url = `sommelio://colleagues/9610f42d-17f1-4f19-807a-ed0c52f220b3`; // null		(rischio) 	  	200 OK
+	// const url = `sommelio://colleagues/fbe2f752-8de2-47b5-bde2-f02a8526ac85`; // pending IN 	(emipal) 	  	200 OK
+	// const url = `sommelio://colleagues/89a1340f-5abc-42c1-b004-3cead8207b1b`; // pending OUT	(ciclarimpo)  	200 OK
+	// const url = `sommelio://colleagues/67cb2054-2b59-4087-bb3e-adb63f703dd4`; // blocked		(baffanghirlo)	403 Forbidden
 
 	const styles = StyleSheet.create({
 		profileCard: {
@@ -95,6 +94,7 @@ export default function UserProfile({ userData, userStats }: Props) {
 	});
 
 	const handleShare = async () => {
+		console.log(url);
 		try {
 			const result = await Share.share({
 				message: `${t("shareMex")} ${url}`,

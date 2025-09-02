@@ -9,15 +9,15 @@ export default function TastingsLayout() {
 	const screenOptions = {
 		headerStyle: {
 			backgroundColor: theme.colors.background,
-		}
-	}
+		},
+	};
 
 	return (
 		<Stack screenOptions={screenOptions}>
 			<Stack.Screen
 				name='index'
 				options={{
-					title: t("tabs.wines"),	
+					title: t("tabs.wines"),
 					headerTitleStyle: {
 						fontSize: 18,
 						color: theme.colors.primary,

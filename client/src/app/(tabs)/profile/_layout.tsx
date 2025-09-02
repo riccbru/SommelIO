@@ -9,7 +9,7 @@ export default function ColleaguesLayout() {
 	const screenOptions = {
 		headerStyle: {
 			backgroundColor: theme.colors.background,
-		}
+		},
 	};
 
 	return (

@@ -11,7 +11,15 @@ import FormSelect from "@/src/components/new/FormSelect";
 import NextButton from "@/src/components/new/NextButton";
 import FormSwitch from "@/src/components/new/FormSwitch";
 import { useLocalSearchParams, useNavigation, usePathname } from "expo-router";
-import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+	KeyboardAvoidingView,
+	Platform,
+	ScrollView,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from "react-native";
 
 type OlfactoryExam = {
 	intensity: string;
@@ -59,8 +67,8 @@ export default function Olfactory() {
 	const handleTrash = async () => {
 		setErrors({});
 		setFormData(defaultFormData);
-	}
-	
+	};
+
 	useLayoutEffect(() => {
 		navigation.setOptions({
 			headerShown: true,
@@ -68,13 +76,13 @@ export default function Olfactory() {
 			headerTitleStyle: {
 				fontSize: 18,
 				color: theme.colors.primary,
-				fontFamily: "Epilogue-Regular"
+				fontFamily: "Epilogue-Regular",
 			},
 			headerRight: () => (
 				<TouchableOpacity activeOpacity={0.5} onPress={handleTrash}>
 					<TrashIcon size={28} weight='fill' color={theme.colors.red} />
 				</TouchableOpacity>
-			)
+			),
 		});
 	}, [navigation, t, theme]);
 

@@ -34,7 +34,9 @@ export default function User() {
 	useLayoutEffect(() => {
 		navigation.setOptions({
 			headerLeft: () => {
-				return Platform.OS !== 'ios' ? (<></>) : (
+				return Platform.OS !== "ios" ? (
+					<></>
+				) : (
 					<TouchableOpacity
 						activeOpacity={0.7}
 						onPress={() => {
@@ -47,11 +49,13 @@ export default function User() {
 							color={theme.colors.primary}
 						/>
 					</TouchableOpacity>
-				)
+				);
 			},
 			headerRight: () => (
 				<>
-					{Platform.OS === 'ios' ? (<></>) : (
+					{Platform.OS === "ios" ? (
+						<></>
+					) : (
 						<>
 							<TouchableOpacity
 								activeOpacity={0.7}

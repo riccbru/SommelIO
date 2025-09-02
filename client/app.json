@@ -20,8 +20,8 @@
 			"package": "com.riccbru.sommelio",
 			"adaptiveIcon": {
 				"foregroundImage": "./assets/images/icon/foreground_432.png",
-                "backgroundImage": "./assets/images/icon/background_432.png"
-            }
+				"backgroundImage": "./assets/images/icon/background_432.png"
+			}
 		},
 		"web": {
 			"bundler": "metro",
@@ -34,10 +34,7 @@
 			[
 				"expo-font",
 				{
-					"fonts": [
-						"./assets/fonts/Epilogue-Bold.ttf",
-						"./assets/fonts/Epilogue-Regular.ttf"
-					]
+					"fonts": ["./assets/fonts/Epilogue-Bold.ttf", "./assets/fonts/Epilogue-Regular.ttf"]
 				}
 			],
 			[
