@@ -51,15 +51,19 @@ React Native project for tracking all wines and beers I tasted, in accordance wi
 
 - Install dependencies
 ```bash
-npm run install:all
+cd SommelIO; npm run install:all
 ```
 
-#### DEVELOPMENT
+- Add Android Studio environment variables:
+```bash
+echo "export ANDROID_HOME=$HOME/Library/Android/sdk" >> ~/.zshrc
+echo "export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$PATH" >> ~/.zshrc
+exec zsh
+```
+
+### DEVELOPMENT
 
 - `Postgres DB`
-```bash
-cd SommelIO
-```
    - Start
       ```bash
       docker compose up
@@ -70,23 +74,22 @@ cd SommelIO
       ```
 
 - Start `Backend server`
- ```bash
- cd server; nodemon .
- ```
+   ```bash
+   cd server; nodemon .
+   ```
 - Start `Expo client`
- ```bash
- cd client; npx expo start --clear
- ```
+   ```bash
+   cd client; npx expo start --clear
+   ```
 
-#### BUILD
+### BUILD
 
 - Build fresh native projects:
    ```bash
-   cd client;
-   npx expo prebuild --clean
+   cd client; npx expo prebuild --clean;
    ```
 
-- **iOS**
+- #### iOS
    - Run on XCode simulator:
    ```bash
    npx expo run:ios
@@ -102,9 +105,14 @@ cd SommelIO
    npx expo start --dev-client
    ```
 
-- **Android**
+- #### Android
 
-   - EAS Preview:
+   - Android emulator
+      ```bash
+      npx expo run:android
+      ```
+
+   - EAS Android Preview:
       ```bash
       eas build --platform android --profile preview
       ```
