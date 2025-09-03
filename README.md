@@ -20,13 +20,13 @@
   <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black" /></a>
   <a href="https://expressjs.com/"><img src="https://img.shields.io/badge/Express-black?style=flat&logo=express" /></a>
   <a href="https://zod.dev/"><img src="https://img.shields.io/badge/Zod-2D3748?style=flat" /></a>
-  <a href="https://www.dotenv.org/docs/"><img src="https://img.shields.io/badge/.ENV-ECD53F?style=flat&logo=dotenv&logoColor=black" /></a>
-  <a href="https://typestrong.org/ts-node/docs/"><img src="https://img.shields.io/badge/ts-node-3178C6?style=flat&logo=ts-node&logoColor=white" /></a>
+  <a href="https://www.dotenv.org/"><img src="https://img.shields.io/badge/.ENV-ECD53F?style=flat&logo=dotenv&logoColor=black" /></a>
+  <a href="https://typestrong.org/ts-node/"><img src="https://img.shields.io/badge/ts-node-3178C6?style=flat&logo=ts-node&logoColor=white" /></a>
   <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white" /></a>
   <a href="https://react.i18next.com/"><img src="https://img.shields.io/badge/i18n-26A69A?style=flat&logo=i18next&logoColor=white" /></a>
   <a href="https://expo.dev/"><img src="https://img.shields.io/badge/Expo-000020?style=flat&logo=expo&logoColor=white" /></a>
   <a href="https://reactnative.dev/"><img src="https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB" /></a>
-  <a href="https://axios-http.com/docs/intro"><img src="https://img.shields.io/badge/Axios-5A29E4?style=flat&logo=axios&logoColor=white" /></a>
+  <a href="https://axios-http.com/"><img src="https://img.shields.io/badge/Axios-5A29E4?style=flat&logo=axios&logoColor=white" /></a>
   <a href="https://eslint.org/"><img src="https://img.shields.io/badge/ESLint-4B32C3?style=flat&logo=eslint&logoColor=white" /></a>
   <img src="https://img.shields.io/badge/JSON-000000?style=flat&logo=json" />
   <img src="https://img.shields.io/badge/Markdown-000000?style=flat&logo=markdown" />

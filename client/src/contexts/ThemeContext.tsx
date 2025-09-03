@@ -1,12 +1,15 @@
 import { useColorScheme } from "react-native";
+import { CustomColors } from "../theme/colors";
 import { DarkTheme, LightTheme } from "../theme";
 import { MD3Theme, PaperProvider } from "react-native-paper";
-import { createContext, ReactNode, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { createContext, ReactNode, useEffect, useState } from "react";
+import type { MD3Colors } from "react-native-paper/lib/typescript/types";
 
 export interface CustomTheme extends MD3Theme {
 	isDark: boolean;
 	toggleTheme: () => void;
+	colors: MD3Colors & CustomColors;
 }
 
 export const ThemeContext = createContext<CustomTheme | undefined>(undefined);
