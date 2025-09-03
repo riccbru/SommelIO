@@ -9,5 +9,5 @@ export default function Index() {
 		return <LoadingSpinner text='' />;
 	}
 
-	return <Redirect href={isLoggedIn ? "/(tabs)" : "/login"} />;
+	return <Redirect href={isLoggedIn ? "/(tabs)/home" : "/login"} />;
 }

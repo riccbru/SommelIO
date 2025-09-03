@@ -90,24 +90,24 @@ exec zsh
    ```
 
 - #### iOS
-   - Run on XCode simulator:
-   ```bash
-   npx expo run:ios
-   ```
+   - Run on XCode emulator:
+      ```bash
+      npx expo run:ios
+      ```
 
    - Run on physical iPhone (build project on XCode):
-   ```bash
-   xed ios/*.xcworkspace
-   ```
+      ```bash
+      xed ios/*.xcworkspace
+      ```
 
    - Build on XCode and start the Metro JS bundler using:
-   ```bash
-   npx expo start --dev-client
-   ```
+      ```bash
+      npx expo start --dev-client
+      ```
 
 - #### Android
 
-   - Android emulator
+   - Run on Android Studio emulator:
       ```bash
       npx expo run:android
       ```

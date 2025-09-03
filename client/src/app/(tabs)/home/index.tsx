@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import { Linking, StyleSheet, Pressable, Text, View } from "react-native";
 
-export default function Index() {
+export default function Home() {
 	const theme = useTheme();
 	const { t } = useTranslation();
 

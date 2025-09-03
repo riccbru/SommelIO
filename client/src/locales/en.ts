@@ -22,7 +22,7 @@ export default {
 	},
 	shareMex: "Hi! I just completed a tasting on SommelIO. Check out my profile and ratings:",
 	tabs: {
-		index: "Home",
+		home: "Home",
 		colleagues: "Colleagues",
 		new: "New",
 		wines: "Wines",
