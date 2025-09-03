@@ -35,6 +35,7 @@ export default function ToDrink() {
 		},
 		text: {
 			fontSize: 22,
+			marginTop: 60,
 			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
@@ -67,33 +68,31 @@ export default function ToDrink() {
 
 	return (
 		<>
-			{!wines.length ? (
-				<View style={styles.centeredContainer}>
-					<Text style={styles.text}>{t("todrink_notFound")}</Text>
+			<View style={styles.container}>
+				<View style={styles.searchBarContainer}>
+					<Searchbar
+						value={searchQuery}
+						onChangeText={setSearchQuery}
+						placeholder={t("tastings.searchbar")}
+						style={{ marginTop: 5, marginBottom: 5 }}
+					/>
 				</View>
-			) : (
-				<>
-					<View style={styles.container}>
-						<View style={styles.searchBarContainer}>
-							<Searchbar
-								value={searchQuery}
-								onChangeText={setSearchQuery}
-								placeholder={t("tastings.searchbar")}
-								style={{ marginTop: 5, marginBottom: 5 }}
-							/>
-						</View>
+			</View>
+			<ScrollView
+				style={styles.tastingsContainer}
+				keyboardShouldPersistTaps='handled'
+				refreshControl={
+					<RefreshControl refreshing={loading.wines} onRefresh={refreshWines} />
+				}
+			>
+				{!wines.length ? (
+					<View style={styles.centeredContainer}>
+						<Text style={styles.text}>{t("todrink_notFound")}</Text>
 					</View>
-					<ScrollView
-						style={styles.tastingsContainer}
-						keyboardShouldPersistTaps='handled'
-						refreshControl={
-							<RefreshControl refreshing={loading.wines} onRefresh={refreshWines} />
-						}
-					>
-						<ToDrinkList wines={wines} searchQuery={searchQuery} />
-					</ScrollView>
-				</>
-			)}
+				) : (
+					<ToDrinkList wines={wines} searchQuery={searchQuery} />
+				)}
+			</ScrollView>
 		</>
 	);
 }

@@ -54,7 +54,9 @@ export function setDescription(t: TFunction, exam: string, field: string, state:
 	return t(`description.${exam}.${field}.${!state ? "descr" : state}`);
 }
 
-export function blockedDescription(name: string, date: string) {
-	return `${new Date(date).toLocaleDateString()}\n${name}`;
-	// return `${name}\n${new Date(date).toLocaleDateString()}`;
+export function blockedDescription(name: string, date: string, lang: string) {
+	const formattedDate = new Intl.DateTimeFormat(lang, {
+		dateStyle: "short",
+	}).format(new Date(date));
+	return `${formattedDate}\n${name}`;
 }

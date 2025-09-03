@@ -515,7 +515,7 @@ export default {
 			descriptors: {
 				descr: "Il senso dell'olfatto è estremamente sensibile e permette di percepire sfumature odorose molto delicate e sottili, legate a tutto quanto si può incontrare in natura.",
 				aromatic:
-					"Aggettivo che si usa per descrivere il profumo di un vino ottenuto da un vitigno aromatico (moscati, malvasie, brachetto, gewürztraminer); proprio perché identifica il vitigno di origine e inquadra immediatamente la tipologia del vino, deve essere il primo nell'elenco della descrizione olfattiva del vino. Solo successivamente si entrerà nel dettaglio delle singole sfumature odorose.",
+					"Aggettivo che si usa per descrivere il profumo di un vino ottenuto da un vitigno aromatico (moscati, malvasie, brachetto, gewürztraminer); proprio perché identifica il vitigno di origine e inquadra immediatamente la tipologia del vino, deve essere il primo nell'elenco della descrizione olfattiva del vino.",
 				vinous:
 					"Aggettivo che si usa per descrivere il profumo che ricorda quello della cantina nella quale il mosto sta fermentando o, ancora di più, al momento della svinatura; si riscontra principalmente nei vini rossi giovani.",
 				floral:

@@ -511,7 +511,7 @@ export default {
 			descriptors: {
 				descr: "The sense of smell is extremely sensitive. It enables us to perceive the highly varied nuances of delicate and subtle scents present in nature.",
 				aromatic:
-					"This adjective describes the bouquet of a wine obtained from aromatic grapes (muscats, malvasie, brachetti and gewürztraminer). This is the first term considered since it identifies the vine of origin as well as the type of wine. Later we will discuss in detail the other terms referred to odorous nuances.",
+					"This adjective describes the bouquet of a wine obtained from aromatic grapes (muscats, malvasie, brachetti and gewürztraminer). This is the first term considered since it identifies the vine of origin as well as the type of wine.",
 				vinous:
 					"This adjective applies to the typical scents which are perceived inside of a winery when must is fermenting or, better still, at devatting time. It is usually found in young red wines.",
 				floral:

@@ -94,7 +94,6 @@ export default function UserProfile({ userData, userStats }: Props) {
 	});
 
 	const handleShare = async () => {
-		console.log(url);
 		try {
 			const result = await Share.share({
 				message: `${t("shareMex")} ${url}`,

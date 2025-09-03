@@ -5,6 +5,7 @@ import { LockOpenIcon } from "phosphor-react-native";
 import ColleaguesAPI from "@/src/services/colleagues";
 import { blockedDescription } from "@/src/utils/utils";
 import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { useTranslation } from "react-i18next";
 
 type Blocked = {
 	username: string;
@@ -21,6 +22,7 @@ type Props = {
 
 export default function BlockedColleague({ blocked }: Props) {
 	const theme = useTheme();
+	const { i18n } = useTranslation();
 	const { refreshBlocked } = useData();
 
 	const styles = StyleSheet.create({
@@ -68,7 +70,7 @@ export default function BlockedColleague({ blocked }: Props) {
 			descriptionStyle={{ marginTop: 5 }}
 			description={
 				<Text style={styles.description}>
-					{blockedDescription(blocked.full_name, blocked.blocked_at)}
+					{blockedDescription(blocked.full_name, blocked.blocked_at, i18n.language)}
 				</Text>
 			}
 			left={props => (
@@ -78,9 +80,9 @@ export default function BlockedColleague({ blocked }: Props) {
 				<TouchableOpacity activeOpacity={0.5} onPress={handlePress}>
 					<LockOpenIcon
 						size={32}
-						weight='regular'
+						weight='bold'
 						style={{ marginTop: 15 }}
-						color={theme.colors.yellow}
+						color={theme.dark ? theme.colors.yellow : theme.colors.amber}
 					/>
 				</TouchableOpacity>
 			)}

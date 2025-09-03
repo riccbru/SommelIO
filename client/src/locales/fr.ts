@@ -514,7 +514,7 @@ export default {
 			descriptors: {
 				descr: "L'odorat est un sens extrêmement sensible et il permet de percevoir des nuances odorantes très délicates et fines qui sont liées à tout ce qu'on peut trouver dans la nature.",
 				aromatic:
-					"C'est un adjectif utilisé pour décrire le parfum d'un vin obtenu à partire d'un cépage aromatique (muscats, malvoisie, brachetto, gewürztraminer). Justement parce qu'il identifie le cépage d'origine et il encadre immédiatement la typologie du vin, il doit être le premier dans la liste de la description olfactive du vin. Seulement successivement on va entrer dans le détail des nuance odorantes individuelles.",
+					"C'est un adjectif utilisé pour décrire le parfum d'un vin obtenu à partire d'un cépage aromatique (muscats, malvoisie, brachetto, gewürztraminer). Justement parce qu'il identifie le cépage d'origine et il encadre immédiatement la typologie du vin, il doit être le premier dans la liste de la description olfactive du vin.",
 				vinous:
 					"C'est un adjectif qu'on utilise pour décrire le parfum qui rappelle celui de la cave dans laquelle le moût est en train de fermenter ou, encore plus, au moment du décuvage. On le rencontreprincipalement dans les vins rouges jeunes.",
 				floral:
