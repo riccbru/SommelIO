@@ -28,7 +28,8 @@ export default function Home() {
 	});
 
 	const handlePress = () => {
-		Linking.openURL("https://aisitalia.it/");
+		Linking.openURL("sommelio://page");
+		// Linking.openURL("https://aisitalia.it/");
 	};
 
 	return (
