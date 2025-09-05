@@ -1,7 +1,7 @@
 import { FilePlusIcon, HouseIcon, UserIcon, UsersIcon, WineIcon } from "phosphor-react-native";
 
 export const TAB_CONFIG = {
-	home: {
+	index: {
 		title: "tabs.home",
 		icon: HouseIcon,
 	},

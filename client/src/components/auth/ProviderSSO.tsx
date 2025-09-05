@@ -2,13 +2,13 @@ import { useMemo } from "react";
 import { useTheme } from "@/src/hooks/useTheme";
 import { Image, Platform, StyleSheet, TouchableOpacity, View } from "react-native";
 
-import facebookLogo from "@/assets/images/SSO/fb_logo.png";
-import appleDark from "@/assets/images/SSO/apple_light_logo.png";
-import appleLight from "@/assets/images/SSO/apple_dark_logo.png";
-import googleIosDark from "@/assets/images/SSO/google_ios_light_logo.png";
-import googleIosLight from "@/assets/images/SSO/google_ios_dark_logo.png";
-import googleAndroidDark from "@/assets/images/SSO/google_android_dark_logo.png";
-import googleAndroidLight from "@/assets/images/SSO/google_android_light_logo.png";
+const facebookLogo = require("../../../assets/images/SSO/fb_logo.png");
+const appleDark = require("../../../assets/images/SSO/apple_light_logo.png");
+const appleLight = require("../../../assets/images/SSO/apple_dark_logo.png");
+const googleIosDark = require("../../../assets/images/SSO/google_ios_light_logo.png");
+const googleIosLight = require("../../../assets/images/SSO/google_ios_dark_logo.png");
+const googleAndroidDark = require("../../../assets/images/SSO/google_android_dark_logo.png");
+const googleAndroidLight = require("../../../assets/images/SSO/google_android_light_logo.png");
 
 export default function ProviderSSO() {
 	const { dark: isDark } = useTheme();

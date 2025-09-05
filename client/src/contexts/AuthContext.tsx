@@ -68,6 +68,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 		);
 		const checkAuth = async () => {
 			try {
+				setAuthStatus({ isReady: false, isLoggedIn: false });
 				const actualAccessToken = await SecureStore.getItemAsync("accessToken");
 				const actualRefreshToken = await SecureStore.getItemAsync("refreshToken");
 
@@ -81,6 +82,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 					});
 					setAuthStatus({ isReady: true, isLoggedIn: true });
 					return;
+				} else {
+					setAuthStatus({ isReady: true, isLoggedIn: false });
 				}
 			} catch (error) {
 				console.log("checkAuth:", error);
@@ -89,13 +92,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 				const as_keys = await AsyncStorage.getAllKeys();
 				console.log(`[${Platform.OS}] AsyncStorage keys: ${as_keys.join(", ")}`);
 			}
-			setAuthStatus({ isReady: true, isLoggedIn: false });
 		};
 		checkAuth();
 	}, []);
 
 	const login = async (username: string, password: string) => {
 		try {
+			setAuthStatus({ isReady: false, isLoggedIn: false });
 			const { newAccessToken, newRefreshToken } = await AuthAPI.login(username, password);
 			const currentUser = await UserAPI.getCurrentUser(newAccessToken);
 			await SecureStore.setItemAsync("accessToken", newAccessToken);
@@ -114,6 +117,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 	const logout = async () => {
 		try {
+			setAuthStatus({ isReady: false, isLoggedIn: true });
 			await AuthAPI.logout();
 		} catch (error) {
 			throw error;

@@ -8,19 +8,12 @@ import AnimatedTabButton from "@/src/components/navigation/AnimatedTabButton";
 export default function TabsLayout() {
 	const theme = useTheme();
 	const { t } = useTranslation();
+	const getLabel = (key: string) => (key !== "tabs.new" ? t(key) : "");
 	const iconColor = (focused: boolean) => (!focused ? theme.colors.primary : theme.colors.amber);
 	const iconWeight = (title: string, focused: boolean) => {
 		return !getLabel(title) || focused ? "fill" : "regular";
-	};
-
-	const getLabel = (key: string) => {
-		if (key !== "tabs.new") {
-			return t(key);
-		} else {
-			return "";
-		}
-	};
-
+	}
+	
 	return (
 		<Tabs
 			screenOptions={({ route }) => {
@@ -32,11 +25,10 @@ export default function TabsLayout() {
 						paddingTop: 5,
 						backgroundColor: theme.colors.background,
 					},
-					tabBarLabelStyle: ({ focused }: { focused: boolean }) => ({
+					tabBarLabelStyle: {
 						paddingTop: 5,
 						fontFamily: "Epilogue-Regular",
-						color: focused ? theme.colors.amber : theme.colors.primary,
-					}),
+					},
 					tabBarLabel: ({ focused }) =>
 						!config.title.length ? (
 							<></>
@@ -52,16 +44,16 @@ export default function TabsLayout() {
 								{getLabel(config?.title)}
 							</Text>
 						),
-					tabBarIcon: ({ focused }) => (
-						<Icon
-							color={iconColor(focused)}
-							size={!getLabel(config.title).length ? 48 : 32}
-							weight={iconWeight(config.title, focused)}
-						/>
-					),
 					tabBarIconStyle: {
 						marginTop: !getLabel(config.title) ? 8 : 1,
 					},
+					tabBarIcon: ({ focused }) => (
+						<Icon
+							color={iconColor(focused)}
+							weight={iconWeight(config.title, focused)}
+							size={!getLabel(config.title).length ? 48 : 32}
+						/>
+					),
 					tabBarButton: (props: any) => <AnimatedTabButton {...props} />,
 				};
 			}}
