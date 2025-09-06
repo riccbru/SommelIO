@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { Icon } from "phosphor-react-native";
+import { ActivityIndicator } from "react-native-paper";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 type ConfirmButtonProps = {
+	disabled: boolean;
+	loading: boolean;
 	Icon: Icon;
 	iconColor: string;
 	bgColor: string;
@@ -13,6 +16,8 @@ type ConfirmButtonProps = {
 };
 
 export default function ConfirmButton({
+	disabled,
+	loading,
 	Icon,
 	iconColor,
 	bgColor,
@@ -54,15 +59,22 @@ export default function ConfirmButton({
 
 	return (
 		<TouchableOpacity
+			disabled={disabled}
 			activeOpacity={0.5}
 			onPress={handlePress}
 			style={[styles.touchables, { backgroundColor: bgColor }]}
 		>
 			<View style={styles.buttonsLayout}>
-				<Icon size={28} weight='bold' color={iconColor} />
-				<Text style={[styles.buttonsText, { color: textColor }]}>
-					{confirm ? confirmLabel : label}
-				</Text>
+				{loading ? (
+					<ActivityIndicator animating color={textColor} />
+				) : (
+					<>
+						<Icon size={28} weight='bold' color={iconColor} />
+						<Text style={[styles.buttonsText, { color: textColor }]}>
+							{confirm ? confirmLabel : label}
+						</Text>
+					</>
+				)}
 			</View>
 		</TouchableOpacity>
 	);

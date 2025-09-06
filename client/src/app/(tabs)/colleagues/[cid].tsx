@@ -65,6 +65,7 @@ export default function ColleagueDetail() {
 	const { refreshColleagues, refreshBlocked } = useData();
 	const [user, setUser] = useState<UserInfoType>(defaultUserInfo);
 	const [stats, setStats] = useState<UserStatsType>(defaultUserStats);
+	const [handling, setHandling] = useState({ block: false, remove: false });
 
 	const styles = StyleSheet.create({
 		scrollview: {
@@ -161,6 +162,7 @@ export default function ColleagueDetail() {
 	}, [cid, refresh]);
 
 	const handleConfirm = async (action: "block" | "remove") => {
+		setHandling({ block: action === "block", remove: action === "remove" });
 		if (action.toLowerCase() === "block") {
 			await ColleaguesAPI.blockColleague(cid);
 		} else if (action.toLowerCase() === "remove") {
@@ -168,6 +170,7 @@ export default function ColleagueDetail() {
 		} else {
 			console.log(`Action ${action} not supported`);
 		}
+		setHandling({ block: false, remove: false });
 		refreshBlocked();
 		refreshColleagues();
 		router.back();
@@ -201,22 +204,26 @@ export default function ColleagueDetail() {
 
 						<ConfirmButton
 							Icon={ProhibitIcon}
+							loading={handling.block}
 							bgColor={theme.colors.yellow}
 							label={t("colleagues.block")}
 							confirmLabel={t("colleagues.confirm")}
 							onConfirm={() => handleConfirm("block")}
+							disabled={handling.block || handling.remove}
 							textColor={theme.dark ? theme.colors.gray : theme.colors.primary}
 							iconColor={theme.dark ? theme.colors.gray : theme.colors.primary}
 						/>
 
 						<ConfirmButton
 							Icon={TrashIcon}
+							loading={handling.remove}
 							bgColor={theme.colors.red}
 							label={t("colleagues.remove")}
 							iconColor={theme.colors.primary}
 							textColor={theme.colors.primary}
-							onConfirm={() => handleConfirm("remove")}
 							confirmLabel={t("colleagues.confirm")}
+							onConfirm={() => handleConfirm("remove")}
+							disabled={handling.block || handling.remove}
 						/>
 					</View>
 				</Modal>

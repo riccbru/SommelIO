@@ -18,6 +18,7 @@ export default function Tastings() {
 		},
 		centeredContainer: {
 			flex: 1,
+			marginTop: 50,
 			alignItems: "center",
 			justifyContent: "center",
 			backgroundColor: theme.colors.background,
@@ -42,33 +43,31 @@ export default function Tastings() {
 
 	return (
 		<>
-			{!tastings.length ? (
-				<View style={styles.centeredContainer}>
-					<Text style={styles.text}>{t("tastings.notFound")}</Text>
+			<View style={styles.container}>
+				<View style={styles.searchBarContainer}>
+					<Searchbar
+						value={searchQuery}
+						onChangeText={setSearchQuery}
+						placeholder={t("tastings.searchbar")}
+						style={{ marginTop: 5, marginBottom: 5 }}
+					/>
 				</View>
-			) : (
-				<>
-					<View style={styles.container}>
-						<View style={styles.searchBarContainer}>
-							<Searchbar
-								value={searchQuery}
-								onChangeText={setSearchQuery}
-								placeholder={t("tastings.searchbar")}
-								style={{ marginTop: 5, marginBottom: 5 }}
-							/>
-						</View>
+			</View>
+			<ScrollView
+				style={styles.tastingsContainer}
+				keyboardShouldPersistTaps='handled'
+				refreshControl={
+					<RefreshControl refreshing={loading.tastings} onRefresh={refreshTastings} />
+				}
+			>
+				{!tastings.length ? (
+					<View style={styles.centeredContainer}>
+						<Text style={styles.text}>{t("tastings.notFound")}</Text>
 					</View>
-					<ScrollView
-						style={styles.tastingsContainer}
-						keyboardShouldPersistTaps='handled'
-						refreshControl={
-							<RefreshControl refreshing={loading.tastings} onRefresh={refreshTastings} />
-						}
-					>
-						<TastingsList tastings={tastings} searchQuery={searchQuery} />
-					</ScrollView>
-				</>
-			)}
+				) : (
+					<TastingsList tastings={tastings} searchQuery={searchQuery} />
+				)}
+			</ScrollView>
 		</>
 	);
 }

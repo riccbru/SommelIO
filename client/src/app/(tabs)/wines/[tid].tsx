@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
-import { Text, Card } from "react-native-paper";
 import { GavelIcon, StarIcon } from "phosphor-react-native";
 import LoadingSpinner from "@/src/components/LoadingSpinner";
 import { useLocalSearchParams, useNavigation } from "expo-router";
+import { ActivityIndicator, Card, Text } from "react-native-paper";
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import {
 	KeyboardAvoidingView,
@@ -96,6 +96,7 @@ export default function TastingDetail() {
 	const [loading, setLoading] = useState(true);
 	const [refresh, setRefresh] = useState(false);
 	const [favorite, setFavorite] = useState(false);
+	const [patching, setPatching] = useState(false);
 	const { tid } = useLocalSearchParams<{ tid: string }>();
 	const [tasting, setTasting] = useState<Tasting | null>(null);
 	const [editMode, setEditMode] = useState<EditModeShape>(defaultEditMode);
@@ -155,17 +156,43 @@ export default function TastingDetail() {
 
 	const toggleFavorite = useCallback(async () => {
 		try {
+			setPatching(true);
 			const response = await TastingsAPI.toggleFavorite(tid);
 			setFavorite(response.data.favorite);
 		} catch (error) {
 			console.log(error);
+		} finally {
+			setPatching(false);
 		}
 	}, [tid]);
 
 	useLayoutEffect(() => {
 		if (!tasting) return;
 		navigation.setOptions({
-			title: `${tasting?.wine_denomination} - ${tasting?.winemaker}`,
+			headerTitle: () => (
+				<View style={{ flexDirection: "row", alignItems: "center" }}>
+					{!tasting.new ? (
+						<></>
+					) : (
+						<GavelIcon
+							size={24}
+							weight='fill'
+							color={theme.colors.purple}
+							style={{ marginRight: 8 }}
+						/>
+					)}
+					<Text
+						numberOfLines={1}
+						style={{
+							color: theme.colors.primary,
+							fontFamily: "Epilogue-Regular",
+							fontSize: 18,
+						}}
+					>
+						{`${tasting.wine_denomination} - ${tasting.winemaker}`}
+					</Text>
+				</View>
+			),
 			headerTitleStyle: {
 				color: theme.colors.primary,
 				fontFamily: "Epilogue-Regular",
@@ -176,15 +203,19 @@ export default function TastingDetail() {
 					onPress={toggleFavorite}
 					style={{ justifyContent: "center", marginTop: 10, marginBottom: 10 }}
 				>
-					<StarIcon
-						size={32}
-						weight={favorite ? "fill" : "regular"}
-						color={favorite ? theme.colors.amber : theme.colors.primary}
-					/>
+					{patching ? (
+						<ActivityIndicator size={32} animating color={theme.colors.amber} />
+					) : (
+						<StarIcon
+							size={32}
+							weight={favorite ? "fill" : "regular"}
+							color={favorite ? theme.colors.amber : theme.colors.primary}
+						/>
+					)}
 				</TouchableOpacity>
 			),
 		});
-	}, [navigation, theme, favorite, tasting, toggleFavorite]);
+	}, [navigation, theme, favorite, patching, tasting, toggleFavorite]);
 
 	useEffect(() => {
 		const fetchTasting = async () => {
@@ -233,37 +264,6 @@ export default function TastingDetail() {
 			>
 				<View style={{ flexDirection: "column", justifyContent: "flex-start" }}>
 					<View style={{ marginTop: 10 }} />
-					{!tasting.new ? (
-						<></>
-					) : (
-						<>
-							<View
-								style={{
-									flexDirection: "row",
-									alignItems: "center",
-									justifyContent: "flex-start",
-								}}
-							>
-								<GavelIcon
-									size={32}
-									weight='fill'
-									color={theme.colors.purple}
-									style={{ marginLeft: 10, marginRight: 10 }}
-								/>
-								<Text
-									style={{
-										fontSize: 20,
-										marginTop: 5,
-										color: theme.colors.primary,
-										fontFamily: "Epilogue-Regular",
-									}}
-								>
-									{t("new_tasting_name_description")}
-								</Text>
-							</View>
-							<View style={{ paddingVertical: 5 }} />
-						</>
-					)}
 					<ActionButton action='download' tid={tasting.tid} />
 					<View style={{ paddingVertical: 5 }} />
 					<ActionButton

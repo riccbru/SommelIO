@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { useData } from "@/src/hooks/useData";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import ColleaguesAPI from "@/src/services/colleagues";
+import { ActivityIndicator } from "react-native-paper";
 import { CheckCircleIcon, XCircleIcon } from "phosphor-react-native";
 import {
 	View,
@@ -29,6 +31,8 @@ export default function IncomingRequests({ requests }: Props) {
 	const theme = useTheme();
 	const { t } = useTranslation();
 	const { loading, refreshColleagues, refreshRequests } = useData();
+	const [handling, setHandling] = useState({ accept: false, decline: false });
+
 	const styles = StyleSheet.create({
 		container: {
 			flex: 1,
@@ -45,16 +49,18 @@ export default function IncomingRequests({ requests }: Props) {
 		requestItem: {
 			padding: 10,
 			width: "100%",
+			borderWidth: 2,
 			borderRadius: 8,
 			marginVertical: 5,
 			flexDirection: "row",
 			alignItems: "center",
+			borderColor: theme.colors.gray,
 			justifyContent: "space-between",
-			backgroundColor: theme.colors.primary,
+			backgroundColor: theme.colors.card,
 		},
 		image: {
-			width: 45,
-			height: 45,
+			width: 55,
+			height: 55,
 			marginLeft: 0,
 			borderWidth: 1,
 			borderRadius: 30,
@@ -67,7 +73,7 @@ export default function IncomingRequests({ requests }: Props) {
 		},
 		username: {
 			fontSize: 20,
-			color: theme.colors.background,
+			color: theme.colors.primary,
 			fontFamily: "Epilogue-Regular",
 		},
 		createdAt: {
@@ -90,21 +96,16 @@ export default function IncomingRequests({ requests }: Props) {
 
 	const handleRequest = async (rid: string, action: "accept" | "decline") => {
 		try {
+			setHandling({ accept: action === "accept", decline: action === "decline" });
 			await ColleaguesAPI[`${action}Request`](rid);
 			refreshRequests();
 			refreshColleagues();
 		} catch (error: any) {
 			console.log(error.message);
+		} finally {
+			setHandling({ accept: false, decline: false });
 		}
 	};
-
-	if (!requests?.length) {
-		return (
-			<View style={styles.container}>
-				<Text style={styles.emptyText}>{t("wine_notFound")}</Text>
-			</View>
-		);
-	}
 
 	return (
 		<FlatList
@@ -113,6 +114,11 @@ export default function IncomingRequests({ requests }: Props) {
 			keyExtractor={item => item.rid}
 			refreshControl={
 				<RefreshControl refreshing={loading.requests} onRefresh={refreshRequests} />
+			}
+			ListEmptyComponent={
+				<View style={styles.container}>
+					<Text style={styles.emptyText}>{t("wine_notFound")}</Text>
+				</View>
 			}
 			renderItem={({ item }) => (
 				<View style={styles.requestItem}>
@@ -131,17 +137,27 @@ export default function IncomingRequests({ requests }: Props) {
 						<View style={styles.requestActions}>
 							<TouchableOpacity
 								activeOpacity={0.7}
+								disabled={handling.accept || handling.decline}
 								onPress={() => handleRequest(item.rid, "decline")}
 								style={[styles.iconButton, { backgroundColor: theme.colors.red }]}
 							>
-								<XCircleIcon size={24} weight='bold' color={theme.colors.white} />
+								{handling.decline ? (
+									<ActivityIndicator animating color={theme.colors.white} />
+								) : (
+									<XCircleIcon size={24} weight='bold' color={theme.colors.white} />
+								)}
 							</TouchableOpacity>
 							<TouchableOpacity
 								activeOpacity={0.7}
+								disabled={handling.accept || handling.decline}
 								onPress={() => handleRequest(item.rid, "accept")}
 								style={[styles.iconButton, { backgroundColor: theme.colors.premium }]}
 							>
-								<CheckCircleIcon size={24} weight='bold' color={theme.colors.white} />
+								{handling.accept ? (
+									<ActivityIndicator animating color={theme.colors.white} />
+								) : (
+									<CheckCircleIcon size={24} weight='bold' color={theme.colors.white} />
+								)}
 							</TouchableOpacity>
 						</View>
 					</View>

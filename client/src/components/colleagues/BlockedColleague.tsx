@@ -1,11 +1,12 @@
-import { List } from "react-native-paper";
+import { useState } from "react";
 import { useData } from "@/src/hooks/useData";
+import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
 import { LockOpenIcon } from "phosphor-react-native";
 import ColleaguesAPI from "@/src/services/colleagues";
 import { blockedDescription } from "@/src/utils/utils";
+import { ActivityIndicator, List } from "react-native-paper";
 import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
-import { useTranslation } from "react-i18next";
 
 type Blocked = {
 	username: string;
@@ -24,6 +25,7 @@ export default function BlockedColleague({ blocked }: Props) {
 	const theme = useTheme();
 	const { i18n } = useTranslation();
 	const { refreshBlocked } = useData();
+	const [loading, setLoading] = useState(false);
 
 	const styles = StyleSheet.create({
 		emptyText: {
@@ -57,10 +59,13 @@ export default function BlockedColleague({ blocked }: Props) {
 
 	const handlePress = async () => {
 		try {
+			setLoading(true);
 			await ColleaguesAPI.unblockColleague(blocked.rid);
 			refreshBlocked();
 		} catch (error: any) {
 			console.log(error?.message);
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -78,12 +83,20 @@ export default function BlockedColleague({ blocked }: Props) {
 			)}
 			right={props => (
 				<TouchableOpacity activeOpacity={0.5} onPress={handlePress}>
-					<LockOpenIcon
-						size={32}
-						weight='bold'
-						style={{ marginTop: 15 }}
-						color={theme.dark ? theme.colors.yellow : theme.colors.amber}
-					/>
+					{loading ? (
+						<ActivityIndicator
+							animating
+							style={{ marginTop: 15 }}
+							color={theme.dark ? theme.colors.yellow : theme.colors.amber}
+						/>
+					) : (
+						<LockOpenIcon
+							size={32}
+							weight='bold'
+							style={{ marginTop: 15 }}
+							color={theme.dark ? theme.colors.yellow : theme.colors.amber}
+						/>
+					)}
 				</TouchableOpacity>
 			)}
 		/>

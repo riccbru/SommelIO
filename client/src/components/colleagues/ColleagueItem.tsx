@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { List } from "react-native-paper";
+import { ActivityIndicator, List } from "react-native-paper";
 import { useTheme } from "@/src/hooks/useTheme";
 import ColleaguesAPI from "@/src/services/colleagues";
 import { CheckIcon, UserPlusIcon } from "phosphor-react-native";
-import { Image, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { Image, StyleSheet, TouchableOpacity, Text, Platform } from "react-native";
 
 type User = {
 	status: string | null;
@@ -19,6 +19,7 @@ type Props = {
 
 export default function ColleagueItem({ user }: Props) {
 	const theme = useTheme();
+	const [loading, setLoading] = useState(false);
 	const [sent, setSent] = useState(user.status === "pending");
 	const Icon = sent ? CheckIcon : UserPlusIcon;
 
@@ -46,11 +47,14 @@ export default function ColleagueItem({ user }: Props) {
 
 	const handleSendRequest = async (uid: string) => {
 		try {
+			setLoading(true);
 			await ColleaguesAPI.sendRequest(uid);
 			setSent(true);
 		} catch (error: any) {
 			setSent(false);
 			console.log(error.message);
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -68,11 +72,20 @@ export default function ColleagueItem({ user }: Props) {
 						activeOpacity={0.5}
 						onPress={() => handleSendRequest(user.uid)}
 					>
-						<Icon
-							size={32}
-							weight='bold'
-							color={!sent ? theme.colors.gray : theme.colors.green}
-						/>
+						{loading ? (
+							<ActivityIndicator
+								animating
+								color={theme.colors.gray}
+								style={{ marginTop: Platform.OS === "ios" ? 0 : 10 }}
+							/>
+						) : (
+							<Icon
+								size={32}
+								weight='bold'
+								style={{ marginTop: Platform.OS === "ios" ? 0 : 10 }}
+								color={!sent ? theme.colors.gray : theme.colors.green}
+							/>
+						)}
 					</TouchableOpacity>
 				)}
 			/>

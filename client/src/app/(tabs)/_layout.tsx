@@ -12,8 +12,8 @@ export default function TabsLayout() {
 	const iconColor = (focused: boolean) => (!focused ? theme.colors.primary : theme.colors.amber);
 	const iconWeight = (title: string, focused: boolean) => {
 		return !getLabel(title) || focused ? "fill" : "regular";
-	}
-	
+	};
+
 	return (
 		<Tabs
 			screenOptions={({ route }) => {

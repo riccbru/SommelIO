@@ -24,8 +24,8 @@ export default function Colleagues() {
 	const { t } = useTranslation();
 	const navigation = useNavigation();
 	const [searchQuery, setSearchQuery] = useState("");
-	const [apiResult, setApiResult] = useState<Result[]>([]);
 	const { loading, colleagues, refreshColleagues } = useData();
+	const [searchResult, setSearchResult] = useState<Result[]>([]);
 
 	const styles = StyleSheet.create({
 		container: {
@@ -86,24 +86,24 @@ export default function Colleagues() {
 	const handleSearchBarChange = (text: string) => {
 		setSearchQuery(text);
 		if (!text.trim()) {
-			setApiResult([]);
+			setSearchResult([]);
 		}
 	};
 
 	const handleSubmit = async () => {
 		if (!searchQuery.trim()) {
-			setApiResult([]);
+			setSearchResult([]);
 			return;
 		}
 		try {
 			const users = await ColleaguesAPI.searchColleague(searchQuery.trim());
-			setApiResult(users);
+			setSearchResult(users);
 		} catch (err: any) {
 			console.log(err.message);
 		}
 	};
 
-	const displayList = apiResult.length ? apiResult : filteredColleagues;
+	const displayList = searchResult.length ? searchResult : filteredColleagues;
 
 	return (
 		<View style={styles.container}>
@@ -130,8 +130,8 @@ export default function Colleagues() {
 					</View>
 				) : (
 					<>
-						{apiResult.length ? (
-							apiResult.map((user, index) => <ColleagueItem key={index} user={user} />)
+						{searchResult.length ? (
+							searchResult.map((user, index) => <ColleagueItem key={index} user={user} />)
 						) : (
 							<ColleaguesList colleagues={filteredColleagues} searchQuery='' />
 						)}

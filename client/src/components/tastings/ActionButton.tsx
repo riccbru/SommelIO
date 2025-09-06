@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "expo-router";
-import { Button } from "react-native-paper";
+import { ActivityIndicator, Button } from "react-native-paper";
 import { useData } from "@/src/hooks/useData";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/hooks/useTheme";
@@ -19,9 +19,10 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 	const theme = useTheme();
 	const router = useRouter();
 	const { t } = useTranslation();
-	const { refreshStats, refreshTastings } = useData();
 	const [modal, setModal] = useState(false);
+	const { refreshStats, refreshTastings } = useData();
 	const Icon = action.toLowerCase() === "delete" ? TrashIcon : FilePdfIcon;
+	const [loading, setLoading] = useState({ download: false, delete: false });
 
 	const showModal = () => setModal(true);
 	const hideModal = () => setModal(false);
@@ -42,29 +43,44 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 		},
 	});
 
-	const handleDelete = async () => {
-		try {
-			await TastingsAPI.deleteTasting(tid);
-			hideModal();
-			refreshStats();
-			refreshTastings();
-			router.replace("/(tabs)/wines?tab=tastings");
-		} catch (error: any) {
-			console.log(`[ActionButton-delete]: ${error}`);
-		}
-	};
-
 	const handlePress = async () => {
 		if (action.toLowerCase() === "delete") {
 			showModal();
 		} else {
+			handleDownload();
+		}
+	};
+
+	const handleDownload = async () => {
+		try {
+			setLoading({ download: true, delete: false });
+			await new Promise(resolve => setTimeout(resolve, 2000));
 			console.log(`download tasting ${tid}`);
+		} catch (error: any) {
+			console.log(`[ActionButton-download]: ${error}`);
+		} finally {
+			setLoading({ download: false, delete: false });
+		}
+	};
+
+	const handleDelete = async () => {
+		try {
+			setLoading({ download: false, delete: true });
+			await TastingsAPI.deleteTasting(tid);
+			hideModal();
+			refreshStats();
+			refreshTastings();
+			router.back();
+		} catch (error: any) {
+			console.log(`[ActionButton-delete]: ${error}`);
+		} finally {
+			setLoading({ download: false, delete: false });
 		}
 	};
 
 	return (
 		<>
-			<TouchableOpacity activeOpacity={0.5} onPress={handlePress}>
+			<TouchableOpacity activeOpacity={0.5} disabled={loading.download} onPress={handlePress}>
 				<View
 					style={{
 						marginLeft: 10,
@@ -73,12 +89,21 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 						justifyContent: "flex-start",
 					}}
 				>
-					<Icon
-						size={32}
-						weight='bold'
-						style={{ marginRight: 10 }}
-						color={action === "delete" ? theme.colors.red : theme.colors.premium}
-					/>
+					{loading.download ? (
+						<ActivityIndicator
+							animating
+							size={32}
+							color={theme.colors.premium}
+							style={{ marginRight: 10 }}
+						/>
+					) : (
+						<Icon
+							size={32}
+							weight='bold'
+							style={{ marginRight: 10 }}
+							color={action === "delete" ? theme.colors.red : theme.colors.premium}
+						/>
+					)}
 					<Text
 						style={{
 							fontSize: 20,
@@ -109,8 +134,8 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 							<Button
 								mode='contained'
 								onPress={hideModal}
-								style={{ marginLeft: 20 }}
 								buttonColor={theme.colors.primary}
+								style={{ width: 120, marginLeft: 20 }}
 							>
 								<Text
 									style={{
@@ -125,12 +150,19 @@ export default function ActionButton({ tid, action, name, winemaker }: Props) {
 							<Button
 								mode='contained'
 								onPress={handleDelete}
-								style={{ marginRight: 20 }}
+								disabled={loading.delete}
 								buttonColor={theme.colors.red}
+								style={{ width: 120, marginRight: 20 }}
 							>
-								<Text style={{ color: theme.colors.white, fontFamily: "Epilogue-Regular" }}>
-									{t("tastings.delete_confirm")}
-								</Text>
+								{loading.delete ? (
+									<ActivityIndicator size={18} animating color={theme.colors.white} />
+								) : (
+									<Text
+										style={{ color: theme.colors.white, fontFamily: "Epilogue-Regular" }}
+									>
+										{t("tastings.delete_confirm")}
+									</Text>
+								)}
 							</Button>
 						</View>
 					</View>
