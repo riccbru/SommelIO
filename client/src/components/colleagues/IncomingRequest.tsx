@@ -59,8 +59,8 @@ export default function IncomingRequests({ requests }: Props) {
 			backgroundColor: theme.colors.card,
 		},
 		image: {
-			width: 55,
-			height: 55,
+			width: 45,
+			height: 45,
 			marginLeft: 0,
 			borderWidth: 1,
 			borderRadius: 30,

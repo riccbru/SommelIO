@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import express from "express";
 import cookieParser from "cookie-parser";
 
+import swaggerDocs from "./src/swagger.js";
+
 import loginRoutes from "./src/routes/auth.js";
 import winesRoutes from "./src/routes/wines.js";
 import usersRoutes from "./src/routes/users.js";
@@ -31,6 +33,15 @@ const SERVER_PORT = parseInt(process.env.SERVER_PORT || "3001", 10);
 app.listen(SERVER_PORT, () => {
 	console.log(`\x1b[42m[*]\x1b[0m \x1b[92mBackend listening on \x1b[1m${SERVER_PORT}...\x1b[0m`);
 });
+
+app.use(
+	"/docs",
+	swaggerDocs.swaggerUi.serve,
+	swaggerDocs.swaggerUi.setup(swaggerDocs.specs, {
+		explorer: true,
+		customCssUrl: "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css",
+	}),
+);
 
 app.use("/", welcomeRoute);
 app.use("/api/v1/auth", loginRoutes);

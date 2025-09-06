@@ -20,11 +20,14 @@ router.get("/", (req, res) => {
       			  	    justify-content: center;
       			  	    align-items: flex-start;
       			  	    font-family: sans-serif;
+						background: #B02A3C;
+						background: linear-gradient(180deg,rgba(176, 42, 60, 1) 0%, rgba(128, 22, 40, 1) 35%, rgba(60, 10, 18, 1) 65%);
       			  	  }
       			  	  .message {
       			  	    margin-top: 25vh;
       			  	    font-size: 2.5rem;
       			  	    text-align: center;
+						color: #ffffff;
       			  	  }
       			  	</style>
       			</head>
