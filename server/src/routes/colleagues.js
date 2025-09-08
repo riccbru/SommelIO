@@ -55,7 +55,6 @@ router.get("/requests", async (req, res) => {
 	try {
 		const uid = req.user.uid;
 
-		// Get incoming requests (requests sent TO current user)
 		const incomingRequests = await prisma.colleagues.findMany({
 			where: {
 				addressee_id: uid,
@@ -77,7 +76,6 @@ router.get("/requests", async (req, res) => {
 			},
 		});
 
-		// Get outgoing requests (requests sent BY current user)
 		const outgoingRequests = await prisma.colleagues.findMany({
 			where: {
 				requester_id: uid,
@@ -136,7 +134,6 @@ router.post("/:cuid", async (req, res) => {
 			return res.status(400).json({ error: "Cannot send request to yourself" });
 		}
 
-		// Check if addressee exists
 		const addresseeExists = await prisma.users.findUnique({
 			where: { uid: addresseeId },
 		});
@@ -203,7 +200,6 @@ router.put("/accept/:rid", async (req, res) => {
 		const uid = req.user.uid;
 		const rid = req.params.rid;
 
-		// Find the request and verify the current user is the addressee
 		const request = await prisma.colleagues.findUnique({
 			where: { rid: rid },
 		});
@@ -220,7 +216,6 @@ router.put("/accept/:rid", async (req, res) => {
 			return res.status(400).json({ error: `Request is already ${request.status}` });
 		}
 
-		// Accept the request
 		const updatedRequest = await prisma.colleagues.update({
 			where: { rid: rid },
 			data: {
@@ -254,7 +249,6 @@ router.put("/decline/:rid", async (req, res) => {
 		const uid = req.user.uid;
 		const rid = req.params.rid;
 
-		// Find the request and verify the current user is the addressee
 		const request = await prisma.colleagues.findUnique({
 			where: { rid: rid },
 		});
@@ -271,7 +265,6 @@ router.put("/decline/:rid", async (req, res) => {
 			return res.status(400).json({ error: `Request is already ${request.status}` });
 		}
 
-		// Decline the request
 		const updatedRequest = await prisma.colleagues.update({
 			where: { rid: rid },
 			data: {
@@ -310,7 +303,6 @@ router.put("/block/:uid", async (req, res) => {
 			return res.status(400).json({ error: "Cannot block yourself" });
 		}
 
-		// Check if user exists
 		const userExists = await prisma.users.findUnique({
 			where: { uid: blockedId },
 		});
@@ -319,7 +311,6 @@ router.put("/block/:uid", async (req, res) => {
 			return res.status(404).json({ error: "User not found" });
 		}
 
-		// Check if relationship exists
 		const existingRelationship = await prisma.colleagues.findFirst({
 			where: {
 				OR: [
@@ -330,7 +321,6 @@ router.put("/block/:uid", async (req, res) => {
 		});
 
 		if (existingRelationship) {
-			// Update existing relationship
 			const blocked = await prisma.colleagues.update({
 				where: { rid: existingRelationship.rid },
 				data: {
@@ -355,7 +345,6 @@ router.put("/block/:uid", async (req, res) => {
 				success: `Colleague ${blocked.users_colleagues_addressee_idTousers.username} blocked successfully`,
 			});
 		} else {
-			// Create new blocking relationship
 			const blocked = await prisma.colleagues.create({
 				data: {
 					requester_id: blockerId,
@@ -391,7 +380,6 @@ router.put("/unblock/:rid", async (req, res) => {
 		const uid = req.user.uid;
 		const rid = req.params.rid;
 
-		// Find the blocking relationship
 		const relationship = await prisma.colleagues.findUnique({
 			where: { rid: rid },
 		});
@@ -408,7 +396,6 @@ router.put("/unblock/:rid", async (req, res) => {
 			return res.status(400).json({ error: "User is not blocked" });
 		}
 
-		// Remove the blocking relationship
 		const result = await prisma.colleagues.delete({
 			where: { rid: rid },
 			include: {
@@ -424,7 +411,7 @@ router.put("/unblock/:rid", async (req, res) => {
 		});
 
 		res.json({
-			success: `Colleague ${result.users_colleagues_addressee_idTousers.username} unblocked successfully`,
+			success: `Colleague ${result.users_colleagues_addressee_idTousers.uid} unblocked successfully`,
 		});
 	} catch (error) {
 		console.error("Error unblocking user:", error);
@@ -532,21 +519,17 @@ router.get("/search", async (req, res) => {
 		relationships.forEach(rel => {
 			const otherId = rel.requester_id === uid ? rel.addressee_id : rel.requester_id;
 
-			// Exclude accepted or blocked users
 			if (rel.status === "accepted" || rel.status === "blocked") {
 				excludeIds.add(otherId);
 			}
 
-			// Include pending only if caller is the requester
 			if (rel.status === "pending" && rel.requester_id === uid) {
 				userStatusMap.set(otherId, rel.status);
 			} else {
-				// All others will be excluded
 				excludeIds.add(otherId);
 			}
 		});
 
-		// Fetch users not excluded
 		const result = await prisma.users.findMany({
 			take: 20,
 			where: {
@@ -559,7 +542,6 @@ router.get("/search", async (req, res) => {
 			select: { uid: true, username: true, full_name: true, image_url: true },
 		});
 
-		// Merge user info with status (null if no relationship)
 		const users = result.map(user => ({
 			status: userStatusMap.get(user.uid) || null,
 			...user,

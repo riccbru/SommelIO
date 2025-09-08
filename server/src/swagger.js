@@ -11,12 +11,12 @@ const options = {
 		},
 		servers: [
 			{
-				url: "https://sommelio.vercel.app",
-				description: "Production",
-			},
-			{
 				url: "http://localhost:3001",
 				description: "Development",
+			},
+			{
+				url: "https://sommelio.vercel.app",
+				description: "Production",
 			},
 		],
 		components: {

@@ -1,4 +1,5 @@
 import cors from "cors";
+import path from "path";
 import dotenv from "dotenv";
 import morgan from "morgan";
 import express from "express";
@@ -29,6 +30,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({ origin: "http://localhost:5173" }));
 
+app.use(express.static(path.join(process.cwd(), "public")));
+
 const SERVER_PORT = parseInt(process.env.SERVER_PORT || "3001", 10);
 app.listen(SERVER_PORT, () => {
 	console.log(`\x1b[42m[*]\x1b[0m \x1b[92mBackend listening on \x1b[1m${SERVER_PORT}...\x1b[0m`);
@@ -39,6 +42,8 @@ app.use(
 	swaggerDocs.swaggerUi.serve,
 	swaggerDocs.swaggerUi.setup(swaggerDocs.specs, {
 		explorer: true,
+		customfavIcon: "/favicon.ico",
+		customSiteTitle: "SommelIO API Docs",
 		customCssUrl: "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css",
 	}),
 );
